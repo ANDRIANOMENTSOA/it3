@@ -1,0 +1,85 @@
+﻿@using System.Data
+@model DataSet
+@foreach (DataRow dr in Model.Tables[0].Rows)
+{
+<div class="col-sm-5">
+    <table class="tab-refundEng" style="width: 100%;">
+        <tr>
+            <td style="width: 120px;">Agent Numeric Code:</td>
+            <td><input type="text" class="form-control" value="@dr[Model.Tables[0].Columns[0].ColumnName].ToString()" id="agentCode"/></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" class="form-control" value="@dr[Model.Tables[0].Columns[1].ColumnName].ToString()" id="name"/></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Address:</td>
+            <td><input type="text" class="form-control" value="@dr[Model.Tables[0].Columns[2].ColumnName].ToString()" id="address"/></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Status:</td>
+            <td>
+                <select class="form-control" id="status">
+                    <option>@dr[Model.Tables[0].Columns[3].ColumnName].ToString()</option>
+                    <option></option>
+                    <option>Regular</option>
+                    <option>Notice Of Irregularity</option>
+                    <option>Default</option>
+                    <option>Other</option>
+                </select>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Category:</td>
+            <td>
+                <select class="form-control" id="category">
+                    <option>@dr[Model.Tables[0].Columns[4].ColumnName].ToString()</option>
+                    <option></option>
+                    <option>Passenger Sales Agency (PSA))</option>
+                    <option>General Sales Agency (GSA)</option>
+                    <option>IATA BSP CONSOLIDATOR SYSTEM (IBCS)</option>
+                </select>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+    <div class="search" style="left: 6px;">
+        <div class="col-sm-3"><button type="button" class="search-interogation pink btn" onclick="SavePassengerAgency()"><span class="search-span">SAVE</span></button></div>
+        <div class="col-sm-3"><button type="button" class="search-interogation pink btn" onclick="DeletesingleClick()"><span class="search-span">DELETE</span></button></div>
+        <div class="col-sm-3"><button class="search-interogation pink btn" onclick="clearPassengerDetails()"><span class="search-span">CLEAR</span></button></div>
+    </div>
+</div>
+<div class="col-sm-6" style="margin-left:7%">
+    <table class="tab-refundEng" style="width: 100%;position: relative;top: -11px;">
+        <tr>
+            <td>Remarks:</td>
+            <td><textarea rows="4" style="width:100%" id="remark">@dr[Model.Tables[0].Columns[5].ColumnName].ToString()</textarea></td>
+        </tr>
+        <tr>
+            <td>Date Of Appointment:</td>
+            <td>
+                <div class="input-group" style="margin-left:-5px">
+                    <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateOpp')"></span>
+                    <input type="text" class="form-control" value="@dr[Model.Tables[0].Columns[6].ColumnName].ToString()" id="dateOpp" style="width: 105%;margin-left: -6px;">
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>Location City:</td>
+            <td><input type="text" class="form-control" value="@dr[Model.Tables[0].Columns[7].ColumnName].ToString()" id="location"/></td>
+        </tr>
+        <tr>
+            <td>BSPs:</td>
+            <td><input type="text" class="form-control" value="@dr[Model.Tables[0].Columns[8].ColumnName].ToString()" id="bsps"/></td>
+        </tr>
+    </table>
+    <div class="search">
+        <div class="col-sm-3" style="top: -12px;"><button class="search-interogation pink btn" onclick=""><span class="search-span">CLOSE</span></button></div>
+    </div>
+
+</div>
+}

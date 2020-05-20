@@ -1,0 +1,11 @@
+﻿
+
+<select class="form-control" id="AgentNumericCode" onclick="AgentNumericCode()" style="width:215px;">
+    <option>-All-</option>
+    @for (int id = 0; id < ViewBag.ligneagnum; id++)
+            {
+        <option>@ViewBag.dataagnum[0, id]</option>
+    }
+</select>
+
+

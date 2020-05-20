@@ -1,0 +1,139 @@
+﻿<div class="col-sm-11 tab-content tab-cancellation">
+    <div id="" class="tab-pane fade in active">
+        <div class="content col-sm-12">
+            <div id="search">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="col-sm-4 margin-issue">
+                            <label class="form-check-label col-form-label">Document No:</label>
+                        </div>
+                        <div class="col-sm-6 n-padding">
+                            <input type="text" class="form-control" id="DocumentNoFS">
+                        </div>
+                    </div>
+                    <div class="col-lg-1">
+                        <button class="btn" onclick="SearchFinalSharevsAmount()"><span>SEARCH</span></button>
+                    </div>
+                    <div class="col-lg-1">
+                        <button class="btn" onclick="ClearFinalSharevsAmount()"><span>CLEAR</span></button>
+                    </div>
+                    <div class="col-lg-1">
+                        <button class="btn" onclick="removeSousMenu()"><span>CLOSE</span></button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="col-sm-4 margin-issue">
+                            <label class="form-check-label col-form-label">Date Of Issue:</label>
+                        </div>
+                        <div class="col-sm-6 n-padding">
+                            <label id="DateOfIssueFS"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="table-record-display" id="tabnowshow" style="height:95px;overflow:auto; position: relative; left: 20px;">
+                            <table class="">
+                                <thead>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Fare:</td>
+                                        <td><label id="fareFS"></label></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Aquivalent Fare:</td>
+                                        <td><label id="AquivalentFareFS"></label></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tax And Surcharge</td>
+                                        <td><label id="TaxAndSurchargeFS"></label></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total Amount</td>
+                                        <td><label id="TaxAndSurchargeFS"></label></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="table-record-display" id="tabnowshow" style="height:95px;overflow:auto; position: relative; left: 20px;">
+                            <table class="">
+                                <thead>
+                                    <tr></tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>ROE:</td>
+                                        <td><label id="ROEFS"></label></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fare in USD</td>
+                                        <td> <label id="FareinUSDFS"></label> </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total Final Shares:</td>
+                                        <td><label id="TotalFinalSharesFS"></label></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Resudial Values:</td>
+                                        <td><label id="ResudialValuesFS"></label></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6" style="position: relative;top: 16px;">
+                        <div class="table-record-display" id="tabnowshow" style="height:89px;overflow:auto; position: relative; left: 20px;">
+                            <table class="">
+                                <thead>
+                                    <tr style=""></tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>FCA:</td>
+                                        <td><label id="FCAFS"></label></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="table-record-display" id="showresultSLS" style="height:300px;overflow:auto;position: relative;left: 20px;top: 42px;">
+                            <div class="ajax-loader">
+                                <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+                            </div>
+                            <table class="table table-bordered table-striped table-hover">
+                                <thead>
+                                    <tr style="background-color: RGB(173,255,47);">
+                                        <th>Doc No</th>
+                                        <th>Related Doc No</th>
+                                        <th>Cpn</th>
+                                        <th>Ori City</th>
+                                        <th>Des City</th>
+                                        <th>RBD</th>
+                                        <th>Fares Basis</th>
+                                        <th>Differentials</th>
+                                        <th>Surchage</th>
+                                        <th>Final Share</th>
+                                        <th>PM</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="TableFSA">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

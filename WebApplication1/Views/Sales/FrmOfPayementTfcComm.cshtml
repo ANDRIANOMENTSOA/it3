@@ -1,0 +1,28 @@
+﻿
+<table class="table table-bordered table1 table-striped table-hover">
+    <thead>
+        <tr>
+            <th class="pink">FOP</th>
+            <th class="pink">CUR</th>
+            <th class="pink">Amount Collected</th>
+            <th class="pink">CUR</th>
+            <th class="pink">Remitence Amount</th>
+            <th class="pink">Transaction Code</th>
+            <th class="pink">Date Of Issue</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var items in ViewBag.FrmPayement)
+        {
+            <tr>
+                <td>@items.FOP</td>
+                <td>@items.CUR</td>
+                <td>@items.AmountCollected</td>
+                <td>@items.remitCur</td>
+                <td>@items.TransactionCode</td>
+                <td>@items.RemitanceAmount</td>
+                <td>@items.IssueDate</td>
+            </tr>
+        }
+    </tbody>
+</table>

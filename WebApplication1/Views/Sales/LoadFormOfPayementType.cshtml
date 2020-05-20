@@ -1,0 +1,65 @@
+﻿
+@using System.Data
+@model DataSet
+<div class="col-sm-8">
+    <div class="table-record-display" style="height:569px;overflow:auto">
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th class="pink">Sale Date</th>
+                    <th class="pink">Document No.</th>
+                    <th class="pink">Agent Num Code</th>
+                    <th class="pink">FCMI</th>
+                    <th class="pink">Trans.Code</th>
+                    <th class="pink">FOP</th>
+                    <th class="pink">CUR</th>
+                    <th class="pink">Amount Collected</th>
+                    <th class="pink">Amount Remitted</th>
+                    <th class="pink">Compiled Commission</th>
+                </tr>
+            </thead>
+            <tbody id="bodyFormPayment">
+                @foreach (DataRow dr in ViewBag.form1.Tables[0].Rows)
+                {
+                    <tr>
+                        @for (int i = 0; i < ViewBag.form1.Tables[0].Columns.Count; i++)
+                        {
+                            <td ondblclick="loadDocNum(this,'@dr[ViewBag.form1.Tables[0].Columns[1].ColumnName]','@dr[ViewBag.form1.Tables[0].Columns[4].ColumnName]')">@dr[ViewBag.form1.Tables[0].Columns[i].ColumnName].ToString()</td>;
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="col-sm-4" style="margin-top: 15px;">
+    <fieldset class="test-fieldst">
+        <legend class="test-fieldst">Summary</legend>
+        <div class="table-summary" style="background-color: white;height: 536px;overflow: auto;">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th class="pink">Agent Num Code</th>
+                        <th class="pink">Trans.Code</th>
+                        <th class="pink">FOP</th>
+                        <th class="pink">CUR</th>
+                        <th class="pink">Amount Remited</th>
+                        <th class="pink">Commission Collected</th>
+                        <th class="pink">Doc Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (DataRow dr in ViewBag.form2.Tables[0].Rows)
+                    {
+                        <tr>
+                            @for (int i = 0; i < ViewBag.form2.Tables[0].Columns.Count; i++)
+                            {
+                                <td>@dr[ViewBag.form2.Tables[0].Columns[i].ColumnName].ToString()</td>;
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </fieldset>
+</div>

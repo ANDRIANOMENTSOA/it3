@@ -1,0 +1,27 @@
+﻿@using System.Data
+@model DataSet
+<table class="table table-bordered table-striped" id="fareSummary">
+    <thead>
+        <tr>
+            <th class="pink">Travel ID</th>
+            <th class="pink">Date Of Issue</th>
+            <th class="pink">Passenger Name</th>
+            <th class="pink">Document Number</th>
+            <th class="pink">Original Issue Doc Number</th>
+            <th class="pink">Transaction Code</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (DataRow dr in Model.Tables[0].Rows)
+            {
+            <tr>
+                @for (int i = 0; i < Model.Tables[0].Columns.Count; i++)
+                {
+                    <td>@dr[Model.Tables[0].Columns[i].ColumnName].ToString()</td>;
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+

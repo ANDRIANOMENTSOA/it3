@@ -1,0 +1,13 @@
+﻿@using System.Data
+@model DataSet
+<!--fait par christian-->
+<div class="col" id="agentRBD">
+    <select class="form-control" id="selectagentRBD" onchange="param()">
+        <option class="form-control" value="-All-" selected>-All-</option>
+        @for (int i = 0; i < ViewBag.lonagentRBD; i++)
+        {
+            <option class="form-control" value="@ViewBag.ListeagentRBD[0, i]">@ViewBag.ListeagentRBD[0, i]</option>
+        }
+    </select>
+</div>
+<!--fin fait par christian-->

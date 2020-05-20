@@ -1,0 +1,77 @@
+﻿@using System.Data
+@model DataSet
+<div class="col-sm-7">
+    <div class="table-record-display" style="height:630px">
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th class="pink">Period</th>
+                    <th class="pink">Date of Sale</th>
+                    <th class="pink">Document No</th>
+                    <th class="pink">Agent Code</th>
+                    <th class="pink">Agent Name</th>
+                    <th class="pink">CUR</th>
+                    <th class="pink">Amount</th>
+                    <th class="pink">Exchange Rate</th>
+                    <th class="pink">USD Value</th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                @for (int j = 0; j < ViewBag.compt; j++)
+                {
+                    <tr onclick="loadDocNum('@ViewBag.dbgComm[2,j]','TKTT')">
+                        @for (int i = 0; i < 9; i++)
+                        {
+                            <td>@ViewBag.dbgComm[i, j] </td>;
+                        }
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+</div>
+<div class="col-sm-3">
+    <fieldset class="test-fieldst" style="top: 15px;position: relative;height:505px">
+        <legend class="test-fieldst">Summary</legend>
+        <table class="table table-cancellation" style="position: relative;left: 33px;width:312px!important">
+            <tr>
+                <td width="38%">Total Amount:USD</td>
+                <td width="27%"><input type="text" class="form-control" name="" id="totAmount" value="@ViewBag.sumUSD" /></td>
+                <td width="10%"></td>
+            </tr>
+        </table>
+        <table class="table table-cancellation" style="position: relative;left: 33px;width:312px!important">
+            <tr>
+                <td width="38%">Total No of Document</td>
+                <td width="27%"><input type="text" class="form-control" name="" id="Document" value="@ViewBag.compt" /> </td>
+                <td width="10%"></td>
+            </tr>
+        </table>
+        <div class="table-summary" style="height:275px;overflow:auto;background-color:white;width: 315px;position: relative;left: 33px;">
+            <table class="table table-bordered ">
+                <thead>
+                    <tr>
+                        <th class="pink">Currency</th>
+                        <th class="pink">Amount</th>
+                        <th class="pink">Doc Count</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int n = 0; n < ViewBag.Count; n++)
+                    {
+                        <tr>
+                            <td>@ViewBag.Sum[0, n]</td>
+                            <td>@ViewBag.Sum[1, n]</td>
+                            <td>@ViewBag.Sum[2, n]</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </fieldset>
+</div>
+

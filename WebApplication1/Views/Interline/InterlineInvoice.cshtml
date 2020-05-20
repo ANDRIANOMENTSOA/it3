@@ -1,0 +1,660 @@
+﻿@using System.Data
+@model DataSet
+
+<div id="invoice" class="tab-pane fade in active" style="background-color:white;margin-left: -1px;">
+    <div style="background-color:white;height: 89vh;">
+        
+        <input type="text" id="indexParam0" value="">
+        <input type="text" id="indexParam1" value="">
+        <input type="text" id="indexParam2" value="">
+        <input type="text" id="indexParam3" value="">
+        <input type="text" id="indexParam4" value="">
+        <input type="text" id="indexParam5" value="">
+        <input type="text" id="indexParam6" value="">
+        <input type="text" id="indexParam7" value="">
+        <input type="text" id="indexParam8" value="">
+        <input type="text" id="indexParam9" value="">
+        <input type="text" id="indexParam10" value="">
+        <input type="text" id="indexParam11" value="">
+        <input type="text" id="indexParam12" value="">
+        <input type="text" id="indexParam13" value="">
+        <input type="text" id="indexParam14" value="">
+        <input type="text" id="indexParam15" value="">
+        <input type="text" id="indexParam16" value="">
+        <input type="text" id="indexParam17" value="">
+        <input type="text" id="indexParam18" value="">
+        <input type="text" id="indexParam19" value="">
+        <input type="text" id="indexParam20" value="">
+        <input type="text" id="indexParam21" value="">
+
+        Parametre 
+        <input type="text" id="valindex0" value="">
+        <input type="text" id="valindex1" value="">
+        <input type="text" id="valindex2" value="">
+        <input type="text" id="valindex3" value="">
+        <input type="text" id="valindex4" value="">
+        <input type="text" id="valindex5" value="">
+        <input type="text" id="valindex6" value="">
+        <input type="text" id="valindex7" value="">
+        <input type="text" id="valindex8" value="">
+        <input type="text" id="valindex9" value="">
+        <input type="text" id="valindex10" value="">
+        <input type="text" id="valindex11" value="">
+        <input type="text" id="valindex12" value="">
+        <input type="text" id="valindex13" value="">
+        <input type="text" id="valindex14" value="">
+        <input type="text" id="valindex15" value="">
+        <input type="text" id="valindex16" value="">
+        <input type="text" id="valindex17" value="">
+        <input type="text" id="valindex18" value="">
+        <input type="text" id="valindex19" value="">
+        <input type="text" id="valindex20" value="">
+        <input type="text" id="valindex21" value="">
+        <input type="text" id="valindex22" value="">
+        <input type="text" id="valindex23" value="">
+        <input type="text" id="valindex24" value="">
+        <input type="text" id="valindex25" value="">
+        <input type="text" id="valindex26" value="">
+
+
+        <div class="col-sm-12 n-padding">
+            <div class="panel" style="margin-bottom: 1px;">
+
+                <div id="head">
+                    <div class="panel-heading" style="background-color: #982c2c;height: 45px;font-size: 12px;padding: 2px 5px;">
+                        <table class="col-lg-12">
+                            <tbody>
+                                <tr style="color:white">
+                                    <td></td>
+                                    <td>Invoice Number</td>
+                                    <td>Billing Period</td>
+                                    <td>Charge Code</td>
+                                    <td>Processing Status</td>
+                                    <td></td>
+                                    <td>Currency Code</td>
+                                    <td>Clearance Currency Code</td>
+                                    <td>Exchange Rate</td>
+                                    <td>Settlement Period</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td style="color:white">LOADED INVOICES</td>
+                                    <td>
+                                        <select id="invoiceNumber" onchange="ChangeInvoiceNumber()">
+                                            <option>-ALL-</option>
+                                            @for (int i = 0; i < ViewBag.logInvoice; i++)
+                                            {
+                                                <option value="@ViewBag.ItemInvoice[0, i]">@ViewBag.ItemInvoice[0, i]</option>
+                                            }
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select id="billingPeriod" onchange="ChangeBillingPeriodInterline()">
+                                            <option>-ALL-</option>
+                                            @for (int i = 0; i < ViewBag.logBillingP; i++)
+                                            {
+                                                <option value="@ViewBag.ItemBillingPeriode[0, i]">@ViewBag.ItemBillingPeriode[0, i]</option>
+                                            }
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select id="chargeCode" onchange="ChangeChargeCode()">
+                                            <option>-ALL-</option>
+                                            @for (int i = 0; i < ViewBag.logChargeC; i++)
+                                            {
+                                                <option value="@ViewBag.ItemChargeCode[0, i]">@ViewBag.ItemChargeCode[0, i]</option>
+                                            }
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select id="procesStatus" onchange="ChangeProcesStatus()">
+                                            <option>-ALL-</option>
+                                            <option>Already Processed</option>
+                                            <option>Not Yet Processed</option>
+                                        </select>
+                                    </td>
+                                    <td><button class="btn-default" style="width: 60px;" onclick="InvoiceQuery()">Query</button></td>
+                                    <td style="color:white">@ViewBag.lblCurrencyCode</td>
+                                    <td style="color:white">@ViewBag.lblClearanceCode </td>
+                                    <td style="color:white">@ViewBag.lblExchange</td>
+                                    <td style="color:white">@ViewBag.lblSettlementPeriod</td>
+                                    <td>
+                                         <!-- <button id="BtAlreadyProcess" class="btn-default" style="width: 300px; height: 25px;" onclick="">@ViewBag.button15</button>-->   
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+               
+
+
+                <div class="panel-body" style="padding:0px;height: 148px;overflow-y: auto;">
+                    <table class="col-lg-12 table table-bordered">
+                        <thead style="background-color: #982c2c;color: white;font-size:11px">
+                            <tr>
+                                <td>Transmission Id</td>
+                                <td>Invoice Number</td>
+                                <td>Invoice Date</td>
+                                <td>Invoice Type</td>
+                                <td>Charge Category</td>
+                                <td>Seller Organization Id</td>
+                                <td>Seller Organization Designator</td>
+                                <td>Buyer Organization ID</td>
+                                <td>Buyer Organization Designator</td>
+                                <td>Settlement Month Period</td>
+                                <td>Settlement Method</td>
+                                <td>Line Item Number</td>
+                                <td>Charge Code</td>
+                                <td>Description</td>
+                                <td>Charge Amount</td>
+                                <td>Tax Type</td>
+                                <td>Tax Amount</td>
+                                <td>Total Net Amount</td>
+                                <td>Detail Count</td>
+                                <td>AddOn Charge Name</td>
+                                <td>AddOn Charge Amount</td>
+                                <td>Processed Date</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < ViewBag.logInvoices; i++)
+                            {
+                                <tr onclick="loadInterline('@ViewBag.ListeInvoices[0, i]','@ViewBag.ListeInvoices[1, i]','@ViewBag.ListeInvoices[2, i]','@ViewBag.ListeInvoices[3, i]',
+                                                            '@ViewBag.ListeInvoices[4, i]','@ViewBag.ListeInvoices[5, i]','@ViewBag.ListeInvoices[6, i]','@ViewBag.ListeInvoices[7, i]',
+                                                            '@ViewBag.ListeInvoices[8, i]','@ViewBag.ListeInvoices[9, i]','@ViewBag.ListeInvoices[10, i]','@ViewBag.ListeInvoices[11, i]',
+                                                            '@ViewBag.ListeInvoices[12, i]','@ViewBag.ListeInvoices[13, i]','@ViewBag.ListeInvoices[14, i]','@ViewBag.ListeInvoices[15, i]',
+                                                            '@ViewBag.ListeInvoices[16, i]','@ViewBag.ListeInvoices[17, i]','@ViewBag.ListeInvoices[18, i]','@ViewBag.ListeInvoices[19, i]',
+                                                            '@ViewBag.ListeInvoices[20, i]','@ViewBag.ListeInvoices[21, i]')">
+                                    @for (int j = 0; j < 22; j++)
+                                    {
+                                        <td>@ViewBag.ListeInvoices[j, i]</td>;
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-sm-12 n-padding">
+            <div class="panel" style="margin-bottom: 1px;">
+                <div class="panel-heading" style="background-color: #982c2c;height: 49px;font-size: 12px;padding: 2px 1px;">
+                    <div id="descriptionInvoice" class="col-lg-8 n-padding">
+                        <table class="table table-bordered modifTabPadding separeteTable" style="color:white;margin-bottom: 0px;">
+                            <tbody>
+                                <tr>
+                                    <td>Charge Code Description</td>
+                                    <td>Invoice No.</td>
+                                    <td>Line Item Number</td>
+                                    <td>Charge Amount</td>
+                                    <td>Tax</td>
+                                    <td>ISC</td>
+                                    <td>Total Net Amount</td>
+                                    <td>Detail Count</td>
+                                    <td>Billing Period</td>
+                                </tr>
+                                <tr>
+                                    <td>@ViewBag.label33</td>
+                                    <td>@ViewBag.label47</td>
+                                    <td>@ViewBag.label45</td>
+                                    <td>@ViewBag.label34</td>
+                                    <td>@ViewBag.label37</td>
+                                    <td>@ViewBag.lblIsc</td>
+                                    <td>@ViewBag.label38</td>
+                                    <td>@ViewBag.label39</td>
+                                    <td>@ViewBag.lblBillingPeriod</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div  class="col-lg-2 n-padding-right">
+                        <div id="buttonProcessInvoice">
+                            <button id="BTprocessInvoice" class="btn-default btn" style="height: 46px;float: right;">PROCESS INVOICE</button>
+                        </div>
+                    </div>
+                    <div id="TaxBreakdown" class="col-lg-2" style="text-align:center">
+                        <label style="color:white;margin-top:15px">TAX BREAKDOWN</label>
+                    </div>
+                </div>
+                <div class="panel-body" style="height:246px;padding:0px">
+                    <div class="col-lg-12 n-padding" style="top: 0px;height:246px">
+                        <div class="col-lg-10 n-padding" style="height: 246px;overflow: auto;">
+
+                            <table class="col-lg-12 table table-bordered">
+                                <thead style="background-color: #982c2c;color: white;font-size:11px">
+                                    <tr>
+                                        <td>Invoice Number</td>
+                                        <td>Detail Number</td>
+                                        <td>LineItem Number</td>
+                                        <td>Batch Sequence Number</td>
+                                        <td>Record Sequence Within Batch</td>
+                                        <td>Charge AmountName GrossBilled</td>
+                                        <td>Tax Type</td>
+                                        <td>TaxAmount Name</td>
+                                        <td>Total Net Amount</td>
+                                        <td>Ticket Or FIM Issuing Airline</td>
+                                        <td>Ticket Or FIM Coupon Number</td>
+                                        <td>Ticket Doc or FIM Number</td>
+                                        <td>Check Digit</td>
+                                        <td>Curr Adjustment Indicator</td>
+                                        <td>Electronic Ticket Indicator</td>
+                                        <td>Airline Flight Designator</td>
+                                        <td>Flight No</td>
+                                        <td>Flight Date</td>
+                                        <td>From Airport Code</td>
+                                        <td>To Airport Code</td>
+                                        <td>Settlement Authorization Code</td>
+                                        <td>Attachment Indicator Validated</td>
+                                        <td>Number Of Attachments</td>
+                                        <td>Tax Amount Name Accepted</td>
+                                        <td>Tax AmountName Difference</td>
+                                        <td>AddOnChargePercentage</td>
+                                        <td>AddOnChargeAmount</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                       @for (int i = 0; i < ViewBag.logInvoicesDetail; i++)
+                                       {
+                                          <tr onclick="chargementAll('@ViewBag.ListeInvoicesDetail[0, i]','@ViewBag.ListeInvoicesDetail[1, i]','@ViewBag.ListeInvoicesDetail[2, i]','@ViewBag.ListeInvoicesDetail[3, i]',
+                                                            '@ViewBag.ListeInvoicesDetail[4, i]','@ViewBag.ListeInvoicesDetail[5, i]','@ViewBag.ListeInvoicesDetail[6, i]','@ViewBag.ListeInvoicesDetail[7, i]',
+                                                            '@ViewBag.ListeInvoicesDetail[8, i]','@ViewBag.ListeInvoicesDetail[9, i]','@ViewBag.ListeInvoicesDetail[10, i]','@ViewBag.ListeInvoicesDetail[11, i]',
+                                                            '@ViewBag.ListeInvoicesDetail[12, i]','@ViewBag.ListeInvoicesDetail[13, i]','@ViewBag.ListeInvoicesDetail[14, i]','@ViewBag.ListeInvoicesDetail[15, i]',
+                                                            '@ViewBag.ListeInvoicesDetail[16, i]','@ViewBag.ListeInvoicesDetail[17, i]','@ViewBag.ListeInvoicesDetail[18, i]','@ViewBag.ListeInvoicesDetail[19, i]',
+                                                            '@ViewBag.ListeInvoicesDetail[20, i]','@ViewBag.ListeInvoicesDetail[21, i]','@ViewBag.ListeInvoicesDetail[22, i]','@ViewBag.ListeInvoicesDetail[23, i]',
+															'@ViewBag.ListeInvoicesDetail[24, i]','@ViewBag.ListeInvoicesDetail[25, i]','@ViewBag.ListeInvoicesDetail[26, i]')">
+                                          @for (int j = 0; j < 27; j++)
+                                             {
+                                                 <td>@ViewBag.ListeInvoicesDetail[j, i]</td>;
+                                             }
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-lg-2 n-padding">
+                            <div class="panel" style="height: 246px;margin-bottom: 0px;border-left: 1px solid;border-radius: 0px;">
+                                <div class="panel-heading" style="height: 80px;padding: 0px;"></div>
+                                <div class="panel-body" style="background-color: #982c2c;height: 43px;font-size: 12px;padding: 2px 1px;color: white;text-align:center">
+                                    <label style="margin-top:10px">ADD-ON CHARGES</label>
+                                </div>
+                                <div class="panel-footer" style="height: 103px;padding: 0px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer" style="background-color: #982c2c;height: 52px;font-size: 12px;padding: 2px 1px;">
+                    <div class="col-sm-10 n-padding" style="height: 54px;">
+                        <div class="col-sm-2 n-padding">
+                            <table class="table table-bordered separeteTable modifTabPadding" style="color:white">
+                                <tr>
+                                    <td>Document No.</td>
+                                    <td>Coupon No.</td>
+                                </tr>
+                                <tr>
+                                    <td>Exemple</td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <table class="intBilling" style="color:white;font-size: 11px;margin-top: 13px;width:100%">
+                                <tbody>
+                                    <tr>
+                                        <td><input type="radio" name="radioTab" onclick="activetabIntBill('FCA',null)" checked /><span class="place-label">FCA</span></td>
+                                        <td><input type="radio" name="radioTab" onclick="activetabIntBill('taxes', null)" /><span class="place-label">TAXES</span></td>
+                                        <td><input type="radio" name="radioTab" onclick="activetabIntBill('proration', null)" /><span class="place-label">PRORATION</span></td>
+                                        <td><input type="radio" name="radioTab" onclick="activetabIntBill('couponAnaly', null)" /><span class="place-label">COUPON ANALYTICS</span></td>
+                                        <td><input type="radio" name="radioTab" onclick="activetabIntBill('outwardBill', null)" /><span class="place-label">OUTWARD BILLING</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-sm-6">
+                            <div id="TotalMached">
+                                <table class="modifTabPadding separeteTable" style="color:white">
+                                    <tr>
+                                        <td style="border: 0px solid !important;">Matched</td>
+                                        <td style="width: 80px;">@ViewBag.lblAcp</td>
+                                        <td style="width: 80px;">@ViewBag.lblAcpPer </td>
+                                        <td style="border: 0px solid !important;"><span></span></td>
+                                        <td style="border: 0px solid !important;width: 180px;">Record Not Found In System</td>
+                                        <td style="border: 0px solid !important;">Matched Total Net Amount</td>
+                                        <td style="width: 80px;">@ViewBag.lblRejTNAmt</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: 0px solid !important;width: 99px;">To Be Accepted</td>
+                                        <td>@ViewBag.lblRej</td>
+                                        <td>@ViewBag.lblRejPer</td>
+                                        <td style="border: 0px solid !important;"><span></span></td>
+                                        <td style="border: 0px solid !important;">Multiple Billings Received</td>
+                                        <td style="border: 0px solid !important; width: 201px;">To Be Accepted Total Net Amount</td>
+                                        <td>@ViewBag.lblAcpTNAmt</td>
+                                    </tr>
+                                </table>
+                            </div>
+                           
+                        </div>
+                    </div>
+                    <div class="col-sm-2 n-padding" style="height: 54px;">
+                        <panel>
+                            <div class="panel-heading">
+                                <table class="intBilling" style="color:white">
+                                    <tr>
+                                        <td><input type="checkbox" /><span class="place-label">Show Flown Coupon</span></td>
+                                        <td><input type="checkbox" /><span class="place-label">Show Coupon Usage</span></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="panel-body"></div>
+                        </panel>
+                    </div>
+                    <div class="col-lg-10 n-padding" style="margin-top: 3px;">
+                        <ul class="nav nav-tabs" style="margin-left: 5px;" id="tabIntBilling">
+                            <li class="active"><a data-toggle="tab" href="#FCA" onclick="activetabIntBill('FCA','radioFCA')" class="nav-pax">FCA</a></li>
+                            <li><a data-toggle="tab" href="#taxes" class="nav-pax" onclick="activetabIntBill('taxes', 'radiotaxes')" id="tab-intbil">TAXES</a></li>
+                            <li><a data-toggle="tab" href="#proration" class="nav-pax" onclick="activetabIntBill('proration', 'radioproration')" id="tab-intbil">PRORATION</a></li>
+                            <li><a data-toggle="tab" href="#couponAnaly" class="nav-pax" onclick="activetabIntBill('couponAnaly', 'radiocouponAnaly')" id="tab-intbil">COUPON ANALYTICS</a></li>
+                            <li><a data-toggle="tab" href="#outwardBill" class="nav-pax" onclick="activetabIntBill('outwardBill', 'radiooutwardBill')" id="tab-intbil">OUTWARD BILLING</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="FCA" class="tab-pane fade in active">
+                                <div class="panel">
+                                    <div class="panel-heading" style="background-color:skyblue;padding:4px">
+                                        <label>FCA</label>
+                                    </div>
+                                    <div class="panel-body" style="border: 1px solid;height: 189px;">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="taxes" class="tab-pane fade">
+                                <div class="col-lg-12 n-padding">
+                                    <div class="col-lg-8 n-padding" style="border:1px solid;background-color:gray;height:217px">
+
+                                    </div>
+                                    <div class="col-lg-4 n-padding">
+                                        <div class="panel">
+                                            <div class="panel-heading" style="height: 89px;padding: 0px;background-color: #982c2c">
+                                                <table class="table table-bordered modifTabPadding separeteTable" style="color:white">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td style="border: 0px solid !important;">5D Rare</td>
+                                                            <td>period</td>
+                                                            <td>Currency</td>
+                                                            <td>USD Rate</td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="border: 0px solid !important;"></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td>Period Adjustment</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="border: 0px solid !important;">MM Rare</td>
+                                                            <td>period</td>
+                                                            <td>Currency</td>
+                                                            <td>USD Rate</td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="border: 0px solid !important;"></td>
+                                                            <td> 12</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="panel-body">
+                                                <table class="table table-bordered modifTabPadding" style="width: 35%;margin-left: 30%;">
+                                                    <tr>
+                                                        <td>Applicable USD Rate</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>exemple</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="border: 0px solid;"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Total Tax Amount</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>0.000</td>
+                                                    </tr>
+                                                </table>
+                                                <div>
+                                                    <button class="btn btn-default" style="width:100%">Check Taxes</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="proration" class="tab-pane fade">
+                                <div class="panel">
+                                    <div class="panel-heading" style="background-color: #982c2c;height: 37px;">
+                                        <div class="col-lg-12 n-padding">
+                                            <div class="col-lg-6 n-padding"><label style="color:white">Proration - Final Share</label></div>
+                                            <div class="col-lg-6 n-padding"><label style="color:white">Special Prorate Agreement</label> </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel-body n-padding">
+                                        <div class="col-lg-12 n-padding">
+                                            <div class="col-lg-6 n-padding" style="border:1px solid;height: 154px;"></div>
+                                            <div class="col-lg-6 n-padding" style="border:1px solid;height: 154px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="couponAnaly" class="tab-pane fade">
+                                <div class="panel">
+                                    <div class="panel-heading" style="background-color: #982c2c;height: 37px;">
+                                    </div>
+                                    <div class="panel-body n-padding">
+                                        <div class="col-lg-12 n-padding">
+                                            <div class="col-lg-7 n-padding" style="border:1px solid;height: 187px;">
+                                                <table class="table table-bordered modifTabPadding separeteTable">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td>Gross Amt</td>
+                                                            <td>ISC %</td>
+                                                            <td>ISC Amount</td>
+                                                            <td>Other Commission Amount</td>
+                                                            <td>UATP</td>
+                                                            <td>Handling Fees</td>
+                                                            <td>Vat Amount</td>
+                                                            <td>Tax</td>
+                                                            <td>Net Amount</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Invoice Values</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Checked values</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Differences</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>% Differences</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>% Differences</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="10" style="text-align:center">Message</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="10" style="text-align:center">ADM needs to be issued or adjustment made to proration</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="col-lg-5 n-padding" style="border:1px solid;height: 187px;">
+                                                <table class="table table-bordered modifTabPadding separeteTable" style="width: 80%;margin-left: 13px;">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Final Share</td>
+                                                            <td>SPA Net Amount</td>
+                                                            <td>Surcharge</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="height: 25px;"></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="height: 10px; border:0px solid !important"></td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td><button type="button" class="btn btn-default btn-intBilling" data-toggle="modal" data-target="#ApplicableISCCheck">Applicable ISC Check</button></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><button type="button" class="btn btn-default btn-intBilling" data-toggle="modal" data-target="#InterlineTolerance">Interline Tolerance Check</button></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><button type="button" class="btn btn-default btn-intBilling" data-toggle="modal" data-target="#dupBilling">Multiple Billing record</button></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><button type="button" class="btn btn-default btn-intBilling" data-toggle="modal" data-target="#wrongAirline">Wrong Airlines</button></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="outwardBill" class="tab-pane fade">
+                                <div class="col-lg-12 n-padding">
+                                    <div class="col-lg-10 n-padding">
+                                        <div class="col-lg-12 n-padding" style="border:1px solid; height:42px">
+
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <table>
+                                                <tr>
+                                                    <td>Rejection Memo Numb</td>
+                                                    <td>Your Invoice Billing Date</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Rejection Stage</td>
+                                                    <td>Your Invoice Number</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Reason Code</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Reason Description</td>
+                                                    <td>
+                                                        <textarea rows="7"></textarea>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2" style="border:1px solid; height:223px"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 n-padding" style="background-color:skyblue;height:258px">
+                        <div class="pAlign">
+                            <p>Reservation Booking Designator</p>
+                            <p>FareBasis/Ticket Designator</p>
+                            <p>Mapped Prime Code</p>
+                            <p>Fare Calculation Mode Indicator</p>
+                            <p>Passenger Name</p>
+                            <p style="height:15px"></p>
+                            <p>Sales Date</p>
+                            <p>Stopover/Transit</p>
+                            <p>SPA Applies</p>
+                        </div>
+
+                        <table class="table table-bordered modifTabPadding separeteTable">
+                            <tr>
+                                <td>Final Share</td>
+                                <td>ISC %</td>
+                                <td>ISC Amount</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>.</td>
+                                <td>.</td>
+                            </tr>
+                            <tr>
+                                <td>Sales</td>
+                                <td>Interline</td>
+                                <td>DIE</td>
+                            </tr>
+                            <tr>
+                                <td>0.000</td>
+                                <td>0.000</td>
+                                <td>0.000</td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

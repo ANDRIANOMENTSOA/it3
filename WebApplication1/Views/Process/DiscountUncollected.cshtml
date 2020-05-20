@@ -1,0 +1,136 @@
+﻿<div id="discountUncollected">
+    <div class="col-sm-11 tab-content tab-cancellation">
+
+        <!--  Load Ajax  --->
+        <div class="ajax-loader">
+            <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+        </div>
+
+        <div class="content-cancellation col-sm-11">
+            <div class="row">
+                <div class="col-sm-4">
+                    <fieldset class="test-fieldst">
+                        <legend class="test-fieldst">Date Of Issue</legend>
+                        <div class="col-sm-6 width-group">
+                            <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">From:</label>
+                            <div class="col-sm-9 n-padding">
+                                <div class="input-group">
+                                    <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateFromDiscUnc')"></span>
+                                    <input type="text" class="form-control" id="dateFromDiscUnc" value="@ViewBag.dateFrom" style="padding-right:3px" onchange="changeDateUncollected()">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6" style="margin-bottom: 19px;">
+                            <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">To:</label>
+                            <div class="col-sm-9 n-padding">
+                                <div class="input-group">
+                                    <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateToDiscUnc')"></span>
+                                    <input type="text" class="form-control" id="dateToDiscUnc" value="@ViewBag.dateTo" style="padding-right:3px" onchange="changeDateUncollected()">
+                                </div>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </div>
+                <div class="col-sm-5" style="margin-top: 10px;">
+                    <fieldset class="test-fieldst" style="padding: 15px;">
+                        <div class="row" style="">
+                            <div class="col-sm-3">Agent Numeric Code:</div>
+                            <div class="col-sm-3">
+                                <select class="form-control" id="AgentNumCodeU" >
+                                    <option class="form-control">-All-</option>
+                                    @for (int i = 0; i < ViewBag.logAgentCode; i++)
+                                    {
+                                        <option value="@ViewBag.ItemAgentCodeU[0, i]">@ViewBag.ItemAgentCodeU[0, i]</option>
+                                    }
+                                </select>
+
+                            </div>
+                            <div class="col-sm-2">Agent Name:</div>
+
+                            <div class="col-sm-3">
+                                <input type="text" name="" value ="@ViewBag.txtagtname"disabled>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top:15px">
+                            <div class="col-sm-3">
+                                Agent Address:
+                            </div>
+                            <div class="col-sm-9">
+                                <textarea style="width: 461px" value="@ViewBag.txtagtadd" disabled></textarea>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-sm-3" style="margin-top:28px">
+                    <button class="btn-default btn-outward" style="margin-left:25px;color:green" onclick="searchUncollected()">SEARCH</button>
+                    <input type="hidden" name="valDiscount" id="valDiscount" value="@ViewBag.logListDicount">
+                    <button class="btn-default btn-outward" style="margin-left:25px" onclick="removeSousMenu()">CLOSE</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-11" style="margin-top: 20px;">
+                    <div class="table-record-display" style="height:600px;overflow:auto">
+                        <table  id="TableDiscountUn"  class="table table-bordered table-striped" style="">
+                            <thead>
+                                <tr>
+                                    <th class="green-tab">Date of Issue</th>
+                                    <th class="green-tab">CK</th>
+                                    <th class="green-tab">Document Number</th>
+                                    <th class="green-tab">Agent No</th>
+                                    <th class="green-tab">Passenger Name</th>
+                                    <th class="green-tab">FCA</th>
+                                    <th class="green-tab">FOP</th>
+                                    <th class="green-tab">Fare Basis</th>
+                                    <th class="green-tab">FCMI</th>
+                                    <th class="green-tab">Fare Cur.</th>
+                                    <th class="green-tab">Fare</th>
+                                    <th class="green-tab">Equi. Fare Cur</th>
+                                    <th class="green-tab">Equi Fare</th>
+                                    <th class="green-tab">Tax Collected Cur.</th>
+                                    <th class="green-tab">Tax Collected</th>
+                                    <th class="green-tab">Surcharge Collected Cur</th>
+                                    <th class="green-tab">Surcharge Collected </th>
+                                    <th class="green-tab">Amount Collected Cur</th>
+                                    <th class="green-tab">Amount Collected</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (int i = 0; i < ViewBag.logListDicount; i++)
+                                {
+                                    <tr>
+                                        @for (int j = 0; j < 19; j++)
+                                        {
+                                            <td>@ViewBag.ListeDicount[j, i]</td>;
+                                        }
+                                    </tr>
+                                }
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-sm-6" style="margin-top:20px">
+
+                    <!-- 
+                          <div class="col-sm-4"><label>Number of record per page</label></div>
+                    <div class="col-sm-2"><input type="text" name="" disabled style="width: 50px"></div>
+                    <div class="col-sm-5">
+                        <button class="btn-default" style="width: 80px"><</button>
+                        <input type="text" name="" disabled style="width: 100px">
+                        <button class="btn-default" style="width: 80px"><</button>
+                    </div>
+                        -->
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+

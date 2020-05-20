@@ -1,0 +1,339 @@
+﻿
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th style="width: 13%;">FieldName</th>
+            <th style="width: 14%;">DataValue</th>
+        </tr>
+    </thead>
+    <tbody style="display: block;  overflow-y: scroll;height: 73vh;padding: 4px">
+        @foreach (var items in ViewBag.MoreDetails)
+        {
+            <tr>
+                <td>Document Number</td>
+                <td style="width: 50%;">@items.DocumentNumber</td>
+            </tr>
+            <tr>
+                <td>Check Digit</td>
+                <td>@items.CheckDigit</td>
+            </tr>
+
+            <tr>
+                <td>Agent Numeric Code</td>
+                <td>@items.AgentNumericCode</td>
+            </tr>
+            <tr>
+                <td>Date of Issue</td>
+                <td>@items.DateofIssue</td>
+            </tr>
+            <tr>
+                <td>Sale Date</td>
+                <td> @items.SaleDate</td>
+            </tr>
+            <tr>
+                <td>Passenger Name</td>
+                <td>@items.PassengerName</td>
+            </tr>
+            <tr>
+                <td>Passenger Specific Data</td>
+                <td>@items.PassengerSpecificData</td>
+            </tr>
+            <tr>
+                <td>Fare Calculation Area</td>
+                <td> @items.FareCalculationArea</td>
+            </tr>
+            <tr>
+                <td>Endos Restriction</td>
+                <td>@items.EndosRestriction</td>
+            </tr>
+                <tr>
+                    <td>Original Issue Information</td>
+                    <td>@items.OriginalIssueInformation</td>
+                </tr>
+                <tr>
+                    <td>Original Issue Document Number</td>
+                    <td>@items.OriginalIssueDocumentNumber</td>
+                </tr>
+                <tr>
+                    <td>Original Issue City</td>
+                    <td>@items.OriginalIssueCity</td>
+                </tr>
+                <tr>
+                    <td>Original Issue Date</td>
+                    <td>@items.OriginalIssueDate</td>
+                </tr>
+                <tr>
+                    <td>Original Issue Agent Numeric Code</td>
+                    <td>@items.OriginalIssueAgentNumericCode</td>
+                </tr>
+                <tr>
+                    <td>In Connection With Document Number</td>
+                    <td>@items.InConnectionWithDocumentNumber</td>
+                </tr>
+                <tr>
+                    <td>Equivalent Fare</td>
+                    <td>@items.EquivalentFare</td>
+                </tr>
+                <tr>
+                    <td>Tax1</td>
+                    <td>@items.Tax1</td>
+                </tr>
+                <tr>
+                    <td>Tax2</td>
+                    <td>@items.Tax2</td>
+                </tr>
+                <tr>
+                    <td>Tax3</td>
+                    <td>@items.Tax3</td>
+                </tr>
+                <tr>
+                    <td>Total Amount</td>
+                    <td>@items.TotalAmount</td>
+                </tr>
+                <tr>
+                    <td>Sequence Number</td>
+                    <td>@items.SequenceNumber</td>
+                </tr>
+                <tr>
+                    <td>IT BT</td>
+                    <td>@items.ITBT</td>
+                </tr>
+                <tr>
+                    <td>Exchange ADC</td>
+                    <td>@items.ExchangeADC</td>
+                </tr>
+                <tr>
+                    <td>Document Type</td>
+                    <td>@items.DocumentType</td>
+                </tr>
+                <tr>
+                    <td>Ticketing Mode Indicator</td>
+                    <td>@items.TicketingModeIndicator</td>
+                </tr>
+                <tr>
+                    <td>Fare Calculation Mode Indicator</td>
+                    <td>@items.FareCalculationModeIndicator</td>
+                </tr>
+                <tr>
+                    <td>Booking Agent Identification</td>
+                    <td>@items.BookingAgentIdentification </td>
+                </tr>
+                <tr>
+                    <td>Booking Agency Location Number</td>
+                    <td>@items.BookingAgencyLocationNumber</td>
+                </tr>
+                <tr>
+                    <td>Booking Entity Outlet Type</td>
+                    <td>@items.BookingEntityOutletType </td>
+                </tr>
+                <tr>
+                    <td>Booking Reference</td>
+                    <td>@items.BookingReference</td>
+                </tr>
+                <tr>
+                    <td>Audit Status Indicator</td>
+                    <td>@items.AuditStatusIndicator</td>
+                </tr>
+                <tr>
+                    <td>Client Identification</td>
+                    <td>@items.ClientIdentification</td>
+                </tr>
+                <tr>
+                    <td>Commercial Agreement Reference</td>
+                    <td>@items.CommercialAgreementReference</td>
+                </tr>
+                <tr>
+                    <td>Data Input Status Indicator</td>
+                    <td>@items.DataInputStatusIndicator</td>
+                </tr>
+                <tr>
+                    <td>Fare Calculation Pricing Indicator</td>
+                    <td>@items.FareCalculationPricingIndicator </td>
+                </tr>
+                <tr>
+                    <td>Format Identifier</td>
+                    <td> @items.FormatIdentifier</td>
+                </tr>
+                <tr>
+                    <td>Tour Code</td>
+                    <td>@items.TourCode</td>
+                </tr>
+                <tr>
+                    <td>Net Reporting Indicator</td>
+                    <td>@items.NetReportingIndicator</td>
+                </tr>
+                <tr>
+                    <td>Neutra lTicketing System Identifier</td>
+                    <td>@items.NeutralTicketingSystemIdentifier</td>
+                </tr>
+                <tr>
+                    <td>Reporting System Identifier</td>
+                    <td>@items.ReportingSystemIdentifier</td>
+                </tr>
+                <tr>
+                    <td>Servicing Airline System Provider Identifier</td>
+                    <td>@items.ServicingAirlineSystemProviderIdentifier</td>
+                </tr>
+                <tr>
+                    <td>True Origin Destination City Codes</td>
+                    <td>@items.TrueOriginDestinationCityCodes</td>
+                </tr>
+                <tr>
+                    <td>Settlement Authorization Code</td>
+                    <td>@items.SettlementAuthorizationCode</td>
+                </tr>
+                <tr>
+                    <td>Vendor Identification</td>
+                    <td> @items.VendorIdentification</td>
+                </tr>
+                <tr>
+                    <td>Vendor ISO Country Code</td>
+                    <td>@items.VendorISOCountryCode</td>
+                </tr>
+                <tr>
+                    <td>Transaction Code</td>
+                    <td>@items.TransactionCode</td>
+                </tr>
+                <tr>
+                    <td>Sales Data Available</td>
+                    <td>@items.SalesDataAvailable</td>
+                </tr>
+                <tr>
+                    <td>Accounting Status</td>
+                    <td>@items.AccountingStatus</td>
+                </tr>
+                <tr>
+                    <td>Prorated Flag</td>
+                    <td>@items.ProratedFlag</td>
+                </tr>
+                <tr>
+                    <td>FBSF lag</td>
+                    <td>@items.FBSFlag</td>
+                </tr>
+                <tr>
+                    <td>Document Airline ID</td>
+                    <td>@items.DocumentAirlineID</td>
+                </tr>
+                <tr>
+                    <td>Transaction Group</td>
+                    <td>@items.TransactionGroup</td>
+                </tr>
+                <tr>
+                    <td>Pax SPC</td>
+                    <td>@items.PaxSPC</td>
+                </tr>
+                <tr>
+                    <td>Pax Type</td>
+                    <td>@items.PaxType</td>
+                </tr>
+                <tr>
+                    <td>Sales Period</td>
+                    <td>@items.SalesPeriod</td>
+                </tr>
+                <tr>
+                    <td>Prev MOS</td>
+                    <td>@items.PrevMOS</td>
+                </tr>
+                <tr>
+                    <td>Total Tax</td>
+                    <td>@items.TotalTax</td>
+                </tr>
+                <tr>
+                    <td>Booking AgentID</td>
+                    <td>@items.BookingAgentID</td>
+                </tr>
+                <tr>
+                    <td>Ticketing Agent ID</td>
+                    <td>@items.TicketingAgentID</td>
+                </tr>
+                <tr>
+                    <td>Is Reissue</td>
+                    <td>@items.IsReissue</td>
+                </tr>
+                <tr>
+                    <td>Data Source</td>
+                    <td>@items.DataSource</td>
+                </tr>
+                <tr>
+                    <td>Processing File Type</td>
+                    <td>@items.ProcessingFileType </td>
+                </tr>
+                <tr>
+                    <td>Processing Date</td>
+                    <td>@items.ProcessingDate</td>
+                </tr>
+                <tr>
+                    <td>Own Ticket</td>
+                    <td>@items.OwnTicket</td>
+                </tr>
+                <tr>
+                    <td>Own Carrier</td>
+                    <td>@items.OwnCarrier</td>
+                </tr>
+                <tr>
+                    <td>Own ISO Country</td>
+                    <td>@items.OwnISOCountry</td>
+                </tr>
+                <tr>
+                    <td>Own Airline</td>
+                    <td>@items.OwnAirline</td>
+                </tr>
+                <tr>
+                    <td>Host Currency</td>
+                    <td>@items.HostCurrency</td>
+                </tr>
+                <tr>
+                    <td>Amount Collected</td>
+                    <td>@items.AmountCollected</td>
+                </tr>
+                <tr>
+                    <td>Tax Collected</td>
+                    <td>@items.TaxCollected</td>
+                </tr>
+                <tr>
+                    <td>Surcharge Collected</td>
+                    <td>@items.SurchargeCollected</td>
+                </tr>
+                <tr>
+                    <td>Commission Collected</td>
+                    <td>@items.CommissionCollected</td>
+                </tr>
+                <tr>
+                    <td>Bilateral Endorsement</td>
+                    <td>@items.BilateralEndorsement</td>
+                </tr>
+                <tr>
+                    <td>Involuntary Reroute</td>
+                    <td>@items.InvoluntaryReroute</td>
+                </tr>
+                <tr>
+                    <td>Bsp Identifier</td>
+                    <td>@items.BspIdentifier</td>
+                </tr>
+                <tr>
+                    <td>Iso Country Code</td>
+                    <td>@items.IsoCountryCode</td>
+                </tr>
+                <tr>
+                    <td>USD Rate PayCur</td>
+                    <td>@items.USDRatePayCur</td>
+                </tr>
+                <tr>
+                    <td>USD Rate Host Cur</td>
+                    <td>@items.USDRateHostCur </td>
+                </tr>
+                <tr>
+                    <td>PMP Period</td>
+                    <td>@items.PMPPeriod</td>
+                </tr>
+                <tr>
+                    <td>Tax On Commission Collected</td>
+                    <td>@items.TaxOnCommissionCollected</td>
+                </tr>
+                <tr>
+                    <td>Sign Code</td>
+                    <td>@items.SignCode</td>
+                </tr>
+        }
+    </tbody>
+</table>

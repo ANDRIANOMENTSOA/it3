@@ -1,0 +1,65 @@
+﻿<div class="container-remuneration container-pax1" style="background-color: rgb(117, 228, 252);height:93vh">
+    <div class="ajax-loader">
+        <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+    </div>
+    <div class="row">
+        <div class="col-sm-4" style="top:5px;">
+            <fieldset class="test-fieldst">
+                <legend class="test-fieldst">Date Of Issue</legend>
+
+                <div class="col-sm-2"><span class="titre-text">From :</span></div>
+                <div class="col-sm-4" style="top:-5px">
+                    <div class="input-group">
+                        <span class="input-group-addon check-dape"><input type="checkbox" name="dtpFromChecked" id="dtpFromChecked" @ViewBag.dtpFromChecked></span>
+                        <input type="text" class="form-control" id="couponUsageFrom" value="@ViewBag.date[0]" style="padding-right:3px">
+                        <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('couponUsageFrom')"></span>
+                    </div>
+                </div>
+
+                <div class="col-sm-2"><span class="titre-text">To :</span></div>
+                <div class="col-sm-4" style="top:-5px">
+                    <div class="input-group">
+                        <span class="input-group-addon check-dape"><input type="checkbox" name="dtpToChecked" id="dtpToChecked" @ViewBag.dtpToChecked></span>
+                        <input type="text" class="form-control" id="couponUsageTo" value="@ViewBag.date[1]" style="padding-right:3px">
+                        <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('couponUsageTo')"></span>
+                    </div>
+                </div>
+
+            </fieldset>
+        </div>
+        <div class="col-sm-1" style="top:25px;"><button class="btn-default btn-search" onclick="btnSearch_Clickcoupon()">SEARCH</button></div>
+        <div class="col-sm-1" style="top:25px;"><button class="btn-default btn-search" onclick="removeSousMenu()">CLOSE</button></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-10">
+            <div id="coupon-content">
+                <table class="table table-bordered tablehead" id="tablecoupon">
+                    <thead>
+                        <tr>
+                            <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Date Of Issue</th>
+                            <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Agent</th>
+                            <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Ticket No</th>
+                            <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Relate No</th>
+                            <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">CPN</th>
+                            <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Ori</th>
+                            <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Des</th>
+                            <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">RBD</th>
+                            <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Prime Code</th>
+                            <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Final Share</th>
+                            <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Min Sector Value</th>
+                            <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Max Sector Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2" style="top:125px;"><img src="~/Images/CSVPic.jpg" style="width:25px" /></div>
+        <div class="col-sm-2" style="top:65px;left:70px"><span class="titre-text">Total No Of CPNs</span></div>
+        <div class="col-sm-1" style="top:65px;"><input type="text" class="myForm" id="cpnNb" /></div>
+    </div>
+</div>
+

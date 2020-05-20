@@ -1,0 +1,45 @@
+﻿@using System.Data
+@model DataSet
+
+<div class="col-sm-3">
+    <div class="table-record-display" style="height:600px;overflow:auto">
+        <table class="table table-bordered table-striped table-hover afiche-result" style="width:80%">
+            <thead>
+                <tr>
+                    <th class="green">Period</th>
+                    <th class="green">Sector</th>
+                    <th class="green">RBD</th>
+                    <th class="green">Flown Revenue</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < ViewBag.ligne; i++)
+                {
+                    <tr>
+                        @for (int j = 0; j < 4; j++)
+                        {
+                            if (ViewBag.flownData[2, i].Contains("Total") || ViewBag.flownData[1, i].Contains("Period") || ViewBag.flownData[0, i].Contains("Grand"))
+                            {
+                                <td style="color:red">@ViewBag.flownData[j, i]</td>
+                            }
+                            else
+                            {
+                                <td>@ViewBag.flownData[j, i]</td>
+                            }
+                        }
+                    </tr>
+                }
+                <tr></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="col-sm-3" style="left:20px;top:50px;background-color:#1480dc">
+    <table class="table table-cancellation">
+        <tr>
+            <td width="38%">Total Amount USD</td>
+            <td width="38%"><input type="text" class="form-control" name="" id="Document" value="@ViewBag.Tot"/> </td>
+            <td width="10%"></td>
+        </tr>
+    </table>
+</div>

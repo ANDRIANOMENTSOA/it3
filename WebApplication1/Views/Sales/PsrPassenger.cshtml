@@ -1,0 +1,86 @@
+﻿@using System.Data
+@model DataSet
+<div class="containt-allpsr">
+    <table class="table table-bordered table-striped" id="psrPassenger">
+        <thead>
+            <tr>
+                <th class="pink">ROWNNUM</th>
+                <th class="pink">Date Of Issue</th>
+                <th class="pink">Ticket No</th>
+                <th class="pink passe-3">Original Issue</th>
+                <th class="pink">Transaction Code</th>
+                <th class="pink">Agent Num Code</th>
+                <th class="pink">Passenger Name</th>
+                <th class="pink">Travel Count</th>
+                <th class="pink passe-8">Endos Restriction</th>
+                <th class="pink passe-9">PNR</th>
+                <th class="pink passe-10">FCA</th>
+                <th class="pink">Fare Curr</th>
+                <th class="pink">Fare</th>
+                <th class="pink passe-13">Equiv Fare Curr</th>
+                <th class="pink passe-14">Equiv Fare</th>
+                <th class="pink passe-15">Equiv Basis</th>
+                <th class="pink passe-16">Interling</th>
+                <th class="pink passe-17">Carrier</th>
+            </tr>
+        </thead>
+        <tbody id="psrcmptTr3">
+            @foreach (DataRow dr in ViewBag.psrPassenger.Tables[0].Rows)
+            {
+                <tr>
+                    @for (int i = 0; i < ViewBag.psrPassenger.Tables[0].Columns.Count; i++)
+                    {
+                        if (i != 0 && i != 1 && i != 2 && i != 4 && i != 5 && i != 6 && i != 7 && i != 11 && i != 12)
+                        {
+                            <td class="passe-@i" onclick="detailsPassenger('@dr[ViewBag.psrPassenger.Tables[0].Columns[6].ColumnName].ToString()')">@dr[ViewBag.psrPassenger.Tables[0].Columns[i].ColumnName].ToString()</td>;
+                        }
+                        else
+                        {
+                            if (i == 1 && !string.IsNullOrEmpty(dr[ViewBag.psrPassenger.Tables[0].Columns[1].ColumnName].ToString()))
+                            {
+                                <td onclick="detailsPassenger('@dr[ViewBag.psrPassenger.Tables[0].Columns[6].ColumnName].ToString()')">@dr[ViewBag.psrPassenger.Tables[0].Columns[i].ColumnName].ToString().Substring(0,10)</td>;
+                            }
+                            else
+                            {
+                                <td onclick="detailsPassenger('@dr[ViewBag.psrPassenger.Tables[0].Columns[6].ColumnName].ToString()')">@dr[ViewBag.psrPassenger.Tables[0].Columns[i].ColumnName].ToString()</td>;
+                            }
+
+                        }
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="col-sm-12 noOfrecords">
+        <label class="form-check-label col-form-label col-sm-2 fromTo">No Of records</label>
+        <div class="col-sm-3" style="margin-top: 6px;">
+            <input type="text" class="form-control" id="noOfrecords3" />
+        </div>
+        <div class="col-sm-1 n-paddin-left">
+            <img src='@Url.Content("~/images/CSVPic.jpg")' class="image-csv" style="top: 6px;left: 548%;">
+        </div>
+    </div>
+</div>
+<div class="container-pax positionFoot">
+    <div id="setDetails">
+
+    </div>
+    <div class="showAddDetails" style="left: 82.7%;height: 582px;border: 1px solid;width: 259px;">
+        <div class="col-sm-3"><button class="payment-interogation btn" onclick="showDetails('detailPassenger', 'textDetail3')"><span class="search-span" id="textDetail3">Show Add-on Details</span></button></div>
+        <div class="containt-details" id="detailPassenger" style="height:241px">
+            <ul class="list-group">
+                <li class="list-group-item"><input type="checkbox" onclick="showpsr('allpasse', 'passe')" id="allpasse">All</li>
+                <li class="list-group-item"><input type="checkbox" onclick="showpsr('passe3', 'passe-3')" id="passe3">Original Issue</li>
+                <li class="list-group-item"><input type="checkbox" onclick="showpsr('passe8', 'passe-8')" id="passe8">Endos Restriction</li>
+                <li class="list-group-item"><input type="checkbox" onclick="showpsr('passe9', 'passe-9')" id="passe9">PNR</li>
+                <li class="list-group-item"><input type="checkbox" onclick="showpsr('passe10', 'passe-10')" id="passe10">FCA</li>
+                <li class="list-group-item"><input type="checkbox" onclick="showpsr('passe13', 'passe-13')" id="passe13">Equiv Fare Curr</li>
+                <li class="list-group-item"><input type="checkbox" onclick="showpsr('passe14', 'passe-14')" id="passe14">Equiv Fare</li>
+                <li class="list-group-item"><input type="checkbox" onclick="showpsr('passe15', 'passe-15')" id="passe15">Equiv Basis</li>
+                <li class="list-group-item"><input type="checkbox" onclick="showpsr('passe16', 'passe-16')" id="passe16">Interling</li>
+                <li class="list-group-item"><input type="checkbox" onclick="showpsr('passe17', 'passe-17')" id="passe17">Carrier</li>
+            </ul>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,145 @@
+﻿@using System.Data
+@model DataSet
+<div class="col-sm-11">
+    <fieldset class="test-fieldst" style="width:1830px">
+        <legend class="test-fieldst">PRODUCTIVITY LINKED BONUS HEADER</legend>
+        <table class="bonus-header">
+            <tr>
+                <td>Agent Numeric</td>
+                <td class="col-bonus"><input type="text" class="form-control" readonly id="bonusAc" value="@ViewBag.dgPLBHeader[0,0]" /></td>
+                <td>Financial Year</td>
+                <td class="col-bonus"><input type="text" class="form-control" readonly id="headFinancial" @ViewBag.dgPLBHeader[1, 0] /></td>
+                <td>Start Of Financial Year</td>
+                <td class="col-bonus">
+                    <div class="input-group">
+                        <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateFrom1')"></span>
+                        <input type="text" class="form-control" id="dateFrom1" value="@ViewBag.dgPLBHeader[2,0]" style="padding-right:3px;width:125px;left:-10px;" readonly>
+                    </div>
+                </td>
+                <td>End Of Financial Year</td>
+                <td class="col-bonus">
+                    <div class="input-group">
+                        <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateTo1')"></span>
+                        <input type="text" class="form-control" id="dateTo1" value="@ViewBag.dgPLBHeader[3,0]" style="padding-right:3px;width:125px;left:-10px;" readonly>
+                    </div>
+                </td>
+                <td>Base Amount</td>
+                <td class="col-bonus"><input type="text" class="form-control" readonly id="bonusBase" value="@ViewBag.dgPLBHeader[7,0]" /></td>
+                <td>Payable</td>
+                <td class="col-bonus"><input type="text" class="form-coltrol" readonly id="bonusPayable" value="@ViewBag.dgPLBHeader[4,0]" /></td>
+                <td>Currency</td>
+                <td style="width:50px"><input type="text" class="form-control" style="margin-top:10px;margin-left:15px" readonly id="bonusCur" value="@ViewBag.dgPLBHeader[6,0]" /></td>
+            </tr>
+        </table>
+
+        <div class="table-record-display" style="height:190px;width:1680px;margin-left:35px;" id="headBonus">
+            <table class="table table-bordered table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th class="pink">Agent Numeric Code</th>
+                        <th class="pink">Financial Year</th>
+                        <th class="pink">Start Of Financial Year</th>
+                        <th class="pink">End Of Financial Year</th>
+                        <th class="pink">Payement Due Date (Days)</th>
+                        <th class="pink">Flown Revenue (USD)</th>
+                        <th class="pink">Base Currency</th>
+                        <th class="pink">Base Amount</th>
+                        <th class="pink">Flown Revenue </th>
+                        <th class="pink">Amount Calculated</th>
+                        <th class="pink">Amount Paid</th>
+                        <th class="pink">Date Paid</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (ViewBag.compt1 > 0)
+                    {
+                        for (int j = 0; j < ViewBag.compt1; j++)
+                        {
+                            <tr id="head_@j" onclick="showDetail('head_@j')">
+                                @for (int i = 0; i < 9; i++)
+                                {
+                                    <td>@ViewBag.dgPLBHeader[i, j] </td>;
+                                }
+                            </tr>
+                        }
+                    }
+                    else { }
+
+                </tbody>
+            </table>
+        </div>
+
+        <table class="bonus-boutton">
+            <tr>
+                <td><div class="col-sm-1"><div class="col-sm-3"><button type="button" class="search-interogation pink btn1" onclick="setNew()"><span class="search-span">New</span></button></div></div></td>
+                <td><div class="col-sm-1"><div class="col-sm-3"><button type="button" class="search-interogation pink btn2" onclick="setAdd()" id="add"><span class="search-span1" id="txtadd">Add</span></button></div></div></td>
+                <td><div class="col-sm-1"><div class="col-sm-3"><button type="button" class="search-interogation pink btn1" onclick="setEdit()" id="edit"><span class="search-span" id="txtedit">Edit</span></button></div></div></td>
+                <td><div class="col-sm-1"><div class="col-sm-3"><button type="button" class="search-interogation pink btn2" onclick="saveHeader()" id="save"><span class="search-span1" id="txtsave">Save</span></button></div></div></td>
+                <td><div class="col-sm-1"><div class="col-sm-3"><button type="button" class="search-interogation pink btn1" onclick="" id="delete"><span class="search-span" id="txtdelete">Delete</span></button></div></div></td>
+            </tr>
+        </table>
+
+    </fieldset>
+</div>
+<div class="col-sm-1"></div>
+<div class="col-sm-11" id="details">
+    <fieldset class="test-fieldst" style="margin-top:15px;width:1145px;height:300px">
+        <legend class="test-fieldst">PRODUCTIVITY LINKED BONUS DETAILS</legend>
+        <table class="bonus-details">
+            <tr>
+                <td>PLB RANGE</td>
+                <td><input type="text" class="form-control" id="plbrange" /></td>
+                <td></td>
+                <td>PLB Percentage</td>
+                <td><input type="text" class="form-coltrol" id="plbper" /></td>
+            </tr>
+        </table>
+        <div class="table-record-display " style="height:190px;width:960px;margin-left:35px">
+            <table class="table table-bordered" style="border-spacing: 10px;font-size: smaller;font-weight: bold;width:800px">
+                <thead>
+                    <tr>
+                        <th class="pink">PLB RANGE</th>
+                        <th class="pink">PLB PERCENTAGE</th>
+                        <th class="pink">Split</th>
+                        <th class="pink">PLB Amount</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (ViewBag.compt2 > 0)
+                    {
+                        for (int j = 0; j < ViewBag.compt2; j++)
+                        {
+                            <tr id="detail_@j" onclick="selectDetail('detail_@j')">
+                                <td>@ViewBag.dgvDetails[3, j] </td>
+                                <td>@ViewBag.dgvDetails[4, j] </td>
+                                <td>@ViewBag.dgvDetails[5, j] </td>
+                                <td>@ViewBag.dgvDetails[6, j] </td>
+                            </tr>
+                        }
+                    }
+                    else { }
+
+                </tbody>
+            </table>
+        </div>
+        <div class="bonus-leftButton" style="position: relative;top: -155px;left: 1000px;">
+            <table class="bonus-left">
+                <tr>
+                    <td><div class="col-sm-1"><div class="col-sm-3"><button type="button" class="search-interogation pink btn1" onclick="addNew()" style="margin-bottom:10px" id="add1"><span class="search-span" id="txtadd1">Add New</span></button></div></div></td>
+                </tr>
+                <tr>
+                    <td><div class="col-sm-1"><div class="col-sm-3"><button type="button" class="search-interogation pink btn1" onclick="setEditNew()" style="margin-bottom:10px" id="edit1"><span class="search-span" id="txtedit1">Edit</span></button></div></div></td>
+                </tr>
+                <tr>
+                    <td><div class="col-sm-1"><div class="col-sm-3"><button type="button" class="search-interogation pink btn1" onclick="deleteDetail()" id="delete1"><span class="search-span" id="txtdelete1">Delete</span></button></div></div></td>
+                </tr>
+            </table>
+        </div>
+    </fieldset>
+</div>
+<div class="col-sm-1"></div>
+
+

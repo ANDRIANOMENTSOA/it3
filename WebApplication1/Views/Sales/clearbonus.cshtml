@@ -1,0 +1,141 @@
+﻿<div class="col-sm-11" style="top:10px;margin-bottom:10px">
+    <div class="col-sm-1" style="font-size:smaller;font-weight:bold;width:146px!important;top:5px">Agent Numeric Code</div>
+    <div class="col-sm-1" style="width:146px!important">
+        <select id="BonusAgent" class="form-control">
+            <option>-All-</option>
+            @for (int n = 0; n < ViewBag.lonAg; n++)
+            {
+                <option>@ViewBag.AgCode[n]</option>
+            }
+        </select>
+
+    </div>
+    <div class="col-sm-1" style="font-size:smaller;font-weight:bold;width:146px!important;top:5px">Financial Period</div>
+    <div class="col-sm-1" style="width:146px!important">
+        <input type="hidden" value="" id="testfp" />
+        <select id="FinancialPeriod" class="form-control" onclick="setFinP()">
+            <option>-All-</option>
+        </select>
+    </div>
+    <div class="col-sm-1"><div class="col-sm-3"><button type="button" class="search-interogation pink btn" onclick="setCriteriaBonus()"><span class="search-span">SEARCH</span></button></div></div>
+    <div class="col-sm-3"></div>
+</div>
+<div class="col-sm-1"></div>
+<div id="displayBonus">
+    <div class="col-sm-11">
+        <fieldset class="test-fieldst" style="width:1830px">
+            <legend class="test-fieldst">PRODUCTIVITY LINKED BONUS HEADER</legend>
+            <table class="bonus-header">
+                <tr>
+                    <td>Agent Numeric</td>
+                    <td class="col-bonus"><input type="text" class="form-control" readonly id="bonusAc" /></td>
+                    <td>Financial Year</td>
+                    <td class="col-bonus"><input type="text" class="form-control" readonly id="headFinancial" /></td>
+                    <td>Start Of Financial Year</td>
+                    <td class="col-bonus">
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateFrom1')"></span>
+                            <input type="text" class="form-control" id="dateFrom1" value="@ViewBag.date[0]" style="padding-right:3px;width:125px;left:-10px;" readonly>
+                        </div>
+                    </td>
+                    <td>End Of Financial Year</td>
+                    <td class="col-bonus">
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateTo1')"></span>
+                            <input type="text" class="form-control" id="dateTo1" value="@ViewBag.date[0]" style="padding-right:3px;width:125px;left:-10px;" readonly>
+                        </div>
+                    </td>
+                    <td>Base Amount</td>
+                    <td class="col-bonus"><input type="text" class="form-control" readonly id="bonusBase" /></td>
+                    <td>Payable</td>
+                    <td class="col-bonus"><input type="text" class="form-control" readonly id="bonusPayable" /></td>
+                    <td>Currency</td>
+                    <td style="width:50px"><input type="text" class="form-control" style="margin-top:10px;margin-left:15px" readonly id="bonusCur" /></td>
+                </tr>
+            </table>
+
+            <div class="table-record-display" style="height:190px;width:1680px;margin-left:35px;" id="headBonus">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="pink">Agent Numeric Code</th>
+                            <th class="pink">Financial Year</th>
+                            <th class="pink">Start Of Financial Year</th>
+                            <th class="pink">End Of Financial Year</th>
+                            <th class="pink">Payement Due Date (Days)</th>
+                            <th class="pink">Flown Revenue (USD)</th>
+                            <th class="pink">Base Currency</th>
+                            <th class="pink">Base Amount</th>
+                            <th class="pink">Flown Revenue </th>
+                            <th class="pink">Amount Calculated</th>
+                            <th class="pink">Amount Paid</th>
+                            <th class="pink">Date Paid</th>
+
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+
+            <table class="bonus-boutton">
+                <tr>
+                    <td><div class="col-sm-1"><div class="col-sm-3"><button type="button" class="search-interogation pink btn1" onclick="setNew()"><span class="search-span">New</span></button></div></div></td>
+                    <td><div class="col-sm-1"><div class="col-sm-3"><button type="button" class="search-interogation pink btn2" onclick="setAdd()" id="add"><span class="search-span1" id="txtadd">Add</span></button></div></div></td>
+                    <td><div class="col-sm-1"><div class="col-sm-3"><button type="button" class="search-interogation pink btn1" onclick="setEdit()" id="edit"><span class="search-span" id="txtedit">Edit</span></button></div></div></td>
+                    <td><div class="col-sm-1"><div class="col-sm-3"><button type="button" class="search-interogation pink btn2" onclick="saveHeader()" id="save"><span class="search-span1" id="txtsave">Save</span></button></div></div></td>
+                    <td><div class="col-sm-1"><div class="col-sm-3"><button type="button" class="search-interogation pink btn1" onclick="" id="delete"><span class="search-span" id="txtdelete">Delete</span></button></div></div></td>
+                </tr>
+            </table>
+
+        </fieldset>
+    </div>
+    <div class="col-sm-1"></div>
+    <div class="col-sm-11" id="details">
+        <fieldset class="test-fieldst" style="margin-top:15px;width:1145px;height:300px">
+            <legend class="test-fieldst">PRODUCTIVITY LINKED BONUS DETAILS</legend>
+            <table class="bonus-details">
+                <tr>
+                    <td>PLB RANGE</td>
+                    <td><input type="text" class="form-control" readonly id="plbrange" /></td>
+                    <td></td>
+                    <td>PLB Percentage</td>
+                    <td><input type="text" class="form-control" readonly id="plbper" /></td>
+                </tr>
+            </table>
+            <div class="table-record-display " style="height:190px;width:960px;margin-left:35px">
+                <table class="table table-bordered" style="border-spacing: 10px;font-size: smaller;font-weight: bold;width:800px">
+                    <thead>
+                        <tr>
+                            <th class="pink">PLB RANGE</th>
+                            <th class="pink">PLB PERCENTAGE</th>
+                            <th class="pink">Split</th>
+                            <th class="pink">PLB Amount</th>
+
+
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="bonus-leftButton" style="position: relative;top: -155px;left: 1000px;">
+                <table class="bonus-left">
+                    <tr>
+                        <td><div class="col-sm-1"><div class="col-sm-3"><button type="button" class="search-interogation pink btn1" onclick="addNew()" style="margin-bottom:10px" id="add1"><span class="search-span" id="txtadd1">Add New</span></button></div></div></td>
+                    </tr>
+                    <tr>
+                        <td><div class="col-sm-1"><div class="col-sm-3"><button type="button" class="search-interogation pink btn1" onclick="setEditNew()" style="margin-bottom:10px" id="edit1"><span class="search-span" id="txtedit1">Edit</span></button></div></div></td>
+                    </tr>
+                    <tr>
+                        <td><div class="col-sm-1"><div class="col-sm-3"><button type="button" class="search-interogation pink btn1" onclick="" id="delete1"><span class="search-span" id="txtdelete1">Delete</span></button></div></div></td>
+                    </tr>
+                </table>
+            </div>
+        </fieldset>
+    </div>
+    <div class="col-sm-1"></div>
+</div>
+<div class="col-sm-2" style="margin-top:10px;margin-left:15px">
+    <button type="button" class="search-interogation pink btn1" onclick="launch()" style="width:142px;"><span class="search-span">LAUNCH & REFRESH</span></button>
+</div>
+<div class="col-sm-1" style="margin-top:10px;margin-left:15px"><button type="button" class="search-interogation pink btn1" onclick="clearbonus()"><span class="search-span">CLEAR</span></button></div>
+        </div>
+
+

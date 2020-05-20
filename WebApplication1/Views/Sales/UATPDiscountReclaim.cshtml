@@ -1,0 +1,86 @@
+﻿
+@using System.Data
+@model DataSet
+<div class="col-sm-11 tab-content tab-cancellation">
+    <div class="content-cancellation col-sm-11">
+        <div class="col-sm-4">
+            <fieldset class="test-fieldst">
+                <legend class="test-fieldst">Sales Period</legend>
+                <div class="col-sm-6">
+                    <div class="form-group has-feedback">
+                        <label class="form-check-label col-form-label col-sm-2 fromTo">From:</label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateFromDiscount')"></span>
+                                <input type="text" class="form-control" id="dateFromDiscount" value="@ViewBag.dateFrom" style="padding-right:3px">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6" style="margin-bottom: 19px;">
+                    <div class="form-group has-feedback">
+                        <label class="form-check-label col-form-label col-sm-2 fromTo">To:</label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateToDiscount')"></span>
+                                <input type="text" class="form-control" id="dateToDiscount" value="@ViewBag.dateTo" style="padding-right:3px">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+
+        <div class="col-sm-3" style="position: relative;top: 10px;">
+            <div class="search">
+                <div class="col-sm-3"><button type="button" class="search-interogation pink btn" onclick="setCriteriaUATPreclaim()"><span class="search-span">SEARCH</span></button></div>
+                <div class="col-sm-3"><button class="search-interogation pink btn" onclick="clearUatpReclaim()"><span class="search-span">CLEAR</span></button></div>
+                <div class="col-sm-3"><button class="search-interogation pink btn" onclick="removeSousMenu()"><span class="search-span">CLOSE</span></button></div>
+            </div>
+        </div>
+    </div>
+    <div class="ajax-loader">
+        <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+    </div>
+    <div class="col-sm-11" style="margin-top:40px" id="loadUATPreclaim">
+        <div class="col-sm-8">
+            <div class="table-record-display contentUnused" style="height:598px">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="pink">Sale Date</th>
+                            <th class="pink">Dcument No.</th>
+                            <th class="pink">FOP</th>
+                            <th class="pink">Invoice</th>
+                            <th class="pink">CUR</th>
+                            <th class="pink">Amount Billed</th>
+                            <th class="pink">Issuer Discount Reclaim (%)</th>
+                            <th class="pink">UATP Amount</th>
+                            <th class="pink">MOC</th>
+                            <th class="pink">Exchange Rate</th>
+                            <th class="pink">USD Value</th>
+
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <table class="table table-cancellation">
+                <tr>
+                    <td width="50%">Total Amount: USD:</td>
+                    <td><input type="text" class="form-control" /> </td>
+                </tr>
+            </table>
+            <table class="table table-cancellation">
+                <tr>
+                    <td width="50%">Total Amount Reclaimed</td>
+                    <td><input type="text" class="form-control" /></td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+</div>

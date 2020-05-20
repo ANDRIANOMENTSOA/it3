@@ -1,0 +1,840 @@
+﻿<div class="container-refund container-pax1">
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#search" class="nav-pax">Search</a></li>
+        <li><a data-toggle="tab" href="#RefundEngine" class="nav-pax" id="tab-refund">Refund Engine</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="ajax-loader">
+            <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+        </div>
+        <div id="search" class="tab-pane fade in active">
+            <div class="col-sm-11">
+                
+                <div class="col-sm-5">
+                    <fieldset class="test-fieldst" >
+                        <legend class="test-fieldst">DATA LOOKUP</legend>
+                        <form id="valrad" method="POST" action="">
+                            <div class="col-sm-4" style="margin-top:15px;" >Passenger Name : </div>
+                            <div class="col-sm-8" style="margin-top:15px;">
+                                <input type="text" class="form-control" name="passenger" />
+                            </div>
+                            <div class="col-sm-4"></div>
+                            <div id="valrado">
+                                <div class="col-sm-6" style="margin-top:15px;">
+                                    <input class="form-check-input" type="radio" name="radContains" id="" value="starting" checked>
+                                    <label class="form-check-label col-form-label" for="inlineRadio">Starting With</label>
+                                </div>
+                                <div class="col-sm-2" style="margin-top:15px;">
+                                    <input class="form-check-input" type="radio" name="radContains" id="" value="contains">
+                                    <label class="form-check-label col-form-label" for="inlineRadio2">Contains</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-4" style="margin-top:15px;">Document Number : </div>
+                            <div class="col-sm-8" style="margin-top:15px;">
+                                <input type="number" name="document" id="document" class="form-control" style="width:80%;" onkeypress="return this.value.length < 13;" oninput="if(this.value.length>=13) { this.value = this.value.slice(0,13); }" />
+                            </div>
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-6" style="margin-top:15px;margin-bottom:15px"><button type="button" class="search-interogation pink btn" onclick="setCriteriaRefundEngine()" style="background-color:#cec5c5;left:1px"><span class="search-span" style="color:black"><b>SEARCH</b></span></button></div>
+                            <div class="col-sm-2" style="margin-top:15px; margin-bottom:15px"><button type="button" class="search-interogation pink btn" onclick="clearRefundEngine()" style="background-color:#cec5c5;left:4px"><span class="search-span" style="color:black"><b>CLEAR</b></span></button></div>
+                         </form>
+                    </fieldset>
+                </div>
+                <div class="col-sm-6">
+                    <div class="bouton-engine">
+                        <div class="col-sm-3" >
+                            <button class="search-interogation pink btn" style="background-color: #cec5c5;font-size: smaller;height: 33px;width: 182px;" onclick="ListOfRefundByA()"><span class="search-span" style="color:black">LIST OF REFUND BY AGENT</span></button>
+                        </div>
+                        <div class="col-sm-3">
+                            <button class="search-interogation pink btn" style="background-color: #cec5c5;font-size: smaller;height: 33px;width: 182px;" onclick="manualRefund()"><span class="search-span" style="color:black">LIST OF MANUAL REFUND</span></button>
+                        </div>
+                        <div class="col-col-sm-3"></div>
+                        <div class="col-col-sm-3">
+                            <button class="search-interogation pink btn" style="background-color:#cec5c5;margin-left:220px"><span class="search-span" style="color:black" onclick="removeSousMenu()">CLOSE</span></button>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+            <div class="col-sm-12">
+                <div class="table-record-display" style="overflow:auto">
+                    <div class="rfnEngDisp">
+                        <table class="table table-bordered table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="pink">Doc Num</th>
+                                    <th class="pink">Passenger Name</th>
+                                    <th class="pink">Doc Type</th>
+                                    <th class="pink">Date Of Issue</th>
+                                    <th class="pink">Sale Date</th>
+                                    <th class="pink">Agent Code</th>
+                                    <th class="pink">Fare Calculation Area</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="RefundEngine" class="tab-pane fade">
+            <div class="col-sm-12">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-11">
+                    <fieldset class="test-fieldst" >
+                        <legend class="test-fieldst">ORIGINAL INFORMATION</legend>
+                        <table class="tab-refundEng">
+                            <tr>
+                                <td>Ticket Number</td>
+                                <td>Origin/Destination</td>
+                                <td>Original Issue Doc No</td>
+                                <td>Transaction Code</td>
+                                <td>Issue Date</td>
+                                <td>Agent Numeric Code</td>
+                                <td colspan="2">Doc Type</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>
+                                    <input type="text" class="form-engine" />
+                                </td>
+                                <td>
+                                    <input type="text" class="form-engine" />
+                                </td>
+                                <td>
+                                    <input type="text" class="form-engine" />
+                                </td>
+                                <td>
+                                    <input type="text" class="form-engine" />
+                                </td>
+                                <td>
+                                    <input type="text" class="form-engine" />
+                                </td>
+                                <td>
+                                    <input type="text" class="form-engine" />
+                                </td>
+                                <td colspan="2">
+                                    <input type="text" class="form-engine" style="width: 205px;" />
+                                </td>
+
+                            </tr>
+                            
+                            <tr>
+                                <td colspan="4">Name of Passenger</td>
+                                <td colspan="2">Endorsement Restriction</td>
+                                <td style="width:50px"></td>
+                                <td colspan="3" rowspan="0">
+                                    <table class="tab-refundEng1">
+                                        <tr>
+                                            <td>Fare</td>
+                                            <td>
+                                                <input type="text" class="form-engine" style="width:50px" />
+                                            </td>
+                                            <td>
+                                                <input typeof="text" class="form-engine" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Equiv Fare PD</td>
+                                            <td>
+                                                <input type="text" class="form-engine" style="width:50px" />
+                                            </td>
+                                            <td>
+                                                <input typeof="text" class="form-engine" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total Amount</td>
+                                            <td>
+                                                <input type="text" class="form-engine" style="width:50px" />
+                                            </td>
+                                            <td>
+                                                <input typeof="text" class="form-engine" />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>                               
+                            </tr>
+                            <tr>
+                                <td colspan="4">
+                                    <input type="text" class="form-engine" />
+                                </td>
+                                <td colspan="2">
+                                    <input type="text" class="form-engine" />
+                                </td>
+                                
+                            </tr>
+                            <tr>
+                                <td colspan="6">Fare Calculation Area</td>
+                            </tr>
+                            <tr>
+                                <td colspan="6">
+                                    <input type="text" class="form-engine" />
+                                </td>
+                            </tr>
+                        </table>
+
+                    </fieldset>
+
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-11">
+                    <fieldset class="test-fieldst">
+                        <legend class="test-fieldst">ORIGINAL INFORMATION</legend>
+                        <table class="tab-refundEng">
+                            <tr>
+                                <td>Issue Date</td>
+                                <td>Agent Numeric Code</td>
+                                <td colspan="3" style="width:545px;">Endorsement Restriction</td>
+                                <td>Refund Type</td>
+                                <td>Refund Amt Type</td>
+                                <td colspan="2">Fare Refund</td>
+                            </tr>
+                            <tr>
+                                <td><input type="text" class="form-engine" /></td>
+                                <td><input type="text" class="form-engine" /></td>
+                                <td colspan="3"><input type="text" class="form-engine" /></td>
+                                <td>
+                                    <select class="form-engine" id="dropdownRefundType" style="width:170px;"  onclick="shoReasonRfn()">
+                                        <option></option>
+                                        <option>VOLONTAIRE</option>
+                                        <option>INVOLONTAIRE</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="form-engine" id="dropdownAmtType" style="width:136px;">
+                                        <option></option>
+                                        <option>Fare</option>
+                                        <option>Equivalent Fare</option>
+                                    </select>
+                                </td>
+                                <td><input type="text" class="form-engine" style="width:50px;" /></td>
+                                <td><input type="text" class="form-engine" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="6">Fare Calculation Area</td>
+                                <td></td>
+                                <td colspan="2">Fare Remain</td>
+                            </tr>
+                            <tr>
+                                <td colspan="6"><input type="text" class="form-engine" /></td>
+                                <td></td>
+                                <td><input type="text" class="form-engine" style="width:50px;" /></td>
+                                <td><input type="text" class="form-engine" /></td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                    
+                </div>             
+            </div>
+            <div class="col-sm-12">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-11">
+                    <div class="table-record-display" style="height: 150px;margin-top: -5px;color:white;border:1px solid rgba(152, 152, 152, 1);">
+                        <table class="table table-bordered table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="pink">CPN</th>
+                                    <th class="pink">X/O</th>
+                                    <th class="pink" style="width:5%">GFPA</th>
+                                    <th class="pink">CARRIER</th>
+                                    <th class="pink">FLIGHT</th>
+                                    <th class="pink">CLASS</th>
+                                    <th class="pink" style="width: 77px;">DATE</th>
+                                    <th class="pink">TIME</th>
+                                    <th class="pink">STATUS</th>
+                                    <th class="pink">FARE BASIS</th>
+                                    <th class="pink" style="width: 77px;">NOT VALID BEFORE</th>
+                                    <th class="pink" style="width: 77px;">NOT VALID AFTER</th>
+                                    <th class="pink">BAGAGE ALLOWANCE</th>
+                                    <th class="pink">BOOKING STATUS</th>
+                                    <th class="pink">RBD</th>
+                                    <th class="pink">USAGE SECTOR</th>
+                                    <th class="pink">USAGE AIRLINE</th>
+                                    <th class="pink">USAGE FLIGHT NO</th>
+                                    <th class="pink">USAGE DATE</th>
+                                    <th class="pink">FFP</th>
+                                    
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-11" style="border: 1px solid;width: 1703px;left: 15px;">
+                    <div class="col-sm-3" style="height: 190px;">
+                        <h3>OTHER AMOUNT</h3>
+                        <div class="table-record-display" style="height: 130px;margin-top: -5px;color:white;border:1px solid rgba(152, 152, 152, 1);">
+                            <table class="table-bordered other-amount">
+                                <thead>
+                                    <tr>
+                                        <th class="green" style="width:110px"><center>DocAmtType</center></th>
+                                        <th class="green" style="width:110px"><center>Currency</center></th>
+                                        <th class="green" style="width:110px"><center>DocAmtCode</center></th>
+                                        <th class="green" style="width:110px"><center>Amount</center></th>
+                                        <th class="green" style="width:110px"><center>Refund</center></th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-sm-2" style="top:65px;">
+                        <table class="tab-refundEng">
+                            <tr>
+                                <td>Total Tax</td>
+                                <td><input type="text" class="form-engine" /></td>
+                            </tr>
+                            <tr>
+                                <td>Total Refund</td>
+                                <td><input type="text" class="form-engine" /></td>
+                            </tr>
+                            <tr style="height:25px"></tr>
+                            <tr>
+                                <td>Total Remain</td>
+                                <td><input type="text" class="form-engine" /></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="choix" id="defaultchoiceRfn" style="display:block">
+
+                        </div>
+                        <div class="choix" id="voluntarychoiceRfn" style="display:none;border:1px solid black">
+                            <table class="tab-refundEng">
+                                <tr>
+                                    <td >Total</td>
+                                    <td colspan="2"><hr class="traitHor"/></td>
+                                    <td><input type="text" class="form-engine" /></td>
+                                </tr>
+                                <tr>
+                                    <td >Total B</td>
+                                    <td style="width:65px"><hr class="traitHor"/></td>
+                                    <td><input type="text" class="form-engine" /></td>
+                                </tr>
+                                <tr></tr>
+                                <tr>
+                                    <td colspan="2" >Taxes et divers E</td>
+                                    <td><input type="text" class="form-engine" /></td>
+                                </tr>
+                                <tr>
+                                    <td >TOTAL B+E</td>
+                                    <td colspan="2" ><hr class="traitHor" /></td>
+                                    <td><input type="text" class="form-engine" /></td>
+                                </tr>
+                                <tr></tr>
+                                <tr>
+                                    <td >REMBOURSEMENT</td>
+                                    <td colspan="2" ><hr class="traitHor" /></td>
+                                    <td><input type="text" class="form-engine" /></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="choix" id="involuntarychoiceRfn" style="display:none;border:1px solid black">
+                            <table >
+                                <tr>
+                                    <td></td>
+                                    <td><input type="text" class="form-engine" /></td>
+                                    <td colspan="2"><hr class="traitHor" /></td>
+                                    <td>Total A</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td><input type="text" class="form-engine" /></td>
+                                    <td colspan="2"><hr class="traitHor" /></td>
+                                    <td>Total B</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" class="form-engine" /></td>
+                                    <td colspan="2"><hr class="traitHor" /></td>
+                                    <td>Difference A-B</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" class="form-engine" /></td>
+                                    <td colspan="2"><hr class="traitHor" /></td>
+                                    <td>Total C</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" class="form-engine" /></td>
+                                    <td colspan="2"><hr class="traitHor" /></td>
+                                    <td>Taxes Dues D</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" class="form-engine" /></td>
+                                    <td ><hr class="traitHor" /></td>
+                                    <td colspan="2">Total le plus eleve(D+C ou D+A-B)</td>
+                                </tr>
+                            </table>
+                        </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-11" style="border: 1px solid;width: 1703px;left: -5px;height:110px">
+                    <div class="col-sm-5" style="top:10px;">
+                        <div class="col-sm-4">Observation or reference</div>
+                        <div class="col-sm-8">
+                            <textarea class="ref" style="width: 421px;height: 90px;"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <table class="tab-refundEng">
+                            <tr>
+                                <td>Refunded Amount</td>
+                                <td><input type="text" class="form-engine" style="width:50px" /></td>
+                                <td><input type="text" class="form-engine" /></td>
+                            </tr>
+                            <tr>
+                                <td>Reason For Refund</td>
+                                <td colspan="2">
+                                    <select class="form-engine" id="defaultReson" style="display:block">
+                                        <option></option>
+                                    </select>
+                                    <select class="form-engine" id="voluntaryReson" style="display:none">
+                                        <option></option>
+                                        <option>Excursion Fare</option>
+                                        <option>Students Rubates</option>
+                                        <option>Agents Discounts</option>
+                                        <option>Industry Discounts</option>
+                                        <option>Family Plan Adjustments</option>
+                                        <option>Changes in Class of Service</option>
+                                        <option>Reduction In Mileage Surcharges</option>
+                                        <option>Children's Discounts</option>
+                                        <option>Fare Reassesments</option>
+                                        <option>Duplicate Collections</option>
+                                        <option>Mislaid Tickets</option>
+                                    </select>
+                                    <select class="form-engine" id="involuntaryReson" style="display:none">
+                                        <option></option>
+                                        <option>Flight Cancellation</option>
+                                        <option>Flight Schedule Change</option>
+                                        <option>Over Or Under Carriage</option>
+                                        <option>Offloading</option>
+                                        <option>Misconnection</option>
+                                        <option>Safety Or Legal Reasons</option>
+                                        <option>Condition Or Conduct Passenger</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Refund By</td>
+                                <td colspan="2">
+                                    <select class="form-engine">
+                                        <option></option>
+                                        <option>CREDIT CARD</option>
+                                        <option>CASH</option>
+                                        <option>CHEQUE</option>
+                                        <option>E-CREDIT-NOTE</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-11" style="background-color:darkred;height:50px">
+                    <div class="col-sm-11"></div>
+                    <div class="col-sm-1">
+                        <img src="~/Images/Save.png" style="top:10px;cursor:pointer;" />
+                        <img src="~/Images/windows_close.png" style="top:10px;left:25px;cursor:pointer"onclick="removeSousMenu()" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="manualRefund" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content" style="height:750px">
+            <div class="modal-header">
+                <h5 class="modal-title">List Of Manual Refund</h5>
+                <button type="button" class="close" style="position: relative;top: 1px;" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="manualRefund modal-body" style="height:650px;top:20px;">
+                <div class="ajax-loader">
+                    <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+                </div>
+                <table class="record-rfnd" style="margin-left:23px;margin-top:12px">
+                    <tr>
+                        <td>Date Entry From:</td>
+                        <td>
+                            <div class="width-group">
+                                <div class="col-sm-9 n-padding">
+                                    <div class="input-group">
+                                        <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateFrom')"></span>
+                                        <input type="text" class="form-control" id="dateFrom" value="@ViewBag.dateFrom">
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td></td>
+                        <td style="width: 25px;"></td>
+                        <td>Date Entry To:</td>
+                        <td>
+                            <div class="width-group">
+                                <div class="col-sm-9 n-padding">
+                                    <div class="input-group">
+                                        <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateTo')"></span>
+                                        <input type="text" class="form-control" id="dateTo" value="@ViewBag.dateTo">
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td></td>
+                        <td>
+                            <div class="col-sm-1"><button type="button" class="search-interogation pink btn" onclick="setCriteriaManualRefund()"><span class="search-span">SEARCH</span></button></div>
+                        </td>
+                        <td></td>
+                        <td>
+                            <div class="col-sm-1"><button class="search-interogation pink btn" data-dismiss="modal"><span class="search-span">CLOSE</span></button></div>
+                        </td>
+                    </tr>
+                </table>
+                    <div class="manualRefund-content" id="table-formPayment" style="height:500px; background-color:white;margin-top: 25px;overflow:auto;">
+
+                    </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+   
+
+<!--  Liste Of Refunds      Joseph-->
+    <div id="ListeOfRefund" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            
+            <div class="modal-content" style="height:900px; width:1560px">
+                <div class="modal-header" style="width:1550px">
+                    <h5 class="modal-title">List Of Refund By Agents</h5>
+                    <button type="button" class="close" style="position: relative;top: 1px;" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="refund-content" style="height:830px; width:1540px">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#list" class="nav-pax">List Of Refund</a></li>
+                        <li id="tabdetail"><a data-toggle="tab" href="#detail" class="nav-pax" id="tab-transaction">Refund Detail</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="ajax-loader">
+                            <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+                        </div>
+                        <div id="list" class="tab-pane fade in active">
+                            <div class="col-sm-12">
+                                <fieldset class="test-fieldst" style="width:1485px;">
+                                    <legend class="test-fieldst">Refund Date Range</legend>
+                                    <table class="record-rfnd" style="margin-left:23px;margin-top:12px">
+                                        <tr>
+                                            <td>From:</td>
+                                            <td>
+                                                <div class="width-group">
+                                                    <div class="col-sm-9 n-padding">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateFromListRefund')"></span>
+                                                            <input type="text" class="form-engine" id="dateFromListRefund" value="@ViewBag.dateFrom" style="height:28px!important">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td></td>
+                                            <td style="width: 25px;"></td>
+                                            <td style="width:30px;">To</td>
+                                            <td>
+                                                <div class="width-group">
+                                                    <div class="col-sm-9 n-padding">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateToListRefund')"></span>
+                                                            <input type="text" class="form-engine" id="dateToListRefund" value="@ViewBag.dateTo" style="height:28px!important">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td></td>
+
+                                        </tr>
+                                        <tr style="height:50px;"></tr>
+                                        <tr>
+                                            <td>Query by:</td>
+                                            <td>
+                                                <select class="form-engine" id="dropdownType" onclick="boutonvu()" style="height:28px!important">
+                                                    <option></option>
+                                                    <option>Agent Numeric Code</option>
+                                                    <option>Document Number</option>
+                                                    <option>Passenger Name</option>
+
+                                                </select>
+                                            </td>
+                                            <td></td>
+
+                                            <td></td>
+                                            <td></td>
+                                            <td>
+                                                <input type="text" class="form-engine" id="dropdownDocs" style="height:28px!important" />
+                                            </td>
+
+                                            <td>
+                                                <button class="point-interogation pink btn" id="showListRefundCodeModal" data-toggle="modal" data-target="#AgentCodeModal" style="display:none;left:1px; top:-1px" onclick="chercherefn()"><span class="point-span">?</span></button>
+                                            </td>
+
+                                        </tr>
+                                    </table>
+
+                                    <div class="Rfndsearch" style="position:relative; left:940px;top:-30px;">
+                                        <div class="col-sm-1"><button type="button" class="search-interogation pink btn" onclick="setCriteriaListRefund()"><span class="search-span">SEARCH</span></button></div>
+                                        <div class="col-sm-1"><button class="search-interogation pink btn" onclick="ClearListRefund()"><span class="search-span">CLEAR</span></button></div>
+                                        <div class="col-sm-1"><button class="search-interogation pink btn" data-dismiss="modal"><span class="search-span">CLOSE</span></button></div>
+                                       
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="col-ms-8" id="loadListRefund">
+                                <div class="table-record-display " style="overflow: auto;top: 12px;position: relative;left: 19px;width: 1485px;height:200px">
+                                    <table class="table table-bordered table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th class="pink">Refunded Doc No</th>
+                                                <th class="pink">Date Refund</th>
+                                                <th class="pink">Original Ticket No</th>
+                                                <th class="pink">Origin TKTT Date Of Issue</th>
+                                                <th class="pink">Agent Num Code</th>
+                                                <th class="pink">Passenger Name</th>
+                                                <th class="pink">Doc Type</th>
+                                                <th class="pink">Currency</th>
+                                                <th class="pink">Refund Amount</th>
+                                                <th class="pink">Penalty Curr</th>
+                                                <th class="pink">Penalty Fee </th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+
+                                <div class="table-summary" style="position: relative;left: 16px;width:450px;height:200px; top:15px; background-color:white">
+                                    <table class="table table-bordered table-striped table-hover ">
+                                        <thead>
+                                            <tr>
+                                                <th class="pink">No of Doc</th>
+                                                <th class="pink">Currency</th>
+                                                <th class="pink">Amount</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+
+                                <div class="totdoc" style="position: relative;left: 1226px;top: -176px;">
+                                    <span class="doccompt">Total No of Doc</span>
+                                    <img src="~/Images/CSVPic.jpg" style="height:30px;top: 0px;left: 152px;" />
+                                </div>
+                            </div>
+
+                        </div>
+                        <div id="detail" class="tab-pane fade">
+                            <div class="tab-rfnddetail">
+                                <div class=" col-sm-12" style="padding:7px;">
+                                    <table style="font-size:small;">
+                                        <tr>
+                                            <td>Passenger Name</td>
+                                            <td style="width:225px;"></td>
+                                            <td>Original Date Of Issue</td>
+                                            <td style="width:225px;"></td>
+                                            <td>Original Doc Type</td>
+                                            <td style="width:225px;"></td>
+                                            <td>Original Transaction Code</td>
+                                            <td style="width:225px;"></td>
+                                        </tr>
+                                        <tr style="height:10px;"></tr>
+                                        <tr>
+                                            <td>Refund Doc No:</td>
+                                            <td style="width:225px;"></td>
+                                            <td>Date Refund</td>
+                                            <td style="width:225px;"></td>
+                                        </tr>
+                                        <tr style="height:10px;"></tr>
+                                        <tr>
+                                            <td>Original DocNo</td>
+                                            <td style="width:225px;"></td>
+                                        </tr>
+                                        <tr style="height:10px;"></tr>
+                                        <tr>
+                                            <td>Original Routing</td>
+                                            <td colspan="6"></td>
+                                        </tr>
+                                        <tr style="height:10px;"></tr>
+                                        <tr>
+                                            <td colspan="6"></td>
+                                           <!--  <td><button class="search-interogation pink btn" id="showRefundCpns" style="width:137px">Refunded Coupon</button></td> -->
+                                            <td><button class="search-interogation pink btn" data-dismiss="modal">CLOSE</button></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="col-sm-12">
+                                    <fieldset class="test-fieldst" style="padding:5px;width:1274px">
+                                        <legend class="test-fieldst">Original Details</legend>
+                                        <div class="loadOrDtl">
+                                            <div class="table-record-display" style="overflow: auto;top: -30px;position: relative;left: 0px;height:100px; width:1265px">
+                                                <table class="table table-bordered" style="width:1260px;">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="pink">DateOfIssue</th>
+                                                            <th class="pink">Trans.Type</th>
+                                                            <th class="pink">Currency</th>
+                                                            <th class="pink">Amount Collected</th>
+                                                            <th class="pink">Currency</th>
+                                                            <th class="pink">Tax Collected</th>
+                                                            <th class="pink">Currency</th>
+                                                            <th class="pink">Surcharge Collected</th>
+                                                            <th class="pink">Currency</th>
+                                                            <th class="pink">Commission Collected</th>
+                                                            <th class="pink">Agent Code </th>
+                                                            <th class="pink">Endos Restriction</th>
+
+
+                                                        </tr>
+                                                    </thead>
+
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <div class="col-sm-12">
+                                    <fieldset class="test-fieldst" style="padding:5px;width:1274px">
+                                        <legend class="test-fieldst">Refunded Details</legend>
+                                        <div class="loadrfnDtl">
+                                            <div class="table-record-display" style="overflow: auto;top: -30px;position: relative;left: 0px;height:100px; width:1265px">
+                                                <table class="table table-bordered" style="width:1260px;">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="pink">DateOfIssue</th>
+                                                            <th class="pink">Trans.Type</th>
+                                                            <th class="pink">Currency</th>
+                                                            <th class="pink">Amount Refunded</th>
+                                                            <th class="pink">Currency</th>
+                                                            <th class="pink">Tax Refunded</th>
+                                                            <th class="pink">Currency</th>
+                                                            <th class="pink">Surcharge Refunded</th>
+                                                            <th class="pink">Currency</th>
+                                                            <th class="pink">Commission Refunded</th>
+                                                            <th class="pink">Agent Code </th>
+                                                            <th class="pink">Endos Restriction</th>
+
+
+                                                        </tr>
+                                                    </thead>
+
+                                                </table>
+                                            </div>
+                                            <div class="penalty"> Penalty Fees: </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="col-sm-12" style="margin-top:7px;">
+                                        <fieldset class="test-fieldst" style="padding:5px;width:1274px;margin-left:-20px">
+                                            <legend class="test-fieldst">Difference</legend>
+                                            <div class="loadrfnDtl">
+                                                <div class="table-record-display" style="overflow: auto;top: -30px;position: relative;left: 0px;height:100px;width:1265px">
+                                                    <table class="table table-bordered" style="width: 850px;left: 185px;position: relative;">
+                                                        <thead>
+                                                            <tr>
+
+                                                                <th class="pink">Currency</th>
+                                                                <th class="pink">Amount Remained</th>
+                                                                <th class="pink">Currency</th>
+                                                                <th class="pink">Tax Remained</th>
+                                                                <th class="pink">Currency</th>
+                                                                <th class="pink">Surcharge Remained</th>
+                                                                <th class="pink">Currency</th>
+                                                                <th class="pink">Commission Remained</th>
+
+
+                                                            </tr>
+                                                        </thead>
+
+                                                    </table>
+                                                </div>
+
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal fade" id="AgentCodeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="Doc modal-content" style="width: 58%;left: 17%; background-color: rgba(135, 206, 235, 1) !important; ">
+                                    <div class="agentModal">
+                                        <div class="modal-header" style="background-color: white; margin-bottom: 21px;">
+                                            <h5 class="modal-title" id="myModalLabel">FrmCustomAgentQuery</h5>
+                                            <button type="button" class="close close-agent-code" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        <div class="DocCollect-modal-body">
+                                            <div class="ajax-loader">
+                                                <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+                                            </div>
+                                            <div class="scoll-tree scoll-agent-code">
+                                                <div class="head-agent-code-content">
+                                                    <div class="form-row">
+                                                        <div class="col col-md-3" style="padding-left: 0px;">Agent Legal Name:</div>
+                                                        <div class="col col-md-4">
+                                                            <input type="text" class="form-control" id="name" name="agentName" onkeyup="cherche(this.value)" />
+                                                        </div>
+                                                        <div class="col col-md-2">Agent Code:</div>
+                                                        <div class="col col-md-3">
+                                                            <input type="text" class="form-control" id="code" name="agentCode" onkeyup="cherche(this.value)" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="agentContent" style="width: 98%; max-height: 515px;">
+                                                    <table class="table table-agent-code" style="margin-bottom:0px">
+                                                        <thead>
+                                                            <tr>
+                                                                <th width="35%">Agent Code</th>
+                                                                <th width="70%">Agent Name</th>
+                                                            </tr>
+                                                        </thead>
+
+
+                                                    </table>
+                                                </div>
+                                                <div class="autocomplete">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer" style="background-color:rgba(135, 206, 235, 1) !important;">
+                                            <div class="col-md-9 footer-agent-code">
+                                                <div class="col-md-12">
+                                                    <label>Agent Name: </label>
+                                                    <label style="color:white;font-size:12px" id="agent-name-label"></label>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <label>Agent Code: </label>
+                                                    <label style="color:white; font-size:12px" id="agent-code-label"></label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <button type="button" class="Close btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="Close btn" data-dismiss="modal" id="select-name-code" onclick="setNumericode()">Select</button>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!--  End Liste Of Refunds      Joseph-->

@@ -1,0 +1,39 @@
+﻿    <table id="tabSecValControl" class="table table-bordered table-hover table-striped tablehead" style="width: 84%;">
+        <thead>
+            <tr>
+                <th class="green-tab">Origin City</th>
+                <th class="green-tab">Destination City</th>
+                <th class="green-tab">Prime Code</th>
+                <th class="green-tab">RBD</th>
+                <th class="green-tab">Min Sector Value</th>
+                <th class="green-tab">Max Sector Value</th>
+                <th class="green-tab">Validated</th>
+                <th class="green-tab">EDIT</th>
+            </tr>
+
+        </thead>
+
+        <tbody id="tabSecValControlTD">
+            <tr onclick="GetTabSVCsave()">
+                <td>@ViewBag.orgcity</td>
+                <td>@ViewBag.destcity</td>
+                <td>@ViewBag.prm</td>
+                <td>@ViewBag.rbd</td>
+                <td>@ViewBag.minshare</td>
+                <td>@ViewBag.maxshare</td>
+                <td>
+                    @if (ViewBag.val == "1")
+                    {
+                        <input type="checkbox" checked disabled>
+                    }
+                    else
+                    {
+                        <input type="checkbox">
+                    }
+
+                </td>
+                <td><a class="Edit" onclick="editSVCTD()" href="javascript:;">Edit</a></td>
+            </tr>
+        </tbody>
+
+    </table>

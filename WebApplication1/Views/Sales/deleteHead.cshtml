@@ -1,0 +1,37 @@
+﻿<table class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <th class="pink">Agent Numeric Code</th>
+            <th class="pink">Financial Year</th>
+            <th class="pink">Start Of Financial Year</th>
+            <th class="pink">End Of Financial Year</th>
+            <th class="pink">Payement Due Date (Days)</th>
+            <th class="pink">Flown Revenue (USD)</th>
+            <th class="pink">Base Currency</th>
+            <th class="pink">Base Amount</th>
+            <th class="pink">Flown Revenue </th>
+            <th class="pink">Amount Calculated</th>
+            <th class="pink">Amount Paid</th>
+            <th class="pink">Date Paid</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @if (ViewBag.compt1 > 0)
+        {
+            for (int j = 0; j < ViewBag.compt1; j++)
+            {
+                <tr id="head_@j" onclick="showDetail('head_@j')">
+                    @for (int i = 0; i < 12; i++)
+                    {
+                        <td>@ViewBag.dgPLBHeader[i, j] </td>;
+                    }
+                </tr>
+            }
+        }
+        else { }
+
+    </tbody>
+</table>
+
+

@@ -1,0 +1,74 @@
+﻿@using System.Data
+@model DataSet
+<div class="col-sm-11" style="margin-top:40px">
+    <div class="col-sm-8">
+        <input type="hidden" id="checkCompt" value="@ViewBag.compt" />
+        <div class="table-record-display" style="height:500px; overflow:auto; top: -25px;position: relative;">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th class="pink">Date Of Refund</th>
+                        <th class="pink">Passenger Name</th>
+                        <th class="pink">Document No</th>
+                        <th class="pink">Fare Basis</th>
+                        <th class="pink">Date Of Issue</th>
+                        <th class="pink">Orig.Fare Currency Paid</th>
+                        <th class="pink">Orig.Fair Paid</th>
+                        <th class="pink">Total Amt Retained By Issuing Airline</th>
+                        <th class="pink">Refunded Currency</th>
+                        <th class="pink"> Refunded Amount</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int j = 0; j < ViewBag.compt; j++)
+                    {
+                        <tr>
+                            @for (int i = 0; i < 10; i++)
+                            {
+                                <td>@ViewBag.tableau[i, j] </td>;
+                            }
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+    <div class="col-sm-4"></div>
+</div>
+    <div class="col-sm-11" id="loadOalSummary">
+        <div class="col-sm-4">
+            <div class="summary"><span>Summary</span></div>
+            <div class="table-summary" style="height: 150px;background-color: white;">
+                <table class="table table-bordered  ">
+                    <thead>
+                        <tr>
+                            <th class="pink">Currency</th>
+                            <th class="pink">Amt Retained By Issuing Airline</th>
+                            <th class="pink">Refunded Amount</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int j = 0; j < ViewBag.comp1; j++)
+                        {
+
+                            <tr>
+                                @for (int i = 0; i < 3; i++)
+                                {
+                                    <td>@ViewBag.tableausum [i, j] </td>;
+                                }
+                            </tr>
+
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-sm-2"></div>
+        <div class="col-sm-2">Total No of Doc: @ViewBag.compt</div>
+
+    </div>

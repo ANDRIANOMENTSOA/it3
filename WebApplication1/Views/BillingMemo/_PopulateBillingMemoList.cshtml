@@ -1,0 +1,37 @@
+﻿Sapien elit in malesuada semper mi, id sollicitudin urna fermentum.
+
+
+<table class="table table-bordered tablehead">
+    <thead style="background-color: #8B0000; color:aliceblue;">
+    <tr>
+        <th>Sequences</th>
+        <th>Gross Billed</th>
+        <th>Tax</th>
+        <th>ISC Percentage</th>
+        <th>ISC Amount</th>
+        <th>Ohter Commission %</th>
+        <th>Other Commission Amount</th>
+        <th>UATP %</th>
+        <th>UATP Amount</th>
+        <th>Handling Fees %</th>
+        <th>Handling Fees Amount</th>
+        <th>VAT Amount %</th>
+        <th>VAT Amount</th>
+        <th>Net Amount</th>
+    </tr>
+
+    </thead>
+    <tbody>
+        @for (int i = 0; i < ViewBag.MBlistLon; i++)
+        {
+            <tr onclick="dgvBMRecQry_CellClick()">
+                @for (int j = 0; j < 13; j++)
+                {
+                    <td>@ViewBag.MBlist[j, i]</td>
+                }
+            </tr>
+        }
+
+    </tbody>
+
+</table>

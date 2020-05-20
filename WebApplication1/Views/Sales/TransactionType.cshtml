@@ -1,0 +1,108 @@
+﻿@using System.Data
+@model DataSet
+<div class="col-sm-11 tab-content tab-cancellation">
+    <div class="content-cancellation col-sm-11">
+        <div class="col-sm-4">
+            <fieldset class="test-fieldst">
+                <legend class="test-fieldst">Issue Date</legend>
+                <div class="col-sm-6 width-group">
+                    <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">From:</label>
+                    <div class="col-sm-7 n-padding">
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('transTypedateFrom')"></span>
+                            <input type="text" class="form-control" id="transTypedateFrom">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6" style="margin-bottom: 19px;">
+                    <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">To:</label>
+                    <div class="col-sm-7 n-padding">
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('transTypedateTo')"></span>
+                            <input type="text" class="form-control" id="transTypedateTo">
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+        <div class="col-sm-3">
+            <fieldset class="test-fieldst">
+                <input type="hidden" id="testTransType" />
+                <input type="hidden" id="testTrans1Type" />
+                <legend class="test-fieldst">.</legend>
+                <div class="form-group row" style="margin-left:7px">
+                    <label class="col-sm-4 col-form-label" style="position: relative;top: 9px;">Transaction Type:</label>
+                    <div class="col-sm-5" style="height: 37px;">
+                        <div class="row div-showModal">
+                            <select class="form-control" id="dropDownTransactionType" onclick="clickDropDownTrans0()">
+                                <option>All</option>
+                                @foreach (DataRow dr in Model.Tables[0].Rows)
+                                {
+                                    for (int i = 0; i < Model.Tables[0].Columns.Count; i++)
+                                    {
+                                        <option>@dr[Model.Tables[0].Columns[0].ColumnName].ToString()</option>;
+                                    }
+
+                                }
+
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="col-sm-3" style="position: relative;top: 21px;">
+            <div class="search">
+                <div class="col-sm-3"><button type="button" class="search-interogation pink btn" onclick="setCriteriaTransactionType()"><span class="search-span">SEARCH</span></button></div>
+                <div class="col-sm-3"><button type="button" class="search-interogation pink btn" onclick="clearTransactionType()"><span class="search-span">CLEAR</span></button></div>
+                <div class="col-sm-3"><button type="button" class="search-interogation pink btn" onclick="removeSousMenu()"><span class="search-span">CLOSE</span></button></div>
+            </div>
+        </div>
+    </div>
+    <div class="ajax-loader">
+        <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+    </div>
+    <div class="col-sm-11" style="margin-top:40px" id="loadTrans-summary">
+        <div class="col-sm-8">
+            <div class="table-record-display" style="height:694px;overflow:auto">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="pink">Period</th>
+                            <th class="pink">Date</th>
+                            <th class="pink">Agent Code</th>
+                            <th class="pink" style="width:268px">Agent Name</th>
+                            <th class="pink">Transaction Type</th>
+                            <th class="pink">Transaction Code</th>
+                            <th class="pink">CUR</th>
+                            <th class="pink">Amount Collected</th>
+                            <th class="pink">Amount Remitted</th>
+                            <th class="pink">Compiled Commission</th>
+                            <th class="pink">No. Of TKTs</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        <div class="col-sm-4" style="margin-top: 15px;">
+            <fieldset class="test-fieldst">
+                <legend class="test-fieldst">Summary</legend>
+                <div class="table-summary">
+                    <table class="table table-bordered ">
+                        <thead>
+                            <tr>
+                                <th class="pink">Transaction Type</th>
+                                <th class="pink">CUR</th>
+                                <th class="pink">Amount Collected</th>
+                                <th class="pink">Amount Remitted</th>
+                                <th class="pink">Compiled Commission</th>
+                                <th class="pink">No. Of TKTs</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>

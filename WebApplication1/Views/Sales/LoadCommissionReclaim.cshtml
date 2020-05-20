@@ -1,0 +1,36 @@
+﻿@using System.Data
+@model DataSet
+<div class="col-sm-8">
+    <div class="table-record-display contentUnused" style="height:598px;overflow:auto">
+        <table class="table table-bordered table-striped table-hover" style="overflow:auto">
+            <thead>
+                <tr>
+                    <th class="pink">New Document Number</th>
+                    <th class="pink">Preceding  AgentNumeric Code</th>
+                    <th class="pink">Preceding Booking AgentID</th>
+                    <th class="pink">Preceding Ticketing AgentID</th>
+                    <th class="pink">Preceding Commission</th>
+                    <th class="pink">Preceding Com Rate</th>
+                    <th class="pink">New Sum Final Share</th>
+                    <th class="pink">Preceding Sum Final Share</th>
+                    <th class="pink">Commission Reclaim Currency</th>
+                    <th class="pink">Commission Reclaim</th>
+                    <th class="pink">New Amount Collected</th>
+                    <th class="pink">Preceding Amount Collected</th>
+                </tr>
+            </thead>
+            <tbody id="summUnusedDoc">
+                @foreach (DataRow dr in Model.Tables[0].Rows)
+            {
+                    <tr ondblclick="loadDocNum(this,'@dr[Model.Tables[0].Columns[0].ColumnName].ToString()','TKTT')">
+                        @for (int i = 0; i < Model.Tables[0].Columns.Count; i++)
+                {
+                            <td>@dr[Model.Tables[0].Columns[i].ColumnName].ToString()</td>;
+                }
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>

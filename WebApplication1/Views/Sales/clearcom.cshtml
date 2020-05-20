@@ -1,0 +1,113 @@
+﻿<div class="col-sm-11">
+    <div class="col-sm-4">
+        <fieldset class="test-fieldst" style="height:80px">
+            <legend class="test-fieldst">Sales Date Range</legend>
+            <div class="col-sm-6">
+                <div class="form-group has-feedback">
+                    <label class="form-check-label col-form-label col-sm-2 fromTo" style="top:15px">From:</label>
+                    <div class="col-sm-10" style="top:10px">
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateFrom')"></span>
+                            <input type="text" class="form-control" id="dateFrom" value="@ViewBag.date[0]" style="padding-right:3px" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group has-feedback">
+                    <label class="form-check-label col-form-label col-sm-2 fromTo" style="top:15px">To:</label>
+                    <div class="col-sm-10" style="top:10px">
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateTo')"></span>
+                            <input type="text" class="form-control" id="dateTo" value="@ViewBag.date[1]" style="padding-right:3px" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div class="col-sm-2">
+        <fieldset class="test-fieldst" style="height: 69px;top: 10px;position: relative;">
+            <div class="form-group has-feedback">
+                <label class="form-check-label col-form-label col-sm-5 fromTo" style="top:25px">Agent code:</label>
+                <div class="col-sm-7" style="top:17px">
+                    <input type="hidden" id="testDate" value="" />
+                    <select class="form-control" id="agentCode" onclick="setAgCode()">
+                        <option>-All-</option>
+                    </select>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div class="col-sm-2" style="top:27px">
+        <div class="col-sm-6"><button type="button" class="search-interogation pink btn1" onclick="setCriteriaCom()"><span class="search-span">SEARCH</span></button></div>
+        <div class="col-sm-6"><button class="search-interogation pink btn1" onclick="ClearCom()"><span class="search-span">CLEAR</span></button></div>
+    </div>
+</div>
+<div class="col-sm-1"></div>
+<div class="col-sm-11" id="loadCom">
+    <div class="col-sm-7">
+        <div class="table-record-display" style="height:630px">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th class="pink">Period</th>
+                        <th class="pink">Date of Sale</th>
+                        <th class="pink">Document No</th>
+                        <th class="pink">Agent Code</th>
+                        <th class="pink">Agent Name</th>
+                        <th class="pink">CUR</th>
+                        <th class="pink">Amount</th>
+                        <th class="pink">Exchange Rate</th>
+                        <th class="pink">USD Value</th>
+
+
+                    </tr>
+                </thead>
+
+            </table>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <fieldset class="test-fieldst" style="top: 15px;position: relative;height:505px">
+            <legend class="test-fieldst">Summary</legend>
+            <table class="table table-cancellation" style="position: relative;left: 33px;width:312px!important">
+                <tr>
+                    <td width="38%">Total Amount:USD</td>
+                    <td width="27%"><input type="text" class="form-control" name="" id="totAmount" /></td>
+                    <td width="10%"></td>
+                </tr>
+            </table>
+            <table class="table table-cancellation" style="position: relative;left: 33px;width:312px!important">
+                <tr>
+                    <td width="38%">Total No of Document</td>
+                    <td width="27%"><input type="text" class="form-control" name="" id="Document" /> </td>
+                    <td width="10%"></td>
+                </tr>
+            </table>
+            <div class="table-summary" style="height:275px;overflow:auto;background-color:white;width: 315px;position: relative;left: 33px;">
+                <table class="table table-bordered ">
+                    <thead>
+                        <tr>
+                            <th class="pink">Currency</th>
+                            <th class="pink">Amount</th>
+                            <th class="pink">Doc Count</th>
+
+                        </tr>
+                    </thead>
+
+                </table>
+            </div>
+        </fieldset>
+    </div>
+
+</div>
+<div class="col-sm-1"></div>
+<div class="col-sm-11">
+    <img src="~/Images/CSVPic.jpg" style="height: 35px;top: 5px;left: 12px;" />
+</div>
+<div class="col-sm-1">
+    <div class="col-sm-6"><button type="button" class="search-interogation pink btn" onclick="removeSousMenu()" style="top:7px"><span class="search-span">CLOSE</span></button></div>
+</div>
+
+

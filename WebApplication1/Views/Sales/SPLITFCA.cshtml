@@ -1,0 +1,1011 @@
+﻿@using System.Data
+@model DataSet
+<div class="ajax-loader">
+    <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+</div>
+<div class="col col-sm-12 modal-fca-split">
+    <span class="doc-numb"><b>Document Number @ViewData["document"]</b></span>
+</div>
+
+<form>
+    <div class="form-group row">
+        <label class="col col-sm-1 col-form-label">Original FCA</label>
+        <div class="col col-sm-8">
+            <input type="text" readonly class="form-control" id="originalfca" value="@ViewData["fare"]">
+        </div>
+
+        <div class="col col-sm-2">
+            <button type="button" class="btn btn-default" id="parserbtn">PARSER</button>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col col-sm-1 col-form-label">Parser</label>
+        <div class="col col-sm-8">
+            <input type="text" readonly class="form-control" id="parser" value="@ViewData["parser"]">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col col-sm-1 col-form-label">FCA</label>
+        <div class="col col-sm-8">
+            <input type="text" readonly class="form-control" id="fca" value="@ViewData["destfinal"]">
+        </div>
+    </div>
+</form>
+<div class="row containt-tableau">
+    <div class="tab-left">
+        <table class="table table-bordered haut">
+            <tr>
+                <td class="entete">Key</td>
+                <td class="entete">Value</td>
+            </tr>
+            @for (int j = 0; j < ViewBag.tableau.Length / 2; j++)
+            {
+                try
+                {
+                    int i = 0;
+
+                    if (ViewBag.tableau[i, j].Equals("Unknown") || ViewBag.tableau[i, j] == null)
+                    {
+                        if (j < (ViewBag.tableau.Length / 2) - 1)
+                        {
+
+
+                            <tr>
+                                <td>@ViewBag.tableau[i, j + 1]</td>
+                                <td>@ViewBag.tableau[i + 1, j + 1]</td>
+
+                            </tr>
+                            j = j + 1;
+                        }
+                        else { break; }
+                    }
+                    else
+                    if (j == ViewBag.tableau.Length) { break; }
+                    else
+                    {
+                        <tr>
+                            <td>@ViewBag.tableau[i, j]</td>
+                            <td>@ViewBag.tableau[i + 1, j]</td>
+
+                        </tr>
+                    }
+                }
+                catch { }
+            }
+        </table>
+    </div>
+    <div class="tab-left1">
+        <table>
+            @for (int j = 0; j < ViewBag.tableau.Length / 2; j++)
+            {
+                try
+                {
+                    int i = 0;
+
+                    if (ViewBag.tableau[i, j].Equals("Unknown") || ViewBag.tableau[i, j] == null)
+                    {
+                        if (j < (ViewBag.tableau.Length / 2) - 1)
+                        {
+
+                            j = j + 1;
+                        }
+                        else { break; }
+                    }
+                    else
+                    {
+                        if (ViewBag.tableau[i, j].Equals("NUC") || ViewBag.tableau[i, j].Equals("ROE"))
+                        {
+                            <tr>
+                                <td class="col-tableft"><b>@ViewBag.tableau[i, j]</b></td>
+                                <td>@ViewBag.tableau[i + 1, j]</td>
+                            </tr>
+                        }
+                    }
+                }
+                catch { }
+            }
+            <tr>
+                <td class="col-tableft"><b>Specific Stopover Charges</b></td>
+                <td>0.000</td>
+            </tr>
+            <tr>
+                <td class="col-tableft"><b>Unspecified Stopover Charges</b></td>
+                <td>0.000</td>
+            </tr>
+            <tr>
+                <td class="col-tableft"><b>Total Stopover Charges</b></td>
+                <td>0.000</td>
+            </tr>
+            @for (int j = 0; j < ViewBag.tableau.Length / 2; j++)
+            {
+                try
+                {
+                    int i = 0;
+
+                    if (ViewBag.tableau[i, j].Equals("Unknown") || ViewBag.tableau[i, j] == null)
+                    {
+                        if (j < (ViewBag.tableau.Length / 2) - 1)
+                        {
+
+                            j = j + 1;
+                        }
+                        else { break; }
+                    }
+                    else
+                    {
+                        if (ViewBag.tableau[i, j].Contains("Q-Surcharge"))
+                        {
+                            <tr>
+                                <td class="col-tableft"><b>Surcharges (Q)</b></td>
+                                <td>@ViewBag.tableau[i + 1, j]</td>
+
+                            </tr>
+                        }
+                        if (ViewBag.tableau[i, j].Equals("D"))
+                        {
+                            <tr>
+                                <td class="col-tableft"><b>Differential (D)</b></td>
+                                <td>@ViewBag.tableau[i + 1, j]</td>
+
+                            </tr>
+                        }
+                    }
+                }
+                catch { }
+            }
+        </table>
+    </div>
+
+    <div class="fca-center">
+        <div class="fca-title">
+            <button class="reduire" id="reduire" onclick="reduire('fare-component')">...</button>
+            <p>Fare Component</p>
+        </div>
+        <div id="fare-component" style="display:none;">
+            <div class="well well-fare1" style="overflow:auto">
+                <table class="table table-bordered fare-tab">
+                    <tr>
+                        <td class="entete pink" style="min-width:140px;">Fare Component</td>
+                        @for (int a = 1; a <= ViewBag.CountFare; a++)
+                        {
+                            <td class="entete pink" style="min-width:255px;max-width:255px">@a</td>
+                        }
+
+                    </tr>
+
+                    <tr>
+                        @for (int b = 0; b <= ViewBag.CountFare; b++)
+                        {
+                            <td class="sector_@b">@ViewBag.fareComponent[b, 0]</td>
+                        }
+
+                    </tr>
+                    <tr>
+                        @for (int b = 0; b <= ViewBag.CountFare; b++)
+                        {
+                            <td class="sector_@b">@ViewBag.fareComponent[b, 1]</td>
+                        }
+                    </tr>
+                    <tr>
+                        @for (int b = 0; b <= ViewBag.CountFare; b++)
+                        {
+                            <td class="sector_@b">@ViewBag.fareComponent[b, 2]</td>
+                        }
+                    <tr></tr>
+                    <tr>
+                        @for (int b = 0; b <= ViewBag.CountFare; b++)
+                        {
+                            <td class="sector_@b">@ViewBag.fareComponent[b, 3]</td>
+                        }
+                    </tr>
+                </table>
+            </div>
+            <div class="well well-fare2">
+                <div class="col col-md-1">
+                    <table class="table table-bordered sector" style="margin-left: -33px;width:140px;">
+                        <tr>
+                            <td class="entete pink">Sector</td>
+                        </tr>
+                    </table>
+                </div>
+                @for (int y = 0; y < ViewBag.Sector.Count; y++)
+                {
+                    int v = @y + 1;
+                    <div class="tab-sector">
+                       
+                        <table class="table table-bordered sector_@v" style="position: relative;left: 47px;top: -18px;min-width:255px;max-width:255px">
+                            <tr>
+                                <td class="entete pink">Begin</td>
+                                <td class="entete pink">Carier</td>
+                                <td class="entete pink">End</td>
+                                <td class="entete pink">Q</td>
+                                <td class="entete pink">S</td>
+                            </tr>
+                            @foreach (var x in ViewBag.Sector[y])
+                            {
+                                <tr>
+                                    @foreach (var z in x)
+                                    {
+                                        <td class="">@z</td>
+                                    }
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                }
+            </div>
+        </div>
+        @if (ViewBag.Ticket.Count != 0)
+        {
+            <div class="fca-title">
+                <button class="reduire" id="reduire" onclick="reduire('ticket-info')">...</button>
+                <p>Ticket Information</p>
+            </div>
+            <div id="ticket-info" style="display:none; background-color:white">
+                <div class="well well-autre">
+                    <table class="table table-bordered table-info table-new-model">
+                        <thead class="entete">
+                            <tr>
+                                <th>DocumentNumber</th>
+                                <th>CheckDigit</th>
+                                <th>UploadedRef</th>
+                                <th>AgentNumericCode</th>
+                                <th>ateofIssue</th>
+                                <th>SaleDate</th>
+                                <th>PassengerName</th>
+                                <th>PassengerSpecificData</th>
+                                <th>FareCalculationArea</th>
+                                <th>EndosRestriction</th>
+                                <th>OriginalIssueInformation</th>
+                                <th>OriginalIssueDocumentNumber</th>
+                                <th>OriginalIssueCity</th>
+                                <th>OriginalIssueDate</th>
+                                <th>OriginalIssueAgentNumericCode</th>
+                                <th>InConnectionWithDocumentNumber</th>
+                                <th>>Fare</th>
+                                <th>FareCurrency</th>
+                                <th>EquivalentFare</th>
+                                <th>Tax1Currency</th>
+                                <th>Tax2Currency</th>
+                                <th>Tax3Currency</th>
+                                <th>Tax1Code</th>
+                                <th>Tax2Code</th>
+                                <th>Tax3Code</th>
+                                <th>Tax1Amount</th>
+                                <th>Tax2Amount</th>
+                                <th>Tax3Amount</th>
+                                <th>TotalCurrency</th>
+                                <th>TotalAmount</th>
+                                <th>SequenceNumber</th>
+                                <th>ITBT</th>
+                                <th>ExchangeADC</th>
+                                <th>DocumentType</th>
+                                <th>TicketingModeIndicator</th>
+                                <th>FareCalculationModeIndicator</th>
+                                <th>BookingAgentIdentification</th>
+                                <th>BookingAgencyLocationNumber</th>
+                                <th>BookingEntityOutletType</th>
+                                <th>BookingReference</th>
+                                <th>AuditStatusIndicator</th>
+                                <th>ClientIdentification</th>
+                                <th>CommercialAgreementReference</th>
+                                <th>CustomerFileReference</th>
+                                <th>DataInputStatusIndicator</th>
+                                <th>FareCalculationPricingIndicator</th>
+                                <th>FormatIdentifier</th>
+                                <th>TourCode</th>
+                                <th>NetReportingIndicator</th>
+                                <th>NeutralTicketingSystemIdentifier</th>
+                                <th>ReportingSystemIdentifier</th>
+                                <th>ServicingAirlineSystemProviderIdentifier</th>
+                                <th>TrueOriginDestinationCityCodes</th>
+                                <th>SettlementAuthorizationCode</th>
+                                <th>VendorIdentification</th>
+                                <th>VendorISOCountryCode</th>
+                                <th>TransactionCode</th>
+                                <th>SalesDataAvailable</th>
+                                <th>AccountingStatus</th>
+                                <th>ProratedFlag</th>
+                                <th>FBSFlag</th>
+                                <th>DocumentAirlineID</th>
+                                <th>TransactionGroup</th>
+                                <th>PaxSPC</th>
+                                <th>PaxType</th>
+                                <th>SalesPeriod</th>
+                                <th>PrevMOS</th>
+                                <th>TotalTax</th>
+                                <th>TaxCurrency</th>
+                                <th>PayCurrency</th>
+                                <th>BookingAgentID</th>
+                                <th>TicketingAgentID</th>
+                                <th>IsReissue</th>
+                                <th>DataSource</th>
+                                <th>ProcessingFileType</th>
+                                <th>ProcessingDate</th>
+                                <th>OwnTicket</th>
+                                <th>OwnCarrier</th>
+                                <th>OwnISOCountry</th>
+                                <th>OwnAirline</th>
+                                <th>HostCurrency</th>
+                                <th>AmountCollected</th>
+                                <th>AmountCollectedCurrency</th>
+                                <th>TaxCollected</th>
+                                <th>TaxCollectedCurrency</th>
+                                <th>SurchargeCollected</th>
+                                <th>SurchargeCollectedCurrency</th>
+                                <th>CommissionCollected</th>
+                                <th>CommissionCollectedCurrency</th>
+                                <th>BilateralEndorsement</th>
+                                <th>InvoluntaryReroute</th>
+                                <th>BspIdentifier</th>
+                                <th>IsoCountryCode</th>
+                                <th>USDRatePayCur</th>
+                                <th>USDRateHostCur</th>
+                                <th>PMPPeriod</th>
+                                <th>TaxOnCommissionCollected</th>
+                                <th>TaxOnCommissionCollectedCurrency</th>
+                                <th>SignCode</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in ViewBag.Ticket)
+                            {
+                                <tr>
+
+                                   
+                                    <td>@item.DocumentNumber</td>
+                                    <td>@item.CheckDigit</td>
+                                    <td>@item.UploadedRef</td>
+                                    <td>@item.AgentNumericCode</td>
+                                    <td>@item.DateofIssue</td>
+                                    <td>@item.SaleDate</td>
+                                    <td>@item.PassengerName</td>
+                                    <td>@item.PassengerSpecificData</td>
+                                    <td>@item.FareCalculationArea</td>
+                                    <td>@item.EndosRestriction</td>
+                                    <td>@item.OriginalIssueInformation</td>
+                                    <td>@item.OriginalIssueDocumentNumber</td>
+                                    <td>@item.OriginalIssueCity</td>
+                                    <td>@item.OriginalIssueDate</td>
+                                    <td>@item.OriginalIssueAgentNumericCode</td>
+                                    <td>@item.InConnectionWithDocumentNumber</td>
+                                    <td>@item.Fare</td>
+                                    <td>@item.FareCurrency</td>
+                                    <td>@item.EquivalentFare</td>
+                                    <td>@item.Tax1Currency</td>
+                                    <td>@item.Tax2Currency</td>
+                                    <td>@item.Tax3Currency</td>
+                                    <td>@item.Tax1Code</td>
+                                    <td>@item.Tax2Code</td>
+                                    <td>@item.Tax3Code</td>
+                                    <td>@item.Tax1Amount</td>
+                                    <td>@item.Tax2Amount</td>
+                                    <td>@item.Tax3Amount</td>
+                                    <td>@item.TotalCurrency</td>
+                                    <td>@item.TotalAmount</td>
+                                    <td>@item.SequenceNumber</td>
+                                    <td>@item.ITBT</td>
+                                    <td>@item.ExchangeADC</td>
+                                    <td>@item.DocumentType</td>
+                                    <td>@item.TicketingModeIndicator</td>
+                                    <td>@item.FareCalculationModeIndicator</td>
+                                    <td>@item.BookingAgentIdentification</td>
+                                    <td>@item.BookingAgencyLocationNumber</td>
+                                    <td>@item.BookingEntityOutletType</td>
+                                    <td>@item.BookingReference</td>
+                                    <td>@item.AuditStatusIndicator</td>
+                                    <td>@item.ClientIdentification</td>
+                                    <td>@item.CommercialAgreementReference</td>
+                                    <td>@item.CustomerFileReference</td>
+                                    <td>@item.DataInputStatusIndicator</td>
+                                    <td>@item.FareCalculationPricingIndicator</td>
+                                    <td>@item.FormatIdentifier</td>
+                                    <td>@item.TourCode</td>
+                                    <td>@item.NetReportingIndicator</td>
+                                    <td>@item.NeutralTicketingSystemIdentifier</td>
+                                    <td>@item.ReportingSystemIdentifier</td>
+                                    <td>@item.ServicingAirlineSystemProviderIdentifier</td>
+                                    <td>@item.TrueOriginDestinationCityCodes</td>
+                                    <td>@item.SettlementAuthorizationCode</td>
+                                    <td>@item.VendorIdentification</td>
+                                    <td>@item.VendorISOCountryCode</td>
+                                    <td>@item.TransactionCode</td>
+                                    <td>@item.SalesDataAvailable</td>
+                                    <td>@item.AccountingStatus</td>
+                                    <td>@item.ProratedFlag</td>
+                                    <td>@item.FBSFlag</td>
+                                    <td>@item.DocumentAirlineID</td>
+                                    <td>@item.TransactionGroup</td>
+                                    <td>@item.PaxSPC</td>
+                                    <td>@item.PaxType</td>
+                                    <td>@item.SalesPeriod</td>
+                                    <td>@item.PrevMOS</td>
+                                    <td>@item.TotalTax</td>
+                                    <td>@item.TaxCurrency</td>
+                                    <td>@item.PayCurrency</td>
+                                    <td>@item.BookingAgentID</td>
+                                    <td>@item.TicketingAgentID</td>
+                                    <td>@item.IsReissue</td>
+                                    <td>@item.DataSource</td>
+                                    <td>@item.ProcessingFileType</td>
+                                    <td>@item.ProcessingDate</td>
+                                    <td>@item.OwnTicket</td>
+                                    <td>@item.OwnCarrier</td>
+                                    <td>@item.OwnISOCountry</td>
+                                    <td>@item.OwnAirline</td>
+                                    <td>@item.HostCurrency</td>
+                                    <td>@item.AmountCollected</td>
+                                    <td>@item.AmountCollectedCurrency</td>
+                                    <td>@item.TaxCollected</td>
+                                    <td>@item.TaxCollectedCurrency</td>
+                                    <td>@item.SurchargeCollected</td>
+                                    <td>@item.SurchargeCollectedCurrency</td>
+                                    <td>@item.CommissionCollected</td>
+                                    <td>@item.CommissionCollectedCurrency</td>
+                                    <td>@item.BilateralEndorsement</td>
+                                    <td>@item.InvoluntaryReroute</td>
+                                    <td>@item.BspIdentifier</td>
+                                    <td>@item.IsoCountryCode</td>
+                                    <td>@item.USDRatePayCur</td>
+                                    <td>@item.USDRateHostCur</td>
+                                    <td>@item.PMPPeriod</td>
+                                    <td>@item.TaxOnCommissionCollected</td>
+                                    <td>@item.TaxOnCommissionCollectedCurrency</td>
+                                    <td>@item.SignCode</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="fca-title">
+                <button class="griser" id="reduire">...</button>
+                <p>Ticket Information</p>
+            </div>
+        }
+        @if (ViewBag.Coupons.Count != 0)
+        {
+            <div class="fca-title">
+                <button class="reduire" id="reduire" onclick="reduire('coupon')">...</button>
+                <p>Coupons</p>
+            </div>
+            <div id="coupon" style="display:none; overflow-x:auto;background-color:white;overflow-y:hidden">
+                <div class="well well-autre">
+                    <table class="table table-bordered table-info table-new-model">
+                        <thead class="entete">
+                            <tr>
+                                <th>DocumentNumber</th>
+                                <th>CheckDigit</th>
+                                <th>IsConjunction</th>
+                                <th>IsReissue</th>
+                                <th>RelatedDocumentNumber</th>
+                                <th>RelatedTicketCheckDigit</th>
+                                <th>CouponIndicator</th>
+                                <th>TransactionCode</th>
+                                <th>TransmissionControlNumber</th>
+                                <th>SequenceNumber</th>
+                                <th>CouponNumber</th>
+                                <th>OriginAirportCityCode</th>
+                                <th>DestinationAirportCityCode</th>
+                                <th>Carrier</th>
+                                <th>StopOverCode</th>
+                                <th>FareBasisTicketDesignator</th>
+                                <th>FrequentFlyerReference</th>
+                                <th>FlightNumber</th>
+                                <th>FlightDepartureDate</th>
+                                <th>FlightDepartureTime</th>
+                                <th>NotValidBefore</th>
+                                <th>NotValidAfter</th>
+                                <th>ReservationBookingDesignator</th>
+                                <th>FreeBaggageAllowance</th>
+                                <th>FlightBookingStatus</th>
+                                <th>OriginAirportCityCode1</th>
+                                <th>StopoverCode1</th>
+                                <th>OriginAirportCityCode2</th>
+                                <th>StopoverCode2</th>
+                                <th>SegmentIdentifier</th>
+                                <th>UsageAirline</th>
+                                <th>UsageDate</th>
+                                <th>UsageFlightNumber</th>
+                                <th>UsageOriginCode</th>
+                                <th>UsageDestinationCode</th>
+                                <th>UsedClassofService</th>
+                                <th>SettlementAuthorizationCode</th>
+                                <th>CouponStatus</th>
+                                <th>AccountingStatus</th>
+                                <th>AccountingOnEstimate</th>
+                                <th>BillingStatus</th>
+                                <th>DocumentNumber</th>
+                                <th>RelatedDocumentNumber</th>
+                                <th>BillingType</th>
+                                <th>DomesticInternational</th>
+                                <th>OriginCity</th>
+                                <th>DestinationCity</th>
+                                <th>OriginCountry</th>
+                                <th>DestinationCountry</th>
+                                <th>IsOAL</th>
+                                <th>SequenceNumber</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in ViewBag.Coupons)
+                            {
+                                <tr>
+                                   
+                                    
+                                    <td>@item.DocumentNumber</td>
+                                    <td>@item.CheckDigit</td>
+                                    <td>@item.IsConjunction</td>
+                                    <td>@item.IsReissue</td>
+                                    <td>@item.RelatedDocumentNumber</td>
+                                    <td>@item.RelatedTicketCheckDigit</td>
+                                    <td>@item.CouponIndicator</td>
+                                    <td>@item.TransactionCode</td>
+                                    <td>@item.TransmissionControlNumber</td>
+                                    <td>@item.SequenceNumber</td>
+                                    <td>@item.CouponNumber</td>
+                                    <td>@item.OriginAirportCityCode</td>
+                                    <td>@item.DestinationAirportCityCode</td>
+                                    <td>@item.Carrier</td>
+                                    <td>@item.StopOverCode</td>
+                                    <td>@item.FareBasisTicketDesignator</td>
+                                    <td>@item.FrequentFlyerReference</td>
+                                    <td>@item.FlightNumber</td>
+                                    <td>@item.FlightDepartureDate</td>
+                                    <td>@item.FlightDepartureTime</td>
+                                    <td>@item.NotValidBefore</td>
+                                    <td>@item.NotValidAfter</td>
+                                    <td>@item.ReservationBookingDesignator</td>
+                                    <td>@item.FreeBaggageAllowance</td>
+                                    <td>@item.FlightBookingStatus</td>
+                                    <td>@item.OriginAirportCityCode1</td>
+                                    <td>@item.StopoverCode1</td>
+                                    <td>@item.OriginAirportCityCode2</td>
+                                    <td>@item.StopoverCode2</td>
+                                    <td>@item.SegmentIdentifier</td>
+                                    <td>@item.UsageAirline</td>
+                                    <td>@item.UsageDate</td>
+                                    <td>@item.UsageFlightNumber</td>
+                                    <td>@item.UsageOriginCode</td>
+                                    <td>@item.UsageDestinationCode</td>
+                                    <td>@item.UsedClassofService</td>
+                                    <td>@item.SettlementAuthorizationCode</td>
+                                    <td>@item.CouponStatus</td>
+                                    <td>@item.AccountingStatus</td>
+                                    <td>@item.AccountingOnEstimate</td>
+                                    <td>@item.BillingStatus</td>
+                                    <td>@item.DocumentNumber</td>
+                                    <td>@item.RelatedDocumentNumber</td>
+                                    <td>@item.BillingType</td>
+                                    <td>@item.DomesticInternational</td>
+                                    <td>@item.OriginCity</td>
+                                    <td>@item.DestinationCity</td>
+                                    <td>@item.OriginCountry</td>
+                                    <td>@item.DestinationCountry</td>
+                                    <td>@item.IsOAL</td>
+                                    <td>@item.SequenceNumber</td>
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="fca-title">
+                <button class="griser" id="reduire">...</button>
+                <p>Coupons</p>
+            </div>
+        }
+        @if (ViewBag.Payement.Count != 0)
+        {
+            <div class="fca-title">
+                <button class="reduire" id="reduire" onclick="reduire('payement')">...</button>
+                <p>Payments</p>
+            </div>
+            <div id="payement" style="display:none;background-color:white;overflow-x:auto;overflow-y:hidden">
+                <div class="well well-autre">
+                    <table class="table table-bordered table-info table-new-model">
+                        <thead class="entete">
+                            <tr>
+                               
+                                
+                                <th>DocumentNumber</th>
+                                <th>CheckDigit</th>
+                                <th>IsConjunction</th>
+                                <th>IsReissue</th>
+                                <th>RelatedDocumentNumber</th>
+                                <th>RelatedTicketCheckDigit</th>
+                                <th>CouponIndicator</th>
+                                <th>TransactionCode</th>
+                                <th>TransmissionControlNumber</th>
+                                <th>SequenceNumber</th>
+                                <th>SequenceNumber</th>
+                                <th>DateofIssue</th>
+                                <th>AccountNumber</th>
+                                <th>Amount</th>
+                                <th>Currency</th>
+                                <th>ApprovalCode</th>
+                                <th>ExtendedPaymentCode</th>
+                                <th>FormofPaymentType</th>
+                                <th>ExpiryDate</th>
+                                <th>InvoiceNumber</th>
+                                <th>InvoiceDate</th>
+                                <th>CustomerFileReference</th>
+                                <th>CreditCardCorporateContract</th>
+                                <th>AddressVerificationCode</th>
+                                <th>SourceofApprovalCode</th>
+                                <th>TransactionInformation</th>
+                                <th>AuthorisedAmount</th>
+                                <th>AccountNumber1</th>
+                                <th>AuthorisedAmount1</th>
+                                <th>CardVerificationValueResult</th>
+                                <th>CardVerificationValueResult1</th>
+                                <th>SignedforAmount</th>
+                                <th>RemittanceAmount</th>
+                                <th>RemittanceCurrency</th>
+                                <th>TransactionCode</th>
+                                <th>DocumentNumber</th>
+                                <th>TransactionCode2</th>
+                                <th>RelatedDocumentNumber</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in ViewBag.Payement)
+                            {
+                                <tr>
+                                    <td>@item.DocumentNumber</td>
+                                    <td>@item.CheckDigit</td>
+                                    <td>@item.IsConjunction</td>
+                                    <td>@item.IsReissue</td>
+                                    <td>@item.RelatedDocumentNumber</td>
+                                    <td>@item.RelatedTicketCheckDigit</td>
+                                    <td>@item.CouponIndicator</td>
+                                    <td>@item.TransactionCode</td>
+                                    <td>@item.TransmissionControlNumber</td>
+                                    <td>@item.SequenceNumber</td>
+                                    <td>@item.SequenceNumber</td>
+                                    <td>@item.DateofIssue</td>
+                                    <td>@item.AccountNumber</td>
+                                    <td>@item.Amount</td>
+                                    <td>@item.Currency</td>
+                                    <td>@item.ApprovalCode</td>
+                                    <td>@item.ExtendedPaymentCode</td>
+                                    <td>@item.FormofPaymentType</td>
+                                    <td>@item.ExpiryDate</td>
+                                    <td>@item.InvoiceNumber</td>
+                                    <td>@item.InvoiceDate</td>
+                                    <td>@item.CustomerFileReference</td>
+                                    <td>@item.CreditCardCorporateContract</td>
+                                    <td>@item.AddressVerificationCode</td>
+                                    <td>@item.SourceofApprovalCode</td>
+                                    <td>@item.TransactionInformation</td>
+                                    <td>@item.AuthorisedAmount</td>
+                                    <td>@item.AccountNumber1</td>
+                                    <td>@item.AuthorisedAmount1</td>
+                                    <td>@item.CardVerificationValueResult</td>
+                                    <td>@item.CardVerificationValueResult1</td>
+                                    <td>@item.SignedforAmount</td>
+                                    <td>@item.RemittanceAmount</td>
+                                    <td>@item.RemittanceCurrency</td>
+                                    <td>@item.TransactionCode</td>
+                                    <td>@item.DocumentNumber</td>
+                                    <td>@item.TransactionCode2</td>
+                                    <td>@item.RelatedDocumentNumber</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="fca-title">
+                <button class="griser" id="reduire">...</button>
+                <p>Payments</p>
+            </div>
+        }
+        @if (ViewBag.OtherPayement.Count != 0)
+        {
+            <div class="fca-title">
+                <button class="reduire" id="reduire" onclick="reduire('other')">...</button>
+                <p>Other Payment</p>
+            </div>
+            <div id="other" style="display:none;background-color:white; overflow-x:auto;overflow-y:hidden">
+                <div class="well well-autre">
+                    <table class="table table-bordered table-info table-new-model">
+                        <thead class="entete">
+                            <tr>
+                               
+                                <th>SequenceNumber</th>
+                                <th>DocumentAmountType</th>
+                                <th>DateofIssue</th>
+                                <th>CurrencyType</th>
+                                <th>TransactionCode</th>
+                                <th>OtherAmountCode</th>
+                                <th>OtherAmount</th>
+                                <th>OtherAmountRate</th>
+                                <th>TicketDocumentAmount</th>
+                                <th>CommissionableAmount</th>
+                                <th>AmountEnteredbyAgent</th>
+                                <th>AmountPaidbyCustomer</th>
+                                <th>LateReportingPenalty</th>
+                                <th>NetFareAmount</th>
+                                <th>StatisticalCode</th>
+                                <th>DocumentNumber</th>
+                                <th>RelatedDocumentNumber</th>
+                                <th>FileSequence</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in ViewBag.OtherPayement)
+                            {
+                                <tr>
+                                    
+                                    <td>@item.SequenceNumber</td>
+                                    <td>@item.DocumentAmountType</td>
+                                    <td>@item.DateofIssue</td>
+                                    <td>@item.CurrencyType</td>
+                                    <td>@item.TransactionCode</td>
+                                    <td>@item.OtherAmountCode</td>
+                                    <td>@item.OtherAmount</td>
+                                    <td>@item.OtherAmountRate</td>
+                                    <td>@item.TicketDocumentAmount</td>
+                                    <td>@item.CommissionableAmount</td>
+                                    <td>@item.AmountEnteredbyAgent</td>
+                                    <td>@item.AmountPaidbyCustomer</td>
+                                    <td>@item.LateReportingPenalty</td>
+                                    <td>@item.NetFareAmount</td>
+                                    <td>@item.StatisticalCode</td>
+                                    <td>@item.DocumentNumber</td>
+                                    <td>@item.RelatedDocumentNumber</td>
+                                    <td>@item.FileSequence</td>
+
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="fca-title">
+                <button class="griser" id="reduire" onclick="reduire('other')">...</button>
+                <p>Other Payment</p>
+            </div>
+        }
+        @if (ViewBag.ProrationDtl.Count != 0)
+        {
+            <div class="fca-title">
+                <button class="reduire" id="reduire" onclick="reduire('proration-detail')">...</button>
+                <p>Proration Details</p>
+            </div>
+            <div id="proration-detail" style="display:none;background-color:white;overflow-x:auto;overflow-y:hidden">
+                <div class="well well-autre">
+                    <table class="table table-bordered table-info table-new-model">
+                        <thead class="entete">
+                            <tr>
+                               
+                                
+                                <th>ProrationFlag</th>
+                                <th>SectorOrigin</th>
+                                <th>SectorDestination</th>
+                                <th>SectorCarrier</th>
+                                <th>SourceType</th>
+                                <th>Currency</th>
+                                <th>ProrateFactor</th>
+                                <th>ProrateValue</th>
+                                <th>StraightRateProrate</th>
+                                <th>SpecialProrateAgreement</th>
+                                <th>Diffentials</th>
+                                <th>Surcharge</th>
+                                <th>YQ</th>
+                                <th>FinalShare</th>
+                                <th>TaxesFeesCharges</th>
+                                <th>BaseAmount</th>
+                                <th>IscPercent</th>
+                                <th>IscAmount</th>
+                                <th>HandlingFeeAmt</th>
+                                <th>OtherCommissions</th>
+                                <th>TaxAmount</th>
+                                <th>CouponNumber</th>
+                                <th>UatpAmount</th>
+                                <th>FareComponent</th>
+                                <th>DocumentNumber</th>
+                                <th>Roe</th>
+                                <th>CodeShareValue</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in ViewBag.ProrationDtl)
+                            {
+                                <tr>
+                                   
+                                   
+                                    <td>@item.ProrationFlag</td>
+                                    <td>@item.SectorOrigin</td>
+                                    <td>@item.SectorDestination</td>
+                                    <td>@item.SectorCarrier</td>
+                                    <td>@item.SourceType</td>
+                                    <td>@item.Currency</td>
+                                    <td>@item.ProrateFactor</td>
+                                    <td>@item.ProrateValue</td>
+                                    <td>@item.StraightRateProrate</td>
+                                    <td>@item.SpecialProrateAgreement</td>
+                                    <td>@item.Diffentials</td>
+                                    <td>@item.Surcharge</td>
+                                    <td>@item.YQ</td>
+                                    <td>@item.FinalShare</td>
+                                    <td>@item.TaxesFeesCharges</td>
+                                    <td>@item.BaseAmount</td>
+                                    <td>@item.IscPercent</td>
+                                    <td>@item.IscAmount</td>
+                                    <td>@item.HandlingFeeAmt</td>
+                                    <td>@item.OtherCommissions</td>
+                                    <td>@item.TaxAmount</td>
+                                    <td>@item.CouponNumber</td>
+                                    <td>@item.UatpAmount</td>
+                                    <td>@item.FareComponent</td>
+                                    <td>@item.DocumentNumber</td>
+                                    <td>@item.Roe</td>
+                                    <td>@item.CodeShareValue</td>
+
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="fca-title">
+                <button class="griser" id="reduire">...</button>
+                <p>Proration Details</p>
+            </div>
+        }
+
+        @if (ViewBag.ProrationExp.Count != 0)
+        {
+            <div class="fca-title">
+                <button class="reduire" id="reduire" onclick="reduire('proration-exception')">...</button>
+                <p>Proration Exception</p>
+            </div>
+            <div id="proration-exception" style="display:none;background-color:white;overflow-x:auto;overflow-y:hidden">
+                <div class="well well-autre">
+                    <table class="table table-bordered table-info table-new-model">
+                        <thead class="entete">
+                            <tr>
+                                <th class="entete">DateProcess</th>
+                                <th class="entete">DocumentNumber</th>
+                                <th class="entete">FareCalculationArea</th>
+                                <th class="entete">CouponNumber</th>
+                                <th class="entete">CouponStatus</th>
+                                <th class="entete">Fare</th>
+                                <th class="entete">EquivalentFare</th>
+                                <th class="entete">ErrorMsg</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in ViewBag.ProrationExp)
+                            {
+                                <tr>
+                                    <td>@item.DateProcess</td>
+                                    <td>@item.DocumentNumber</td>
+                                    <td>@item.FareCalculationArea</td>
+                                    <td>@item.CouponNumber</td>
+                                    <td>@item.CouponStatus</td>
+                                    <td>@item.Fare</td>
+                                    <td>@item.EquivalentFare</td>
+                                    <td>@item.ErrorMsg</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        }
+        else
+        {
+            <div class="fca-title">
+                <button class="griser" id="reduire">...</button>
+                <p>Proration Exception</p>
+            </div>
+        }
+
+
+
+@if (ViewBag.Exchange.Count != 0)
+{
+    <div class="fca-title">
+        <button class="reduire" id="reduire" onclick="reduire('exchange')">...</button>
+        <p>Exchange(Original Ticket Information)</p>
+    </div>
+        <div id="exchange" style="display:none;background-color:white;overflow-x:auto;overflow-y:hidden">
+            <div class="well well-autre">
+                <table class="table table-bordered table-info">
+                    <thead>
+                        <tr>
+                            <th class="entete pink">DocumentNumber</th>
+                            <th class="entete pink">OriginalIssueDocumentNumber</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in ViewBag.Exchange)
+                        {
+                            <tr>
+                                <td>@item.DocumentNumber</td>
+                                <td>@item.OriginalIssueDocumentNumber</td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+}
+else
+{
+    <div class="fca-title">
+        <button class="griser" id="reduire" onclick="reduire('exchange')">...</button>
+        <p>Exchange(Original Ticket Information)</p>
+    </div>
+}
+        <div class="fca-title">
+            <button class="reduire" id="reduire" onclick="reduire('observation')">...</button>
+            <button class="form-control-file" style="z-index:1;" onclick="userObservation()">User's Observation</button>
+            <p style="width: 71%;left: 144px;">User's Observation</p>
+        </div>
+        <div id="observation" style="display:none;">
+            <div class="well well-autre refreshObs">
+                <label class="xbin">XBIN</label>
+                <table class="table table-striped table-bordered tableObservation">
+                    <thead>
+                        <tr>
+                            <th class="pink">DATE</th>
+                            <th class="pink">USER</th>
+                            <th class="pink">SUBJECT</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{ string recId, date, subject, obs, hdrguid;}
+                        @foreach (DataRow dr in Model.Tables[0].Rows)
+                        {
+                            date = !string.IsNullOrEmpty(@dr[Model.Tables[0].Columns[2].ColumnName].ToString()) ? @dr[Model.Tables[0].Columns[2].ColumnName].ToString() : "null";
+                            subject = !string.IsNullOrEmpty(@dr[Model.Tables[0].Columns[4].ColumnName].ToString()) ? @dr[Model.Tables[0].Columns[4].ColumnName].ToString() : "null";
+                            obs = !string.IsNullOrEmpty(@dr[Model.Tables[0].Columns[3].ColumnName].ToString()) ? @dr[Model.Tables[0].Columns[3].ColumnName].ToString() : "null";
+                            hdrguid = !string.IsNullOrEmpty(@dr[Model.Tables[0].Columns[0].ColumnName].ToString()) ? @dr[Model.Tables[0].Columns[0].ColumnName].ToString() : "null";
+                            recId = !string.IsNullOrEmpty(@dr[Model.Tables[0].Columns[6].ColumnName].ToString()) ? @dr[Model.Tables[0].Columns[6].ColumnName].ToString() : "null";
+                            <tr onclick="openModalObservation('@date', '@subject','@obs','@hdrguid','@recId')" style="cursor:pointer">
+                                <td>@dr[Model.Tables[0].Columns[2].ColumnName].ToString()</td>
+                                <td>User</td>
+                                <td>@dr[Model.Tables[0].Columns[4].ColumnName].ToString()</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+</div>

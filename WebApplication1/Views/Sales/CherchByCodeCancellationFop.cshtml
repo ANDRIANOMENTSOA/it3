@@ -1,0 +1,13 @@
+﻿<table class="table table-bordered table-striped table-hover table-result-code-name">
+    <tbody>
+        @foreach (var items in ViewBag.Agent)
+        {
+            <tr onclick="putCodeAgentFop('@items.AgentNumericCode','@items.AgentName','@items.Count','@ViewBag.name','@ViewBag.code')">
+                <td width="34%">@items.AgentNumericCode</td>
+                <td width="54%">@items.AgentName</td>
+                <td>@items.Count</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

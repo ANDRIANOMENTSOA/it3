@@ -1,0 +1,332 @@
+﻿@foreach (var tmp in ViewBag.transaction)
+{
+    <input type="hidden" id="source" value="@tmp.OwnAirline-@tmp.OwnIsoCountry" />
+    var ticketHistory = ViewBag.ticketHistory as string[];
+    <input type="hidden" id="currency" value="@ticketHistory[0]" />
+    <input type="hidden" id="Fare" value="@ticketHistory[1]" />
+    <input type="hidden" id="Commission" value="@ticketHistory[2]" />
+    <input type="hidden" id="TransportTaxe" value="@ticketHistory[3]" />
+    <input type="hidden" id="SalesTaxe" value="@ticketHistory[4]" />
+
+    <fieldset class="test-fieldst" style="margin-top: 13px;">
+        <legend class="test-fieldst">Ticket d'Information</legend>
+        <div class="col-md-12 tet-ticket n-paddin-left">
+            <div class="col-sm-12">
+                <div class="col-sm-12" style="border:1px solid rgba(152, 152, 152, 1); padding-left:0px; padding-right:0px">
+                    <div class="tittle-transaction">
+                        <h6>PASSENGER TICKET AND BAGGAGE CHECK</h6>
+                        <h4>AUDIT & FLIGHT DETAILS</h4>
+                    </div>
+                    <table class="table table-first-ticket table-bordered">
+                        <tr>
+                            <td width="18%" class="n-border">TICKET NUMBER</td>
+                            <td colspan="4" class="n-border"></td>
+                            <td class="n-border-bottom">ORIGIN/DESTINATION</td>
+                            <td colspan="2" class="n-border">DATE AND PLACE ISSUE</td>
+                        </tr>
+                        <tr>
+                            <td class="n-border">
+                                <div class="col-md-10 n-padding">
+                                    <div class="col-md-3 n-padding">
+                                        <input type="text" class="form-control" id="firstDocNumber" value="@tmp.firstDocNumber" disabled />
+                                    </div>
+                                    <div class="col-md-6 n-padding">
+                                        <input type="text" class="form-control" id="secondDocNumber" value="@tmp.secondDocNumber" disabled />
+                                    </div>
+                                    <div class="col-md-3 n-padding">
+                                        <input type="text" class="form-control" id="CheckDigit" value="@tmp.CheckDigit" disabled />
+                                    </div>
+                                </div>
+                            </td>
+                            <td colspan="4" class="n-border"></td>
+                            <td class="n-border-top"><input type="text" name="" class="form-control" id="fromTo" value="@tmp.TrueOriginDestinationCityCodes" disabled></td>
+                            <td class="n-border">Issue Date</td>
+                            <td class="n-border"><input type="text" name="" class="form-control" id="DateofIssue" value="@tmp.DateofIssue" disabled></td>
+                        </tr>
+                        <tr>
+                            <td colspan="5" class="n-border"></td>
+                            <td class="n-border-bottom">PNR</td>
+                            <td class="n-border">Agent Numeric Code</td>
+                            <td class="n-border"><input type="text" name="" class="form-control" id="AgentNumericCode" value="@tmp.AgentNumericCode" disabled></td>
+                        </tr>
+                        <tr>
+                            <td colspan="5" class="n-border"></td>
+                            <td class="n-border-top"><input type="text" name="" class="form-control" id="pnr" value="@tmp.BookingReference" disabled></td>
+                            <td class="n-border">Agent Legal Name</td>
+                            <td class="n-border"><input type="text" name="" class="form-control" id="LegalName" value="@tmp.LegalName" disabled></td>
+                        </tr>
+                        <tr>
+                            <td class="n-border" rowspan="2"></td>
+                            <td class="n-border-bottom">VENDOR IDENTIFIER</td>
+                            <td class="n-border-bottom">REPORTING SYSTEM IDENTIFIER</td>
+                            <td class="n-border-bottom" width="5%">CPUI</td>
+                            <td class="n-border-bottom">TOUR CODE</td>
+                            <td class="n-border-bottom">ISSUED IN EXCHANGE FOR</td>
+                            <td class="n-border">Agent Location Add</td>
+                            <td class="n-border"><input type="text" name="" class="form-control" value="@tmp.LocationAddress" disabled></td>
+                        </tr>
+                        <tr>
+                            <td class="n-border-top"><input type="text" name="" class="form-control" value="@tmp.VendorIdentification" disabled></td>
+                            <td class="n-border-top"><input type="text" name="" class="form-control" id="repSystemId" value="@tmp.ReportingSystemIdentifier" disabled></td>
+                            <td class="n-border-top"><input type="text" name="" class="form-control" value="@ViewBag.cpui" disabled></td>
+                            <td class="n-border-top">
+                                <div class="col-sm-4">
+                                    <label class="col-form-label">
+                                        <input type="checkbox" name=""> IT/BT
+                                    </label>
+                                </div>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" name="" disabled>
+                                </div>
+                            </td>
+                            <td class="n-border-top">@ViewData["exchange"]</td>
+                            <td class="n-border">Agent Location City</td>
+                            <td class="n-border"><input type="text" name="" id="LocationCity" class="form-control" value="@tmp.LocationCity" disabled></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" class="n-border-bottom">
+                                <label class="col-sm-8 n-padding col-form-label">NAME OF PASSENGER</label>
+                                <label class="col-sm-4 col-form-label">DATE OF BIRTH</label>
+                            </td>
+                            <td colspan="2" class="n-border-bottom">CONJUNCTION TICKETS</td>
+                            <td class="n-border">Agent Location Country</td>
+                            <td class="n-border"><input type="text" name="" class="form-control" id="LocationCountry" value="@tmp.LocationCountry" disabled></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" class="n-border-top">
+                                <div class="col-sm-8 n-padding"><input type="text" name="" class="form-control" id="paxName" value="@tmp.PassengerName" disabled></div>
+                                <div class="col-sm-4"><input type="text" name="" class="form-control" value="" disabled></div>
+                            </td>
+                            <td colspan="2" class="n-border-top">
+                                @{ string str = @tmp.firstDocNumber + @tmp.secondDocNumber; bool temoin = false;}
+                                @foreach (var cnj in ViewBag.conjoctionTicket)
+                                {
+                                    str += " / " + @cnj.relatedConjoction.Substring(11, 2);
+                                }
+                                @foreach (var tmps in ViewBag.transactionMiddle)
+                                {
+                                    if (@tmps.isConjonction == 1)
+                                    {
+                                        temoin = true;
+                                    }
+                                }
+
+                                @if (temoin)
+                                {
+                                    @str
+                                }
+                            </td>
+                            <td class="n-border">Booking Agent Id</td>
+                            <td class="n-border"><input type="text" name="" class="form-control" id="BookingAgentIdentification" value="@tmp.BookingAgentIdentification" disabled></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 tet-ticket n-paddin-left">
+            <div class="col-sm-12" style="margin-left: 10px;">
+                <div class="table-record-display" style="height: 180px;margin-top: -5px;color:white;border:1px solid rgba(152, 152, 152, 1);">
+                    <div class="col-sm-11">
+                        <table class="table table-bordered table-striped table-hover" style="margin-left: -16px;font-size:12px;" id="exampleTable1">
+                            <thead>
+                                <tr>
+                                    <th class="pink">CPN</th>
+                                    <th class="pink">X/O</th>
+                                    <th class="pink" style="width:5%">GFPA</th>
+                                    <th class="pink">CARRIER</th>
+                                    <th class="pink">FLIGHT</th>
+                                    <th class="pink">CLASS</th>
+                                    <th class="pink" style="width: 82px;">DATE</th>
+                                    <th class="pink">TIME</th>
+                                    <th class="pink">STATUS</th>
+                                    <th class="pink">FARE BASIS</th>
+                                    <th class="pink" style="width: 82px;">NOT VALID BEFORE</th>
+                                    <th class="pink" style="width: 82px;">NOT VALID AFTER</th>
+                                    <th class="pink">BAGGAGE ALLOWANCE</th>
+                                    <th class="pink">BOOKING STATUS</th>
+                                    <th class="green">RBD</th>
+                                    <th class="green">USAGE SECTOR</th>
+                                    <th class="green">USAGE AIRLINE</th>
+                                    <th class="green">USAGE FLIGHT NO</th>
+                                    <th class="green">USAGE DATE</th>
+                                    <th class="green">FFP</th>
+                                    <th class="green">CJN TICKET</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="getFacsValue">
+                                @foreach (var tmps in ViewBag.transactionMiddle)
+                                {
+                                    <tr>
+                                        <td>@tmps.CouponNumber</td>
+                                        <td>@tmps.StopOverCode</td>
+                                        <td class="gfpa">@tmps.GFPA</td>
+                                        <td>@tmps.Carrier</td>
+                                        <td>@tmps.FlightNumber</td>
+                                        <td>@tmps.CouponStatus</td>
+                                        <td>@tmps.FlightDepartureDate</td>
+                                        <td>@tmps.FlightDepartureTime</td>
+                                        <td>@tmps.FlightBookingStatus</td>
+                                        <td>@tmps.FareBasisTicketDesignator</td>
+                                        <td>@tmps.NotValidBefore</td>
+                                        <td>@tmps.NotValidAfter</td>
+                                        <td>@tmps.FreeBaggageAllowance</td>
+                                        <td>@tmps.FlightBookingStatus</td>
+                                        <td>@tmps.UsedClassofService</td>
+                                        <td>@tmps.UsageSector</td>
+                                        <td>@tmps.UsageAirline</td>
+                                        <td>@tmps.UsageFlightNumber</td>
+                                        <td>@tmps.UsageDate</td>
+                                        <td>@tmps.FrequentFlyerReference</td>
+                                        <td>
+                                            @if (@tmps.isConjonction == 1)
+                                            {
+                                                @tmps.RelatedDocumentNumber
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="col-sm-12 n-padding-left n-padding-right" style="border:1px solid rgba(152, 152, 152, 1);">
+                    <div class="col-md-4">
+                        <div class="form-group row width-group faire-down">
+                            <label class="col-sm-3 col-form-label">FARE</label>
+                            <div class="col-sm-2">
+                                <input type="text" name="" class="form-control" id="FareCurrency" value="@tmp.FareCurrency" disabled>
+                            </div>
+                            <div class="col-sm-5">
+                                <input type="text" name="" class="form-control" id="Fare" value="@tmp.Fare" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group row width-group">
+                            <label class="col-sm-3 col-form-label">EQUIV FARE PD</label>
+                            <div class="col-sm-2">
+                                <input type="text" name="" class="form-control" id="TotalCurrency" value="@tmp.TotalCurrency" disabled>
+                            </div>
+                            <div class="col-sm-5">
+                                <input type="text" name="" class="form-control" id="EquivalentFare" value="@tmp.EquivalentFare" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group row width-group">
+                            <label class="col-sm-3 col-form-label">TAX/FEE/CHARGE</label>
+                            <div class="col-sm-7">
+                                <input type="text" name="" class="form-control" id="tax1" value="@tmp.Tax1Currency @tmp.Tax1Amount @tmp.Tax1Code" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group row width-group">
+                            <label class="col-sm-3 col-form-label">TAX/FEE/CHARGE</label>
+                            <div class="col-sm-7">
+                                <input type="text" name="" class="form-control" id="tax2" value="@tmp.Tax2Currency @tmp.Tax2Amount @tmp.Tax2Code" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group row width-group">
+                            <label class="col-sm-3 col-form-label">TAX/FEE/CHARGE</label>
+                            <div class="col-sm-7">
+                                <input type="text" name="" class="form-control" id="tax3" value="@tmp.Tax3Currency @tmp.Tax3Amount @tmp.Tax3Code" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group row width-group">
+                            <label class="col-sm-3 col-form-label">TOTAL</label>
+                            <div class="col-sm-7">
+                                <input type="text" name="" class="form-control" id="TotalAmount" value="@tmp.TotalCurrency @tmp.TotalAmount" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Csv col-md-8" style="padding-right:0px; border-left: 1px solid rgba(152, 152, 152, 1);">
+                        <div class="col-md-12">
+                            <div class="col-md-11">
+                            </div>
+                            <div class="col-md-1 .n-paddin-left">
+                                <img src="images/CSVPic.jpg" class="image-csv ml-existe">
+                            </div>
+                        </div>
+                        <div class="col-md-12 first-calculation-area">
+                            <div class="form-group col-sm-12 fare-calcul-area">
+                                <label class="col-form-label">Fare Calculation Area</label>
+                                <input type="text" class="form-control" placeholder="" id="fareCalculation" value="@tmp.FareCalculationArea" disabled>
+                            </div>
+                        </div>
+                        <div class="col-md-12 n-paddin-right">
+                            <div class="form-group col-md-3">
+                                <label class="col-form-label">Endorsement/Restrictions</label>
+                                <input type="text" class="form-control" placeholder="" id="EndosRestriction" value="@tmp.EndosRestriction" disabled>
+                            </div>
+                            <div class="form-group col-md-1">
+                                <label class="col-form-label">FCMI</label>
+                                <input type="text" class="form-control" placeholder="" id="fcim" value="@tmp.FareCalculationModeIndicator" disabled>
+                            </div>
+                            <div class="form-group col-md-1">
+                                <label class="col-form-label">Discount</label>
+                                <input type="text" class="form-control" placeholder="" value="@tmp.Discount" disabled>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label class="col-form-label">Discrepency</label>
+                                <input type="text" class="form-control" placeholder="" disabled>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label class="col-form-label">Associated With </label>
+                                <input type="text" class="form-control" placeholder="" disabled>
+                            </div>
+                            <div class="form-group col-md-3 n-padding-right">
+                                <label class="col-form-label">Tracking Ref. ID </label>
+                                <input type="text" class="form-control input-tracking" placeholder="" disabled>
+                            </div>
+                        </div>
+                        <div class="col-md-12" style="padding-right: 0px;">
+                            <div class="form-group col-md-2" style="width: 15%">
+                                <label class="col-form-label">Sales Country Code</label>
+                                <input type="text" class="form-control" placeholder="" value="@tmp.VendorISOCountryCode" disabled>
+                            </div>
+                            <div class="form-group col-md-2 ml-none" style="width: 13%">
+                                <label class="col-form-label">Service Agent Info</label>
+                                <input type="text" class="form-control" placeholder="" disabled>
+                            </div>
+                            <div class="form-group col-md-2 ml-none" style="width: 13%">
+                                <label class="col-form-label">Authorisation Code</label>
+                                <input type="text" class="form-control" placeholder="" disabled>
+                            </div>
+                            <div class="form-group col-md-1 ml-none">
+                                <label class="col-form-label">User ID</label>
+                                <input type="text" class="form-control" placeholder="" disabled>
+                            </div>
+                            <div class="form-group col-md-2 ml-none" style="width: 11%">
+                                <label class="col-form-label">Comm.Agmt.Ref</label>
+                                <input type="text" class="form-control" placeholder="" value="@tmp.CommercialAgreementReference" disabled>
+                            </div>
+                            <div class="form-group col-md-2 ml-none" style="width: 12%">
+                                <label class="col-form-label">Transaction Code</label>
+                                <input type="text" class="form-control" placeholder="" id="transactionCode" value="@tmp.TransactionCode" disabled>
+                            </div>
+                            <div class="form-group col-md-2 ml-none ml-none-more">
+                                <label class="col-form-label">Domestic/International</label>
+                                <input type="text" class="form-control input-domestic" id="domInt" placeholder="" disabled>
+                            </div>
+                            <div class="form-group col-md-2 ml-none" style="width: 11.5%;padding-right: 0px;">
+                                <label class="col-form-label">Amount Collected</label>
+                                <input type="text" class="form-control" placeholder="" value="@tmp.TotalCurrency @tmp.AmountCollected" disabled>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 footer-ticket">
+                <input type="hidden" id="testLoadFca" value="" />
+                <input type="hidden" value="" id="testLoadTicket" />
+                <div class="ticket-payment">
+                    <div class="col-sm-3"><button class="payment-interogation btn" onclick="showModalAncillary(this)"><span class="search-span">PAYMENT/TFCs/COMM/ANCILLARIES</span></button></div>
+                    <div class="col-sm-3 payment-1"><button class="payment-1-interogation btn" onclick="showMoreDetails(this)"><span class="search-span">VIEW MOREDETAILS</span></button></div>
+                    <div class="col-sm-3 payment-1"><button class="payment-1-interogation btn" onclick="clickSplitFCA(this)"><span class="search-span">SPLIT FCA</span></button></div>
+                    <div class="col-sm-3 payment-1"><button class="payment-1-interogation btn" onclick="showTicketHistory(this)"><span class="search-span">TICKET HISTORY</span></button></div>
+                    <div class="col-sm-3 payment-1"><button class="payment-1-interogation btn" onclick="showFacsimile(this)"><span class="search-span">facsimile</span></button></div>
+                    <div class="col-sm-3 payment-1" style="margin-left: 25%"><button class="payment-1-interogation btn" data-toggle="modal" data-target="#proration"><span class="search-span">SHOW PRORATE</span></button></div>
+                    <div class="col-sm-3 payment-1"><button class="payment-1-interogation btn" onclick="removeSousMenu()"><span class="search-span">CLOSE</span></button></div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+                                    }

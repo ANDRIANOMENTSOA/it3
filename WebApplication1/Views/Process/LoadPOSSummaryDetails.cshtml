@@ -1,0 +1,62 @@
+﻿@using System.Data
+@model DataSet
+
+<div class="ajax-loader">
+    <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+</div>
+<div class="table-record-display" style="height:600px;overflow:auto">
+    <table class="table table-bordered table-striped table-outward" style="width: 94%;">
+        <thead style="background:darkred;color:white">
+            <tr>
+                <th>Date of Issue</th>
+                <th>Purchase Day</th>
+                <th>Agent Numeric Code</th>
+                <th>Agent Name</th>
+                <th>POS</th>
+                <th>Document Number</th>
+                <th>Coupon Number</th>
+                <th>FCMI</th>
+                <th>ORI</th>
+                <th>DES</th>
+                <th>Fare-Basis</th>
+                <th>RBD</th>
+                <th>Endos Resctriction</th>
+                <th>Travel Date</th>
+
+                <th>Travel Day</th>
+                <th>Ticketing & COT Lapse</th>
+                <th>FOP Type</th>
+
+                <th>Remittance Currency</th>
+                <th>Remittance Amount</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (DataRow dr in Model.Tables[0].Rows)
+            {
+                <tr>
+                    @for (int i = 0; i < Model.Tables[0].Columns.Count; i++)
+                    {
+
+                        <td>@dr[Model.Tables[0].Columns[i].ColumnName].ToString()</td>;
+                    }
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+</div>
+
+
+<input type="hidden" id="comptPOSDetails" value="@ViewBag.mes" />
+<input type="hidden" class="form-control" value="@ViewBag.txtCount" id="txtCountPOSDetails" />
+
+
+
+
+
+
+
+

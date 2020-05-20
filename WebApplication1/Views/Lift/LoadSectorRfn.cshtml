@@ -1,0 +1,24 @@
+﻿<table class="tab-refundEng flnSect">
+    <tr>
+        <td>Flight No</td>
+        <td>
+            <input type="hidden" id="testsectrfn" />
+            <input type="hidden" id="daterfn1" value="@ViewBag.dateHiddenF" />
+            <input type="hidden" id="daterfn2" value="@ViewBag.dateHiddenT" />
+            <select id="@ViewBag.myId" class="form-control" onclick="getFlightNoSectRfn('@ViewBag.myId', '@ViewBag.dateFrom', '@ViewBag.dateTo', '@ViewBag.sector','@ViewBag.test', '@ViewBag.sectTest', '@ViewBag.id', '@ViewBag.test1', '@ViewBag.test2')">
+                <option>-All-</option>
+                @for (int i = 0; i < ViewBag.lon; i++)
+            {
+                    <option>@ViewBag.Flnum[i]</option>
+
+                }
+            </select>
+        </td>
+    </tr>
+    <tr style="height:30px"></tr>
+    <tr>
+        <td>Sector</td>
+        <td><input type="text" class="form-control" id="@ViewBag.sector" readonly /></td>
+    </tr>
+</table>
+

@@ -1,0 +1,1884 @@
+﻿<script src="~/Scripts/Process.js"></script>
+
+<div class="col-sm-12" style="background-color: RGB(135,206,235);height: 100vh;top:11px">
+    <div class="col-sm-2 n-padding" style="height: 784px;top: 16px;">
+        <ul class="list-group" style="border: 1px solid;line-height: 2;color: #5252c5;width: 94%;">
+            <li class="list-group-item" data-toggle="tab" href="#nutshell2" onclick="activeNutshell('tab-nutshell2')">ATDs With Endorsements/Restrictions</li>
+            <li class="list-group-item" data-toggle="tab" href="#nutshell3" onclick="activeNutshell('tab-nutshell3')">ATDs With Exchanged Docs</li>
+            <li class="list-group-item" data-toggle="tab" href="#nutshell4" onclick="activeNutshell('tab-nutshell4')">ATDs With Conjuction Tickets</li>
+            <li class="list-group-item" data-toggle="tab" href="#nutshell5" onclick="activeNutshell('tab-nutshell5')">ATDs With UATP FOP</li>
+            <li class="list-group-item" data-toggle="tab" href="#nutshell6" onclick="activeNutshell('tab-nutshell6')">Expired ATDs Partially Unused</li>
+            <li class="list-group-item" data-toggle="tab" href="#nutshell7" onclick="activeNutshell('tab-nutshell7')">Expired ATDs Totally Unused</li>
+            <li class="list-group-item" data-toggle="tab" href="#nutshell8" onclick="activeNutshell('tab-nutshell8')">Tickets With Transit Points</li>
+            <li class="list-group-item" data-toggle="tab" href="#nutshell9" onclick="activeNutshell('tab-nutshell9')">Five Days Rate By Currency / Country</li>
+            <li class="list-group-item" data-toggle="tab" href="#nutshell10" onclick="activeNutshell('tab-nutshell10')">Prorate Factors</li>
+            <li class="list-group-item" data-toggle="tab" href="#nutshell11" onclick="activeNutshell('tab-nutshell11')">City / Airport</li>
+            <li class="list-group-item" data-toggle="tab" href="#nutshell12" onclick="activeNutshell('tab-nutshell12')">Proration</li>
+            <li class="list-group-item" data-toggle="tab" href="#nutshell13" onclick="activeNutshell('tab-nutshell13')">Sales Transaction By Type</li>
+            <li class="list-group-item" data-toggle="tab" href="#nutshell14" onclick="activeNutshell('tab-nutshell14')">Flown Transaction By Type</li>
+            <li class="list-group-item" data-toggle="tab" href="#nutshell15" onclick="activeNutshell('tab-nutshell15')">Interline Transaction By Type</li>
+        </ul>
+    </div>
+    <div class="col-sm-10 n-padding" style="height: 800px;border: 4px solid white;top: 16px;">
+        <div style="height:43px; width:100%; overflow-x:auto;overflow-y: hidden;">
+            <ul class="nav nav-tabs liNutshell" style="position: relative;top: -4px;left: 4px;width: 171%;">
+                <li class="active"><a data-toggle="tab" href="#nutshell1" id="tab-nutshell1" class="nav-pax">Main</a></li>
+                <li><a data-toggle="tab" href="#nutshell2" id="tab-nutshell2" class="nav-pax">ATDs With Endorsements/Restrictions</a></li>
+                <li><a data-toggle="tab" href="#nutshell3" id="tab-nutshell3" class="nav-pax">ATDs With Exchanged Docs</a></li>
+                <li><a data-toggle="tab" href="#nutshell4" id="tab-nutshell4" class="nav-pax">ATDs With Conjuction TKTs</a></li>
+                <li><a data-toggle="tab" href="#nutshell5" id="tab-nutshell5" class="nav-pax">ATDs With UATP FOP</a></li>
+                <li><a data-toggle="tab" href="#nutshell6" id="tab-nutshell6" class="nav-pax">Expired ATDs Partially Unused</a></li>
+                <li><a data-toggle="tab" href="#nutshell7" id="tab-nutshell7" class="nav-pax">Expired ATDs Totally Unused</a></li>
+                <li><a data-toggle="tab" href="#nutshell8" id="tab-nutshell8" class="nav-pax">Tickets With Transit Points</a></li>
+                <li><a data-toggle="tab" href="#nutshell9" id="tab-nutshell9" class="nav-pax">Five Days Rate By Currency / Country</a></li>
+                <li><a data-toggle="tab" href="#nutshell10" id="tab-nutshell10" class="nav-pax">Prorate Factors</a></li>
+                <li><a data-toggle="tab" href="#nutshell11" id="tab-nutshell11" class="nav-pax">City / Airport</a></li>
+                <li><a data-toggle="tab" href="#nutshell12" id="tab-nutshell12" class="nav-pax">Proration</a></li>
+                <li><a data-toggle="tab" href="#nutshell13" id="tab-nutshell13" class="nav-pax">Sales Transaction By Type</a></li>
+                <li><a data-toggle="tab" href="#nutshell14" id="tab-nutshell14" class="nav-pax">Flown Transaction By Type</a></li>
+                <li><a data-toggle="tab" href="#nutshell15" id="tab-nutshell15" class="nav-pax">Interline Transaction By Type</a></li>
+            </ul>
+        </div>
+
+
+        <div class="tab-content">
+            <!--  Load Ajax  --->
+            <div class="ajax-loader">
+                <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+            </div>
+
+            <!--  End Load Ajax  --->
+
+            <div id="nutshell1" class="tab-pane fade in active">
+                <div class="col-sm-12" style="top: 16px;">
+                    <fieldset class="test-fieldst" style="border: 1px solid white !important;">
+                        <legend class="test-fieldst" style="background-color:transparent">Search Criteria For Transaction</legend>
+                        <div class="content col-sm-8">
+                            <div class="form-group row width-group">
+                                <label class="col-sm-3 col-form-label">Passenger Name:</label>
+                                <div class="col-sm-7 n-paddin-left">
+                                    <input type="text" name="passengerName" id="passengerNameSet" class="form-control" style="width: 93%;">
+                                </div>
+                            </div>
+                            <div class="form-group row width-group">
+                                <label class="col-sm-3 col-form-label"></label>
+                                <div class="col-sm-9 n-paddin-left">
+                                    <div class="form-check form-check-inline">
+                                        <div class="col-sm-7 n-paddin-left">
+                                            <input class="form-check-input" type="radio" name="radContains" id="" value="starting" checked>
+                                            <label class="form-check-label col-form-label" for="inlineRadio">Starting With(minimun 3 characters)</label>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <input class="form-check-input" type="radio" name="radContains" id="" value="contains">
+                                            <label class="form-check-label col-form-label" for="inlineRadio2">Contains</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row width-group">
+                                <label class="col-sm-3 col-form-label">PNR:</label>
+                                <div class="col-sm-3 n-paddin-left">
+                                    <input type="text" name="pnr" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row width-group">
+                                <label class="col-sm-3 col-form-label">Documment No:</label>
+                                <div class="col-sm-3 n-paddin-left">
+                                    <input type="text" name="docummentNo" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row width-group">
+                                <label class="col-sm-3 col-form-label">Agent Code:</label>
+                                <div class="col-sm-4 n-paddin-left">
+                                    <div class="row">
+                                        <div class="col-sm-10" style="width: 76%"><input type="text" name="agentCode" id="agentCodeSet" class="form-control"></div>
+                                        <div class="col-sm-1 containt-btn" style="width: 33px !important; height:30px"><button class="point-interogation pink btn" data-toggle="modal" onclick="paxmodal('GrandParent')"><span class="point-span">?</span></button></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row width-group">
+                                <label class="col-sm-3 col-form-label"></label>
+                                <div class="col-sm-3 n-paddin-left">
+                                    <label class="form-check-label col-form-label">From:</label>
+                                </div>
+                                <div class="col-sm-3" style="padding-left: 43px;">
+                                    <label class="form-check-label col-form-label">To:</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group row width-group">
+                                <label class="col-sm-3 col-form-label">Issue Date:</label>
+                                <div class="col-sm-7 n-paddin-left">
+                                    <div class="col-sm-5 n-padding">
+                                        <div class="input-group date">
+                                            <span class="input-group-addon check-dape"><input type="checkbox" name="dtpIssueDateFrom"></span>
+                                            <input type="text" name="datedtpIssueDateFrom" class="form-controls input-date" />
+                                            <span class="input-group-addon datetimepicker">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-5 n-padding" style="position: relative;left: 58px;">
+                                        <div class="input-group date">
+                                            <span class="input-group-addon check-dape"><input type="checkbox" name="dtpIssueDateTo"></span>
+                                            <input type="text" name="datedtpIssueDateTo" class="form-controls input-date input-datetimepicker" />
+                                            <span class="input-group-addon datetimepicker">
+                                                <span class="glyphicon glyphicon-calendar" id="calendarPaxTo"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2" style="left: 51%;">
+                                    <button class="btn btn-default">Search</button>
+                                    <button class="btn btn-default">Clear</button>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <button class="btn btn-default" style="position: relative;top: 430px;float: right;">Close</button>
+                </div>
+
+            </div>
+
+
+            <!--  ATDs With Endorsements/Restrictions  -->
+
+            <div id="nutshell2" class="tab-pane fade">
+                <div id="affichage">
+                    <div class="col-sm-6">
+                        <div class="col-sm-9" style="top: 16px;">
+                            <fieldset class="test-fieldst legent-issue-date" style="border: 1px solid white !important;">
+                                <legend class="test-fieldst" style="background-color:transparent">Sales Date Range Selection</legend>
+                                <div class="col-sm-3 margin-issue" style="width: 18% !important;">
+                                    <label class="form-check-label col-form-label">From:</label>
+                                </div>
+
+                                <div class="col-sm-4 n-padding">
+                                    <div class="input-group date">
+                                        <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('datedtpIssueDateFrom')"></span>
+                                        <input type="text" class="form-control" id="datedtpIssueDateFrom" value="@ViewBag.dateFrom">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-1">
+                                    <label class="form-check-label col-form-label">To:</label>
+                                </div>
+                                <div class="col-sm-4 n-padding" style="margin-top:-23px;position: relative;left: 58px;">
+                                    <div class="input-group date">
+                                        <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dtpIssueDateTo')"></span>
+                                        <input type="text" class="form-control" id="dtpIssueDateTo" value="@ViewBag.dateTo">
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="col-sm-1" style="top: 40px;">
+                            <button class="btn btn-default" onclick="searchEndorsementsRestrictions()">SEARCH</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-10 n-padding" style="top: 28px;background-color: white;height: 550px;left: 22px;overflow: auto;">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="pink">Sale Date TEST</th>
+                                    <th class="pink">Document No</th>
+                                    <th class="pink">Passenger Name</th>
+                                    <th class="pink">Fare Calculation Area</th>
+                                    <th class="pink">Carr.</th>
+                                    <th class="pink">Orig. Aprt.</th>
+                                    <th class="pink">Dest. Aprt.</th>
+                                    <th class="pink">Endos/Restriction</th>
+                                    <th class="pink">RBD</th>
+                                    <th class="pink">Fare Basis</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-sm-12" style="top: 79px;left: 6px;">
+                        <div class="form-group row width-group">
+                            <label class="col-sm-2 col-form-label">Total Number Of Documents:</label>
+                            <div class="col-sm-2 n-paddin-left">
+                                <input type="text" name="nbEr" id="nbEr" value="@ViewBag.nombreEr" class="form-control" style="width: 93%;" disabled>
+                            </div>
+                            <div class="col-sm-2" style="float: right;">
+                                <button class="btn btn-default" type="button" onclick="closeNetshull('nutshell2')">CLOSE TAB</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+             </div>
+
+
+            <!-- END  ATDs With Endorsements/Restrictions  -->
+
+
+
+            <!-- ATDs With Exchanged Docs  -->
+
+            <div id="nutshell3" class="tab-pane fade">
+                <div id="affichageDonne">
+                    <div class="col-sm-6">
+                        <div class="col-sm-9" style="top: 16px;">
+                            <fieldset class="test-fieldst legent-issue-date" style="border: 1px solid white !important;">
+                                <legend class="test-fieldst" style="background-color:transparent">Sales Date Range Selection</legend>
+                                <div class="col-sm-3 margin-issue" style="width: 18% !important;">
+                                    <label class="form-check-label col-form-label">From:</label>
+                                </div>
+
+                                <div class="col-sm-4 n-padding">
+                                    <div class="input-group date">
+                                        <!-- <span class="input-group-addon check-dape"><input type="checkbox" name="dtpIssueDateFromED"></span> -->
+                                        <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('datedtpIssueDateFromED')"></span>
+                                        <input type="text" class="form-control" id="datedtpIssueDateFromED" value="@ViewBag.dateFromED">
+                                    </div>
+
+                                </div>
+
+                                <div class="col-sm-1">
+                                    <label class="form-check-label col-form-label">To:</label>
+                                </div>
+                                <div class="col-sm-4 n-padding" style="margin-top:-23px;position: relative;left: 58px;">
+
+                                    <div class="input-group date">
+                                        <!-- <span class="input-group-addon check-dape"><input type="checkbox" name="dtpIssueDateToED"></span> -->
+                                        <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('datedtpIssueDateToED')"></span>
+                                        <input type="text" class="form-control" id="datedtpIssueDateToED" value="@ViewBag.dateToED">
+                                    </div>
+
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="col-sm-1" style="top: 40px;">
+                            <button class="btn btn-default" onclick="searchExchangedDocs()">SEARCH</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-10 n-padding" style="top: 28px;background-color: white;height: 550px;left: 22px;overflow: auto;">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="pink">Orig. Doc Num.</th>
+                                    <th class="pink">Orig. Doc Type</th>
+                                    <th class="pink">Passenger Name</th>
+                                    <th class="pink">Orig. Date Of Issue</th>
+                                    <th class="pink">Doc Number</th>
+                                    <th class="pink">Doc Type</th>
+                                    <th class="pink">Date Of Issue</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-sm-12" style="top: 79px;left: 6px;">
+                        <div class="form-group row width-group">
+                            <label class="col-sm-2 col-form-label">Total Number Of Documents:</label>
+                            <div class="col-sm-2 n-paddin-left">
+                                <input type="text" name="nbED" id="nbED" value="@ViewBag.nombre" class="form-control" style="width: 93%;">
+                            </div>
+                            <div class="col-sm-2" style="float: right;">
+                                <button class="btn btn-default" type="button" onclick="closeNetshull('nutshell3')">CLOSE TAB</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- END ATDs With Exchanged Docs  -->
+
+
+            <!-- ATDs With Conjuction Tickets -->
+
+            <div id="nutshell4" class="tab-pane fade">
+
+                <div id="affichageCT">
+                    <div class="col-sm-6">
+                        <div class="col-sm-9" style="top: 16px;">
+                            <fieldset class="test-fieldst legent-issue-date" style="border: 1px solid white !important;">
+                                <legend class="test-fieldst" style="background-color:transparent">Sales Date Range Selection</legend>
+                                <div class="col-sm-3 margin-issue" style="width: 18% !important;">
+                                    <label class="form-check-label col-form-label">From:</label>
+                                </div>
+
+                                <div class="col-sm-4 n-padding">
+                                    <div class="input-group date">
+                                        <div class="input-group date">
+                                            <!-- <span class="input-group-addon check-dape"><input type="checkbox" name="dtpIssueDateFromED"></span> -->
+                                            <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('datedtpIssueDateFromCT')"></span>
+                                            <input type="text" class="form-control" id="datedtpIssueDateFromCT" value="@ViewBag.dateFromCT">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-1">
+                                    <label class="form-check-label col-form-label">To:</label>
+                                </div>
+                                <div class="col-sm-4 n-padding" style="margin-top:-23px;position: relative;left: 58px;">
+                                    <div class="input-group date">
+                                        <!-- <span class="input-group-addon check-dape"><input type="checkbox" name="dtpIssueDateToED"></span> -->
+                                        <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('datedtpIssueDateToCT')"></span>
+                                        <input type="text" class="form-control" id="datedtpIssueDateToCT" value="@ViewBag.dateToCT">
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="col-sm-1" style="top: 40px;">
+                            <button class="btn btn-default" onclick="searchConjuctionTickets()">SEARCH</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-10 n-padding" style="top: 28px;background-color: white;height: 550px;left: 22px;overflow: auto;">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="pink">Sale Date</th>
+                                    <th class="pink">Document No</th>
+                                    <th class="pink">Cpn</th>
+                                    <th class="pink">Passenger Name</th>
+                                    <th class="pink">Carr.</th>
+                                    <th class="pink">Orig. Aprt.</th>
+                                    <th class="pink">Dest. Aprt.</th>
+                                    <th class="pink">RBD</th>
+                                    <th class="pink">Fare Basis</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-sm-12" style="top: 79px;left: 6px;">
+                        <div class="form-group row width-group">
+                            <label class="col-sm-2 col-form-label">Total Number Of Documents:</label>
+                            <div class="col-sm-2 n-paddin-left">
+                                <input type="text" name="nbCT" id="nbCT" value="@ViewBag.nombreCT" class="form-control" style="width: 93%;">
+                            </div>
+                            <div class="col-sm-2" style="float: right;">
+                                <button class="btn btn-default" type="button" onclick="closeNetshull('nutshell4')">CLOSE TAB</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- END ATDs With Conjuction Tickets -->
+
+
+            <!-- ATDs With UATP FOP -->
+
+            <div id="nutshell5" class="tab-pane fade">
+                <div id="affichageUatpFop">
+                    <div class="col-sm-6">
+                        <div class="col-sm-9" style="top: 16px;">
+                            <fieldset class="test-fieldst legent-issue-date" style="border: 1px solid white !important;">
+                                <legend class="test-fieldst" style="background-color:transparent">Sales Date Range Selection</legend>
+                                <div class="col-sm-3 margin-issue" style="width: 18% !important;">
+                                    <label class="form-check-label col-form-label">From:</label>
+                                </div>
+
+                                <div class="col-sm-4 n-padding">
+                                    <div class="input-group date">
+                                        <!-- <span class="input-group-addon check-dape"><input type="checkbox" name="dateFromUatpFop"></span> -->
+                                        <input type="text" class="form-control" id="dateFromUatpFop" value="@ViewBag.dateFromUatpFop">
+                                        <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateFromUatpFop')"></span>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-1">
+                                    <label class="form-check-label col-form-label">To:</label>
+                                </div>
+                                <div class="col-sm-4 n-padding" style="margin-top:-23px;position: relative;left: 58px;">
+                                    <div class="input-group date">
+                                        <!-- <span class="input-group-addon check-dape"><input type="checkbox" name="dtpIssueDateFromED"></span> -->
+                                        <input type="text" class="form-control" id="dateToUatpFop" value="@ViewBag.dateToUatpFop">
+                                        <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateToUatpFop')"></span>
+
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="col-sm-1" style="top: 40px;">
+                            <button class="btn btn-default" onclick="searchUatpFop()">SEARCH</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-10 n-padding" style="top: 28px;background-color: white;height: 550px;left: 22px;overflow: auto;">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="pink">Sale Date</th>
+                                    <th class="pink">Document No</th>
+                                    <th class="pink">Passenger Name</th>
+                                    <th class="pink">UATP Card</th>
+                                    <th class="pink">RBD</th>
+                                    <th class="pink">Fare Basis</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-sm-12" style="top: 79px;left: 6px;">
+                        <div class="form-group row width-group">
+                            <label class="col-sm-2 col-form-label">Total Number Of Documents:</label>
+                            <div class="col-sm-2 n-paddin-left">
+                                <input type="text" name="nbUatpFop" id="nbUatpFop" value="@ViewBag.nombreUatpFop" class="form-control" style="width: 93%;">
+                            </div>
+                            <div class="col-sm-2" style="float: right;">
+                                <button class="btn btn-default" type="button" onclick="closeNetshull('nutshell5')">CLOSE TAB</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- End ATDs With UATP FOP -->
+
+
+            <!--  Expired ATDs Partially Unused  -->
+            <div id="nutshell6" class="tab-pane fade">
+                <div id="affichagePU">
+                    <div class="col-sm-6">
+                        <div class="col-sm-9" style="top: 16px;">
+                            <fieldset class="test-fieldst legent-issue-date" style="border: 1px solid white !important;">
+                                <legend class="test-fieldst" style="background-color:transparent">Sales Date Range Selection</legend>
+                                <div class="col-sm-3 margin-issue" style="width: 18% !important;">
+                                    <label class="form-check-label col-form-label">From:</label>
+                                </div>
+
+                                <div class="col-sm-4 n-padding">
+                                    <div class="input-group date">
+                                        <!-- <span class="input-group-addon check-dape"><input type="checkbox" name="dateFromPU"></span> -->
+                                        <input type="text" class="form-control" id="dateFromPU" value="@ViewBag.dateFromPU">
+                                        <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateFromPU')"></span>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-1">
+                                    <label class="form-check-label col-form-label">To:</label>
+                                </div>
+                                <div class="col-sm-4 n-padding" style="margin-top:-23px;position: relative;left: 58px;">
+                                    <div class="input-group date">
+                                        <!-- <span class="input-group-addon check-dape"><input type="checkbox" name="dateToPU"></span> -->
+                                        <input type="text" class="form-control" id="dateToPU" value="@ViewBag.dateToPU">
+                                        <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateToPU')"></span>
+
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="col-sm-1" style="top: 40px;">
+                            <button class="btn btn-default" onclick="searchPartiallyUnused()">SEARCH</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-10 n-padding" style="top: 28px;background-color: white;height: 550px;left: 22px;overflow: auto;">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="pink">Date Of Issue</th>
+                                    <th class="pink">Doc Number</th>
+                                    <th class="pink">Passenger Name</th>
+                                    <th class="pink">Total Number Of Cpn</th>
+                                    <th class="pink">No. Of Cpn Unused</th>
+                                    <th class="pink">Doc Expiry Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-sm-12" style="top: 79px;left: 6px;">
+                        <div class="form-group row width-group">
+                            <label class="col-sm-2 col-form-label">Total Number Of Documents:</label>
+                            <div class="col-sm-2 n-paddin-left">
+                                <input type="text" name="nbPU" id="nbPU" value="@ViewBag.nombrePU" class="form-control" style="width: 93%;">
+                            </div>
+                            <div class="col-sm-2" style="float: right;">
+                                <button class="btn btn-default" type="button" onclick="closeNetshull('nutshell6')">CLOSE TAB</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <!-- End  Expired ATDs Partially Unused  -->
+
+
+            <!-- Expired ATDs Totally Unused   -->
+
+            <div id="nutshell7" class="tab-pane fade">
+                <div id="affichageTU">
+                    <div class="col-sm-6">
+                        <div class="col-sm-9" style="top: 16px;">
+                            <fieldset class="test-fieldst legent-issue-date" style="border: 1px solid white !important;">
+                                <legend class="test-fieldst" style="background-color:transparent">Sales Date Range Selection</legend>
+                                <div class="col-sm-3 margin-issue" style="width: 18% !important;">
+                                    <label class="form-check-label col-form-label">From:</label>
+                                </div>
+
+                                <div class="col-sm-4 n-padding">
+                                    <div class="input-group date">
+                                        <!-- <span class="input-group-addon check-dape"><input type="checkbox" name="dateFromTU"></span> -->
+                                        <input type="text" class="form-control" id="dateFromTU" value="@ViewBag.dateFromTU">
+                                        <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateFromTU')"></span>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-1">
+                                    <label class="form-check-label col-form-label">To:</label>
+                                </div>
+                                <div class="col-sm-4 n-padding" style="margin-top:-23px;position: relative;left: 58px;">
+                                    <div class="input-group date">
+                                        <!-- <span class="input-group-addon check-dape"><input type="checkbox" name="dateToTU"></span> -->
+                                        <input type="text" class="form-control" id="dateToTU" value="@ViewBag.dateToTU">
+                                        <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateToTU')"></span>
+
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="col-sm-1" style="top: 40px;">
+                            <button class="btn btn-default" onclick="searchTotallyUnused()">SEARCH</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-10 n-padding" style="top: 28px;background-color: white;height: 550px;left: 22px;overflow: auto;">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="pink">Date Of Issue</th>
+                                    <th class="pink">Doc Number</th>
+                                    <th class="pink">Passenger Name</th>
+                                    <th class="pink">No. Of Cpn</th>
+                                    <th class="pink">Doc Expiry Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-sm-12" style="top: 79px;left: 6px;">
+                        <div class="form-group row width-group">
+                            <label class="col-sm-2 col-form-label">Total Number Of Documents:</label>
+                            <div class="col-sm-2 n-paddin-left">
+                                <input type="text" name="nbTU" id="nbTU" value="@ViewBag.nombreTU" class="form-control" style="width: 93%;">
+                            </div>
+                            <div class="col-sm-2" style="float: right;">
+                                <button class="btn btn-default" type="button" onclick="closeNetshull('nutshell7')">CLOSE TAB</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- End Expired ATDs Totally Unused   -->
+
+
+            <!-- Tickets With Transit Points -->
+
+            <div id="nutshell8" class="tab-pane fade">
+
+                <div id="affichageTP">
+                    <div class="col-sm-6">
+                        <div class="col-sm-9" style="top: 16px;">
+                            <fieldset class="test-fieldst legent-issue-date" style="border: 1px solid white !important;">
+                                <legend class="test-fieldst" style="background-color:transparent">Sales Date Range Selection</legend>
+                                <div class="col-sm-3 margin-issue" style="width: 18% !important;">
+                                    <label class="form-check-label col-form-label">From:</label>
+                                </div>
+
+                                <div class="col-sm-4 n-padding">
+                                    <div class="input-group date">
+                                        <!-- <span class="input-group-addon check-dape"><input type="checkbox" name="dateFromTP"></span> -->
+                                        <input type="text" class="form-control" id="dateFromTP" value="@ViewBag.dateFromTP">
+                                        <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateFromTP')"></span>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-1">
+                                    <label class="form-check-label col-form-label">To:</label>
+                                </div>
+                                <div class="col-sm-4 n-padding" style="margin-top:-23px;position: relative;left: 58px;">
+                                    <div class="input-group date">
+                                        <!-- <span class="input-group-addon check-dape"><input type="checkbox" name="dateToTP"></span> -->
+                                        <input type="text" class="form-control" id="dateToTP" value="@ViewBag.dateToTP">
+                                        <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateToTP')"></span>
+
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="col-sm-1" style="top: 40px;">
+                            <button class="btn btn-default" onclick="searchTicketsTransitP()">SEARCH</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-10 n-padding" style="top: 28px;background-color: white;height: 550px;left: 22px;overflow: auto;">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="pink">Sale Date</th>
+                                    <th class="pink">Document No</th>
+                                    <th class="pink">Passenger Name</th>
+                                    <th class="pink">Cpn</th>
+                                    <th class="pink">Carr.</th>
+                                    <th class="pink">Orig. Aprt</th>
+                                    <th class="pink">Dest. Aprt</th>
+                                    <th class="pink">RBD</th>
+                                    <th class="pink">Fare Basis</th>
+                                    <th class="pink">Transit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-sm-12" style="top: 79px;left: 6px;">
+                        <div class="form-group row width-group">
+                            <label class="col-sm-2 col-form-label">Total Number Of Documents:</label>
+                            <div class="col-sm-2 n-paddin-left">
+                                <input type="text" name="nbTP" id="nbTP" value="@ViewBag.nombreTP" class="form-control" style="width: 93%;">
+                            </div>
+                            <div class="col-sm-2" style="float: right;">
+                                <button class="btn btn-default" type="button" onclick="closeNetshull('nutshell8')">CLOSE TAB</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+
+            <!-- End Tickets With Transit Points -->
+
+
+            <!--   Five Days Rate By Currency / Country  -->
+
+            <div id="nutshell9" class="tab-pane fade">
+                <div id="affichageDaysRate">
+                    <div class="col-sm-6">
+                        <div class="col-sm-9" style="top: 16px;">
+                            <fieldset class="test-fieldst legent-issue-date" style="border: 1px solid white !important;padding: 1px;">
+                                <legend class="test-fieldst" style="background-color:transparent">Sales Date Range Selection</legend>
+                                <table style="border-spacing: 10px;border-collapse: separate;">
+                                    <tr>
+                                        <td>Period:</td>
+                                        <td>
+                                            <select class="form-control" style="width: 100px" id="valPeriode">
+                                                <option>-ALL-</option>
+                                                @for (int i = 0; i < ViewBag.lonItemP; i++)
+                                                {
+                                                    <option>@ViewBag.ListeItemPeriod[0, i]</option>
+                                                }
+                                            </select>
+                                            <input type="hidden" name="period" id="period" value="@ViewBag.valPeriod" class="form-control" style="width: 93%;">
+                                        </td>
+                                        <td>Country Name</td>
+                                        <td>
+                                            <select class="form-control" id="valCountry" onchange="getItemCurrency()">
+                                                <option>-ALL-</option>
+                                                @for (int i = 0; i < ViewBag.lonItemCou; i++)
+                                                {
+                                                    <option value="@ViewBag.ListeItemCou[0, i]"  data-value="@ViewBag.ListeItemCou[1, i]" >@ViewBag.ListeItemCou[0, i]</option>
+                                                }
+                                            </select>
+                                            <input type="hidden" name="country" id="country" value="@ViewBag.valCountry" class="form-control" style="width: 93%;">
+                                        </td>
+                                        <td>Currency</td>
+                                        <td>
+                                            <select class="form-control" style="width: 100px" id="valCurrency">
+                                                <option>-ALL-</option>
+                                                @for (int i = 0; i < ViewBag.lonItemCur; i++)
+                                                {
+                                                    <option>@ViewBag.ListeItemCur[0, i]</option>
+                                                }
+                                            </select>
+                                            <input type="hidden" name="currency" id="currency" value="@ViewBag.valCurrency" class="form-control" style="width: 93%;">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </fieldset>
+                        </div>
+                        <div class="col-sm-1" style="top: 48px;">
+                            <button class="btn btn-default" onclick="searchDaysRateByCurrency()">SEARCH</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-10 n-padding" style="top: 28px;background-color: white;height: 550px;left: 22px;overflow: auto;">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="pink">Period</th>
+                                    <th class="pink">Country Code</th>
+                                    <th class="pink">Country Name</th>
+                                    <th class="pink">Currency</th>
+                                    <th class="pink">USD Rate</th>
+                                    <th class="pink">GBP Rate</th>
+                                    <th class="pink">EUR Rate</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-sm-12" style="top: 79px;left: 6px;">
+                        <div class="form-group row width-group">
+                            <div class="col-sm-2" style="float: right;">
+                                <input type="hidden" name="nbDR" id="nbDR" value="@ViewBag.nombreDR" class="form-control" style="width: 93%;">
+                                <button class="btn btn-default" type="button" onclick="closeNetshull('nutshell9')">CLOSE TAB</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <!--  End  Five Days Rate By Currency / Country  -->
+
+            <!--  Prorate Factors   -->
+
+            <div id="nutshell10" class="tab-pane fade">
+
+                <div id="affichProrateF">
+                    <div class="col-sm-10">
+                        <div class="col-sm-9" style="top: 16px;">
+                            <fieldset class="test-fieldst legent-issue-date" style="border: 1px solid white !important;padding: 11px;">
+                                <legend class="test-fieldst" style="background-color:transparent">Original Criteria Selection</legend>
+                                <div class="col-sm-3">
+                                    <label class="form-check-label col-form-label">Original Country Name:</label>
+                                </div>
+                                <div class="col-sm-4 n-padding" style="position: relative;left: -10px;width: 148px;">
+                                    <select class="form-control" id="OriginalCN" onchange="changeOrigineCountry()" style="width: 160px">
+                                        <option>-ALL-</option>
+                                        @for (int i = 0; i < ViewBag.lonItemCou; i++)
+                                        {
+                                           
+                                            <option>@ViewBag.ListeItemCou[0, i]</option>
+                                        }
+                                    </select>
+                                   
+                                    <input type="hidden" name="valCN" id="valCN" value="@ViewBag.valCN" class="form-control">
+
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <label class="form-check-label col-form-label">Original City Name:</label>
+                                </div>
+                                <div class="col-sm-4 n-padding" style="position: relative;left: -10px;width: 148px;">
+                                    <select style="width: 160px" class="form-control" id="OriginCityN">
+                                        <option>-ALL-</option>
+                                        @for (int i = 0; i < ViewBag.lonItemCit; i++)
+                                        {
+                                            <option>@ViewBag.ItemCity[0, i]</option>
+                                        }
+                                    </select>
+                                    <input type="hidden" name="valCityName" id="valCityName" value="@ViewBag.valCityName" class="form-control">
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="col-sm-3" style="top: 15px;">
+                            <fieldset class="test-fieldst legent-issue-date" style="border: 1px solid white !important;padding: 8px;">
+                                <legend class="test-fieldst" style="background-color:transparent">Validity Criteria Selection</legend>
+                                <div class="input-group date">
+                                    <!-- <span class="input-group-addon check-dape"><input type="checkbox" name="dtpIssueDateFrom"></span> -->
+                                    <input type="text" class="form-control" id="dtpIssueDateFrom" value="@ViewBag.dtpIssueDateFrom">
+                                    <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dtpIssueDateFrom')"></span>
+
+                                </div>
+
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="col-sm-10">
+                        <div class="col-sm-9" style="top: 16px;">
+                            <fieldset class="test-fieldst legent-issue-date" style="border: 1px solid white !important;padding: 11px;">
+                                <legend class="test-fieldst" style="background-color:transparent">Destination Criteria Selection</legend>
+                                <div class="col-sm-3">
+                                    <label class="form-check-label col-form-label">Destination Country Name:</label>
+                                </div>
+                                <div class="col-sm-4 n-padding" style="position: relative;left: -10px;width: 148px;">
+                                    <select class="form-control"  id="DestinationCounN" style="width: 160px"  onchange="changeDestinationCountry()">
+                                        <option>-ALL-</option>
+                                        @for (int i = 0; i < ViewBag.lonItemCou; i++)
+                                        {
+                                            <option>@ViewBag.ListeItemCou[0, i]</option>
+                                        }
+                                    </select>
+                                    <input type="hidden" name="valDCN" id="valDCN" value="@ViewBag.valDCN" class="form-control">
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <label class="form-check-label col-form-label">Destination City Name:</label>
+                                </div>
+                                <div class="col-sm-4 n-padding" style="position: relative;left: -10px;width: 148px;">
+                                    <select style="width: 160px" class="form-control" id="DestinationCityN">
+                                        <option value="-ALL-">-ALL-</option>
+                                        @for (int i = 0; i < ViewBag.lonItemDCit; i++)
+                                        {
+                                            <option>@ViewBag.ItemDCity[0, i]</option>
+                                        }
+                                    </select>
+                                    <input type="hidden" name="valDCity" id="valDCity" value="@ViewBag.valDCity" class="form-control">
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="col-sm-3" style="top: 46px;">
+                            <button class="btn btn-default" onclick="searchProrateFactors()">SEARCH</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-10 n-padding" style="top: 28px;background-color: white;height: 478px;left: 22px;overflow: auto;">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="pink">Ori.City Name</th>
+                                    <th class="pink">Ori.City</th>
+                                    <th class="pink">Org.Country Name</th>
+                                    <th class="pink">Org.Country</th>
+                                    <th class="pink">Org.City Code</th>
+                                    <th class="pink">Dest.City Name</th>
+                                    <th class="pink">Dest.City</th>
+                                    <th class="pink">Dest.Country Name</th>
+                                    <th class="pink">Dest.Country</th>
+                                    <th class="pink">Dest.City Code</th>
+                                    <th class="pink">Factor</th>
+                                    <th class="pink">ValidFrom</th>
+                                    <th class="pink">ValidTo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-sm-12" style="top: 79px;left: 25px;">
+                        <div class="form-group row width-group">
+                            <div class="col-sm-2" style="float: right;">
+                                <button class="btn btn-default" type="button" onclick="closeNetshull('nutshell10')">CLOSE TAB</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             
+            </div>
+
+            <!-- End  Prorate Factors   -->
+            
+            <!-- City / Airport  -->
+
+             <div id="nutshell11" class="tab-pane fade">
+                 <div id="afficheCityAirport">
+                     <div class="col-sm-6">
+                         <div class="col-sm-9" style="top: 16px;">
+                             <fieldset class="test-fieldst legent-issue-date" style="border: 1px solid white !important;padding: 8px;">
+                                 <legend class="test-fieldst" style="background-color:transparent">Search Criteria</legend>
+                                 <table style="border-spacing: 10px;border-collapse: separate;">
+                                     <tr>
+                                         <td><label class="form-check-label col-form-label">Search By:</label></td>
+                                         <td>
+                                             <select class="form-control"  style="width: auto" id="CityAirport" onchange="searchByCityAirport('paramSearch')">
+                                                 <option>-ALL-</option>
+                                                 <option>Airport Code</option>
+                                                 <option>City Code</option>
+                                                 <option>Airport Name</option>
+                                                 <option>City Name</option>
+                                                 <option>Country</option>
+                                                 <option>CityIsoCode</option>
+                                             </select>
+                                             <input type="hidden" name="valCA" id="valCA" value="@ViewBag.valCA" class="form-control" style="width: 93%;">
+                                         </td>
+                                         <td><label class="form-check-label col-form-label" id="text"></label></td>
+                                         <td>
+                                             <select class="form-control"   id="paramSearch" style="visibility: hidden ;width: 200px">
+                                                 @for (int i = 0; i < ViewBag.lonItemCity; i++)
+                                                 {
+                                                     <option>@ViewBag.ListeItemCity[0, i]</option>
+                                                 }
+                                             </select>
+                                             <input type="hidden" name="valparamS" id="valparamS" value="@ViewBag.valParamS" class="form-control" style="width: 93%;">
+                                         </td>
+
+                                     </tr>
+                                 </table>
+                             </fieldset>
+                         </div>
+                         <div class="col-sm-1" style="top: 43px;">
+                             <button class="btn btn-default" onclick="resultatCityAirport('paramSearch')">SEARCH</button>
+                         </div>
+                     </div>
+                     <div class="col-sm-10 n-padding" style="top: 28px;background-color: white;height: 472px;left: 22px;overflow: auto;">
+                         <table class="table table-bordered">
+                             <thead>
+                                 <tr>
+                                     <th class="pink">Airport Code</th>
+                                     <th class="pink">City Code</th>
+                                     <th class="pink">Airport Name</th>
+                                     <th class="pink">City Name</th>
+                                     <th class="pink">Country</th>
+                                     <th class="pink">CityIsoCode</th>
+                                     <th class="pink">Status</th>
+                                 </tr>
+                             </thead>
+                             <tbody>
+                                 <tr>
+                                     <td>*</td>
+                                     <td></td>
+                                     <td></td>
+                                     <td></td>
+                                     <td></td>
+                                     <td></td>
+                                     <td></td>
+                                 </tr>
+                             </tbody>
+                         </table>
+                     </div>
+                    <div class="container">
+                        <div class="row" >
+                            <div class="col-md-8" style="margin-top:30px">
+                                <button class="btn btn-default" onclick="afficheForm('formAdd')">New Entry</button>
+                                <button class="btn btn-default" >Delete Selected Record</button>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="container">
+                         <div class="row">
+                             <div class="col-md-8" id="formAdd" style="visibility: hidden">
+                                 <fieldset class="test-fieldst legent-issue-date" style="border: 1px solid white !important;padding: 8px;">
+                                     <legend class="test-fieldst" style="background-color:transparent"></legend>
+                                     <table>
+                                             <tr>
+                                                 <td>
+                                                 Airport Code:
+                                                 <input type="text" name="valAirCode" id="valAirCode" class="form-control"  style="width:80%;" maxlength="3"></td>
+                                                 <td>
+                                                 City Code:
+                                                 <input type="text" name="valCityCode" id="valCityCode" class="form-control" style="width:80%;" maxlength="3">
+                                                    
+                                                 </td>
+                                                 <td>
+                                                 Airport Name:
+                                                 <input type="text" name="valAirName" id="valAirName" class="form-control" style="width:80%;" maxlength="50"></td>
+                                                 <td>
+                                                 City Name:
+                                                 <input type="text" name="valCitName" id="valCitName" class="form-control" style="width:80%;" maxlength="50"></td>
+                                                 <td>
+                                                     Country:
+                                                     <select style="width: auto ; margin-right:25px" class="form-control" id="valAddcountry">
+                                                         @for (int i = 0; i < ViewBag.lonCountry; i++)
+                                                         {
+                                                             <option>@ViewBag.ItemCountry[0, i]</option>
+                                                         }
+                                                     </select>
+                                                 </td>   
+                                                 <td>
+                                                     CityIsoCode:
+                                                     <input type="number"  name="valCitIC" id="valCitIC" class="form-control" style="width:80%;"  onkeypress="return this.value.length < 5;" oninput="if(this.value.length>=5) { this.value = this.value.slice(0,5); }" />
+                                                   </td>
+                                                 <td>
+                                                 Status:
+                                                     <input type="number" name="valStatus" id="valStatus" class="form-control" style="width:80%;"onkeypress="return this.value.length < 1;" oninput="if(this.value.length>=1) { this.value = this.value.slice(0,1); }" />
+                                             </tr>
+                                             <tr>
+                                                 <td style="padding-top: 20px;"><button class="btn btn-default" onclick="addNewEntry()">Save</button></td>
+                                                 <td style="padding-top: 20px;"><button class="btn btn-default" onclick="videChanps()">Clear</button></td>
+                                                 <td style="padding-top: 20px;"><button class="btn btn-default" onclick="exitForm('formAdd')">Exit</button></td>
+                                             </tr>
+                                     </table>
+                                 </fieldset>
+                             </div>
+                             <div class="col-md-4" style="margin-top:30px">
+                                 <button class="btn btn-default" type="button" onclick="closeNetshull('nutshell11')">CLOSE TAB</button>
+                                 <div id="cityCodes">
+                                     <select name="cityCode" style="width: auto ; margin-right:25px; visibility: hidden" class="form-control">
+                                         @for (int i = 0; i < ViewBag.lonCityCode; i++)
+                                         {
+                                             <option> @ViewBag.cityCode[0, i]</option>
+                                         }
+                                     </select>
+                                 </div>
+                                 <div id="airportCodes">
+                                     <select name="airportCode" style="width: auto ; margin-right:25px; visibility: hidden" class="form-control">
+                                         @for (int i = 0; i < ViewBag.lonAirCode; i++)
+                                         {
+                                             <option> @ViewBag.airCode[0, i]</option>
+                                         }
+                                     </select>
+                                 </div>
+
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+            </div>
+
+            <!-- End City / Airport  -->
+
+
+            <!--  Tab Main and prorate factor in transaction in a Nutshell  --->
+
+            <div id="nutshell12" class="tab-pane fade">
+                <div id="donne">
+
+                    <div class="tab-content-proration" style="height: 78vh; overflow:auto">
+
+                        <div class="proration col-md-11">
+                            <div class="content col-sm-4">
+
+                                <div class="Ticket col-sm-12">
+                                    <div class="form-group row width-group">
+                                        <label class="col-sm-4 col-form-label">Ticket NO:</label>
+                                        <div class="col-sm-5">
+                                            <input type="text" class="form-control" name="txtTicketNo" id="txtTicketNo">
+                                        </div>
+
+                                        <div>
+                                            <img onclick="searchTransaction()" src='@Url.Content("~/images/search.png")' class="image-search">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row width-group">
+                                        <label class="col-sm-4 col-form-label">Fare:</label>
+                                        <div class="col-sm-5">
+                                            <input type="text" class="form-control" name="txtFare" id="txtFare" value="@ViewBag.fare">
+                                            <input type="hidden" id="valfare" value="@ViewBag.fare">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row width-group">
+                                        <label class="col-sm-4 col-form-label">Equiv Fare:</label>
+                                        <div class="col-sm-5">
+                                            <input type="text" class="form-control" name="txtEfp" id="txtEfp">
+                                            <input type="hidden" id="valEfp" value="@ViewBag.Efp">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row width-group">
+                                        <label class="col-sm-4 col-form-label">Issue Date:</label>
+                                        <div class="col-sm-5">
+                                            <input type="text" class="form-control input-date" name="dtpDateOfSale" id="dtpDateOfSale">
+                                            <input type="hidden" id="valdtpDateOfSale" value="@ViewBag.dtpDateOfSale">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row width-group">
+                                        <label class="col-sm-4 col-form-label">Original Issue Date:</label>
+                                        <div class="col-sm-5">
+                                            <input type="text" name="txtOrigIssueDate" id="txtOrigIssueDate" class="form-control input-date">
+                                            <input type="hidden" id="valtxtOrigIssueDate" value="@ViewBag.txtOrigIssueDate">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row width-group">
+                                        <label class="col-sm-4 col-form-label">Date Of Ssale:</label>
+                                        <div class="col-sm-5">
+                                            <input type="text" name="txtDateOfSale" id="txtDateOfSale" class="form-control">
+                                            <input type="hidden" id="valtxtDateOfSale" value="@ViewBag.txtDateOfSale">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row width-group">
+                                        <label class="col-sm-4 col-form-label">Clearance Month:</label>
+                                        <div class="col-sm-5">
+                                            <input type="text" name="txtMOC" class="form-control">
+                                        </div>
+                                        <div class="YY">
+                                            <label>(yyyMM)</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row width-group">
+                                        <label class="col-sm-4 col-form-label">Coupon Status:</label>
+                                        <div class="col-sm-5">
+                                            <input type="text" name="txtCps" class="form-control">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="content col-sm-8">
+                                <table class="table table-bordered">
+                                    <!-- Debut -->
+                                    <tr>
+                                        <th class="col-sm-3"></th>
+                                        <th class="col-sm-3"></th>
+                                        <th class="col-sm-3">D</th>
+                                        <th class="col-sm-3">Q</th>
+                                    </tr>
+                                    <!-- Fare Component To Be Prorated (FCTBP): -->
+                                    <tr>
+                                        <th class="col-sm-3">
+                                            Fare Component To Be Prorated (FCTBP):
+                                        </th>
+                                        <th class="IS col-sm-3">
+                                            <input type="text" class="form-control" name="txtFCTBP" id="txtFCTBP">
+                                            <input type="hidden" id="valtxtFCTBP" value="">
+                                        </th>
+                                        <th class="IS1 col-sm-3">
+                                            <input type="text" class="form-control" name="DtxtFCTBP" id="DtxtFCTBP">
+                                            <input type="hidden" id="valDtxtFCTBP" value="">
+                                        </th>
+                                        <th class="IS2 col-sm-3">
+                                            <input type="text" class="form-control" name="QtxtFCTBP" id="QtxtFCTBP">
+                                            <input type="hidden" id="valQtxtFCTBP" value="">
+                                        </th>
+                                    </tr>
+                                    <!-- Fare in NUC: -->
+                                    <tr>
+                                        <th class="col-sm-3">
+                                            Fare in NUC:
+                                        </th>
+                                        <th class="col-sm-3">
+                                            <input type="text" class="form-control" name="" id="">
+                                            <input type="hidden" id="" value="">
+                                        </th>
+                                        <th class="col-sm-3">
+                                            <input type="text" class="form-control" name="" id="">
+                                            <input type="hidden" id="" value="">
+                                        </th>
+                                        <th class="col-sm-3">
+                                            <input type="text" class="form-control" name="" id="">
+                                            <input type="hidden" id="" value="">
+                                        </th>
+                                    </tr>
+                                    <!-- NUC-Fare IROE: -->
+                                    <tr>
+                                        <th class="col-sm-3">
+                                            NUC-Fare IROE:
+                                        </th>
+                                        <th class="col-sm-3">
+                                            <input type="text" class="form-control" name="" id="">
+                                            <input type="hidden" id="" value="">
+                                        </th>
+                                        <th class="col-sm-3">
+                                            <input type="text" class="form-control" name="" id="">
+                                            <input type="hidden" id="" value="">
+                                        </th>
+                                        <th class="col-sm-3">
+                                            <input type="text" class="form-control" name="" id="">
+                                            <input type="hidden" id="" value="">
+                                        </th>
+                                    </tr>
+                                    <!-- ATBP-Fare: -->
+                                    <tr>
+                                        <th class="col-sm-3">
+                                            ATBP-Fare:
+                                        </th>
+                                        <th class="col-sm-3">
+                                            <input type="text" class="form-control" name="" id="">
+                                            <input type="hidden" id="" value="">
+                                        </th>
+                                        <th class="col-sm-3">
+                                            <input type="text" class="form-control" name="" id="">
+                                            <input type="hidden" id="" value="">
+                                        </th>
+                                        <th class="col-sm-3">
+                                            <input type="text" class="form-control" name="" id="">
+                                            <input type="hidden" id="" value="">
+                                        </th>
+                                    </tr>
+                                    <!-- Equiv.Fare Pd-BSR or 5DR-Prec.MOS ATT.A or B: -->
+                                    <tr>
+                                        <th class="col-sm-3">
+                                            Equiv.Fare Pd-BSR or 5DR-Prec.MOS ATT.A or B:
+                                        </th>
+                                        <th class="col-sm-3">
+                                            <input type="text" class="form-control" name="" id="">
+                                            <input type="hidden" id="" value="">
+                                        </th>
+                                        <th class="col-sm-3">
+                                            <input type="text" class="form-control" name="" id="">
+                                            <input type="hidden" id="" value="">
+                                        </th>
+                                        <th class="col-sm-3">
+                                            <input type="text" class="form-control" name="" id="">
+                                            <input type="hidden" id="" value="">
+                                        </th>
+                                    </tr>
+                                    <!-- ATBP-Equiv .Fare Pd: -->
+                                    <tr>
+                                        <th class="col-sm-3">
+                                            ATBP-Equiv .Fare Pd:
+                                        </th>
+                                        <th class="col-sm-3">
+                                            <input type="text" class="form-control" name="" id="">
+                                            <input type="hidden" id="" value="">
+                                        </th>
+                                        <th class="col-sm-3">
+                                            <input type="text" class="form-control" name="" id="">
+                                            <input type="hidden" id="" value="">
+                                        </th>
+                                        <th class="col-sm-3">
+                                            <input type="text" class="form-control" name="" id="">
+                                            <input type="hidden" id="" value="">
+                                        </th>
+                                    </tr>
+                                    <!-- COP USD 5 Day Rate Prec. MOC/Mean Rate: -->
+                                    <tr>
+                                        <th class="col-sm-3">
+                                            COP USD 5 Day Rate Prec. MOC/Mean Rate:
+                                        </th>
+                                        <th class="col-sm-3">
+                                            <input type="text" class="form-control" name="" id="">
+                                            <input type="hidden" id="" value="">
+                                        </th>
+                                        <th class="col-sm-3">
+                                            <input type="text" class="form-control" name="" id="">
+                                            <input type="hidden" id="" value="">
+                                        </th>
+                                        <th class="col-sm-3">
+                                            <input type="text" class="form-control" name="" id="">
+                                            <input type="hidden" id="" value="">
+                                        </th>
+                                    </tr>
+                                    <!-- ATBP-USD: -->
+                                    <tr>
+                                        <th class="col-sm-3">
+                                            ATBP-USD:
+                                        </th>
+                                        <th class="col-sm-3">
+                                            <input type="text" class="form-control" name="" id="">
+                                            <input type="hidden" id="" value="">
+                                        </th>
+                                        <th class="col-sm-3">
+                                            <input type="text" class="form-control" name="" id="">
+                                            <input type="hidden" id="" value="">
+                                        </th>
+                                        <th class="col-sm-3">
+                                            <input type="text" class="form-control" name="" id="">
+                                            <input type="hidden" id="" value="">
+                                        </th>
+                                    </tr>
+                                    <!-- Total Proviso(s)-USD: -->
+                                    <tr>
+                                        <th class="col-sm-3">
+                                            Total Proviso(s)-USD:
+                                        </th>
+                                        <th class="col-sm-3">
+                                            <input type="text" class="form-control" name="" id="">
+                                            <input type="hidden" id="" value="">
+                                        </th>
+                                        <th class="col-sm-3">
+                                            <input type="text" class="form-control" name="" id="">
+                                            <input type="hidden" id="" value="">
+                                        </th>
+                                        <th class="col-sm-3">
+                                            <input type="text" class="form-control" name="" id="">
+                                            <input type="hidden" id="" value="">
+                                        </th>
+                                    </tr>
+                                    <!-- BTBP-USD: -->
+                                    <tr>
+                                        <th class="col-sm-3">
+                                            BTBP-USD:
+                                        </th>
+                                        <th class="col-sm-3">
+                                            <input type="text" class="form-control" name="" id="">
+                                            <input type="hidden" id="" value="">
+                                        </th>
+                                        <th class="col-sm-3">
+                                            <input type="text" class="form-control" name="" id="">
+                                            <input type="hidden" id="" value="">
+                                        </th>
+                                        <th class="col-sm-3">
+                                            <input type="text" class="form-control" name="" id="">
+                                            <input type="hidden" id="" value="">
+                                        </th>
+                                    </tr>
+                                    <!-- Total Prorata Factors: -->
+                                    <tr>
+                                        <th class="col-sm-3">
+                                            Total Prorata Factors:
+                                        </th>
+                                        <th class="col-sm-3">
+                                            <input type="text" class="form-control" name="" id="">
+                                            <input type="hidden" id="" value="">
+                                        </th>
+                                        <th class="col-sm-3">
+                                            <input type="text" class="form-control" name="" id="">
+                                            <input type="hidden" id="" value="">
+                                        </th>
+                                        <th class="col-sm-3">
+                                            <input type="text" class="form-control" name="" id="">
+                                            <input type="hidden" id="" value="">
+                                        </th>
+                                    </tr>
+                                    <!-- Quotient (5d.p.Unroundead): -->
+                                    <tr>
+                                        <th class="col-sm-3">
+                                            Quotient (5d.p.Unroundead):
+                                        </th>
+                                        <th class="col-sm-3">
+                                            <input type="text" class="form-control" name="" id="">
+                                            <input type="hidden" id="" value="">
+                                        </th>
+                                        <th class="col-sm-3">
+                                            <input type="text" class="form-control" name="" id="">
+                                            <input type="hidden" id="" value="">
+                                        </th>
+                                        <th class="col-sm-3">
+                                            <input type="text" class="form-control" name="" id="">
+                                            <input type="hidden" id="" value="">
+                                        </th>
+                                    </tr>
+                                    <!-- MPR%:-->
+                                    <tr>
+                                        <th class="col-sm-3">
+                                            MPR%:
+                                        </th>
+                                        <th class="col-sm-3">
+                                            <input type="text" class="form-control" name="" id="">
+                                            <input type="hidden" id="" value="">
+                                        </th>
+                                        <th class="col-sm-3">
+                                            <input type="text" class="form-control" name="" id="">
+                                            <input type="hidden" id="" value="">
+                                        </th>
+                                        <th class="col-sm-3">
+                                            <input type="text" class="form-control" name="" id="">
+                                            <input type="hidden" id="" value="">
+                                        </th>
+                                    </tr>
+
+                                </table>
+                            </div>
+
+
+                        </div>
+                        <div class="content col-md-12">
+                            <div class="col-sm-3">
+                            </div>
+                            <div class="bt-view-component col-sm-9">
+                                <div class="col-sm-2">
+                                    <!-- modal view coupons -->
+                                    <input type="button" name="" value="View coupons" class="bouttons1" data-toggle="modal" data-target="#exampleModalCenter">
+                                </div>
+                                <div class="col-sm-2">
+                                    <input type="button" name="" value="Prorate" class="bouttons2">
+                                </div>
+                                <div class="col-sm-2">
+                                    <input type="button" name="" value="PreviousD" class="bouttons">
+                                </div>
+                                <div class="col-sm-2">
+                                    <input type="button" name="" value="NextD" class="bouttons3">
+                                </div>
+                                <div class="col-sm-2">
+                                    <input type="button" name="" value="PreviousQ" class="bouttons">
+                                </div>
+                                <div class="col-sm-2">
+                                    <input type="button" name="" value="NextQ" class="bouttons3">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content col-md-12">
+                            <label class="col-sm-11 col-form-label">Fare Calculation Area</label>
+                            <input type="text" name="txtFca" id="txtFca" class="form-control">
+                            <input type="hidden" id="valFca" value="@ViewBag.Fca">
+                        </div>
+                        <div class="content col-md-12">
+                            <div class="Involve">
+                                <input type="checkbox" name="">
+                                <label class="form-label">Involve Manual Correction</label>
+                            </div>
+                        </div>
+                        <div class="content col-md-12">
+                            <div class="Sec-orig">
+                                <table class="table table-bordered" style="margin-left: -16px;">
+                                    <thead>
+                                        <tr>
+                                            <th>Sec Ori</th>
+                                            <th>Carrier</th>
+                                            <th>Sec Dest</th>
+                                            <th>FareBasis</th>
+                                            <th>Pro.Factors</th>
+                                            <th>Proviso(s) & Base Amount</th>
+                                            <th>Prorate/Proviso Value</th>
+                                            <th>RBO</th>
+                                            <th>SRP</th>
+                                            <th>SPA</th>
+                                            <th>Diff.(D)</th>
+                                            <th>Surch.(Q)</th>
+                                            <th>Final Share</th>
+                                            <th>ISC %</th>
+                                            <th>Code Share</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="content col-md-12">
+                            <div class="col-sm-4"></div>
+                            <div class="bbt col-sm-7">
+                                <div class="col-sm-4">
+                                    <input type="button" name="" value="Previous Fare Component" class="bouttons4">
+                                </div>
+                                <div class="col-sm-4">
+                                    <input type="button" name="" value="Next Fare Component" class="bouttons4">
+                                </div>
+                                <div class="col-sm-2">
+                                    <input type="button" name="" value="Clear" class="bouttons3">
+                                </div>
+                                <div class="col-sm-2">
+                                    <input type="button" name="" value="Close" class="bouttons3" data-dismiss="modal">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="exampleModalLongTitle">View coupons </h3>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+
+                        </div>
+                        <div class="modal-body">
+                            <div class="content col-md-12">
+                                <label class="col-sm-11 col-form-label">Documment Number: @ViewBag.numberTicket </label>
+
+                                <label class="col-sm-11 col-form-label">Fare Calculation Area</label>
+                                <input type="text" name="txtFca" id="txtFca" class="form-control" value="@ViewBag.Fca">
+                                <input type="hidden" id="valFca" value="@ViewBag.Fca">
+                            </div>
+
+
+
+                            <table class="table">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">DOC No.</th>
+                                        <th scope="col">CPN</th>
+                                        <th scope="col">X/O</th>
+                                        <th scope="col">GFPA</th>
+                                        <th scope="col">CARRIER</th>
+                                        <th scope="col">FLIGHT</th>
+                                        <th scope="col">DATE</th>
+                                        <th scope="col">TIME</th>
+                                        <th scope="col">STATUS</th>
+                                        <th scope="col">FARE BASIS</th>
+                                        <th scope="col">NOT VALID AFTER</th>
+                                        <th scope="col">RBD</th>
+                                        <th scope="col">USAGE SECTOR</th>
+                                        <th scope="col">USAGE AIRLINE</th>
+                                        <th scope="col">USAGE FLIGHT NO.</th>
+                                        <th scope="col">USAGE DATE</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (int i = 0; i < ViewBag.lon; i++)
+                                    {
+                                        <tr>
+                                            @for (int j = 0; j < 28; j++)
+                                            {
+                                                <td>@ViewBag.CouponView[j, i]</td>;
+                                            }
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--  End Tab Main and prorate factor in transaction in a Nutshell  --->
+
+
+            <!-- Sales Transaction By Type -->
+
+            <div id="nutshell13" class="tab-pane fade">
+                <div id="affichageSBT">
+                    <div class="col-sm-9">
+                        <div class="col-sm-9" style="top: 16px;">
+                            <fieldset class="test-fieldst legent-issue-date" style="border: 1px solid white !important;">
+                                <legend class="test-fieldst" style="background-color:transparent">Sales Period Range and Transaction Type Selection</legend>
+                                <div class="col-sm-1 margin-issue" style="width: 7% !important;">
+                                    <label class="form-check-label col-form-label">From:</label>
+                                </div>
+
+                                <div class="col-sm-3 n-padding">
+                                    <div class="input-group date">
+                                        <!-- <span class="input-group-addon check-dape"><input type="checkbox" name="dateFromSalesTbt"></span> -->
+                                        <input type="text" class="form-control" id="dateFromSalesTbt" value="@ViewBag.dateFromSalesTbt" onchange="changeDate()">
+                                        <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateFromSalesTbt')"></span>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-1" style="width: 7% !important;">
+                                    <label class="form-check-label col-form-label">To:</label>
+                                </div>
+                                <div class="col-sm-3 n-padding">
+                                    <div class="input-group date">
+                                        <!-- <span class="input-group-addon check-dape"><input type="checkbox" name="dateToSalesTbt"></span> -->
+                                        <input type="text" class="form-control" id="dateToSalesTbt" value="@ViewBag.dateToSalesTbt" onchange="getTransactionCode()">
+                                        <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateToSalesTbt')" ></span>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-2">
+                                    <label class="form-check-label col-form-label">Transaction Type:</label>
+                                </div>
+                                
+                                    <div class="col-sm-4 n-padding" style="position: relative;left: -10px;width: 148px;">
+                                        <select class="form-control" id="item">
+                                            <option>-ALL-</option>
+                                        </select>
+                                    </div>
+                               
+                            </fieldset>
+                        </div>
+                        <div class="col-sm-1" style="top: 40px;">
+                            <button class="btn btn-default"  onclick="searchSalesTransactionBT()" >SEARCH </button>
+                        </div>
+                    </div>
+                    <div class="col-sm-10 n-padding" style="top: 28px;background-color: white;height: 550px;left: 22px;overflow: auto;">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="pink">Sale Date</th>
+                                    <th class="pink">Passenger Name</th>
+                                    <th class="pink">Document No</th>
+                                    <th class="pink">Doc Type</th>
+                                    <th class="pink">Cpn</th>
+                                    <th class="pink">Transaction Type</th>
+                                    <th class="pink">RBD</th>
+                                    <th class="pink">Fare Basis</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-sm-12" style="top: 79px;left: 6px;">
+                        <div class="form-group row width-group">
+                            <label class="col-sm-2 col-form-label">Total Number Of Documents:</label>
+                            <div class="col-sm-2 n-paddin-left">
+                                <input type="text" name="nbSBT" id="nbSBT" value="@ViewBag.nombreSalesTbt" class="form-control" style="width: 93%;" disabled>
+                            </div>
+                            <div class="col-sm-2" style="float: right;">
+                                <button class="btn btn-default" type="button" onclick="closeNetshull('nutshell13')">CLOSE TAB</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+               
+            </div>
+
+            <!-- End Sales Transaction By Type -->
+
+
+            <!-- Flown Transaction By Type  -->
+
+            <div id="nutshell14" class="tab-pane fade">
+                <div id="afficheFlown">
+                    <div class="col-sm-9">
+                        <div class="col-sm-9" style="top: 16px;">
+                            <fieldset class="test-fieldst legent-issue-date" style="border: 1px solid white !important;">
+                                <legend class="test-fieldst" style="background-color:transparent">Sales Period Range and Transaction Type Selection</legend>
+                                <div class="col-sm-1 margin-issue" style="width: 7% !important;">
+                                    <label class="form-check-label col-form-label">From:</label>
+                                </div>
+
+                                <div class="col-sm-3 n-padding">
+                                    <div class="input-group date">
+                                        <!-- <span class="input-group-addon check-dape"><input type="checkbox" name="dateFromFlown"></span> -->
+                                        <input type="text" class="form-control" id="dateFromFlown" value="@ViewBag.dateFromFlown">
+                                        <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateFromFlown')"></span>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-1" style="width: 7% !important;">
+                                    <label class="form-check-label col-form-label">To:</label>
+                                </div>
+                                <div class="col-sm-3 n-padding">
+                                    <div class="input-group date">
+                                        <!-- <span class="input-group-addon check-dape"><input type="checkbox" name="dateToFlown"></span> -->
+                                        <input type="text" class="form-control" id="dateToFlown" value="@ViewBag.dateToFlown">
+                                        <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateToFlown')"></span>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-2">
+                                    <label class="form-check-label col-form-label">Transaction Type:</label>
+                                </div>
+                                <div class="col-sm-4 n-padding" style="position: relative;left: -10px;width: 148px;">
+                                    <select class="form-control" id="itemflown">
+                                        <option>-ALL-</option>
+                                        @for (int i = 0; i < ViewBag.lonItem; i++)
+                                        {
+                                            <option>@ViewBag.ListeItemFlown[0, i]</option>
+                                        }
+                                    </select>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="col-sm-1" style="top: 40px;">
+                            <button class="btn btn-default" onclick="searchFlownTransaction()">SEARCH</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-10 n-padding" style="top: 28px;background-color: white;height: 550px;left: 22px;overflow: auto;">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="pink">Sale Date</th>
+                                    <th class="pink">Passenger Name</th>
+                                    <th class="pink">Document No</th>
+                                    <th class="pink">Doc Type</th>
+                                    <th class="pink">Cpn</th>
+                                    <th class="pink">Transaction Type</th>
+                                    <th class="pink">RBD</th>
+                                    <th class="pink">Fare Basis</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-sm-12" style="top: 79px;left: 6px;">
+                        <div class="form-group row width-group">
+                            <label class="col-sm-2 col-form-label">Total Number Of Documents:</label>
+                            <div class="col-sm-2 n-paddin-left">
+                                <input type="text" name="nbFlown" id="nbFlown" value="@ViewBag.nombreFlown" class="form-control" style="width: 93%;" disabled>
+                            </div>
+                            <div class="col-sm-2" style="float: right;">
+                                <button class="btn btn-default" type="button" onclick="closeNetshull('nutshell14')">CLOSE TAB</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- End Flown  Transaction By Type  -->
+
+
+            <!-- Interline Transaction By Type -->
+
+            <div id="nutshell15" class="tab-pane fade">
+
+                <div id="affiIterline">
+                    <div class="col-sm-9">
+                        <div class="col-sm-9" style="top: 16px;">
+                            <fieldset class="test-fieldst legent-issue-date" style="border: 1px solid white !important;">
+                                <legend class="test-fieldst" style="background-color:transparent">Sales Period Range and Transaction Type Selection</legend>
+                                <div class="col-sm-1 margin-issue" style="width: 7% !important;">
+                                    <label class="form-check-label col-form-label">From:</label>
+                                </div>
+
+                                <div class="col-sm-3 n-padding">
+                                    <div class="input-group date">
+                                        <!-- <span class="input-group-addon check-dape"><input type="checkbox" name="dateFromInterline"></span> -->
+                                        <input type="text" class="form-control" id="dateFromInterline" value="@ViewBag.dateFromInterline">
+                                        <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateFromInterline')"></span>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-1" style="width: 7% !important;">
+                                    <label class="form-check-label col-form-label">To:</label>
+                                </div>
+                                <div class="col-sm-3 n-padding">
+                                    <div class="input-group date">
+                                        <!-- <span class="input-group-addon check-dape"><input type="checkbox" name="dateToInterline"></span> -->
+                                        <input type="text" class="form-control" id="dateToInterline" value="@ViewBag.dateToInterline">
+                                        <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateToInterline')"></span>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-2">
+                                    <label class="form-check-label col-form-label">Transaction Type:</label>
+                                </div>
+                                <div class="col-sm-4 n-padding" style="position: relative;left: -10px;width: 148px;">
+                                    <select class="form-control" id="itemInter">
+                                        <option>-ALL-</option>
+                                        @for (int i = 0; i < ViewBag.lonItem; i++)
+                                        {
+                                            <option>@ViewBag.ListeItemInter[0, i]</option>
+                                        }
+                                    </select>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="col-sm-1" style="top: 40px;">
+                            <button class="btn btn-default" onclick="searchInterlineT()">SEARCH</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-10 n-padding" style="top: 28px;background-color: white;height: 550px;left: 22px;overflow: auto;">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="pink">Sale Date</th>
+                                    <th class="pink">Passenger Name</th>
+                                    <th class="pink">Document No</th>
+                                    <th class="pink">Doc Type</th>
+                                    <th class="pink">Cpn</th>
+                                    <th class="pink">Transaction Type</th>
+                                    <th class="pink">RBD</th>
+                                    <th class="pink">Fare Basis</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-sm-12" style="top: 79px;left: 6px;">
+                        <div class="form-group row width-group">
+                            <label class="col-sm-2 col-form-label">Total Number Of Documents:</label>
+                            <div class="col-sm-2 n-paddin-left">
+                                <input type="text" name="nbInter" id="nbInter" value="@ViewBag.nombreInter" class="form-control" style="width: 93%;" disabled>
+                            </div>
+                            <div class="col-sm-2" style="float: right;">
+                                <button class="btn btn-default" type="button" onclick="closeNetshull('nutshell15')">CLOSE TAB</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- End Interline Transaction By Type -->
+
+        </div>
+    </div>
+</div>
+

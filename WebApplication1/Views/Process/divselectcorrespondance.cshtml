@@ -1,0 +1,17 @@
+﻿@using System.Data
+@model DataSet
+<div class="col" id="newdivselectcorrespondance">
+    <select class="form-control" id="comboBox3" name="comboBox3">
+        <option value=""></option>
+        <!--<option value="366460-Disputed">366460-Disputed</option>-->
+        @for (int i = 0; i < ViewBag.ligne; i++)
+        {
+            if (i==0) { 
+                <option value="@ViewBag.comboBox3tb[i, 0]" selected>@ViewBag.comboBox3tb[i, 0]</option>
+            }
+            else { 
+                <option value="@ViewBag.comboBox3tb[i, 0]">@ViewBag.comboBox3tb[i, 0]</option>
+            }
+        }
+    </select>
+</div>

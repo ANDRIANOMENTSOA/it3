@@ -1,0 +1,32 @@
+﻿<div id="newdivinvisible">
+    <input id="newlblNextStage" value="@ViewBag.lblNextStage" type="text" />
+    <input id="newpnlAcceptVisible" value="@ViewBag.pnlAcceptVisible" type="text" />
+    <input id="newpnlRejectionVisible" value="@ViewBag.pnlRejectionVisible" type="text" />
+</div>
+
+
+
+<div class="row" style="height: 250px;background: #cce9ec;" id="newdivdgvRejection">
+    <table class="table table-bordered tablehead" id="dgvRejection" style="width:100%;margin-left:25px!important;margin-right:100px!important;">
+        <thead style="">
+            <tr>
+                @for (int i = 0; i < ViewBag.l; i++)
+                {
+                    <th style="@ViewBag.dgvRejectionColumnHeadersBackColor;@ViewBag.dgvRejectionColumnHeadersForeColor;@ViewBag.dgvRejectionColumnsVisible[i]">@ViewBag.dgvRejectionTH[i]</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < ViewBag.ligne; i++)
+            {
+                <tr onclick="dgvRejection_CellClickrejectionanalytic('@i','@ViewBag.dgvRejection[i, 0]','@ViewBag.dgvRejection[i, 1]','@ViewBag.dgvRejection[i, 2]','@ViewBag.dgvRejection[i, 3]','@ViewBag.dgvRejection[i, 4]','@ViewBag.dgvRejection[i, 5]','@ViewBag.dgvRejection[i, 6]','@ViewBag.dgvRejection[i, 7]','@ViewBag.dgvRejection[i, 22]','@ViewBag.dgvRejection[i, 26]')">
+                    @for (int j = 0; j < ViewBag.colone; j++)
+                    {
+                        <td style="@ViewBag.dgvRejectioncolore[i, j];@ViewBag.dgvRejectionColumnsVisible[j];">@ViewBag.dgvRejection[i, j]</td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

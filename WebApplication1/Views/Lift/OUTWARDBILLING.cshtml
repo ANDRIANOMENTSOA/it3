@@ -1,0 +1,1129 @@
+﻿@using System.Data
+@model DataSet
+<div class="col-sm-12 tab-content tab-cancellation n-paddin-left" style="margin-left:0px">
+    <div class="col-sm-2 n-padding">
+        <div class="panel">
+            <div class="panel-heading panel-lift-head">
+                <h3>OUTWARD BILLING</h3>
+            </div>
+            <div class="panel-body panel-fim-body" style="height: 80vh;border: 5px solid  rgb(25,25,112);background-color:rgba(117, 228, 252, 1)">
+                <div class="group-btn">
+                    <button type="button" class="btn btn-default btn-lift-outward" style="background-color:rgb(163,226,27)" data-toggle="tab" href="#previous-bil">View Previous Billing Period</button>
+                    <button type="button" class="btn btn-default btn-lift-outward" style="background-color:rgb(68,35,89)" data-toggle="tab" href="#validate-bil">Validate Prime Coupon Billing To OALs</button>
+                    <button type="button" class="btn btn-default btn-lift-outward" style="background-color:rgb(0,229,220)">Check/Edit OAL Claims</button>
+                    <button type="button" class="btn btn-default btn-lift-outward" style="background-color:rgb(153,0,0)" onclick="reGenerate()">Re-Generate XML For Previous Billing</button>
+                    <button type="button" class="btn btn-default btn-lift-outward" style="background-color:rgb(27,148,242)" data-url="@Url.Action("ExcessBilling","Process")" onclick="ajout(this, 'ExcessBilling', 'Process', 'Billing Memo Manual Entry')">Adjustment</button>
+                    <button type="button" class="btn btn-default btn-lift-outward" style="background-color:rgb(229,0,0)">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-sm-10">
+        <div class="container-pax1">
+            <ul class="nav nav-tabs" style="margin-left: 6px;">
+                <li class="active"><a data-toggle="tab" href="#main" class="nav-pax">MAIN</a></li>
+                <li><a data-toggle="tab" href="#previous-bil" class="nav-pax">PREVIOUS BILLING</a></li>
+                <li><a data-toggle="tab" href="#validate-bil" class="nav-pax">VALIDATE PRIME BILLING</a></li>
+            </ul>
+            <div class="tab-content" style="height: 86.5vh;">
+                <div id="main" class="tab-pane fade in active">
+                    <img src="@Url.Content("~/Images/worldmap.png")" class="img-responsive" style="position: relative;top: 115px;" />
+                </div>
+                <div id="previous-bil" class="tab-pane fade">
+                    <div class="col-sm-10">
+                        <table style="border-spacing: 16px;border-collapse: unset;">
+                            <tr>
+                                <td>Airline Code</td>
+                                <td>
+                                    <select class="form-control" id="airlineCode">
+                                        <option>All</option>
+                                        @foreach (DataRow dr in Model.Tables[0].Rows)
+                                        {
+                                            <option>@dr[Model.Tables[0].Columns[0].ColumnName].ToString()</option>
+                                        }
+                                    </select>
+                                </td>
+                                <td>Billing Period</td>
+                                <td>
+                                    <input type="hidden" id="tempBilling" />
+                                    <select class="form-control billingPeriod" onclick="getBillingPeriod()">
+                                        <option>All</option>
+                                    </select>
+                                </td>
+                                <td><button type="button" class="btn btn-lift" onclick="searchOBView()">SEARCH</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-sm-12 n-padding" style="height: 71vh;background-color: white;overflow: auto;margin-left:0px">
+                        <table class="table table-bordered table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="Thred">ALC</th>
+                                    <th class="Thred">AIRLINE CODE</th>
+                                    <th class="Thred">AIRLINE NAME</th>
+                                    <th class="Thred">PMC</th>
+                                    <th class="Thred">BILLING PERIOD</th>
+                                    <th class="Thred">CPN COUNT</th>
+                                    <th class="Thred">GROSS AMOUNT</th>
+                                    <th class="Thred">ISC AMOUNT</th>
+                                    <th class="Thred">NET AMOUNT</th>
+                                    <th class="Thred">TOTAL TAX</th>
+                                    <th class="Thred">AMOUNT TO BILL</th>
+                                    <th class="Thred">INV.NO</th>
+                                </tr>
+                            </thead>
+                            <tbody class="loadOBView"></tbody>
+                        </table>
+                    </div>
+                    <div class="col-sm-12" style="position: relative;top: 20px;">
+                        <div class="col-sm-1">
+                        </div>
+                        <div class="col-sm-4">
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="Thred">Gross Amount</th>
+                                        <th class="Thred">Total ISC</th>
+                                        <th class="Thred">Total Tax</th>
+                                        <th class="Thred">Net Amount</th>
+                                        <th class="Thred">Currency</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="resumePreviousNilling">
+                                    <tr>
+                                        <td>0.000</td>
+                                        <td>0.000</td>
+                                        <td>0.000</td>
+                                        <td>0.000</td>
+                                        <td>USD</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-sm-2" style="float: right;">
+                            <button type="button" class="btn btn-lift" onclick="OBDetails()">CLOSE TAB</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="validate-bil" class="tab-pane fade">
+                    <div class="col-sm-12 n-padding" style="height: 93px;margin-top:8px">
+                        <div class="col-sm-4">
+                            <fieldset class="test-fieldst1" style="height: 64px;">
+                                <legend class="test-fieldst">Flight Date</legend>
+                                <div class="col-sm-10" style="margin-left: 23px;">
+                                    <table>
+                                        <tr>
+                                            <td>From:</td>
+                                            <td>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateFrom')"></span>
+                                                    <input type="text" class="form-control" id="dateFrom" value="@ViewBag.DateNow" style="padding-right:3px">
+                                                </div>
+                                            </td>
+                                            <td style="width:45px"></td>
+                                            <td>To:</td>
+                                            <td>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateTo')"></span>
+                                                    <input type="text" class="form-control" id="dateTo" value="@ViewBag.DateNow" style="padding-right:3px">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="col-sm-2">
+                            <fieldset class="test-fieldst1" style="height: 64px;">
+                                <legend class="test-fieldst">Interline Selection</legend>
+                                <table style="margin-left: 30px;">
+                                    <tr>
+                                        <td>OAL Carrier:</td>
+                                        <td>
+                                            <input type="hidden" id="date1" />
+                                            <input type="hidden" id="date2" />
+                                            <select class="form-control oalCarrier" id="oalCarrier" onclick="OalCarrier()">
+                                                <option>All</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </fieldset>
+                        </div>
+                        <div class="col-sm-3">
+                            <fieldset class="test-fieldst1" style="height: 64px;" id="checkValidated">
+                                <legend class="test-fieldst">Validated</legend>
+                                <div class="col-sm-4 margin-issue">
+                                    <input class="form-check-input" type="radio" name="Validated" value="Both" checked>
+                                    <label class="form-check-label col-form-label" for="inlineRadio1">Both</label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <input class="form-check-input" type="radio" name="Validated" value="Validated">
+                                    <label class="form-check-label col-form-label" for="inlineRadio1">Validated</label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <input class="form-check-input" type="radio" name="Validated" value="NValidated">
+                                    <label class="form-check-label col-form-label" for="inlineRadio1">Not Validated</label>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="col-sm-3">
+                            <button type="button" class="btn btn-lift" onclick="loadValidatePrime()">SEARCH</button>
+                            <button type="button" class="btn btn-lift" onclick="updateValidatePrime()">SAVE</button>
+                            <button type="button" class="btn btn-lift" onclick="couponBilling()" style="margin-top: 5px;">Generate Prime Coupon Billing To OALs</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 n-padding" style="height: 64vh;background-color: white;overflow: auto;margin-left:0px">
+                        <table class="table table-bordered table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="Thred">Related Document No.</th>
+                                    <th class="Thred">Airline ID</th>
+                                    <th class="Thred">Marketing Flight Code</th>
+                                    <th class="Thred">Operating Flight Code</th>
+                                    <th class="Thred">CPN</th>
+                                    <th class="Thred">RBD</th>
+                                    <th class="Thred">ORI</th>
+                                    <th class="Thred">DES</th>
+                                    <th class="Thred">Cpn Status</th>
+                                    <th class="Thred" style="min-width: 92px;">Flight Date</th>
+                                    <th class="Thred">PM</th>
+                                    <th class="Thred" style="min-width: 282px;">SPA REMARKS</th>
+                                    <th class="Thred">SPA</th>
+                                    <th class="Thred">Isc Percent</th>
+                                    <th class="Thred">MOV Iscpercentage</th>
+                                    <th class="Thred">Final Share</th>
+                                    <th class="Thred">MOV Final Share</th>
+                                    <th class="Thred">Proration Error MSG</th>
+                                    <th class="Thred">Min SectorVal</th>
+                                    <th class="Thred">Max SectorVal</th>
+                                    <th class="Thred" style="min-width: 177px;">Remarks</th>
+                                    <th class="Thred">Validate</th>
+                                    <th class="Thred">User</th>
+                                    <th class="Thred">IP</th>
+                                    <th class="Thred">SAC</th>
+                                    <th class="Thred">Code Share Value</th>
+                                    <th class="Thred">Code Share Type</th>
+                                    <th class="Thred">Code Share Reason</th>
+                                    <th class="Thred">User Methodology</th>
+                                </tr>
+                            </thead>
+                            <tbody class="loadValidatePrime"></tbody>
+                        </table>
+                    </div>
+                    <div class="col-sm-12" style="padding: 8px;">
+                        <table style="width:100%">
+                            <tr>
+                                <td style="width: 81px;">Issue Date:</td>
+                                <td style="width: 110px;"><input type="text" class="form-control" id="issueDate" /></td>
+                                <td style="text-align:right">PNR:</td>
+                                <td style="width: 140px;"><input type="text" class="form-control" id="pnr" /></td>
+                                <td style="text-align:right;width: 203px;">Endos Restriction:</td>
+                                <td><textarea rows="3" style="width:100%" id="endosRestriction"></textarea></td>
+                            </tr>
+                        </table>
+                        <table style="width:100%">
+                            <tr>
+                                <td style="width: 141px;"></td>
+                                <td style="text-align:right">Total Number of Tickets:</td>
+                                <td style="width: 140px;"><input type="text" class="form-control" id="nbRow" /></td>
+                                <td style="text-align: center;"><button type="button" class="btn btn-lift" onclick="showOBExclude()">OUTWARD BILLING EXCLUSION LIST</button></td>
+                                <td><button type="button" class="btn btn-lift" onclick="showTaxInfo()">TAX VERIFICATION</button></td>
+                                <td><button type="button" class="btn btn-danger btn-lift">Reprorate Zero/Err</button></td>
+                                <td><button type="button" class="btn btn-lift">CLOSE TAB</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="OBDetails" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 1174px; left:3%">
+            <div class="modal-header">
+                <h5 class="modal-title">OBDetails</h5>
+                <button type="button" class="close" style="position: relative;top: -21px;" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body-fim" style="height: 71vh;">
+                <div class="ajax-loader">
+                    <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" style="top: -54px;height: 110px;width: 274px;" />
+                </div>
+                <div class="col-sm-12 n-padding head-OBDetails">
+                    <div class="col-sm-5">
+                        <table>
+                            <tr>
+                                <td>AIRLINE CODE: </td>
+                                <td id="DetailAirlineCode"></td>
+                                <td class="col-sm-1"></td>
+                                <td>BILLING PERIOD: </td>
+                                <td id="DetailBilling"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-sm-7">
+                        <fieldset class="test-fieldst1" style="padding-bottom: 7px;">
+                            <legend class="test-fieldst">SUPPLEMENTARY CHARGES:</legend>
+                            <div class="col-sm-6">
+                                <fieldset class="test-fieldst1" style="text-align:center;padding:3px">
+                                    <legend class="test-fieldst">IF AMOUNT LESS OR EQUAL USD 200:</legend>
+                                    <button type="button" class="btn btn-lift">Correspondance</button>
+                                </fieldset>
+                            </div>
+                            <div class="col-sm-6">
+                                <fieldset class="test-fieldst1" style="text-align:center;padding:3px">
+                                    <legend class="test-fieldst">IF AMOUNT EXCEEDS USD 200:</legend>
+                                    <button type="button" class="btn btn-lift">Billing Memo</button>
+                                </fieldset>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                </div>
+                <div class="col-sm-12 n-padding dataPassengerLookup" style="margin-left:0px;overflow:auto;height:60vh;border-left:4px solid rgba(117, 228, 252, 1);border-right:4px solid rgba(117, 228, 252, 1)">
+                    <div class="body-OBDetail">
+                        <table class="table table-bordered table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="Thred" style="min-width: 156px;">AIRLINE NAME</th>
+                                    <th class="Thred">DOCUMENT NO</th>
+                                    <th class="Thred">CPN</th>
+                                    <th class="Thred">CHK</th>
+                                    <th class="Thred">PMC</th>
+                                    <th class="Thred">ORI</th>
+                                    <th class="Thred">DES</th>
+                                    <th class="Thred">GROSS AMT</th>
+                                    <th class="Thred">ISC %</th>
+                                    <th class="Thred">ISC AMT</th>
+                                    <th class="Thred">FLIGHT NO</th>
+                                    <th class="Thred" style="min-width: 93px;">FLIGHT DATE</th>
+                                    <th class="Thred">CURRENCY</th>
+                                    <th class="Thred">ETKSAC</th>
+                                    <th class="Thred">INV. NO</th>
+                                    <th class="Thred">BILLING PERIOD</th>
+                                    <th class="Thred" style="min-width: 176px;">OB ENGINE</th>
+                                    <th class="Thred">TIME LIMIT FOR SUPPLEMENTARY BILLING</th>
+                                    <th class="Thred">TAX CODE</th>
+                                    <th class="Thred">TAX AMT</th>
+                                </tr>
+                            </thead>
+                            <tbody class="load-OBDetails"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer footer-OBDetails">
+                <label id="labelpassenger" style="color:black">Total Number of Coupons: <span id="totalNb"></span></label>
+                <button type="button" class="btn btn-lift" data-dismiss="modal" style="margin-top:9px">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="showTaxInfo" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 874px; left:10%">
+            <div class="modal-header">
+                <h5 class="modal-title">Tax Verification</h5>
+                <button type="button" class="close" style="position: relative;top: -21px;" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body-fim" style="height: 71vh;background-color:rgba(117, 228, 252, 1)">
+                <div class="ajax-loader">
+                    <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" style="top: -54px;height: 110px;width: 274px;" />
+                </div>
+                <div class="col-sm-12 n-padding" style="margin-bottom: 7px;">
+                    <div class="col-sm-3">
+                        <table>
+                            <tr>
+                                <td>Carrier:</td>
+                                <td>
+                                    <input type="hidden" id="tmptaxSectors" />
+                                    <select class="form-control taxCarrier" onclick="taxSectors()">
+                                        <option>All</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr><td style="height:8px"></td></tr>
+                            <tr>
+                                <td colspan="2"><button type="button" class="btn btn-lift" onclick="BtnTransitCheckClick()">TRANSIT & STOPOVER CHECK</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-sm-12 n-padding" style="margin-bottom: 7px;">
+                    <div class="col-sm-4">
+                        <fieldset class="test-fieldst1" style="height: 64px;">
+                            <legend class="test-fieldst"></legend>
+                            <table style="margin-left: 30px;margin-top:15px">
+                                <tr>
+                                    <td>Sectors:</td>
+                                    <td>
+                                        <input type="hidden" id="tmptaxSector" />
+                                        <select class="form-control taxSector" onclick="LoadTaxSector()">
+                                            <option>All</option>
+                                            <option>Y</option>
+                                            <option>F</option>
+                                            <option>C</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="col-sm-12 n-padding dataAirportCode" style="margin-left:0px;overflow:auto;background-color:white;height: 56vh;">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th class="Thred">Related Document No.</th>
+                                <th class="Thred">Coupon No.</th>
+                                <th class="Thred">Airline ID</th>
+                                <th class="Thred">Origin</th>
+                                <th class="Thred">Destination</th>
+                                <th class="Thred">Tax Code</th>
+                                <th class="Thred">Tax Currency</th>
+                                <th class="Thred">Tax Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody class="body-taxVerification"></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer footer-OBDetails">
+                <div style="float:left;margin-top: 11px;">
+                    <button type="button" class="btn btn-lift" onclick="taxEditing()">Tax Editing Screen</button>
+                </div>
+                <button type="button" class="btn btn-lift" data-dismiss="modal" style="margin-top: 9px;">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="taxEditing" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 1327px">
+            <div class="modal-header">
+                <h5 class="modal-title">Tax Editing</h5>
+                <button type="button" class="close" style="position: relative;top: -21px;" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body-fim" style="height: 71vh;background-color:rgba(117, 228, 252, 1)">
+                <div class="ajax-loader">
+                    <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" style="top: -54px;height: 110px;width: 274px;" />
+                </div>
+                <div class="col-sm-12 n-padding" style="margin-bottom: 7px;">
+                    <div class="col-sm-5">
+                        <table style="width:69%">
+                            <tr>
+                                <td>Airport Sector:</td>
+                                <td>
+                                    <select class="form-control taxEditing"></select>
+                                </td>
+                                <td style="float:right">
+                                    <button type="button" class="btn btn-lift" id="getDetailTaxEditing" onclick="getDetailTaxEditing()">SEARCH</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-sm-12" style="margin-bottom: 7px;">
+                    <fieldset class="test-fieldst1" style="height: 175px;padding:4px">
+                        <legend class="test-fieldst"></legend>
+                        <table style="margin-top:15px;border-collapse: separate;border-spacing: 3px;">
+                            <tr>
+                                <td><button type="button" class="btn btn-lift" onclick="addTaxEditing()">Add</button></td>
+                                <td><button type="button" class="btn btn-lift" onclick="editTaxEditing()">Edit</button></td>
+                                <td><button type="button" class="btn btn-lift" onclick="updateTaxEditing()">Update</button></td>
+                                <td><button type="button" class="btn btn-lift" onclick="clearTaxEditingAll()">Clear</button></td>
+                                <td><button type="button" class="btn btn-lift" onclick="deleteTaxEditing()">Delete</button></td>
+                            </tr>
+                        </table>
+                        <table>
+                            <tr>
+                                <td>From Airport</td>
+                                <td>To Airport</td>
+                                <td>Mapped Prime Code</td>
+                                <td>Passenger Type</td>
+                                <td>Domestic International</td>
+                                <td>Transit Duration</td>
+                                <td style="width: 185px;">Valid From</td>
+                                <td style="width: 185px;">Valid To</td>
+                                <td>Tax Code</td>
+                                <td>Tax Currency</td>
+                                <td>Tax Amount</td>
+                                <td>Tax Percentage</td>
+                            </tr>
+                            <tr>
+                                <td><input type="text" class="form-control" id="zero" maxlength="3" readonly /></td>
+                                <td><input type="text" class="form-control" id="un" maxlength="3" readonly /></td>
+                                <td>
+                                    <select class="form-control" id="deux" readonly>
+                                        <option>Null</option>
+                                        <option>Y</option>
+                                        <option>F</option>
+                                        <option>C</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="form-control" id="trois" readonly>
+                                        <option>Null</option>
+                                        <option>A</option>
+                                        <option>C</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="form-control" id="quatre" readonly>
+                                        <option>Null</option>
+                                        <option>I</option>
+                                        <option>D</option>
+                                    </select>
+                                </td>
+                                <td><input type="text" class="form-control" id="cinq" maxlength="2" readonly /></td>
+                                <td>
+                                    <div class="input-group date" id="checkDateFrom">
+                                        <span class="input-group-addon check-dape"><input type="checkbox" name="dtpDateFrom" value="Oui" id="dtpIssueDateFrom" onclick="uncheked('dtpIssueDateFrom', 'dtpIssueDateTo')"></span>
+                                        <input type="text" name="datedtpIssueDateFrom" class="form-controls input-date" id="DateFrom2" value="" readonly />
+                                        <span class="input-group-addon datetimepicker" onclick="setdate('DateFrom2')">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-group date" id="checkDateTo">
+                                        <span class="input-group-addon check-dape"><input type="checkbox" name="dtpDateTo" id="dtpIssueDateTo" value="Oui" onclick="uncheked1('dtpIssueDateFrom', 'dtpIssueDateTo')"></span>
+                                        <input type="text" name="datedtpIssueDateTo" class="form-controls input-date input-datetimepicker" id="DateTo2" value="" readonly />
+                                        <span class="input-group-addon datetimepicker" onclick="setdate('DateTo2')">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </td>
+                                <td><input type="text" class="form-control" id="huit" maxlength="2" readonly /></td>
+                                <td><input type="text" class="form-control" id="neuf" maxlength="3" readonly /></td>
+                                <td><input type="text" class="form-control" id="dix" maxlength="9" readonly /></td>
+                                <td><input type="text" class="form-control" id="onze" readonly /></td>
+                            </tr>
+                        </table>
+                        <input type="hidden" id="taxRefId" />
+                    </fieldset>
+                </div>
+
+                <div class="col-sm-12 n-padding dataAirportCode" style="margin-left:0px;overflow:auto;background-color:white;height: 48vh;">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th class="Thred">Sector From</th>
+                                <th class="Thred">Sector To</th>
+                                <th class="Thred">Prime Code</th>
+                                <th class="Thred">Pax Type</th>
+                                <th class="Thred">DomInt</th>
+                                <th class="Thred">Transit Duration</th>
+                                <th class="Thred">Valid From</th>
+                                <th class="Thred">Valid To</th>
+                                <th class="Thred">Tax Code</th>
+                                <th class="Thred">Tax Currency</th>
+                                <th class="Thred">Tax Amount</th>
+                                <th class="Thred">Tax Percentage</th>
+                            </tr>
+                        </thead>
+                        <tbody class="body-taxEditing"></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer footer-OBDetails">
+                <button type="button" class="btn btn-lift" data-dismiss="modal" style="margin-top:9px">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="showOBExclude" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 1174px; left:3%">
+            <div class="modal-header">
+                <h5 class="modal-title">OUTWARD BILLING EXCLUSION LIST</h5>
+                <button type="button" class="close" style="position: relative;top: -21px;" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body-fim" style="height: 71vh;background-color:rgba(117, 228, 252, 1)">
+                <div class="ajax-loader">
+                    <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" style="top: -54px;height: 110px;width: 274px;" />
+                </div>
+                <div class="col-sm-12 n-padding" style="margin-bottom: 7px;">
+                    <div class="col-sm-3">
+                        <fieldset class="test-fieldst1" style="height: 64px;">
+                            <legend class="test-fieldst">Interline Selection</legend>
+                            <table style="margin-left: 30px;">
+                                <tr>
+                                    <td>OAL Carrier:</td>
+                                    <td>
+                                        <input type="hidden" id="oalCarrierExclude" />
+                                        <select class="form-control oalCarrierExclude" onclick="OalCarrierExclude()">
+                                            <option>All</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="col-sm-12 dataAirportCode" style="margin-left:0px;overflow:auto;">
+                    <div class="col-sm-8 n-padding" style="height:64vh;background-color:white">
+                        <table class="table table-bordered table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="Thred">Airline ID</th>
+                                    <th class="Thred">Sector From</th>
+                                    <th class="Thred">Sector To</th>
+                                    <th class="Thred">Start Date</th>
+                                    <th class="Thred">End Date</th>
+                                    <th class="Thred">Validated</th>
+                                </tr>
+                            </thead>
+                            <tbody class="obExclusionList"></tbody>
+                        </table>
+                    </div>
+                    <div class="col-sm-4">
+                        <table id="getCkeckedValidated">
+                            <tr>
+                                <td>Airline ID:</td>
+                                <td><input type="text" class="form-control" id="airlineId" readonly maxlength="3"></td>
+                            </tr>
+                            <tr><td style="height: 9px;"></td></tr>
+                            <tr>
+                                <td>Sector From:</td>
+                                <td><input type="text" class="form-control" id="sectorFrom" readonly maxlength="3" /></td>
+                            </tr>
+                            <tr><td style="height: 9px;"></td></tr>
+                            <tr>
+                                <td>Sector To:</td>
+                                <td><input type="text" class="form-control" id="sectorTo" readonly maxlength="3" /></td>
+                            </tr>
+                            <tr><td style="height: 9px;"></td></tr>
+                            <tr>
+                                <td>Start Date</td>
+                                <td>
+                                    <div class="input-group">
+                                        <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateFrom1')"></span>
+                                        <input type="text" class="form-control" id="dateFrom1" value="" style="padding-right:3px" readonly />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr><td style="height: 9px;"></td></tr>
+                            <tr>
+                                <td>End Date</td>
+                                <td>
+                                    <div class="input-group">
+                                        <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateTo1')"></span>
+                                        <input type="text" class="form-control" id="dateTo1" value="" style="padding-right:3px" readonly />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr><td style="height: 9px;"></td></tr>
+                            <tr>
+                                <td></td>
+                                <td><label><input type="checkbox" name="validate" id="validated" readonly /> Validated</label></td>
+                            </tr>
+                        </table>
+                        <fieldset class="test-fieldst1" style="height: 64px;text-align: center;">
+                            <legend class="test-fieldst">Interline Selection</legend>
+                            <button type="button" class="btn btn-lift" onclick="addNewOBExclude()">ADD NEW</button>
+                            <button type="button" class="btn btn-lift" onclick="editBillingExclusion('airlineId', 'sectorFrom', 'sectorTo', 'validated')">EDIT</button>
+                            <button type="button" class="btn btn-lift" onclick="savaOBExclude()">SAVE</button>
+                            <button type="button" class="btn btn-lift" onclick="clearBillingExclusion()">CLEAR</button>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer footer-OBDetails">
+                <button type="button" class="btn btn-lift" data-dismiss="modal" style="margin-top: 12px;">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="menu-dispo">
+    <div id="selectDispo" class="menu-dispo-content">
+        <span id="ExchangeTicket" onclick="reprorate()">Re-Prorate</span>
+        <span id="ExchangeDetails" onclick="setExchangeDetails()">View Ticket Details</span>
+    </div>
+</div>
+
+<div id="proration" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Proration</h4>
+                <button type="button" class="close" data-dismiss="modal" style="position: relative;top: -41px;">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="tab-content-proration">
+                    <div class="proration col-md-12" style="position: relative;top: -20px;">
+                        <div class="content col-sm-4">
+                            <form>
+                                <table style="margin-top: 24px;">
+                                    <tr>
+                                        <td>Ticket NO:</td>
+                                        <td><input type="text" name="" class="form-control"></td>
+                                        <td><img src='@Url.Content("~/images/search.png")' class="image-search"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fare:</td>
+                                        <td><input type="text" name="" class="form-control"></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Equiv. Fare:</td>
+                                        <td><input type="text" name="" class="form-control"></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Issue Date:</td>
+                                        <td><input type="text" name="" class="form-control"></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Original Issue Date:</td>
+                                        <td><input type="text" name="" class="form-control"></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Date Of Sale:</td>
+                                        <td><input type="text" name="" class="form-control"></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Clearance Month:</td>
+                                        <td><input type="text" name="" class="form-control"></td>
+                                        <td></td>
+                                    </tr>
+                                </table>
+                            </form>
+                        </div>
+                        <div class="content col-sm-8">
+                            <table>
+                                <tr>
+                                    <td style="width: 52%;"></td>
+                                    <td></td>
+                                    <td>D</td>
+                                    <td>Q</td>
+                                </tr>
+                                <tr>
+                                    <td>Fare Component To Be Prorated (FCTBP):</td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                </tr>
+                                <tr>
+                                    <td>Fare in NUC:</td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                </tr>
+                                <tr>
+                                    <td>NUC-Fare IROE:</td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                </tr>
+                                <tr>
+                                    <td>ATBP-Fare:</td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                </tr>
+                                <tr>
+                                    <td>Equiv.Fare Pd-BSR or 5DR-Prec.MOS ATT.A or B:</td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                </tr>
+                                <tr>
+
+                                    <td>ATBP-Equiv .Fare Pd:</td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                </tr>
+                                <tr>
+                                    <td>COP USD 5 Day Rate Prec. MOC/Mean Rate:</td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                </tr>
+                                <tr>
+                                    <td>ATBP-USD:</td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                </tr>
+                                <tr>
+                                    <td>Total Proviso(s)-USD:</td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                </tr>
+                                <tr>
+                                    <td>BTBP-USD:</td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                </tr>
+                                <tr>
+                                    <td>Total Prorata Factors:</td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                </tr>
+                                <tr>
+                                    <td>Quotient (5d.p.Unroundead):</td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                </tr>
+                                <tr>
+                                    <td>MPR%:</td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="content col-md-12" style="position: relative;top: -30px;">
+                        <div class="col-sm-3">
+                        </div>
+                        <div class="bt-view-component col-sm-9">
+                            <div class="col-sm-2">
+                                <input type="button" name="" value="View coupons" class="bouttons1">
+                            </div>
+                            <div class="col-sm-2">
+                                <input type="button" name="" value="Prorate" class="bouttons2">
+                            </div>
+                            <div class="col-sm-2">
+                                <input type="button" name="" value="PreviousD" class="bouttons">
+                            </div>
+                            <div class="col-sm-2">
+                                <input type="button" name="" value="NextD" class="bouttons3">
+                            </div>
+                            <div class="col-sm-2">
+                                <input type="button" name="" value="PreviousQ" class="bouttons">
+                            </div>
+                            <div class="col-sm-2">
+                                <input type="button" name="" value="NextQ" class="bouttons3">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content col-md-12" style="position: relative;top: -28px;">
+                        <div class="col-sm-12">
+                            <label class="col-form-label">Fare Calculation Area</label>
+                        </div>
+                        <div class="col-sm-12">
+                            <textarea rows="2" style="width:100%"></textarea>
+                        </div>
+
+                    </div>
+                    <div class="content col-md-12" style="position: relative;top: -26px;">
+                        <div class="Involve">
+                            <input type="checkbox" name="">
+                            <label class="form-label">Involve Manual Correction</label>
+                        </div>
+                    </div>
+                    <div class="content col-md-12" style="position: relative;top: -26px;">
+                        <div class="Sec-orig">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Sec Ori</th>
+                                        <th>Carrier</th>
+                                        <th>Sec Dest</th>
+                                        <th>FareBasis</th>
+                                        <th>Pro.Factors</th>
+                                        <th>Proviso(s) & Base Amount</th>
+                                        <th>Prorate/Proviso Value</th>
+                                        <th>RBO</th>
+                                        <th>SRP</th>
+                                        <th>SPA</th>
+                                        <th>Diff.(D)</th>
+                                        <th>Surch.(Q)</th>
+                                        <th>Final Share</th>
+                                        <th>ISC %</th>
+                                        <th>Code Share</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="content col-md-12" style="position: relative;top: -17px;">
+                        <div class="col-sm-4"></div>
+                        <div class="bbt col-sm-7">
+                            <div class="col-sm-4">
+                                <input type="button" name="" value="Previous Fare Component" class="bouttons4">
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="button" name="" value="Next Fare Component" class="bouttons4">
+                            </div>
+                            <div class="col-sm-2">
+                                <input type="button" name="" value="Clear" class="bouttons3">
+                            </div>
+                            <div class="col-sm-2">
+                                <input type="button" name="" value="Close" class="bouttons3" data-dismiss="modal">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="couponBilling" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 1016px; left:10%">
+            <div class="modal-header">
+                <h5 class="modal-title">Symphony - SIS Engine</h5>
+                <button type="button" class="close" style="position: relative;top: -21px;" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body-fim" style="height: 71vh;background-color:rgba(117, 228, 252, 1)">
+                <div class="ajax-loader">
+                    <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" style="top: -54px;height: 110px;width: 274px;" />
+                </div>
+                <div class="col-sm-12 n-padding" style="margin-bottom: 7px;">
+                    <div class="col-sm-3">
+                        <table>
+                            <tr>
+                                <td></td>
+                                <td>YY</td>
+                                <td>MM</td>
+                                <td>PP</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 94px;">Billing Period</td>
+                                <td><input type="text" class="form-control" id="YY" onkeyup="CheckBillingPeriod(this.value)" maxlength="2" /></td>
+                                <td><input type="text" class="form-control" id="MM" onkeyup="CheckBillingPeriod(this.value)" maxlength="2" /></td>
+                                <td><input type="text" class="form-control" id="PP" onkeyup="CheckBillingPeriod(this.value)" maxlength="2" /></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-sm-12 n-padding" style="margin-bottom: 7px;">
+                    <div class="col-sm-6 n-padding" style="overflow:auto;background-color:white;height:200px;">
+                        <table class="table table-bordered table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="Thred">Airline</th>
+                                    <th class="Thred">Airline Name</th>
+                                    <th class="Thred">Net Amount</th>
+                                    <th class="Thred">No. Of Coupons</th>
+                                    <th class="Thred"></th>
+                                </tr>
+                            </thead>
+                            <tbody class="head-sisEngine"></tbody>
+                        </table>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="col-sm-12" style="margin-top:5px"><button type="button" class="btn btn-lift" onclick="btnProrateOb()" id="prorateOb">PRORATE OB</button></div>
+                        <div class="col-sm-12" style="margin-top:5px"><button type="button" class="btn btn-lift" onclick="btnGenerateInvoices()">GENERATE INVOICES</button></div>
+                        <div class="col-sm-12" style="margin-top:5px"><button type="button" class="btn btn-lift" onclick="btnViewRecords()">VIEW RECORDS</button></div>
+                    </div>
+                </div>
+                <div class="col-sm-12 n-padding dataAirportCode" style="overflow:auto;background-color:white;height: 40vh;margin-left:0px">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th class="Thred">BALC</th>
+                                <th class="Thred">AIRLINE ID</th>
+                                <th class="Thred">AIRLINE NAME</th>
+                                <th class="Thred">BILLING PERIOD</th>
+                                <th class="Thred">CPN COUNT</th>
+                                <th class="Thred">GROSS AMT</th>
+                                <th class="Thred">ISC AMT</th>
+                                <th class="Thred">TAX AMT</th>
+                                <th class="Thred">NET AMT</th>
+                                <th class="Thred">INV NO</th>
+                                <th class="Thred">XML FILE</th>
+                                <th class="Thred">STATUS</th>
+                            </tr>
+                        </thead>
+                        <tbody class="body-taxVerification"></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer footer-OBDetails">
+                <div class="col-sm-12" style="float:left;margin-top: 11px;">
+                    <div class="col-sm-4"><button type="button" class="btn btn-lift">GENERATE SIS IS-XML FILES</button></div>
+                    <div class="col-sm-1"><button type="button" class="btn btn-lift">CANCEL</button></div>
+                    <div class="col-sm-2"><button type="button" class="btn btn-lift">OPEN FOLDER</button></div>
+                    <div class="col-sm-1"><button type="button" class="btn btn-lift" data-dismiss="modal">Close</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="viewRecord" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 1313px; left:3%">
+            <div class="modal-header">
+                <h5 class="modal-title"></h5>
+                <button type="button" class="close" style="position: relative" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body-fim" style="height: 71vh;background-color:rgba(117, 228, 252, 1)">
+                <div class="ajax-loader">
+                    <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" style="top: -54px;height: 110px;width: 274px;" />
+                </div>
+
+                <div class="col-sm-12 n-padding dataAirportCode" style="overflow:auto;background-color:white;height: 48vh;margin-left:0px">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th class="Thred">BILLING PERIOD</th>
+                                <th class="Thred">ALC</th>
+                                <th class="Thred">DOC</th>
+                                <th class="Thred">CPN NO</th>
+                                <th class="Thred">CK</th>
+                                <th class="Thred">PMC</th>
+                                <th class="Thred">SECTOR</th>
+                                <th class="Thred">GROSS AMT</th>
+                                <th class="Thred">ISC %</th>
+                                <th class="Thred">ISC AMT</th>
+                                <th class="Thred">FLIGHT NO</th>
+                                <th class="Thred">FLIGHT DATE</th>
+                                <th class="Thred">ETKTSAC</th>
+                                <th class="Thred">TAX AMT</th>
+                                <th class="Thred">INV NO</th>
+                                <th class="Thred">NET AMT</th>
+                                <th class="Thred">TAX DETAILS</th>
+                            </tr>
+                        </thead>
+                        <tbody class="body-viewRecord"></tbody>
+                    </table>
+                </div>
+                <div class="modal-footer footer-OBDetails">
+                    <div class="col-sm-9 n-padding" style="margin-top: 11px;">
+                        <div class="panel n-padding">
+                            <div class="panel-heading" style="text-align:center;background-color:rgb(124,252,0);padding:1px">
+                                <h5>TAX BREAKDOWN (USD)</h5>
+                            </div>
+                            <div class="panel-body" style="padding:0px;background-color:rgba(117, 228, 252, 1)">
+                                <div class="col-sm-9" style="margin-top: 11px;">
+                                    <table>
+                                        <tr style="text-align: left;">
+                                            <td style="width:125px">AIRLINE ID:</td>
+                                            <td style="width:100px" id="alc">ALC</td>
+                                            <td style="width:135px">CHECK DIGIT:</td>
+                                            <td style="width:100px" id="chk">CHK</td>
+                                            <td colspan="2">Tax Entry</td>
+                                        </tr>
+                                        <tr style="text-align: left;">
+                                            <td style="width:125px">DOCUMENT NO:</td>
+                                            <td id="doc">DOC</td>
+                                            <td>BILLING PERIOD:</td>
+                                            <td id="BillingPeriod">BillingPeriod</td>
+                                            <td style="width: 119px;">TAX CODE:</td>
+                                            <td><input type="text" class="form-control" id="taxCode" /></td>
+                                        </tr>
+                                        <tr style="text-align: left;">
+                                            <td>COUPON NO:</td>
+                                            <td colspan="3" id="cpn">CPN</td>
+                                            <td>TAX AMOUNT:</td>
+                                            <td><input type="text" class="form-control" id="taxAmount" /></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="col-sm-3 n-padding" style="overflow:auto;background-color:white;height: 100px;margin-left:0px">
+                                    <table class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th class="Thred">TAX CODE</th>
+                                                <th class="Thred">TAX AMOUNT</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="body-obViewr"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="panel-footer" style="height: 54px;background-color:rgb(23,124,202)">
+                                <div class="col-sm-11">
+                                    <div class="col-sm-1"><button type="button" class="btn btn-lift">NEW</button></div>
+                                    <div class="col-sm-1"><button type="button" class="btn btn-lift">EDIT</button></div>
+                                    <div class="col-sm-1"><button type="button" class="btn btn-lift" onclick="saveOBViewer()">SAVE</button></div>
+                                    <div class="col-sm-1"><button type="button" class="btn btn-lift" onclick="deleteOBViewer()">DELETE</button></div>
+                                    <div class="col-sm-1"><button type="button" class="btn btn-lift">CANCEL</button></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <button type="button" class="btn btn-lift" onclick="taxEditing()" style="position: relative;top: 79px;left: -43px;">Tax Editing Screen</button>
+                        <button type="button" class="Close btn btn-default btn-close" data-dismiss="modal" style="position: relative;top: 164px;">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="menu-dispo">
+    <div id="selectDispo" class="menu-dispo-content">
+        <span id="ExchangeTicket" onclick="deleteAirline()">DELETE AIRLINE</span>
+    </div>
+</div>
+
+<div id="reGenerate" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 708px; left:16%">
+            <div class="modal-header">
+                <h5 class="modal-title">Re_Generate</h5>
+                <button type="button" class="close" style="position: relative;top: -21px;" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body-fim" style="height: 23vh;background-color:rgba(117, 228, 252, 1)">
+                <div class="ajax-loader">
+                    <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" style="top: -54px;height: 110px;width: 274px;" />
+                </div>
+                <div class="col-sm-12" style="margin-bottom: 7px;">
+                    <div class="col-sm-10 n-padding">
+                        <table style="width:88%">
+                            <tr>
+                                <td>Billing Period</td>
+                                <td>
+                                    <input type="hidden" id="tmpregeneratePeriod" />
+                                    <select class="form-control regenerateBillPeriod">
+                                        <option>All</option>
+                                    </select>
+                                </td>
+                                <td style="text-align: right;padding-right: 11px;">Airline Code</td>
+                                <td>
+                                    <input type="hidden" id="tmpregenerate" />
+                                    <select class="form-control regenerateAirlineCode" onclick="getRegenerateAirline()">
+                                        <option>All</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-sm-12" style="position: relative;top: 14px;">
+                    <label class="aboutAirline"></label>
+                </div>
+
+                <div class="col-sm-12">
+                    <div style="border:1px solid; height:107px;margin-top:28px;padding:7px">
+                        <h5>
+                            Please note that all coupons for the selected period will be re-invoiced.
+                            Make sure not to overbill airlines
+                        </h5>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer footer-OBDetails">
+                <div class="col-sm-12" style="float:left;margin-top: 11px;">
+                    <div class="col-sm-4"><button type="button" class="btn btn-lift" onclick="procedReprorate()">Proceed</button></div>
+                    <div class="col-sm-4"><button type="button" class="btn btn-lift" data-dismiss="modal">Close</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

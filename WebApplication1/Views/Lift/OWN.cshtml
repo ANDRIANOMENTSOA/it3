@@ -1,0 +1,237 @@
+﻿@using System.Data
+@model DataSet
+<div class="col-sm-11 tab-content tab-cancellation">
+
+    <div class="content-cancellation col-sm-11">
+        <div class="col-sm-4">
+            <fieldset class="test-fieldst">
+                <legend class="test-fieldst">Fligth Date</legend>
+                <div class="col-sm-6 width-group">
+                    <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">From:</label>
+                    <div class="col-sm-7 n-padding">
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateFrom')"></span>
+                            <input type="text" class="form-control" id="dateFrom" value="@ViewBag.date[0]" style="padding-right:3px">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6" style="margin-bottom: 19px;">
+                    <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">To:</label>
+                    <div class="col-sm-7 n-padding">
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateTo')"></span>
+                            <input type="text" class="form-control" id="dateTo" value="@ViewBag.date[1]" style="padding-right:3px">
+                        </div>
+                    </div>
+                </div>
+
+            </fieldset>
+            <div class="row">
+                <div class="col-sm-6" style="margin-top:29px;margin-left:0px;left: -14px;">
+                    <label class="col-sm-7 col-form-label" style="">Pax Final Counts:</label>
+                    <div class="col-sm-5 n-padding">
+                        <input type="text" class="form-control" value="@ViewBag.date[0]" id="txtPaCount" disabled />
+                    </div>
+                </div>
+
+                <div class="col-sm-6" style="margin-top: 29px;">
+                    <label class="col-sm-7 col-form-label" style="">Flown Revenue Net:</label>
+                    <div class="col-sm-5 n-padding">
+                        <input type="text" class="form-control" value="@ViewBag.date[1]" id="txtFalown" disabled />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-sm-3">
+            <fieldset class="test-fieldst">
+
+                <div class="form-group row" style="padding-left:7px;margin-top:7px">
+                    <label class="col-sm-5 col-form-label" style="">Agent Numeric Code:</label>
+                    <div class="col-sm-5" id="loadAgt">
+
+                        <select class="form-control" id="dropdownType" onclick="recupeAgt()" style="width:150px;">
+                            <option>-All-</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-1 containt-btn" style="width: 33px !important; height:30px;">
+                        <button class="point-interogation pink btn" data-toggle="modal" data-target="#AgentCodeModal">
+                            <span class="point-span">?</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group row" style="padding-left:7px">
+                    <label class="col-sm-5 col-form-label" style="position: relative;top: 9px;">Agent Name:</label>
+                    <div class="col-sm-5" style="">
+                        <input type="text" class="form-control" style="width:195px;" id="agName" />
+                    </div>
+                </div>
+                <div class="form-group row" style="padding-left:7px">
+                    <label class="col-sm-5 col-form-label" style="position: relative;top: 9px;">Agent Location:</label>
+                    <div class="col-sm-5" style="">
+                        <input type="text" class="form-control" style="width:195px;" id="agLocation" />
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="col-sm-2">
+            <fieldset class="test-fieldst">
+                <div class="form-group row" style="padding-left:7px;margin-top:7px">
+                    <label class="col-sm-5 col-form-label" style="">Fligth No:-</label>
+                    <div class="col-sm-5">
+
+                        <select class="form-control" id="dropdownType1" onclick="" style="width:110px;">
+                            <option>-All-</option>
+                        </select>
+
+                    </div>
+                </div>
+                <div class="form-group row" style="padding-left:7px;padding-top:45px">
+                    <label class="col-sm-5 col-form-label" style="">Sector:-</label>
+                    <div class="col-sm-5" style="">
+                        <input type="text" class="form-control" style="width:90px;" disabled />
+                    </div>
+                </div>
+
+            </fieldset>
+        </div>
+        <div class="col-sm-3" id="OwnOal" style="position: relative;top: 0px;">
+            <div class="search">
+                <div class="col-sm-3"><button type="button" class="search-interogation green btn" onclick="setCriteriaOAL()"><span class="search-span">SEARCH</span></button></div>
+                <div class="col-sm-3"><button type="button" class="search-interogation green btn" onclick="clearOAL()"><span class="search-span">CLEAR</span></button></div>
+                <div class="col-sm-3"><button class="search-interogation green btn" onclick="removeSousMenu()"><span class="search-span">CLOSE</span></button></div>
+            </div>
+            <div class="col-sm-4" style="top: 46px;left: 12px;">
+                <label class="form-check-label col-form-label" for="inlineRadio">Display Own</label>
+                @{ 
+                    string checkt = "";
+                    string checkt1 = "";
+                    if(ViewBag.param == "own")
+                    {
+                        checkt = "checked";
+                    } else
+                    {
+                        checkt1 = "checked";
+                    }
+                }
+                <input class="form-check-input" type="checkbox" name="chOWN" id="" value="Oui" @checkt disabled>
+            </div>
+            <div class="col-sm-4" style="top: 46px;">
+                <label class="form-check-label col-form-label" for="inlineRadio">Display OAL</label>
+                <input class="form-check-input" type="checkbox" name="chkOAL" id="" value="Non" @checkt1 disabled>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="ajax-loader">
+            <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+        </div>
+        <div class="col-sm-12" style="margin-top:40px" id="loadOAL">
+
+            <div class="table-record-display" style="height:545px;overflow:auto;">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="green">Document No</th>
+                            <th class="green">CPN</th>
+                            <th class="green">Origin</th>
+                            <th class="green">Dest</th>
+                            <th class="green">Filgth No.</th>
+                            <th class="green">Flight Date</th>
+                            <th class="green">Used Class Of Service</th>
+                            <th class="green">Currency</th>
+                            <th class="green">Exchanged Ticket</th>
+                            <th class="green">Billing Type</th>
+                            <th class="green">BSP</th>
+                            <th class="green">Agent</th>
+                            <th class="green">Agent Remuneration Rate</th>
+                            <th class="green">Applied Sales Remuneration Rate</th>
+                            <th class="green">Agent Remuneration Amount</th>
+                            <th class="green">Gross Value</th>
+                            <th class="green">ISC %</th>
+                            <th class="green">ISC Amount</th>
+                            <th class="green">UATP Amount</th>
+                            <th class="green">Handling Fee</th>
+                            <th class="green">Total Taxe</th>
+                            <th class="green">Source Code</th>
+                            <th class="green">Cpn_Status</th>
+                            <th class="green">ESAC</th>
+                            <th class="green">Own Ticket</th>
+                            <th class="green">Billing Period</th>
+                            <th class="green">Invoice No</th>
+                            <th class="green">Net Amount</th>
+
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!--AgentQuery-->
+<div class="modal fade" id="AgentCodeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="Doc modal-content" style="width: 58%;left: 17%; background-color: rgba(135, 206, 235, 1) !important; ">
+            <div class="agentModal">
+                <div class="modal-header" style="background-color: white; margin-bottom: 21px;">
+                    <h5 class="modal-title" id="myModalLabel">Agent Query</h5>
+                    <button type="button" class="close close-agent-code" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="DocCollect-modal-body">
+                    <div class="scoll-tree scoll-agent-code">
+                        <div class="head-agent-code-content">
+                            <div class="form-row">
+                                <div class="col col-md-3" style="padding-left: 0px;">Agent Legal Name:</div>
+                                <div class="col col-md-4">
+                                    <input type="text" class="form-control" id="name" name="agentName" onkeyup="cherche2(this.value)" />
+                                </div>
+                                <div class="col col-md-2">Agent Code:</div>
+                                <div class="col col-md-3">
+                                    <input type="text" class="form-control" id="code" name="agentCode" onkeyup="cherche2(this.value)" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="agentContent" style="width: 98%; max-height: 415px;">
+                            <table class="table table-agent-code" style="margin-bottom:0px">
+                                <thead>
+                                    <tr>
+                                        <th width="35%">Agent Code</th>
+                                        <th width="70%">Agent Name</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <div class="autocomplete">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="background-color:rgba(135, 206, 235, 1) !important;">
+                    <div class="col-md-9 footer-agent-code">
+                        <div class="col-md-12">
+                            <label>Agent Name: </label>
+                            <label style="color:white;font-size:12px" id="agent-name-label"></label>
+                        </div>
+                        <div class="col-md-12">
+                            <label>Agent Code: </label>
+                            <label style="color:white; font-size:12px" id="agent-code-label"></label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <button type="button" class="Close btn btn-secondary green" data-dismiss="modal">Close</button>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

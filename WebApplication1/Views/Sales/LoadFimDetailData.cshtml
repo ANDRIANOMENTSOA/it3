@@ -1,0 +1,224 @@
+﻿@using System.Data
+@model DataSet
+@{ string own = "", oal = "";}
+@foreach (DataRow dr in Model.Tables[0].Rows)
+{
+    if (dr[Model.Tables[0].Columns[1].ColumnName].ToString() == "1")
+    {
+        own = "checked";
+    }
+    if (dr[Model.Tables[0].Columns[1].ColumnName].ToString() == "2")
+    {
+        oal = "checked";
+    }
+    <div class="col-sm-7 n-padding">
+        <fieldset class="test-fieldst1" style="padding: 7px;">
+            <div class="col-sm-3">
+                <fieldset class="test-fieldst1" id="ownOal">
+                    <div class="col-sm-4 n-padding" style="margin-left: 16px;margin-right: 16px;">
+                        <input class="form-check-input" type="radio" name="ownOal" value="1" @own>
+                        <label class="form-check-label col-form-label" for="inlineRadio1">OWN</label>
+                    </div>
+                    <div class="col-sm-4 n-padding">
+                        <input class="form-check-input" type="radio" name="ownOal" value="2" @oal>
+                        <label class="form-check-label col-form-label" for="inlineRadio1">OAL</label>
+                    </div>
+                </fieldset>
+            </div>
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#flightsLookup">Get Flight Details</button>
+        </fieldset>
+    </div>
+    <div class="col-sm-12 n-padding">
+        <table class="tab-refundEng table-fim">
+            <tr style="border: 1px solid;">
+                <td class="col-sm-3">FLIGHT INTERRRUPTION MANIFEST NO.</td>
+                <td width="41%"><input type="text" class="form-engine width-engine" value="@dr[Model.Tables[0].Columns[27].ColumnName].ToString()" id="fimNumber" /></td>
+                <td style="border-left: 1px solid;">Sector:</td>
+                <td><input type="text" class="form-engine width-engine" value="@dr[Model.Tables[0].Columns[29].ColumnName].ToString()" id="sector" /></td>
+            </tr>
+        </table>
+        <table class="tab-refundEng table-fim">
+            <tr class="border-left-right-botm">
+                <td width="6%">Routed From</td>
+                <td width="6%"><input type="text" class="form-engine width-engine width-engine-sm" value="@dr[Model.Tables[0].Columns[5].ColumnName].ToString()" id="routed1" onkeyup="changeVlaue(this.value,'1')" /></td>
+                <td width="20%"><button type="button" class="btn btn-default btn-fim" onclick="showModalAirportCode('1')">...</button></td>
+
+                <td width="7%" style="border-left: 1px solid">Rerouted From</td>
+                <td width="6%"><input type="text" class="form-engine width-engine width-engine-sm" value="@dr[Model.Tables[0].Columns[10].ColumnName].ToString()" id="routed2" onkeyup="changeVlaue(this.value,'2')" /></td>
+                <td width="21.1%"><button type="button" class="btn btn-default btn-fim" onclick="showModalAirportCode('2')">...</button></td>
+
+                <td width="7%" style="border-left:1px solid">Rerouted From</td>
+                <td width="6%"><input type="text" class="form-engine width-engine width-engine-sm" value="@dr[Model.Tables[0].Columns[16].ColumnName].ToString()" id="routed3" onkeyup="changeVlaue(this.value,'3')" /></td>
+                <td><button type="button" class="btn btn-default btn-fim" onclick="showModalAirportCode('3')">...</button></td>
+            </tr>
+        </table>
+        <table class="tab-refundEng table-fim">
+            <tr style="border-left: 1px solid;border-right: 1px solid;">
+                <td width="6%">Airline</td>
+                <td width="6%">Flight</td>
+                <td width="6%">Date</td>
+                <td width="6%">Place of interruption</td>
+
+                <td width="6%" style="border-left:1px solid">Airline</td>
+                <td width="6%">Flight</td>
+                <td width="6%">Date</td>
+                <td width="6%">From</td>
+                <td width="6%">To</td>
+
+                <td width="6%" style="border-left:1px solid">Airline</td>
+                <td width="6%">Flight</td>
+                <td width="6%">Date</td>
+                <td width="6%">From</td>
+                <td width="6%">To</td>
+            </tr>
+            <tr class="border-left-right-botm">
+                <td><input type="text" class="form-engine width-engine width-engine-sm" value="@dr[Model.Tables[0].Columns[6].ColumnName].ToString()" id="airline" /></td>
+                <td><input type="text" class="form-engine width-engine width-engine-sm" value="@dr[Model.Tables[0].Columns[7].ColumnName].ToString()" id="flight" /></td>
+                <td><input type="text" class="form-engine width-engine input-fim-date" value="@dr[Model.Tables[0].Columns[8].ColumnName].ToString()" id="dateFlight" /></td>
+                <td><input type="text" class="form-engine width-engine" style="width:154px !important" id="placeInterruption" value="@dr[Model.Tables[0].Columns[9].ColumnName].ToString()" /></td>
+
+                <td style="border-left: 1px solid;"><input type="text" class="form-engine width-engine width-engine-sm" value="@dr[Model.Tables[0].Columns[11].ColumnName].ToString()" id="1airline" /></td>
+                <td><input type="text" class="form-engine width-engine width-engine-sm" value="@dr[Model.Tables[0].Columns[12].ColumnName].ToString()" id="1flight" /></td>
+                <td><input type="text" class="form-engine width-engine input-fim-date" value="@dr[Model.Tables[0].Columns[13].ColumnName].ToString()" id="1dateFlight" /></td>
+                <td><input type="text" class="form-engine width-engine width-engine-sm" id="fromInterruption" value="@dr[Model.Tables[0].Columns[14].ColumnName].ToString()" /></td>
+                <td><input type="text" class="form-engine width-engine width-engine-sm" id="toInterruption" value="@dr[Model.Tables[0].Columns[15].ColumnName].ToString()" /></td>
+
+                <td style="border-left: 1px solid;"><input type="text" class="form-engine width-engine width-engine-sm" value="@dr[Model.Tables[0].Columns[17].ColumnName].ToString()" id="2airline" /></td>
+                <td><input type="text" class="form-engine width-engine width-engine-sm" value="@dr[Model.Tables[0].Columns[18].ColumnName].ToString()" id="2flight" /></td>
+                <td><input type="text" class="form-engine width-engine input-fim-date" value="@dr[Model.Tables[0].Columns[19].ColumnName].ToString()" id="2dateFlight" /></td>
+                <td><input type="text" class="form-engine width-engine width-engine-sm" id="fromInterruption3" value="@dr[Model.Tables[0].Columns[20].ColumnName].ToString()" /></td>
+                <td><input type="text" class="form-engine width-engine width-engine-sm" id="toInterruption3" value="@dr[Model.Tables[0].Columns[21].ColumnName].ToString()" /></td>
+            </tr>
+        </table>
+    </div>
+}
+
+<div class="col-sm-12 n-padding">
+    <div class="ajax-loader">
+        <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" style="top: -54px;height: 110px;width: 274px;" />
+    </div>
+    <div class="fim-middle">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th rowspan="2" class="pink">No</th>
+                    <th rowspan="2" class="pink">Passenger Name</th>
+                    <th colspan="5" class="pink">Ticket Number</th>
+                    <th rowspan="2" class="pink">Fare Basis and Passenger Type Code</th>
+                    <th colspan="2" class="pink">Cabin Class</th>
+                    <th rowspan="2" class="pink">Billed (NOC)</th>
+                    <th rowspan="2" class="pink">Accepted (OOC)</th>
+                    <th rowspan="2" class="pink">Difference</th>
+                    <th rowspan="2" class="pink"><input type="checkbox" /></th>
+                </tr>
+                <tr>
+                    <th class="pink">Cpn</th>
+                    <th class="pink">Airline Code</th>
+                    <th class="pink">Form and Serial Number</th>
+                    <th class="pink">Ck</th>
+                    <th class="pink">ET</th>
+                    <th class="pink">New Flight 1</th>
+                    <th class="pink">New Flight 2</th>
+                </tr>
+            </thead>
+            <tbody id="loadFimHeader">
+                @foreach (DataRow dr in ViewBag.fimBody.Tables[0].Rows)
+                {
+                    <tr>
+                        @for (int i = 0; i < ViewBag.fimBody.Tables[0].Columns.Count; i++)
+                        {
+                            if (i == 12 )
+                            {
+                                if (string.IsNullOrEmpty(dr[ViewBag.fimBody.Tables[0].Columns[12].ColumnName].ToString()))
+                                {
+                                    <td><input type="checkbox" name="difference[]" /></td>;
+                                }
+                                else
+                                {
+                                    <td><input type="checkbox" name="difference[]" checked value="1"/></td>;
+                                }
+
+                            }
+                            else
+                            {
+                                <td>@dr[ViewBag.fimBody.Tables[0].Columns[i].ColumnName].ToString()</td>;
+                            }
+
+                        }
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="col-sm-12 n-padding" style="margin-top: 3px;">
+    <div class="fim-middle1">
+        <table class="table table-bordered table-striped" style="width:86%">
+            <thead>
+                <tr>
+                    <th class="pink"></th>
+                    <th class="pink">Excess Baggage</th>
+                    <th class="pink"></th>
+                    <th class="pink"></th>
+                    <th class="pink"></th>
+                    <th class="pink"></th>
+                    <th class="pink"></th>
+                    <th class="pink"></th>
+                    <th class="pink">Exc. Wt</th>
+                    <th class="pink">Exc. Pc</th>
+                    <th class="pink"></th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+@{ string un = "", deux = "", trois = "", quatre = "";}
+@foreach (DataRow dr in Model.Tables[0].Rows)
+{
+    if (dr[Model.Tables[0].Columns[23].ColumnName].ToString() == "1")
+    {
+        un = "checked";
+    }
+    if (dr[Model.Tables[0].Columns[23].ColumnName].ToString() == "1")
+    {
+        deux = "checked";
+    }
+    if (dr[Model.Tables[0].Columns[23].ColumnName].ToString() == "1")
+    {
+        trois = "checked";
+    }
+    if (dr[Model.Tables[0].Columns[23].ColumnName].ToString() == "1")
+    {
+        quatre = "checked";
+    }
+    <div class="col-sm-12 n-padding">
+        <table class="tab-refundEng table-fim" id="reasonIssuance">
+            <tr class="border-top-left-right">
+                <td width="5%" colspan="4">Reason for issuance</td>
+                <td style="border-left:1px solid"></td>
+                <td width="6%">Diversion By</td>
+                <td colspan="2" style="border-left:1px solid"></td>
+
+            </tr>
+            <tr class="border-left-right-botm">
+                <td width="6%"><input type="radio" name="reasonIssuance" @un value="1" /> CXLD</td>
+                <td width="6%"><input type="radio" name="reasonIssuance" @deux value="2" /> DLYD</td>
+                <td width="6%"><input type="radio" name="reasonIssuance" @trois value="3" /> OVSLD</td>
+                <td width="7%"><input type="radio" name="reasonIssuance" @quatre value="4" /> MSCNX</td>
+
+                <td width="6%" style="border-left:1px solid">Carrier Code</td>
+                <td width="6%"><input type="text" class="form-engine width-engine width-engine-sm" value="@dr[Model.Tables[0].Columns[23].ColumnName].ToString()" id="airline1" /></td>
+                <td width="6%" style="border-left:1px solid">Total number of passengers</td>
+                <td width="6%"><input type="text" class="form-engine width-engine width-engine-sm" value="@dr[Model.Tables[0].Columns[24].ColumnName].ToString()" id="totalNumberPassenger" /></td>
+            </tr>
+            <tr style="border:1px solid">
+                <td colspan="3">Validator, name and / or ID of the FIM issuing agent </td>
+                <td colspan="5"><input type="text" class="form-engine width-engine" value="@dr[Model.Tables[0].Columns[25].ColumnName].ToString()" id="validatorName" /></td>
+            </tr>
+        </table>
+    </div>
+}
+
+

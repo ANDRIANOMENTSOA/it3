@@ -1,0 +1,52 @@
+﻿<div class="col-sm-9">
+    <div class="table-record-display" style="height:720px;margin-top:40px;width:1390px;overflow:auto">
+        <table class="table table-bordered table-hover table-striped" style="width:80%">
+            <thead>
+                <tr>
+                    <th class="green-tab">USAGE DATE</th>
+                    <th class="green-tab">FLIGHT No</th>
+                    <th class="green-tab">USAGE ORIGIN</th>
+                    <th class="green-tab">STATION OF LOADING</th>
+                    <th class="green-tab">DESTINATION</th>
+                    <th class="green-tab">SLS COUNT</th>
+                    <th class="green-tab">LIFT COUNT</th>
+                    <th class="green-tab">DIF</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for(int i=0; i< ViewBag.Compt; i++)
+                {
+                    <tr>
+                        @for(int j=0; j<8; j++)
+                        {
+                            <td>@ViewBag.compare[j,i]</td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="col-sm-3" style="left:150px;top:50px;background-color:#1480dc">
+    <table class="table table-cancellation">
+        <tr>
+            <td width="38%">Total Pax SLS</td>
+            <td width="27%"><input type="text" class="form-control" name="" id="Document" value="@ViewBag.sls"/> </td>
+            <td width="10%"></td>
+        </tr>
+    </table>
+    <table class="table table-cancellation">
+        <tr>
+            <td width="38%">Total Pax Uplifted</td>
+            <td width="27%"><input type="text" class="form-control" name="" id="share" value="@ViewBag.Lift"/></td>
+            <td width="10%"></td>
+        </tr>
+    </table>
+    <table class="table table-cancellation">
+        <tr>
+            <td width="38%">Total Differnce</td>
+            <td width="27%"><input type="text" class="form-control" name="" id="VatAmount" value="@ViewBag.Diff"/></td>
+            <td width="10%"></td>
+        </tr>
+    </table>
+</div>

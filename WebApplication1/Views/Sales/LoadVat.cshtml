@@ -1,0 +1,70 @@
+﻿@using System.Data
+@model DataSet
+<div class="col-sm-8">
+    <div class="table-record-display" style="height:560px;overflow:auto">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th class="pink">Document No</th>
+                    <th class="pink">Cpn</th>
+                    <th class="pink">Period</th>
+                    <th class="pink">Agent Code</th>
+                    <th class="pink">Orig</th>
+                    <th class="pink">Dest</th>
+                    <th class="pink">Final Share(USD)</th>
+                    <th class="pink">VAT %</th>
+                    <th class="pink">VAT Amount </th>
+                    <th class="pink">Total VAT Included</th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (DataRow dr in Model.Tables[0].Rows)
+                {
+                    <tr>
+                        @for (int i = 0; i < Model.Tables[0].Columns.Count; i++)
+                        {
+                            <td>@dr[Model.Tables[0].Columns[i].ColumnName].ToString()</td>;
+                            //Share +=Convert.ToDecimal(dr[Model.Tables[0].Columns[6].ColumnName].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+<div class="col-sm-4">
+    <table class="table table-cancellation">
+        <tr>
+            <td width="38%">Total No of Document</td>
+            <td width="27%"><input type="text" class="form-control" name="" id="Document" value="@ViewBag.compt" /> </td>
+            <td width="10%"></td>
+        </tr>
+    </table>
+    <table class="table table-cancellation">
+        <tr>
+            <td width="38%">Total Final Share</td>
+            <td width="27%"><input type="text" class="form-control" name="" id="share" value="@ViewBag.Share" /></td>
+            <td width="10%"></td>
+        </tr>
+    </table>
+    <table class="table table-cancellation">
+        <tr>
+            <td width="38%">Total VAT Amount</td>
+            <td width="27%"><input type="text" class="form-control" name="" id="VatAmount" value="@ViewBag.VatA" /></td>
+            <td width="10%"></td>
+        </tr>
+    </table>
+    <table class="table table-cancellation">
+        <tr>
+            <td width="38%">Total VAT Amount Included</td>
+            <td width="27%"><input type="text" class="form-control" name="" id="VatIncluded" value="@ViewBag.VatI" /></td>
+            <td width="10%"></td>
+        </tr>
+    </table>
+
+
+</div>
+

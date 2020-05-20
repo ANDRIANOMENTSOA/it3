@@ -1,0 +1,30 @@
+﻿
+@using System.Data
+@model DataSet
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th class="pink">Dcument No.</th>
+            <th class="pink">CPN</th>
+            <th class="pink">Sale Date</th>
+            <th class="pink">Flight Date</th>
+            <th class="pink">Fare Basis</th>
+            <th class="pink">NVA</th>
+            <th class="pink">Orig.</th>
+            <th class="pink">Dest.</th>
+            <th class="pink">Final Share (USD)</th>
+            <th class="pink">Remarks</th>
+        </tr>
+    </thead>
+    <tbody id="summUnusedDoc">
+        @foreach (DataRow dr in Model.Tables[0].Rows)
+        {
+            <tr ondblclick="loadDocNum(this,@dr[Model.Tables[0].Columns[0].ColumnName].ToString(),'TKTT')">
+                @for (int i = 0; i < Model.Tables[0].Columns.Count; i++)
+                {
+                    <td>@dr[Model.Tables[0].Columns[i].ColumnName].ToString()</td>;
+                }
+            </tr>
+        }
+    </tbody>
+</table>

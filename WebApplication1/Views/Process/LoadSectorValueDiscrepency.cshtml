@@ -1,0 +1,52 @@
+﻿
+<div class="col-sm-10">
+    <div class="table-record-display contentUnused" style="height:598px;overflow:auto">
+        <table  id="tabSVC" class="table table-bordered table-striped table-hover" style="overflow:auto">
+            <thead>
+                <tr>
+                    <th class="pink">Date Of Issue</th>
+                    <th class="pink">Agent</th>
+                    <th class="pink">Ticket No</th>
+                    <th class="pink">Relate No</th>
+                    <th class="pink">CPN</th>
+                    <th class="pink">Ori</th>
+                    <th class="pink">Des</th>
+                    <th class="pink">RBD</th>
+                    <th class="pink">Prime Code</th>
+                    <th class="pink">Final Share</th>
+                    <th class="pink">Min Sector Value</th>
+                    <th class="pink">Max Sector Value</th>
+
+                </tr>
+            </thead>
+            <tbody id="tabSVC">
+                @for (int i = 0; i < ViewBag.lon2; i++)
+                {
+                    <tr>
+                        @for (int j = 0; j < 12; j++)
+                        {
+                            <td>@ViewBag.data2[j, i]</td>
+
+                        }
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+
+    </div>
+    <div class="col-sm-12" style="margin-top: 58px;">
+
+        <div class="col-sm-2">Total Number of Tickets</div>
+        <div class="col-sm-2">
+            <input type="text" name="" value="@ViewBag.lon2" style="width: 80px" disabled>
+        </div>
+        <div class="col-sm-9">
+            <img src="/Images/CSVPic.jpg" onclick="ExportCSV()" style="height: 35px; top:15px;">
+        </div>
+    
+    </div>
+    
+</div>
+
+

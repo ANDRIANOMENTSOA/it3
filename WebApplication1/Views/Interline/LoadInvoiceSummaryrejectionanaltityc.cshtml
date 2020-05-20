@@ -1,0 +1,23 @@
+﻿<div class="row" style="height:150px" id="newdivdataGridView20">
+    <table class="table table-bordered tablehead" id="dataGridView20" style="width:100%;">
+        <thead>
+            <tr>
+                @for(int i = 0; i < ViewBag.l1; i++)
+                {
+                    <th style="@ViewBag.dataGridView20ColumnHeadersBackColor;@ViewBag.dataGridView20ColumnHeadersForeColor">@ViewBag.dataGridView20TH[i]</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @for(int i =0;i< ViewBag.ligne; i++)
+            {
+                <tr>
+                    @for(int j=0;j< ViewBag.colone; j++)
+                    {
+                        <td style="@ViewBag.dataGridView20ColumnsBackColor[j];@ViewBag.dataGridView20ColumnsWidth[j]">@ViewBag.dataGridView20[i,j]</td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

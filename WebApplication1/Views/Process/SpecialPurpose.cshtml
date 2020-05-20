@@ -1,0 +1,170 @@
+﻿<div class="col-sm-11 tab-content tab-cancellation">
+    <div class="content-cancellation col-sm-11">
+        <div class="row">
+            <div class="col-sm-4">
+                <fieldset class="test-fieldst">
+                    <legend class="test-fieldst">Date Of Issue</legend>
+                    <div class="col-sm-6 width-group">
+                        <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">From:</label>
+                        <div class="col-sm-9 n-padding">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateFromSpecialPurp')"></span>
+                                <input type="text" class="form-control" id="dateFromSpecialPurp" value="@ViewBag.dateFrom" style="padding-right:3px">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6" style="margin-bottom: 19px;">
+                        <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">To:</label>
+                        <div class="col-sm-9 n-padding">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateToSpecialPurp')"></span>
+                                <input type="text" class="form-control" id="dateToSpecialPurp" value="@ViewBag.dateTo" style="padding-right:3px">
+                            </div>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </div>
+            <div class="col-sm-2" style="">
+                <input type="hidden" id="testspc" />
+                <input type="hidden" id="testspc1" />
+                <fieldset class="test-fieldst" style="padding: 10px;">
+                    <legend class="test-fieldst">Search Criteria</legend>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            SPC:
+                        </div>
+                        <div class="col-sm-9">
+                            <select class="form-control" style="width:148px" id="agspc" onclick="recupeAgtSpc()">
+                                <option>-All-</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </div>
+            <div class="col-sm-3" style="top:26px">
+                <button class="btn-default btn-outward" onclick="searchSpecialPurpose()"><span class="glyphicon glyphicon-search"></span></button>
+                <button class="btn-default btn-outward" style="margin-left:25px" onclick="clearSPC()">Clear</button>
+                <button class="btn-default btn-outward" style="margin-left:25px" onclick="removeSousMenu()">Close</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-9" style="margin-top: 25px;" id="loadSpecialPurpose">
+                <div class="ajax-loader">
+                    <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+                </div>
+                <div class="table-record-display" style="height:600px;overflow:auto">
+                    <table class="table table-bordered table-striped" style="width: 84%;">
+                        <thead>
+                            <tr>
+
+                                <th class="green-tab">Date of Issue</th>
+                                <th class="green-tab">Document Number</th>
+                                <th class="green-tab">Passenger Name</th>
+                                <th class="green-tab">Transaction Code</th>
+                                <th class="green-tab">Pax SPC</th>
+                                <th class="green-tab">Equi. Fare Cur</th>
+                                <th style="display:none" class="green-tab keyelement-6">Journey</th>
+                                <th style="display:none" class="green-tab keyelement-7">FCMI</th>
+                                <th style="display:none" class="green-tab keyelement-8">Fare Basis</th>
+                                <th style="display:none" class="green-tab keyelement-9">Fare Currency</th>
+                                <th style="display:none" class="green-tab keyelement-10">Fare</th>
+                                <th style="display:none" class="green-tab keyelement-11">Equivalent Fare Currency</th>
+                                <th style="display:none" class="green-tab keyelement-12">Equivalent Fare</th>
+                                <th style="display:none" class="green-tab keyelement-13">Total Currency</th>
+                                <th style="display:none" class="green-tab keyelement-14">Total Amount</th>
+                                <th style="display:none" class="green-tab keyelement-15">Amount Collected Currency</th>
+                                <th style="display:none" class="green-tab keyelement-16">Amount Collected</th>
+                                <th style="display:none" class="green-tab keyelement-17">Tax Collected</th>
+                                <th style="display:none" class="green-tab keyelement-18">Surcharges Collected</th>
+                                <th style="display:none" class="green-tab keyelement-19">Endo Restriction</th>
+
+                                <th class="green-tab" width="15%">FCA</th>
+                                <th class="green-tab">FOP</th>
+
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-sm-3" style="margin-top: 25px;">
+                <div class="row">
+                    <div class="col-sm-7">
+                        <button class="btn-default" onclick="HideShow('divSpecPurp', 'bntSpecPurp')" id="bntSpecPurp" style="margin-left: -15px;width: 253px;">Show Add-on Details</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-7" style="margin-top: 10px;border: 1px solid gray; height: 568px;background:white;display:none" id="divSpecPurp">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <input type="checkbox" name="" onclick="showreports('allkeySpec', 'keyelement')" id="allkeySpec">Select All
+                            </li>
+
+                            <li class="list-group-item">
+                                <input type="checkbox" onclick="showreports('key8Spec', 'keyelement-6')" id="key8Spec">Journey
+                            </li>
+                            <li class="list-group-item">
+                                <input type="checkbox" onclick="showreports('key9Spec', 'keyelement-7')" id="key9Spec">FCMI
+                            </li>
+                            <li class="list-group-item">
+                                <input type="checkbox" onclick="showreports('key10Spec', 'keyelement-8')" id="key10Spec">Fare Basis
+                            </li>
+                            <li class="list-group-item">
+                                <input type="checkbox" onclick="showreports('key11Spec', 'keyelement-9')" id="key11Spec">Fare Currency
+                            </li>
+                            <li class="list-group-item">
+                                <input type="checkbox" onclick="showreports('key12Spec', 'keyelement-10')" id="key12Spec">Fare
+                            </li>
+                            <li class="list-group-item">
+                                <input type="checkbox" onclick="showreports('key13Spec', 'keyelement-11')" id="key13Spec">Equivalent Fare Currency
+                            </li>
+                            <li class="list-group-item">
+                                <input type="checkbox" onclick="showreports('key14Spec', 'keyelement-12')" id="key14Spec">Equivalent Fare
+                            </li>
+                            <li class="list-group-item">
+                                <input type="checkbox" onclick="showreports('key15Spec', 'keyelement-13')" id="key15Spec">Total Currency
+                            </li>
+                            <li class="list-group-item">
+                                <input type="checkbox" onclick="showreports('key16Spec', 'keyelement-14')" id="key16Spec">Total Amount
+                            </li>
+                            <li class="list-group-item">
+                                <input type="checkbox" onclick="showreports('key17Spec', 'keyelement-15')" id="key17Spec">Amount Collected Currency
+                            </li>
+                            <li class="list-group-item">
+                                <input type="checkbox" onclick="showreports('key18Spec', 'keyelement-16')" id="key18Spec">Amount Collected
+                            </li>
+                            <li class="list-group-item">
+                                <input type="checkbox" onclick="showreports('key19Spec', 'keyelement-17')" id="key19Spec">Tax Collected
+                            </li>
+                            <li class="list-group-item">
+                                <input type="checkbox" onclick="showreports('key20Spec', 'keyelement-18')" id="key20Spec">Surcharge Collected
+                            </li>
+                            <li class="list-group-item">
+                                <input type="checkbox" onclick="showreports('key21Spec', 'keyelement-19')" id="key21Spec">Endo Restriction
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6" style="margin-top:20px">
+
+            </div>
+            <div class="col-sm-3" style="margin-top:20px">
+
+                <div class="col-sm-6">
+                    Total No. of CPNs:
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" name="" id="txtSPCCount">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

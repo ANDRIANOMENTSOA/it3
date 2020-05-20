@@ -1,0 +1,139 @@
+﻿<div class="col-sm-11 tab-content tab-cancellation">
+    <div id="search" class="tab-pane fade in active">
+        <div class="content col-sm-12">
+            <div class="row">
+                <div class="col-lg-7">
+                    <fieldset class="test-fieldst">
+                        <legend class="test-fieldst">Date Range Selection</legend>
+                        <div class="row col-lg-12">
+                            <div class="col-lg-2 margin-issue">
+                                <label class="form-check-label col-form-label">Processing From:</label>
+                                <input type="hidden" id="testFDateFrom" value="">
+                            </div>
+
+                            <div class="col-lg-3 n-padding">
+                                <div class="input-group date">
+                                    <input type="text" name="dateFromFileU" class="form-controls input-date" value="@ViewBag.date[1]" id="dateFromFileU" />
+                                    <span class="input-group-addon datetimepicker" onclick="setdate('dateFromFileU')">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-lg-1">
+                                <label class="form-check-label col-form-label">To:</label>
+                                <input type="hidden" id="testFDateTo" value="">
+                            </div>
+                            <div class="col-lg-3 n-padding">
+                                <div class="input-group date">
+                                    <input type='text' name="dateToFileU" class="form-controls input-date input-datetimepicker" value="@ViewBag.date[1]" id="dateToFileU" />
+                                    <span class="input-group-addon datetimepicker" onclick="setdate('dateToFileU')">
+                                        <span class="glyphicon glyphicon-calendar" id="calendarPaxTo"></span>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="radio col-lg-3" id="sqlCriteria">
+                                <div class="custom-control custom-radio col-sm-6">
+                                    <input type="radio" class="custom-control-input" id="radioDetails" name="radio" value="oui" checked>
+                                    <label class="custom-control-label" for="defaultGroupExample1">Details</label>
+                                </div>
+                                <div class="custom-control custom-radio col-sm-6">
+                                    <input type="radio" class="custom-control-input" id="radioSummary" name="radio" value="Summary">
+                                    <label class="custom-control-label" for="defaultGroupExample2">Summary</label>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label" style="">File Name:</label>
+                                    <input type="hidden" id="testFileName" value="">
+                                    <div class="col-sm-7">
+                                        <select class="form-controls" id="SelectFileName" onclick="FileUploadStatusSelectFileName()">
+                                            <option></option>
+                                            <option>-All-</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label" style="">File Type:</label>
+                                    <input type="hidden" id="testFileType" value="">
+                                    <div class="col-sm-7">
+                                        <select class="form-controls" id="SelecteFileType" onclick="FileUploadStatusSelectFileType()">
+                                            <option></option>
+                                            <option>-All-</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label" style="">Processing Status:</label>
+                                    <input type="hidden" id="testSatus" value="">
+                                    <div class="col-sm-7">
+                                        <select class="form-controls" id="SelectProcessingStatus" onclick="FileUploadStatusSelectProcessingStatus()">
+                                            <option></option>
+                                            <option>-All-</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-lg-1">
+                    <div class="row">
+                        <button type="button" class="btn" style="position: relative;top: 64px;" onclick="FileUploadStatussearch()">
+                        <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="table-record-display" id="tabnowshow" style="height:650px;overflow:auto; position: relative;">
+                        <table class="table table-bordered tablehead" style="width: 86%;">
+                            <thead>
+                                <tr style="background-color: RGB(68,35,89);">
+                                    <th style="width: 20%;text-align: center;">Processing Date</th>
+                                    <th style=" text-align: center;">FileName</th>
+                                    <th style="width: 5%; text-align: center;">File Type</th>
+                                    <th style="width: 9%; text-align: center;">Processing Status</th>
+                                    <th style="width: 7%; text-align: center;">No.Of Tickets</th>
+                                    <th style="width: 8%; text-align: center;">No. Of Coupons</th>
+                                    <th style="text-align: center;">User</th>
+                                </tr>
+
+                            </thead>
+                            <tbody id="tableFileupload">
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="  position: relative;top: 29px;">
+                <div class="col-sm-5">
+                    <img src='@Url.Content("~/images/CSVPic.jpg")' class="image-csv" style="top:0px;left:21px;">
+                </div>
+                <div class="col-sm-2">
+                    <button class="btn" onclick="removeSousMenu()"><span class="">CLOSE</span></button>
+                 </div>
+            </div>
+
+        </div>
+    </div>
+</div>

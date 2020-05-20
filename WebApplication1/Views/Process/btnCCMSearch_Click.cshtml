@@ -1,0 +1,45 @@
+﻿@using System.Data
+@model DataSet
+<!--fait par christian-->
+<div id="newcontent-creditManagement">
+    <input type="hidden" id="tempscreditManagement" value="@ViewBag.ligne" />
+    <table class="table table-striped table-bordered" id="tablecreditManagementaz">
+        <thead>
+            <tr>
+                <th class="green-tabprocess" style="text-align:center;color:white;">Date Of Issue</th>
+                <th class="green-tabprocess" style="text-align:center;color:white;">Document No</th>
+                <th class="green-tabprocess" style="text-align:center;color:white;">Passenger Name</th>
+                <th class="green-tabprocess" style="text-align:center;color:white;">Transaction Code</th>
+                <th class="green-tabprocess" style="text-align:center;color:white;">FOP</th>
+                <th class="green-tabprocess keyelement-5" style="display:none;text-align:center;color:white;">Account No</th>
+                <th class="green-tabprocess keyelement-6" style="display:none;text-align:center;color:white;">Card Verification</th>
+                <th class="green-tabprocess keyelement-7" style="display:none;text-align:center;color:white;">Credit Card Corporate</th>
+                <th class="green-tabprocess keyelement-8" style="display:none;text-align:center;color:white;">Expiry Date</th>
+                <th class="green-tabprocess keyelement-9" style="display:none;text-align:center;color:white;">Currency</th>
+                <th class="green-tabprocess keyelement-10" style="display:none;text-align:center;color:white;">Amount</th>
+                <th class="green-tabprocess keyelement-11" style="display:none;text-align:center;color:white;">Amt Collected Cur</th>
+                <th class="green-tabprocess keyelement-12" style="display:none;text-align:center;color:white;">Amount Collected</th>
+                <th class="green-tabprocess keyelement-13" style="display:none;text-align:center;color:white;">Fare Cur</th>
+                <th class="green-tabprocess keyelement-14" style="display:none;text-align:center;color:white;">Fare Collected</th>
+                <th class="green-tabprocess keyelement-15" style="display:none;text-align:center;color:white;">Taxe Collecetd</th>
+                <th class="green-tabprocess keyelement-16" style="display:none;text-align:center;color:white;">Surcharge Collected</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < ViewBag.ligne; i++)
+            {
+                <tr data-url="@Url.Action("PAXTKTs","Sales")" onclick="ajout(this, 'PAXTKTs', 'Sales', 'PAX TKTs');CellContentDoubleClick(this, '@ViewBag.Liste[i, 1]')">
+                    @for (int j = 0; j < 17; j++)
+                    {
+                        if (j < 5)
+                        {
+                            <td style="text-align:center !important;">@ViewBag.Liste[i, j]</td>
+                        }
+                        <td class="keyelement-@j" style="display:none;text-align:center;">@ViewBag.Liste[i, j]</td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<!-- fin fait par christian-->

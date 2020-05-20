@@ -1,0 +1,118 @@
+﻿<div class="col-sm-11 tab-content tab-cancellation">
+    <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <input type="hidden" value="0" >
+                        </div>
+                        <div class="col-xs-8">
+                            <label>Excel file loaded</label>   <label value="0"></label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <input type="button" id="loadFileXml" value="LOAD EXCEL PNL FILES" style="height: 280px; width: 200px;" onclick="document.getElementById('file').click();" />
+                            <input type="file" style="display:none;" id="file" name="file" />
+                        </div>
+                        <div class="col-xs-10">
+                            <div class="table-record-display" id="tabnowshow" style="height:250px;overflow:auto">
+                                <div class="ajax-loader">
+                                    <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+                                </div>
+                                <table class="table table-bordered table-striped table-hover">
+                                    <thead>
+                                        <tr></tr>
+                                    </thead>
+                                    <tbody class="loadNoshow"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-offset-10">
+                            <input type="button" class="btn-group" value="CONVERT EXCEL PNL FILE TO *.CSV">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <label>Filename</label>
+                        </div>
+                        <div class="col-xs-10">
+                            <input type="text" class="form-control" readonly>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <label></label>
+                        </div>
+                        <div class="col-xs-10">
+                            <input type="text" class="form-control" readonly>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <label></label>
+                        </div>
+                        <div class="col-xs-10">
+                            <label>Excel File Converted to cvs file</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <label></label>
+                        </div>
+                        <div class="col-xs-10">
+                                <div class="table-record-display" id="tabnowshow" style="height:250px;overflow:auto">
+                                    <div class="ajax-loader">
+                                        <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+                                    </div>
+                                    <table class="table table-bordered table-striped table-hover">
+                                        <thead>
+                                            <tr></tr>
+                                        </thead>
+                                        <tbody class="loadNoshow"></tbody>
+                                    </table>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <label></label>
+                        </div>
+                        <div class="col-xs-10">
+                                <div class="table-record-display" id="tabnowshow" style="height:250px;overflow:auto">
+                                    <div class="ajax-loader">
+                                        <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+                                    </div>
+                                    <table class="table table-bordered table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <td>Numbe</td>
+                                                <td>Filename</td>
+                                                <td>Signature</td>
+                                                <td>Uploadll</td>
+                                                <td>Status</td>
+                                                <td>Remarks</td>
+                                             </tr>
+                                        </thead>
+                                        <tbody class="loadNoshow"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <label></label>
+                        </div>
+                        <div class="col-lg-offset-9">
+                            <input type="button" class="btn-group" value="DELETE RECORDS">
+                            <input type="button" class="btn-group"  value="UPLOAD TO DATABASE">
+                            <button class="search-interogation" onclick="removeSousMenu()"><span class="search-span">CLOSE</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>

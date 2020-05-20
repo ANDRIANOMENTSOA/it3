@@ -1,0 +1,30 @@
+﻿@using System.Data
+@model DataSet
+<!--fait par christian-->
+<div id="newrbd-content">
+    <input id="tempsrbdpricing" type="hidden" value="@ViewBag.ligne" />
+    <table class="table table-bordered tablehead" id="tablerbdpricing">
+        <thead>
+            <tr>
+                <th class="green-tabprocess">Day Of the Week</th>
+                <th class="green-tabprocess">Agent No</th>
+                <th class="green-tabprocess">Agent Name</th>
+                <th class="green-tabprocess">POS.</th>
+                <th class="green-tabprocess">Orig.</th>
+                <th class="green-tabprocess">Dest.</th>
+                <th class="green-tabprocess">RBD</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < ViewBag.ligne; i++)
+            {
+                <tr>
+                    @for (int j = 0; j < ViewBag.colone; j++)
+                    {
+                        <td>@ViewBag.dg3[i, j]</td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

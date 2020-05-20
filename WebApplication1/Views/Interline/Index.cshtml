@@ -1,0 +1,155 @@
+﻿
+<script src="~/Scripts/Process.js"></script>
+
+
+@{if (ViewBag.message == "ie")
+    {
+        <link href="~/Content/ie-Sales.css" rel="stylesheet" />;
+    }
+    else
+    {
+        <link href="~/Content/Sales.css" rel="stylesheet" />;
+    } }
+<div class="top-process">
+    <h3>Interline Management in-a-box</h3>
+</div>
+<div class="mashup">
+    <img src='@Url.Content("~/images/mashup.jpg")' />
+</div>
+<div class="containers">
+
+    <svg height="800" width="200" style="position:absolute;left:121px;">
+        <polyline points="50 65,50 480" style="fill:none;stroke:gray;stroke-width:3" />
+        <polyline points="50 132.5,20 132.5" style="fill:none;stroke:gray;stroke-width:3" />
+        <polyline points="50 165.5,80 165.5" style="fill:none;stroke:gray;stroke-width:3" />
+        <polyline points="50 233.5,21 233.5" style="fill:none;stroke:gray;stroke-width:3" />
+        <polyline points="50 303.5,80 303.5" style="fill:none;stroke:gray;stroke-width:3" />
+        <polyline points="50 328.5,21 328.5" style="fill:none;stroke:gray;stroke-width:3" />
+        <polyline points="50 423.5,21 423.5" style="fill:none;stroke:gray;stroke-width:3" />
+        <polyline points="50 480,55 483,65 483,144.5 483,144.5 520" style="fill:none;stroke:gray;stroke-width:3" />
+
+    </svg>
+    <svg height="200" width="200" style="position:absolute;left:121px;">
+        <polyline points="70 37.5,190 37.51" style="fill:none;stroke:gray;stroke-width:3" />
+    </svg>
+    <svg height="300" width="200" style="position:absolute;left:121px;top:5px;">
+        <polyline points="144.5 190.5,144.5 259.5" style="fill:none;stroke:gray;stroke-width:3" />
+    </svg>
+    <svg height="300" width="200" style="position:absolute;left:121px;top:121px">
+        <polyline points="144.5 190.5,144.5 259.5" style="fill:none;stroke:gray;stroke-width:3" />
+    </svg>
+    <svg height="200" width="200" style="position:absolute;left:273px;top:126px;">
+        <polyline points="65 37.5,130 37.51" style="fill:none;stroke:gray;stroke-width:3" />
+    </svg>
+    <svg height="300" width="400" style="position:absolute;left:92px;top:33px">
+        <polyline points="343.5 190.5,343.5 230" style="fill:none;stroke:gray;stroke-width:3" />
+    </svg>
+    <svg height="300" width="400" style="position:absolute;left:186px;top:33px">
+        <polyline points="343.5 190.5,343.5 230" style="fill:none;stroke:gray;stroke-width:3" />
+    </svg>
+    <svg height="300" width="400" style="position:absolute;left:279px;top:33px">
+        <polyline points="343.5 190.5,343.5 230" style="fill:none;stroke:gray;stroke-width:3" />
+    </svg>
+
+    <svg height="300" width="400" style="position:absolute;left:240px;top:-110px">
+        <polyline points="343.5 187.5,343.5 234.5" style="fill:none;stroke:gray;stroke-width:3" />
+    </svg>
+    <svg height="200" width="200" style="position:absolute;left:620px;top:137px">
+        <polyline points="70 37.5,170 37.51" style="fill:none;stroke:gray;stroke-width:3" />
+    </svg>
+    <svg height="300" width="400" style="position:absolute;left:204px;top:120px">
+        <polyline points="343.5 186.5,343.5 265.5" style="fill:none;stroke:gray;stroke-width:3" />
+    </svg>
+    <svg height="200" width="200" style="position:absolute;left:427px;top:391px">
+        <polyline points="70 37.5,15 37.51" style="fill:none;stroke:gray;stroke-width:3" />
+    </svg>
+    <svg height="200" width="200" style="position:absolute;left:321px;top:470px">
+        <polyline points="70 40.5,70 0" style="fill:none;stroke:gray;stroke-width:3" />
+    </svg>
+    <svg height="200" width="200" style="position:absolute;left: 428px;top: 437px;">
+        <polyline points="120 70.5,120 60,15 60,5 55,2.5 47,2.5 30" style="fill:none;stroke:gray;stroke-width:3" />
+    </svg>
+    <svg height="800" width="200" style="position:absolute;left:781px; top:122px;">
+        <polyline points="50 65,50 469" style="fill:none;stroke:gray;stroke-width:3" />
+        <polyline points="50 173.5,27 173.5" style="fill:none;stroke:gray;stroke-width:3" />
+        <polyline points="50 273.5,27 273.5" style="fill:none;stroke:gray;stroke-width:3" />
+        <polyline points="50 373.5,27 373.5" style="fill:none;stroke:gray;stroke-width:3" />
+        <polyline points="50 469,45 472.5,25 472.5" style="fill:none;stroke:gray;stroke-width:3" />
+    </svg>
+    <div class="top-button">
+        <button class="type1" data-url="@Url.Action("InterlineBilling","Interline")" onclick="ajout(this,'InterlineBilling','Interline','Interline Billing')"> Inwards Billings Files Management</button>
+        <span class="glyphicon glyphicon-triangle-right"></span>
+        <button class="type1" data-url="@Url.Action("RejectionToleranceValue","Interline")" onclick="ajout(this, 'RejectionToleranceValue', 'Interline', 'Rejection Tolerance Value')"> Tolerence check USD5 Gross-Fare USD2 Net-TFC</button>
+        <button class="type1" onclick="ajout('test','Interline')"> Payable / Recevable</button>
+        <span class="glyphicon glyphicon-triangle-top"></span>
+    </div>
+    <div class="left-button1">
+        <button class="type2" data-url="@Url.Action("KeyControllingData","Interline")" onclick="ajout(this,'KeyControllingData', 'Interline', 'Key Controlling Data')"> Key Controlling Data</button>
+        <span class="glyphicon glyphicon-triangle-left"></span>
+        <button class="type1" data-url="@Url.Action("InterlineBilling","Interline")" onclick="ajout(this, 'InterlineBilling', 'Interline', 'Interline|Billing')"> 1st Rejection Source Codet</button>
+        <span class="glyphicon glyphicon-triangle-left"></span>
+        <button class="type1" data-url="@Url.Action("InterlineBilling","Interline")" onclick="ajout(this,'InterlineBilling','Interline','Interline.Billing')"> 2nd Rejection Source Code</button>
+        <span class="glyphicon glyphicon-triangle-left"></span>
+        <button class="type1" data-url="@Url.Action("InterlineBilling","Interline")" onclick="ajout(this,'InterlineBilling','Interline','Interline:Billing')"> 3rd Rejection Source Code</button>
+        <span class="glyphicon glyphicon-triangle-left"></span>
+    </div>
+    <div class="arrow-left">
+        <span class="glyphicon glyphicon-triangle-right glyphicon-haut"></span>
+        <span class="glyphicon glyphicon-triangle-right glyphicon-bas"></span>
+
+    </div>
+    <div class="left-button2">
+        <button class="type1" onclick="ajout('test','Interline')">Prime coupon billings Matching with sales</button>
+        <span class="glyphicon glyphicon-triangle-left"></span>
+        <span class="glyphicon glyphicon-triangle-bottom"></span>
+        <button class="type1" data-url="@Url.Action("CheckTolerance","Interline")" onclick="ajout(this, 'CheckTolerance', 'Interline', 'Check Tolerance')"> Persistant Error Check Less Than USD5 or USD2</button>
+        <span class="glyphicon glyphicon-triangle-bottom"></span>
+        <button class="type6" data-url="@Url.Action("InterlineBilling","Interline")" onclick="ajout(this,'InterlineBilling','Interline','Interline,Billing')"> Rejection</button>
+        <span class="glyphicon glyphicon-triangle-bottom"></span>
+        <button class="type7" data-url="@Url.Action("Correspondence","Interline")" onclick="ajout(this,'Correspondence', 'Interline', 'Correspondence')"> Correspondance Management [ISWEB]</button>
+        <div class="middle-button">
+            <button class="type5" data-url="@Url.Action("SPAManagement", "Process")" onclick="ajout(this,'SPAEngine', 'Interline', 'SPA Engine')">SPAs</button>
+            <button class="type5" data-url="@Url.Action("Codeshares","Interline")" onclick="ajout(this,'Codeshares', 'Interline', 'Codeshares')">Code shares</button>
+            <button class="type5" onclick="ajout('test','Interline')">Other Bilaterals</button>
+        </div>
+        <div class="bottom-button">
+            <span class="glyphicon glyphicon-triangle-bottom"></span>
+            <button class="type2" data-url="@Url.Action("CreditMemos","Interline")" onclick="ajout(this, 'CreditMemos', 'Interline', 'Credit Memos')"> Credit Memos</button>
+            <span class="glyphicon glyphicon-triangle-left"></span>
+            <button class="type8 right" onclick="ajout('test','Interline')"> Code Share Commission</button>
+            <span class="glyphicon glyphicon-triangle-top up2"></span>
+            <button class="type8" onclick="ajout('test','Interline')"> Alliance/Partner Settlement or Overriding Commission</button>
+            <span class="glyphicon glyphicon-triangle-top up1"></span>
+            <button class="type8" onclick="ajout('test','Interline')">Invoice Correction</button>
+        </div>
+    </div>
+    <div class="center-button">
+
+        <div class="cadre">
+            <button class="type3" style="margin-left: 11px;" onclick="ajout('test','Interline')">ATDs</button>
+            <button class="type3"  data-url="@Url.Action("FIMManager","Sales")" onclick="ajout(this,'FIMManager', 'Sales', 'FIM Manager')"> FIMs</button>
+            <button class="type3"data-url="@Url.Action("INAD","Sales")" onclick="ajout(this,'INAD','Sales','INAD')"> INAD</button>
+            <button class="type3" data-url="@Url.Action("FrmRefundEngine","Sales")" onclick="ajout(this,'FrmRefundEngine', 'Sales', 'FrmRefundEngine')">Refunds</button>
+            <button class="type3" data-url="@Url.Action("ExchangesOAL","Sales")" onclick="ajout(this,'ExchangesOAL', 'Sales', 'Exchanges-OAL')">Exchages</button>
+        </div>
+        <span class="glyphicon glyphicon-triangle-right"></span>
+        <span class="glyphicon glyphicon-triangle-bottom"></span>
+        <span class="glyphicon glyphicon-triangle-bottom"></span>
+        <span class="glyphicon glyphicon-triangle-bottom"></span>
+        <button class="type4" data-url="@Url.Action("InterlineBilling","Interline")" onclick="ajout(this,'InterlineBilling','Interline','Interline*Billing')"> Billings Memos</button>
+
+    </div>
+
+
+
+    <div class="right-button">
+        <button class="type4" onclick="ajout('test','Interline')">Adjustment/ Supplementary Billings</button>
+        <span class="glyphicon glyphicon-triangle-left"></span>
+        <button class="type4" onclick="ajout('test','Interline')">Mean Exchange Rate Variation</button>
+        <span class="glyphicon glyphicon-triangle-left"></span>
+        <button class="type4" data-url="@Url.Action("RefundAdjustements","Interline")" onclick="ajout(this, 'RefundAdjustements', 'Interline', 'Retroactive Adjustements')"> Refund Adjustements</button>
+        <span class="glyphicon glyphicon-triangle-left"></span>
+        <button class="type4" onclick="ajout('test','Interline')">Others</button>
+        <span class="glyphicon glyphicon-triangle-left"></span>
+    </div>
+</div>

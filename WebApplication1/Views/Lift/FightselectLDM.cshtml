@@ -1,0 +1,12 @@
+﻿
+<div class="col-sm-4 n-padding" id="selectLDM">
+    <select class="form-controls" id="Fight" onclick="FightshowTableLDM()" name="Fight" style="width: 150px; float: left;">
+        <option class="form-controls"></option>
+        <option class="form-controls">-All-</option>
+        @for (int n = 0; n < ViewBag.lonAg; n++)
+        {
+            <option class="form-controls">@ViewBag.AgCode[n]</option>
+        }
+    </select>
+</div>
+<input type="hidden" id="message" value="@ViewBag.mes">

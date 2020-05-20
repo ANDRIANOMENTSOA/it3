@@ -1,0 +1,106 @@
+﻿@using System.Data
+@model DataSet
+            <div id="search">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="col-sm-4 margin-issue">
+                            <label class="form-check-label col-form-label">Document No:</label>
+                        </div>
+                        <div class="col-sm-6 n-padding">
+                            <input type="text" class="form-control" id="DocumentNoFS">
+                        </div>
+                    </div>
+                    <div class="col-lg-1">
+                        <button class="btn" onclick="SearchFinalSharevsAmount()"><span>SEARCH</span></button>
+                    </div>
+                    <div class="col-lg-1">
+                        <button class="btn" onclick="ClearFinalSharevsAmount()"><span>CLEAR</span></button>
+                    </div>
+                    <div class="col-lg-1">
+                        <button class="btn" onclick="removeSousMenu()"><span>CLOSE</span></button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="col-sm-4 margin-issue">
+                            <label class="form-check-label col-form-label">Date Of Issue:</label>
+                        </div>
+                        <div class="col-sm-6 n-padding">
+                            <label id="DateOfIssueFS">@ViewBag.DateofIssue</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="table-record-display" id="tabnowshow" style="height:108px;overflow:auto; position: relative; left: 20px;">
+                            <table class="">
+                                <thead>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Fare:</td>
+                                        <td><label id="fareFS">@ViewBag.Currency</label></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Aquivalent Fare:</td>
+                                        <td><label id="AquivalentFareFS">@ViewBag.AmtColl</label></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tax And Surcharge</td>
+                                        <td><label id="TaxAndSurchargeFS">@ViewBag.totTax</label></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total Amount</td>
+                                        <td><label id="TaxAndSurchargeFS">@ViewBag.FareEFP</label></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="table-record-display" id="tabnowshow" style="height:108px;overflow:auto; position: relative; left: 20px;">
+                            <table class="">
+                                <thead>
+                                    <tr></tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>ROE:</td>
+                                        <td><label id="ROEFS">@ViewBag.DR</label></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fare in USD</td>
+                                        <td> <label id="FareinUSDFS">@ViewBag.TotalFareUSD</label> </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total Final Shares:</td>
+                                        <td><label id="TotalFinalSharesFS">@ViewBag.TotalFinalShare</label></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Resudial Values:</td>
+                                        <td><label id="ResudialValuesFS"> @ViewBag.Residue</label></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6" style="position: relative;top: 16px;">
+                        <div class="table-record-display" id="tabnowshow" style="height:89px;overflow:auto; position: relative; left: 20px;">
+                            <table class="">
+                                <thead>
+                                    <tr style=""></tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>FCA:</td>
+                                        <td><label id="FCAFS">@ViewBag.FCA </label></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            

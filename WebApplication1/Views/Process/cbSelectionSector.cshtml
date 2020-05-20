@@ -1,0 +1,112 @@
+﻿<div id="newcontent-pricing">
+    <table class="table-bordered">
+        <thead>
+            <tr>
+                <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">RowNo</th>
+                <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Date Of Issue</th>
+                <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Day Of The Week</th>
+                <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Agent No</th>
+                <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Agent Name</th>
+                <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">POS</th>
+                <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Document No</th>
+                <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">CK</th>
+                <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Passenger Name</th>
+                <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">FCMI</th>
+                <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Sector Orig.</th>
+                <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Sector Dest.</th>
+                <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Journey</th>
+                <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Endos Restriction</th>
+                <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Sector Yield</th>
+                <!--<th style="display:none" class="green-tabprocess keyelement-15">Stop Over Code</th>-->
+                <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-15">Fare Component</th>
+                <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-16">Fare Basis</th>
+                <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-17">RBD</th>
+                <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-18">Passenger Type</th>
+                <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-19">Passenger Special Purpose Code</th>
+                <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-20">StopOver Code</th>
+                <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-21">Frequent Flyer Reference</th>
+                <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-22">Commercial Agreement Reference</th>
+                <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-23">Customer File Reference</th>
+                <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-24">Usage Airline</th>
+                <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-25">Usage Date</th>
+                <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-26">Travel Day</th>
+                <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-27">Usage Origin Code</th>
+                <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-28">Usage Destination Code</th>
+                <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-29">Usage Flight No</th>
+                <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-30">NVB</th>
+                <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-31">NVA</th>
+                <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-32">Ticketing & COT Lapse</th>
+                <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-33">PM</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+
+<div class="col" style="top:50px" id="newbouttonhideShowPric">
+    <button class="showHide green-tabprocess" id="btnpricing" onclick="HideShow('hideShowPric', 'btnpricing')">Show Add-on Details</button>
+    <div id="hideShowPric" class="containt-showhide" style="display:none;">
+        <ul class="list-group" id="ulpricing">
+            <li class="list-group-item">
+                <input type="checkbox" name="" onclick="showreportspricing('allkeyFR', 'keyelement')" id="allkeyFR">Select All
+            </li>
+            <li class="list-group-item">
+                <input type="checkbox" onclick="showreportspricing('key15FR', 'keyelement-15')" id="key15FR">Fare Component
+            </li>
+            <li class="list-group-item">
+                <input type="checkbox" onclick="showreportspricing('key16FR', 'keyelement-16')" id="key16FR">Fare Basis
+            </li>
+            <li class="list-group-item">
+                <input type="checkbox" onclick="showreportspricing('key17FR', 'keyelement-17')" id="key17FR">RBD
+            </li>
+            <li class="list-group-item">
+                <input type="checkbox" onclick="showreportspricing('key18FR', 'keyelement-18')" id="key18FR">Passenger Type
+            </li>
+            <li class="list-group-item">
+                <input type="checkbox" onclick="showreportspricing('key19FR', 'keyelement-19')" id="key19FR">Passenger Special Purpose Code
+            </li>
+            <li class="list-group-item">
+                <input type="checkbox" onclick="showreportspricing('key20FR', 'keyelement-20')" id="key20FR">StopOver Code
+            </li>
+            <li class="list-group-item">
+                <input type="checkbox" onclick="showreportspricing('key21FR', 'keyelement-21')" id="key21FR">Frequent Flyer Reference
+            </li>
+            <li class="list-group-item">
+                <input type="checkbox" onclick="showreportspricing('key22FR', 'keyelement-22')" id="key22FR">Commercial Agreement Reference
+            </li>
+            <li class="list-group-item">
+                <input type="checkbox" onclick="showreportspricing('key23FR', 'keyelement-23')" id="key23FR">Customer File Reference
+            </li>
+            <li class="list-group-item">
+                <input type="checkbox" onclick="showreportspricing('key24FR', 'keyelement-24')" id="key24FR">Usage Airline
+            </li>
+            <li class="list-group-item">
+                <input type="checkbox" onclick="showreportspricing('key25FR', 'keyelement-25')" id="key25FR">Usage Date
+            </li>
+            <li class="list-group-item">
+                <input type="checkbox" onclick="showreportspricing('key26FR', 'keyelement-26')" id="key26FR">Travel Day
+            </li>
+            <li class="list-group-item">
+                <input type="checkbox" onclick="showreportspricing('key27FR', 'keyelement-27')" id="key27FR">Usage Origin Code
+            </li>
+            <li class="list-group-item">
+                <input type="checkbox" onclick="showreportspricing('key28FR', 'keyelement-28')" id="key28FR">Usage Destination Code
+            </li>
+            <li class="list-group-item">
+                <input type="checkbox" onclick="showreportspricing('key29FR', 'keyelement-29')" id="key29FR">Usage Flight No
+            </li>
+            <li class="list-group-item">
+                <input type="checkbox" onclick="showreportspricing('key30FR', 'keyelement-30')" id="key30FR">NVB
+            </li>
+            <li class="list-group-item">
+                <input type="checkbox" onclick="showreportspricing('key31FR', 'keyelement-31')" id="key31FR">NVA
+            </li>
+            <li class="list-group-item">
+                <input type="checkbox" onclick="showreportspricing('key32FR', 'keyelement-32')" id="key32FR">Ticketing & COT Lapse
+            </li>
+            <li class="list-group-item">
+                <input type="checkbox" onclick="showreportspricing('key33FR', 'keyelement-33')" id="key33FR">PM
+            </li>
+        </ul>
+    </div>
+</div>

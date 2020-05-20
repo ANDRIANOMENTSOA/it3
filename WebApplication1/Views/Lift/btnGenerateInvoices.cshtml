@@ -1,0 +1,15 @@
+﻿@using System.Data
+@model DataSet
+
+@{ int j = 0; }
+@foreach (DataRow dr in Model.Tables[0].Rows)
+{
+    <tr>
+        @for (int i = 0; i < Model.Tables[0].Columns.Count; i++)
+        {
+            <td onclick="btnDeleteSisBilling('@dr[Model.Tables[0].Columns[0].ColumnName].ToString()','@dr[Model.Tables[0].Columns[3].ColumnName].ToString()')">@dr[Model.Tables[0].Columns[i].ColumnName].ToString()</td>;
+        }
+    </tr>
+    j++;
+}
+

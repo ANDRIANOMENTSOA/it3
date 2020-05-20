@@ -1,0 +1,49 @@
+﻿<div class="Doc modal-content" style="width: 100% ; background-color: rgba(135, 206, 235, 1) !important; height: 93vh;">
+    <div class="agentModal">
+        <div class="ajax-loader">
+            <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+        </div>
+        <div class="DocCollect-modal-body">
+            <div class="scoll-tree scoll-agent-code" style="top: 27px;">
+                <div class="head-agent-code-content">
+                    <div class="form-row">
+                        <div class="col col-md-2" style="padding-left: 0px;">SELECT REFERENCE TABLE:</div>
+                        <div class="col col-md-4">
+                            <select class="form-control" name="headerName" id="headerName">
+                                @foreach (var list in ViewBag.header)
+                                {
+                                    <option>@list</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col col-md-2">
+                            <button class="btn btn-primary" onclick="setNameHeader()">SEARCH</button>
+                            <!--button type="button" class="search-interogation pink btn" onclick="postedSqlCriteria('Sales', 'GetSearchCriteria')"><span class="search-span">SEARCH</span></!--button-->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="keyDataBody">
+
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer" style="background-color:rgba(135, 206, 235, 1) !important; position: relative;top: 44px;">
+            <div class="col-md-4" style="display: block; float: right;">
+                <div class="col-md-2">
+                    <button type="button" class="Close btn btn-default">ADD</button>
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="Close btn btn-default">EDIT</button>
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="Close btn btn-default">SAVE</button>
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="Close btn btn-danger">DELETE</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

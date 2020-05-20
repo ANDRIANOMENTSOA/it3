@@ -1,0 +1,63 @@
+﻿@using System.Data
+@model DataSet
+<div class="col-sm-11 tab-content tab-cancellation">
+    <div class="tab-content">
+        <div class="ajax-loader">
+            <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+        </div>
+        <div class="col-sm-6">
+            <fieldset class="test-fieldst" style="height:73px;width:655px">
+                <legend class="test-fiedst" style="font-size:13px;"><b>Processing Date Period</b></legend>
+                <div class="col-sm-1">
+                    <label class="form-check-label col-form-label n-padding fromTo">From:</label>
+                </div>
+                <div class="col-sm-3" style="left:-55px">
+                    <div class="input-group">
+                        <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateFromIsReclaim')"></span>
+                        <input type="text" class="form-control" id="dateFromIsReclaim" value="@ViewBag.date[0]" style="width:125px">
+                    </div>
+                </div>
+
+                <div class="col-sm-1">
+                    <label class="form-check-label col-form-label n-padding fromTo">To:</label>
+                </div>
+                <div class="col-sm-3" style="left:-55px">
+                    <div class="input-group">
+                        <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateToIsReclaim')"></span>
+                        <input type="text" class="form-control" id="dateToIsReclaim" value="@ViewBag.date[1]" tyle="width:125px">
+                    </div>
+                </div>
+
+            </fieldset>
+
+        </div>
+        <div class="col-sm-1">
+            <button type="button" class="search-interogation pink btn" onclick="setCriteriaIscReclaim()" style="top:22px;left:-230px"><span class="search-span">SEARCH</span></button>
+        </div>
+        <div class="col-sm-5"></div>
+        <div class="col-sm-7" id="loadISC">
+            <div class="table-record-display" style="width: 805px;height: 700px;overflow: auto;">
+                <table class="table table-striped table-bordered table-hover" style="width:85%">
+                    <thead>
+                        <tr>
+                            <th class="pink">Date Processed</th>
+                            <th class="pink">Document No</th>
+                            <th class="pink">Origin</th>
+                            <th class="pink">Destination</th>
+                            <th class="pink">ISC %</th>
+                            <th class="pink">ISC Amount</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <input type="hidden" id="compteur" />
+        </div>
+        <div class="col-sm-5"></div>
+        <div class="col-sm-9">
+            <img src="@Url.Content("~/Images/CSVPic.jpg")" style="height: 35px; top:15px;" />
+        </div>
+        <div class="col-sm-3"><button class="search-interogation pink btn" onclick="removeSousMenu()" style="top:20px;"><span class="search-span">CLOSE</span></button></div>
+    </div>
+
+</div>
+

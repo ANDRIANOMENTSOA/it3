@@ -1,0 +1,150 @@
+﻿@using System.Data
+@model DataSet
+<div class="col-sm-11 tab-content tab-cancellation">
+    <markelement id="GrandParent_@ViewBag.type">
+        <div class="content-cancellation col-sm-11">
+            <div class="col-sm-4">
+                <fieldset class="test-fieldst" style="height:73px">
+                    <legend class="test-fieldst">Date Range Selection</legend>
+                    <div class="col-sm-6 width-group">
+                        <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">From:</label>
+                        <div class="col-sm-7 n-padding">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateFromTfcflown')"></span>
+                                <input type="text" class="form-control" id="dateFromTfcflown" name="dateFrom" value="@ViewBag.dateFrom">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 width-group style=" margin-bottom 19px;">
+                        <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">To:</label>
+                        <div class="col-sm-7 n-padding">
+
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateToTfcflown')"></span>
+                                <input type="text" class="form-control" id="dateToTfcflown" name="dateTo" value="@ViewBag.dateTo">
+                                <input type="hidden" id="testTrans" value="" />
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="col-sm-3">
+                <fieldset class="test-fieldst" style="width: 250px">
+                    <legend class="test-fieldst">Flight No Selection</legend>
+                    <div class="col-sm-12">
+                        <input type="hidden" id="testfln" />
+                        <form class="form-inline" style="margin-bottom:14px; margin-top:6px">
+                            <div class="form-group">
+                                <label class="col-form-label" for="dateVatFrom">Flight No:</label>
+                                <select class="form-control" id="flightNum" style="width:125px" onclick="setFlN()">
+                                    <option></option>
+                                    <option>-All-</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+
+                </fieldset>
+            </div>
+            <div class="col-sm-3" style="left:-140px">
+                <fieldset class="test-fieldst" style="width:290px">
+                    <legend class="test-fieldst">Agent Numeric Code Selection</legend>
+                    <div class="col-sm-12">
+                        <form class="form-inline" style="margin-bottom:14px; margin-top:6px">
+                            <div class="form-group">
+                                <label class="col-form-label" for="dateVatFrom">Agent Numeric Code:</label>
+                                <select class="form-control" id="AgCode" style="width:125px" onclick="setAgcodeLift(this)">
+                                    <option></option>
+                                    <option>-All-</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+
+                </fieldset>
+            </div>
+            <div class="col-sm-1" style="left:-220px">
+                <div class="search" style="top:13px">
+                    <div class="col-sm-3"><button type="button" class="search-interogation green btn" onclick="setCriteriaTfcsFlown()"><span class="search-span">SEARCH</span></button></div>
+                </div>
+            </div>
+            <div class="col-sm-1"></div>
+            <div class="ajax-loader">
+                <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+            </div>
+            <div class="col-sm-11" id="Tfcsdata">
+                <div class="col-sm-9">
+                    <div class="table-record-display" style="overflow:auto;height:590px;position:relative;left:-14px">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="green-tab">Airline Code</th>
+                                    <th class="green-tab">Iicket No</th>
+                                    <th class="green-tab">Agent Num Code</th>
+                                    <th class="green-tab">CPN</th>
+                                    <th class="green-tab">Flight No</th>
+                                    <th class="green-tab">Sector From</th>
+                                    <th class="green-tab">Sector To</th>
+                                    <th class="green-tab">Flight Date</th>
+                                    <th class="green-tab">Gross Value</th>
+                                    <th class="green-tab">Comm</th>
+                                    <th class="green-tab">UATP</th>
+                                    <th class="green-tab">Total Tax</th>
+                                    <th class="green-tab">Net Amt</th>
+
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <table class="table table-cancellation">
+                        <tr>
+                            <td width="38%">Gross Value</td>
+                            <td width="27%"><input type="text" class="form-control" name="" id="Document" /> </td>
+                            <td width="10%"></td>
+                        </tr>
+                    </table>
+                    <table class="table table-cancellation">
+                        <tr>
+                            <td width="38%">Commission</td>
+                            <td width="27%"><input type="text" class="form-control" name="" id="share" /></td>
+                            <td width="10%"></td>
+                        </tr>
+                    </table>
+                    <table class="table table-cancellation">
+                        <tr>
+                            <td width="38%">UATP</td>
+                            <td width="27%"><input type="text" class="form-control" name="" id="VatAmount" /></td>
+                            <td width="10%"></td>
+                        </tr>
+                    </table>
+                    <table class="table table-cancellation">
+                        <tr>
+                            <td width="38%">Total Tax</td>
+                            <td width="27%"><input type="text" class="form-control" name="" id="VatAmount" /></td>
+                            <td width="10%"></td>
+                        </tr>
+                    </table>
+                    <table class="table table-cancellation">
+                        <tr>
+                            <td width="38%">Total Net Amount</td>
+                            <td width="27%"><input type="text" class="form-control" name="" id="VatAmount" /></td>
+                            <td width="10%"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-sm-9" style="height:50px;background-color:white;width:1120px;top:20px"></div>
+                <div class="col-sm-3"></div>
+                <div class="col-sm-4">
+                    <img src="@Url.Content("~/Images/CSVPic.jpg")" style="height: 35px; top:35px;" />
+                </div>
+                <div class="col-sm-8" style="top:35px">
+                    <div class="col-sm-3"><button class="search-interogation green btn" onclick="removeSousMenu()"><span class="search-span">CLOSE</span></button></div>
+                </div>
+            </div>
+        </div>
+    </markelement>
+
+</div>

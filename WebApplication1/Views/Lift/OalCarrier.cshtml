@@ -1,0 +1,12 @@
+﻿
+@using System.Data
+@model DataSet
+<option id="msgExclude" style="display:none">@ViewBag.msg</option>
+<option>All</option>
+@foreach (DataRow dr in Model.Tables[0].Rows)
+{
+    for (int i = 0; i < Model.Tables[0].Columns.Count; i++)
+    {
+        <option>@dr[Model.Tables[0].Columns[0].ColumnName].ToString()</option>;
+    }
+}

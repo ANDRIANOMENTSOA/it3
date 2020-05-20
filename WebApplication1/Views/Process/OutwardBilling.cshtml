@@ -1,0 +1,182 @@
+﻿<div class="col-sm-12" style="top: 40px;">
+    <table class="table-dataSlit">
+        <tbody>
+            <tr>
+                <td style="width:92px">Flight No:</td>
+                <td style="width: 107px;">
+                    <select style="width: 93px;">
+                        <option>-ALL-</option>
+                    </select>
+                </td>
+                <td style="width: 132px;padding-left: 11px;">Flight Date From:</td>
+                <td style="width: 158px;">
+                    <div class="col-sm-11 n-padding">
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('cancelDateFrom')"></span>
+                            <input type="text" class="form-control" id="cancelDateFrom" style="margin-left: -5px;">
+                        </div>
+                    </div>
+                </td>
+                <td style="width: 44px;">To:</td>
+                <td style="width: 158px;">
+                    <div class="col-sm-11 n-padding">
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('cancelDateTo')"></span>
+                            <input type="text" class="form-control" id="cancelDateTo" style="margin-left: -5px;">
+                        </div>
+                    </div>
+                </td>
+                <td style="width: 116px;">Filter By Airline:</td>
+                <td>
+                    <select style="width: 93px;">
+                        <option>-ALL-</option>
+                    </select>
+                </td>
+                <td style="width: 144px;padding-left: 19px;">Pax Final Counts:</td>
+                <td style="width: 94px;"><input type="text" class="form-control" style="width: 63px;" /></td>
+                <td style="width: 141px;">Flown Revenue Net:</td>
+                <td><input type="text" class="form-control" /></td>
+            </tr>
+            <tr>
+                <td>Billing Month:</td>
+                <td>
+                    <select style="width: 93px;">
+                        <option></option>
+                    </select>
+                </td>
+                <td>Currency Of Billing:</td>
+                <td colspan="2"><input type="text" class="form-control" style="width: 134px;" /></td>
+                <td>Display Own <input type="checkbox" name="display" style="position: relative;top: 2px;" /></td>
+                <td>Display OAL <input type="checkbox" name="display" style="position: relative;top: 2px;" /></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="5"><button type="button" class="btn btn-default btn-data-process" style="width: 88%;" data-toggle="modal" data-target="#GeneratePrimeCoupon">View Before Generate Prime Coupon Billing to OALs</button></td>
+                <td colspan="2"><button type="button" class="btn btn-default btn-data-process">Check/Edit OAL Claims</button></td>
+            </tr>
+            <tr>
+                <td colspan="6"><button type="button" class="btn btn-default btn-data-process" style="width: 40%;">Generate Prime Coupon Billing to OALs</button></td>
+                <td><button type="button" class="btn btn-default btn-data-process">Adjustment</button></td>
+                <td><button type="button" class="btn btn-default">Search</button></td>
+                <td><button type="button" class="btn btn-default">Close</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="col-sm-12" style="top: 40px;">
+    <div class="col-sm-7 n-padding" style="border:1px solid;height:652px">
+
+    </div>
+    <div class="col-sm-4">
+        <div class="col-sm-12 n-padding">
+            <table class="table-dataSlit">
+                <tr>
+                    <td colspan="2"><button type="button" class="btn btn-default btn-data-process">View Previous Billing Period</button></td>
+                </tr>
+                <tr>
+                    <td style="width: 93px;">Airline Code</td>
+                    <td>
+                        <select style="width:98%">
+                            <option></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Billing Period</td>
+                    <td>
+                        <select style="width:98%">
+                            <option></option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-sm-12" style="padding: 7px;background-color:RGB(192,192,255);">
+            <table class="table table-bordered" style="background-color:RGB(192,192,255);margin-bottom:0px">
+                <thead style="background-color:RGB(128,0,0); color:white">
+                    <tr>
+                        <th>Gross Amount</th>
+                        <th>Total ISC</th>
+                        <th>Toatal Tax</th>
+                        <th>Net Amount</th>
+                        <th>Currency</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0.000</td>
+                        <td>0.000</td>
+                        <td>0.000</td>
+                        <td>0.000</td>
+                        <td>USD</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="GeneratePrimeCoupon" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5>Outward Billing Check</h5>
+            </div>
+            <div class="modal-body" style="height: 730px;width: 99.3% !important;">
+                <div class="col-sm-4 n-padding" style="width:31% !important">
+                    <fieldset class="test-fieldst">
+                        <legend class="test-fieldst" style="background-color:transparent">Flight Date</legend>
+                        <div class="col-sm-6 width-group n-padding-right">
+                            <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">From:</label>
+                            <div class="col-sm-7 n-padding">
+                                <div class="input-group">
+                                    <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('cancelDateFrom')"></span>
+                                    <input type="text" class="form-control" id="cancelDateFrom">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 n-padding" style="margin-bottom: 19px;">
+                            <label class="form-check-label col-form-label col-sm-2 n-padding fromTo">To:</label>
+                            <div class="col-sm-7 n-padding">
+                                <div class="input-group">
+                                    <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('cancelDateTo')"></span>
+                                    <input type="text" class="form-control" id="cancelDateTo">
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div class="col-sm-3">
+                    <fieldset class="test-fieldst" id="rbcancellation" style="height: 73px;">
+                        <legend class="test-fieldst" style="background-color:transparent">Interline Selection</legend>
+                        <label class="form-check-label col-form-label col-sm-5 n-padding fromTo">OAL Carrier:</label>
+                        <select>
+                            <option>-ALL-</option>
+                        </select>
+                    </fieldset>
+                </div>
+
+                <div class="col-sm-3" style="top: 22px;left: 20%;">
+                    <button type="button" class="btn btn-default" onclick="setCriteriaCancellation()">SAVE</button>
+                    <button class="btn btn-default" onclick="removeSousMenu()">CLOSE</button>
+                </div>
+
+                <div class="col-sm-12" style="background-color:white;height:574px;margin-top:8px">
+
+                </div>
+                <div class="col-sm-8" style="margin-top: 21px;font-size: 13px;">
+                    <div class="col-sm-3">
+                        <label>Total Number of Tickets</label>
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

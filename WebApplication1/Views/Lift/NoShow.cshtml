@@ -1,0 +1,179 @@
+﻿
+<div class="col-sm-11 tab-content tab-cancellation">
+    <div class="content-cancellation col-sm-12">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="col-sm-4" style="top:-17px;position: relative;left: -15px;">
+                    <fieldset class="test-fieldst" id="sqlCriteria">
+                        <legend class="test-fieldst">Fight Date Range Selection</legend>
+                        <div class="col-sm-6">
+                            <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">From:</label>
+                            <div class="input-group date">
+                                <span class="input-group-addon check-dape"><input type="checkbox" name="dtpIssueDateFromNoshow" value="oui" id="dtpIssueDateFromNoshow" onclick="uncheked('dtpIssueDateFromNoshow', 'dtpIssueDateToNoshow', 'datedtpIssueDateFromNoshow', 'datedtpIssueDateToNoshow')"></span>
+                                <input type="text" name="datedtpIssueDateFromNoshow" class="form-controls input-date" id="datedtpIssueDateFromNoshow" value="@ViewBag.date[0]" readonly />
+                                <span class="input-group-addon datetimepicker" onclick="setdate1('datedtpIssueDateFromNoshow', 'dtpIssueDateFromNoshow', 'dtpIssueDateToNoshow')">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">To:</label>
+                            <div class="input-group date">
+                                <span class="input-group-addon check-dape"><input type="checkbox" name="dtpIssueDateToNoshow" value="oui" id="dtpIssueDateToNoshow" onclick="uncheked1('dtpIssueDateFromNoshow', 'dtpIssueDateToNoshow', 'datedtpIssueDateFromNoshow', 'datedtpIssueDateToNoshow')"></span>
+                                <input type='text' name="datedtpIssueDateToNoshow" class="form-controls input-date input-datetimepicker" id="datedtpIssueDateToNoshow" value="@ViewBag.date[1]" readonly />
+                                <span class="input-group-addon datetimepicker" onclick="setdate1('datedtpIssueDateToNoshow')">
+                                    <span class="glyphicon glyphicon-calendar" id="calendarPaxTo"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div class="col-sm-2">
+                    <label class="form-check-label col-form-label col-sm-4 n-padding fromTo">Agent Name:</label>
+                    <input type="hidden" id="test" value="">
+                    <input type="hidden" id="stock" value="">
+                    <div class="col-sm-7 n-padding" id="selectshow">
+                        <select class="form-control" id="AgentName" namr="AgentName" onclick="Remarksselect()" style="width: 150px; float: left;">
+                            <option class="form-control">-All-</option>
+                            @for (int n = 0; n < ViewBag.lonAg; n++)
+                            {
+                                <option>@ViewBag.AgCode[n]</option>
+                            }
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="col-sm-2">
+                    <label class="form-check-label col-form-label col-sm-5 n-padding fromTo">Document Number:</label>
+                    <div class="col-sm-6 n-padding">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="DocumentNumber" value="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <label class="form-check-label col-form-label col-sm-5 n-padding fromTo">Passenger Name:</label>
+                    <div class="col-sm-6 n-padding">
+                        <div class="input-group">
+                            <input type='text' name="PassengerName" class="form-control" id="PassengerName" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="col-sm-4" style="top:-18px; position: relative;left: -15px;">
+                    <fieldset class="test-fieldst" id="sqlCriteria1">
+                        <legend class="test-fieldst">Usage Date Selection</legend>
+                        <div class="col-sm-6">
+                            <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">From:</label>
+                            <div class="input-group date">
+                                <span class="input-group-addon check-dape"><input type="checkbox" name="dtpIssueDateFrom1Noshow" value="oui" id="dtpIssueDateFrom1Noshow" onclick="uncheked('dtpIssueDateFrom1Noshow', 'dtpIssueDateTo1Noshow', 'datedtpIssueDateFrom1Noshow', 'datedtpIssueDateTo1')"></span>
+                                <input type="text" name="datedtpIssueDateFrom1Noshow" class="form-controls input-date" id="datedtpIssueDateFrom1Noshow" value="@ViewBag.date[0]" readonly />
+                                <span class="input-group-addon datetimepicker" onclick="setdate1('datedtpIssueDateFrom1Noshow', 'dtpIssueDateFrom1Noshow', 'dtpIssueDateTo1Noshow')">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">To:</label>
+                            <div class="input-group date">
+                                <span class="input-group-addon check-dape"><input type="checkbox" name="dtpIssueDateTo1Noshow" value="oui" id="dtpIssueDateTo1Noshow" onclick="uncheked1('dtpIssueDateFrom1Noshow', 'dtpIssueDateTo1Noshow', 'datedtpIssueDateFrom1Noshow', 'datedtpIssueDateTo1Nowshow')"></span>
+                                <input type='text' name="datedtpIssueDateTo1Nowshow" class="form-controls input-date input-datetimepicker" id="datedtpIssueDateTo1Nowshow" value="@ViewBag.date[1]" readonly />
+                                <span class="input-group-addon datetimepicker" onclick="setdate1('datedtpIssueDateTo1Nowshow', 'dtpIssueDateFrom1Noshow', 'dtpIssueDateTo1Noshow')">
+                                    <span class="glyphicon glyphicon-calendar" id="calendarPaxTo1"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-sm-6">
+                    <label class="form-check-label col-form-label col-sm-1 n-padding fromTo">Remarks:</label>
+                    <div class="input-group">
+                        <select class="form-control" id="Remarks" name="Remarks" style="width: px; float: left;position:relative;left:-26px" onclick="" onchange=" this.nextElementSibling.value = this.value">
+                            <option class="form-control">-All-</option>
+                            <option class="form-control">ORIGINAL FLIGHT DATE v/s USAGE DATE MISMATCH - COLLECT PENALTY FEES IF ANY</option>
+                            <option class="form-control">AMOUNT CONSIDERED AS UNEARNED REVENUE</option>
+                            <option class="form-control">NO SHOW - CHECK IF BOOKING AMENDED AND COLLECT PENALTY FEES IF ANY</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-2" style="left: 20px;">
+                    <button class="search-interogation green btn" onclick="SearchNoShow()"><span class="glyphicon glyphicon-search"></span></button>
+                    <button class="search-interogation green btn" onclick="clearNoShow()"><span class="search-span" style=" color: black;">CLEAR</span></button>
+                    <button class="search-interogation green btn" onclick="removeSousMenu()"><span class="search-span" style="color: black;">CLOSE</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="search" class="tab-pane fade in active">
+        <div class="content col-sm-12">
+            <div class="showresult">
+                <div class="col-sm-12">
+                    <div class="table-record-display" id="tabnowshow" style="height:650px;overflow:auto; position: relative; left: -20px;">
+                        <div class="ajax-loader">
+                            <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+                        </div>
+                        <table class="table table-bordered table-striped table-hover" id="Tablenoshow" style="white-space: nowrap;">
+                            <thead>
+                                <tr>
+                                    <th class="green-tab" id="test">Sale Date</th>
+                                    <th class="green-tab">Date of Issue</th>
+                                    <th class="green-tab">Flight Date</th>
+                                    <th class="green-tab">Usage Date</th>
+                                    <th class="green-tab">FareBasis</th>
+                                    <th class="green-tab">RBD</th>
+                                    <th class="green-tab">NVB</th>
+                                    <th class="green-tab">NVA</th>
+                                    <th class="green-tab">AirlineID</th>
+                                    <th class="green-tab">DocNum</th>
+                                    <th class="green-tab">Cpn</th>
+                                    <th class="green-tab">Pax Name</th>
+                                    <th class="green-tab">PNR</th>
+                                    <th class="green-tab">RPSI</th>
+                                    <th class="green-tab">GDSIdentifier</th>
+                                    <th class="green-tab">FlightNo.</th>
+                                    <th class="green-tab">Usage FIt no.</th>
+                                    <th class="green-tab">Usage Airline</th>
+                                    <th class="green-tab">Ori</th>
+                                    <th class="green-tab">Dest</th>
+                                    <th class="green-tab">Endos</th>
+                                    <th class="green-tab">Remarks</th>
+                                    <th class="green-tab">FinalShare</th>
+                                </tr>
+                            </thead>
+                            <tbody class="loadNoshow"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-sm-10">
+                    <div class="footer-lookUp">
+                        <fieldset>
+                            <form class="form-inline">
+                                <div class="form-group col-sm-4 width-group">
+                                    <label for="exampleInputName2" class="label-pagination">Total Number Of Documents</label>
+                                    <input type="text" class="form-control" id="TotalNumberOfDocuments" placeholder="" disabled>
+                                </div>
+                                <div class="form-group col-sm-4 width-group">
+                                    <label for="exampleInputName2" class="label-pagination" id="displayRecord">Final Share (USD)</label>
+                                    <input type="text" class="form-control" id="input-nb-page" placeholder=".00" disabled>
+                                </div>
+                                <div class="form-group col-sm-4 width-group">
+                                    <img src='@Url.Content("~/images/CSVPic.jpg")' class="image-csv" style="top:-5px">
+                                </div>
+                            </form>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

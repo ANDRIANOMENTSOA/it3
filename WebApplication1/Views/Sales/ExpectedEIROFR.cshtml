@@ -1,0 +1,123 @@
+﻿@using System.Data
+@model DataSet
+<div class="col-sm-11 tab-content tab-cancellation">
+    <h3 style="position: relative;left: 23%;">EXPECTED INTERLINE PAYABLES (IP) & OWN FLOWN REVENUE (OFR) </h3>
+    <div class="content-cancellation col-sm-11">
+        <div class="col-sm-4">
+            <fieldset class="test-fieldst">
+                <legend class="test-fieldst">Fligth Date</legend>
+                <div class="col-sm-6 width-group">
+                    <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">From:</label>
+                    <div class="col-sm-7 n-padding">
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateFromExpected')"></span>
+                            <input type="text" class="form-control" id="dateFromExpected" value="@ViewBag.dateFrom" style="padding-right:3px">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6" style="margin-bottom: 19px;">
+                    <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">To:</label>
+                    <div class="col-sm-7 n-padding">
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateToExpected')"></span>
+                            <input type="text" class="form-control" id="dateToExpected" value="@ViewBag.dateTo" style="padding-right:3px">
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+        <div class="col-sm-3">
+            <fieldset class="test-fieldst">
+                <legend class="test-fieldst">Options</legend>
+                <div class="form-group row" style="margin-left:7px">
+                    <label class="col-sm-4 col-form-label" style="position: relative;top: 9px;">Transaction Type:</label>
+                    <div class="col-sm-5" style="height: 37px;">
+                        <div class="row div-showModal">
+                            <select class="form-control" id="dropdownType" onclick="">
+                                <option></option>
+                                <option>EXPECTED FLOWEN REVENUE</option>
+                                <option>EXPECTED INTERLINE PAYABLES</option>
+
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="col-sm-3" style="position: relative;top: 10px;">
+            <div class="search">
+                <div class="col-sm-3"><button type="button" class="search-interogation pink btn" onclick="setCriteriaExpectedEIR_FOR()"><span class="search-span">SEARCH</span></button></div>
+                <div class="col-sm-3"><button type="button" class="search-interogation pink btn" onclick="clearEIR()"><span class="search-span">CLEAR</span></button></div>
+                <div class="col-sm-3"><button class="search-interogation pink btn" onclick="removeSousMenu()"><span class="search-span">CLOSE</span></button></div>
+            </div>
+        </div>
+    </div>
+    <div id="loadExpectedEIR_FOR">
+        <div class="ajax-loader">
+            <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+        </div>
+        <div class="col-sm-11" style="margin-top:40px">
+            <div class="col-sm-8">
+                <div class="table-record-display" style="height:545px">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="pink">Related Doc No</th>
+                                <th class="pink">CPN</th>
+                                <th class="pink">Origin Airp</th>
+                                <th class="pink">Dest Airp</th>
+                                <th class="pink">Carrier</th>
+                                <th class="pink">Filgth No</th>
+                                <th class="pink">Flight Date</th>
+                                <th class="pink">PM</th>
+                                <th class="pink">Final Share</th>
+                                <th class="pink">Status</th>
+
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            <div class="col-sm-3" style="margin-top: 0px;">
+                <div class="table-record-display" style="height:245px">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="pink">No Of Documents</th>
+                                <th class="pink">Carrier</th>
+                                <th class="pink">Ttal</th>
+
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-cancellation col-sm-12">
+            <div class="col-sm-6">
+                <fieldset class="test-fieldst">
+                    <legend class="test-fieldst">SUMMARY</legend>
+                    <div class="col-sm-6 width-group">
+                        <label class="form-check-label col-form-label col-sm-6 n-padding fromTo">Total Number Of Documents:</label>
+                        <div class="col-sm-6 n-padding">
+                            <div class="input-group">
+                                <input type="text" class="form-control" value="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6" style="margin-bottom: 19px;">
+                        <label class="form-check-label col-form-label col-sm-6 n-padding fromTo">Total Amounts:</label>
+                        <div class="col-sm-6 n-padding">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="" id="totalAmount" />
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+
+</div>

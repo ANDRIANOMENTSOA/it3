@@ -1,0 +1,34 @@
+﻿@using System.Data
+@model DataSet
+<div class="table-record-display" style="width: 805px;height: 700px;overflow: auto;">
+    <table class="table table-striped table-bordered table-hover" style="width:85%">
+        <thead>
+            <tr>
+                <th class="pink">Date Processed</th>
+                <th class="pink">Document No</th>
+                <th class="pink">Origin</th>
+                <th class="pink">Destination</th>
+                <th class="pink">ISC %</th>
+                <th class="pink">ISC Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (ViewBag.compteur > 0)
+            {
+                for (int j = 0; j < ViewBag.compt2; j++)
+                {
+                    <tr>
+                        <td>@ViewBag.tabISC[7, j]</td>
+                        <td>@ViewBag.tabISC[0, j]</td>
+                        <td>@ViewBag.tabISC[1, j]</td>
+                        <td>@ViewBag.tabISC[2, j]</td>
+                        <td>@ViewBag.tabISC[5, j]</td>
+                        <td>@ViewBag.tabISC[6, j]</td>
+                    </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+</div>
+<input type="hidden" id="compteur" value="@ViewBag.compteur" />

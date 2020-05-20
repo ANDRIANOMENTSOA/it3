@@ -1,0 +1,3907 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6C197028-D4A2-4EDB-A2C1-AFCB47C492BC}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WebApplication1</RootNamespace>
+    <AssemblyName>WebApplication1</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CSVLibraryAK, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\CSVLibraryAK.1.0.0\lib\net471\CSVLibraryAK.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.0.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.0.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.0.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.0.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.0.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.0.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CustomisedController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InterlineController.cs" />
+    <Compile Include="Controllers\LiftController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProcessController.cs" />
+    <Compile Include="Controllers\BillingMemoController.cs" />
+    <Compile Include="Controllers\ReportingController.cs" />
+    <Compile Include="Controllers\SalesController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Controllers\XmlWriter02.cs" />
+    <Compile Include="Controllers\ZipStorer.cs" />
+    <Compile Include="DataHelpers\AccountMaster.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\AccountTransaction.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ACMADM.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ACMA_ADMA_Detail_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\AdjAnaDocumentCoupon.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\AdjAnaDocumentHeader.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\AdjAnaProrationDetail.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\AdjustmentAnalytics_prorate_perCoupon_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\AdjustmentAnalytics_prorate_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ADMACM.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Agent.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\AgentGuarantee.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\AgentSale.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\AgentSalesLimit.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Agent_Own.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Agent_Own_MD.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\AgreementApplicabilityAuditParameter.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Aircraft.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Airline.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\AirlineException.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\AirlineNoBillingAgreement.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Airlines_ICH.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Airlines_OLD.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\AirportCoordinate.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\AirportTax.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\AlreadyRejected.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\AlreadyRejectedTax.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Ama25_AgentBookingAndTicketingID.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ApplicabilityStatu.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ApplicabilityStatus1_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ApplicabilityStatusFail.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ApplicabilityStatus_Summary_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ApplicableTaxesException.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ApplicableTFC.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ApplicableTFC_MD.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Application.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ApplicationDefault.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\AppObject.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\AppObjectOption.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Area_SD.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ASV.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ASV1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ASV44.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ASVException.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ASV_ViceVersa.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ASV_ViceVersa1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ATCAN.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ATDsWithConjuctionTickets_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ATDsWithEndorsementsRestrictions_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ATDsWithExchangedDocs_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ATDsWithSPAApplication_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ATDsWithTransitPoints_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ATDsWithUATPFOP_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\BANKERRATE.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bar64_DocumentAmount.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bar64_DocumentAmount1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bar64_DocumentAmount2.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bar65_PassengerInformation.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bar65_PassengerInformation1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bar66_AdditionalFormOfPayment.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bar66_AdditionalFormOfPayment1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\BCC82_AdditionalCardInformation.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bch02_BillingAnalysisHeader.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\BCH02_BillingAnalysisHeader1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bct95_BillingAnalysis.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bct95_BillingAnalysis1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bfh01_FileHeader.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\BFH01_FileHeader1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bft99_FileTotals.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bft99_FileTotals1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\BillingMemo.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\BillingMemoDetail.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bkf81_FareCalculation.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bkf81_FareCalculation1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bki63_ItineraryDataSegment.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bki63_ItineraryDataSegment1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bki63_ItineraryDataSegment2.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bkp83_ElectronicTransaction.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bkp84_FormOfPayment.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bkp84_FormOfPayment1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bkp84_FormOfPayment2.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bks24_DocumentIdentification.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bks24_DocumentIdentification1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bks30_DocumentAmount.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bks30_DocumentAmount1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bks30_DocumentAmount2.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bks31_CouponTaxInformation.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\BKS31_CouponTaxInformation1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bks39_Commission.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bks39_Commission1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bks39_Commission2.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bks42_TaxOnCommission.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bks42_TaxOnCommission1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bks45_RelatedDocumentInformation.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bks45_RelatedDocumentInformation1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bks46_SalesTransactions.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bks46_SalesTransactions1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\BKS47_NettingValues.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bkt06_TransactionHeader.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bkt06_TransactionHeader1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bkt06_TransactionHeaderCount.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bkt06_TransactionHeader_SaleDocumentHeader.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bmd75_ECouponRecords.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bmd75_ECouponRecords1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bmd76_ERemarkRecords.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bmd76_ERemarkRecords1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\BMHEADER.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bmp70_ReasonForIssuance.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bmp71_AdditionalInformation.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bmp71_AdditionalInformation1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bmp72_AmountInLetters.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bmp73_AirlineInformation.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bmp74_DocumentPrintLines.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bmp77_CouponPrintLines.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bmp78_SponsorInformation.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Boh03_ReportingAgentOfficeHeader.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Boh03_ReportingAgentOfficeHeader1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bot93_OfficeSubTotals.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bot93_OfficeSubTotals1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bot94_OfficeTotals.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Bot94_OfficeTotals1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\BSPClosingPeriod.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\BSP_REPORTS_FUTURE_FLIGHTS_SALE_KK_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\BSP_REPORTS_KK.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\BSP_SAP_BATCH_REPORTS_KK.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\BSP_SAP_Flown_Data_Sent_KK_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\CarrierRDB.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Charge.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Check_LiftConjunction.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Check_LiftCouponDoublon.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Check_LiftCouponNumber.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Check_LiftFileList_Detail.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Check_LiftMissingCouponsInPax.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Check_LiftOrphan_NoCoupons.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Check_LiftOrphan_NoHeader.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Check_LiftReccount.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\CitiesWithMoreThanOneAirport.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\City.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\CltFareTable.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Cntry_Airport.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\COA1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\COA2.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\COA3.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\COA4.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\CodeShare.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\CodeShareAgreementDetail.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\CodeShareClassMapping.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\CodeShareFlight.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\CodeShareFlights1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\CodeShareFlights2.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\CodeShareFlightsBak.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ColumnSpec.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ConsolidatedData.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Constant.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Contact.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Correspondence.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Country.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\CountryCoordinate.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Coupon.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\CouponException.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Coupons1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Coupons2.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\CouponsNotToBeProrated_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\CouponStatusOverride.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\CouponsToBeProrated_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Coupons_Audit.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\CouponUnused_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Currency.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\CurrencyRate.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\CurrencyRounding.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\CurrencyType.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\DataAddOnCharge.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\DataInvoicesHRD.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\DataInvoiceSummary.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\DataLineItemDetail.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\DataLineItemDetetailsTXBrkDnw.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\DataRejAddOnCharge.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\DataRejMemoDetail.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\DataTransmissionHDR.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\DetailTransactionsData.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Differential.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\DiscAndBagg.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Discount.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\DispplayAll_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\DNA.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ED.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\EMD.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Endorsement_BAK.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ETL.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Exception.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ExcessBaggage.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Exchanged_Ticket_Report_MR_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ExpectedPayablesByMonthOfUplift_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ExpectedReceivableByMonthOfUplift_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Expected_Flown_MR_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\EXT83ExchangeFopBrkDwn.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Fare.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FAREBASI.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Farebasis1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FAREBASIS2.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FareBasis3.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FareBasisRule.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FareComponent.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FareControl.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FarePassengerTypeCode.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FarePassengerTypeRule.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FareType.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\fca.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FCA_Component.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FileUploadStatu.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FileUploadStatus2.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FileUploadStatus3.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FileUploadStatus_Deleted.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FileUploadStatus_Detail_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FileUploadStatus_Summary_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FIMDetail.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FIMDetailsEntry.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FIMHeader.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FIMHeaderData.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FIMProrationDetail.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FIM_OB.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FinalSharesCheck_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FinalShares_V_AmountCollected_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FinPeriodCalender.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FirstRejectionTaxMemo1_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FirstRejectionTaxMemo_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FirstRejection_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FlightRecord.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FlightRecord1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FlightRestriction.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FlightRestriction1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FlightSchedule.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FlightSchedule1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FlightSchedule_MD.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FlightSchedule_MD1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FlightSchedule_RAW_SD.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FlightsSchedule.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FlightsScheduleDone.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Flight_SD.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FlownBy_FlightDate_Routing_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FlownCouponDetail.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FlownCouponDetailOAL.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FlownCouponDetailOWN.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FlownDetail_Commission_Override_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FlownDetail_MR_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FlownDetail_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FlownFlightCountBySector_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FlownHeader.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FlownMatching.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FlownNoMatching.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FlownRevenueMRExcludingCharterUnproratedSectorFare_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FlownRevenueMRExcludingCharter_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FlownRevenue_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Flown_FareBasis_PaxCount_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Flown_Surcharges_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\fn_DelimitedStringToTable_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\fn_Document_Control_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\fn_Farebasis_Split_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\fn_FileList_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\fn_FinalShareSumCheck_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\fn_FOP_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\fn_FOP_UATP_Reclaim_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FN_InadOal_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\fn_INAD_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\fn_LiftPaxCountAndSLSLDM_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\fn_MR_SalesDocumentRefund_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\fn_MR_SalesSummary_All_Agents_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\fn_MR_SalesSummary_All_Agents_Sectors_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\fn_OwnAirline_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\fn_SACLiftCoupon_ImportData_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\fn_SACLiftFormOfPayment_ImportData_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\fn_SACLiftFormOfPayment_ImportData_Sequence_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\fn_SACLiftHeader_ImportData_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\fn_SACLiftTax_ImportData_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\fn_SACLiftTax_ImportData_Sequence_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\fn_SalesComponent_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\fn_SalesCouponDetail_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\fn_SalesCouponDetail_Source_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\fn_SalesDocumentCoupon_It06_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\fn_SalesDocumentCoupon_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\fn_SalesDocumentFareByCoupon_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\fn_SalesDocumentPaymentAmountByCoupon_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\fn_SalesDocumentPayment_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\fn_SalesFlownMatching_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\fn_SalesHeader_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\fn_SalesHeader_Source_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\fn_SalesSubComponent_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\fn_SalesUtilisation_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\fn_SLSLDM_Adjust_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\fn_SLSLDM_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\fn_VaryingFinalShareSameMOS_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FOP.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FOP1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FOP_UATP_reclaim_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FormOfPayment.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FormOfPaymentCard.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FormOfPaymentMode.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FormOfPayment_Old.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FORWARDSALE.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FreeBaggageAllowance.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FreeBaggageAllowanceExcess_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FrequencyCode.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FRTaxMemo_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\frUserChanx.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\frUserTaxChanx.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\FunnelFlight.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\GetAccountingListingByTicket_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\GetAccountingSummaryByTicket_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\GetAccountingSummaryNetByTicket_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\GetAllSalesTickets_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\GetAllTickets_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\GetCharge_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\GetCity_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\GetConjunctionCoupons_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\GetCouponSPA_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\GetCoupons_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\GetHeaderFooter_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\GetIbDetails_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\GetLiftCoupons_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\GetliftGrid_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\GetLiftHeader_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\GetOALPendingBillings_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\GetProration.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\GetProvisoRulesSectionC_P1Gt0P2Null_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\GetProvisoRulesSectionC_P2Gt0_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\GetProvisoRulesSectionC_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\GetRegionIdentifiers_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\GetSPA_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\GetSPA_Source_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\GetTax_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\GetTfc_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\GetTicketsAllCarrierSPANumber_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Group.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\GroupObjectOption.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\GSP.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\HdrGuidFromLiftHeader.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Header.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Header1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Header2.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Header3.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\High_Low.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\History.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\HistoryTax.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\HOTUploadGuid.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\IataArea.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\IATACalendar.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\IataReferenceFile.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\IATASeason.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\IATASeasons1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\IataSubArea.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ICHCalendar.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Import.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ImportControl.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ImportData.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\INADHeader.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\INADProrateDetail.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Invoice.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Invoice1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\InvoiceAnalytic.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\InvoiceAnalyticsAOCharge.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\InvoiceAnalyticsTaxBkDwn.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\InvoiceDetail.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\InwardBilling.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\InwardBillingProrationSlip.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\InwardBillingProration_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\InwardBillingTax.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\InwardImport.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\InwardRejectionTaxMemo.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Inward_Billing_Summary_MD_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Inward_Details.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Inward_Header.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ISAIRROE.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Isc.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\It01_FileHeader.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\It02_Transaction.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\It03_TicketDocumentInformation.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\It04_AdditionalSaleInformation.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\It05_MonetaryAmounts.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\It06_Itinerary.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\It07_FareCalculation.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\It08_FormOfPayment.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\It09_AdditionalInformation.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\It0A_MiscellaneousDocument.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\It0B_AdditionalInformation.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\It0C_MiscellaneousCoupon.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\It0D_MiscellaneousCouponLine.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\It0E_AutomatedTicketAdvice.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\It0G_EMBCouponDetails.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\It0S_StockControl.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\It0Y_AgencyData.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\It0Z_FileTrailer.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\JournalEntry.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\JourneyOriginating.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\KK_AccCodes.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\KK_Amadeus_Split.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\KK_BSP_Batch_Reports_Currency_Conversion.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\KK_ClientCodes.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\KK_CodeShare.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\KK_CodeShareAgreement.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\KK_CodeShareASV.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\KK_CodeShareDiscounts.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\KK_CodeShareException.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\KK_CustProrateShare.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\KK_GSA_Commissions_Periods_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\KK_GSA_Parameters.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\KK_Interline_Shgm_Domestic_Sales_Report_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\KK_Inward_OAL_Rejection01_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\KK_OuwardBillingFlightDetail_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\KK_OuwardBillingFlightSummary_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\KK_OuwardBillingInvoiceSummary_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\KK_OuwardBilling_500_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\KK_SupplierCodes.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\LastFileUploadStatu.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\LDM.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\LiftCoupon.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\LiftCoupon1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\LiftCoupon2.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\LiftFormOfPayment.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\LiftFormOfPayment1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\LiftFormOfPayment2.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\LiftHeader.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\LiftHeader2.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\LiftHeader3.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\LiftHeaderAddOn.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\LiftHeaderAddOn1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\LiftHeaderIndex.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\LiftHeaderOld.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\LiftHeaderOriginal.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\LiftsQuery.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\LiftTax.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\LiftTax1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\LiftTax2.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Listofsector.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Log.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\MadaROE.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Maintenance.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Main_ApplicabilityStatus.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Main_ApplicabilityStatus1_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ManualEntryLog.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ManualRefund.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\MDAgent_ASD.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\MDAgent_CASS.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\MDITBTHeader.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\MDITBTParcour.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\MD_Aircraft.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\MD_DCS_Arrival.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\MD_DCS_Departure.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\MD_FareBasisException.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\MD_FlightIrregularities.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\MD_Geneva.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\MD_UsageVBooking.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\MessageMap.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\MissingCarrierWhenBothRequiredInATBP_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\MissingCarrierWhenBothRequiredInJourney_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\MissingFlightsInLift.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\MissingTaxForSectorDetail.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\MMR.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ModulePeriod.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ModulePeriodHistory.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Monitor.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\MPR.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\MR_APG_Office.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\MR_CouponDetail_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\MR_DiscountBy_Date_Agent_DocumentNumber_Coupon_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\MR_FlightSchedule.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\MR_SalesSummaryBy_Date_Agent_DocumentNumber_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\MR_SalesSummaryBy_Date_Agent_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\MR_SalesSummaryBy_Date_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\MR_Sales_Summary_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\MR_Sales_Summary_Sector_RBD_FareBasis_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\MR_Tax_By_Date_Agent_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\NavisionExport.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Network_MD.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\NoLift_ForcedFlown.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\OALift2del.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\OalProrationDetail.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\OB_prorate_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\OB_ValidatedTax.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\OB_ValidatePrime.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Organization.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\OriginalSalesDocumentOtherAmount.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\OriginalSalesDocumentPayment.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\OriginalUsageType.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Orin.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\OtherPartyInvolvedAnotherATBP_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\OtherPartyInvolvedJourney_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\OtherPartyInvolvedSameATBP_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\OutwardBilling.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\OutwardBilling1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\OutwardBillingTax.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\OutwardBillingTax1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\OutwardBillingTax_WrongBilling.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\OutwardBillingToExcelDetail_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\OutwardBillingToExcelSummary_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\OutwardBillingToExcelTax_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\OutwardBillingToExcel_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\OutwardBilling_WrongBilling.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Outward_Billing_Detail_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Outward_Billing_Summary_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Outward_invs.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\OwnExchange.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Passenger.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\PassengerAgencyDetail.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\PaxAgencyDetail.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\PAXCodeDefinition.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Payment.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\PCCustomisedProration.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\PC_AddOn.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\PC_ChangesRate.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\PC_Quotient.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\PF.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\PLBDetail.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\PLBHeader.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\PlusUp.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\PMPAttachment.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\PMPBaseAmount.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\PMPFactor.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\PNL.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\PNL1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\PNLCouponMapping.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\PNLFileUploadStatu.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\PNL_Doublons.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Prime.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\PrimeInformation_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\PrimeTax.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\PRL.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ProblematicView.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\PRORATEDTRANSACTION.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ProrateStep.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ProrationDetail.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ProrationException.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ProrationHistory.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Proration_Surcharge_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ProvisoRulesSectionA.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ProvisoRulesSectionB.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ProvisoRulesSectionC.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ProvisoRulesSectionC_test.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ProvisoRulesSectionC_test2.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Proviso_Country_Dictionnary.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\QRYlift.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\QRYliftSP_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\QSurcharge.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\RBD_Class_Mapping_MD.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ReasonCode.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\RefBANKERRATE.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\RefCurrencyRate.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\RefTaxSurComSum.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\RefundManagement.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Refunds_Detail2_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Refunds_DetailByRefundDate_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Refunds_DetailBySaleDate_MR_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Refunds_DetailBySaleDate_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Refunds_Detail_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Regions_vw.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Reissue_Ticket_Report_MR_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Rejection.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\RejectionsInformation_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\RejectionTax_MR_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Rejection_MR_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Repgroup.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Report.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ReportsCategory.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ReportsCustomised.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ReportsCustomization.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\RjTax.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\rjUserChanx.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\rjUserTaxChanx.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Route.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Route1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\RouteRDBAmount.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SACLiftCoupon.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SACLiftFormOfPayment.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SACLiftHeader.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SACLiftTax.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Sale.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesAnalysis_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesBillingAnalysi.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesBillingAnalysis_Bct95_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesByAgent1_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesByAgentFOP_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesByAgent_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesByDateCurrency_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesComponent.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesComponentSummary_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesCouponDetail.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesCouponTaxInformation.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesDetailListing_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesDocumentAdditionalInfo.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesDocumentCoupon.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesDocumentCoupon1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesDocumentCoupon2.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesDocumentCoupon3.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesDocumentCoupon4_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesDocumentCouponOriginal.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesDocumentCoupon_Bki63_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesDocumentCoupon_Tki63_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesDocumentDetailListing_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesDocumentHeader.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesDocumentHeader1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesDocumentHeader2.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesDocumentHeader3.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesDocumentHeaderOriginal.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesDocumentHeader_Bkt06_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesDocumentHeader_Bkt06_Test_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesDocumentHeader_It02_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesDocumentOtherAmount.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesDocumentOtherAmount1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesDocumentOtherAmount2.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesDocumentOtherAmountSummary_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesDocumentPayment.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesDocumentPayment1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesDocumentPayment2.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesDocumentPaymentSummary_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesDocumentStatu.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesHeaderCountCheck.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesRelatedDocumentInformation.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesRelatedDocumentInformation1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesRelatedDocumentInformation2.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesReport.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesSectorsFarebasis_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesSectorsRBD_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesSummaryPart11_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesSummaryPart1_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesSummaryPart2_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesSummary_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesTFC_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesTransactionGroup.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesTransactionRemittance.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesTransactionRemittance_Bot93_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SalesZeroValues_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Sales_Audit.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Sales_vs_FlownPerformance_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Scenario.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SecondRejectionTax_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SecondRejection_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SectorsNoApplicableTax.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ServiceCode.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Setting.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Signatory.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SignatoryCodeShare.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SL.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SLS1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SLS2.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SLSLDMPaxAdjust.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SLSLDM_Adjusted_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SLSPaxCount.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SnapBulletin.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SourceCode.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SPAApplicabilityRemark.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SPAException.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SPagent4FCsimile_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SpaHeader.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SPanalysisBYExchange_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SPanalysisBYfop_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SPanalysisBYRBDFareBasis_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SPAstatus_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SPC.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SpecificISC.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SPFiveDayRate_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SPgetConjuction4tkt_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SPgetCPNdetails_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SPgetTkTdetails_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SPMMR_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SPProrateFactor_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SPuploadStatus_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_AgentSalesByMonth_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_Airline_Object_Permissions_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_CheckExpiry_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_CheckMissingTax_BSP_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_Check_LiftConjunction_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_Check_LiftCouponDoublon_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_Check_LiftCouponNumber_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_Check_LiftCouponNumber_TEST_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_Check_LiftMissingCouponsInPax_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_Check_LiftOrphan_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_CodeShareClassMapping_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_comission_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_Compare_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_ConvertRate_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_CouponUnused_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_DataSplitEngine_SALES_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_DocumentSummaryByTransactionCode_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_FileUploadStatus_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_FlownTransactionByType_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_FOPcurGroup_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_FOPuatpOthers_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_FOPuatp_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_FOP_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_GenerateColumnSpecsForCSharp_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_GetCouponCodeShare_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_GetCouponSPA_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_GlobalParams_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\sp_helpdiagrams_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_IATASeasons_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_InterlineApplicableTax_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_InterlineTransactionByType_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_InvoiceOALS_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_LDMflt_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_LDMlist_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_Lifted_Coupon_Validation_DNA_Sum_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_Lifted_Coupon_Validation_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_Noshow_MD_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_Noshow_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_NotLoaded_MD_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_OutwardBilling_KK_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_PassengerSalesReport_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_PSR_Key_Elements_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\sp_psr_OfficeTotal_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_PSR_Passenger_Management_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\sp_psr_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_QRYlift_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_RefundOAL_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_SACLiftHeader_ImportData_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_SalesByCountryCity_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_SalesByCountry_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_SalesDomesticInternational_Data_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_SalesFlownMatch_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_SalesMatch_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_SalesSummarry_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_SalesTransactionByType_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_SlashPSR_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_SlashPSR_TranxCode_Summary_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_SLSqryDate_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_TaxSalesTkts_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_Tax_By_Coupon_Level_And_Surcharge_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_TFCflown_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_Ticket_No_Fare_Collected_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_TotallyandPartiallyUnusedTickets_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_Unused_Coupons_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SP_VatDetails_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SRD86SurrenderedTicketDocIden.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SRD87SurrenderedFareTaxAmounts.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SRD88SurrenderedEndorsementsRestrictionsInfo.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SRD89SurrenderedPassengerInfo.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SRD90SurrenderedItinerary.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SRD91SurrenderedFareCalculation.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SRD92SurrenderedFormofPayment.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SSR.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SSRCatering.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Station_SD.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Status.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Stat_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Stopover.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SummarySalesFlownCouponByFlight_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Surcharge.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Surcharge1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SymphonyModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SymphonyModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SymphonyModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SymphonyModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SymphonyModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\sysdiagram.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SysGroup.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SysLog.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SysLog1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SysObject.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SysObjectGroupMapping.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SysObjectOption.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SystemCheck.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SysUser.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\SysUserGroupMapping.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TableColumnSpecsBak_02SEP2015.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TableDef_CouponTax.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TableDef_Document_BSP_Period.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TableIndexScriptBak_02SEP2015.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TAX.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Tax1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Tax2.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TaxInfo.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TaxLibrary.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TaxRegion.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Tax_Additional.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Tax_Audit.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Tax_SectorNoTax.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TCH02CycleHeader.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TCT95CycleTrailer.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\template1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TFC.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TFCBySector.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TFCCollected.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TFC_MD.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ThirdRejectionTax_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ThirdRejection_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Ticket.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TicketAccounting.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TicketInSetCorrection.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TicketObservation.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TicketRemark.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TicketWithFOPhavingExchange.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TKF81FareCalculation.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TKI63Itinerary.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TKP84FormofPayment.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TKP85CertificateRecord.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TKS24TicketDocIden.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TKS30FareTaxAmounts.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TKS31ExchangeNewAuditorAmounts.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TKS39CommissionAmounts.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TKS45OriginalIssueInfo.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TKS46EndorsementsRestrictionsInfo.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TKS47WaiverCode.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TKS48PassengerInfo.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TKT06TransactionHeader.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TMP64EMDReasonforIssuance.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TMP65EMDCouponFeeOwner.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TMP66EMDCouponValue.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TMP67EMDInConnectionWithCoupon.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TMP70MiscReasonforIssuance.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TMP71EMDandMiscAdditionalInfo.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TMP75MiscCouponValue.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TMP76MiscCouponInfo.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TMP77MiscCouponPrintLineText.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Tmp_BSP_BATCH_REPORTS_KK_Step1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Tmp_BSP_BATCH_REPORTS_KK_Step2.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Tmp_BSP_SAP_Flown_Data_Transfer_Header_KK.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Tmp_BSP_SAP_Flown_Data_Transfer_KK.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Tmp_BSP_SAP_LINK_HEADER_KK.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Tmp_BSP_SAP_LINK_KK.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\tmp_DIF.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Tmp_SaleDates.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\tmp_TKTTBase.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TOH03SalesReportHeader.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ToleranceValue.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TOT94SalesReportTrailer.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TransactionCode.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TRANSACTIONDATA.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TRANSACTIONENTRY.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TransactionsData.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Trigger_Log.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TrnChart.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TTH01FileHeader.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TTT97VariableRemittanceTotals.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TTT98DisbursementTotals.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\TTT99FileTotals.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\UH_CustProrateShare.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\UpliftTax.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Usage.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Usage_Audit.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\USDRateInBND.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\User.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\UserGroup.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\UserHistory.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\UserLog.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\UserSession.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\UspFileUpload_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\UspSalesAmountTFC_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\UspSalesBillingRemittance_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\UspSalesTranRemittance_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\UspSalesTrnCount_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\Validated_Ticket_Report_MR_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ValidatePrime.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\ViceVersaWithASV.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Agent.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_AllColumns.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_ApplicabilityStatus_Summary.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_ApplicabilityStatus_Summary_Dates.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_ApplicableSurcharge_FareComponent.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_ApplicableSurcharge_Sector.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_ApplicableTaxes.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_ApplicableTaxesUSD.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_ApplicableTaxes_Jaivin.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Application.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_ASV_ViceVersa.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Attachment_Currency.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Bar64_DocumentAmount.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Bar65_PassengerInformation.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Bar66_AdditionalFormOfPayment.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Bch02_BillingAnalysisHeader.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Bct95_BillingAnalysis.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Bfh01_FileHeader.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Bft99_FileTotals.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Bft99_FileTotals1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Bkf81_FareCalculation.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Bki63_ItineraryDataSegment.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Bkp83_ElectronicTransaction.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Bkp84_FormOfPayment.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Bks24_DocumentIdentification.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Bks30_DocumentAmount.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_BKS31_CouponTaxInformation.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Bks39_Commission.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Bks42_TaxOnCommission.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Bks45_RelatedDocumentInformation.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Bks46_SalesTransactions.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Bkt06_TransactionHeader.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Bmd75_ECouponRecords.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Bmd76_ERemarkRecords.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Bmp71_AdditionalInformation.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Boh03_ReportingAgentOfficeHeader.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Bot93_OfficeSubTotals.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Bot94_OfficeTotals.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_CancelledTickets.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_CityCurrency.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Columns.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_CommissionSum.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_ComputedFare.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_ConsolidatedData.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_CouponApplicableTaxes.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_CouponsNotToBeProrated.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_CouponSummary.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Coupons_For_Outward_Billing_Excel.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Default_Constraints.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Definitions_Views_Procedures_Functions.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_DocumentsRefunded.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_DocumentsSPCR.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_DocumentsSPDR.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_DocumentsSP_CR_DR.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_DocumentSummary.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Document_BSP_Period.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Document_ReportPeriod.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Document_ReportPeriod1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_EMD_Details_CAT.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_EMD_Details_HOT.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_ExchangeDocument.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_ExchangeDocument_MR_Result.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_FareBasis_Discount.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_FareComponent.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_FCA_Clean.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_FileUploadStatus_Airline.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_FlightSchedule_SD.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_FOPSum.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Foreign_Constraints.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_HOT_Header.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_HOT_Payment.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_HOT_ProcessingFileName_For_FBS.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Indexes.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_InterlineApplicableTax.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_InwardBillComp.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\vw_InwardBillingCheck.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_InwardBilling_Coupons.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_InwardBilling_TaxDetail.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_inwardBills.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_InwardCheck.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_InwardRejectionList.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_InwardRejectionList_Excluding_frUserChanges.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_InwardRejectionList_Summary.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_InwardRejectionMemo.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_InwardRejectionMemo1.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_InwardRejectionTaxList.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_InwardRejectionTaxMemo.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_It0A_MiscellaneousDocument.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Key_Constraints.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Lift.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_LiftCouponToPax.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Lifted_Coupon_Validation.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_LiftForTransportation.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_LiftForTransportation_ForTax.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_LiftHeaderToPaxHeader.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_LiftHeader_Doublon.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Lift_ALL.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Lift_CouponUsage.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Lift_SalesDocumentHeader.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Lift_SalesRelatedDocumentInformation.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Match.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_missing_coupons_in_source_data.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Orin.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_OtherAmount_Other_Sum.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_outwardBilling.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_OutwardBillingAndFCA.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_OutwardBilling_Base.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_OutwardVATpicker.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Outward_Billing_Report.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_PC_Header2.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_PMPFactor_Quotient.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_ProrateFactors.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_ProrationDetail.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_ProrationSlip.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_PSR.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_RefundedRelatedTicket.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_RefundedTicket.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Rejection_Check.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_RelatedDocumentOrphans.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Reports.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_RetAncillaries.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_SalesComponent.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_SalesCouponDetail.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_SalesDocumentCoupon_PNL.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_SalesDocumentExchanged.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_SalesDocumentHeader_PNL.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_SalesDocumentOtherAmount.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_SalesDocumentPayment.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_SalesHeader.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_SalesMixedFormOfPayment.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_SalesRelatedDocumentInformation_PNL.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_SD_PaxAmountsConverted.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_SecondRejectionList.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_SectorINcountry.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Show_Unprorated.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_SignatoryAll.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_SISCPN.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_SurchargesAndTaxSum.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_SysLog.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Table_Types.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_TaxCommissionSum.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_TaxCompare.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_TFCBySector.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_ThirdRejectionList.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Ticket_Accounting.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\VW_Views.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\XmlPrefix.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\XmlRefNormalise.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\xmlRefNormaliseddataTable.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\XmlStructureIn.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHelpers\X_invoiceLine.cs">
+      <DependentUpon>SymphonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AgentCode.cs" />
+    <Compile Include="Models\AmountCode.cs" />
+    <Compile Include="Models\ArrCPNFareBasis.cs" />
+    <Compile Include="Models\ConjonctionTicket.cs" />
+    <Compile Include="Models\ConnexionSQLServer.cs" />
+    <Compile Include="Models\Coupons.cs" />
+    <Compile Include="Models\Exchange.cs" />
+    <Compile Include="Models\ExportModel.cs" />
+    <Compile Include="Models\FormOfPayementModel.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\InadClass.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ModelSousMenu.cs" />
+    <Compile Include="Models\MoreDetailsModel.cs" />
+    <Compile Include="Models\ObservationModel.cs" />
+    <Compile Include="Models\OtherPayement.cs" />
+    <Compile Include="Models\PaxModel.cs" />
+    <Compile Include="Models\Payement.cs" />
+    <Compile Include="Models\Period.cs" />
+    <Compile Include="Models\ProratioDtl.cs" />
+    <Compile Include="Models\Proration.cs" />
+    <Compile Include="Models\ProrationExp.cs" />
+    <Compile Include="Models\RCountPaxModel.cs" />
+    <Compile Include="Models\SerctorValueControlModels.cs" />
+    <Compile Include="Models\TFCsModel.cs" />
+    <Compile Include="Models\TicketHistoryPaymentModel.cs" />
+    <Compile Include="Models\TicketInformation.cs" />
+    <Compile Include="Models\TicketUsesModel.cs" />
+    <Compile Include="Models\TransactionHeaderModel.cs" />
+    <Compile Include="Models\TransactionMiddleModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\Database1.mdf" />
+    <Content Include="App_Data\Database1_log.ldf">
+      <DependentUpon>Database1.mdf</DependentUpon>
+    </Content>
+    <Content Include="Assets\css\bootstrap-theme.css" />
+    <Content Include="Assets\css\bootstrap-theme.min.css" />
+    <Content Include="Assets\css\bootstrap.css" />
+    <Content Include="Assets\css\bootstrap3.min.css" />
+    <Content Include="Assets\css\panel.css" />
+    <Content Include="Assets\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Assets\js\bootstrap.js" />
+    <Content Include="Assets\js\bootstrap.min.js" />
+    <Content Include="Assets\js\npm.js" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap.min.js" />
+    <Content Include="Content\bootstrap.new.min.css" />
+    <Content Include="Content\bootstrap3.min.css" />
+    <Content Include="Content\customised.css" />
+    <Content Include="Content\ie-Interline.css" />
+    <Content Include="Content\ie-Sales.css" />
+    <Content Include="Content\jquery-ui-min.css" />
+    <Content Include="Content\lift.css" />
+    <Content Include="Content\non-responsive.css" />
+    <Content Include="Content\Interline.css" />
+    <Content Include="Content\Proccess.css" />
+    <Content Include="Content\process.css" />
+    <Content Include="Content\Reporting.css" />
+    <Content Include="Content\Sales.css" />
+    <Content Include="Content\PAX_TKTs.css" />
+    <Content Include="Content\surnnot.css" />
+    <Content Include="DataHelpers\SymphonyModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SymphonyModel.edmx</DependentUpon>
+      <LastGenOutput>SymphonyModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DataHelpers\SymphonyModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SymphonyModel.edmx</DependentUpon>
+      <LastGenOutput>SymphonyModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Images\background.jpg" />
+    <Content Include="Images\Background.png" />
+    <Content Include="Images\background11.jpg" />
+    <Content Include="Images\Capture1.JPG" />
+    <Content Include="Images\FondSPA.JPG" />
+    <Content Include="Images\load.gif" />
+    <Content Include="Images\CSVPic.jpg" />
+    <Content Include="Images\HomePageHH.png" />
+    <Content Include="Images\image-fly.png" />
+    <Content Include="Images\loading.gif" />
+    <Content Include="Images\mashup.jpg" />
+    <Content Include="Images\search.png" />
+    <Content Include="Images\SIS.png" />
+    <Content Include="Images\symphony.png" />
+    <Content Include="Images\text2.png" />
+    <Content Include="Images\text1.png" />
+    <Content Include="Images\text3.png" />
+    <Content Include="Images\worldmap.png" />
+    <Content Include="Scripts\ai.0.22.9-build00167.js" />
+    <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
+    <Content Include="Scripts\billingMemo.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\DataScript\buttons.flash.min.js" />
+    <Content Include="Scripts\DataScript\buttons.html5.min.js" />
+    <Content Include="Scripts\DataScript\buttons.print.min.js" />
+    <Content Include="Scripts\DataScript\dataTables.bootstrap4.min.js" />
+    <Content Include="Scripts\DataScript\dataTables.buttons.min.js" />
+    <Content Include="Scripts\DataScript\jquery.dataTables.min.js" />
+    <Content Include="Scripts\DataScript\jszip.min.js" />
+    <Content Include="Scripts\DataScript\pdfmake.min.js" />
+    <Content Include="Scripts\DataScript\vfs_fonts.js" />
+    <Content Include="Scripts\html2canvas.js" />
+    <Content Include="Scripts\jquery-ui.min.js" />
+    <Content Include="Scripts\Lift.js" />
+    <Content Include="Scripts\paxTkts.js" />
+    <Content Include="Scripts\Process.js" />
+    <Content Include="Scripts\summernote.js" />
+    <Content Include="WebForm1.aspx" />
+    <Content Include="Assets\css\bootstrap-theme.css.map" />
+    <Content Include="Assets\css\bootstrap-theme.min.css.map" />
+    <Content Include="Assets\css\bootstrap.css.map" />
+    <Content Include="Assets\css\bootstrap.min.css.map" />
+    <Content Include="Assets\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Assets\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Assets\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Assets\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\temp_upload_files\download.csv" />
+    <EntityDeploy Include="DataHelpers\SymphonyModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SymphonyModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="DataHelpers\SymphonyModel.edmx.diagram">
+      <DependentUpon>SymphonyModel.edmx</DependentUpon>
+    </Content>
+    <None Include="Properties\PublishProfiles\local.pubxml" />
+    <None Include="Properties\PublishProfiles\symphony.pubxml" />
+    <None Include="Properties\PublishProfiles\webapplication.pubxml" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Home\Profile.cshtml" />
+    <Content Include="Views\Home\Query_ADMACM.cshtml" />
+    <Content Include="Views\Home\Create_ADMACM.cshtml" />
+    <Content Include="Views\Home\Startup.cshtml" />
+    <Content Include="Views\Home\Sales_Data_Upload.cshtml" />
+    <Content Include="Views\Home\Total_Amount_Per_PSR.cshtml" />
+    <Content Include="Views\Home\Key_Controlling_Data.cshtml" />
+    <Content Include="Views\Home\Key_Fields_Breakdown.cshtml" />
+    <Content Include="Views\Home\Issues.cshtml" />
+    <Content Include="Views\Home\Cancellation.cshtml" />
+    <Content Include="Views\Home\ACMs.cshtml" />
+    <Content Include="Views\Home\ADMs.cshtml" />
+    <Content Include="Views\Home\List_of_Refunds.cshtml" />
+    <Content Include="Views\Home\Refunds.cshtml" />
+    <Content Include="Views\Home\Refunds_OWN.cshtml" />
+    <Content Include="Views\Home\Commission_Reclaim.cshtml" />
+    <Content Include="Views\Home\Exchanges.cshtml" />
+    <Content Include="Views\Home\ISC_Reclaim.cshtml" />
+    <Content Include="Views\Home\Retroactive_Adjustments.cshtml" />
+    <Content Include="Views\Home\FIMs.cshtml" />
+    <Content Include="Views\Home\RET_Anciliaries.cshtml" />
+    <Content Include="Views\Home\Welcom.cshtml" />
+    <Content Include="Views\Sales\Index.cshtml" />
+    <Content Include="Views\Lift\Index.cshtml" />
+    <Content Include="Views\Customised\Index.cshtml" />
+    <Content Include="Views\Reporting\Index.cshtml" />
+    <Content Include="Views\Process\Index.cshtml" />
+    <Content Include="Views\Interline\Index.cshtml" />
+    <Content Include="Views\Home\AutreStartup.cshtml" />
+    <Content Include="Views\Interline\test.cshtml" />
+    <Content Include="Views\Sales\Test.cshtml" />
+    <Content Include="Views\Sales\PayementTFCs.cshtml" />
+    <Content Include="Views\Sales\SPLITFCA.cshtml" />
+    <Content Include="Views\Sales\GetSearchCriteria.cshtml" />
+    <Content Include="Views\Sales\Transaction.cshtml" />
+    <Content Include="Views\Sales\CherchByCode.cshtml" />
+    <Content Include="Views\Sales\FrmOfPayementTfcComm.cshtml" />
+    <Content Include="Views\Sales\GetTf.cshtml" />
+    <Content Include="Views\Sales\ViewsMoreDetails.cshtml" />
+    <Content Include="Views\Sales\ticketHistoryPayment.cshtml" />
+    <Content Include="Views\Sales\KeyControllingData.cshtml" />
+    <Content Include="Views\Sales\getAllData.cshtml" />
+    <Content Include="Views\Sales\Cancellations.cshtml" />
+    <Content Include="Views\Sales\LoadCancellations.cshtml" />
+    <Content Include="Views\Sales\TransactionType.cshtml" />
+    <Content Include="Views\Sales\LoadTransactionCode.cshtml" />
+    <Content Include="Views\Sales\LoadTransactionType.cshtml" />
+    <Content Include="Views\Sales\PAXTKTs.cshtml" />
+    <Content Include="Views\Sales\saveObservation.cshtml" />
+    <Content Include="Views\Sales\TotalAmountPSR.cshtml" />
+    <Content Include="Views\Sales\LoadTotalAmountPSR.cshtml" />
+    <Content Include="Views\Sales\UnusedDocsCpns.cshtml" />
+    <Content Include="Views\Sales\LoadUnusedDocsCpns.cshtml" />
+    <Content Include="Views\Sales\FormOfPayementType.cshtml" />
+    <Content Include="Views\Sales\LoadFormOfPayementType.cshtml" />
+    <Content Include="Views\Sales\Exchanges.cshtml" />
+    <Content Include="Views\Sales\LoadExchanges.cshtml" />
+    <Content Include="Views\Sales\KeyElement.cshtml" />
+    <Content Include="Views\Sales\FareBasisAnalytics.cshtml" />
+    <Content Include="Views\Sales\PsrPassenger.cshtml" />
+    <Content Include="Views\Sales\PassengerDetail.cshtml" />
+    <Content Include="Views\Sales\Surcharges.cshtml" />
+    <Content Include="Views\Sales\LoadSurcharges.cshtml" />
+    <Content Include="Views\Sales\Tfcs.cshtml" />
+    <Content Include="Views\Sales\LoadTfcs.cshtml" />
+    <Content Include="Views\Sales\Vat.cshtml" />
+    <Content Include="Views\Sales\LoadVat.cshtml" />
+    <Content Include="Views\Sales\AgentCherch.cshtml" />
+    <Content Include="Views\Sales\AgentCherchTfcs.cshtml" />
+    <Content Include="Views\Sales\ListofRefunds.cshtml" />
+    <Content Include="Views\Sales\LoadListRefund.cshtml" />
+    <Content Include="Views\Sales\RfndCoupons.cshtml" />
+    <Content Include="Views\Sales\AgentRefund.cshtml" />
+    <Content Include="Views\Sales\DetailsRfn.cshtml" />
+    <Content Include="Views\Sales\SalesTicketHistory.cshtml" />
+    <Content Include="Views\Sales\OALRefundedCouponsBilling.cshtml" />
+    <Content Include="Views\Sales\LoadOalRefund.cshtml" />
+    <Content Include="Views\Sales\RefundOwn.cshtml" />
+    <Content Include="Views\Sales\LoadOwnRefund.cshtml" />
+    <Content Include="Views\Sales\FrmRefundEngine.cshtml" />
+    <Content Include="Views\Sales\LoadRefundEngine.cshtml" />
+    <Content Include="Views\Sales\manualList.cshtml" />
+    <Content Include="Views\Sales\LoadManualRefund.cshtml" />
+    <Content Include="Views\Sales\ExchangeTicketDetails.cshtml" />
+    <Content Include="Views\Sales\RfnEngine.cshtml" />
+    <Content Include="Views\Sales\FIMManager.cshtml" />
+    <Content Include="Views\Sales\MoreDetailsExchange.cshtml" />
+    <Content Include="Views\Sales\LoadExpectedEIROFR.cshtml" />
+    <Content Include="Views\Sales\ExpectedEIROFR.cshtml" />
+    <Content Include="Views\Sales\CommissionReclaim.cshtml" />
+    <Content Include="Views\Sales\LoadCommissionReclaim.cshtml" />
+    <Content Include="Views\Sales\LoadFimDetailData.cshtml" />
+    <Content Include="Views\Sales\AiroportCode.cshtml" />
+    <Content Include="Views\Sales\FlightLookup.cshtml" />
+    <Content Include="Views\Sales\PassengerLookup.cshtml" />
+    <Content Include="Views\Sales\PassengerAgencyDetails.cshtml" />
+    <Content Include="Views\Sales\PassengerMan.cshtml" />
+    <Content Include="Views\Sales\LoadPassengerMan.cshtml" />
+    <Content Include="Views\Sales\ListNewAgents.cshtml" />
+    <Content Include="Views\Sales\addEdditDetails.cshtml" />
+    <Content Include="Views\Sales\ClickListNewAgent.cshtml" />
+    <Content Include="Views\Sales\IndustryRemuneration.cshtml" />
+    <Content Include="Views\Sales\clearcom.cshtml" />
+    <Content Include="Views\Sales\clearbonus.cshtml" />
+    <Content Include="Views\Sales\LoadCom.cshtml" />
+    <Content Include="Views\Sales\loadBonus.cshtml" />
+    <Content Include="Views\Sales\saveOperation.cshtml" />
+    <Content Include="Views\Sales\saveOperation2.cshtml" />
+    <Content Include="Views\Sales\deleteDetail.cshtml" />
+    <Content Include="Views\Sales\deleteHead.cshtml" />
+    <Content Include="Views\Sales\ISCReclaimOAL.cshtml" />
+    <Content Include="Views\Sales\loadIscReclaim.cshtml" />
+    <Content Include="Views\Sales\INADOalCostSharing.cshtml" />
+    <Content Include="Views\Sales\LoadINADOalCostSharing.cshtml" />
+    <Content Include="Views\Sales\INAD.cshtml" />
+    <Content Include="Views\Sales\LoadINAD.cshtml" />
+    <Content Include="Views\Sales\RetINAD.cshtml" />
+    <Content Include="Views\Sales\PopINAD.cshtml" />
+    <Content Include="Views\Sales\ExecuteINAD.cshtml" />
+    <Content Include="Views\Sales\FOPUATPBillingsToOALs.cshtml" />
+    <Content Include="Views\Sales\LoadFOPUATPBillingsToOALs.cshtml" />
+    <Content Include="Views\Sales\UATPDiscountReclaim.cshtml" />
+    <Content Include="Views\Sales\LoadUATPDiscountReclaim.cshtml" />
+    <Content Include="Views\Sales\showDetail.cshtml" />
+    <Content Include="Views\Sales\RetroactiveAdjustement.cshtml" />
+    <Content Include="Views\Lift\Compare.cshtml" />
+    <Content Include="Views\Lift\FlownRevenue.cshtml" />
+    <Content Include="Views\Lift\LoadFlownRevenue.cshtml" />
+    <Content Include="Views\Lift\TFCFLOWN.cshtml" />
+    <Content Include="Views\Lift\getflightNum.cshtml" />
+    <Content Include="Views\Lift\getAgcode.cshtml" />
+    <Content Include="Views\Lift\LoadTfcsFlown.cshtml" />
+    <Content Include="Views\Lift\getCompFln.cshtml" />
+    <Content Include="Views\Lift\loadCompare.cshtml" />
+    <Content Include="Views\Lift\PassengerLift.cshtml" />
+    <Content Include="Views\Lift\loadAgAdresse.cshtml" />
+    <Content Include="Views\Lift\getAgcodePass.cshtml" />
+    <Content Include="Views\Lift\loadTransportation.cshtml" />
+    <Content Include="Views\Lift\loadExchange.cshtml" />
+    <Content Include="Views\Lift\loadRefundLift.cshtml" />
+    <Content Include="Views\Lift\LiftForTransportOwn.cshtml" />
+    <Content Include="Views\Lift\SalesMatching.cshtml" />
+    <Content Include="Views\Lift\LoadSalesMatching.cshtml" />
+    <Content Include="Views\Lift\FlownWithoutSales.cshtml" />
+    <Content Include="Views\Lift\LoadFlownWithoutSales.cshtml" />
+    <Content Include="Views\Lift\Cherche3ByCode.cshtml" />
+    <Content Include="Views\Lift\Surcharges.cshtml" />
+    <Content Include="Views\Lift\LoadSurcharges.cshtml" />
+    <Content Include="Views\Lift\VAT.cshtml" />
+    <Content Include="Views\Lift\LoadVAT.cshtml" />
+    <Content Include="Views\Lift\LoadAgtVAT.cshtml" />
+    <Content Include="Views\Lift\LoadcbFVAT.cshtml" />
+    <Content Include="Views\Lift\getFlightNo.cshtml" />
+    <Content Include="Views\Lift\loadAnalysis.cshtml" />
+    <Content Include="Views\Lift\Fightselect.cshtml" />
+    <Content Include="Views\Lift\FightselectLDM.cshtml" />
+    <Content Include="Views\Lift\LDM.cshtml" />
+    <Content Include="Views\Lift\NoShow.cshtml" />
+    <Content Include="Views\Lift\OWN.cshtml" />
+    <Content Include="Views\Lift\PNLPFS.cshtml" />
+    <Content Include="Views\Lift\Remarksselect.cshtml" />
+    <Content Include="Views\Lift\SearchNoShow.cshtml" />
+    <Content Include="Views\Lift\SLS.cshtml" />
+    <Content Include="Views\Lift\SLSShowTable.cshtml" />
+    <Content Include="Views\Lift\SLSShowTableLDM.cshtml" />
+    <Content Include="Views\Lift\LoadSector.cshtml" />
+    <Content Include="Views\Lift\LoadSectorOwn.cshtml" />
+    <Content Include="Views\Lift\LoadSectorExc.cshtml" />
+    <Content Include="Views\Lift\LoadSectorRfn.cshtml" />
+    <Content Include="Views\Lift\loadAgAdresse1.cshtml" />
+    <Content Include="Views\Interline\Correspondence.cshtml" />
+    <Content Include="Views\Interline\InterlineBilling.cshtml" />
+    <Content Include="Views\Interline\Codeshares.cshtml" />
+    <Content Include="Views\Interline\KeyControllingData.cshtml" />
+    <Content Include="Views\Interline\INAD.cshtml" />
+    <Content Include="Views\Interline\SPAEngine.cshtml" />
+    <Content Include="Views\Sales\FOPOthers.cshtml" />
+    <Content Include="Views\Sales\CherchByCodeCancellationFop.cshtml" />
+    <Content Include="Views\Sales\FopTypeTransactionOther.cshtml" />
+    <Content Include="Views\Interline\CheckTolerance.cshtml" />
+    <Content Include="Views\Interline\RejectionToleranceValue.cshtml" />
+    <Content Include="Views\Interline\CreditMemos.cshtml" />
+    <Content Include="Views\Sales\addBonus.cshtml" />
+    <Content Include="Views\Sales\launchRefresh.cshtml" />
+    <Content Include="Views\Lift\OUTWARDBILLING.cshtml" />
+    <Content Include="Views\Lift\getBillingPeriod.cshtml" />
+    <Content Include="Views\Lift\LoadPreviousBilling.cshtml" />
+    <Content Include="Views\Lift\DetailsPreviousBilling.cshtml" />
+    <Content Include="Views\Lift\GetValidatePrime.cshtml" />
+    <Content Include="Views\Lift\ValidatePrimeDetail.cshtml" />
+    <Content Include="Views\Lift\OalCarrier.cshtml" />
+    <Content Include="Views\Lift\ClickOBExclusion.cshtml" />
+    <Content Include="Views\Lift\LoadOBExclusion.cshtml" />
+    <Content Include="Views\Lift\LoadTaxVerification.cshtml" />
+    <Content Include="Views\Lift\TaxEditingAirport.cshtml" />
+    <Content Include="Views\Lift\DetailTaxEditingAirport.cshtml" />
+    <Content Include="Views\Lift\btnGenerateInvoices.cshtml" />
+    <Content Include="Views\Lift\OBViewer.cshtml" />
+    <Content Include="Views\Interline\RefundAdjustements.cshtml" />
+    <Content Include="Views\Interline\Fimmanager.cshtml" />
+    <Content Include="Views\Process\TFC.cshtml" />
+    <Content Include="Views\Process\FinalSharevsAmountCollected.cshtml" />
+    <Content Include="Views\Process\FileUploadStatus.cshtml" />
+    <Content Include="Views\Process\InvolontaryReroute.cshtml" />
+    <Content Include="Views\Process\UsageDateBookingDate.cshtml" />
+    <Content Include="Views\Process\RevenueAnalysis.cshtml" />
+    <Content Include="Views\Process\DuplicateUtilisation.cshtml" />
+    <Content Include="Views\Process\EMDTransactionScreen.cshtml" />
+    <Content Include="Views\Process\ExcessBaggageProration.cshtml" />
+    <Content Include="Views\Process\DiscountAudit.cshtml" />
+    <Content Include="Views\Process\ATDA.cshtml" />
+    <Content Include="Views\Process\ManualTicketList.cshtml" />
+    <Content Include="Views\Process\DateUpdated.cshtml" />
+    <Content Include="Views\Process\DocumentNumberM.cshtml" />
+    <Content Include="Views\Process\PassengerNameList.cshtml" />
+    <Content Include="Views\Process\SalesDataUploadSummary.cshtml" />
+    <Content Include="Views\Process\FinalShareValidation.cshtml" />
+    <Content Include="Views\Process\CreditCardManagement.cshtml" />
+    <Content Include="Views\Process\PricingManagement.cshtml" />
+    <Content Include="Views\Process\CouponUsage.cshtml" />
+    <Content Include="Views\Process\LiftInfo.cshtml" />
+    <Content Include="Views\Process\Provisio.cshtml" />
+    <Content Include="Views\Process\RefundAudit.cshtml" />
+    <Content Include="Views\Process\FreeBaggageAllowanceAudit.cshtml" />
+    <Content Include="Views\Process\OutwardBillingManual.cshtml" />
+    <Content Include="Views\Process\BankersRate.cshtml" />
+    <Content Include="Views\Process\FreeAndReduced.cshtml" />
+    <Content Include="Views\Process\SectorValueControl.cshtml" />
+    <Content Include="Views\Process\LiftedCoupons.cshtml" />
+    <Content Include="Views\Process\SpecialPurpose.cshtml" />
+    <Content Include="Views\Process\POSSummary.cshtml" />
+    <Content Include="Views\Process\DiscountUncollected.cshtml" />
+    <Content Include="Views\Process\RoutingChange.cshtml" />
+    <Content Include="Views\Process\ExcessBilling.cshtml" />
+    <Content Include="Views\Process\Commission.cshtml" />
+    <Content Include="Views\Process\Discrepency.cshtml" />
+    <Content Include="Views\Process\OutwardBilling.cshtml" />
+    <Content Include="Views\Process\TransactionInANutshell.cshtml" />
+    <Content Include="Views\Process\ProrationExceptionViewer.cshtml" />
+    <Content Include="Views\Process\FareTFCSurchargesTracking.cshtml" />
+    <Content Include="Views\Process\FareAuditEngine.cshtml" />
+    <Content Include="Views\Process\Proration.cshtml" />
+    <Content Include="Views\Process\SearchFinalSharevsAmount.cshtml" />
+    <Content Include="Views\Process\ShowtableFinalSharevsAmount.cshtml" />
+    <Content Include="Views\Process\FileUploadStatusSelectFileType.cshtml" />
+    <Content Include="Views\Process\FileUploadStatusSelectProcessingStatus.cshtml" />
+    <Content Include="Views\Process\FileUploadStatusSelectFileName.cshtml" />
+    <Content Include="Views\Process\FileUploadStatussearch.cshtml" />
+    <Content Include="Views\Process\InvolontaryRerouteSearch.cshtml" />
+    <Content Include="Views\Process\LoadFreeAndReduced.cshtml" />
+    <Content Include="Views\Process\LoadSpecialPurpose.cshtml" />
+    <Content Include="Views\Process\LoadAgtSPC.cshtml" />
+    <Content Include="Views\Process\LoadPOS.cshtml" />
+    <Content Include="Views\Process\LoadFCMI.cshtml" />
+    <Content Include="Views\Process\LoadFareBasis.cshtml" />
+    <Content Include="Views\Process\LoadFopPOS.cshtml" />
+    <Content Include="Views\Process\LoadAgtPOS.cshtml" />
+    <Content Include="Views\Process\LoadPOSSummary.cshtml" />
+    <Content Include="Views\Process\LoadPOSSummaryDetails.cshtml" />
+    <Content Include="Views\Process\SearchEMD.cshtml" />
+    <Content Include="Views\Process\ShowSearchEMD.cshtml" />
+    <Content Include="Views\Process\EMDShowView.cshtml" />
+    <Content Include="Views\Process\EMDShowViewRD.cshtml" />
+    <Content Include="Views\Process\RELATEDDocumentShowView.cshtml" />
+    <Content Include="Views\Process\searchATDA.cshtml" />
+    <Content Include="Views\Process\FareATDA.cshtml" />
+    <Content Include="Views\Process\tax.cshtml" />
+    <Content Include="Views\Process\ATDAFOP.cshtml" />
+    <Content Include="Views\Process\ATDAAncillaries.cshtml" />
+    <Content Include="Views\Process\LoadSectorValueControl.cshtml" />
+    <Content Include="Views\Process\LoadSectorValueDiscrepency.cshtml" />
+    <Content Include="Views\Process\viewSelectedSectorValueControl.cshtml" />
+    <Content Include="Views\Process\SaveNewSectorValueControl.cshtml" />
+    <Content Include="Views\Process\LoadSectorValueControl.cshtml" />
+    <Content Include="Views\Process\LoadSectorValueDiscrepency.cshtml" />
+    <Content Include="Views\BillingMemo\_AirlineDetails.cshtml" />
+    <Content Include="Views\BillingMemo\_DocDetailsSearch.cshtml" />
+    <Content Include="Views\BillingMemo\_BilledAirline.cshtml" />
+    <Content Include="Views\Process\DocDetailsSearch.cshtml" />
+    <Content Include="Views\BillingMemo\_BMRecordsDisplayQry.cshtml" />
+    <Content Include="Views\BillingMemo\_GetDocDetails.cshtml" />
+    <Content Include="Views\BillingMemo\_DisplayDetails.cshtml" />
+    <Content Include="Views\BillingMemo\_PopulateBillingMemoList.cshtml" />
+    <Content Include="Views\BillingMemo\_GetTaxRate.cshtml" />
+    <Content Include="Views\Process\ResultatTransactionInANutshell.cshtml" />
+    <Content Include="Views\Process\EndorsementsRestrictions.cshtml" />
+    <Content Include="Views\Process\ATDExchangedDocs.cshtml" />
+    <Content Include="Views\Process\ATDConjuctionTickets.cshtml" />
+    <Content Include="Views\Process\ATDUatpFop.cshtml" />
+    <Content Include="Views\Process\ATDPartiallyUnused.cshtml" />
+    <Content Include="Views\Process\ATDTotallyUnused.cshtml" />
+    <Content Include="Views\Process\TicketsTransitPoints.cshtml" />
+    <Content Include="Views\Process\SalesTransactionBT.cshtml" />
+    <Content Include="Views\Process\GetTransationCode.cshtml" />
+    <Content Include="Views\Process\FlownTransactionBT.cshtml" />
+    <Content Include="Views\Process\InterlineTransactionBT.cshtml" />
+    <Content Include="Views\Process\DaysRateByCurrency.cshtml" />
+    <Content Include="Views\Process\recupItemCurrency.cshtml" />
+    <Content Include="Views\Process\SalesTransactionBT.cshtml" />
+    <Content Include="Views\Process\TicketsTransitPoints.cshtml" />
+    <Content Include="Views\Process\ResultatTransactionInANutshell.cshtml" />
+    <Content Include="Views\Process\Facsimile.cshtml" />
+    <Content Include="Views\Process\TFC2.cshtml" />
+    <Content Include="Views\Process\recherche.cshtml" />
+    <Content Include="Views\Process\recherchetfc.cshtml" />
+    <Content Include="Views\Process\viewmissingsector.cshtml" />
+    <Content Include="Views\Process\sectornotaxes.cshtml" />
+    <Content Include="Views\Process\addtfc.cshtml" />
+    <Content Include="Views\Process\saveoperation.cshtml" />
+    <Content Include="Views\Process\edit.cshtml" />
+    <Content Include="Views\Process\addedit.cshtml" />
+    <Content Include="Views\Process\clear1.cshtml" />
+    <Content Include="Views\Process\SearchByCityAirport.cshtml" />
+    <Content Include="Views\Process\CityAirport.cshtml" />
+    <Content Include="Views\Process\AddNewEntry.cshtml" />
+    <Content Include="Views\Process\DeleteCityAirport.cshtml" />
+    <Content Include="Views\Process\ChangeProrateFactors.cshtml" />
+    <Content Include="Views\BillingMemo\_GetTaxRef.cshtml" />
+    <Content Include="Views\BillingMemo\_GetTaxRate.cshtml" />
+    <Content Include="Views\BillingMemo\_GetTaxCode.cshtml" />
+    <Content Include="Views\BillingMemo\_UpdateRefTax.cshtml" />
+    <Content Include="Views\BillingMemo\_SaveRefTax.cshtml" />
+    <Content Include="Views\Process\DataSplitManagment.cshtml" />
+    <Content Include="Views\Process\ViewFareBySector.cshtml" />
+    <Content Include="Views\Process\saveInputeScreen.cshtml" />
+    <Content Include="Views\Process\LiftData.cshtml" />
+    <Content Include="Views\Process\SalesData.cshtml" />
+    <Content Include="Views\Process\ActionBaggageProration.cshtml" />
+    <Content Include="Views\Process\SPAManagement.cshtml" />
+    <Content Include="Views\Process\SPA_SPAMain.cshtml" />
+    <Content Include="Views\Process\SPA_IATASeason.cshtml" />
+    <Content Include="Views\Process\SPA_ASV.cshtml" />
+    <Content Include="Views\Process\SPA_Discount.cshtml" />
+    <Content Include="Views\Process\SPA_FlightRestriction.cshtml" />
+    <Content Include="Views\Process\SPA_Exception.cshtml" />
+    <Content Include="Views\Process\SPA_AsvException.cshtml" />
+    <Content Include="Views\Process\SPA_Signatories.cshtml" />
+    <Content Include="Views\Process\searchrefundaudit.cshtml" />
+    <Content Include="Views\Process\agentRBD.cshtml" />
+    <Content Include="Views\Process\btnSearch_Click.cshtml" />
+    <Content Include="Views\Sales\Transaction2.cshtml" />
+    <Content Include="Views\Process\btnReset_Click.cshtml" />
+    <Content Include="Views\Process\Query.cshtml" />
+    <Content Include="Views\Process\clearfinalsharevalidation.cshtml" />
+    <Content Include="Views\Process\ErrorMSG.cshtml" />
+    <Content Include="Views\Process\Querypev.cshtml" />
+    <Content Include="Views\Process\fcadoc.cshtml" />
+    <Content Include="Views\Process\clearpev.cshtml" />
+    <Content Include="Views\Process\AgentNum.cshtml" />
+    <Content Include="Views\Process\txtAgentName_TextChanged.cshtml" />
+    <Content Include="Views\Process\frmcode.cshtml" />
+    <Content Include="Views\Process\Testagcode.cshtml" />
+    <Content Include="Views\Process\cbSelectionSector.cshtml" />
+    <Content Include="Views\Process\cbSelectionFareComponent.cshtml" />
+    <Content Include="Views\Process\cbSelectionJourney.cshtml" />
+    <Content Include="Views\Process\QUERYpricing.cshtml" />
+    <Content Include="Views\Process\AgentNum1pricing.cshtml" />
+    <Content Include="Views\Process\Test1basicpricing.cshtml" />
+    <Content Include="Views\Process\frmcode1.cshtml" />
+    <Content Include="Views\Process\FareBasispricing.cshtml" />
+    <Content Include="Views\Process\btnSearch1_Clickbasicpricing.cshtml" />
+    <Content Include="Views\Process\onchangecboagt3_SelectedIndexChanged.cshtml" />
+    <Content Include="Views\Process\onchangeAgentNum2.cshtml" />
+    <Content Include="Views\Process\frmcode2.cshtml" />
+    <Content Include="Views\Process\onchangeResrBD.cshtml" />
+    <Content Include="Views\Process\btnSearch3_Clickrbdpricing.cshtml" />
+    <Content Include="Views\Process\XMLBillingChange.cshtml" />
+    <Content Include="Views\Process\onchangedatemarquepricing.cshtml" />
+    <Content Include="Views\Process\btnSearch4_Clickmarketpricing.cshtml" />
+    <Content Include="Views\Process\AgentNum5pricing.cshtml" />
+    <Content Include="Views\Process\frmcode4.cshtml" />
+    <Content Include="Views\Process\Test5farecomp.cshtml" />
+    <Content Include="Views\Process\btnseach_Clickmfarecomppricing.cshtml" />
+    <Content Include="Views\Process\btnSearch_Clickcoupon.cshtml" />
+    <Content Include="Views\Process\btnCCMSearch_Click.cshtml" />
+    <Content Include="Views\Process\btnSearch_ClickManualTicketEntry.cshtml" />
+    <Content Include="Views\Process\clearall.cshtml" />
+    <Content Include="Views\Process\OrgDetails.cshtml" />
+    <Content Include="Views\Process\btnClear_Clickfiftedcoupons.cshtml" />
+    <Content Include="Views\Process\btnSearch_Clickfiftedcoupons.cshtml" />
+    <Content Include="Views\Process\dgOWN_CellContentDoubleClick.cshtml" />
+    <Content Include="Views\Process\dgOAL_CellContentDoubleClick.cshtml" />
+    <Content Include="Views\Process\button2_Clickchehconnection.cshtml" />
+    <Content Include="Views\Process\button1_Clickchehconnection.cshtml" />
+    <Content Include="Views\Process\button3_Clickinterlincorrespondence.cshtml" />
+    <Content Include="Views\Process\dataGridView1_CellClickcorrespondenceinterline.cshtml" />
+    <Content Include="Views\Process\divselectcorrespondance.cshtml" />
+    <Content Include="Views\Interline\RejectionList.cshtml" />
+    <Content Include="Views\Interline\LoadInvoiceNumber.cshtml" />
+    <Content Include="Views\Interline\GetInvoiceCountrejectionanalytic.cshtml" />
+    <Content Include="Views\Interline\RALoadChargeCoderejectionanalytic.cshtml" />
+    <Content Include="Views\Interline\LoadInvoiceSummaryrejectionanaltityc.cshtml" />
+    <Content Include="Views\Interline\InterlineInvoice.cshtml" />
+    <Content Include="Views\Interline\GetAllInvoice.cshtml" />
+    <Content Include="Views\Interline\ChangeInterlineInvoice.cshtml" />
+    <Content Include="Views\Process\GetAgentNumanal.cshtml" />
+    <Content Include="Views\Process\GetAgentRBD.cshtml" />
+    <Content Include="Views\Process\GetAgentDate.cshtml" />
+    <Content Include="Views\Process\SearchDiscrepencyAnalitics.cshtml" />
+    <Content Include="Views\Process\SearchRBDDiscrepency.cshtml" />
+    <Content Include="Views\Process\SearchDateDiscrepency.cshtml" />
+    <Content Include="Views\Process\clearFare.cshtml" />
+    <Content Include="Views\Process\clearRBD.cshtml" />
+    <Content Include="Views\Process\clearDate.cshtml" />
+    <Content Include="Views\Interline\dgvRejection_CellClickrejectionanalytic.cshtml" />
+    <Content Include="Views\Interline\LoadRefReasonCode.cshtml" />
+    <Content Include="Views\Interline\testR3C2.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Test\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="MSDATASRC">
+      <Guid>{7C0FFAB0-CD84-11D0-949A-00A0C91110ED}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\CSVLibraryAK.1.0.0\lib\net471\CSVLibraryAK.dll" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>1644</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:3000/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost:3000/</IISAppRootUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

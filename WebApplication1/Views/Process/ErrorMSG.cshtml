@@ -1,0 +1,9 @@
+﻿<!--fait par nomentsoa christian-->
+<select class="form-control" id="selectpev" onchange="onchangeselectpev()">
+    <option value="-All-">-All-</option>
+    @for (int i = 0; i < ViewBag.ligne; i++)
+    {
+        <option value="@ViewBag.Liste[0, i]">@ViewBag.Liste[0, i]</option>
+    }
+</select>
+<!--fin fait par christian-->

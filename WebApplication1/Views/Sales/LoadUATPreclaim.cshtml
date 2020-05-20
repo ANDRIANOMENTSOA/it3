@@ -1,0 +1,33 @@
+﻿
+
+@using System.Data
+@model DataSet
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th class="pink">Sale Date</th>
+            <th class="pink">Dcument No.</th>
+            <th class="pink">FOP</th>
+            <th class="pink">Invoice</th>
+            <th class="pink">CUR</th>
+            <th class="pink">Amount Billed</th>
+            <th class="pink">Issuer Discount Reclaim (%)</th>
+            <th class="pink">UATP Amount</th>
+            <th class="pink">MOC</th>
+            <th class="pink">Exchange Rate</th>
+            <th class="pink">USD Value</th>
+        </tr>
+    </thead>
+    <tbody id="summUnusedDoc">
+        @foreach (DataRow dr in Model.Tables[0].Rows)
+        {
+            <tr>
+                @for (int i = 0; i < Model.Tables[0].Columns.Count; i++)
+                {
+                    <td>@dr[Model.Tables[0].Columns[i].ColumnName].ToString()</td>;
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+

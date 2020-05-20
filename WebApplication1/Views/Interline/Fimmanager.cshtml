@@ -1,0 +1,499 @@
+﻿
+
+<div class="col-sm-12 tab-content tab-cancellation n-padding">
+    <div class="side-fim col-sm-12 n-padding">
+        <div class="col-sm-2 n-padding">
+            <div class="panel">
+                <div class="panel-heading panel-fim-head n-padding">
+                    <div class="col-sm-12 n-padding">
+                        <fieldset class="test-fieldst1" id="ownOal" style="color: white; font-size: 11px;">
+                            <legend class="test-fieldst" style="background-color: #982c2c;font-size: 11px;color: white;">SEARCH CRITERIA</legend>
+                            <div class="col-sm-2 n-padding">
+                                <input class="form-check-input" type="radio" name="ownOal" value="1">
+                                <label class="form-check-label col-form-label" for="inlineRadio1" style="position: relative;top: -16px;left: 12px;font-size: 11px;">View All</label>
+                            </div>
+                            <div class="col-sm-5 n-padding">
+                                <input class="form-check-input" type="radio" name="ownOal" value="2" style="margin-left: 4px;">
+                                <label class="form-check-label col-form-label" for="inlineRadio1" style="font-size: 11px;">View Process Docs</label>
+                            </div>
+                            <div class="col-sm-5 n-padding">
+                                <input class="form-check-input" type="radio" name="ownOal" value="3">
+                                <label class="form-check-label col-form-label" for="inlineRadio1" style="font-size: 11px;">View Unprocess Docs</label>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="panel-body panel-fim-body">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th class="fim-color">FIM NO</th>
+                                <th class="fim-color">XML GENERATED</th>
+                                <th class="fim-color">PROCESS DATE</th>
+                                <th class="fim-color">STATUS</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <div class="panel-footer panel-fim-foot">
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-10 n-padding">
+            <div class="loadFim">
+                <div class="col-sm-12 n-padding">
+                    <table class="tab-refundEng table-fim">
+                        <tr style="border: 1px solid;">
+                            <td><label style="position: relative;top: -6px;left: 15px;">BILLING PERIOD</label></td>
+                            <td>Year</td>
+                            <td>
+                                <select>
+                                    <option></option>
+                                    <option>2015</option>
+                                    <option>2016</option>
+                                    <option>2017</option>
+                                    <option>2018</option>
+                                    <option>2019</option>
+                                </select>
+                            </td>
+                            <td>Month</td>
+                            <td>
+                                <select>
+                                    <option></option>
+                                    <option>01</option>
+                                    <option>02</option>
+                                    <option>03</option>
+                                    <option>04</option>
+                                    <option>05</option>
+                                    <option>06</option>
+                                    <option>07</option>
+                                    <option>08</option>
+                                    <option>09</option>
+                                    <option>10</option>
+                                    <option>11</option>
+                                    <option>12</option>
+                                </select>
+                            </td>
+                            <td>Period</td>
+                            <td>
+                                <select>
+                                    <option></option>
+                                    <option>01</option>
+                                    <option>02</option>
+                                    <option>03</option>
+                                    <option>04</option>
+                                </select>
+                            </td>
+                            <td class="col-sm-3">FLIGHT INTERRRUPTION MANIFEST NO.</td>
+                            <td width="30%"><input type="text" class="form-engine width-engine" id="fimNumber" /></td>
+                            <td style="border-left: 1px solid;">Sector:</td>
+                            <td><input type="text" class="form-engine width-engine" id="sector" /></td>
+                        </tr>
+                    </table>
+                    <table class="tab-refundEng table-fim">
+                        <tr class="border-left-right-botm">
+                            <td width="6%">Routed From</td>
+                            <td width="6%"><input type="text" class="form-engine width-engine width-engine-sm" id="routed1" onkeyup="changeVlaue(this.value,'1')" /></td>
+                            <td width="20%"><button type="button" class="btn btn-default btn-fim" onclick="showModalAirportCode('1')">...</button></td>
+
+                            <td width="7%" style="border-left: 1px solid">Rerouted From</td>
+                            <td width="6%"><input type="text" class="form-engine width-engine width-engine-sm" id="routed2" onkeyup="changeVlaue(this.value,'2')" /></td>
+                            <td width="21.1%"><button type="button" class="btn btn-default btn-fim" onclick="showModalAirportCode('2')">...</button></td>
+
+                            <td width="7%" style="border-left:1px solid">Rerouted From</td>
+                            <td width="6%"><input type="text" class="form-engine width-engine width-engine-sm" id="routed3" onkeyup="changeVlaue(this.value,'3')" /></td>
+                            <td><button type="button" class="btn btn-default btn-fim" onclick="showModalAirportCode('3')">...</button></td>
+                        </tr>
+                    </table>
+                    <table class="tab-refundEng table-fim">
+                        <tr style="border-left: 1px solid;border-right: 1px solid;">
+                            <td width="6%">Airline</td>
+                            <td width="6%">Flight</td>
+                            <td width="6%">Date</td>
+                            <td width="6%">Place of interruption</td>
+
+                            <td width="6%" style="border-left:1px solid">Airline</td>
+                            <td width="6%">Flight</td>
+                            <td width="6%">Date</td>
+                            <td width="6%">From</td>
+                            <td width="6%">To</td>
+
+                            <td width="6%" style="border-left:1px solid">Airline</td>
+                            <td width="6%">Flight</td>
+                            <td width="6%">Date</td>
+                            <td width="6%">From</td>
+                            <td width="6%">To</td>
+                        </tr>
+                        <tr class="border-left-right-botm">
+                            <td><input type="text" class="form-engine width-engine width-engine-sm" id="airline" /></td>
+                            <td><input type="text" class="form-engine width-engine width-engine-sm" id="flight" /></td>
+                            <td><input type="text" class="form-engine width-engine input-fim-date" id="dateFlight" /></td>
+                            <td><input type="text" class="form-engine width-engine" style="width:154px !important" id="placeInterruption" /></td>
+
+                            <td style="border-left: 1px solid;"><input type="text" class="form-engine width-engine width-engine-sm" id="1airline" /></td>
+                            <td><input type="text" class="form-engine width-engine width-engine-sm" id="1flight" /></td>
+                            <td><input type="text" class="form-engine width-engine input-fim-date" id="1dateFlight" /></td>
+                            <td><input type="text" class="form-engine width-engine width-engine-sm" id="fromInterruption" /></td>
+                            <td><input type="text" class="form-engine width-engine width-engine-sm" id="toInterruption" /></td>
+
+                            <td style="border-left: 1px solid;"><input type="text" class="form-engine width-engine width-engine-sm" id="2airline" /></td>
+                            <td><input type="text" class="form-engine width-engine width-engine-sm" id="2flight" /></td>
+                            <td><input type="text" class="form-engine width-engine input-fim-date" id="2dateFlight" /></td>
+                            <td><input type="text" class="form-engine width-engine width-engine-sm" id="fromInterruption3" /></td>
+                            <td><input type="text" class="form-engine width-engine width-engine-sm" id="toInterruption3" /></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-sm-12 n-padding">
+                    <div class="ajax-loader">
+                        <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" style="top: -54px;height: 110px;width: 274px;" />
+                    </div>
+                    <div class="fim-middle" style="border: 1px solid;">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th rowspan="2" class="fim-color">No</th>
+                                    <th rowspan="2" class="fim-color">Passenger Name</th>
+                                    <th colspan="5" class="fim-color">Ticket Number</th>
+                                    <th rowspan="2" class="fim-color">Fare Basis and Passenger Type Code</th>
+                                    <th colspan="2" class="fim-color">Cabin Class</th>
+                                    <th rowspan="2" class="fim-color">Billed (NOC)</th>
+                                    <th rowspan="2" class="fim-color">Accepted (OOC)</th>
+                                    <th rowspan="2" class="fim-color">Difference</th>
+                                    <th rowspan="2" class="fim-color"><input type="checkbox" /></th>
+                                </tr>
+                                <tr>
+                                    <th class="fim-color">Cpn</th>
+                                    <th class="fim-color">Airline Code</th>
+                                    <th class="fim-color">Form and Serial Number</th>
+                                    <th class="fim-color">Ck</th>
+                                    <th class="fim-color">ET</th>
+                                    <th class="fim-color">New Flight 1</th>
+                                    <th class="fim-color">New Flight 2</th>
+                                </tr>
+                            </thead>
+                            <tbody id="loadFimHeader"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-sm-12 n-padding" style="margin-top: 3px;">
+                    <div class="fim-middle1" style="height: 110px;border: 1px solid;">
+                        <table class="table table-bordered table-striped" style="width:86%">
+                            <thead>
+                                <tr>
+                                    <th class="fim-color"></th>
+                                    <th class="fim-color">Excess Baggage</th>
+                                    <th class="fim-color"></th>
+                                    <th class="fim-color"></th>
+                                    <th class="fim-color"></th>
+                                    <th class="fim-color"></th>
+                                    <th class="fim-color"></th>
+                                    <th class="fim-color"></th>
+                                    <th class="fim-color">Exc. Wt</th>
+                                    <th class="fim-color">Exc. Pc</th>
+                                    <th class="fim-color"></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-sm-12 n-padding">
+                    <table class="tab-refundEng table-fim tableModifPaddin" id="reasonIssuance">
+                        <tbody>
+                            <tr class="border-top-left-right">
+                                <td width="5%" colspan="4">Reason for issuance</td>
+                                <td style="border-left:1px solid"></td>
+                                <td width="6%">Diversion By</td>
+                                <td colspan="2" style="border-left:1px solid"></td>
+
+                            </tr>
+                            <tr class="border-left-right-botm">
+                                <td width="6%"><input type="checkbox" name="reasonIssuance" value="1" /> CXLD</td>
+                                <td width="6%"><input type="checkbox" name="reasonIssuance" value="2" /> DLYD</td>
+                                <td width="6%"><input type="checkbox" name="reasonIssuance" value="3" /> OVSLD</td>
+                                <td width="7%"><input type="checkbox" name="reasonIssuance" value="4" /> MSCNX</td>
+
+                                <td width="6%" style="border-left:1px solid">Carrier Code</td>
+                                <td width="6%"><input type="text" class="form-engine width-engine width-engine-sm" id="airline1" /></td>
+                                <td width="6%" style="border-left:1px solid">Total number of passengers</td>
+                                <td width="6%"><input type="text" class="form-engine width-engine width-engine-sm" id="totalNumberPassenger" /></td>
+                            </tr>
+                            <tr style="border:1px solid">
+                                <td colspan="3">Validator, name and / or ID of the FIM issuing agent </td>
+                                <td colspan="5"><input type="text" class="form-engine width-engine" id="validatorName" /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col-sm-12 n-padding">
+                <ul class="nav nav-tabs" style="margin-left: 5px;">
+                    <li class="active"><a data-toggle="tab" href="#RevisedRouting" class="nav-pax">Revised Routing</a></li>
+                    <li><a data-toggle="tab" href="#Attachment" class="nav-pax" id="tab-intbil">Attachment</a></li>
+                    <li><a data-toggle="tab" href="#sisxml" class="nav-pax" id="tab-intbil">SIS XML File</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div id="RevisedRouting" class="tab-pane fade in active">
+                        <div class="col-lg-12 n-padding">
+                            <div class="panel n-padding">
+                                <div class="panel-heading n-padding">
+                                    <div class="col-lg-12 n-padding">
+                                        <table class="fim-color" style="width:100%">
+                                            <tbody>
+                                                <tr>
+                                                    <td style="width:9%;">Original FCA</td>
+                                                    <td>Original FCA</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Revised Routing</td>
+                                                    <td></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="panel-body n-padding">
+                                    <div class="col-lg-12 n-padding">
+                                        <div class="col-lg-4 n-paddin-left" style="border:1px solid;height: 116px;"></div>
+                                        <div class="col-lg-4" style="border:1px solid;height: 116px;"></div>
+                                        <div class="col-lg-4 n-paddin-left" style="border:1px solid;height: 116px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="Attachment" class="tab-pane fade" style="background-color:white">
+                        <div class="col-lg-12 n-padding" style="background-color:#fff79b;margin-top: 2px;">
+                            <div class="col-lg-12">
+                                <table class="" style="width:100%">
+                                    <tbody>
+                                        <tr>
+                                            <td style="width:9%;">Attachment File</td>
+                                            <td><input type="text" name="" style="width: 98%;" /></td>
+                                            <td><button type="button">Browse</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Revised Routing</td>
+                                            <td><input type="text" name="" style="margin-right: 51px;" />Attachment Count  0</td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-lg-12 n-padding">
+                                <div class="col-lg-10 n-padding">
+                                    <div class="panel n-padding">
+                                        <div class="panel-heading n-padding fim-color" style="height: 30px;">
+                                            <div class="col-lg-12 n-padding">
+                                                <label style="margin-left: 114px;margin-top: 7px;">Attachments</label>
+                                            </div>
+                                        </div>
+                                        <div class="panel-body n-padding" style="height: 83px;background: #fff79b;border: 1px solid;">
+                                            <div class="col-lg-12 n-padding">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <button type="button" style="margin-top: 39px;margin-left: 42px;">button56</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div id="sisxml" class="tab-pane fade">
+                        <div class="col-lg-12 n-padding" style="background-color:#fff79b;margin-top: 2px;">
+                            <div class="col-lg-10 n-padding" style="border:1px solid;height: 151px;background-color: white;">
+                                <table class="table table-bordered fim-color modifTabPadding" style="width:100%;border-collapse: separate !important;border: 0px solid !important;">
+                                    <thead>
+                                        <tr>
+                                            <td>BILLED ARILINE</td>
+                                            <td>BILLED AIRLINE NAME</td>
+                                            <td>FIM NO</td>
+                                            <td>FINAL SHARE</td>
+                                            <td>CPN COUNT</td>
+                                            <td>BILLING PERIOD</td>
+                                            <td>INVOICE NO</td>
+                                            <td>XML FILENAME</td>
+                                            <td>STATUS</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-lg-2 n-padding">
+                                <button type="button" style="height: 53px;margin-left: 25px;margin-top: 42px;width: 81%;">Generate SIS IS-XML Files</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="flightsLookup" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 933px; left:10%">
+            <div class="modal-header">
+                <h5 class="modal-title">Flight Passenger Lookup</h5>
+                <button type="button" class="close" style="position: relative;top: -21px;" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body-fim" style="height: 71vh;">
+                <div class="ajax-loader">
+                    <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" style="top: -54px;height: 110px;width: 274px;" />
+                </div>
+                <div class="col-sm-12 n-padding head-fim">
+                    <div class="col-sm-2">
+                        <button type="button" class="btn btn-default" onclick="showFlightsLookup()">Flights Lookup</button>
+                    </div>
+                    <div class="col-sm-6">
+                        <table class="tab-refundEng table-fim-label">
+                            <tr>
+                                <td>Flight No.</td>
+                                <td>Flight Date</td>
+                                <td>Sector From</td>
+                                <td>Sector To</td>
+                            </tr>
+                            <tr>
+                                <td id="valueFlightNo"></td>
+                                <td id="valueFlightDate"></td>
+                                <td id="valueFlightFrom"></td>
+                                <td id="valueFlightTo"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-sm-4 dataAirportCode">
+                        <table class="tab-refundEng">
+                            <tr>
+                                <td style="color:white">Flight No.</td>
+                                <td style="color:white">Flight Date</td>
+                                <td style="color:white">Sector:</td>
+                            </tr>
+                            <tr>
+                                <td><input type="text" class="form-engine input-fim-date" id="valueFlightNo1" /></td>
+                                <td><input type="text" class="form-engine input-fim-date" id="valueFlightDate1" /></td>
+                                <td><input type="text" class="form-engine input-fim-date" id="Flightsector" /></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-sm-12 n-padding dataPassengerLookup" style="margin-left:0px;overflow:auto;height:61vh">
+
+                </div>
+            </div>
+            <div class="modal-footer footer-fim">
+                <label id="labelpassenger"> Document No. :<span id="valuelabelpassenger"></span></label>
+                <button type="button" class="Close btn btn-default btn-close" data-dismiss="modal">Close</button>
+                <button type="button" class="Close btn btn-primary" onclick="selectAllPassengerLookup()" style="margin-right: 4px;">Select All</button>
+                <button type="button" class="Close btn btn-primary" onclick="selectPassengerLookup()">Select</button>
+                <input type="hidden" id="valuePassengerLookup" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="showFlightsLookup" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 874px; left:10%">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel">Flights Lookup</h5>
+                <button type="button" class="close" style="position: relative;top: -21px;" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body-fim" style="height: 71vh;">
+                <div class="ajax-loader">
+                    <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" style="top: -54px;height: 110px;width: 274px;" />
+                </div>
+                <div class="col-sm-12 n-padding head-fim">
+                    <div class="col-sm-6">
+                        <table>
+                            <tr>
+                                <td style="color:white">Type the flight number</td>
+                                <td><input type="text" class="form-engine" onkeyup="chercheFlightLookup(this.value)" /></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-sm-12 n-padding dataFlight dataAirportCode" style="margin-left:0px;overflow:auto;height:61vh">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th class="fim-color">Airline</th>
+                                <th class="fim-color">Flight Date</th>
+                                <th class="fim-color">Flight Number</th>
+                                <th class="fim-color">Origin</th>
+                                <th class="fim-color">Destination</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer footer-fim">
+                <label id="flightLook"> Airline :<span id="valueFlightLook"></span></label>
+                <button type="button" class="Close btn btn-default btn-close" data-dismiss="modal" onclick="closeFimManager()">Close</button>
+                <button type="button" class="Close btn btn-primary" onclick="selectflightLook()" style="margin-right:4px;">Select</button>
+                <input type="hidden" id="flightNumb" />
+                <input type="hidden" id="flightDate" />
+                <input type="hidden" id="flightfrom" />
+                <input type="hidden" id="flightto" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="showAirportCode" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 874px; left:10%">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel">Airport Lookup</h5>
+                <button type="button" class="close" style="position: relative;top: -21px;" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body-fim" style="height: 71vh;">
+                <div class="ajax-loader">
+                    <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" style="top: -54px;height: 110px;width: 274px;" />
+                </div>
+                <div class="col-sm-12 n-padding head-fim">
+                    <div class="col-sm-6">
+                        <table>
+                            <tr>
+                                <td style="color:white">Type the airport code</td>
+                                <td><input type="text" class="form-engine" onkeyup="chercheAirportCode(this.value)" /></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-sm-12 n-padding dataAirportCode" style="margin-left:0px;overflow:auto;height:61vh">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th class="fim-color">AirportCode</th>
+                                <th class="fim-color">City Code</th>
+                                <th class="fim-color">Airport Name</th>
+                                <th class="fim-color">City Name</th>
+                                <th class="fim-color">Country</th>
+                                <th class="fim-color">City Iso Code</th>
+                                <th class="fim-color">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer footer-fim">
+                <label id="airportCode"> Airport Code :<span id="valueAirportCode"></span></label>
+                <input type="hidden" id="nb" />
+                <input type="hidden" id="airoportCode" />
+                <button type="button" class="Close btn btn-default btn-close" data-dismiss="modal">Close</button>
+                <button type="button" class="Close btn btn-primary" onclick="selectairportCode()" style="margin-right:4px;">Select</button>
+            </div>
+        </div>
+    </div>
+</div>
+

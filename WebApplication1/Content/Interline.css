@@ -1,0 +1,657 @@
+﻿/*interline-css*/
+h3{
+    color:white;
+}
+
+.top{
+    height: 29px;
+    background-color: #655c5d;
+    box-shadow: 0px 4px #44403f;
+    position: relative;
+    top: -19px;
+    left: 3px;
+    
+}
+.mashup{
+   
+    position: relative;
+    top: 296px;
+    left: 258px;
+
+}
+.type1{
+    width: 119px;
+    background-image: linear-gradient(#fef9e0,#ebdf34);
+    border: 1px;
+    box-shadow: 2px 2px #8d8e88;
+    border-radius: 7px 7px 7px 7px;
+    font-size: 13px;
+    position: relative;
+    height:55px;
+    font-family:times;
+    position: relative
+}
+.type2{
+    width: 97px;
+    box-shadow: 2px 2px #8d8e88;
+    border-radius: 7px 7px 7px 7px;
+    font-size: 13px;
+    background-image: linear-gradient(#fef6f4,#ffb7bb);
+    height:64px;
+    font-family:times;
+}
+.cadre{
+    width: 333px;
+    height: 98px;
+    background-color: #dbbcff;
+    box-shadow: 2px 2px #8d8e88;
+    border-radius: 7px 7px 7px 7px;
+    border: 2px solid gray;
+    position: relative;
+    font-family:times;
+}
+.type3 {
+    height: 55px;
+    margin-top: 20px;
+   /* margin-left: 16px;*/
+    background-image: linear-gradient(#fef9e0,#ebdf34);
+    font-size: 13px;
+    font-family:times;
+    width:58px;
+   }
+.type4{
+    
+    box-shadow: 2px 2px #8d8e88;
+    border-radius: 7px 7px 7px 7px;
+    font-size: 13px;
+    background-image: linear-gradient(#fff8ed,#fe9717);
+    width: 100px;
+    height:65px;
+    font-family:times;
+
+
+}
+.type5 {
+    border-radius: 7px 7px 7px 7px;
+    font-size: 13px;
+    background-image: linear-gradient(#f8fdee,#5cbe45);
+    width:90px;
+    height: 35px;
+    font-family:times;
+    float:left;
+    position: relative;
+    left: -55px;
+}
+.type6 {
+    
+    height: 81px;
+    
+    font-size: 13px;
+    background-image: linear-gradient(#fefbf4,#ffdc98);
+    width: 105px;
+    font-family:times;
+}
+.type7 {
+    
+    font-size: 13px;
+    background-image: linear-gradient(#fcfbff,#a9fae1);
+     border-radius: 7px 7px 7px 7px;
+     left:-30px;
+     font-family:times;
+}
+.type8{
+    height: 81px;
+    border-radius: 7px 7px 7px 7px;
+    font-size: 13px;
+    background-image: linear-gradient(#fefbf4,#ffdc98);
+    width: 105px;
+    font-family:times;
+}
+
+
+.fleche1{
+    position: relative;
+    top: 97px;
+    left: -14px;
+}
+
+.content{
+    -webkit-height: 700px;
+    -moz-height:700px;
+    -ms-height:700px;
+    -webkit-width: 1200px;
+    -moz-width:1200px;
+    -ms-width:1200px;
+    position: fixed;
+    top: 150px;
+    left:750px;
+}
+#key{
+    position:relative;
+    
+    top: -4px!important;
+    }
+
+
+/**  dernier  **/
+.containers{
+    position: fixed;
+    width: 1225px;
+    height: 800px;
+    min-width: 1225px;
+    min-height: 800px;
+    box-sizing: border-box;
+    left:869px;
+    top:150px;*/
+    /*position: relative;
+	width: 1225px;
+	height: 800px;
+	min-width: 1225px;
+	min-height: 800px;
+	/*border:1px solid;
+	box-sizing: border-box;
+    left: 524px;*/
+}
+body {
+    /*font-size: 12px;*/
+    height:100;
+    padding: 0px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    min-height: 99vh;
+     background:linear-gradient(to bottom, #f5f3d1 5%, #ffffd1 50%, #f5f3d1 )
+}
+.top-button{
+    width:900px;
+    position:relative;
+    top:12px;
+    left: 20px;
+}
+.top-button > button.type1{
+    margin-left: 90px;
+    display: inline-block;
+    float:left;
+}
+.top-button .glyphicon{
+    left: -341px;
+    top: 17px;
+    position:relative!important;
+}
+
+.top-button .glyphicon-triangle-top{
+    position: relative!important;
+    left: -94px;
+    top: 52px;
+}
+.left-button1{
+    width: 160px;
+    height: 700px;
+    position:relative;
+    left: -5px;
+   
+
+}
+.left-button1 > button{
+    margin-top: 40px;
+    margin-left:18px;
+}
+
+.left-button1 > button.type2{
+    margin-left:39px;
+}
+
+.left-button1 .glyphicon{
+    left: -7px;
+    /* display: block; */
+    top: 20px;
+    position: relative !important;
+    margin-top: 0px;
+    podition: initial;
+}
+.left-button2{
+    width:40px;
+    position: relative;
+    top: -745px;
+    left: 210px;
+}
+
+.left-button2 > span{
+    position: relative !important;
+    left: 116px;
+    top: -38px;
+}
+
+.left-button2 >span.glyphicon-triangle-bottom{
+    display: block;
+        position: relative!important;
+    left: 47px;
+    top: 44px;
+}
+.left-button2 > button{
+    margin-top: 40px;
+    float: left;
+}
+
+.center-button{
+    width: 809px;
+    position: relative;
+    left: 20px;
+    top: -1107px;
+   /* border: 1px solid;*/
+    display: inline-flex;
+}
+.center-button > button.type4{
+    /*margin-left: 5px;*/
+    top: 15px;
+    position:relative;
+    left:-293px;
+    background-color: red;
+}
+
+.center-button > span{
+     position: relative!important;
+    top: 134px;
+    left: -455px;
+    margin-left: 76px;
+}
+
+.center-button > span.glyphicon-triangle-right{
+    position: relative!important;
+    left: -6px;
+    top: 42px;
+}
+.middle-button{
+    position: relative;
+    top: -214px;
+    left: 150px;
+    width: 381px;
+}
+.bottom-button{
+    width: 380px;
+    position: relative;
+    top: -221px;
+    left: 100px;
+    height: 230px;
+    display: block;
+    float: left;
+}
+.bottom-button > button{
+    margin-left: 28px;
+    margin-top: 32px;
+    vertical-align: top;
+}
+
+.bottom-button > button.right{
+    position: relative;
+    left: -14px;
+}
+
+ .bottom-button > button.type2 {
+    position: relative;
+    left: -23px;
+   /* height: 82px!important;*/
+}
+
+
+
+.bottom-button >span.glyphicon-triangle-left{
+    position: relative!important;
+    left: -30px;
+    top: 57px;
+}
+
+.bottom-button >span.glyphicon-triangle-bottom{
+    position: relative!important;
+    left: 229px;
+    top: 18px;
+}
+
+.bottom-button >span.up1{
+    position: relative!important;
+    top: -20px;
+    left: -65px;
+}
+
+.bottom-button >span.up2{
+    position: relative!important;
+    top: 92px;
+    left: -198px;
+}
+
+.right-button{
+    position: relative;
+    top: -1311px;
+    width: 114px;
+    left: 700px;
+}
+.right-button > button{
+    margin-top: 12px;
+}
+
+.right-button > span{
+        position: relative!important;
+    top: -38px;
+    left: 96px;
+}
+
+.arrow-left{
+    width: 2px;
+    position: relative;
+    /* margin-bottom: 0px; */
+    top: -566px;
+    left: 195px;
+    height: 120px;
+}
+
+
+.arrow-left > span.glyphicon-haut{
+    /*display: block;*/
+    left: -11px;
+    position: relative !important;
+    top: 0px;
+    /*margin-bottom: 120px;*/
+}
+.arrow-left > span.glyphicon-bas{
+   position: relative !important;
+    top: 19px;
+    left: -11px;
+}
+
+*{
+    margin:0;
+    padding: 0px;
+}
+/******************correspondence********************/
+#CorEntri{
+    background-color: white;
+    height: 700px;
+}
+.CorInfo{
+    border-collapse: separate;
+    border-spacing: 5px;
+    font-size:smaller;
+}
+.CorInfo td{
+    white-space:nowrap
+}
+
+#msgContent{
+    background-color:white;
+    height:400px;
+    width:1200px;
+}
+.corbas{
+    background-color:#800;
+    height:65px;
+    top:40px;
+}
+/*********************end***************************/
+/******************inward billing********************/
+#leftside{
+    height:854px;
+    background-color:white;
+    border:1px solid gray;
+}
+.top-side{
+    height: 40px;
+    background-color: rgb(240,255,255);
+    border: 1px solid gray;
+}
+.top-side1{
+    height: 120px;
+    background-color: rgb(240,255,255);
+    border: 1px solid gray;
+}
+.middle-side{
+    height:250px;
+    background-color:white;
+    border: 1px solid gray;
+}
+.tab-red{
+    background-color:#800;
+    height:65px;
+    top:40px;
+}
+.tab-res{
+    color:white;
+    text-align:center;
+    position:relative;
+    left:100px;
+}
+.tab-res td{
+    width:100px;
+}
+.tab-tot{
+    color:white;
+    position:relative;
+    top:10px;
+}
+.bottom-side{
+    background-color: rgb(240,255,255);
+    height: 189px;
+    width: 625px;
+}
+.red{
+    background-color: #800;
+    color: white;
+}
+.content-viewer{
+     height:854px;
+    background-color:rgb(240,255,255);
+    border:1px solid gray;
+}
+.content-xml{
+     height:854px;
+    background-color:white;
+    border:1px solid gray;
+}
+/********************end****************************/
+/***************SPAs*********************/
+
+.red{
+    background-color: darkred;
+    color: white;       
+
+	}
+.tab-contents{
+    background-color: white;
+    height: 64vh;      
+
+	}
+.spatable table{
+   margin-top: 11px;
+}
+
+.spatable td{
+  padding-left:6px;
+}
+.spatable0 table{
+   margin-top: -8px;margin-left: 7px; 
+}
+.spatable0 select{
+    margin-left: 35px;
+    width: 158px;
+    height: 20px;
+}
+.spatable button{
+    width: 20px;
+    margin-bottom: 10px;
+ 
+}
+.spatable label{
+    margin-bottom: 10px;
+ 
+}
+.spatable input{
+    margin-bottom: 10px;
+ 
+}
+.spatable ul li a{
+    height:27px;
+    font-size:11px
+}
+.discountElem select{
+    width: 58px;
+    height: 18px;
+}
+.discountElem input{
+    width: 58px;
+    height: 18px;
+}
+.iata input{
+    margin-left:20px
+}
+.rbd button{
+    width: 115px;
+    height: 29px;
+}
+.rbd1 td{
+    padding:4px;
+}
+.rbd1 th{
+    padding:4px;
+}
+.rbd1 button{
+    width:25px;
+}
+.trbd td{
+    padding-left:1px;
+}
+/********************end****************************/
+
+/*******************Interline voice***********************/
+.nav-invoice{
+    background-color: darkred;
+    color: white;
+    height:50px;
+}
+.foot-invoice{
+    background-color: darkred;
+    color: white;
+    height:40px;
+}
+.btn-invoice{
+    width: 110px;
+    font-weight: bold;
+}
+
+.container-duplicatecontainer-pax1{
+    position:relative;
+    top:12px;
+    height:92vh;
+}
+#dupTab{
+    position:relative;
+    top:20px;
+    height:250px;
+    background-color:white;
+}
+#dupOrDoc{
+    position:relative;
+    top:20px;
+    height:150px;
+    background-color:white;
+    overflow:auto
+}
+#dupDocInf{
+    position:relative;
+    top:20px;
+    height:150px;
+    background-color:RGB(240,230,140);
+    overflow:auto;
+}
+.titleTab{
+    position:relative;
+    top:20px;
+    width:250px;
+    text-align:center;
+}
+.spacinDiv{
+    height:35px;
+}
+#wrongTab{
+    position:relative;
+    top:20px;
+    height:650px;
+    background-color:white;
+    overflow:auto;
+}
+/********************end****************************/
+/***************Adjustement*****************/
+.textlabel{
+	font-size: 11px;
+	margin-top:5px;
+}
+.select0{
+	    width: 178px;
+    height: 25px;
+    margin-top: 2px;
+}
+.select1{
+	width: 146px;
+    height: 22px;
+}
+.select2{
+	width:70px;
+    height: 22px;
+    margin:10px;
+}
+.tablehead{
+	font-size: 11px;
+}
+.AlBlue{
+	margin-top: 15px;
+	height: 185px;
+}
+.darkblue{
+	border: 1px solid black;
+	margin: 10px;
+    height: 170px;
+}
+.darktab{
+	border: 1px solid black;
+	margin-left:-10px;
+    height: 129px;
+    color:white;
+}
+.darkbl{
+	border: 1px solid black;
+	/*margin: 10px;*/
+        width: 550px;
+    
+    height: 359px;
+    background-color:#F0F8FF;
+
+}
+.reddark{
+	background-color: #8B0000;
+	left: -15px;
+    height: 32px;
+    color: white;
+}
+.curlabel{
+	border: 1px solid black;
+    font-size: 11px;
+    width: 210px;
+    height: 25px;
+    left: 14px;
+}
+.AlBlu{
+
+	height: 100px;
+   
+}
+.redd{
+    background-color: #8B0000;
+    width:550px;
+    height: 32px;
+    color: white;
+}
+.footerBilling{
+    padding:10px;
+    background:darkred;
+    margin-top: 186px;
+}
+.btnVAtBreak button{
+    width:95px
+}

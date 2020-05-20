@@ -1,0 +1,143 @@
+﻿@using System.Data
+@model DataSet
+
+<script src="~/Scripts/paxTkts.js"></script>
+
+<div class="col-sm-11 tab-content tab-cancellation">
+    <div class="content-cancellation col-sm-11">
+        <div class="col-sm-3">
+            <div class="col-sm-12" id="divselectcorrespondance">
+                <select class="form-control" id="comboBox3" name="comboBox3">
+                    <option value="" selected></option>
+                    <!--<option value="366460-Disputed">366460-Disputed</option>-->
+                    @for(int i=0 ; i< ViewBag.ligne; i++)
+                    {
+                        <option value="@ViewBag.comboBox3tb[i, 0]">@ViewBag.comboBox3tb[i, 0]</option>
+                    }
+                </select>
+            </div>
+            <div class="col-sm-8"></div>
+            <div class="col-sm-4">
+                <button class="btn-default" style="width:105px;margin-top:5px;margin-bottom:5px" onclick="button3_Clickinterlincorrespondence()">Load Data</button>
+            </div>
+            <div class="col-sm-12">
+                <span><b>Correspondence Entries</b></span>
+            </div>
+            <div class="col-sm-12">
+                <div id="CorEntri">
+
+                </div>
+            </div>
+        </div>
+        <style>
+            #tableCorEntri td:active {
+                background-color: blue !important;
+            }
+        </style>
+        <div id="temps" style="display:none;">
+
+        </div>
+        <div class="col-sm-9">
+            <table class="CorInfo">
+                <tr>
+                    <td>Document No</td>
+                    <td colspan="2" id="label20"></td>
+                    <td>Coupon No</td>
+                    <td colspan="2" id="label19"></td>
+                    <td>Carrier</td>
+                    <td colspan="2" id="label18"></td>
+                    <td><img src='@Url.Content("~/images/SIS.png")' class="" style="top:5px" onclick="button4_Clickwebinterfacecorrespondence()"></td>
+                </tr>
+                <tr>
+                    <td>Correspondence</td>
+                    <td colspan="2">
+                        <select type="text" id="comboBox1" class="form-control" onchange="onchangecorrespondance(this.value)">
+                            <option value=""></option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="7"></td>
+                    <td>Your Reference</td>
+                    <td>Document Amount</td>
+                    <td><input type="text" class="form-control" id="DocAmt" /></td>
+                </tr>
+                <tr>
+                    <td>Author</td>
+                    <td colspan="5"><input type="text" class="form-control" id="author" /></td>
+                    <td>Document Reference</td>
+                    <td><input type="text" class="form-control" id="ref" readonly/></td>
+                    <td>Amount Accepted</td>
+                    <td><input type="text" class="form-control" id="AmtAcc" /></td>
+                </tr>
+                <tr>
+                    <td>Submission Dated</td>
+                    <td colspan="2"> <input type="text" name="SubmissionDatedCorrespondance" class="form-controls input-date" value="@ViewBag.date[0]" id="SubmissionDatedCorrespondance"/></td>
+                    <td colspan="1">
+                        <!--<span class="input-group-addon datetimepicker" onclick="setdate('SubmissionDatedCorrespondance')">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>-->
+                        <span class="input-group-addon datetimepicker" onclick="setdateinterlinecorrespond('SubmissionDatedCorrespondance')">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </td>
+                    <td>Date Limit</td>
+                    <td><input type="text" class="form-control" id="LimDate" /></td>
+                    <td>Invoice Number</td>
+                    <td><input type="text" class="form-control" id="invoice" readonly/></td>
+                    <td>Amount Disputed</td>
+                    <td><input type="text" class="form-control" id="AmtDisp" /></td>
+                </tr>
+                <tr>
+                    <td colspan="4">Message</td>
+                    <td colspan="3">(2 Mounths after Submission On IS-WEB)</td>
+                </tr>
+            </table>
+            <div id="divmsgContent">
+                <textarea id="msgContent">
+
+                </textarea>
+            </div>
+            <table class="CorInfo">
+                <tr>
+                    <td>Status</td>
+                    <td>
+                        <select type="text" id="comboBox2" class="form-control">
+                            <option></option>
+                            <option>Dispute</option>
+                            <option>Resolved</option>
+                        </select>
+                    </td>
+                    <td>Resolved Date</td>
+                    <td>
+                        <input type="text" name="ResolvedDateCorrespondance" class="form-controls input-date" value="@ViewBag.date[0]" id="ResolvedDateCorrespondance" />
+                    </td>
+                    <td>
+                        <span class="input-group-addon datetimepicker" onclick="setdate('ResolvedDateCorrespondance')">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="col-sm-12 corbas">
+        <div class="col-sm-8"></div>
+        <div class="col-sm-1">
+            <button class="btn-default" style="width: 100px;top: 20px;position: relative;" onclick="button1_Clickinterlinecorrespondence()">Apply</button>
+        </div>
+        <div class="col-sm-1">
+            <button class="btn-default" onclick="removeSousMenu()" style="width: 100px;top: 20px;position: relative;">Close</button>
+        </div>
+    </div>
+</div>
+

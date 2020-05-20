@@ -1,0 +1,13 @@
+﻿@using System.Data
+@model DataSet
+
+@foreach (DataRow dr in Model.Tables[0].Rows)
+{
+    <tr onclick="clickLigneTaxInfo('@dr[Model.Tables[0].Columns[0].ColumnName].ToString()','@dr[Model.Tables[0].Columns[1].ColumnName].ToString()','@dr[Model.Tables[0].Columns[2].ColumnName].ToString()','@dr[Model.Tables[0].Columns[3].ColumnName].ToString()','@dr[Model.Tables[0].Columns[4].ColumnName].ToString()','@dr[Model.Tables[0].Columns[5].ColumnName].ToString()','@dr[Model.Tables[0].Columns[6].ColumnName].ToString()','@dr[Model.Tables[0].Columns[7].ColumnName].ToString()','@dr[Model.Tables[0].Columns[8].ColumnName].ToString()','@dr[Model.Tables[0].Columns[9].ColumnName].ToString()','@dr[Model.Tables[0].Columns[10].ColumnName].ToString()','@dr[Model.Tables[0].Columns[11].ColumnName].ToString()','@dr[Model.Tables[0].Columns[12].ColumnName].ToString()')">
+        @for (int i = 0; i < Model.Tables[0].Columns.Count - 1; i++)
+        {
+            <td>@dr[Model.Tables[0].Columns[i].ColumnName].ToString()</td>;
+        }
+    </tr>
+}
+

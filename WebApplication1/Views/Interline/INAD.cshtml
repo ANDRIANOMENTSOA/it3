@@ -1,0 +1,88 @@
+﻿<div class="col-sm-11 tab-content tab-cancellation">
+    <div class="content-cancellation col-sm-11">
+        <div class="row">
+            <div class="col-sm-5">
+                <fieldset class="test-fieldst1" style="height: 200px;">
+                    <legend class="test-fieldst">DATA LOOKUP</legend>
+                    <div class="col-sm-2">
+                    </div>
+                    <div class="col-sm-10">
+                        <div class="row">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <label class="col-form-label col-sm-10 n-padding fromTo">Passenger Name:</label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input type="text" id="PassengerName" size="43px">
+                                </div>
+                            </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <div class="col-sm-3 n-padding">
+                                            <input class="form-check-input" type="radio" name="StartingWith" value="StartingWith">
+                                            <label class="form-check-label col-form-label" for="inlineRadio2">Starting With</label>
+                                        </div>
+                                        <div class="col-sm-3">
+                                        </div>
+                                        <div class="col-sm-3 n-padding">
+                                            <input class="form-check-input" type="radio" name="Contains" value="Contains">
+                                            <label class="form-check-label col-form-label" for="inlineRadio2">Contains</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <label class="col-form-label col-sm-11 n-padding fromTo">Document Number:</label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <input type="text" name="DocumentNumber" size="43px">
+                                    </div>
+                                </div>
+                                <div class="row" style="position: relative; top: 30px;">
+                                    <div class="col-sm-3">
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <div class="col-sm-6">
+                                            <button class="search-interogation pink btn" onclick="clearNoShow()"><span class="search-span col-sm-6 n-padding">SEARCH</span></button>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <button class="search-interogation pink btn" onclick="clearNoShow()"><span class="search-span col-sm-6 n-padding">CLEAR</span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="col-sm-6" style="position: relative; top: 130px;">
+                <div class="col-sm-8">
+                </div>
+                <div class="col-sm-4">
+                    <button class="search-interogation pink btn" onclick="clearNoShow()"><span class="search-span col-sm-2 n-padding">CLOSE</span></button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="table-record-display" style="height: 580px;color:white;border:1px solid rgba(152, 152, 152, 1);">
+                <div class="col-sm-11">
+                    <table class="table table-bordered table-striped table-hover" style="margin-left: -16px;font-size:12px;" id="exampleTable1">
+                        <thead>
+                            <tr>
+                                <th class="pink">Doc Num</th>
+                                <th class="pink">Passenger Name</th>
+                                <th class="pink" style="width:5%">Doc type</th>
+                                <th class="pink">Date Of Issue</th>
+                                <th class="pink">Sale Date</th>
+                                <th class="pink">Agent Code</th>
+                                <th class="pink" style="width: 25%;">FareCalculationArea</th>
+                            </tr>
+                        </thead>
+                        <tbody id="getFacsValue"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

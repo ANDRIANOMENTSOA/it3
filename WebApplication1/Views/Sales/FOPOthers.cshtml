@@ -1,0 +1,190 @@
+﻿
+
+@using System.Data
+@model DataSet
+<div class="col-sm-11 tab-content tab-cancellation">
+    <div class="content-cancellation col-sm-11">
+        <div class="col-sm-4">
+            <fieldset class="test-fieldst">
+                <legend class="test-fieldst">Sales Period</legend>
+                <div class="col-sm-6">
+                    <div class="form-group has-feedback">
+                        <label class="form-check-label col-form-label col-sm-2 fromTo">From:</label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('first_@ViewBag.typeId')"></span>
+                                <input type="text" class="form-control" id="first_@ViewBag.typeId" value="@ViewBag.date[0]" style="padding-right:3px">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6" style="margin-bottom: 19px;">
+                    <div class="form-group has-feedback">
+                        <label class="form-check-label col-form-label col-sm-2 fromTo">To:</label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('second_@ViewBag.typeId')"></span>
+                                <input type="text" class="form-control" id="second_@ViewBag.typeId" value="@ViewBag.date[1]" style="padding-right:3px">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+        <div class="col-sm-5">
+            <fieldset class="test-fieldst" style="height: 73px;">
+                <legend class="test-fieldst">Search Criterias</legend>
+                <div class="col-sm-6">
+                    <div class="form-group row" style="margin-left:7px">
+                        <label class="col-sm-4 col-form-label n-padding" style="margin-top: 6px;">Agent Num Code:</label>
+                        <div class="col-sm-6" style="height: 37px;">
+                            <div class="row div-showModal">
+                                <div class="col-sm-11"><input type="text" name="agentCode" id="agentNumCode_@ViewBag.typeId" class="form-control"></div>
+                                <div class="col-sm-1 containt-btn" style="width: 33px !important;height:30px;position: relative;top: -30px;left: 144px;"><button class="point-interogation pink btn" onclick="showAgentCodeModalFop('AgentCodeModal_@ViewBag.typeId','agent-name-label_@ViewBag.typeId','agent-code-label_@ViewBag.typeId')"><span class="point-span">?</span></button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group row" style="margin-left:7px">
+                        <label class="col-sm-4 col-form-label n-padding" style="margin-top: 6px;">Transaction Type:</label>
+                        <div class="col-sm-5" style="height: 37px;">
+                            <div class="row div-showModal">
+                                <select class="form-control" id="fop_@ViewBag.typeId" onclick="dropDownTransactionTypeOther('first_@ViewBag.typeId','second_@ViewBag.typeId','fop_@ViewBag.typeId','agentNumCode_@ViewBag.typeId')">
+                                    <option>All</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="col-sm-3" style="position: relative;top: 5px;">
+            <div class="search">
+                <div class="col-sm-3"><button type="button" class="search-interogation pink btn" onclick="setCriteriaFopeType('fop_@ViewBag.typeId','loadTrans-summary_@ViewBag.typeId','first_@ViewBag.typeId','second_@ViewBag.typeId','agentNumCode_@ViewBag.typeId','totalRow_@ViewBag.typeId')"><span class="search-span">SEARCH</span></button></div>
+                <div class="col-sm-3"><button type="button" class="search-interogation pink btn" onclick="clearCommition('FormOfPayementType')"><span class="search-span">CLEAR</span></button></div>
+                <div class="col-sm-3"><button class="search-interogation pink btn" onclick="removeSousMenu()"><span class="search-span">CLOSE</span></button></div>
+            </div>
+        </div>
+    </div>
+    <div class="ajax-loader">
+        <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+    </div>
+    <div class="col-sm-12" style="margin-top:40px" id="loadTrans-summary_@ViewBag.typeId">
+        <div class="col-sm-8">
+            <div class="table-record-display" style="height:569px;overflow:auto">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="pink">Sale Date</th>
+                            <th class="pink">Document No.</th>
+                            <th class="pink">Agent Num Code</th>
+                            <th class="pink">FCMI</th>
+                            <th class="pink">Trans.Code</th>
+                            <th class="pink">FOP</th>
+                            <th class="pink">CUR</th>
+                            <th class="pink">Amount Collected</th>
+                            <th class="pink">Amount Remitted</th>
+                            <th class="pink">Compiled Commission</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        <div class="col-sm-4" style="margin-top: 15px;">
+            <fieldset class="test-fieldst">
+                <legend class="test-fieldst">Summary</legend>
+                <div class="table-summary" style="background-color: white;height: 536px;overflow: auto;">
+                    <table class="table table-bordered ">
+                        <thead>
+                            <tr>
+                                <th class="pink">Agent Num Code</th>
+                                <th class="pink">Trans.Code</th>
+                                <th class="pink">FOP</th>
+                                <th class="pink">CUR</th>
+                                <th class="pink">Amount Remited</th>
+                                <th class="pink">Commission Collected</th>
+                                <th class="pink">Doc Count</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+    <div class="col-sm-11" style="margin-top:10px">
+        <label class="form-check-label col-form-label col-sm-2 fromTo">Total No. Of Documents</label>
+        <div class="col-sm-2">
+            <input type="text" class="form-control" id="totalRow_@ViewBag.typeId" />
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="AgentCodeModal_@ViewBag.typeId" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="Doc modal-content" style="width: 58%;left: 17%; background-color: rgba(135, 206, 235, 1) !important; ">
+            <div class="agentModal">
+                <div class="modal-header" style="background-color: white; margin-bottom: 21px;">
+                    <h5 class="modal-title" id="myModalLabel">FrmCustomAgentQuery</h5>
+                    <button type="button" class="close close-agent-code" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="DocCollect-modal-body">
+                    <div class="scoll-tree scoll-agent-code">
+                        <div class="head-agent-code-content">
+                            <div class="form-row">
+                                <div class="col col-md-3" style="padding-left: 0px;">Agent Legal Name:</div>
+                                <div class="col col-md-4">
+                                    <input type="text" class="form-control" id="name" name="agentName_@ViewBag.typeId" onkeyup="cherche(this.value)" />
+                                </div>
+                                <div class="col col-md-2">Agent Code:</div>
+                                <div class="col col-md-3">
+                                    <input type="text" class="form-control" id="code" name="agentCode_@ViewBag.typeId" onkeyup="cherche(this.value)" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="agentContent" style="width: 98%; max-height: 515px;">
+                            <table class="table table-agent-code" style="margin-bottom:0px">
+                                <thead>
+                                    <tr>
+                                        <th width="35%">Agent Code</th>
+                                        <th width="65%">Agent Name</th>
+                                    </tr>
+                                </thead>
+
+
+                            </table>
+                        </div>
+                        <div class="ajax-loader">
+                            <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+                        </div>
+                        <div class="autocomplete">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="background-color:rgba(135, 206, 235, 1) !important;">
+                    <div class="col-md-9 footer-agent-code">
+                        <div class="col-md-12">
+                            <label>Agent Name: </label>
+                            <label style="color:white;font-size:12px" id="agent-name-label_@ViewBag.typeId"></label>
+                        </div>
+                        <div class="col-md-12">
+                            <label>Agent Code: </label>
+                            <label style="color:white; font-size:12px" id="agent-code-label_@ViewBag.typeId"></label>
+                        </div>
+                        <input type="hidden" id="agent-city-label" value="" />
+                    </div>
+                    <div class="col-md-3">
+                        <button type="button" class="Close btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="Close btn" data-dismiss="modal" id="select-name-code" onclick="selectPsd1('agentNumCode_@ViewBag.typeId','agent-name-label_@ViewBag.typeId','agent-code-label_@ViewBag.typeId','agentName_@ViewBag.typeId','agentCode_@ViewBag.typeId')">Select</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

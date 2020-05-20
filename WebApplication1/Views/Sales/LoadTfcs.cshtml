@@ -1,0 +1,73 @@
+﻿@using System.Data
+@model DataSet
+<div class="col-sm-8">
+    <div class="table-record-display" style="height:694px; overflow:auto; top: -80px;position: relative;">
+        <table class="table table-bordered table-hover table-striped ">
+            <thead>
+                <tr>
+                    <th class="pink">Sales Date</th>
+                    <th class="pink">Period</th>
+                    <th class="pink">Agent Code</th>
+                    <th class="pink">Document No</th>
+                    <th class="pink">Cpn</th>
+                    <th class="pink">FOP</th>
+                    <th class="pink">StopOver Code</th>
+                    <th class="pink">Trans.Type</th>
+                    <th class="pink">Currency</th>
+                    <th class="pink">Tax Code</th>
+                    <th class="pink">Tax Amount </th>
+                    <th class="pink">Endorsements/Restriction</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @for (int j = 0; j < ViewBag.compt; j++)
+                {
+                    <tr ondblclick="loadDocNum('@ViewBag.tableau[3,j]','@ViewBag.tableau[7,j]')">
+                        @for (int i = 0; i < 12; i++)
+                        {
+                            <td>@ViewBag.tableau[i, j] </td>;
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="col-sm-4" style="margin-top: 15px;">
+    <div class="summary"><span style="position: relative;top: -30px;">Summary</span></div>
+    <div class="table-summary" style="position: relative;top: -30px;">
+        <table class="table table-bordered  table-hover table-striped">
+            <thead>
+                <tr>
+                    <th class="pink">Currency</th>
+                    <th class="pink">Amount Collected</th>
+                    <th class="pink">Amount Refunded</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @for (int j = 0; j < ViewBag.comp1; j++)
+                {
+                    if (ViewBag.dgsum[0, j] == "")
+                    {
+                        j = j + 1;
+                    }
+                    else
+                    {
+                        <tr>
+                            @for (int i = 0; i < 3; i++)
+                            {
+                                <td>@ViewBag.dgsum[i, j] </td>;
+                            }
+                        </tr>
+                    }
+
+                }
+            </tbody>
+
+        </table>
+    </div>
+
+</div>
+

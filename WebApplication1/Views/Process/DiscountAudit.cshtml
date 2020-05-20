@@ -1,0 +1,123 @@
+﻿<div class="col-sm-11 tab-content tab-cancellation">
+    <div id="search1" class="tab-pane fade in active">
+        <div class="content col-sm-12">
+            <div class="row">
+                <div class="col-lg-11">
+                    <div class="col-lg-4" id="fieldsetdiscount">
+                        <fieldset class="test-fieldst">
+                            <legend class="test-fieldst">Flight Date</legend>
+                            <div class="col-sm-1 margin-issue">
+                                <label class="form-check-label col-form-label">From:-</label>
+                            </div>
+
+                            <div class="col-sm-3 n-padding">
+                                <div class="input-group date">
+                                    <input type="text" name="dateFromTFC" class="form-controls input-date" value="@ViewBag.date[1]" id="dateFromTFC" onchange="agentRBD()"/>
+                                    <span class="input-group-addon datetimepicker" onclick="setdate('dateFromTFC')">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-sm-1">
+                                <label class="form-check-label col-form-label">To:-</label>
+                            </div>
+                            <div class="col-sm-3 n-padding">
+                                <div class="input-group date">
+                                    <input type='text' name="dateToTFC" class="form-controls input-date input-datetimepicker" value="@ViewBag.date[1]" id="dateToTFC" onchange="agentRBD()"/>
+                                    <span class="input-group-addon datetimepicker" onclick="setdate('dateToTFC')">
+                                        <span class="glyphicon glyphicon-calendar" id="calendarPaxTo"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                <div class="col-lg-5">
+                    <fieldset class="test-fieldst">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label class="form-check-label col-form-label">Agent Numeric Code</label>
+                            </div>
+                            <input type="hidden" id="ag" value="%" />
+                            <div class="col-lg-2" id="agentRBD">
+                                <select class="form-control" id="selectagentRBD" onchange="param()">
+                                    <option class="form-control" value="-All-">-All-</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-2">
+                                <label class="form-check-label col-form-label">Agent Name:</label>
+
+                            </div>
+                            <div class="col-lg-4" id="divtxtagtname">
+                                <input type="text" class="form-control" value="" id="txtagtname">
+                            </div>
+                        </div>
+                        <div class="row" style="position: relative;top: 4px;">
+                            <div class="col-lg-3">
+                                <label class="form-check-label col-form-label">Agent Address:</label>
+                            </div>
+                            <div class="col-lg-9" id="divtxtagtadd">
+                                <textarea style="position: relative;width: 449px;" rows="3" id="txtagtadd"></textarea>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-lg-3">
+                    <div class="col-lg-4">
+                        <button class="btn" style="background-color: RGB(173,255,47);" onclick="btnSearch_Clickdiscount()">SEARCH</button>
+                    </div>
+                    <div class="col-lg-4">
+                        <button class="btn" style="background-color: RGB(173,255,47);" onclick="btnReset_Click()">CLEAR</button>
+                    </div>
+                    <div class="col-lg-4">
+                        <button class="btn" style="background-color: RGB(173,255,47);" onclick="removeSousMenu()">CLOSE</button>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+            <div class="row">
+                <div class="table-record-display col-lg-11" style="height:664px;overflow:auto;" id="tableagent">
+                    <table class="table table-bordered table-striped table-hover" id="tablecontenuagent">
+                        <thead>
+                            <tr style="background-color: RGB(173,255,47);">
+                                <th>Document No</th>
+                                <th>CPN</th>
+                                <th>Agent No</th>
+                                <th>Figth No</th>
+                                <th>Fight Date</th>
+                                <th>Fight Basis</th>
+                                <th>Fare & Pax Type Code</th>
+                                <th>Discount</th>
+                                <th>Passenger Name</th>
+                                <th>Amt Collected Cur</th>
+                                <th>Amt Collected</th>
+                                <th>Fare calculation Area</th>
+                                <th>RBD</th>
+                            </tr>
+                        </thead>
+                        <tbody class="">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row" style="position: relative;top: 24px;">
+                <div class="col-lg-2">
+                    <label class="form-check-label col-form-label">Number of record per page:</label>
+                </div>
+                <div class="col-lg-1">
+                    <input type="text" readonly class="form-control" value="150">
+                </div>
+                <div class="col-lg-1">
+                    <input type="button" style=" position: relative;left: 112px;background-color: RGB(173,255,47);" class="btn" value="<"/>
+                </div>
+                <div class="col-lg-1">
+                    <input type="text" readonly class="form-controls">
+                </div>
+                <div class="col-lg-1">
+                    <input type="button"style=" position: relative;left: -15px; background-color: RGB(173,255,47);"  class="btn" value=">"/>
+                </div>
+            </div>
+
+         </div>
+    </div>
+</div>

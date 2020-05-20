@@ -1,0 +1,180 @@
+﻿
+<script src="~/Scripts/Process.js"></script>
+
+
+<div class="col-sm-11 tab-content tab-cancellation">
+    <div id="search" class="tab-pane fade in active">
+
+        Date: @ViewBag.Test
+
+        Sector:@ViewBag.sector
+        Tab1:@ViewBag.tab1
+        Tab2:@ViewBag.tab2
+
+        Resultat fare component: @ViewBag.FareComponent
+
+        Valeur I = @ViewBag.Valeur1;
+
+        Valeur A = @ViewBag.ValeurA;
+        Valeur B = @ViewBag.ValeurB;
+
+        NB FACTORY = @ViewBag.lonFactori ;
+
+        Factori:
+        <select style="width: auto ; margin-right:25px" class="form-control" id="valAddcountry">
+            @for (int i = 0; i < ViewBag.lonFactori; i++)
+            {
+                <option>@ViewBag.ListeFactor[0, i]</option>
+            }
+        </select>
+
+        Sector:
+        <select style="width: auto ; margin-right:25px" class="form-control" id="valAddcountry">
+            @for (int i = 0; i < ViewBag.lonFactori; i++)
+            {
+                <option>@ViewBag.sector[0, i]</option>
+            }
+        </select>
+
+
+        <div class="content col-sm-12">
+            <div class="row">
+                <div class="col-lg-3">
+                    <table>
+                        <thead>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th class="form-check-label col-form-label">Ticket No.</th>
+                                <th><input type="text" id="ticketNo" name="ticketNo" class="form-control"></th>
+                            </tr>
+                            <tr>
+                                <th class="form-check-label col-form-label">Charge</th>
+                                <th><input type="text" id="charge" name="charge" class="form-control"></th>
+                            </tr>
+                            <tr>
+                                <th class="form-check-label col-form-label">EFP</th>
+                                <th><input type="text" id="efp" name="efp" class="form-control"></th>
+                            </tr>
+                            <tr>
+                                <th class="form-check-label col-form-label">Issue Date</th>
+                                <th>
+                                    <div class="">
+                                        <div class="input-group date">
+                                            <input type="text" name="dateExcessProration" id="dateExcessProration" class="form-controls input-date"  id="dateExcessProration" />
+                                            <span class="input-group-addon datetimepicker" onclick="setdate('dateExcessProration')">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th class="form-check-label col-form-label">Clearance Month</th>
+                                <th><input type="text" class="form-control" id="Month"></th>
+                                <th class="form-check-label col-form-label">(yyyyMM)</th>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-lg-1">
+                </div>
+                <div class="col-lg-5">
+                    <table>
+                        <thead>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th class="form-check-label col-form-label">Q</th>
+                            </tr>
+                            <tr>
+                                <th class="form-check-label col-form-label">Fare Component To Be Prorated(FCTBP)</thclass="form-check-label>
+                                <th><input type="text" class="form-control" value="@ViewBag.FareComponent"></th>
+                                <th><input type="text" class="form-control"></th>
+                            </tr>
+                            <tr>
+                                <th class="form-check-label col-form-label">COP USD 5 Day Rate Prec.MOC/Mean Rate</th>
+                                <th><input type="text" class="form-control"></th>
+                                <th><input type="text" class="form-control"></th>
+                            </tr>
+                            <tr>
+                                <th class="form-check-label col-form-label">ATBP-USD</th>
+                                <th><input type="text" class="form-control"></th>
+                                <th><input type="text" class="form-control"></th>
+                            </tr>
+                            <tr>
+                                <th class="form-check-label col-form-label">BTBP-USD</th>
+                                <th><input type="text" class="form-control"></th>
+                                <th><input type="text" class="form-control"></th>
+                            </tr>
+                            <tr>
+                                <th class="form-check-label col-form-label">Total Prorate Factors</th>
+                                <th><input type="text" class="form-control"></th>
+                                <th><input type="text" class="form-control"></th>
+                            </tr>
+                            <tr>
+                                <th class="form-check-label col-form-label">Quotient (5 d.p.Unrounded)</th>
+                                <th><input type="text" class="form-control"></th>
+                                <th><input type="text" class="form-control"></th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="row" style="position: relative;top: 17px;">
+                <div class="col-lg-3">
+                    <label class="form-check-label col-form-label" name="fare" id="fare">Fare Calculation Area</label>
+                    <textarea style="width:100%" rows="2" id="fca" name="fca"></textarea>
+                </div>
+                <div class="col-lg-4">
+                </div>
+                <div class="col-lg-3">
+                    <input type="button" class="btn" onclick="ExcessProration()" value="Prorate">
+                    <input type="button" class="btn" onclick="ClearExcessBaggageProration()" value="Clear">
+                    <input type="button" class="btn" onclick="removeSousMenu()" value="Close">
+                </div>
+            </div>
+            <div class="row col-lg-9" style="position: relative;top: 26px;">
+                <div class="table-record-display" id="" style="height:383px;overflow:auto;">
+                    <div class="table-record-display" id="" style="height:357px;background-color:RGB(255,165,0);overflow:auto;position: relative;top: 23px;">
+                        <div class="ajax-loader">
+                            <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+                        </div>
+                        <div class="table-record-display" id="" style="height:295px;overflow:auto;position: relative;top: 26px;">
+                            <table class="table table-bordered table-striped table-hover" style="width: 65%;">
+                                <thead>
+                                    <tr style="background-color: RGB(173,255,47);">
+                                        <th>Sector</th>
+                                        <th>Carrier</th>
+                                        <th>Pro.Factors</th>
+                                        <th>SRP</th>
+                                        <th>SPA</th>
+                                        <th>Surch.(Q)</th>
+                                        <th>Final Share</th>
+                                        <th>Prorate %</th>
+                                        <th>TFC</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="">
+                                    @for (int i = 0; i < 12; i++)
+                                    {
+                                        <tr>
+                                            @for (int j = 0; j < 9; j++)
+                                            {
+                                                <td></td>;
+                                            }
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

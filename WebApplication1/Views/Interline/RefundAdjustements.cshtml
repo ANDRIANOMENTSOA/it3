@@ -1,0 +1,200 @@
+﻿<script src="~/Scripts/paxTkts.js"></script>
+<script src="~/Scripts/Process.js"></script>
+<div class="col-sm-12 tab-content tab-cancellation">
+    <div class="content-cancellation col-sm-12">
+        <div class="row">
+            <fieldset class="test-fieldst1">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <label class="form-check-label col-form-label col-sm-2 n-padding fromTo">Passenger's Name</label>
+                        <div class="col-sm-10 n-padding" id="PassengersName">
+                            <input type="text" class="form-control" id="txtPaxName">
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <label class="form-check-label col-form-label col-sm-4 n-padding fromTo">Date:</label>
+                        <div class="input-group date">
+                            <input type="text" name="DateretroactiveAdjustement" class="form-controls input-date" id="DateretroactiveAdjustement" value="@ViewBag.date[0]" />
+                            <span class="input-group-addon datetimepicker" onclick="setdate('DateretroactiveAdjustement')">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label class="form-check-label col-form-label col-sm-4 n-padding fromTo">Document No:</label>
+                        <div class="col-sm-6 n-padding" id="Routing">
+                            <input class="form-control" id="cmbDocNum" value=""/>
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <label class="form-check-label col-form-label col-sm-4 n-padding fromTo">Fare Basic:</label>
+                        <div class="col-sm-8 n-padding" id="Routing">
+                            <input type="text" class="form-control" id="txtFareBasis">
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style=" display:block;margin-top: 20px;">
+                    <div class="col-lg-3">
+                        <label class="form-check-label col-form-label col-sm-4 n-padding fromTo">Not Valid After:</label>
+                        <div class="col-sm-6 n-padding" id="Routing">
+                            <input type="text" class="form-control" id="txtNotValidAfter">
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <label class="form-check-label col-form-label col-sm-4 n-padding fromTo">Date of Issue:</label>
+                        <div class="col-sm-8 n-padding" id="Routing">
+                            <input type="text" class="form-control" id="txtdateofissue">
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="col-lg-6">
+                           <button class="btn-default form-control" style="color:#eae4e4; background-color: RGB(68,35,89)" onclick="btnSearch_Clickrefundadjustements()"><span >SEARCH</span></button>
+                        </div>
+                         <div class="col-lg-6">
+                            <button class="btn-default form-control" onclick="" style="color:#eae4e4; background-color: RGB(68,35,89)"><span >CLEAR</span></button>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+            <div class="row" style=" display:block;margin-top: 20px;">
+                <fieldset class="test-fieldst1">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <label class="form-check-label col-form-label col-sm-1 n-padding fromTo">Original Routing</label>
+                            <div class="col-sm-10 n-padding" id="OriginalRouting">
+                                <input type="text" class="form-control" id="txtOriRtng">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style=" display:block;margin-top: 20px;">
+                        <div class="col-lg-5">
+                            <label class="form-check-label col-form-label col-sm-1 n-padding fromTo">Actual Flow Routing</label>
+                            <div class="col-sm-10 n-padding" id="ActualFlowRouting">
+                                <input type="text" class="form-control" id="txtActualFlownRtng">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="display:block;margin-top: 20px;">
+                        <div class="col-lg-5">
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="col-sm-4"><button class="btn-default form-control" onclick="retroactiveAdjustement()" style="color:#eae4e4; width: 288px; background-color: RGB(68,35,89)"><span class="">RETROACTIVE ADJUSTEMENT</span></button></div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="row" style=" display:block;margin-top: 20px;">
+                <fieldset class="test-fieldst1">
+                    <div class="row">
+                        <div class="col-lg-1">
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="fim-middle" id="divdgOriRting">
+                                <table class="table table-bordered table-striped" id="dgOriRting">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="3" scope="colgroup" style="text-align: center; background-color: RGB(128,0,0);">Original Prorates Based on Original Routing</th>
+                                        </tr>
+                                        <tr>
+                                            <th class="pink">Sectors</th>
+                                            <th class="pink">Carr</th>
+                                            <th class="pink">Share Values</th>
+                                        </tr>
+                                        <tr>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="loadFimHeader"></tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="fim-middle" id="divdgActualFlownRting">
+                                <table class="table table-bordered table-striped" id="dgActualFlownRting">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="3" scope="colgroup" style="text-align: center; background-color:RGB(136,189,23);">Revised Prorates Based on Actual Flown Routing</th>
+                                        </tr>
+                                        <tr>
+                                            <th class="pink">Sectors</th>
+                                            <th class="pink">Carr</th>
+                                            <th class="pink">Share Values</th>
+                                        </tr>
+                                        <tr>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="loadFimHeader"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="fim-middle" id="divdgDiff">
+                                <table class="table table-bordered table-striped" id="dgDiff">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="3" scope="colgroup" style="text-align: center; background-color: RGB(23,124,202);">Difference Between Prorates To Be Adjusted</th>
+                                        </tr>
+                                        <tr>
+                                            <th class="pink">Sectors</th>
+                                            <th class="pink">Carr</th>
+                                            <th class="pink">Share Values</th>
+                                        </tr>
+                                        <tr>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="loadFimHeader"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="row" style=" display:block;margin-top: 20px;">
+                            <div class="col-lg-4">
+                                <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">Actual Fare</label>
+                                <div class="col-sm-4 n-padding" id="ActualFare">
+                                    <input type="text" class="form-control" id="txtactualfare">
+                                </div>
+                            </div>
+                            <div class="col-lg-1">
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="col-sm-4"><button class="btn-default form-control" onclick="retroactiveAdjustement()" style="color:#eae4e4; width: 288px; background-color: RGB(68,35,89)"><span class="">CALCULATE DIFFERENCE</span></button></div>
+                            </div>
+                        </div>
+                        <div class="row" style=" display:block;margin-top: 20px;">
+                            <div class="col-lg-4">
+                                <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">Actual TFCs</label>
+                                <div class="col-sm-4 n-padding" id="ActualFlowRouting">
+                                    <input type="text" class="form-control" id="txtActualTFCs">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style=" display:block;margin-top: 20px;">
+                            <div class="col-lg-4">
+                                <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">Actual Surcharges</label>
+                                <div class="col-sm-4 n-padding" id="ActualSurcharges">
+                                    <input type="text" class="form-control" id="txtActualSurcharges">
+                                </div>
+                            </div>
+                            <div class="col-lg-1">
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="col-sm-4"><button class="btn-default form-control" onclick="removeSousMenu()" style="color:#eae4e4; width: 288px; background-color: RGB(68,35,89)"><span class="">CLOSE</span></button></div>
+                            </div>
+                        </div>
+                </fieldset>
+            </div>
+        </div>
+ </div>

@@ -1,0 +1,74 @@
+﻿@using System.Data
+@model DataSet
+
+<div class="table-record-display " style="overflow: auto;top: 12px;position: relative;left: 19px;width: 1485px;height:200px">
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th class="pink">Refunded Doc No</th>
+                <th class="pink">Date Refund</th>
+                <th class="pink">Original Ticket No</th>
+                <th class="pink">Origin TKTT Date Of Issue</th>
+                <th class="pink">Agent Num Code</th>
+                <th class="pink">Passenger Name</th>
+                <th class="pink">Doc Type</th>
+                <th class="pink">Currency</th>
+                <th class="pink">Refund Amount</th>
+                <th class="pink">Penalty Curr</th>
+                <th class="pink">Penalty Fee </th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int j = 0; j < ViewBag.compt; j++)
+            {
+                <tr ondblclick="details('@ViewBag.Tableau[0, j]','@ViewBag.Tableau[3, j]','@ViewBag.Tableau[6, j]','@ViewBag.Tableau[2, j]','@ViewBag.Tableau[1, j]','@ViewBag.Tableau[5, j]','@ViewBag.Tableau[4, j]', '@ViewBag.Tableau[10, j]')">
+                    @for (int i = 0; i < 11; i++)
+                    {
+                        <td>@ViewBag.Tableau[i, j] </td>;
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="table-summary" style="position: relative;left: 16px;width:450px;height:200px; top:15px">
+    <table class="table table-bordered table-striped table-hover ">
+        <thead>
+            <tr>
+                <th class="pink">No of Doc</th>
+                <th class="pink">Currency</th>
+                <th class="pink">Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int j = 0; j < ViewBag.comp1; j++)
+            {
+                if (ViewBag.dgsummary[0, j] == "")
+                {
+                    j = j + 1;
+                }
+                else
+                {
+                    <tr>
+                        @for (int i = 0; i < 3; i++)
+                        {
+                            <td>@ViewBag.dgsummary[i, j] </td>;
+                        }
+                    </tr>
+                }
+
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="totdoc" style="position: relative;left: 1226px;top: -176px;">
+    <span class="doccompt">Total No of Doc:@ViewBag.compt</span>
+    <input type="hidden" id="valListR" name="valListR" value="@ViewBag.compt" />
+    <img src="~/Images/CSVPic.jpg" style="height:30px;top: 0px;left: 152px;" />
+</div>
+
+
+
+

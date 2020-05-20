@@ -1,0 +1,40 @@
+﻿@using System.Data
+@model DataSet
+<!--fait par christian-->
+<div class="col n-padding" style="top: 41px;background-color: white;height: 478px;left: 14px;overflow: auto;width: 100%;" id="divtablepev">
+    <div class="ajax-loader">
+        <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+    </div>
+    <input type="hidden" id="temps" value="@ViewBag.txtDocCount" />
+    <table class="table table-bordered" id="tablepev" style="width:100% !important">
+        <thead>
+            <tr>
+                <th class="pink">Document No</th>
+                <th class="pink">Date Of Issue</th>
+                <th class="pink">Fare Calculation Area</th>
+                <th class="pink">Fare</th>
+                <th class="pink">Equi. Fare</th>
+                <th class="pink">Error Message</th>
+                <th class="pink">Date Process</th>
+                <th class="pink">Data Source</th>
+                <th class="pink">AgentNumCode</th>
+                <th class="pink">Endos. Restriction</th>
+                <th class="pink">Transaction Code</th>
+                <th class="pink">Original Doc No</th>
+                <th class="pink">Additional Remarks</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < ViewBag.ligne; i++)
+            {
+                <tr onclick="doublecliquetablepev('@ViewBag.Liste[i, 2]')">
+                    @for (int j = 0; j < ViewBag.colone; j++)
+                {
+                        <td>@ViewBag.Liste[i, j]</td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<!-- fin fait par christian-->

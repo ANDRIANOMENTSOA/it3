@@ -1,0 +1,52 @@
+﻿@using System.Data
+@model DataSet
+<div class="table-record-display" style="overflow:auto; height:600px">
+    <table class="table table-bordered table-hover table-striped afiche-result">
+        <thead>
+            <tr>
+                <th class="green-tab">Document No</th>
+                <th class="green-tab">Cpn</th>
+                <th class="green-tab">Orig</th>
+                <th class="green-tab">Dest</th>
+                <th class="green-tab">Flight No</th>
+                <th class="green-tab">Flight Date</th>
+                <th class="green-tab">Used Class Of Service</th>
+                <th class="green-tab">Currency</th>
+                <th class="green-tab">Exchanged Ticket</th>
+                <th class="green-tab">Billing Type</th>
+                <th class="green-tab">BSP</th>
+                <th class="green-tab">Agent</th>
+                <th class="green-tab">Agent Remuneration Rate</th>
+                <th class="green-tab">Applied Sales</th>
+                <th class="green-tab">Agent Remuneration Amount</th>
+                <th class="green-tab">Gross Value</th>
+                <th class="green-tab">ISC %</th>
+                <th class="green-tab">ISC Amount</th>
+                <th class="green-tab">UATP Amount</th>
+                <th class="green-tab">Handling Fee</th>
+                <th class="green-tab">Total Tax</th>
+                <th class="green-tab">Source Code</th>
+                <th class="green-tab">CPN_Status</th>
+                <th class="green-tab">ESAC</th>
+                <th class="green-tab">Own_Ticket</th>
+                <th class="green-tab">Billing Period</th>
+                <th class="green-tab">Invoice No</th>
+                <th class="green-tab">Net Amount</th>
+            </tr>
+        </thead>
+        <tbody id="idTransP">
+            @for(int i=0; i<ViewBag.lon; i++)
+            {
+                <tr ondblclick="loadDocNum(this,'@ViewBag.Trasportation[0,i]','TKTT')">
+                    @for (int j = 0; j< 28; j++)
+                    {
+                        <td>@ViewBag.Trasportation[j,i]</td>;
+                        //Share +=Convert.ToDecimal(dr[Model.Tables[0].Columns[6].ColumnName].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<input type="hidden" id="transcountP" value="@ViewBag.lon" />
+<input type="hidden" id="transTotP" value="@ViewBag.netval" />

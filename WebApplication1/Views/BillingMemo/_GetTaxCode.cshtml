@@ -1,0 +1,33 @@
+﻿@using System.Web.UI.WebControls
+
+<table class="table table-bordered table-hover table-striped tablehead" id="tabletaxBreakdownList">
+<thead style="background-color: maroon; color: aliceblue">
+<tr>
+    <th>From Airport</th>
+    <th>To Airport</th>
+    <th>Mapped Prime Code</th>
+    <th>Passenger Type</th>
+    <th>Domestic International</th>
+    <th>Transit Duration</th>
+    <th>Valid From</th>
+    <th>Valid To</th>
+    <th>Tax Code</th>
+    <th>Tax Currency</th>
+    <th>Tax Amount</th>
+    <th>Tax Percentage</th>
+</tr>
+</thead>
+
+<tbody id="">
+@for (int i = 0; i < ViewBag.lonTaxRate; i++)
+{
+    <tr onclick="TaxRefDetails(@ViewBag.TaxRateRecords[14, i])">
+        @for (int j = 0; j < 12; j++)
+        {
+            <td>@ViewBag.TaxRateRecords[j, i]</td>
+        }
+    </tr>
+}
+</tbody>
+
+<table />

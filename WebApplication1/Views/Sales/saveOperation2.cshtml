@@ -1,0 +1,58 @@
+﻿<fieldset class="test-fieldst" style="margin-top:15px;width:1145px;height:300px">
+    <legend class="test-fieldst">PRODUCTIVITY LINKED BONUS DETAILS</legend>
+    <table class="bonus-details">
+        <tr>
+            <td>PLB RANGE</td>
+            <td><input type="text" class="form-control" id="plbrange" /></td>
+            <td></td>
+            <td>PLB Percentage</td>
+            <td><input type="text" class="form-coltrol" id="plbper" /></td>
+        </tr>
+    </table>
+    <div class="table-record-display " style="height:190px;width:960px;margin-left:35px">
+        <table class="table table-bordered table-striped table-hover" style="border-spacing: 10px;font-size: smaller;font-weight: bold;width:800px">
+            <thead>
+                <tr>
+                    <th class="pink">PLB RANGE</th>
+                    <th class="pink">PLB PERCENTAGE</th>
+                    <th class="pink">Split</th>
+                    <th class="pink">PLB Amount</th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                @if (ViewBag.compt2 > 0)
+                {
+                    for (int j = 0; j < ViewBag.compt2; j++)
+                    {
+                        <tr id="detail_@j" onclick="selectDetail('detail_@j')">
+                            <td>@ViewBag.dgvDetails[3, j] </td>
+                            <td>@ViewBag.dgvDetails[4, j] </td>
+                            <td>@ViewBag.dgvDetails[5, j] </td>
+                            <td>@ViewBag.dgvDetails[6, j] </td>
+
+                        </tr>
+                    }
+                }
+                else { }
+
+            </tbody>
+        </table>
+    </div>
+    <div class="bonus-leftButton" style="position: relative;top: -155px;left: 1000px;">
+        <table class="bonus-left">
+            <tr>
+                <td><div class="col-sm-1"><div class="col-sm-3"><button type="button" class="search-interogation pink btn1" onclick="addNew()" style="margin-bottom:10px" id="add1"><span class="search-span" id="txtadd1">Add New</span></button></div></div></td>
+            </tr>
+            <tr>
+                <td><div class="col-sm-1"><div class="col-sm-3"><button type="button" class="search-interogation pink btn1" onclick="setEditNew()" style="margin-bottom:10px" id="edit1"><span class="search-span" id="txtedit1">Edit</span></button></div></div></td>
+            </tr>
+            <tr>
+                <td><div class="col-sm-1"><div class="col-sm-3"><button type="button" class="search-interogation pink btn1" onclick="deleteDetail()" id="delete1"><span class="search-span" id="txtdelete1">Delete</span></button></div></div></td>
+            </tr>
+        </table>
+    </div>
+</fieldset>
+
+

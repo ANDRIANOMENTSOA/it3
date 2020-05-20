@@ -1,0 +1,10 @@
+﻿@for (int i = 0; i < ViewBag.lon; i++)
+{
+    <tr onclick="getDocumentDetails('@ViewBag.DocDetails[0, i]')">
+        @for (int j = 0; j < 11; j++)
+        {
+           <td>@ViewBag.DocDetails[j, i]</td>
+        }
+    </tr>
+
+}

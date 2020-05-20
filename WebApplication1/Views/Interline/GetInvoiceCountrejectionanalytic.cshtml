@@ -1,0 +1,25 @@
+﻿<div class="col" id="newdivdvgarchive">
+    <table class="table table-bordered tablehead" id="dvgarchive" style="width:100%;">
+        <thead>
+            <tr>
+                <th>Invoice No</th>
+                <th>User Action</th>
+                <th>Charge Code</th>
+                <th>Counts</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < ViewBag.ligne; i++)
+            {
+                <tr>
+                    @for(int j = 0; j < ViewBag.colone; j++)
+                    {
+                        <td>@ViewBag.dvgarchive[i,j]</td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+    <input type="text" id="newlblarcmsg" value="@ViewBag.lblarcmsg" style="display:none;" />
+    <input type="text" id="bntArchivedEnabled" value="@ViewBag.bntArchivedEnabled" style="display:none;"/>
+</div>

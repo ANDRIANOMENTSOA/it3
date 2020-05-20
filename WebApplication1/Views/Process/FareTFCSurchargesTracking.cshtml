@@ -1,0 +1,218 @@
+﻿
+<div style="background-color: RGB(135,206,235);height: 100vh">
+    <div class="col-sm-12 n-padding" style="top:13px">
+        <div class="col-sm-4" style="height:80vh; margin-top: 21px;">
+            <div class="col-sm-12 n-padding">
+                <fieldset class="test-fieldst legent-issue-date" style="border: 1px solid white !important;padding: 11px;">
+                    <div class="col-sm-3">
+                        <label class="form-check-label col-form-label">Processing Date:</label>
+                    </div>
+                    <div class="col-sm-4 n-padding">
+                        <select class="form-control">
+                            <option></option>
+                        </select>
+                    </div>
+                    <div class="col-sm-2">
+                        <button class="btn btn-default" type="button">Close</button>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="col-sm-12 n-padding">
+                <fieldset class="test-fieldst legent-issue-date" style="border: 1px solid white !important;padding: 11px;">
+                    <legend class="test-fieldst" style="background-color:transparent">NO OF FILES LOADED</legend>
+                    <div class="col-sm-8" style="border:1px solid; height: 160px;background-color: white;">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Processing Date</th>
+                                    <th>File Type</th>
+                                    <th>No Of Files Loaded</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="col-sm-6" style="left: 22%;margin-top: 15px;">
+                        <label class="form-check-label col-form-label col-sm-6">Total No. of Files</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="" />
+                        </div>
+
+                    </div>
+                </fieldset>
+            </div>
+            <div class="col-sm-12 n-padding" style="margin-top:12px">
+                <fieldset class="test-fieldst legent-issue-date" style="border: 1px solid white !important;padding: 11px;">
+                    <legend class="test-fieldst" style="background-color:transparent">SUMMARY BY FCMI PER PROCESSING DATE</legend>
+                    <div class="col-sm-11" style="border:1px solid;height: 300px;background-color: white;">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Processing Date</th>
+                                    <th>FCMI</th>
+                                    <th>Transaction Code</th>
+                                    <th>File Type</th>
+                                    <th>Ticket Counts</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="col-sm-6" style="left: 22%;margin-top: 15px;">
+                        <label class="form-check-label col-form-label col-sm-6">Total No. of Files:</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="" />
+                        </div>
+
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+        <div class="col-sm-8" style="height:88vh; border:2px solid white; top: 19px;border-top: 30px solid white;">
+            <div class="col-sm-12 n-padding">
+                <div class="col-sm-3" style="margin-top:10px">
+                    <button class="btn btn-default" type="button">Select All</button>
+                    <div class="col-sm-12 n-padding" style="height:80vh; border:1px solid #b9b7b7;background-color:#fffcd9;">
+
+                    </div>
+                </div>
+                <div class="col-sm-9" style="margin-top:10px">
+                    <div class="col-sm-11 n-padding">
+                        <fieldset class="test-fieldst legent-issue-date" style="border: 1px solid white !important;padding: 11px;">
+                            <legend class="test-fieldst" style="background-color:transparent">FILES COUNTS PER FILE</legend>
+                            <div class="col-sm-11" style="border:1px solid; height: 100px;background-color: white;">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Processing Date</th>
+                                            <th>File Name</th>
+                                            <th>File Type</th>
+                                            <th>Status</th>
+                                            <th>Ticket Counts</th>
+                                            <th>Coupon Counts</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <div class="col-sm-11 n-padding" style="margin-top: 15px;">
+                                <label class="form-check-label col-form-label col-sm-3 n-padding">Total No. of Tickets:</label>
+                                <div class="col-sm-3">
+                                    <input type="text" class="form-control" name="" />
+                                </div>
+                                <label class="form-check-label col-form-label col-sm-3">Total No. of Coupons:</label>
+                                <div class="col-sm-3">
+                                    <input type="text" class="form-control" name="" />
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="col-sm-12 n-padding" style="margin-top: 25px;left: -17px; height:45px; border: 1px solid #a7a7a7;box-shadow: 2px 2px 0px 0px white">
+                        <ul class="nav nav-tabs" style="margin-top: 6px;margin-left: 15px;border-bottom: 0px;">
+                            <li class="active"><a data-toggle="tab" href="#fcmi" class="nav-pax">FCMI PER FILE</a></li>
+                            <li><a data-toggle="tab" href="#surchargeSector" class="nav-pax">SURCHARGE BY SECTOR</a></li>
+                            <li><a data-toggle="tab" href="#surchargeComponent" class="nav-pax">SURCHARGE BY FARE COMPONENT</a></li>
+                            <li><a data-toggle="tab" href="#tax" class="nav-pax">TAX</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-sm-10" style="margin-top:25px">
+                        <div class="tab-content">
+                            <div id="fcmi" class="tab-pane fade in active">
+                                <fieldset class="test-fieldst legent-issue-date" style="border: 1px solid white !important;padding: 11px;">
+                                    <legend class="test-fieldst" style="background-color:transparent">SUMMARY BY FCMI PER FILE (** Double Click on the datagrid below to get details)</legend>
+                                    <div class="col-sm-11" style="border:1px solid;height: 300px;background-color: white;">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>Processing Date</th>
+                                                    <th>File Name</th>
+                                                    <th>FCMI</th>
+                                                    <th>Transaction Code</th>
+                                                    <th>BSP</th>
+                                                    <th>Ticket Count</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                    <div class="col-sm-6" style="left: 22%;margin-top: 15px;">
+                                        <label class="form-check-label col-form-label col-sm-6">Total No. of Tickets:</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" name="" />
+                                        </div>
+
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div id="surchargeSector" class="tab-pane fade">
+                                <fieldset class="test-fieldst legent-issue-date" style="border: 1px solid white !important;padding: 11px;">
+                                    <legend class="test-fieldst" style="background-color:transparent">SUMMARY OF SURCHARGE BY SECTOR DISCREPANCY (** Double Click on the datagrid below to get details)</legend>
+                                    <div class="col-sm-11" style="border:1px solid;height: 300px;background-color: white;">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>File Name</th>
+                                                    <th>Count</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                    <div class="col-sm-6" style="left: 22%;margin-top: 15px;">
+                                        <label class="form-check-label col-form-label col-sm-6">Total No. of Tickets:</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" name="" />
+                                        </div>
+
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div id="surchargeComponent" class="tab-pane fade">
+                                <fieldset class="test-fieldst legent-issue-date" style="border: 1px solid white !important;padding: 11px;">
+                                    <legend class="test-fieldst" style="background-color:transparent">SUMMARY OF SURCHARGE BY FARE COMPONENT DISCREPACY (** Double Click on the datagrid below to get details)</legend>
+                                    <div class="col-sm-11" style="border:1px solid;height: 300px;background-color: white;">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>File Name</th>
+                                                    <th>Count</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                    <div class="col-sm-6" style="left: 22%;margin-top: 15px;">
+                                        <label class="form-check-label col-form-label col-sm-6">Total No. of Tickets:</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" name="" />
+                                        </div>
+
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div id="tax" class="tab-pane fade">
+                                <fieldset class="test-fieldst legent-issue-date" style="border: 1px solid white !important;padding: 11px;">
+                                    <legend class="test-fieldst" style="background-color:transparent">SUMMARY OF TAX DISCREPACY (** Double Click on the datagrid below to get details)</legend>
+                                    <div class="col-sm-11" style="border:1px solid;height: 300px;background-color: white;">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>Processing Files Name</th>
+                                                    <th>Processing Date</th>
+                                                    <th>Total Pay Tax</th>
+                                                    <th>Pay Tax Currency</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                    <div class="col-sm-6" style="left: 22%;margin-top: 15px;">
+                                        <label class="form-check-label col-form-label col-sm-6">Total No. of Tickets:</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" name="" />
+                                        </div>
+
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

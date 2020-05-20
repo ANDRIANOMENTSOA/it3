@@ -1,0 +1,12 @@
+﻿<table class="table table-bordered table-striped table-hover table-result-code-name">
+    <tbody>
+        @foreach (var items in Model)
+        {
+            <tr onclick="putCodeAgent('@items.AgentNumericCode','@items.AgentName','@items.Count')">
+                <td width="34%">@items.AgentNumericCode</td>
+                <td width="54%">@items.AgentName</td>
+                <td>@items.Count</td>
+            </tr>
+        }
+    </tbody>
+</table>

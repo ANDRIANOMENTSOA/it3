@@ -1,0 +1,267 @@
+﻿@using System.Data
+@model DataSet
+    <div class="col-sm-11 tab-content tab-cancellation" name="cancel" id="cancellation_@ViewBag.typeId">
+        <markelement id="GrandParent_@ViewBag.typeId">
+            <div class="content-cancellation col-sm-11">
+                <form id="sqlCriteria_@ViewBag.typeId" method="POST" action="" class="">
+                    <div class="col-sm-4" style="margin-left: -13px;">
+                        <fieldset class="test-fieldst">
+                            <legend class="test-fieldst">Fligth Date</legend>
+                            <div class="col-sm-6 width-group">
+                                <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">From:</label>
+                                <div class="col-sm-7 n-padding">
+                                    <div class="input-group">
+                                        <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateFrom_@ViewBag.typeId')"></span>
+                                        <input type="text" class="form-control" name="dateFrom" id="dateFrom_@ViewBag.typeId" value="@ViewBag.dateFrom" style="padding-right:3px">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6" style="margin-bottom: 19px;">
+                                <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">To:</label>
+                                <div class="col-sm-7 n-padding">
+                                    <div class="input-group">
+                                        <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateTo_@ViewBag.typeId')"></span>
+                                        <input type="text" class="form-control" name="dateTo" id="dateTo_@ViewBag.typeId" value="@ViewBag.dateTo" style="padding-right:3px">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </fieldset>
+                        <div class="row" style="margin-top:40px;">
+                            <div class="col-sm-6" style="margin-left:0px;left: -14px;">
+                                <label class="col-sm-7 col-form-label" style="">Pax Final Counts:</label>
+                                <div class="col-sm-5 n-padding">
+                                    <input type="text" class="form-control" id="countTrans" disabled />
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label class="col-sm-7 col-form-label" style="">Flown Revenue Net:</label>
+                                <div class="col-sm-5 n-padding">
+                                    <input type="text" class="form-control" id="netTrans" disabled />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-sm-3">
+                        <fieldset class="test-fieldst">
+
+                            <input type="hidden" id="testTrans" />
+                            <input type="hidden" id="testTrans1" />
+                            <div class="form-group row" style="padding-left:7px;margin-top:7px">
+                                <label class="col-sm-5 col-form-label" style="">Agent Numeric Code:</label>
+                                <div class="col-sm-5" id="loadAgt">
+
+                                    <select class="form-control" id="AgCTrans" onclick="setAgcodeLift(this)" style="width:150px;">
+                                        <option>-All-</option>
+                                        <option value="1"></option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-1 containt-btn" style="width: 33px !important; height:30px;">
+                                    <button class="point-interogation green btn" data-toggle="modal" data-target="#AgentCodeModal" onclick="chercherefnLift(this)">
+                                        <span class="point-span">?</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="resultAdr">
+                                <div class="form-group row" style="padding-left:7px">
+                                    <label class="col-sm-5 col-form-label" style="position: relative;top: 9px;">Agent Name:</label>
+                                    <div class="col-sm-5" style="">
+                                        <input type="text" class="form-control" style="width:195px;" id="agName" />
+                                    </div>
+                                </div>
+                                <div class="form-group row" style="padding-left:7px">
+                                    <label class="col-sm-5 col-form-label" style="position: relative;top: 9px;">Agent Location:</label>
+                                    <div class="col-sm-5" style="">
+                                        <input type="text" class="form-control" style="width:195px;" id="agLocation" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </fieldset>
+                    </div>
+                    <div class="col-sm-2" id="transport">
+                        <fieldset class="test-fieldst">
+                            <div class="form-group row" style="padding-left:7px;margin-top:7px">
+                                <label class="col-sm-5 col-form-label" style="">Fligth No:-</label>
+                                <div class="col-sm-5" style="left:-35px">
+                                    <input type="hidden" id="testsectrfn" />
+                                    <input type="hidden" id="dateTrans1" />
+                                    <input type="hidden" id="dateTrans2" />
+                                    <select class="form-control" id="FlightTrans" onclick="getFlightNoSect1(this,'FlightTrans', 'dateFrom_@ViewBag.typeId', 'dateTo_@ViewBag.typeId', 'sector', 'testTrans', 'testsectrfn', 'transport', 'dateTrans1', 'dateTrans2')" style="width:150px;">
+                                        <option>-All-</option>
+                                    </select>
+
+                                </div>
+                            </div>
+                            <div class="form-group row" style="padding-left:7px;padding-top:45px">
+                                <label class="col-sm-5 col-form-label" style="">Sector:-</label>
+                                <div class="col-sm-5" style="left:-35px">
+                                    <input type="text" class="form-control" id="sector" style="width:90px;" disabled />
+                                </div>
+                            </div>
+
+                        </fieldset>
+                    </div>
+                    <div class="col-sm-3" id="OwnOal" style="position: relative;top: 0px;">
+                        <div class="search">
+                            <div class="col-sm-3"><button type="button" class="search-interogation green btn" onclick="setCriteriaTransportation(this)"><span class="search-span">SEARCH</span></button></div>
+                            <div class="col-sm-3"><button type="button" class="search-interogation green btn" name="clear" id="clear_@ViewBag.typeId" onclick="clearOAL(this)"><span class="search-span">CLEAR</span></button></div>
+                            <div class="col-sm-3"><button class="search-interogation green btn" onclick="removeSousMenu()"><span class="search-span">CLOSE</span></button></div>
+                        </div>
+                        <div class="col-sm-4" style="top: 67px;left: 12px;">
+                            <label class="form-check-label col-form-label" for="inlineRadio">Display Own</label>
+                            @{
+                                string checkt = "";
+                                string checkt1 = "";
+                                if (ViewBag.param == "own")
+                                {
+                                    checkt = "checked";
+                                }
+                                else
+                                {
+                                    checkt1 = "checked";
+                                }
+                            }
+                            <input class="form-check-input" type="checkbox" name="chOWN" id="ownTrans" value="Oui" @checkt disabled>
+                        </div>
+                        <div class="col-sm-4" style="top: 67px;">
+                            <label class="form-check-label col-form-label" for="inlineRadio">Display OAL</label>
+                            <input class="form-check-input" type="checkbox" name="chkOAL" id="oalTrans" value="Non" @checkt1 disabled>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div>
+                <div class="ajax-loader">
+                    <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+                </div>
+                <div class="col-sm-12" style="margin-top:40px" id="display-trans">
+
+                    <div class="table-record-display" style="height:545px;overflow:auto;">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="green-tab">Document No</th>
+                                    <th class="green-tab">CPN</th>
+                                    <th class="green-tab">Origin</th>
+                                    <th class="green-tab">Dest</th>
+                                    <th class="green-tab">Filgth No.</th>
+                                    <th class="green-tab">Flight Date</th>
+                                    <th class="green-tab">Used Class Of Service</th>
+                                    <th class="green-tab">Currency</th>
+                                    <th class="green-tab">Exchanged Ticket</th>
+                                    <th class="green-tab">Billing Type</th>
+                                    <th class="green-tab">BSP</th>
+                                    <th class="green-tab">Agent</th>
+                                    <th class="green-tab">Agent Remuneration Rate</th>
+                                    <th class="green-tab">Applied Sales Remuneration Rate</th>
+                                    <th class="green-tab">Agent Remuneration Amount</th>
+                                    <th class="green-tab">Gross Value</th>
+                                    <th class="green-tab">ISC %</th>
+                                    <th class="green-tab">ISC Amount</th>
+                                    <th class="green-tab">UATP Amount</th>
+                                    <th class="green-tab">Handling Fee</th>
+                                    <th class="green-tab">Total Taxe</th>
+                                    <th class="green-tab">Source Code</th>
+                                    <th class="green-tab">Cpn_Status</th>
+                                    <th class="green-tab">ESAC</th>
+                                    <th class="green-tab">Own Ticket</th>
+                                    <th class="green-tab">Billing Period</th>
+                                    <th class="green-tab">Invoice No</th>
+                                    <th class="green-tab">Net Amount</th>
+
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <input type="hidden" id="transcount" value="@ViewBag.lon" />
+                    <input type="hidden" id="transTot" value="@ViewBag.netval" />
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-sm-12" style="">
+                    <div class="col-sm-4">
+                            <img src='@Url.Content("~/images/CSVPic.jpg")' class="image-csv" style="top:15px;">
+                        </div>
+                </div>
+            </div>
+
+</div>
+
+    <!--AgentQuery-->
+    <div class="modal fade" id="AgentCodeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="Doc modal-content" style="width: 58%;left: 17%; background-color: rgba(135, 206, 235, 1) !important; ">
+                <div class="agentModal">
+                    <div class="modal-header" style="background-color: white; margin-bottom: 21px;">
+                        <h5 class="modal-title" id="myModalLabel">FrmCustomAgentQuery</h5>
+                        <button type="button" class="close close-agent-code" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="DocCollect-modal-body">
+                        <div class="ajax-loader">
+                            <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+                        </div>
+                        <div class="scoll-tree scoll-agent-code">
+                            <div class="head-agent-code-content">
+                                <div class="form-row">
+                                    <div class="col col-md-3" style="padding-left: 0px;">Agent Legal Name:</div>
+                                    <div class="col col-md-4">
+                                        <input type="text" class="form-control" id="name" name="agentName" onkeyup="cherche(this.value)" />
+                                    </div>
+                                    <div class="col col-md-2">Agent Code:</div>
+                                    <div class="col col-md-3">
+                                        <input type="text" class="form-control" id="code" name="agentCode" onkeyup="cherche(this.value)" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="agentContent" style="width: 98%; max-height: 515px;">
+                                <table class="table table-agent-code" style="margin-bottom:0px">
+                                    <thead>
+                                        <tr>
+                                            <th width="35%">Agent Code</th>
+                                            <th width="70%">Agent Name</th>
+                                        </tr>
+                                    </thead>
+
+
+                                </table>
+                            </div>
+                            <div class="autocomplete">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer" style="background-color:rgba(135, 206, 235, 1) !important;">
+                        <div class="col-md-9 footer-agent-code">
+                            <div class="col-md-12">
+                                <label>Agent Name: </label>
+                                <label style="color:white;font-size:12px" id="agent-name-label"></label>
+                            </div>
+                            <div class="col-md-12">
+                                <label>Agent Code: </label>
+                                <label style="color:white; font-size:12px" id="agent-code-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="Close btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="Close btn" data-dismiss="modal" id="select-name-code" onclick="LiftsetNumericode1()">Select</button>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+</markelement>
+    </div>
+
+
+
+

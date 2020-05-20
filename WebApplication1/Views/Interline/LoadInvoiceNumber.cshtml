@@ -1,0 +1,9 @@
+﻿<div class="col" id="newdivcboRAInvoiceNumber">
+    <select id="cboRAInvoiceNumber" onchange="cboRAInvoiceNumberchangeindex()">
+        <option value="--ALL--">--ALL--</option>
+        @for (int i = 0; i < ViewBag.ligne; i++)
+        {
+            <option value="@ViewBag.cboRAInvoiceNumber[i]">@ViewBag.cboRAInvoiceNumber[i]</option>
+        }
+    </select>
+</div>

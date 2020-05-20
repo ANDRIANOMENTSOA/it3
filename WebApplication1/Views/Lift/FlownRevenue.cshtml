@@ -1,0 +1,67 @@
+﻿@using System.Data
+@model DataSet
+<div class="col-sm-11 tab-content tab-cancellation">
+    <div class="head-Flown">
+        <div class="col-sm-2" style="left:-56px;top:20px">
+            
+                <div class="dateContent" style="margin-left: 74px;">
+                    <form class="form-inline" style="margin-bottom:14px; margin-top:6px">
+                        <div class="form-group">
+                            <label class="col-form-label" for="dateVatFrom">Period:</label>
+                            <select class="form-control" id="Period" style="width:125px">
+                                <option></option>
+                                @for(int i=0; i< ViewBag.lonAg;i++)
+                                {
+                                    <option>@ViewBag.Period[i]</option>
+                                }
+                            </select>
+                        </div>
+                    </form>
+                </div>
+            
+        </div>
+        <div class="col-sm-3" style="left:-100px">
+            <div class="search" style="top:13px">
+                <div class="col-sm-3"><button type="button" class="search-interogation green btn" onclick="setCriteriaFlownRevenue()"><span class="search-span">SEARCH</span></button></div>
+                <div class="col-sm-3"><button class="search-interogation green btn" onclick="ClearFlownRevenue()"><span class="search-span">CLEAR</span></button></div>
+                <div class="col-sm-3"><button class="search-interogation green btn" onclick="removeSousMenu()"><span class="search-span">CLOSE</span></button></div>
+            </div>
+        </div>
+        <div class="col-sm-6"></div>
+        <div class="ajax-loader">
+            <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+        </div>
+        <div class="col-sm-11" id="flownData">
+            <div class="col-sm-3">
+                <div class="table-record-display" style="height:600px">
+                    <table class="table table-bordered table-striped table-hover afiche-result" style="width:80%">
+                        <thead>
+                            <tr>
+                                <th class="green-tab">Period</th>
+                                <th class="green-tab">Sector</th>
+                                <th class="green-tab">RBD</th>
+                                <th class="green-tab">Flown Revenue</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            <div class="col-sm-3" style="left:20px;top:50px;background-color:#1480dc">
+                <table class="table table-cancellation">
+                    <tr>
+                        <td width="38%">Total Amount USD</td>
+                        <td width="38%"><input type="text" class="form-control" name="" id="Document" /> </td>
+                        <td width="10%"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12" style="">
+                <div class="col-sm-4">
+                    <img src='@Url.Content("~/images/CSVPic.jpg")' class="image-csv" style="top:15px;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

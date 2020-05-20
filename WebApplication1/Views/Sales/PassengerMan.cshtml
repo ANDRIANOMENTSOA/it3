@@ -1,0 +1,16 @@
+﻿
+@using System.Data
+@model DataSet
+
+@foreach (DataRow dr in Model.Tables[0].Rows)
+{
+    <tr onclick="getPassDetailAgency('@dr[Model.Tables[0].Columns[0].ColumnName].ToString()')">
+        @for (int i = 0; i < Model.Tables[0].Columns.Count; i++)
+        {
+            <td>@dr[Model.Tables[0].Columns[i].ColumnName].ToString()</td>;
+        }
+    </tr>
+
+}
+
+

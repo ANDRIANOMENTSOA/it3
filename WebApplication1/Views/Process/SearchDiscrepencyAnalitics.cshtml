@@ -1,0 +1,71 @@
+﻿@using System.Data
+@model DataSet
+<table id="tabNofare" class="table table-bordered table-striped" style="width: 84%;">
+    <thead>
+        <tr>
+            <th class="green-tab">Document No</th>
+            <th class="green-tab">Date of Issue</th>
+            <th class="green-tab">Agent Numeric Code</th>
+            <th class="green-tab">Passanger Name</th>
+            <th class="green-tab">IBT</th>
+            <th class="green-tab">Exchange</th>
+            <th class="green-tab">Intererlining</th>
+            <th class="green-tab">Fare Calculation Area</th>
+            <th class="green-tab">Original Issue Doc No</th>
+            <th class="green-tab">Original Issue Doc Date</th>
+            <th class="green-tab">Fare Cur</th>
+            <th class="green-tab">Fare</th>
+            <th style="display:none" class="green-tab keyelement-12">Equivalent Fare</th>
+            <th style="display:none" class="green-tab keyelement-13">Exchange ADC</th>
+            <th style="display:none" class="green-tab keyelement-14">Fare Collected</th>
+            <th style="display:none" class="green-tab keyelement-15">Amt Collected Cur</th>
+            <th style="display:none" class="green-tab keyelement-16">Amt Collected</th>
+            <th style="display:none" class="green-tab keyelement-17">Tax Collected</th>
+            <th style="display:none" class="green-tab keyelement-18">Surcharge Collected</th>
+            <th style="display:none" class="green-tab keyelement-19">Ori Fare Collected</th>
+            <th style="display:none" class="green-tab keyelement-20">Ori Amt Collected</th>
+            <th style="display:none" class="green-tab keyelement-21">Ori Tax Collected</th>
+            <th style="display:none" class="green-tab keyelement-22">Ori Surcharge Collected</th>
+            <th style="display:none" class="green-tab keyelement-23">Ori Transaction code</th>
+            <th style="display:none" class="green-tab keyelement-24">Fare Basis</th>
+            <th style="display:none" class="green-tab keyelement-25">Ori Fare Basis</th>
+        </tr>
+    </thead>
+    <tbody class="" id="searchanal">
+
+        @foreach (DataRow dr in Model.Tables[0].Rows)
+            {
+            <tr data-url="@Url.Action("PAXTKTs","Sales")" ondblclick="ajout(this, 'PAXTKTs', 'Sales', 'PAX TKTs'); clickLigneTransactionNofare(this, '@dr[Model.Tables[0].Columns[0].ColumnName].ToString()', '', '')">
+                <td>@dr[Model.Tables[0].Columns[0].ColumnName].ToString()</td>
+                <td>@dr[Model.Tables[0].Columns[1].ColumnName].ToString()</td>
+                <td>@dr[Model.Tables[0].Columns[2].ColumnName].ToString()</td>
+                <td>@dr[Model.Tables[0].Columns[3].ColumnName].ToString()</td>
+                <td>@dr[Model.Tables[0].Columns[4].ColumnName].ToString()</td>
+                <td>@dr[Model.Tables[0].Columns[5].ColumnName].ToString()</td>
+                <td>@dr[Model.Tables[0].Columns[6].ColumnName].ToString()</td>
+                <td>@dr[Model.Tables[0].Columns[7].ColumnName].ToString()</td>
+                <td>@dr[Model.Tables[0].Columns[8].ColumnName].ToString()</td>
+                <td>@dr[Model.Tables[0].Columns[9].ColumnName].ToString()</td>
+                <td>@dr[Model.Tables[0].Columns[10].ColumnName].ToString()</td>
+                <td>@dr[Model.Tables[0].Columns[11].ColumnName].ToString()</td>
+
+                <td class="keyelement-12" style="display:none">@dr[Model.Tables[0].Columns[12].ColumnName].ToString()</td>
+                <td class="keyelement-13" style="display:none">@dr[Model.Tables[0].Columns[13].ColumnName].ToString()</td>
+                <td class="keyelement-14" style="display:none">@dr[Model.Tables[0].Columns[14].ColumnName].ToString()</td>
+                <td class="keyelement-15" style="display:none">@dr[Model.Tables[0].Columns[15].ColumnName].ToString()</td>
+                <td class="keyelement-16" style="display:none">@dr[Model.Tables[0].Columns[16].ColumnName].ToString()</td>
+                <td class="keyelement-17" style="display:none">@dr[Model.Tables[0].Columns[17].ColumnName].ToString()</td>
+                <td class="keyelement-18" style="display:none">@dr[Model.Tables[0].Columns[18].ColumnName].ToString()</td>
+                <td class="keyelement-19" style="display:none">@dr[Model.Tables[0].Columns[19].ColumnName].ToString()</td>
+                <td class="keyelement-20" style="display:none">@dr[Model.Tables[0].Columns[20].ColumnName].ToString()</td>
+                <td class="keyelement-21" style="display:none">@dr[Model.Tables[0].Columns[21].ColumnName].ToString()</td>
+                <td class="keyelement-22" style="display:none">@dr[Model.Tables[0].Columns[22].ColumnName].ToString()</td>
+                <td class="keyelement-23" style="display:none">@dr[Model.Tables[0].Columns[23].ColumnName].ToString()</td>
+                <td class="keyelement-24" style="display:none">@dr[Model.Tables[0].Columns[24].ColumnName].ToString()</td>
+                <td class="keyelement-25" style="display:none">@dr[Model.Tables[0].Columns[25].ColumnName].ToString()</td>
+
+            </tr>
+        }
+
+    </tbody>
+</table>

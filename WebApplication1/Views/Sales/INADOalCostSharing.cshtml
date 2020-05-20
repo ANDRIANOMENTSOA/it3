@@ -1,0 +1,86 @@
+﻿@using System.Data
+@model DataSet
+
+<div class="col-sm-11 tab-content tab-cancellation">
+    <div class="content-cancellation col-sm-11">
+        <div class="col-sm-4">
+            <fieldset class="test-fieldst">
+                <legend class="test-fieldst">Flight Period</legend>
+                <div class="col-sm-6">
+                    <div class="form-group has-feedback">
+                        <label class="form-check-label col-form-label col-sm-2 fromTo">From:</label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateFromInadOal')"></span>
+                                <input type="text" class="form-control" id="dateFromInadOal" value="@ViewBag.dateFrom" style="padding-right:3px">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6" style="margin-bottom: 19px;">
+                    <div class="form-group has-feedback">
+                        <label class="form-check-label col-form-label col-sm-2 fromTo">To:</label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateToInadOal')"></span>
+                                <input type="text" class="form-control" id="dateToInadOal" value="@ViewBag.dateTo" style="padding-right:3px">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+
+        <div class="col-sm-3" style="position: relative;top: 10px;">
+            <div class="search">
+                <div class="col-sm-3"><button type="button" class="search-interogation pink btn" onclick="setCriteriaINADoal()"><span class="search-span">SEARCH</span></button></div>
+                <div class="col-sm-3"><button class="search-interogation pink btn"><span class="search-span" onclick="clearIndOal()">CLEAR</span></button></div>
+                <div class="col-sm-3"><button class="search-interogation pink btn" onclick="removeSousMenu()"><span class="search-span">CLOSE</span></button></div>
+            </div>
+        </div>
+    </div>
+    <div class="ajax-loader">
+        <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+    </div>
+    <div class="col-sm-11" style="margin-top:40px" id="loadINADoal">
+        <div class="col-sm-8">
+            <div class="table-record-display contentUnused" style="height:598px">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="pink">Departure Date</th>
+                            <th class="pink">Document No.</th>
+                            <th class="pink">Passenger Name</th>
+                            <th class="pink">Original Document No.</th>
+                            <th class="pink">Origin </th>
+                            <th class="pink">Origin Dest</th>
+                            <th class="pink">Carrier</th>
+                            <th class="pink">Dest City</th>
+                            <th class="pink">USD Value</th>
+                            <th class="pink">Last Stop Over Carrier</th>
+
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="col-sm-12">
+    <div class="footer-lookUp">
+        <form class="form-inline">
+            <div class="col-sm-1 n-paddin-left">
+                <img src='@Url.Content("~/images/CSVPic.jpg")' class="image-csv" style="top:-5px">
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+

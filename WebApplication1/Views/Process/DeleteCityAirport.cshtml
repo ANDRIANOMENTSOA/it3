@@ -1,0 +1,158 @@
+﻿
+
+
+<div id="afficheCityAirport">
+    <div class="col-sm-6">
+        <div class="col-sm-9" style="top: 16px;">
+            <fieldset class="test-fieldst legent-issue-date" style="border: 1px solid white !important;padding: 8px;">
+                <legend class="test-fieldst" style="background-color:transparent">Search Criteria</legend>
+
+                <table style="border-spacing: 10px;border-collapse: separate;">
+                    <tr>
+                        <td><label class="form-check-label col-form-label">Search By:</label></td>
+                        <td>
+                            <select class="form-control" style="width: auto" id="CityAirport" onchange="searchByCityAirport('paramSearch')">
+                                <option>-ALL-</option>
+                                <option>Airport Code</option>
+                                <option>City Code</option>
+                                <option>Airport Name</option>
+                                <option>City Name</option>
+                                <option>Country</option>
+                                <option>CityIsoCode</option>
+                            </select>
+                            <input type="hidden" name="valCA" id="valCA" value="@ViewBag.valCA" class="form-control" style="width: 93%;">
+                        </td>
+                        <td><label class="form-check-label col-form-label" id="text"></label></td>
+                        <td>
+                            <select class="form-control" id="paramSearch" style="visibility: hidden ;width: 200px">
+                                @for (int i = 0; i < ViewBag.lonItemCity; i++)
+                                {
+                                    <option>@ViewBag.ListeItemCity[0, i]</option>
+                                }
+                            </select>
+                            <input type="hidden" name="valparamS" id="valparamS" value="@ViewBag.valParamS" class="form-control" style="width: 93%;">
+                        </td>
+
+                    </tr>
+                </table>
+            </fieldset>
+        </div>
+        <div class="col-sm-1" style="top: 43px;">
+            <button class="btn btn-default" onclick="resultatCityAirport('paramSearch')">SEARCH</button>
+        </div>
+    </div>
+    <div class="col-sm-10 n-padding" style="top: 28px;background-color: white;height: 472px;left: 22px;overflow: auto;">
+        <table id="TableCity" class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th class="pink">Airport Code</th>
+                    <th class="pink">City Code</th>
+                    <th class="pink">Airport Name</th>
+                    <th class="pink">City Name</th>
+                    <th class="pink">Country</th>
+                    <th class="pink">CityIsoCode</th>
+                    <th class="pink">Status</th>
+                    <th class="pink"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < ViewBag.lonCity; i++)
+                {
+                    <tr>
+                        @for (int j = 0; j < 7; j++)
+                        {
+                            <td>@ViewBag.ListeCity[j, i]</td>;
+
+                        }
+                        <td>
+                            <button class="btn btn-default" onclick="deleteCity('@ViewBag.ListeCity[0, i]','@ViewBag.ListeCity[1, i]')">Delete</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8" style="margin-top:30px">
+                <button class="btn btn-default" onclick="afficheForm('formAdd')">New Entry</button>
+                <button class="btn btn-default">Delete Selected Record</button>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8" id="formAdd" style="visibility: hidden">
+                <fieldset class="test-fieldst legent-issue-date" style="border: 1px solid white !important;padding: 8px;">
+                    <legend class="test-fieldst" style="background-color:transparent"></legend>
+                    <table>
+                        <tr>
+                            <td>
+                                Airport Code:
+                                <input type="text" name="valAirCode" id="valAirCode" class="form-control" style="width:80%;" maxlength="3">
+                            </td>
+                            <td>
+                                City Code:
+                                <input type="text" name="valCityCode" id="valCityCode" class="form-control" style="width:80%;" maxlength="3">
+
+                            </td>
+                            <td>
+                                Airport Name:
+                                <input type="text" name="valAirName" id="valAirName" class="form-control" style="width:80%;" maxlength="50">
+                            </td>
+                            <td>
+                                City Name:
+                                <input type="text" name="valCitName" id="valCitName" class="form-control" style="width:80%;" maxlength="50">
+                            </td>
+                            <td>
+                                Country:
+                                <select style="width: auto ; margin-right:25px" class="form-control" id="valAddcountry">
+                                    @for (int i = 0; i < ViewBag.lonCountry; i++)
+                                    {
+                                        <option>@ViewBag.ItemCountry[0, i]</option>
+                                    }
+                                </select>
+                            </td>
+                            <td>
+                                CityIsoCode:
+                                <input type="number" name="valCitIC" id="valCitIC" class="form-control" style="width:80%;" onkeypress="return this.value.length < 5;" oninput="if(this.value.length>=5) { this.value = this.value.slice(0,5); }" />
+                            </td>
+                            <td>
+                                Status:
+                                <input type="number" name="valStatus" id="valStatus" class="form-control" style="width:80%;" onkeypress="return this.value.length < 1;" oninput="if(this.value.length>=1) { this.value = this.value.slice(0,1); }" />
+                        </tr>
+                        <tr>
+                            <td style="padding-top: 20px;"><button class="btn btn-default" onclick="addNewEntry()">Save</button></td>
+                            <td style="padding-top: 20px;"><button class="btn btn-default" onclick="videChanps()">Clear</button></td>
+                            <td style="padding-top: 20px;"><button class="btn btn-default" onclick="exitForm('formAdd')">Exit</button></td>
+                        </tr>
+                    </table>
+                </fieldset>
+            </div>
+            <div class="col-md-4" style="margin-top:30px">
+                <button class="btn btn-default" type="button" onclick="closeNetshull('nutshell11')">CLOSE TAB</button>
+                <div id="cityCodes">
+                    <select name="cityCode" style="width: auto ; margin-right:25px; visibility: hidden" class="form-control">
+                        @for (int i = 0; i < ViewBag.lonCityCode; i++)
+                        {
+                            <option> @ViewBag.cityCode[0, i]</option>
+                        }
+                    </select>
+                </div>
+                <div id="airportCodes">
+                    <select name="airportCode" style="width: auto ; margin-right:25px; visibility: hidden" class="form-control">
+                        @for (int i = 0; i < ViewBag.lonAirCode; i++)
+                        {
+                            <option> @ViewBag.airCode[0, i]</option>
+                        }
+                    </select>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+</div>

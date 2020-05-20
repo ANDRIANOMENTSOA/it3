@@ -1,0 +1,218 @@
+﻿
+<link href="~/Assets/css/panel.css" rel="stylesheet" />
+
+<div class="container-pax1">
+    <div class="tab-content">
+        <div id="list" class="tab-pane fade in active">
+            <div class="col-sm-12">
+                <fieldset class="test-fieldst">
+                    <table class="record-rfnd" style="margin-left:23px;margin-top:12px">
+                        <tr>
+                            <td style="width:20%">Passenger's Name:</td>
+                            <td colspan="3"><input type="text" name="passengerName" id="passengerNameSet" class="form-control"></td>
+                            <td style="width: 13%;text-align: center;">Date:</td>
+                            <td>
+                                <div class="width-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateTo')"></span>
+                                        <input type="text" class="form-engine" id="dateTo" value="" style="height:28px!important">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr style="height:50px;"></tr>
+                        <tr>
+                            <td>Document No:</td>
+                            <td>
+                                <input type="text" class="form-engine" id="DocumentNo" style="height:28px!important" list="cityname" />
+                                <datalist id="cityname">
+                                    <option value="6109231062089">
+                                </datalist>
+                            </td>
+                            <td style="width: 12%;text-align: center;">Fare Basis:</td>
+                            <td>
+                                <input type="text" class="form-engine" id="FareBasis" style="height:28px!important; background-color: #dddddd91;" readonly />
+                            </td>
+                        </tr>
+
+                        <tr style="height:50px;"></tr>
+                        <tr>
+                            <td>Not Valid After:</td>
+                            <td>
+                                <input type="text" class="form-engine" id="NotValidAfter" style="height:28px!important;width: 230px; background-color: #dddddd91;"readonly/>
+                            </td>
+                            <td style="width: 12%;text-align: center;">Date Of Issue:</td>
+                            <td>
+                                <input type="text" class="form-engine" id="DateOfIssue" style="height:28px!important; background-color:#dddddd91;" readonly />
+                            </td>
+
+                        </tr>
+                    </table>
+                    <div class="Rfndsearch" style="position:relative; left:940px;top:-30px;">
+                        <div class="col-sm-1">
+                            <button type="button" class="search-interogation pink btn" onclick="setListeRetroactiveAdjustement()">
+                                <span class="search-span">SEARCH</span>
+                            </button>
+                        </div>
+                        <div class="col-sm-1">
+                            <button class="search-interogation pink btn" onclick="ClearListretroactive()">
+                                <span class="search-span">CLEAR</span>
+                            </button>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="col-sm-12">
+                <fieldset class="test-fieldst">
+                    <table class="record-rfnd" style="margin-left:23px;margin-top:12px">
+                        <tr>
+                            <td>Original Routing:</td>
+                            <td>
+                                <div class="width-group">
+                                    <div class="col-sm-9 n-padding">
+                                        <div class="input-group">
+                                            <input type="text" class="form-engine" id="OriginalRouting" size="137" style="height:28px!important;background-color: #dddddd91;"" readonly/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr style="height:50px;"></tr>
+                        <tr>
+                            <td>Actual Flown Routing:</td>
+                            <td>
+                                <input type="text" class="form-engine" id="ActualFlownRouting" size="137" style="height:28px!important" />
+                            </td>
+                        </tr>
+                        <tr style="height:50px;"></tr>
+                    </table>
+                    <div>
+                        <div class="col col-md-2">
+                            <div class="btn">
+                                <div class="col-sm-3"><button class="pink btn" onclick="BtnRetroactiveAdjustement()" style="position:relative; left:880px;top:-30px;">RETROACTIVE ADJUSTEMENT</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+        <div id="list" class="tab-pane fade in active">
+            <div class="col-sm-12">
+                <fieldset class="test-fieldst">
+
+                    <div class="row" style="width:48%; margin-left: 90px;">
+                        <div class="col-md-4">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <strong> Revised Prorates Based on </strong><br />
+                                    <strong> Actual Flown Routing</strong>
+                                </div>
+                                <div>
+                                    <table class="tab-refundEng table-fim" border="1">
+                                        <tr border-top-left-right>
+                                            <th class="pink">Selectors</th>
+                                            <th class="pink">Carr</th>
+                                            <th class="pink">Share Values</th>
+                                        </tr>
+                                        <tr style="height:50px;"></tr>
+                                        <tr style="height:50px;"></tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <strong> Original Prorates Based</strong><br />
+                                    <strong> on Original Routing</strong>
+                                </div>
+                                <div>
+                                    <table class="tab-refundEng table-fim" border="1">
+                                        <tr border-top-left-right>
+                                            <th class="pink">Selectors</th>
+                                            <th class="pink">Carr</th>
+                                            <th class="pink">Share Values</th>
+                                        </tr>
+                                        <tr border-top-left-right>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                        <tr style="height:50px;"></tr>
+                                        <tr style="height:50px;"></tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="panel panel-primary">
+                                    <div class="panelDif">
+                                        <strong>Difference Between Prorates</strong><br />
+                                        <strong> To Be Adjusted</strong>
+                                    </div>
+                                <div>
+                                    <table class="tab-refundEng table-fim" border="1">
+                                        <tr border-top-left-right>
+                                            <th class="pink">Selectors</th>
+                                            <th class="pink">Carr</th>
+                                            <th class="pink">Share Values</th>
+                                        </tr>
+                                        <tr border-top-left-right>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                        <tr style="height:50px;"></tr>
+                                        <tr style="height:50px;"></tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <table class="record-rfnd" style="margin-left:23px;margin-top:12px">
+                        <tr style="height:50px;"></tr>
+                        <tr>
+                            <td>Actual Fare:</td>
+                            <td>
+                                <input type="text" class="form-engine" id="PassengersName" style="height:28px!important" />
+                            </td>
+                            <td>
+                                <div>
+                                    <div class="btn">
+                                        <div class="col-sm-3"><button class="pink btn" onclick="btnCalculateDifference()" style="position:relative; left:620px;top:-30px;">CALCULATE DIFFERENCE</button></div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr style="height:50px;"></tr>
+                        <tr>
+                            <td>Actual TFCs:</td>
+                            <td>
+                                <input type="text" class="form-engine" id="PassengersName" style="height:28px!important" />
+                            </td>
+                        </tr>
+                        <tr style="height:50px;"> </tr>
+                        <tr>
+                            <td>Actual Surchages:</td>
+                            <td>
+                                <input type="text" class="form-engine" id="PassengersName" style="height:28px!important" />
+                            </td>
+                            <td></td>
+                            <td style="width: 25px;"></td>
+                            <td></td>
+
+                        </tr>
+                    </table>
+
+                    <div class="col col-md-2">
+                        <div class="btn">
+                            <div class="col-sm-3"><button class="pink btn" onclick="removeSousMenu()" data-dismiss="modal" style="position:relative; left:1030px;top:-30px;">CLOSE</button></div></div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,71 @@
+﻿
+@using System.Data
+@model DataSet
+<div class="col-sm-8">
+    <div class="table-record-display" style="height:694px;overflow:auto">
+        <table class="table table-bordered table-striped " id="test-fixed">
+            <thead>
+                <tr>
+                    <th class="pink" style="width:95px">Sales Date</th>
+                    <th class="pink">Agent Code</th>
+                    <th class="pink">Document No</th>
+                    <th class="pink">Cpn</th>
+                    <th class="pink">FOP</th>
+                    <th class="pink">StopOver Code</th>
+                    <th class="pink">Document Type</th>
+                    <th class="pink">Curr</th>
+                    <th class="pink">Surch Code</th>
+                    <th class="pink">Amount </th>
+                    <th class="pink">Endorsements/Restriction</th>
+                    <th class="pink">No. Of TKTs</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (DataRow dr in Model.Tables[0].Rows)
+                {
+                    <tr>
+                        @for (int i = 0; i < Model.Tables[0].Columns.Count; i++)
+                        {
+                            <td >@dr[Model.Tables[0].Columns[i].ColumnName].ToString()</td>;
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="col-sm-4" style="margin-top: 15px;">
+    <fieldset class="test-fieldst">
+        <legend class="test-fieldst">Summary</legend>
+        <div class="table-summary" style="height:400px;overflow:auto">
+            <table class="table table-bordered table-striped" style="height:400px;overflow:auto;">
+                <thead>
+                    <tr>
+                        <th class="pink">FOP</th>
+                        <th class="pink">Trans.Code</th>
+                        <th class="pink">Curr</th>
+                        <th class="pink">Surch.Code</th>
+                        <th class="pink">Amount</th>
+                        <th class="pink">No. Of Docs</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (DataRow dr in ViewBag.SurchargesSum.Tables[0].Rows)
+                    {
+                        <tr>
+                            @for (int i = 0; i < ViewBag.SurchargesSum.Tables[0].Columns.Count; i++)
+                            {
+                                <td>@dr[ViewBag.SurchargesSum.Tables[0].Columns[i].ColumnName].ToString()</td>;
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </fieldset>
+</div>
+
+
+
+
+

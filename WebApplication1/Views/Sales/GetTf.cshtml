@@ -1,0 +1,24 @@
+﻿
+<table class="table table-bordered table-striped table2 table-hover" id="newTFCs">
+    <thead>
+        <tr>
+            <th class="pink">TFC</th>
+            <th class="pink">TFCCode</th>
+            <th class="pink">CUR</th>
+            <th class="pink">Amount</th>
+            <th class="pink">Rate</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var items in ViewBag.TFCs)
+        {
+            <tr>
+                <td>@items.TFC</td>
+                <td>@items.TFCCode</td>
+                <td>@items.CUR</td>
+                <td>@items.Amount</td>
+                <td>@items.Rate</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,33 @@
+﻿@using System.Data
+@model DataSet
+<div class="col" style="height: 594px;background: white;overflow: auto;" id="newdivdgdetails">
+    <table style="width: 100%;height:100% !important;" id="dgdetails" class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th class="green-tab" style="width:100% !important;">Airline</th>
+                <th class="green-tab" style="width:100% !important;">Usage Type</th>
+                <th class="green-tab" style="width:100% !important;">Usage Flight No.</th>
+                <th class="green-tab" style="width:100% !important;">Usage Date</th>
+                <th class="green-tab" style="width:100% !important;">Doc Type</th>
+                <th class="green-tab" style="width:100% !important;">Doc Num</th>
+               <th class="green-tab" style="width:100% !important;">Billing Period</th> 
+               <th class="green-tab" style="width:100% !important;">Invoice No</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < ViewBag.ligne; i++)
+            {
+                <tr data-url="@Url.Action("PAXTKTs","Sales")" onclick="ajout(this, 'PAXTKTs', 'Sales', 'PAX TKTs'); CellContentDoubleClick(this, '@ViewBag.dgdetails[i,5]')">
+                    <td style="width:100% !important;">@ViewBag.dgdetails[i, 0]</td>
+                    <td style="width:100% !important;">@ViewBag.dgdetails[i, 1]</td>
+                    <td style="width:100% !important;">@ViewBag.dgdetails[i, 2]</td>
+                    <td style="width:100% !important;">@ViewBag.dgdetails[i, 3]</td>
+                    <td style="width:100% !important;">@ViewBag.dgdetails[i, 4]</td>
+                    <td style="width:100% !important;">@ViewBag.dgdetails[i, 5]</td>
+                    <td style="width:100% !important;">@ViewBag.dgdetails[i, 6]</td>
+                    <td style="width:100% !important;">@ViewBag.dgdetails[i, 7]</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

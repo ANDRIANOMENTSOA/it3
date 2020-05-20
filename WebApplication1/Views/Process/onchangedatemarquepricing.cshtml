@@ -1,0 +1,42 @@
+﻿@using System.Data
+@model DataSet
+<!--fait par christian-->
+<div class="col" id="newdivcboPoSmarket">
+    <select class="myForm" id="cboPoSmarket">
+        <option class="form-control" value="-All-" selected>-All-</option>
+        @for (int i = 0; i < ViewBag.loncboPoS; i++)
+        {
+            <option class="form-control" value="@ViewBag.ListecboPoS[0, i]">@ViewBag.ListecboPoS[0, i]</option>
+        }
+    </select>
+</div>
+
+<div class="col" id="newdivcboFCMImarketpricing">
+    <select class="myForm" id="cboFCMImarketpricing">
+        <option value="-All-" selected>-All-</option>
+        @for (int i = 0; i < ViewBag.lonFCMI; i++)
+        {
+            <option class="form-control" value="@ViewBag.ListeFCMI[0, i]">@ViewBag.ListeFCMI[0, i]</option>
+        }
+    </select>
+</div>
+
+<div class="col" id="newdivcboFOPFarebasismarketpricing">
+    <select class="myForm" id="cboFOPFarebasismarketpricing">
+        <option value="-All-" selected>-All-</option>
+        @for (int i = 0; i < ViewBag.loncboFOPFarebasis; i++)
+        {
+            <option class="form-control" value="@ViewBag.ListecboFOPFarebasis[0, i]">@ViewBag.ListecboFOPFarebasis[0, i]</option>
+        }
+    </select>
+</div>
+
+<div class="col" id="newdivFOPmarketpricing">
+    <select class="myForm" id="FOPmarketpricing">
+        <option value="-All-" selected>-All-</option>
+        @for (int i = 0; i < ViewBag.lonFOP; i++)
+        {
+            <option class="form-control" value="@ViewBag.ListeFOP[0, i]">@ViewBag.ListeFOP[0, i]</option>
+        }
+    </select>
+</div>

@@ -1,0 +1,1065 @@
+﻿@using System.Data
+@model DataSet
+<script src="~/Scripts/Process.js"></script>
+<div class="col-sm-12 tab-content tab-cancellation">
+    <div id="search" class="tab-pane fade in active">
+        <div id="ATDAGroupe">
+            <div class="row">
+                <div class="ioio">
+                    <ul class="nav nav-tabs" style="margin-left: 29px;">
+                        <li class="active"><a data-toggle="tab" href="#ATDA" class="nav-pax">ATDA</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="col-sm-12 tab-pane fade in active" id="ATDA">
+                            <div class="row">
+                                <div class="col-lg-10">
+                                    <div class="col-lg-1">
+                                        <label style="color:blue;">
+                                            ATD No(s):
+                                        </label>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <input type="text" class="form-control" id="ATDNo">
+                                    </div>
+                                    <div class="col-lg-1">
+                                        <input type="button" class="btn" value="SEARCH" style="color: green;" onclick="searchATDA()">
+                                    </div>
+                                    <div class="col-lg-1">
+                                        <input type="button" class="btn" onclick="clearATDA()" value="CLEAR" style="color:darkmagenta;">
+                                    </div>
+                                    <div class="col-lg-1">
+                                        <input type="button" class="btn" onclick="removeSousMenu()" value="CLOSE" style="color:blue;">
+                                    </div>
+                                    <div class="col-lg-1">
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <span style="color:darkmagenta;font-size:large;" class="form-control-lg">
+                                            AUDIT TRAVAIL & DOCUMENT ACCOUNTING
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="table table-bordered col-lg-12">
+                                    <div id="mydata">
+                                        <div class="col-lg-9" id="IdSearchATDA">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="col-lg-9">
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <div class="col-lg-8">
+                                                                    <div class="row">
+                                                                        <div class="col-lg-6">
+                                                                            <label class="blueee col-form-label n-padding">TICKET NUMBER</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-lg-6">
+                                                                            <div class="col-lg-3">
+                                                                                <input type="text" class="form-control" value="@ViewBag.txtDocumentCarrier" id="carr">
+                                                                            </div>
+                                                                            <div class="col-lg-6">
+                                                                                <input type="text" class="form-control" value="@ViewBag.txtDocumentNumber" id="dn">
+                                                                            </div>
+                                                                            <div class="col-lg-3">
+                                                                                <input type="text" class="form-control" value="@ViewBag.txtChkDgt" id="chdg">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-2">
+                                                                    <div class="row">
+                                                                        <label class="col-form-label n-padding blueee" style="text-align: center;">PASSENGER TICKET AND BAGGAGE CHECK</label>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <label class="col-form-label n-padding form-control-lg" style="text-align: center;color:darkmagenta;font-size: 18px;">AUDIT AND FLIGHT DETAILS</label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="table-bordered col-lg-2">
+                                                                    <div class="row table-bordered ">
+                                                                        <div class="col-lg-12">
+                                                                            <label class="col-form-label n-padding fromTo blueee">ORIGIN/DESTINATION</label>
+                                                                        </div>
+                                                                        <div class="col-lg-12">
+                                                                            <input type="text" class="form-control" value="@ViewBag.txtOrgDest" id="orgdest">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row table-bordered ">
+                                                                        <div class="col-lg-12">
+                                                                            <label class="col-form-label n-padding blueee">PNR</label>
+                                                                        </div>
+                                                                        <div class="col-lg-12">
+                                                                            <input type="text" class="form-control" value="@ViewBag.txtPnr" id="pnr">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-1">
+                                                            </div>
+                                                            <div class="table-bordered col-lg-11">
+                                                                <div>
+                                                                    <div class="col-lg-2">
+                                                                        <label class="col-form-label n-padding blueee">VENDOR IDENTIFIER</label>
+                                                                        <input type="text" class="form-control" value="@ViewBag.txtVendorIdentifier" id="vif">
+                                                                    </div>
+                                                                    <div class="table-bordered col-lg-3">
+                                                                        <label class="col-form-label n-padding blueee">REPORTING SYSTEM IDENTIFIER</label>
+                                                                        <input type="text" class="form-control" value="@ViewBag.txtReportingSystemIdentifier" id="sif">
+                                                                    </div>
+                                                                    <div class="col-lg-1">
+                                                                        <label class="col-form-label n-padding blueee">CPUI</label>
+                                                                        <input type="text" class="form-control" value="@ViewBag.txtCPUI" id="cpui">
+                                                                    </div>
+                                                                    <div class="table-bordered col-lg-4">
+                                                                        <label class="col-form-label n-padding blueee">TOUR CODE</label>
+                                                                        <div class="col-lg-12">
+                                                                            <div class="col-lg-2">
+                                                                                <input type="text" class="form-control col-lg-2" value="@ViewBag.It" id="it">
+                                                                            </div>
+                                                                            <div class="col-lg-2">
+                                                                                <label class="col-form-label n-padding blueee col-lg-2">IT/BT</label>
+                                                                            </div>
+                                                                            <div class="col-lg-8">
+                                                                                <input type="text" class="form-control col-lg-8" value="@ViewBag.txtTourCode" id="tourcod">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-2">
+                                                                        <label class="col-form-label n-padding blueee">ISSUED IN EXCHANGE FOR</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="table-bordered row">
+                                                            <div class="col-lg-12">
+                                                                <div class="col-lg-8">
+                                                                    <label class="col-form-label n-padding blueee">ISSUE NAME PASSENGER</label>
+                                                                    <input type="text" class="form-control" value="@ViewBag.txtPassengerName" id="passnam">
+                                                                </div>
+                                                                <div class="table-bordered col-lg-4">
+                                                                    <label class="col-form-label n-padding blueee">RELATED DOCUMENT NO</label>
+                                                                    <input type="text" class="form-control col-lg-4" value="@ViewBag.txtRelateDocNo" id="reldoc">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-3">
+                                                        <div class="row" style="background-color: RGB(173,255,47); font-size:11px">
+                                                            <div class="col-lg-1">
+                                                            </div>
+                                                            <div class="col-lg-9">
+                                                                <label class="col-form-label n-padding blueee" style="text-align: center; ">DATE AND PLACE OF ISSUE</label>
+                                                            </div>
+                                                            <div class="col-lg-1">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <label class="col-form-label n-padding blueee">ISSUE DATE</label>
+                                                            </div>
+                                                            <div class="col-lg-5">
+                                                                <input type="text" class="form-control" value="@ViewBag.dtpIssDoc" id="didoc">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <label class="col-form-label n-padding blueee">AGENT NUMERIC CODE</label>
+                                                            </div>
+                                                            <div class="col-lg-5">
+                                                                <input type="text" class="form-control" value="@ViewBag.txtCustomerCode" id="angumcode">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <label class="col-form-label n-padding blueee">AGENT NAME</label>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <input type="text" class="form-control" value="@ViewBag.txtAgentName" id="agname">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <label class="col-form-label n-padding blueee">AGENT POINT OF SALES</label>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <input type="text" class="form-control" value="@ViewBag.txtPOS" id="pos">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <label class="col-form-label n-padding blueee">BOOKING AGENT ID.</label>
+                                                            </div>
+                                                            <div class="col-lg-5">
+                                                                <input type="text" class="form-control" value="@ViewBag.txtBookingAgentID" id="bagid">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <label class="col-form-label n-padding blueee">AGENT COMM %</label>
+                                                            </div>
+                                                            <div class="col-lg-5">
+                                                                <input type="text" class="form-control" value="@ViewBag.txtagtcom" id="agtcom">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="table-bordered row">
+                                                <div class="col-lg-12">
+                                                    <div class="table-bordered col-lg-4" id="">
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <label class="col-form-label n-padding blueee">FARE</label>
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <input type="text" class="form-control" value="@ViewBag.txtfarecur" id="farcur" />
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <input type="text" class="form-control" value="@ViewBag.txtfare" id="tfar" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <label class="col-form-label n-padding blueee">SURCHARGES COLLECTED</label>
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <input type="text" class="form-control" value="@ViewBag.txtSurcharge" id="tsurch" />
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <input type="text" class="form-control" value="@ViewBag.txtSurchargeCur" id="surgcur" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <label class="col-form-label n-padding blueee">AQUIVALENT FARE PAID (EFP:)</label>
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <input type="text" class="form-control" value="@ViewBag.txtEfp" id="tefp" />
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <input type="text" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <label class="col-form-label n-padding blueee">TAX COLLECTED:</label>
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <input type="text" class="form-control" value="@ViewBag.txtEfpcur" id="efpcur" />
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <input type="text" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <label class="col-form-label n-padding blueee">CAF</label>
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <input type="text" class="form-control" value="@ViewBag.txtcafcur" id="tcarfur" />
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <input type="text" class="form-control" value="@ViewBag.txtcafamt" id="tcafmat" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <label class="col-form-label n-padding blueee">TOTAL FARE+TFCs COLLECTED:</label>
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <input type="text" class="form-control" value="@ViewBag.txtAmtColCur" id="amtcolcur" />
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <input type="text" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-8">
+                                                        <div class="row">
+                                                            <label class="col-form-label n-padding blueee">FARE CALCULATION AREA</label>
+                                                            <input type="text" class="form-control" value="@ViewBag.txtFareComponent" id="tfarcomp" />
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-2">
+                                                                <label class="col-form-label n-padding blueee">EXCHANGE ADC</label>
+                                                                <input type="text" class="form-control" value="@ViewBag.txtExchangeADC" id="eadc" />
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <label class="col-form-label n-padding blueee">SETTLEMENT AUTHORISATION CODE</label>
+                                                                <input type="text" class="form-control" value="@ViewBag.txtAuthorisationCode" id="ahcod" />
+                                                            </div>
+                                                            <div class="col-lg-2">
+                                                                <label class="col-form-label n-padding blueee">REPORTING ENTITY</label>
+                                                                <input type="text" class="form-control" />
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <label class="col-form-label n-padding blueee">ENDORSEMENT /RESTRICTIONS</label>
+                                                                <input type="text" class="form-control" value="@ViewBag.txtEndorsementArea" id="endoarea" />
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-lg-2">
+                                                                <label class="col-form-label n-padding blueee">IN CONNECTION WITH</label>
+                                                                <input type="text" class="form-control" value="@ViewBag.txtInConnectionWith" id="inconnwith" />
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <label class="col-form-label n-padding blueee">BOOKING AGENCY LOCATION NO</label>
+                                                                <input type="text" class="form-control" value="@ViewBag.txtBAlocationNo" id="blocno" />
+                                                            </div>
+                                                            <div class="col-lg-1">
+                                                                <label class="col-form-label n-padding blueee">FCMI</label>
+                                                                <input type="text" class="form-control" value="@ViewBag.txtFcmi" id="tfcmi" />
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <label class="col-form-label n-padding blueee">TRANSACTION DESCRIPTIONS</label>
+                                                                <input type="text" class="form-control" value="@ViewBag.txtTransactionGroup" id="ttragroup" />
+                                                            </div>
+                                                            <div class="col-lg-1">
+                                                                <label class="col-form-label n-padding blueee">INVOL.REROUTE</label>
+                                                                <input type="text" class="form-control" value="@ViewBag.txtInvRer" id="tinvre" />
+                                                            </div>
+                                                            <div class="col-lg-1">
+                                                                <label class="col-form-label n-padding blueee">PAX TYPE</label>
+                                                                <input type="text" class="form-control" value="@ViewBag.txtPaxType" id="tpaxtyp" />
+                                                            </div>
+                                                            <div class="col-lg-1">
+                                                                <label class="col-form-label n-padding blueee">SPC</label>
+                                                                <input type="text" class="form-control" value="@ViewBag.txtSPC" id="tspc" />
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="table-bordered col-lg-3">
+                                            <div class="table-bordered row">
+                                                <div class="row" style="background-color: RGB(173,255,47); font-size:11px">
+                                                    <div class="col-lg-4">
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <label class="col-form-label n-padding blueee" style="text-align: center;">ADM/ACM INFO</label>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="col-lg-3">
+                                                            <label class="col-form-label n-padding blueee">|</label>
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <label class="col-form-label n-padding blueee">ADM/ACM No:</label>
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <input type="text" class="form-control" value="@ViewBag.txtadmNO" id="tadno">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="col-lg-3">
+                                                            <label class="col-form-label n-padding blueee">ADM/ACM FARE:</label>
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <input type="text" class="form-control" value="@ViewBag.txtadmFare" id="tadminfar">
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <label class="col-form-label n-padding blueee">ADM/ACM EFP:</label>
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <input type="text" class="form-control" value="@ViewBag.txtadmefp" id="tadmfp">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="col-lg-3">
+                                                            <label class="col-form-label n-padding blueee">ADM/ACM SURCHARGES:</label>
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <input type="text" class="form-control">
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <label class="col-form-label n-padding blueee">ADM/ACM TFC:</label>
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <input type="text" class="form-control" value="@ViewBag.txtadmTFC" id="tadmtfc">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <label class="col-form-label n-padding blueee" style="text-align: center; background-color: RGB(173,255,47); font-size:11px">APPLICABLE ONLY IF ORIGINAL DOCUMENT HAS BEEN MODIFIED FOR EVALUATION</label>
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="col-lg-7">
+                                                            <label class="col-form-label n-padding blueee">MODIFIED FARE:</label>
+                                                        </div>
+                                                        <div class="col-lg-2">
+                                                            <input type="text" class="form-control" value="@ViewBag.txtModFareAmt" id="tfamt">
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <input type="text" class="form-control" value="@ViewBag.txtModFareCur" id="tmodfarcur">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="col-lg-7">
+                                                            <label class="col-form-label n-padding blueee">ORIGINAL FARE:</label>
+                                                        </div>
+                                                        <div class="col-lg-2">
+                                                            <input type="text" class="form-control" value="@ViewBag.txtOriFareCur" id="tofarcur">
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <input type="text" class="form-control" value="@ViewBag.txtOriFareAmt" id="torfaamt">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="col-lg-7">
+                                                            <label class="col-form-label n-padding blueee">ORIGINAL AQUIVALENT FARE:</label>
+                                                        </div>
+                                                        <div class="col-lg-2">
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <input type="text" class="form-control" value="@ViewBag.txtOrgEquiFare" id="torefar">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="col-lg-7">
+                                                            <label class="col-form-label n-padding blueee">REASSESSED EQUIVALENT FARE:</label>
+                                                        </div>
+                                                        <div class="col-lg-2">
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <input type="text" class="form-control" value="@ViewBag.txtResEqui" id="tresequi">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="col-lg-7">
+                                                            <label class="col-form-label n-padding blueee">ORIGINAL PAYEMENT IN USD:</label>
+                                                        </div>
+                                                        <div class="col-lg-2">
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <input type="text" class="form-control" value="@ViewBag.txtOriPayUSD" id="torusd">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="col-lg-7">
+                                                            <label class="col-form-label n-padding blueee">DIFFERENCE FARE IN COP</label>
+                                                        </div>
+                                                        <div class="col-lg-2">
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <input type="text" class="form-control" value="@ViewBag.txtDiffFareCOP" id="tdiffarcop">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="col-lg-7">
+                                                            <label class="col-form-label n-padding blueee">DIFFERENCE FARE IN COC</label>
+                                                        </div>
+                                                        <div class="col-lg-2">
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <input type="text" class="form-control" value="@ViewBag.txtDiffCOC" id="tdifcoc">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="table col-lg-12">
+                                    <div class="col-lg-7">
+                                        <div class="table-record-display" id="" style="height:166px;overflow:auto;">
+                                            <div class="col-lg-1" style="background-color: RGB(173,255,47);">
+                                                <div class='rotate rotateATDA' style="height:166px !important ">COUPONS TAX DETAILS</div>
+                                            </div>
+                                            <div class="col-lg-11">
+                                                <table id="tabCTD" class="table table-bordered table-striped table-hover" style="font-size:11px">
+                                                    <thead>
+                                                        <tr style="background-color: RGB(173,255,47);" class="blueee">
+                                                            <th class="blueee">RelatedDocumentNumber</th>
+                                                            <th class="blueee">CPN</th>
+                                                            <th class="blueee">Orig</th>
+                                                            <th class="blueee">Dest</th>
+                                                            <th class="blueee">Carrier</th>
+                                                            <th class="blueee">Fight Number</th>
+                                                            <th class="blueee">Fight Date</th>
+                                                            <th class="blueee">Status</th>
+                                                            <th class="blueee">Currency</th>
+                                                            <th class="blueee">DU</th>
+                                                            <th class="blueee">IQ</th>
+                                                            <th class="blueee">TR</th>
+                                                            <th class="blueee">XP</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="COUPONSTAXDETAILS">
+                                                        @for (int c = 0; c < @ViewBag.ligneCpnDetails; c++)
+                                                        {
+                                                            <tr>
+                                                                @for (int p = 0; p < 13; p++)
+                                                                {
+                                                                    <td>@ViewBag.AgCodeCpnDetails[p, c]</td>;
+                                                                }
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="table-record-display" id="" style="height:166px;overflow:auto;">
+                                            <table class="table table-bordered table-striped table-hover" style="font-size:11px">
+                                                <caption style="background-color: RGB(173,255,47);text-align: center;" class="blueee">ANCILLARIES</caption>
+                                                <thead>
+                                                    <tr style="background-color: RGB(173,255,47);" class="blueee">
+                                                        <th class="blueee">ANCILLIARES</th>
+                                                        <th class="blueee">FARE CUR</th>
+                                                        <th class="blueee">AFARE AMT</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="idAncillaries">
+                                                    @for (int a = 0; a < @ViewBag.lonAncillaries; a++)
+                                                    {
+                                                        <tr>
+                                                            @for (int n = 0; n < 3; n++)
+                                                            {
+                                                                <td>@ViewBag.AgCodeAncillaries[a, n]</td>;
+                                                            }
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="table-record-display" id="" style="height:166px;overflow:auto;">
+                                            <table class="table table-bordered table-striped table-hover" style="font-size:11px">
+                                                <caption style="background-color: RGB(173,255,47);text-align: center;" class="blueee">TAX AND SURCHARGE BREAKDOWN</caption>
+                                                <thead>
+                                                    <tr style="background-color: RGB(173,255,47);">
+                                                        <th class="blueee">TFC&SURCHARGES</th>
+                                                        <th class="blueee">CODE</th>
+                                                        <th class="blueee">CURRENCY</th>
+                                                        <th class="blueee">AMOUNT</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="idTaxATDA">
+                                                    @for (int x = 0; x < @ViewBag.lontax; x++)
+                                                    {
+                                                        <tr>
+                                                            @for (int t = 0; t < 4; t++)
+                                                            {
+                                                                <td>@ViewBag.AgCodetax[t, x]</td>;
+                                                            }
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-9">
+                                    <div class="table-record-display" id="" style="height:166px;overflow:auto;">
+                                        <div class="col-lg-1" style="background-color: RGB(173,255,47);">
+                                            <div class='rotate rotateATDA' style="height:166px !important;">COUPONS BREAKDOWN</div>
+                                        </div>
+                                        <div class="col-lg-10">
+                                            <table class="table table-bordered table-striped table-hover" style="font-size:11px">
+                                                <thead>
+                                                    <tr style="background-color: RGB(173,255,47);" class="blueee">
+                                                        <th class="blueee">CPN</th>
+                                                        <th class="blueee">PM</th>
+                                                        <th class="blueee">FWD SALES</th>
+                                                        <th class="blueee">GROSS UTILIZ AMT</th>
+                                                        <th class="blueee">SALES COMM %</th>
+                                                        <th class="blueee">SALES COMM AMT</th>
+                                                        <th class="blueee">ISC %</th>
+                                                        <th class="blueee">ISC AMT</th>
+                                                        <th class="blueee">NET UTILIZ AMT</th>
+                                                        <th class="blueee">DIE</th>
+                                                        <th class="blueee">ADJUSTEMENT</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="" id="tdCB">
+                                                    @for (int ia = 0; ia < @ViewBag.lonCpnDie; ia++)
+                                                    {
+                                                        <tr>
+                                                            @for (int ja = 0; ja < 11; ja++)
+                                                            {
+                                                                <td>@ViewBag.AgCodeCpnDie[ja, ia]</td>;
+                                                            }
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="table-record-display" id="" style="height:166px;overflow:auto;">
+                                        <table class="table table-bordered table-striped table-hover" style="font-size:11px">
+                                            <caption style="background-color: RGB(173,255,47);text-align: center;" class="blueee">FORM OF PAYEMENT</caption>
+                                            <thead>
+                                                <tr style="background-color: RGB(173,255,47);" class="blueee">
+                                                    <th class="blueee">FOP</th>
+                                                    <th class="blueee">FOP CUR</th>
+                                                    <th class="blueee">FOP AMT</th>
+                                                    <th class="blueee">REMITTANCE CUR</th>
+                                                    <th class="blueee">REMITTANCE AMT</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="fopATDA">
+                                                @for (int j = 0; j < @ViewBag.lonfop; j++)
+                                                {
+                                                    <tr>
+                                                        @for (int i = 0; i < 5; i++)
+                                                        {
+                                                            <td>@ViewBag.AgCodefop[i, j]</td>;
+                                                        }
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="table row">
+                                <div class="col-lg-8">
+                                    <div class="col-lg-3">
+                                        <button class="btn" style="background-color: RGB(255,140,0);" data-toggle="modal" data-target="#VIEWCOUPONFURTHERDETAILS"><span class="blueee">VIEW COUPON FURTHER DETAILS</span></button>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <button class="btn" style="background-color: RGB(255,140,0);" data-toggle="modal" data-target="#VIEWCOUPONPRORATIONDETAILS"><span class="blueee">VIEW COUPON PRORATION DETAILS</span></button>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <button class="btn" style="background-color: RGB(255,140,0);" data-toggle="modal" data-target="#VIEWDISCREPANCY"><span class="blueee">VIEW DISCREPANCY</span></button>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <button class="btn" style="background-color: RGB(255,140,0);" data-toggle="modal" data-target="#VIEWAGENTDETAILS"><span class="blueee">VIEW AGENT DETAILS</span></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!--sml coupon-->
+<div id="VIEWCOUPONFURTHERDETAILS" class="modal fade" role="dialog">
+    <fieldset class="test-fieldst">
+        <div class="modal-dialog" style="width:1015px!important">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myModalLabel">Check Coupons details</h5>
+                    <button type="button" class="close" style="position: relative;top: 1px;" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body container-duplicatecontainer-pax1" style="background-color: rgb(117, 228, 252);width:1010px!important;height:429px;">
+                    <div class="row">
+                        <div class="row col-lg-3">
+                            <label class="col-lg-5">Doc No : </label>
+                            <label class="col-lg-6">@ViewBag.londocnumber</label>
+                        </div>
+                        <div class="row">
+                            <div class="table-record-display col-lg-11" id="tabnowshow" style="height:283px;overflow:auto; position: relative; left: 36px;">
+                                <table class="table table-bordered tablehead">
+                                    <thead>
+                                        <tr style="background-color: RGB(173,255,47);">
+                                            <th>Cpn</th>
+                                            <th>Cpn Status</th>
+                                            <th>Sec Dest</th>
+                                            <th>Sec Orig</th>
+                                            <th>Carrier</th>
+                                            <th>Fare Basis</th>
+                                            <th>Fligth No</th>
+                                            <th>Fligth Dept Date</th>
+                                            <th>No Valid Before</th>
+                                            <th>No Valid After</th>
+                                            <th>RBD</th>
+                                            <th>Usage Airline</th>
+                                            <th>Usage Date</th>
+                                            <th>Usage Flight</th>
+                                            <th>Is OAL</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tdchekcoupondetail">
+                                        @for (int ic = 0; ic < ViewBag.loncouponsdetails; ic++)
+                                        {
+                                            <tr>
+                                                @for (int jc = 0; jc < 15; jc++)
+                                                {
+                                                    <td>@ViewBag.datacouponsdetails[jc, ic]</td>
+
+                                                }
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-10" style=""></div>
+                        <div class="col-lg-2" style="">
+                            <div class="col-lg-3" style="top:30px"><button type="button" class="search-interogation green btn" onclick="removeSousMenu()"><span class="search-span">Close</span></button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</div>
+<div id="VIEWCOUPONPRORATIONDETAILS" class="modal fade" role="dialog">
+    <fieldset class="test-fieldst">
+        <div class="modal-dialog" style="width:1015px!important">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myModalLabel">FrmProrationDetails</h5>
+                    <button type="button" class="close" style="position: relative;top: 1px;" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body container-duplicatecontainer-pax1" style="background-color: rgb(117, 228, 252);width:1010px!important;height:429px;">
+                    <div class="row">
+                        <div class="row col-lg-3">
+                            <label class="col-lg-5">Doc No : </label>
+                            <label class="col-lg-6">@ViewBag.londocnumber</label>
+                        </div>
+                        <div class="row">
+                            <div class="table-record-display col-lg-11" id="tabnowshow" style="height:283px;overflow:auto; position: relative; left: 36px;">
+                                <table class="table table-bordered tablehead">
+                                    <caption class="blueee" style="background-color: RGB(173,255,47);text-align: center;">COUPONS PRORATION DETAILS</caption>
+                                    <thead>
+                                        <tr style="background-color: RGB(173,255,47);">
+                                            <th class="blueee">CPN</th>
+                                            <th class="blueee">CPN STATUS</th>
+                                            <th class="blueee">SECTOR ORIGIN</th>
+                                            <th class="blueee">SECTOR DESTINATION</th>
+                                            <th class="blueee">CARRIER</th>
+                                            <th class="blueee">PRORATION FACTOR</th>
+                                            <th class="blueee">PRORATION VALUE</th>
+                                            <th class="blueee">CURENCY</th>
+                                            <th class="blueee">SPA</th>
+                                            <th class="blueee">Q(SURCHARGE)</th>
+                                            <th class="blueee">D(DIFFERENCE)</th>
+                                            <th class="blueee">FINAL SHARE</th>
+                                        </tr>
+
+                                    </thead>
+                                    <tbody id="coupondetails">
+                                        @for (int ip = 0; ip < ViewBag.lonprodetails; ip++)
+                                        {
+                                            <tr>
+                                                @for (int jp = 0; jp < 12; jp++)
+                                                {
+                                                    <td>@ViewBag.dataprodetails[jp, ip]</td>
+
+                                                }
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-10" style=""></div>
+                        <div class="col-lg-2" style="">
+                            <div class="col-lg-3" style="top:30px"><button type="button" class="search-interogation green btn" onclick="removeSousMenu()"><span class="search-span">Close</span></button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</div>
+<div id="VIEWDISCREPANCY" class="modal fade" role="dialog">
+    <fieldset class="test-fieldst">
+        <div class="modal-dialog" style="width:1225px!important">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myModalLabel">FrmTicketDiscrepancy</h5>
+                    <button type="button" class="close" style="position: relative;top: 1px;" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body container-duplicatecontainer-pax1" style="background-color: rgb(117, 228, 252);width:1213px!important;height:830px;">
+                    <div class="row">
+                        <div class="row col-lg-12">
+                            <label class="col-lg-1">Doc No : </label>
+                            <label class="col-lg-3">@ViewBag.londocnumber</label>
+                            <label class="col-lg-1">Agent No:</label>
+                            <label class="col-lg-3">@ViewBag.txtCustomerCode</label>
+                        </div>
+                        <div class="row">
+                            <div class="table-record-display col-lg-10" id="tabnowshow" style="height:150px;overflow:auto; position: relative; left: 36px;">
+                                <table class="table table-bordered tablehead">
+                                    <caption class="blueee" style="background-color: RGB(173,255,47);text-align: center;">COMMISSION CHECK</caption>
+                                    <thead>
+                                        <tr style="background-color: RGB(173,255,47);">
+                                            <th class="blueee">DATE OF ISSUE</th>
+                                            <th class="blueee">AGENT CODE</th>
+                                            <th class="blueee">DOC NO</th>
+                                            <th class="blueee">CPN</th>
+                                            <th class="blueee">PM</th>
+                                            <th class="blueee">FINAL SHARE(USD)</th>
+                                            <th class="blueee">COMM%</th>
+                                            <th class="blueee">COMM AMT</th>
+                                            <th class="blueee">AGENT COMM%</th>
+                                            <th class="blueee">COMM%DIFF</th>
+                                            <th class="blueee">REMARKS</th>
+                                        </tr>
+
+                                    </thead>
+                                    <tbody id="tddiscep">
+                                        @for (int icc = 0; icc < ViewBag.loncheckCommission; icc++)
+                                        {
+                                            <tr>
+                                                @for (int jcc = 0; jcc < 11; jcc++)
+                                                {
+                                                    <td>@ViewBag.datacheckCommission[jcc, icc]</td>
+                                                }
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="table-record-display col-lg-6" id="tabnowshow" style="height:150px;overflow:auto; position: relative; left: 36px;">
+                                <table class="table table-bordered tablehead">
+                                    <caption class="blueee" style="background-color: RGB(173,255,47);text-align: center;">COUPON VALIDITY CHECK</caption>
+                                    <thead>
+                                        <tr style="background-color: RGB(173,255,47);">
+                                            <th class="blueee"></th>
+                                            <th class="blueee">CPN</th>
+                                            <th class="blueee">RBD</th>
+                                            <th class="blueee">FARE BASIS</th>
+                                            <th class="blueee">NVB</th>
+                                            <th class="blueee">NVA</th>
+                                            <th class="blueee">MAX PERIOD</th>
+                                            <th class="blueee">EXPIRED</th>
+                                        </tr>
+
+                                    </thead>
+                                    <tbody id="tdtabshow">
+                                        @for (int icp = 0; icp < ViewBag.loncouponvalid; icp++)
+                                        {
+                                            <tr>
+                                                @for (int jcp = 0; jcp < 8; jcp++)
+                                                {
+                                                    <td>@ViewBag.datacouponvalid[jcp, icp]</td>
+
+                                                }
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="table-record-display col-lg-6" id="tabnowshow" style="height:150px;overflow:auto; position: relative; left: 36px;">
+                                <table class="table table-bordered tablehead">
+                                    <caption class="blueee" style="background-color: RGB(173,255,47);text-align: center;">RBD CHECK</caption>
+                                    <thead>
+                                        <tr style="background-color: RGB(173,255,47);">
+                                            <th class="blueee">CPN</th>
+                                            <th class="blueee">FLIGHT NO</th>
+                                            <th class="blueee">FLIGHT DEP.DATE</th>
+                                            <th class="blueee">FARE BASIS</th>
+                                            <th class="blueee">RESERVED RBD</th>
+                                            <th class="blueee">USAGE RBD</th>
+                                            <th class="blueee">REMARKS</th>
+                                        </tr>
+
+                                    </thead>
+                                    <tbody id="tdrbdchek">
+                                        @for (int irbd = 0; irbd < ViewBag.loncheckRBD; irbd++)
+                                        {
+                                            <tr>
+                                                @for (int jrbd = 0; jrbd < 7; jrbd++)
+                                                {
+                                                    <td>@ViewBag.datacheckRBD[jrbd, irbd]</td>
+
+                                                }
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="table-record-display col-lg-6" id="tabnowshow" style="height:150px;overflow:auto; position: relative; left: 36px;">
+                                <table class="table table-bordered tablehead">
+                                    <caption class="blueee" style="background-color: RGB(173,255,47);text-align: center;">FLIGHT DATE CHECK</caption>
+                                    <thead>
+                                        <tr style="background-color: RGB(173,255,47);">
+                                            <th class="blueee">CPN</th>
+                                            <th class="blueee">FLIGHT NO</th>
+                                            <th class="blueee">FARE BASIS</th>
+                                            <th class="blueee">RBD</th>
+                                            <th class="blueee">PLANNED FLIGHT DATE</th>
+                                            <th class="blueee">USAGE FLIGHT DATE</th>
+                                            <th class="blueee">REMARKS</th>
+                                        </tr>
+
+                                    </thead>
+                                    <tbody id="tddate">
+                                        @for (int icd = 0; icd < ViewBag.loncheckDate; icd++)
+                                        {
+                                            <tr>
+                                                @for (int jcd = 0; jcd < 7; jcd++)
+                                                {
+                                                    <td>@ViewBag.datacheckDate[jcd, icd]</td>
+                                                }
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-10" style=""></div>
+                        <div class="col-lg-2" style="">
+                            <div class="col-lg-3" style="top:30px"><button type="button" class="search-interogation green btn" onclick="removeSousMenu()"><span class="search-span">Close</span></button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</div>
+<div id="VIEWAGENTDETAILS" class="modal fade" role="dialog">
+    <fieldset class="test-fieldst">
+        <div class="modal-dialog" style="width:1007px!important">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myModalLabel">FrmTicketDiscrepancy</h5>
+                    <button type="button" class="close" style="position: relative;top: 1px;" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body container-duplicatecontainer-pax1" style="background-color: rgb(117, 228, 252);width:995px!important;height:454px;">
+                    <div class="row">
+                        <div class="row col-lg-12">
+                            <div class="row col-lg-6">
+                                <div class="row col-lg-12">
+                                    <div class="col-lg-6">
+                                        <label class="">Name:-</label>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <input type="text" class="form-control" value="@ViewBag.txtNamevad" disabled />
+                                    </div>
+                                </div>
+                                <div class="row col-lg-12">
+                                    <div class="col-lg-6">
+                                        <label class="">Adress:-</label>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <textarea rows="3" disabled>@ViewBag.txtadressvad </textarea>
+                                    </div>
+                                </div>
+                                <div class="row col-lg-12">
+                                    <div class="col-lg-6">
+                                        <label class="">Status:-</label>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <input type="text" class="form-control" value="@ViewBag.txtstatusvad" disabled />
+                                    </div>
+                                </div>
+                                <div class="row col-lg-12">
+                                    <div class="col-lg-6">
+                                        <label class="">Category:-</label>
+                                    </div>
+                                    <div class="col-lg-5">
+                                        <input type="text" class="form-control" value="@ViewBag.txtcategoryvad" disabled />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row col-lg-6">
+                                <div class="row col-lg-12">
+                                    <label class="col-lg-6">Remarks:-</label>
+                                    <textarea rows="3" disabled>@ViewBag.txtremarksvad</textarea>
+                                </div>
+                                <div class="row col-lg-12">
+                                    <label class="col-lg-6">Date of Appointment:-</label>
+                                    <label class="col-lg-6">|@ViewBag.txtdatevad</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="table-record-display col-lg-8" id="tabnowshow" style="height:150px;overflow:auto; position: relative; left: 36px;">
+                                <table class="table table-bordered tablehead">
+                                    <thead>
+                                        <tr style="background-color: RGB(173,255,47);">
+                                            <th class="blueee">Type of Renumeration</th>
+                                            <th class="blueee">Per/Amount</th>
+                                            <th class="blueee">Rate/Level</th>
+                                            <th class="blueee">Applicability</th>
+                                            <th class="blueee">Period From</th>
+                                            <th class="blueee">Period To</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @for (int iag = 0; iag < ViewBag.lonligneag; iag++)
+                                        {
+                                            <tr>
+                                                @for (int jp = 0; jp < 6; jp++)
+                                                {
+                                                    <td>@ViewBag.datadataag[jp, iag]</td>
+
+                                                }
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-lg-2" style=""></div>
+                            <div class="col-lg-2" style="">
+                                <div class="col-lg-3" style="top:30px"><button type="button" class="search-interogation green btn" style="position:relative;top:108px;" onclick="removeSousMenu()"><span class="search-span">Close</span></button></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</div>
+
+
+

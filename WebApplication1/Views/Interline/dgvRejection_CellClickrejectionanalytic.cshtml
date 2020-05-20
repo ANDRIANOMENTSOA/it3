@@ -1,0 +1,133 @@
+﻿<div class="row" style="height: 100px" id="new0dataGridView25"></div>
+
+<div class="row" style="height: 100px" id="newdataGridView25">
+    <table class="table table-bordered tablehead" id="tbdataGridView25">
+        <thead style="@ViewBag.dataGridView25RowHeadersVisible;">
+            <tr>
+                 @for (int i = 0; i < ViewBag.l; i++)
+                 {
+                     <th style="@ViewBag.dataGridView25ColumnHeadersBackColor;@ViewBag.dataGridView25ColumnHeadersForeColor;">@ViewBag.dataGridView25TH[i]</th>
+                 }
+            </tr>
+        </thead>
+        <tbody style="">
+            @for(int i=0; i< ViewBag.ligne; i++)
+            {
+                <tr>
+                    @for (int j = 0; j < ViewBag.colone; j++)
+                    {
+                         <td style="@ViewBag.dataGridView25ColumnsBackColor[j];@ViewBag.dataGridView25ColumnsWidth[j];">@ViewBag.dataGridView25[i,j]</td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+    <input type="text" style="display:none" id="newpnlAcceptVisible001" value="@ViewBag.pnlAcceptVisible"/>
+    <input type="text" id="newpvChargeCode001" style="display:none" value="@ViewBag.pvChargeCode" />
+    <input type="text" id="newPreviousBillingPeriod001" style="display:none" value="@ViewBag.PreviousBillingPeriod" />
+    <input type="text" id="newFullDocNo001" style="display:none" value="@ViewBag.FullDocNo" />
+    <input type="text" id="newlblRMN1001" style="display:none" value="@ViewBag.lblRMN1" />
+    <input type="text" id="newlblRMNStage1001" style="display:none" value="@ViewBag.lblRMNStage1" />
+    <input type="text" id="newlblRMNCode1001" style="display:none" value="@ViewBag.lblRMNCode1" />
+    <input type="text" id="newtxtRMNRDesc1001" style="display:none" value="@ViewBag.txtRMNRDesc1" />
+    <input type="text" id="newlblRMNInvoiceNumber1001" style="display:none" value="@ViewBag.lblRMNInvoiceNumber1" />
+    <input type="text" id="newlblRMNBillingDate1001" style="display:none" value="@ViewBag.lblRMNBillingDate1" />
+    <input type="text" id="newlblRejMsg001" style="display:none" value="@ViewBag.lblRejMsg" />
+    <input type="text" id="newlblNextStage001" style="display:none" value="@ViewBag.lblNextStage" />
+    <input type="text" id="newR1C1" style="display:none" value="@ViewBag.R1C1" />
+    <input type="text" id="newR1C2" style="display:none" value="@ViewBag.R1C2" />
+    <input type="text" id="newR1C3" style="display:none" value="@ViewBag.R1C3" />
+    <input type="text" id="newR1C4" style="display:none" value="@ViewBag.R1C4" />
+    <input type="text" id="newR1C5" style="display:none" value="@ViewBag.R1C5" />
+    <input type="text" id="newR1C6" style="display:none" value="@ViewBag.R1C6" />
+    <input type="text" id="newR1C7" style="display:none" value="@ViewBag.R1C7" />
+    <input type="text" id="newR1C8" style="display:none" value="@ViewBag.R1C8" />
+    <input type="text" id="newR1C9" style="display:none" value="@ViewBag.R1C9" />
+    <input type="text" id="newR1C10" style="display:none" value="@ViewBag.R1C10" />
+    <input type="text" id="newR1C11" style="display:none" value="@ViewBag.R1C11" />
+    <input type="text" id="newR1C12" style="display:none" value="@ViewBag.R1C12" />
+    <input type="text" id="newR1C13" style="display:none" value="@ViewBag.R1C13" />
+    <input type="text" id="newR2C1" style="display:none" value="@ViewBag.R2C1" />
+    <input type="text" id="newR2C2" style="display:none" value="@ViewBag.R2C2" />
+    <input type="text" id="newR2C3" style="display:none" value="@ViewBag.R2C3" />
+    <input type="text" id="newR2C4" style="display:none" value="@ViewBag.R2C4" />
+    <input type="text" id="newR2C5" style="display:none" value="@ViewBag.R2C5" />
+    <input type="text" id="newR2C6" style="display:none" value="@ViewBag.R2C6" />
+    <input type="text" id="newR2C7" style="display:none" value="@ViewBag.R2C7" />
+    <input type="text" id="newR2C8" style="display:none" value="@ViewBag.R2C8" />
+    <input type="text" id="newR2C9" style="display:none" value="@ViewBag.R2C9" />
+    <input type="text" id="newR2C10" style="display:none" value="@ViewBag.R2C10" />
+    <input type="text" id="newR2C11" style="display:none" value="@ViewBag.R2C11" />
+    <input type="text" id="newR2C12" style="display:none" value="@ViewBag.R2C12" />
+    <input type="text" id="newR2C13" style="display:none" value="@ViewBag.R2C13" />
+    <input type="text" id="newR3C1" style="display:none" value="@ViewBag.R3C1" />
+    <input type="text" id="newR3C2" style="display:none" value="@ViewBag.R3C2" />
+    <input type="text" id="newR3C3" style="display:none" value="@ViewBag.R3C3" />
+    <input type="text" id="newR3C4" style="display:none" value="@ViewBag.R3C4" />
+    <input type="text" id="newR3C5" style="display:none" value="@ViewBag.R3C5" />
+    <input type="text" id="newR3C6" style="display:none" value="@ViewBag.R3C6" />
+    <input type="text" id="newR3C7" style="display:none" value="@ViewBag.R3C7" />
+    <input type="text" id="newR3C8" style="display:none" value="@ViewBag.R3C8" />
+    <input type="text" id="newR3C9" style="display:none" value="@ViewBag.R3C9" />
+    <input type="text" id="newR3C10" style="display:none" value="@ViewBag.R3C10" />
+    <input type="text" id="newR3C11" style="display:none" value="@ViewBag.R3C11" />
+    <input type="text" id="newR3C12" style="display:none" value="@ViewBag.R3C12" />
+    <input type="text" id="newR3C13" style="display:none" value="@ViewBag.R3C13" />
+    <input type="text" id="newtxtReasonCodeX001" style="display:none" value="@ViewBag.txtReasonCodeX" />
+    <input type="text" id="newtxtReasonDescriptionX001" style="display:none" value="@ViewBag.txtReasonDescriptionX" />
+    <input type="text" id="newNotinSystem001" style="display:none" value="@ViewBag.NotinSystem" />
+
+</div>
+
+<div class="col" id="newdivdgvAttachment">
+    <table class="table table-bordered tablehead" id="dgvAttachment">
+        <thead>
+            <tr style="@ViewBag.dgvAttachmentRowHeadersVisible;">
+                @for(int i = 0; i < ViewBag.lA; i++)
+                {
+                    <th style="@ViewBag.dgvAttachmentColumnHeadersBackColor;@ViewBag.dgvAttachmentColumnHeadersForeColor;">@ViewBag.dgvAttachmentTH[i]</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @for(int i = 0; i < ViewBag.ligneA; i++)
+            {
+                <tr>
+                    @for(int j = 0; j < ViewBag.coloneA; j++)
+                    {
+                        <td style="@ViewBag.dgvAttachmentColumnsBackColor[j];@ViewBag.dgvAttachmentColumnsWidth[j];">@ViewBag.dgvAttachment[i,j]</td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+    <input type="text" style="display:none" id="newlblAttCount" value="@ViewBag.lblAttCount"/>
+</div>
+
+<div id="new001divdataGridView21"  style="overflow-x:auto;">
+    <table class="table table-bordered" id="dataGridView21" style="width:100%">
+        <thead>
+            <tr style=""><!--@ViewBag.dataGridView21RowHeadersVisible;-->
+                @for(int i = 0; i < ViewBag.coloneu; i++)
+                {
+                    <th style="@ViewBag.dataGridView21ColumnHeadersBackColor;@ViewBag.dataGridView21ColumnHeadersForeColor;" >@ViewBag.dataGridView21TH[i]</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @for(int i = 0; i < ViewBag.ligneu; i++)
+            {
+                <tr>
+                    @for(int j = 0; j < ViewBag.coloneu; j++)
+                    {
+                        <td style="@ViewBag.dataGridView21StyleBackColor[i,j];@ViewBag.dataGridView21ColumnsWidth[j];">@ViewBag.dataGridView21[i,j]</td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+    <input id="newlblRejTotalTax001" value="@ViewBag.lblRejTotalTax" style="display:none" />
+    <input id="newinvoiceno001" value="@ViewBag.invoiceno" style="display:none" />
+    <input id="newTicketNo001" value="@ViewBag.TicketNo" style="display:none" />
+    <input id="newCouponNumber001" value="@ViewBag.CouponNumber" style="display:none" />
+</div>

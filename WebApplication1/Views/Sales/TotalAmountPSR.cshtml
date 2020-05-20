@@ -1,0 +1,360 @@
+﻿@using System.Data
+@model DataSet
+<div class="col-sm-12 tab-content" style="margin-left: 0px; background-color:RGB(135,206,235);">
+    <input type="hidden" id="copteur" value="" />
+    <input type="hidden" id="copteur1" value="" />
+    <input type="hidden" id="copteur2" value="" />
+    <input type="hidden" id="copteur3" value="" />
+    <div class="col-sm-2">
+        <div class="vertical-aside-total">
+            <fieldset class="test-fieldst">
+                <legend class="test-fieldst"></legend>
+                <div class="content-psr">
+                    <div class="col-sm-12 n-padding width-group">
+                        <label class="form-check-label col-form-label col-sm-5 n-padding fromTo">Sales Date From:</label>
+                        <div class="col-sm-7 n-padding">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateFrom')"></span>
+                                <input type="text" class="form-control" id="dateFrom" value="@ViewBag.date[0]">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 n-padding width-group">
+                        <label class="form-check-label col-form-label col-sm-5 n-padding fromTo">Sales Date To:</label>
+                        <div class="col-sm-7 n-padding">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateTo')"></span>
+                                <input type="text" class="form-control" id="dateTo" value="@ViewBag.date[1]">
+                            </div>
+                        </div>
+                    </div>
+
+                    <label class="col-form-label">Agent Numeric Code:</label>
+                    <div class="col-sm-12 n-padding" style="margin-left:-1px">
+                        <div class="col-sm-10 n-padding">
+                            <input type="hidden" id="testDate" value="" />
+                            <select class="form-control" id="selectagentNumCode" onclick="getAllAgentNumCode()">
+                                <option>All</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-1 containt-btn" style="width: 33px !important; height:30px">
+                            <button class="point-interogation pink btn" data-toggle="modal" data-target="#AgentCodeModal">
+                                <span class="point-span">?</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-form-label">Agent Name:</label>
+                        <input type="text" name="" id="agentName" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-form-label">Agent Location:</label>
+                        <input type="text" name="" id="agentLocation" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="hidden" id="booking" value="" />
+                        <label class="col-form-label">Booking Agent Identification:</label>
+                        <select class="form-control" id="bookingAgent" onclick="getbookingAgentBSP('Sales', 'GetBookingAgent', 'bookingAgent')">
+                            <option>All</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="hidden" id="reporting" value="" />
+                        <label class="col-form-label">Reporting Entity:</label>
+                        <select class="form-control" id="reportingEntity" onclick="getbookingAgentBSP('Sales', 'GetReportingEntity', 'reportingEntity')">
+                            <option>All</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-form-label">Selection:</label>
+                        <input type="hidden" id="tmpSelection" />
+                        <select class="form-control" id="selection" disabled onclick="ChooseSelection()">
+                            <option></option>
+                            <option>Fare Component</option>
+                            <option>Journey</option>
+                            <option>Sector</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <div class="search">
+                            <div class="col-sm-3"><button type="button" class="search-interogation pink btn" onclick="getPSR()"><span class="search-span">SEARCH</span></button></div>
+                            <div class="col-sm-3"><button type="button" class="search-interogation pink btn" onclick="clearCommition('TotalAmountPSR')"><span class="search-span">CLEAR</span></button></div>
+                            <div class="col-sm-3"><button class="search-interogation pink btn" onclick="removeSousMenu()"><span class="search-span">CLOSE</span></button></div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+    <div class="refreshPSR">
+        <div class="ajax-loader">
+            <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+        </div>
+        <div class="col-sm-8">
+            <div class="container-pax" style="height:586px;border: 1px solid;" id="ResumePSR">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#PSRSummary" class="nav-pax" style="position: relative;left: 4px;">PSR Summary</a></li>
+                    <li><a data-toggle="tab" href="#PSRKey" onclick="getPsrKeyElement()" class="nav-pax" id="tab-transaction">PSR Key Elements</a></li>
+                    <li><a data-toggle="tab" href="#PSRFare" onclick="FareBasisAnalytics()" class="nav-pax" id="tab-transaction">O & D /Fare Basis Analytics</a></li>
+                    <li><a data-toggle="tab" href="#PSRPassenger" onclick="FarePassenger()" class="nav-pax" id="tab-transaction">Passenger / Customer Management</a></li>
+                </ul>
+
+                <div class="tab-content container-psr">
+                    <div id="PSRSummary" class="tab-pane fade in active">
+                        <div class="col-sm-12 noOfrecords">
+                            <label class="form-check-label col-form-label col-sm-2 fromTo">No Of records:</label>
+                            <div class="col-sm-3" style="margin-top: 6px;">
+                                <input type="text" class="form-control" id="noOfrecords" />
+                            </div>
+                            <div class="col-sm-1 n-paddin-left">
+                                <img src='@Url.Content("~/images/CSVPic.jpg")' class="image-csv" style="top: 6px;left: 548%;">
+                            </div>
+                        </div>
+                        <div class="container-pax" style="height:236px;border: 1px solid;left: -3px;top: 551px;width: 122.5%;">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a data-toggle="tab" href="#officeTotal" class="nav-pax" style="position: relative;left: 4px;">OFFICE TOTALS</a></li>
+                                <li><a data-toggle="tab" href="#summariedCurrency" class="nav-pax" id="tab-transaction">TRANSACTION CODE SUMMARIED BY CURRENCY</a></li>
+                            </ul>
+
+                            <div class="tab-content container-psr1">
+                                <div id="officeTotal" class="tab-pane fade in active">
+                                    <table class="table table-bordered table-striped"></table>
+
+                                </div>
+                                <div id="summariedCurrency" class="tab-pane fade">
+                                    <table class="table table-bordered table-striped"></table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="showAddDetails" style="position: absolute;left: 101%;top: 0px;height: 582px;border: 1px solid;width: 259px;">
+                            <div class="col-sm-3"><button class="payment-interogation btn" onclick="showDetails('detailSumarry','textDetail')"><span class="search-span" id="textDetail">Show Add-on Details</span></button></div>
+                            <div class="containt-details" id="detailSumarry" style="height:308px;">
+                                <ul class="list-group">
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('allsumm', 'cacheCol')" id="allsumm" />Select All</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('transcode', 'cacheCol-5')" id="transcode" />Transaction Code</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('transcodeFop', 'cacheCol-4')" id="transcodeFop" />Transaction FOP</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('transType', 'cacheCol-7')" id="transType" />Transaction Type</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('itbt', 'cacheCol-6')" id="itbt" />ITBT</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('currency', 'cacheCol-8')" id="currency" />Currency</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('count', 'cacheCol-9')" id="count" />Count</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('cobl', 'cacheCol-10')" id="cobl" />Commissionable Amount</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('tmfa', 'cacheCol-11')" id="tmfa" />Tax/Miscelaneous Fee Amount</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('tdam', 'cacheCol-12')" id="tdam" />Ticket Document Amount</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('efco', 'cacheCol-13')" id="efco" />Effective Commission</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('toca', 'cacheCol-14')" id="toca" />Tax On Commision</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('remitance', 'cacheCol-15')" id="remitance" />Remitance</li>
+                                </ul>
+                            </div>
+                        </div>
+                            
+                    </div>
+
+                    <div id="PSRKey" class="tab-pane fade">
+                        <div class="col-sm-12 noOfrecords">
+                            <label class="form-check-label col-form-label col-sm-2 fromTo">No Of records:</label>
+                            <div class="col-sm-3" style="margin-top: 6px;">
+                                <input type="text" class="form-control" id="noOfrecords" />
+                            </div>
+                            <div class="col-sm-1 n-paddin-left">
+                                <img src='@Url.Content("~/images/CSVPic.jpg")' class="image-csv" style="top: 6px;left: 548%;">
+                            </div>
+                        </div>
+                        <div class="container-pax" style="height:236px;border: 1px solid;left: -3px;top: 551px;width: 122.5%;">
+                        </div>
+                        <div class="showAddDetails" style="position: absolute;left: 101%;top: 0px;height: 582px;border: 1px solid;width: 259px;">
+                            <div class="col-sm-3"><button class="payment-interogation btn" onclick="showDetails('detailPsrKey','textDetail1')"><span class="search-span" id="textDetail1">Show Add-on Details</span></button></div>
+                            <div class="containt-details" id="detailPsrKey" style="overflow-y: auto;top:2px;height: 542px;">
+                                <ul class="list-group">
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('allkey', 'keyelement')" id="allkey">All</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key3', 'keyelement-3')" id="key3">Conjunction</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key6', 'keyelement-6')" id="key6">Tour Code</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key7', 'keyelement-7')" id="key7">Endos Restriction</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key8', 'keyelement-8')" id="key8">PNR</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key9', 'keyelement-9')" id="key9">Original Issue</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key10', 'keyelement-10')" id="key10">POS</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key11', 'keyelement-11')" id="key11">SPC</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key12', 'keyelement-12')" id="key12">FOP</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key13', 'keyelement-13')" id="key13">FCMI</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key14', 'keyelement-14')" id="key14">FCA</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key15', 'keyelement-15')" id="key15">Fare Currency</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key16', 'keyelement-16')" id="key16">Fare</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key17', 'keyelement-17')" id="key17">Equivalent Fare Currency</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key18', 'keyelement-18')" id="key18">Equivalent Fare</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key19', 'keyelement-19')" id="key19">Tax1Code</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key20', 'keyelement-20')" id="key20">Tax1Amount</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key21', 'keyelement-21')" id="key21">Tax2Code</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key22', 'keyelement-22')" id="key22">Tax2Amount</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key23', 'keyelement-23')" id="key23">Tax3Code</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key24', 'keyelement-24')" id="key24">Tax3Amount</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key25', 'keyelement-25')" id="key25">Surcharge Collected Cur</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key26', 'keyelement-26')" id="key26">Surcharge Collected</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key27', 'keyelement-27')" id="key27">Coupon Num</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key28', 'keyelement-28')" id="key28">Fare Basis</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key29', 'keyelement-29')" id="key29">Reservation Book Designator</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key30', 'keyelement-30')" id="key30">Interling</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key31', 'keyelement-31')" id="key31">NVB</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key32', 'keyelement-32')" id="key32">NVA</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key33', 'keyelement-33')" id="key33">FBA</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key34', 'keyelement-34')" id="key34">Transaction Code</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div id="PSRFare" class="tab-pane fade">
+                        <div class="col-sm-12 noOfrecords">
+                            <label class="form-check-label col-form-label col-sm-2 fromTo">No Of records:</label>
+                            <div class="col-sm-3" style="margin-top: 6px;">
+                                <input type="text" class="form-control" id="noOfrecords" />
+                            </div>
+                            <div class="col-sm-1 n-paddin-left">
+                                <img src='@Url.Content("~/images/CSVPic.jpg")' class="image-csv" style="top: 6px;left: 548%;">
+                            </div>
+                        </div>
+                        <div class="container-pax" style="height:236px;border: 1px solid;left: -3px;top: 551px;width: 122.5%;">
+                        </div>
+                        <div class="showAddDetails" style="position: absolute;left: 101%;top: 0px;height: 582px;border: 1px solid;width: 259px;">
+                            <div class="col-sm-3"><button class="payment-interogation btn" onclick="showDetails('detailFaireAnalitique','textDetail2')"><span class="search-span" id="textDetail2">Show Add-on Details</span></button></div>
+                            <div class="containt-details" id="detailFaireAnalitique" style="overflow-y:auto;height: 542px;">
+                                <ul class="list-group">
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('allfaire', 'farebass')" id="allfaire">All</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('faire5', 'farebass-5')" id="faire5">POS</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('faire7', 'farebass-7')" id="faire7">Fare Component</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('faire8', 'farebass-8')" id="faire8">Origin Airport City Code</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('faire9', 'farebass-9')" id="faire9">Destination Airport City Code</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('faire10', 'farebass-10')" id="faire10">Tour Code</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('faire11', 'farebass-11')" id="faire11">Fare Curr</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('faire12', 'farebass-12')" id="faire12">Fare</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('faire13', 'farebass-13')" id="faire13">Equiv Fare Curr</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('faire14', 'farebass-14')" id="faire14">EFP</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('faire15', 'farebass-15')" id="faire15">Tax1Code</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('faire16', 'farebass-16')" id="faire16">Tax1Amount</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('faire17', 'farebass-17')" id="faire17">Tax2Code</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('faire18', 'farebass-18')" id="faire18">Tax2Amount</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('faire19', 'farebass-19')" id="faire19">Tax3Code</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('faire20', 'farebass-20')" id="faire20">Tax3Amount</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('faire21', 'farebass-21')" id="faire21">Surcharge Coll Curr</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('faire22', 'farebass-22')" id="faire22">Surcharge Coll</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('faire23', 'farebass-23')" id="faire23">Reservation Book Designator</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('faire24', 'farebass-24')" id="faire24">NVB</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('faire25', 'farebass-25')" id="faire25">NVA</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('faire26', 'farebass-26')" id="faire26">FBA</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('faire27', 'farebass-27')" id="faire27">Transaction Code</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('faire28', 'farebass-28')" id="faire28">Fare Calculation</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="PSRPassenger" class="tab-pane fade">
+                        <div class="col-sm-12 noOfrecords">
+                            <label class="form-check-label col-form-label col-sm-2 fromTo">No Of records:</label>
+                            <div class="col-sm-3" style="margin-top: 6px;">
+                                <input type="text" class="form-control" id="noOfrecords" />
+                            </div>
+                            <div class="col-sm-1 n-paddin-left">
+                                <img src='@Url.Content("~/images/CSVPic.jpg")' class="image-csv" style="top: 6px;left: 548%;">
+                            </div>
+                        </div>
+                        <div class="container-pax" style="height:236px;border: 1px solid;left: -3px;top: 551px;width: 122.5%;">
+                        </div>
+                        <div class="showAddDetails" style="position: absolute;left: 101%;top: 0px;height: 582px;border: 1px solid;width: 259px;">
+                            <div class="col-sm-3"><button class="payment-interogation btn" onclick="showDetails('detailPassenger', 'textDetail3')"><span class="search-span" id="textDetail3">Show Add-on Details</span></button></div>
+                            <div class="containt-details" id="detailPassenger" style="height:241px">
+                                <ul class="list-group">
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('allsumm', 'cacheCol')" id="allsumm" />Select All</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('transcode', 'cacheCol-5')" id="transcode" />Transaction Code</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('transcodeFop', 'cacheCol-4')" id="transcodeFop" />Transaction FOP</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('transType', 'cacheCol-7')" id="transType" />Transaction Type</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('itbt', 'cacheCol-6')" id="itbt" />ITBT</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('currency', 'cacheCol-8')" id="currency" />Currency</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('count', 'cacheCol-9')" id="count" />Count</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('cobl', 'cacheCol-10')" id="cobl" />Commissionable Amount</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('tmfa', 'cacheCol-11')" id="tmfa" />Tax/Miscelaneous Fee Amount</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('tdam', 'cacheCol-12')" id="tdam" />Ticket Document Amount</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('efco', 'cacheCol-13')" id="efco" />Effective Commission</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('toca', 'cacheCol-14')" id="toca" />Tax On Commision</li>
+                                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('remitance', 'cacheCol-15')" id="remitance" />Remitance</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="AgentCodeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="Doc modal-content" style="width: 58%;left: 17%; background-color: rgba(135, 206, 235, 1) !important; ">
+            <div class="agentModal">
+                <div class="modal-header" style="background-color: white; margin-bottom: 21px;">
+                    <h5 class="modal-title" id="myModalLabel">FrmCustomAgentQuery</h5>
+                    <button type="button" class="close close-agent-code" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="DocCollect-modal-body">
+                    <div class="scoll-tree scoll-agent-code">
+                        <div class="head-agent-code-content">
+                            <div class="form-row">
+                                <div class="col col-md-3" style="padding-left: 0px;">Agent Legal Name:</div>
+                                <div class="col col-md-4">
+                                    <input type="text" class="form-control" id="name" name="agentName" onkeyup="cherche(this.value)" />
+                                </div>
+                                <div class="col col-md-2">Agent Code:</div>
+                                <div class="col col-md-3">
+                                    <input type="text" class="form-control" id="code" name="agentCode" onkeyup="cherche(this.value)" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="agentContent" style="width: 98%; max-height: 515px;">
+                            <table class="table table-agent-code" style="margin-bottom:0px">
+                                <thead>
+                                    <tr>
+                                        <th width="35%">Agent Code</th>
+                                        <th width="45%">Agent Name</th>
+                                        <th width="30%">Location City</th>
+                                    </tr>
+                                </thead>
+
+
+                            </table>
+                        </div>
+                        <div class="ajax-loader">
+                            <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+                        </div>
+                        <div class="autocomplete">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="background-color:rgba(135, 206, 235, 1) !important;">
+                    <div class="col-md-9 footer-agent-code">
+                        <div class="col-md-12">
+                            <label>Agent Name: </label>
+                            <label style="color:white;font-size:12px" id="agent-name-label"></label>
+                        </div>
+                        <div class="col-md-12">
+                            <label>Agent Code: </label>
+                            <label style="color:white; font-size:12px" id="agent-code-label"></label>
+                        </div>
+                        <input type="hidden" id="agent-city-label" value=""/>
+                    </div>
+                    <div class="col-md-3">
+                        <button type="button" class="Close btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="Close btn" data-dismiss="modal" id="select-name-code" onclick="selectPsd()">Select</button>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

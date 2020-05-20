@@ -1,0 +1,106 @@
+﻿<script src="~/Scripts/Process.js"></script>
+
+<div class="container-remuneration container-pax1" id="donne" style="background-color: rgb(117, 228, 252);height:93vh">
+    <div class="row">
+
+        <div class="col-sm-3">
+            <div class="col-sm-9" style="top: 16px;">
+                    <table style="border-spacing: 10px;border-collapse: separate;">
+                        <tr>
+                            <td><label class="form-check-label col-form-label">Mapped prime code:</label></td>
+                            <td>
+                                <select class="form-control" style="width: auto" id="presetCode" onchange="ActionFreeBaggage()" >
+                                    <option>-All-</option>
+                                    @for (int i = 0; i < ViewBag.logMapped; i++)
+                                    {
+                                        <option> @ViewBag.ItemMapped[0, i]</option>
+                                    }
+                                </select>
+                                <input type="hidden" name="valPresetCode" id="valPresetCode" value="@ViewBag.valPresetCode" class="form-control">
+                            </td>
+                        </tr>
+                    </table>
+
+                <fieldset class="test-fieldst" style="height:170px; width: 300px">
+                    <legend class="test-fieldst"> Unit & Allowance</legend>
+                  
+                    <table style="border-spacing: 10px;border-collapse: separate;">
+                        <tr>
+                            <td><label class="form-check-label col-form-label">Kilograms(K)</label></td>
+                            <td>
+                                <input type="number" class="form-control" id="kilograms" value="@ViewBag.K" onkeyup="changementK()" readonly />
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label class="form-check-label col-form-label">Pound(LB)</label></td>
+                            <td>
+                                <input type="number" class="form-control" id="pound"  value="@ViewBag.LB" onkeyup="changementLB()" readonly />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label class="form-check-label col-form-label">Piece(PC)</label></td>
+                            <td>
+                                <input type="number" class="form-control" id="piece" value="@ViewBag.txtPC" readonly/>
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+            </div>
+        </div>
+
+        <div class="col-sm-6" style="margin-top:200px">
+            <div class="col-sm-1" style="top:15px"><button class="btn-new green-tab" onclick="editPreset()">EDIT</button></div>
+            <div class="col-sm-1" style="top:15px"><button class="btn-new green-tab" onclick="ActionSaveFreeBaggage()" >SAVE</button></div>
+            <div class="col-sm-1" style="top:15px"><button class="btn-new green-tab" onclick="ActionCancel()">CANCEL</button></div>
+            <div class="col-sm-1" style="top:15px"><button class="btn-new green-tab" onclick="removeSousMenu()" style="margin-left:120px">CLOSE</button></div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-sm-10 n-padding" style="top: 28px;background-color: white;height: 450px;left: 22px;overflow: auto;">
+            <div class="ajax-loader">
+                <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+            </div>
+            <table id="TableExchanged" class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th class="green-tabprocess"> Doc Num</th>
+                        <th class="green-tabprocess">Cpn</th>
+                        <th class="green-tabprocess">Carrier</th>
+                        <th class="green-tabprocess">FareBasis</th>
+                        <th class="green-tabprocess">RBD</th>
+                        <th class="green-tabprocess">Mapped Prime Code</th>
+                        <th class="green-tabprocess">Free Baggage Allowance Qty</th>
+                        <th class="green-tabprocess">Unit</th>
+                        <th class="green-tabprocess">Allowance As Per Rule</th>
+                        <th class="green-tabprocess">Difference</th>
+                        <th class="green-tabprocess">Actual Weight Carrierd As Oer BSM/BTM</th>
+                        <th class="green-tabprocess">Is Excess Baggage Collected ?</th>
+                        <th class="green-tabprocess">EMD/EBT No</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < ViewBag.CpnCount; i++)
+                    {
+                        <tr data-url="@Url.Action("PAXTKTs","Sales")" ondblclick="ajout(this, 'PAXTKTs', 'Sales', 'PAX TKTs');clickLigneTransactionData(this, '@ViewBag.dgcoupons[0, i]','', '')">
+                            @for (int j = 0; j < 10; j++)
+                            {
+                                <td>@ViewBag.dgcoupons[j, i]</td>;
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row" style="position:relative;top:65px;">
+        <div class="col-sm-2"><span class="titre-text">Total No of Document </span></div>
+        <div class="col-sm-2"><input type="text" id="baggagedoc" class="form-control" disabled value="@ViewBag.DocCout"/></div>
+        <div class="col-sm-2"><span class="titre-text">Total No of Coupon </span></div>
+        <div class="col-sm-2"><input type="text" id="baggagecoupon" class="form-control" disabled value="@ViewBag.CpnCount"/></div>
+        <div class="col-sm-3"></div>
+    </div>
+</div>
+

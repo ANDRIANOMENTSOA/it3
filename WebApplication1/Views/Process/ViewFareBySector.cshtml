@@ -1,0 +1,139 @@
+﻿
+        <!-- Fare Query Joseph-->
+<div id="FareQueryNew" class="tab-pane fade in active">
+    <div class="col-sm-12 n-padding">
+        <div class="col-sm-10 n-padding" style="background-color:RGB(240,230,140); left:6px;border: 2px solid white;">
+            <div class="col-sm-11 n-padding" style="margin-top: 15px;margin-bottom: 13px;">
+                <div class="col-sm-5" style="background-color: #983f3f">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td><label style="color:white;width: 94px;">Sector From</label></td>
+                                <td style="width: 135px;">
+                                    <select class="form-control" id="sectorFrom">
+                                        <option></option>
+                                        @for (int i = 0; i < ViewBag.lon; i++)
+                                        {
+                                            <option>@ViewBag.ItemFrom[0, i]</option>
+                                        }
+                                    </select>
+                                    <input type="hidden" name="valFrom" id="valFrom" value="@ViewBag.sectorFrom" >
+                                </td>
+                                <td style="padding-left: 8px;"><label style="color:white;width: 94px;">Sector To</label></td>
+                                <td style="width: 135px;">
+                                    <select class="form-control" id="sectorTo" value="@ViewBag.sectorTo">
+                                        <option></option>
+                                        @for (int i = 0; i < ViewBag.lonTo; i++)
+                                        {
+                                            <option>@ViewBag.ItemTo[0, i]</option>
+                                        }
+                                    </select>
+                                    <input type="hidden" name="valTo" id="valTo" value="@ViewBag.sectorTo">
+                                </td>
+                                <td style="padding-left: 11px;"><button type="button" class="btn btn-default" style="color:blue" onclick="ViewFareBySector()">View Fare By Sector</button></td>
+                                <td style="padding-left: 11px;"><button type="button" class="btn btn-default" style="color:blue" onclick="ClearFareCompent()">Clear</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col-sm-10 n-padding" style="border:1px solid;height:250px;width: 84.7%; overflow: auto;">
+                <table  border=1  bordercolor=red>
+                    <thead style="background-color:#983f3f" >
+                        <tr style="text-align:center">
+                            <th style="color:white ;text-align:center">Fare Component</th>
+                            <th style="color:white ;text-align:center">NUC</th>
+                            <th style="color:white ;text-align:center">RULE</th>
+                            <th style="color:white ;text-align:center">MPM</th>
+                            <th style="color:white ;text-align:center">TMP</th>
+                            <th style="color:white ;text-align:center">Fare Basis</th>
+                            <th style="color:white ;text-align:center">OW/RT</th>
+                            <th style="color:white ;text-align:center">Currency Code</th>
+                            <th style="color:white ;text-align:center">Local Fare Currency</th>
+                            <th style="color:white ;text-align:center">Carrier</th>
+                            <th style="color:white ;text-align:center">Global Indicator</th>
+                            <th style="color:white ;text-align:center">RBD</th>
+                            <th style="color:white ;text-align:center">Sales Validity From</th>
+                            <th style="color:white ;text-align:center">Sales Validity To</th>
+                            <th style="color:white ;text-align:center">Flown Validity From</th>
+                            <th style="color:white ;text-align:center">Flown Validity To</th>
+                            <th style="color:white ;text-align:center">Prime Code</th>
+                            <th style="color:white ;text-align:center">Seasonal Code</th>
+                            <th style="color:white ;text-align:center">Part Of Week Code</th>
+                            <th style="color:white ;text-align:center">Part Of Day Code</th>
+                            <th style="color:white ;text-align:center">Fare & Passenger Type</th>
+                            <th style="color:white ;text-align:center">Fare Level Identifier</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < ViewBag.lonData; i++)
+                        {
+                            <tr>
+                                @for (int j = 0; j < 22; j++)
+                                {
+                                    <td>@ViewBag.data2[j, i]</td>;
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <input type="hidden"  value="@ViewBag.lonData">
+            </div>
+
+
+            <div class="col-sm-6 n-padding">
+                <div style="float:left;padding:6px">
+                    <button class="btn btn-default" type="button" style="color:blue" onclick="ViewFareEntries()">View Fare Entries</button>
+                    <button class="btn btn-default" type="button" style="color:blue"  onclick="FareByComponent()">Fare by Fare_Component</button>
+                    <button class="btn btn-default" type="button" style="color:blue"; onclick="ClearViewFare()">Clear</button>
+                </div>
+            </div>
+            <div class="col-sm-10 n-padding" style="border:1px solid;height:300px;width: 84.7%;margin-bottom:80px ;overflow: auto;">
+                <table border=1 bordercolor=red>
+                    <thead style="background-color:#983f3f">
+                        <tr style="text-align:center">
+                            <th style="color:white ;text-align:center">Fare Component</th>
+                            <th style="color:white ;text-align:center">NUC</th>
+                            <th style="color:white ;text-align:center">RULE</th>
+                            <th style="color:white ;text-align:center">MPM</th>
+                            <th style="color:white ;text-align:center">TMP</th>
+                            <th style="color:white ;text-align:center">Fare Basis</th>
+                            <th style="color:white ;text-align:center">OW/RT</th>
+                            <th style="color:white ;text-align:center">Currency Code</th>
+                            <th style="color:white ;text-align:center">Local Fare Currency</th>
+                            <th style="color:white ;text-align:center">Carrier</th>
+                            <th style="color:white ;text-align:center">Global Indicator</th>
+                            <th style="color:white ;text-align:center">RBD</th>
+                            <th style="color:white ;text-align:center">Sales Validity From</th>
+                            <th style="color:white ;text-align:center">Sales Validity To</th>
+                            <th style="color:white ;text-align:center">Flown Validity From</th>
+                            <th style="color:white ;text-align:center">Flown Validity To</th>
+                            <th style="color:white ;text-align:center">Prime Code</th>
+                            <th style="color:white ;text-align:center">Seasonal Code</th>
+                            <th style="color:white ;text-align:center">Part Of Week Code</th>
+                            <th style="color:white ;text-align:center">Part Of Day Code</th>
+                            <th style="color:white ;text-align:center">Fare & Passenger Type</th>
+                            <th style="color:white ;text-align:center">Fare Level Identifier</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < ViewBag.lonDataView; i++)
+                        {
+                            <tr>
+                                @for (int j = 0; j < 22; j++)
+                                {
+                                    <td>@ViewBag.dataView[j, i]</td>;
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" name="IdFareComp" id="IdFareComp" value="@ViewBag.IdFareComp">
+    <input type="hidden" name="IdViewFare" id="IdViewFare" value="@ViewBag.IdViewFare">
+</div>
+
+<!-- End  Fare Query Joseph-->

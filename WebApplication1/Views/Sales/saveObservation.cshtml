@@ -1,0 +1,28 @@
+﻿@using System.Data
+@model DataSet
+<label class="xbin">XBIN</label>
+<table class="table table-striped table-bordered tableObservation">
+    <thead>
+        <tr>
+            <th class="pink">DATE</th>
+            <th class="pink">USER</th>
+            <th class="pink">SUBJECT</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ string recId, date, subject, obs, hdrguid;}
+        @foreach (DataRow dr in Model.Tables[0].Rows)
+        {
+            date = !string.IsNullOrEmpty(@dr[Model.Tables[0].Columns[2].ColumnName].ToString()) ? @dr[Model.Tables[0].Columns[2].ColumnName].ToString() : "null";
+            subject = !string.IsNullOrEmpty(@dr[Model.Tables[0].Columns[4].ColumnName].ToString()) ? @dr[Model.Tables[0].Columns[4].ColumnName].ToString() : "null";
+            obs = !string.IsNullOrEmpty(@dr[Model.Tables[0].Columns[3].ColumnName].ToString()) ? @dr[Model.Tables[0].Columns[3].ColumnName].ToString() : "null";
+            hdrguid = !string.IsNullOrEmpty(@dr[Model.Tables[0].Columns[0].ColumnName].ToString()) ? @dr[Model.Tables[0].Columns[0].ColumnName].ToString() : "null";
+            recId = !string.IsNullOrEmpty(@dr[Model.Tables[0].Columns[6].ColumnName].ToString()) ? @dr[Model.Tables[0].Columns[6].ColumnName].ToString() : "null";
+            <tr onclick="openModalObservation('@date', '@subject','@obs','@hdrguid','@recId')" style="cursor:pointer">
+                <td>@dr[Model.Tables[0].Columns[2].ColumnName].ToString()</td>
+                <td>User</td>
+                <td>@dr[Model.Tables[0].Columns[4].ColumnName].ToString()</td>
+            </tr>
+        }
+    </tbody>
+</table>

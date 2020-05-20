@@ -1,0 +1,102 @@
+﻿@using System.Data
+@model DataSet
+
+<div class="ajax-loader">
+    <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+</div>
+<div class="col-sm-11" style="margin-top:40px">
+
+    <div class="col-sm-8">
+        <div class="table-record-display" style="height:545px;overflow:auto">
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th class="pink">Related Doc No</th>
+                        <th class="pink">CPN</th>
+                        <th class="pink">Origin Airp</th>
+                        <th class="pink">Dest Airp</th>
+                        <th class="pink">Carrier</th>
+                        <th class="pink">Filgth No</th>
+                        <th class="pink">Flight Date</th>
+                        <th class="pink">PM</th>
+                        <th class="pink">Final Share</th>
+                        <th class="pink">Status</th>
+
+                    </tr>
+                </thead>
+                <tbody id="tload">
+                    @foreach (DataRow dr in Model.Tables[0].Rows)
+                    {
+                        <tr ondblclick="loadDocNum(this,'@dr[Model.Tables[0].Columns[0].ColumnName].ToString()','TKTT')">
+                            @for (int i = 0; i < Model.Tables[0].Columns.Count; i++)
+                            {
+                                <td>@dr[Model.Tables[0].Columns[i].ColumnName].ToString()</td>;
+                            }
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+    <div class="col-sm-3" style="margin-top: 0px;">
+        <div class="table-record-display" style="height:245px;overflow:auto">
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th class="pink">No Of Documents</th>
+                        <th class="pink">Carrier</th>
+                        <th class="pink">Ttal</th>
+
+                    </tr>
+                </thead>
+                <tbody id="tload1">
+                    @for (int j = 0; j < ViewBag.comp1; j++)
+                    {
+                        if (ViewBag.dgsummary[0, j] == "")
+                        {
+                            j = j + 1;
+                        }
+                        else
+                        {
+                            <tr>
+                                @for (int i = 0; i < 3; i++)
+                                {
+                                    <td>@ViewBag.dgsummary[i, j] </td>;
+                                }
+                            </tr>
+                        }
+
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="content-cancellation col-sm-12">
+    <div class="col-sm-6">
+        <fieldset class="test-fieldst">
+            <legend class="test-fieldst">SUMMARY</legend>
+            <div class="col-sm-6 width-group">
+                <label class="form-check-label col-form-label col-sm-6 n-padding fromTo">Total Number Of Documents:</label>
+                <div class="col-sm-6 n-padding">
+                    <div class="input-group">
+                        <input type="text" class="form-control" value="@ViewBag.compt" id="compt"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6" style="margin-bottom: 19px;">
+                <label class="form-check-label col-form-label col-sm-6 n-padding fromTo">Total Amounts:</label>
+                <div class="col-sm-6 n-padding">
+                    <div class="input-group">
+                        <input type="text" class="form-control" value="@ViewBag.TAmount" id="total"/>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+<input type="hidden" id="comptu" value="@ViewBag.mes" />

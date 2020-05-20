@@ -1,0 +1,1420 @@
+﻿<div class="top-process">
+    <h3>Process & Enquiry</h3>
+</div>
+
+
+
+<div class="container-sales">
+    <div class="engines"><b>Engines</b></div>
+    <div class="middle-process">
+        <button class="process-button1" data-url="@Url.Action("Proration","Process")" onclick="ajout(this, 'Proration', 'Process', 'Proration')">Proration</button>
+        <button class="process-button1" data-url="@Url.Action("SPAManagement", "Process")" onclick="ajout(this,'SPAEngine', 'Interline', 'SPA Engine')">SPA</button>
+        <button class="process-button1" data-url="@Url.Action("OutwardBillingManual","Process")" onclick="ajout(this, 'OutwardBillingManual', 'Process', 'Outward Billing Manual'); tableBillingManual()">Outward Billing Manual</button>
+        
+        <button class="process-button1" data-url="@Url.Action("OUTWARDBILLING", "Lift")" onclick="ajout(this,'OUTWARDBILLING','Lift','OUTWARD BILLING')">Outward Billing Automated</button>
+        <button class="process-button1" data-url="@Url.Action("InterlineBilling","Interline")" onclick="ajout(this,'InterlineBilling','Interline','Interline:Billing')"> Inward Billing</button>
+        <button class="process-button1" data-toggle="modal" data-target="#ManualTicketEntry">Manual Ticket Entry</button>
+        <button class="process-button1" data-url="@Url.Action("PassengerNameList","Process")" onclick="ajout(this, 'PassengerNameList', 'Process', 'Passenger Name List Engine')">Passenger Name List</button>
+        <button class="process-button1" data-url="@Url.Action("DataSplitManagment", "Process")" onclick="ajout(this, 'DataSplitManagment', 'Process', 'Data Split Managment')">Data Split Management</button>
+        <button class="process-button1" data-url="@Url.Action("BankersRate","Process")" onclick="ajout(this, 'BankersRate', 'Process', 'Bankers Rate (XML)')">Bankers Rate</button>
+
+        <button class="process-button1" data-url="@Url.Action("TFC","Process")" onclick="ajout(this, 'TFC', 'Process', 'TFC ENGINE')">TFC</button>
+        <button class="process-button1" data-url="@Url.Action("FrmRefundEngine","Sales")" onclick="ajout(this,'FrmRefundEngine', 'Sales', 'FrmRefundEngine')">Refund</button>
+        <button class="process-button1" data-toggle="modal" data-target="#ExcessBaggage">Manual Excess Baggage Entry</button>
+    </div>
+    <div class="queries"><b>Queries</b></div>
+    <div class="queries-process">
+        <button class="process-button2" data-url="@Url.Action("TransactionInANutshell","Process")" onclick="ajout(this, 'TransactionInANutshell', 'Process', 'Transaction In A Nutshell')" >Transaction In A Nutshell</button>
+       
+         <button class="process-button2" data-url="@Url.Action("FreeAndReduced","Process")" onclick="ajout(this, 'FreeAndReduced', 'Process', 'Free And Reduced Rate Discount/Rebate Travel')">Free And Reduced Rate Discount/Rebate Travel</button>
+
+        <button class="process-button2" data-url="@Url.Action("FinalSharevsAmountCollected","Process")" onclick="ajout(this, 'FinalSharevsAmountCollected', 'Process', 'Final Share vs Amount Collected')">Final Share vs Amount Collected</button>
+        <button class="process-button2" data-url="@Url.Action("PassengerAgencyDetails","Sales")" onclick="ajout(this,'PassengerAgencyDetails', 'Sales', 'Passenger Agency Details')"> Passenger Agency Management</button>
+        <button class="process-button2" data-url="@Url.Action("ExpectedEIROFR","Sales")" onclick="ajout(this,'ExpectedEIROFR', 'Sales', 'Expected-EIR OFR')">
+            Expected Interline & Flown Revenue
+        </button>
+        <button class="process-button2" data-url="@Url.Action("SalesDataUploadSummary","Process")" onclick="ajout(this, 'SalesDataUploadSummary', 'Process', 'Sales Data Upload Summary')">Sales Upload By FOP</button>
+        <button class="process-button2" data-url="@Url.Action("Discrepency","Process")" onclick="ajout(this, 'Discrepency', 'Process', 'Discrepancy Analytics')">Discrepancy Analytics</button>
+        <button class="process-button2" data-url="@Url.Action("SectorValueControl","Process")" onclick="ajout(this, 'SectorValueControl', 'Process', 'Sector Value Control')">Sector Value Control</button>
+        <button class="process-button2" data-url="@Url.Action("FileUploadStatus","Process")" onclick="ajout(this, 'FileUploadStatus', 'Process', 'File Upload Status')">File Upload Status</button>
+        <button class="process-button2" data-url="@Url.Action("FinalShareValidation","Process")" onclick="ajout(this, 'FinalShareValidation', 'Process', 'Final Share Validation')">Final Share Check</button>
+        <button class="process-button2" data-url="@Url.Action("PassengerLift","Lift")" onclick="ajout(this,'PassengerLift', 'Lift', 'Passenger Lift')">Passenger flown Report</button>
+        <button class="process-button2" data-url="@Url.Action("LiftedCoupons","Process")" onclick="ajout(this, 'LiftedCoupons', 'Process', 'Lifted Coupons Validations')">Lifted Coupons Validations</button>
+
+        <button class="process-button2" data-url="@Url.Action("InvolontaryReroute","Process")" onclick="ajout(this, 'InvolontaryReroute', 'Process', 'Involontary Reroute')">Involontary Reroute</button>
+        <button class="process-button2" data-url="@Url.Action("TotalAmountPSR","Sales")" onclick="ajout(this,'TotalAmountPSR', 'Sales', 'Total Amount PSR')">Passenger Sales report</button>
+        <button class="process-button2" data-url="@Url.Action("CreditCardManagement","Process")" onclick="ajout(this, 'CreditCardManagement', 'Process', 'Credit Card Management')">Credit Card Management</button>
+        <button class="process-button2" data-url="@Url.Action("ProrationExceptionViewer","Process")" onclick="ajout(this, 'ProrationExceptionViewer', 'Process', 'Proration Exception Viewer')">Proration Exception Viewer</button>
+        <button class="process-button2" data-url="@Url.Action("SpecialPurpose","Process")" onclick="ajout(this, 'SpecialPurpose', 'Process', 'Special Purpose Code')">Special Purpose Code</button>
+
+        <button class="process-button2" data-url="@Url.Action("UsageDateBookingDate","Process")" onclick="ajout(this, 'UsageDateBookingDate', 'Process', 'Usage Date vs Booking_MD')">Usage Date v/s Booking Date</button>
+        <button class="process-button2" data-url="@Url.Action("PricingManagement","Process")" onclick="ajout(this, 'PricingManagement', 'Process', 'Pricing Management')">Pricing Management</button>
+        <button class="process-button2" data-url="@Url.Action("FareTFCSurchargesTracking","Process")" onclick="ajout(this, 'DataSplitManagement', 'Process', 'Fare/TFC/Surcharges Tracking')">Fare TFC & Surcharges Tracking </button>
+        <button class="process-button2" data-url="@Url.Action("POSSummary","Process")" onclick="ajout(this, 'POSSummary', 'Process', 'POS Summary')">POS Summary</button>
+
+        <button class="process-button2" data-url="@Url.Action("RevenueAnalysis","Process")" onclick="ajout(this, 'RevenueAnalysis', 'Process', 'Revenue Analysis')">Revenue Analysis</button>
+        <button class="process-button2" data-url="@Url.Action("CouponUsage","Process")" onclick="ajout(this, 'CouponUsage', 'Process', 'Coupon Usage Discrepancy')">Coupon Usage Discrepancy</button>
+        <button class="process-button2" data-url="@Url.Action("EMDTransactionScreen","Process")" onclick="ajout(this, 'EMDTransactionScreen', 'Process', 'EMD Transaction Screen')">EMD Transaction Screen</button>
+        <button class="process-button2" data-url="@Url.Action("DiscountUncollected","Process")" onclick="ajout(this, 'DiscountUncollected', 'Process', 'Discount/Uncollected Fare')">Discount Uncollected</button>
+
+        <button class="process-button2" data-url="@Url.Action("DuplicateUtilisation","Process")" onclick="ajout(this, 'DuplicateUtilisation', 'Process', 'Duplicate Utilisation')">Duplicate Utilisation</button>
+        <button class="process-button2">View Lift Info</button>
+        <button class="process-button2" data-url="@Url.Action("ManualTicketList","Process")" onclick="ajout(this, 'ManualTicketList', 'Process', 'Manual Ticket List')">Manual Ticket List</button>
+        <button class="process-button2" data-url="@Url.Action("RoutingChange","Process")" onclick="ajout(this, 'RoutingChange', 'Process', 'Routing Change')">Routing Change</button>
+
+    </div>
+    <div class="process"><b>Process</b></div>
+    <div class="process1">
+        <button class="process-button3" data-url="@Url.Action("ExcessBaggageProration","Process")" onclick="ajout(this, 'ExcessBaggageProration', 'Process', 'Excess Baggage Proration')">Excess Baggage Proration</button>
+        <button class="process-button3" data-toggle="modal" data-target="#processFacsmile">Generate Facsimile</button>
+        <button class="process-button3" data-url="@Url.Action("Correspondence","Interline")" onclick="ajout(this,'Correspondence', 'Interline', 'Correspondence')"> Correspondences</button>
+        <button class="process-button3">Correspondences</button>
+        <button class="process-button3" data-url="@Url.Action("Provisio","Process")" onclick="ajout(this, 'provisio', 'Process', 'PROVISIO IMPORT')">Proviso</button>
+        <button class="process-button3" data-url="@Url.Action("ExcessBilling","Process")" onclick="ajout(this, 'ExcessBilling', 'Process', 'Billing Memo Manual Entry')">Excess Billing Memo</button>
+
+    </div>
+    <div class="audit"><b>Audit</b></div>
+    <div class="audit-process">
+        <button class="process-button4" data-url="@Url.Action("ATDA","Process")" onclick="ajout(this, 'ATDA', 'Process', 'ATDA')">ATDA</button>
+        <button class="process-button4" data-url="@Url.Action("RefundAudit","Process")" onclick="ajout(this, 'RefundAudit', 'Process', 'Refund Audit')">Refund</button>
+        <button class="process-button4" data-url="@Url.Action("FareAuditEngine","Process")" onclick="ajout(this, 'FareAuditEngine', 'Process', 'Fare Audit Engine')">Fare</button>
+        <button class="process-button4" data-url="@Url.Action("Commission","Process")" onclick="ajout(this, 'Commission', 'Process', 'Commission Adit')">Commission</button>
+
+        <button class="process-button4" data-url="@Url.Action("DiscountAudit","Process")" onclick="ajout(this, 'DiscountAudit', 'Process', 'Discount Audit')">Discount</button>
+        <button class="process-button4" data-url="@Url.Action("FreeBaggageAllowanceAudit","Process")" onclick="ajout(this, 'FreeBaggageAllowanceAudit', 'Process', 'Free Baggage Allowance Audit')">Free Baggage Allowance</button>
+    </div>
+
+    <div id="ManualTicketEntry" class="modal fade" role="dialog">
+        <fieldset class="test-fieldst">
+            <div class="modal-dialog" style="width:1507px!important;position: relative;top: 62px;left: 95px;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="myModalLabel">FrmTicketDiscrepancy</h5>
+                        <button type="button" class="close" style="position: relative; top: 1px;" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body container-duplicatecontainer-pax1" style="background-color: rgb(117, 228, 252);width:1495px!important;height:820px;">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="col-lg-7">
+                                    <input type="text" class="form-control" id="_xtcdoc" value=""/>
+                                </div>
+                                <div class="col-lg-5">
+                                    <input type="button" class="btn" value="SEARCH" onclick="btnSearch_ClickManualTicketEntry()">
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="col-lg-7">
+                                </div>
+                                <div class="col-lg-4">
+                                    <input type="button" class="btn" data-dismiss="modal" value="Close Transaction">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="" id="part">
+                            <fieldset class="test-fieldst">
+                                <legend class="test-fieldst">Ticket Information</legend>
+                                <div class="row">
+                                    <div class="table-bordered" id="part1">
+                                        <div class="col-lg-8 table-bordered">
+                                            <div class="row">
+                                                <div class="col-lg-10">
+                                                    <div class="col-lg-4">
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <div class="col-lg-8">
+                                                                    <label class="form-check-label col-form-label">TICKET NUMBER</label>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <label class="form-check-label col-form-label">CK</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <div style="width:50px">
+                                                                    <input type="text" class="form-control" style="width:100% !important;text-align:center" value="" id="txtDocumentCarrier"/>
+                                                                </div>
+                                                                <div style="width:150px">
+                                                                    <input type="text" class="form-control" style="width:100% !important;text-align:center;margin-left:52px;margin-top:-30px" value="" id="txtDocumentNumber"/>
+                                                                </div>
+                                                                <div style="width:50px">
+                                                                    <input type="text" class="form-control" style="width:100% !important;text-align:center;margin-left:204px;margin-top:-30px" value="" id="txtChkDgt"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-8">
+                                                        <div class="row">
+                                                            <div class="col-lg-8">
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <label class="form-check-label col-form-label" style="text-align: center">PASSENGER TICKET AND BAGGAGE CHECK</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-8">
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <label class="form-check-label col-form-label" style="text-align: center; font-size: 20px;">AUDIT & FLIGHT DETAIL</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row table-bordered">
+                                                            <div class="col-lg-3 table-bordered">
+                                                                <label class="form-check-label col-form-label">VENDOR IDENTIFIER</label>
+                                                                <input type="text" class="form-control" value="" id="txtVendorIdentifier" onchange="CharacterCasing18()"/>
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <label class="form-check-label col-form-label">REPORTING SYSTEM IDENTIFIER</label>
+                                                                <input type="text" class="form-control" value="" id="txtReportingSystemIdentifier"/>
+                                                            </div>
+                                                            <div class="col-lg-2 table-bordered">
+                                                                <label class="form-check-label col-form-label">CPUI</label>
+                                                                <input type="text" class="form-control" value="" id="txtCPUI"/>
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <label class="form-check-label col-form-label">TOUR CODE</label>
+                                                                <input type="text" class="form-control" value="" id="txtTourCode" onchange="CharacterCasing2(this.value)"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-2 table-bordered">
+                                                    <div class="row">
+                                                        <label class="form-check-label col-form-label">ORIGIN/DESTINATION</label>
+                                                        <input type="text" class="form-control" value="" id="txtOrgDest"/>
+                                                    </div>
+                                                    <div class="row table-bordered">
+                                                        <label class="form-check-label col-form-label">PNR</label>
+                                                        <input type="text" class="form-control" value="" id="txtPNR2" onchange="CharacterCasing16(this.value)"/>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <label class="form-check-label col-form-label">ORIGIN ISSUE DOC NO</label>
+                                                        </div>
+                                                        <div class="col-lg-12">
+                                                            <div class="col-lg-9">
+                                                                <input type="text" class="form-control" value="" id="issuedInExcLinkLabel"/>
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                               <!--<input type="button" class="btn" value="1152120191109" id="txtIssuedInExchangeFor" style="width:5px;"/>--> 
+                                                               <input type="button" class="btn" value="..." id="txtIssuedInExchangeFor" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row table-bordered">
+                                                <div class="col-lg-12">
+                                                    <div class="col-lg-7 table-bordered">
+                                                        <label class="form-check-label col-form-label">NAME OF PASSENGER</label>
+                                                        <input type="text" class="form-control" value="" id="txtPassengerNam"/>
+                                                    </div>
+                                                    <div class="col-lg-5 ">
+                                                        <div class="col-lg-5">
+                                                            <label class="form-check-label col-form-label">Transaction Code</label>
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <input type="text" class="form-control" value="TKTM" id="txttransactioncode"/>
+                                                        </div>
+                                                        <div class="col-lg-2">
+                                                            <label class="form-check-label col-form-label">FCMI</label>
+                                                        </div>
+                                                        <div class="col-lg-2">
+                                                            <input type="text" class="form-control" value="" id="txtFcmi"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="row">
+                                                <div class="col-lg-5">
+                                                    <label class="form-check-label col-form-label">Issue Date:</label>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="input-group date">
+                                                        <input type="text" name="FromManuelTicketScreen" class="form-controls input-date" id="FromManuelTicketScreen" value=""/>
+                                                        <span class="input-group-addon datetimepicker" onclick="setdate('FromManuelTicketScreen')" id="dtpIssDoc">
+                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-5">
+                                                    <label class="form-check-label col-form-label">Agent Numeric Code</label>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <input type="text" class="form-control" value=" " id="txtCustomerCode"/>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-5">
+                                                        <label class="form-check-label col-form-label">Booking Agent Id.</label>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <input type="text" class="form-control" value="" id="txtBookingAgentID" onchange="CharacterCasing17(this.value)"/>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-5">
+                                                        <label class="form-check-label col-form-label">Ticketing Agent Id.</label>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <input type="text" class="form-control" value="" id="txtTicketingAgentId" />
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-5">
+                                                        <label class="form-check-label col-form-label">Endorsement/Restrictions</label>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <textarea rows="4" style="width: 90%;" id="txtEndorsementArea" onchange="CharacterCasing1(this.value)"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="table-record-display col-lg-12" id="divdbgCPNlist" style="height:130px;overflow:auto;position: relative;">
+                                        <div class="ajax-loader">
+                                            <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+                                        </div>
+                                        <table class="table table-bordered table-striped table-hover" id="dbgCPNlist">
+                                            <thead>
+                                                <tr>
+                                                    <!--<th class="pink" id="test"></th>-->
+                                                    <th class="pink">CPN</th>
+                                                    <th class="pink">X/O</th>
+                                                    <th class="pink">GFPA</th>
+                                                    <th class="pink">CARRIER</th>
+                                                    <th class="pink">FLIGTH</th>
+                                                    <th class="pink">CLASS</th>
+                                                    <th class="pink">DATE</th>
+                                                    <th class="pink">TIME</th>
+                                                    <th class="pink">STATUS</th>
+                                                    <th class="pink">FARE BASIS</th>
+                                                    <th class="pink">NO VALID BEFORE</th>
+                                                    <th class="pink">NO VALID AFTER</th>
+                                                    <th class="pink">BAGGAGE ALLOWANCE</th>
+                                                    <th class="pink">BOOKING STATUS</th>
+                                                    <th class="pink">RBD</th>
+                                                    <th class="pink">USAGE SECTOR</th>
+                                                    <th class="pink">USAGE AIRLINE</th>
+                                                    <th class="pink">USAGE FLIGHT NO.</th>
+                                                    <th class="pink">USAGE DATE</th>
+                                                    <th class="pink">FFP</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class=""></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-5">
+                                        <div class="col-lg-1">
+                                            <label class="form-check-label col-form-label">X/O</label>
+                                            <input type="text" class="form-control" value="" id="cboXO"/>
+                                        </div>
+                                        <div class="col-lg-1">
+                                            <label class="form-check-label col-form-label">From</label>
+                                            <input type="text" class="form-control" value="" id="txtFrom" onchange="CharacterCasing3(this.value)"/>
+                                        </div>
+                                        <div class="col-lg-1">
+                                            <label class="form-check-label col-form-label">To</label>
+                                            <input type="text" class="form-control" value="" id="txtTo" onchange="CharacterCasing4(this.value)"/>
+                                        </div>
+                                        <div class="col-lg-1">
+                                            <label class="form-check-label col-form-label">Carrier</label>
+                                            <input type="text" class="form-control" value="" id="txtCarrier" onchange="CharacterCasing5(this.value)"/>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <label class="form-check-label col-form-label">Flight</label>
+                                            <input type="text" class="form-control" value="" id="txtFltNo"/>
+                                        </div>
+                                        <div class="col-lg-1">
+                                            <label class="form-check-label col-form-label">Class</label>
+                                            <input type="text" class="form-control" value="" id="txtClass" onchange="CharacterCasing6(this.value)"/>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label class="form-check-label col-form-label">Date</label>
+                                            <div class="input-group date">
+                                                <input type='text' name="dtpdate" class="form-controls input-date input-datetimepicker" value="" id="dtpdate" readonly />
+                                                <span class="input-group-addon datetimepicker" onclick="setdate('dtpdate')">
+                                                    <span class="glyphicon glyphicon-calendar" id="calendarPaxTo"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-1">
+                                            <label class="form-check-label col-form-label">Time</label>
+                                            <input type="text" class="form-control" value="" id="txtTime"/>
+                                        </div>
+                                        <div class="col-lg-1">
+                                            <label class="form-check-label col-form-label">Status</label>
+                                            <input type="text" class="form-control" value="" id="txtStatus" onchange="CharacterCasing7(this.value)"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="col-lg-1">
+                                            <label class="form-check-label col-form-label">FareBasis</label>
+                                            <input type="text" class="form-control" value="" id="txtFareBasis" onchange="CharacterCasing8(this.value)"/>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label class="form-check-label col-form-label">Not Valid Before</label>
+                                            <div class="col-sm-12">
+                                                <div class="input-group date">
+                                                    <span class="input-group-addon check-dape"><input type="checkbox" name="NotValidBefordate" value="true" id="NotValidBefordate" onclick="uncheked('NotValidBefordate', 'dtpIssueDateTo1Noshow', 'datedtpIssueDateFrom1Noshow', 'datedtpIssueDateTo1')" checked></span>
+                                                    <input type="text" name="dateNotValidBefore" class="form-controls input-date" id="dateNotValidBefore" readonly value=""/>
+                                                    <span class="input-group-addon datetimepicker" onclick="setdate1('dateNotValidBefore', 'NotValidBefordate', 'dtpIssueDateTo1Noshow')">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label class="form-check-label col-form-label">Not Valid After</label>
+                                            <div class="col-sm-12">
+                                                <div class="input-group date">
+                                                    <span class="input-group-addon check-dape"><input type="checkbox" name="dtpIssueDateTo1Noshow" value="true" id="dtpIssueDateTo1Noshow" onclick="uncheked1('NotValidBefordate', 'dtpIssueDateTo1Noshow', 'datedtpIssueDateFrom1Noshow', 'datedtpIssueDateTo1Nowshow')" checked></span>
+                                                    <input type='text' name="NotValidAfterdate" class="form-controls input-date input-datetimepicker" id="NotValidAfterdate" value="" readonly />
+                                                    <span class="input-group-addon datetimepicker" onclick="setdate1('NotValidAfterdate', 'NotValidBefordate', 'dtpIssueDateTo1Noshow')">
+                                                        <span class="glyphicon glyphicon-calendar" id="calendarPaxTo1"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <label class="form-check-label col-form-label">Bagg.Allowance</label>
+                                            <input type="text" class="form-control" value="" id="txtBagAllowance" onchange="CharacterCasing9(this.value)"/>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <label class="form-check-label col-form-label">Booking Status</label>
+                                            <input type="text" class="form-control" value="" id="txtBookingStatus" onchange="CharacterCasing10(this.value)"/>
+                                        </div>
+                                        <div class="col-lg-1">
+                                            <label class="form-check-label col-form-label">RBD</label>
+                                            <input type="text" class="form-control" value="" id="txtRBD" onchange="CharacterCasing11(this.value)"/>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="col-lg-2">
+                                            <label class="form-check-label col-form-label">USAGE From</label>
+                                            <input type="text" class="form-control" value="" id="txtUsageFrom" onchange="CharacterCasing14(this.value)"/>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <label class="form-check-label col-form-label">Usage To</label>
+                                            <input type="text" class="form-control" value="" id="txtUsageTo" onchange="CharacterCasing15(this.value)"/>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <label class="form-check-label col-form-label">Usage Airline</label>
+                                            <input type="text" class="form-control" value="" id="txtUsageAirline" onchange="CharacterCasing13(this.value)"/>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <label class="form-check-label col-form-label">Usage Flt.No. </label>
+                                            <input type="text" class="form-control" value="" id="txtUsageFlightNo"/>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label class="form-check-label col-form-label">Usage Date</label>
+                                            <div class="input-group date">
+                                               <!-- <span class="input-group-addon check-dape"><input type="checkbox" name="UsageDateManuel" value="oui" id="UsageDateManuel" onclick="uncheked1('UsageDateManuel', 'UsageDateManuel1', '', '')"></span>
+                                                <input type='text' name="UsageDateManuel1" class="form-controls input-date input-datetimepicker" id="UsageDateManuel1" value="" readonly />
+                                                <span class="input-group-addon datetimepicker" onclick="setdate1('UsageDateManuel', 'UsageDateManuel1', '')">
+                                                    <span class="glyphicon glyphicon-calendar" id="calendarPaxTo1"></span>
+                                                </span>-->
+                                                <span class="input-group-addon check-dape"><input type="checkbox" name="UsageDateManuel" value="oui" id="UsageDateManuel" checked></span>
+                                                <input type='text' name="UsageDateManuel1" class="form-controls input-date input-datetimepicker" id="UsageDateManuel1" value="" readonly />
+                                                <span class="input-group-addon datetimepicker" onclick="setdate('UsageDateManuel1')">
+                                                    <span class="glyphicon glyphicon-calendar" id="calendarPaxTo1"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-1">
+                                            <label class="form-check-label col-form-label">FFP</label>
+                                            <input type="text" class="form-control" value="" id="txtFFP" onchange="CharacterCasing12(this.value)"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="col-lg-8">
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <input type="button" class="btn" value="Add" id="btnAdd" onclick="btnAdd_Clickticketentry()"/>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <input type="button" class="btn" value="Clear" onclick="clearCpn()"/>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row table-bordered">
+                                    <div class="col-lg-3 table-bordered">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <label class="form-check-label col-form-label">FARE</label>
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <input type="text" class="form-control" value="" id="txtFareCurrency"/>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control" value="" id="txtFareAmount"/>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <label class="form-check-label col-form-label">EQUIV FARE PD</label>
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <input type="text" class="form-control" value="" id="txtFarePaidCur"/>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control" value="" id="txtFarePaidAmt"/>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <label class="form-check-label col-form-label">TOTAL AMOUNT</label>
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <input type="text" class="form-control" value="" id="txtTotalamtcur"/>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control" value="" id="txtTotalamt"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-9">
+                                        <div class="row">
+                                            <label class="form-check-label col-form-label">Fare calcule Area</label>
+                                        </div>
+                                        <div class="row" id="divtxtFareComponent">
+                                            <input class="table-record-display col-lg-11" id="txtFareComponent" style="height:60px;overflow:auto;position: relative;left:0px;" onchange="CharacterCasing(this.value)"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-5">
+                                        <label class="form-check-label col-form-label">MANUAL ENTRY FOR OTHER AMOUNT</label>
+                                        <div class="table-record-display" id="divdgother" style="height:110px;overflow:auto;">
+                                            <div class="ajax-loader">
+                                                <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+                                            </div>
+                                            <table class="table table-bordered table-striped table-hover" id="dgother">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="green-tab">Document Amount Type</th>
+                                                        <th class="green-tab">TFC Code</th>
+                                                        <th class="green-tab">Amount</th>
+                                                        <th class="green-tab">Rate</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="loadTFC">
+                                                    <tr>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label class="form-check-label col-form-label">MANUAL ENTRY FOR PAYEMENTS</label>
+                                        <div class="table-record-display" id="divdgpayment" style="height:110px;overflow:auto;">
+                                            <div class="ajax-loader">
+                                                <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+                                            </div>
+                                            <table class="table table-bordered table-striped table-hover" id="dgpayment">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="green-tab">Amount Collected</th>
+                                                        <th class="green-tab">FOP</th>
+                                                        <th class="green-tab">Amount Remitted</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="loadTFC">
+                                                    <tr>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <label class="form-check-label col-form-label">MULTIPLE ORIGINAL DOCUMENTS</label>
+                                        <div class="table-record-display" id="divdgOriDoc" style="height:110px;overflow:auto;">
+                                            <div class="ajax-loader">
+                                                <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+                                            </div>
+                                            <table class="table table-bordered table-striped table-hover" id="dgOriDoc">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="green-tab">Original Issued Doc No</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="loadTFC">
+                                                    <tr>
+                                                        <td></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-1"></div>
+                                    <div class="col-lg-1" style="padding: 26px;border: 1px solid #bbb;background: #F4F4F4;color: #777;box-shadow: 0 0 0 16px #fff inset,0 0 0 17px #DAD4D4 inset;position: relative;left: -25px;">
+                                        <input type="button" class="btn btn-default btn-intBilling" value="NEW"  id="btnnew" onclick="newFrmTicketDiscrepancy()"/>
+                                        <input type="button" class="btn btn-default btn-intBilling" value="EDIT" id="btnEdit" onclick="EditFrmTicketDiscrepancy()"/>
+                                        <input type="button" class="btn btn-default btn-intBilling" value="SAVE" id="btnSave" onclick="SaveFrmTicketDiscrepancy()"/>
+                                        <input type="button" class="btn btn-default btn-intBilling" value="CLEAR" id="btnClear" onclick="btnClear_ClickFrmTicketDiscrepancy()" />
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+                </fildset>
+                <div id="OrgDetails" style="visibility:visible">
+                    <table id="tableOrgDetails">
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+    
+            </div>
+
+
+</div>
+<div id="ExcessBaggage" class="modal fade" role="dialog">
+    <div class="modal-dialog" style="position:relative;z-index:1500;top:55px;">
+        <div class="modal-content" style="height:585px;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myLabel">Excess Baggage Manual Entry</h5>
+                <button type="button" class="close close-agent-code" data-dismiss="modal">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="container-duplicatecontainer-pax1" style="background-color: rgb(117, 228, 252);top:0px;height:519px;">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="row content-excess">
+
+                                <div class="col-sm-12" style="left:-12px;">
+                                    <span class="titre-text">PASSENGER TICKET NUMBER</span>
+                                </div>
+                                <div class="col-sm-12"><input type="text" class="myForm" id="ticketNumber" readonly style="margin-bottom:5px;" value="40"/></div>
+
+
+                            </div>
+                            <div class="row content-excess">
+
+                                <div class="row">
+                                    <div class="col-sm-6" style="left:6px; top:6px;"><span class="titre-text">IN CONJONCTION WITH</span></div>
+                                    <div class="col-sm-6"><input type="text" class="myForm" id="conjonction" readonly value="41"/></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6" style="left:6px; top:6px;"><span class="titre-text">IN EXCHANGER FOR</span></div>
+                                    <div class="col-sm-6"><input type="text" class="myForm" id="exchanger" readonly style="margin-bottom:5px;" value="42"/></div>
+                                </div>
+
+
+                            </div>
+                            <div class="row content-excess">
+                                <div class="row">
+                                    <div class="col-sm-6" style="top:6px; left:6px"><span class="titre-text">EXCESS WHEIGHT(KG)</span></div>
+                                    <div class="col-sm-6"><input type="text" class="myForm" readonly value="43"/></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6" style="top:6px; left:6px"><span class="titre-text">EXCESS PIECE(s)/OVERSIZE</span></div>
+                                    <div class="col-sm-6"><input type="text" class="myForm" readonly value="44"/></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6" style="top:6px; left:6px"><span class="titre-text">RATE PER KG OR PIECE</span></div>
+                                    <div class="col-sm-6"><input type="text" class="myForm" readonly style="margin-bottom:5px;" value="45"/></div>
+                                </div>
+                            </div>
+                            <div class="row content-excess">
+                                <div class="row">
+                                    <div class=" col-sm-2" style="top:6px;left:6px;"><span class="titre-text">AMOUNT</span></div>
+                                    <div class="col-sm-3"><input type="text" class="myForm" readonly value="46"/></div>
+                                    <div class="col-sm-6"><input type="text" class="myForm" readonly value="47"/></div>
+                                </div>
+                                <div class="row">
+                                    <div class=" col-sm-2" style="top:6px;left:6px;"><span class="titre-text">TAX</span></div>
+                                    <div class="col-sm-3"><input type="text" class="myForm" readonly value="48"/></div>
+                                    <div class="col-sm-6"><input type="text" class="myForm" readonly value="49"/></div>
+                                </div>
+                                <div class="row">
+                                    <div class=" col-sm-2" style="top:6px;left:6px;"><span class="titre-text">TOTAL</span></div>
+                                    <div class="col-sm-3"><input type="text" class="myForm" readonly value="50"/></div>
+                                    <div class="col-sm-6"><input type="text" class="myForm" readonly style="margin-bottom:5px;" value="51"/></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="row content-excess" style="height:57px;text-align:center">
+                                <div class="col-sm-12" style="top:15px;"><span class="titre-text"><b>EXCESS BAGGAGE TICKET</b></span></div>
+                            </div>
+                            <div class="row content-excess" style="height:215px;">
+                                <div class="row">
+                                    <div class="col-sm-5">
+                                        <input type="checkbox" name="skying" value="skying" disabled /><span class="titre-text">SKYING EQUIPEMENT</span>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <input type="checkbox" name="pet" value="pet" disabled /><span class="titre-text">PET</span>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <input type="checkbox" name="golfing" value="golfing" disabled /><span class="titre-text">GOLFING EQUIPEMENT</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-5" style="top:7px;">
+                                        <input type="checkbox" name="bulky" value="bulky" disabled /><span class="titre-text">BULKY BAGGAGE</span>
+                                    </div>
+                                    <div class="col-sm-4" style="top:7px;"><input type="text" class="myForm" id="seats" readonly value="52"/></div>
+                                    <div class="col-sm-3" style="top:9px;"><span class="titre-text">SEATS</span></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-5" style="top:7px;">
+                                        <input type="checkbox" name="others" value="others" disabled /><span class="titre-text">OTHERS</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12" style="top:10px;"><div class="baggage-data"></div></div>
+                                </div>
+                                <div class="row" style="text-align:center;">
+                                    <div class="col-sm-12" style="top:10px;"><span class="titre-text"><b>EXCESS BAGGAGE TICKET</b></span></div>
+                                </div>
+                            </div>
+                            <div class="row content-excess" style="height:37px;">
+                                <div class="col-sm-5" style="top:9px;"><span class="titre-text">FORM OF PAYEMENT</span></div>
+                                <div class="col-sm-3"><input type="text" id="formPay" class="myForm" readonly value="53"/></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4" style="top:-5px;">
+                            <div class="row content-excess" style="width:390px;">
+                                <div class="row">
+                                    <div class="col-sm-4"><span class="titre-text">DATE OF ISSUE</span></div>
+                                    <div class="col-sm-6">
+                                        <div class="input-group">
+                                            <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('issueDate')"></span>
+                                            <input type="text" class="form-control" id="issueDate" style="padding-right:3px" value="54">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4" style="top:6px;"><span class="titre-text">AGENT CODE</span></div>
+                                    <div class="col-sm-8"><input type="text" class="myForm" id="excessAgc" readonly value="55"/></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4" style="top:6px;"><span class="titre-text">PLACE OF ISSUE</span></div>
+                                    <div class="col-sm-8">
+                                        <textarea style="margin-top: 5px;width: 90%;height: 75px;"></textarea>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4" style="top:6px;"><span class="titre-text">REMARKS</span></div>
+                                    <div class="col-sm-8">
+                                        <textarea style="margin-top: 5px;width: 90%;height: 75px;"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row content-excess" style="width:390px;height:79px;">
+                                <div class="row">
+
+                                    <div class="col-sm-4" style="left:20px;top:6px;"><span class="titre-text">ISSUED BY</span></div>
+                                    <div class="col-sm-8"><input type="text" class="myForm" readonly value="56"/></div>
+                                </div>
+                                <div class="row" style="text-align:center">
+                                    <div class="col-sm-12" style="left:6px;"><span style="font-size:7px;">SUBJECT TO CONDITIONS OF CONTRACT OF PASSENGER TCKET AND BAGGAGE CHECK</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row content-excess" style="width:1253px;top:-5px;">
+                        <div class="col-sm-5">
+                            <div id="tabExcess">
+                                <table class="table-bordered" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th class="pink" style="width:30px;"></th>
+                                            <th class="pink">CPN</th>
+                                            <th class="pink">ORI</th>
+                                            <th class="pink">DES</th>
+                                            <th class="pink">CARRIER</th>
+                                            <th class="pink">FLIGHTNO</th>
+                                            <th class="pink">FLTDATE</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="logo"></div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="row" style="text-align:center">
+                                <div class="col-sm-12" style="top:15px;">ATLASJET</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4" style="top:35px;"><span class="titre-text">AIRLINE CODE</span></div>
+                                <div class="col-sm-6" style="top:35px;"><span class="titre-text">FORM AND SERIAL NUMBER</span></div>
+                                <div class="col-sm-2" style="top:35px;"><span class="titre-text">CK</span></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4" style="top:35px;"><input type="text" id="airCode" class="myForm" readonly value="57"/></div>
+                                <div class="col-sm-6" style="top:35px;"><input type="text" id="formSn" class="myForm" readonly value="58"/></div>
+                                <div class="col-sm-2" style="top:35px;"><input type="text" id="ck" class="myForm" readonly value="59"/></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class="col-sm-2" style="top:6px;"><span class="titre-text">Document No: </span></div>
+                                <div class="col-sm-8"><input type="text" class="myForm" id="excessDocnum" readonly value="60"/></div>
+                                <div class="col-sm-2" style="top:6px;"><button class="btn-default">SEARCH</button></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-4">
+                            <div class="row">
+                                <div class="col-sm-2" style="top:6px;"><button class="btn-default btn-new">New</button></div>
+                                <div class="col-sm-2" style="top:6px;"><button class="btn-default btn-new" disabled>Edit</button></div>
+                                <div class="col-sm-2" style="top:6px;"><button class="btn-default btn-new" disabled>Save</button></div>
+                                <div class="col-sm-2" style="top:6px;"><button class="btn-default btn-new" disabled>Delete</button></div>
+                                <div class="col-sm-2" style="top:6px;"><button class="btn-default btn-new" disabled>Clear</button></div>
+                                <div class="col-sm-2" style="top:6px;"><button class="btn-default btn-new" data-dismiss="modal">Close</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!--fait par christian-->
+<div id="processFacsmile" class="modal fade" role="dialog">
+    <div class="modal-dialog" style="position:relative;top:55px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h5 class="modal-title">Facsimile Generation</h5>
+            </div>
+            <div class="modal-body" id='capture'>
+                <div class="ajax-loader">
+                    <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+                </div>
+                <div class="facsimile-body" style="background-color:rgb(249,249,201);">
+                    <div class="col-md-11">
+                        <label class="col-md-3">ISSUED BY </label>
+
+                        <div class="col-md-4"><h3>ATLAS</h3></div>
+                        <div class="col-md-3">
+                            <label class="passenger-ticket">
+                                PASSENGER TICKET AND BAGGAGE CHECK SUBJECT TO CONDITION OF CONTRACT IN THIS TICKET
+                            </label>
+                        </div>
+                    </div>
+                    <table class="table table-bordered table-facsimile" id="newfacsimile" style="border:1px solid black">
+                        <tbody>
+                            <tr>
+
+                                <td colspan="6" rowspan="2" style="border-left: 1px solid transparent !important;border-bottom:1px solid transparent !important">
+                                    <strong>ENDORSEMENT/RESTRICTIONS(CARBON)</strong><br>
+                                    <ul>
+                                        <li id="newrestrictionEndo" style="list-style-type:none;"></li>
+                                    </ul>
+                                </td>
+
+                                <td colspan="3" rowspan="2" style="border-top: 1px solid transparent !important"><h3 class="audit-coupon">AUDIT COUPON</h3></td>
+                                <td style="border-top: 1px solid transparent !important">
+                                    <label class="airline-data">AIRLINE DATA</label>
+                                    <span class="origin-dest">ORIGIN/DESTINATION</span>
+                                </td>
+                                <td style="border: 1px solid transparent !important">
+                                    <label class="date-end-palce-fist">DATE AND PLACE OF ISSUE</label>
+                                    <br>
+                                    <ul>
+                                        <li id="newAgent" style="list-style-type:none; padding-left:10px;"></li>
+                                    </ul>
+                                </td>
+                            </tr>
+
+                            <tr>
+
+                                <td><label class="ussued-for">ISSUED IN EXCHANGE FOR</label></td>
+                                <!--<td id="newairlinedataID"></td>
+                                <td id="newAgentCodeID" style="width:5%"></td>
+                                <td id="newIssueDateID" style="width:5%;border-top: 1px solid transparent !important;border-left: 1px solid transparent !important"></td>-->
+
+                            </tr>
+                            <tr>
+
+                                <td colspan="4" style="border-top: 1px solid transparent !important;border-left: 1px solid transparent !important"></td>
+                                <td colspan="5"><label class="tour-code">TOUR CODE</label></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="border-left: 1px solid transparent !important;border-right: 1px solid transparent !important">
+                                    <strong>NAME OF PASSENGER</strong><br>
+                                    <ul>
+                                        <li id="newpassengerID" style="list-style-type:none;"></li>
+                                    </ul>
+
+                                </td>
+
+                                <td colspan="3">
+                                    <label class="name-passenger">NOTE TRANSFERABLE</label>
+                                </td>
+                                <td colspan="6"><label class="conjunction-ticket">CONJUNCTION TICKETS</label></td>
+                                <td style="border-right: 1px solid transparent !important;border-top: 1px solid transparent !important"></td>
+                            </tr>
+                            <tr>
+                                <td style="border-left: 1px solid transparent !important" width="1%">X/0</td>
+                                <td width="28%">
+                                    NOT GOOD FOR PASSAGE BETWEEN POINTS OUTLINED
+                                    <table></table> <label>FROM</label>
+                                </td>
+                                <td>CARRIER</td>
+                                <td>FLIGHT</td>
+                                <td>CLASS</td>
+                                <td>DATE</td>
+                                <td>TIME</td>
+                                <td>STATUS</td>
+                                <td>FARE BASIS</td>
+                                <td style="width: 142px;">NOT VALID BEFORE</td>
+                                <td>NOT VALID AFTER</td>
+                                <td style="border-right:1px solid transparent !important">ALLOW</td>
+                            </tr>
+
+                            <tr>
+
+                                <td style="border-left: 1px solid transparent !important"></td>
+                                <td><label>TO</label><span id="gfp-0"></span></td>
+                                <td id="carrer1-3"></td>
+                                <td id="carrer1-4"></td>
+                                <td id="carrer1-5"></td>
+                                <td id="carrer1-6"></td>
+                                <td id="carrer1-7"></td>
+                                <td id="carrer1-8"></td>
+                                <td id="carrer1-9"></td>
+                                <td id="carrer1-10"></td>
+                                <td id="carrer1-11"></td>
+                                <td style="border-right: 1px solid transparent !important" id="carrer1-12"></td>
+                            </tr>
+                            <tr>
+
+                                <td style="border-left: 1px solid transparent !important"></td>
+                                <td><label>TO</label><span id="gfp-1"></span></td>
+                                <td id="carrer2-3"></td>
+                                <td id="carrer2-4"></td>
+                                <td id="carrer2-5"></td>
+                                <td id="carrer2-6"></td>
+                                <td id="carrer2-7"></td>
+                                <td id="carrer2-8"></td>
+                                <td id="carrer2-9"></td>
+                                <td id="carrer2-10"></td>
+                                <td id="carrer2-11"></td>
+                                <td style="border-right: 1px solid transparent !important" id="carrer2-12"></td>
+                            </tr>
+                            <tr>
+
+                                <td style="border-left: 1px solid transparent !important"></td>
+                                <td><label>TO</label><span id="gfp-2"></span></td>
+                                <td id="carrer3-3"></td>
+                                <td id="carrer3-4"></td>
+                                <td id="carrer3-5"></td>
+                                <td id="carrer3-6"></td>
+                                <td id="carrer3-7"></td>
+                                <td id="carrer3-8"></td>
+                                <td id="carrer3-9"></td>
+                                <td id="carrer3-10"></td>
+                                <td id="carrer3-11"></td>
+                                <td style="border-right: 1px solid transparent !important" id="carrer3-12"></td>
+                            </tr>
+                            <tr>
+                                <td style="border-left: 1px solid transparent !important"></td>
+                                <td><label>TO</label><span id="gfp-3"></span></td>
+                                <td id="carrer4-3"></td>
+                                <td id="carrer4-4"></td>
+                                <td id="carrer4-5"></td>
+                                <td id="carrer4-6"></td>
+                                <td id="carrer4-7"></td>
+                                <td id="carrer4-8"></td>
+                                <td id="carrer4-9"></td>
+                                <td id="carrer4-10"></td>
+                                <td id="carrer4-11"></td>
+                                <td style="border-right: 1px solid transparent !important" id="carrer4-12"></td>
+                            </tr>
+
+                            <tr>
+                                <td style="border-left: 1px solid transparent !important"></td>
+                                <td style="text-align:center"><span id="gfp-4"></span></td>
+                                <td colspan="10" style="border-right: 1px solid transparent !important; padding: 0px !important">
+                                    <div class="col-md-12 bar-td-mere" style="font-size:9px">
+                                        <div class="bar-td col-md-2">
+                                            <strong>
+                                                BAGAGE CHECKED<br>
+                                                UNCHECKED <i class="fa fa-long-arrow-right" style="font-size:20px;padding-left:10px"></i>
+                                            </strong>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <div class="row">
+                                                <div class="bar-td col-md-1">
+                                                    <strong>
+                                                        PCS
+                                                    </strong>
+                                                </div>
+                                                <div class="bar-td col-md-1">
+                                                    <strong>
+                                                        WT
+                                                    </strong>
+                                                </div>
+                                                <div class="bar-td col-md-1">
+                                                    <strong>
+                                                        UNCHECKED
+                                                    </strong>
+                                                </div>
+                                                <div class="bar-td col-md-1">
+                                                    <strong>
+                                                        PCS
+                                                    </strong>
+                                                </div>
+                                                <div class="bar-td col-md-1">
+                                                    <strong>
+                                                        WT
+                                                    </strong>
+                                                </div>
+                                                <div class="bar-td col-md-1">
+                                                    <strong>
+                                                        UNCHECKED
+                                                    </strong>
+                                                </div>
+                                                <div class="bar-td col-md-1">
+                                                    <strong>
+                                                        PCS
+                                                    </strong>
+                                                </div>
+                                                <div class="bar-td col-md-1">
+                                                    <strong>
+                                                        WT
+                                                    </strong>
+                                                </div>
+                                                <div class="bar-td col-md-1">
+                                                    <strong>
+                                                        UNCHECKED
+                                                    </strong>
+                                                </div>
+                                                <div class="bar-td col-md-1">
+                                                    <strong>
+                                                        PCS
+                                                    </strong>
+                                                </div>
+                                                <div class="bar-td col-md-1">
+                                                    <strong>
+                                                        WT
+                                                    </strong>
+                                                </div>
+                                                <div class="bar-td col-md-1">
+                                                    <strong>
+                                                        UNCHECKED
+                                                    </strong>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table-bordered table table-facsimile-down" style="border:1px solid black">
+                        <tr>
+
+                            <td style="width:15%;border-left:1px solid transparent !important;border-right:1px solid transparent !important">
+
+                                <label id="newFareF">EQUIVALENT FARE</label>
+                                <span>FARE</span>
+
+                            </td>
+                            <td style="width: 10%" id="fac-FareCurrency"></td>
+                            <td rowspan="4" colspan="8" class="td-facsimile-down" style="border-right:1px solid transparent !important">
+                                FARE CALCULATION
+                                <label id="newFareCalc" style="width: 482px !important;"></label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border-left:1px solid transparent !important;border-right:1px solid transparent !important">
+                                <label>TAX/FEE/CHARGE</label>
+                            </td>
+                            <td id="newtotal"></td>
+                        </tr>
+                        <tr>
+                            <td style="border-left:1px solid transparent !important;border-right:1px solid transparent !important">
+                                <label>TAX/FEE/CHARGE</label>
+                            </td>
+                            <td id="newtax1fee"></td>
+                        </tr>
+                        <tr>
+                            <td style="border-left:1px solid transparent !important;border-right:1px solid transparent !important">
+                                <label>TAX/FEE/CHARGE</label>
+                            </td>
+                            <td id="newtax2fee"></td>
+                        </tr>
+                        <tr>
+                            <td style="border-left:1px solid transparent !important;border-right:1px solid transparent !important">
+                                <label></label>
+                            </td>
+                            <td id="newtax3fee"></td>
+                            <td rowspan="4" style="border-right: 10px solid !important"></td>
+                            <td style="border-bottom:1px solid transparent !important">CPN</td>
+                            <td style="border-bottom:1px solid transparent !important">AIRLINE CODE</td>
+                            <td style="border-bottom:1px solid transparent !important">FORM AND SERIAL NUMBER</td>
+                            <td style="width: 7%;border-bottom:1px solid transparent !important">CK</td>
+                            <td style="width: 40%;border-right:1px solid transparent !important">
+                                <span class="form-payment-up">FORM OF PAYMENT</span>
+                                <span class="form-payment-down">ORIGINAL ISSUE</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border-left:1px solid transparent !important;border-right:1px solid transparent !important">
+                                <label>TOTAL</label>
+                            </td>
+                            <td></td>
+                            <td rowspan="2" style="border:1px solid transparent !important"></td>
+                            <td rowspan="2" style="border:1px solid transparent !important; font-size: 20px;font-weight: 700;" id="newfirstDocNumber"></td>
+                            <td rowspan="2" style="border:1px solid transparent !important; font-size: 20px;font-weight: 700;" id="newsecondDocNumber"></td>
+                            <td rowspan="2" style="border:1px solid transparent !important; font-size: 20px;font-weight: 700;" id="newtreeDocNumber"></td>
+                            <td rowspan="2" style="border:1px solid transparent !important"></td>
+                        </tr>
+                        <tr>
+                            <td style="border-left:1px solid transparent !important;border-right:1px solid transparent !important">
+                                <label></label>
+                            </td>
+                            <td id="newtotalfee"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="border:1px solid transparent !important"></td>
+                            <td colspan="4" style="border:1px solid transparent !important"><label class="do-not">DO NOT MARK OR WRITE IN THE WHITE AREA ABOVE</label></td>
+                            <td style="border-right:1px solid transparent !important;border-bottom:1px solid transparent !important" id="code"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="content-modal-footer">
+                <div class="col-sm-11 footer-containt">
+                    <label class="col-sm-2">Document No.</label>
+                    <div class="col-sm-2">
+                        <input type="text" name="docNumber1" id="docNumber1">
+                    </div>
+                    <div class="col-sm-2">
+                        <button class="btn-default btn" onclick="saveCanvas()">Generate/Print Ticket Facsimile</button>
+                    </div>
+                    <div class="col-sm-2">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- fin fait par christian-->
+
+<!--fait par NOMENTSOA christian-->
+<div style="visibility:hidden;">
+    <div id="transaction" class="tab-pane fade">
+        <div class="col-sm-12 data-transaction">
+            <fieldset class="test-fieldst" style="margin-top: 13px;">
+                <legend class="test-fieldst">Ticket d'Information</legend>
+                <div class="ajax-loader">
+                    <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+                </div>
+                <div class="col-md-12 tet-ticket n-paddin-left">
+                    <div class="col-sm-12">
+                        <div class="col-sm-12" style="border:1px solid rgba(152, 152, 152, 1); padding-left:0px; padding-right:0px">
+                            <div class="tittle-transaction">
+                                <h6>PASSENGER TICKET AND BAGGAGE CHECK</h6>
+                                <h4>AUDIT & FLIGHT DETAILS</h4>
+                            </div>
+                            <table class="table table-first-ticket table-bordered">
+                                <tr>
+                                    <td width="18%" class="n-border">TICKET NUMBER</td>
+                                    <td colspan="4" class="n-border"></td>
+                                    <td class="n-border-bottom">ORIGIN/DESTINATION</td>
+                                    <td colspan="2" class="n-border">DATE AND PLACE ISSUE</td>
+                                </tr>
+                                <tr>
+                                    <td class="n-border">
+                                        <div class="col-md-10 n-padding">
+                                            <div class="col-md-3 n-padding">
+                                                <input type="text" class="form-control" disabled />
+                                            </div>
+                                            <div class="col-md-6 n-padding">
+                                                <input type="text" class="form-control" disabled />
+                                            </div>
+                                            <div class="col-md-3 n-padding">
+                                                <input type="text" class="form-control" disabled />
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td colspan="4" class="n-border"></td>
+                                    <td class="n-border-top"><input type="text" name="" class="form-control" disabled></td>
+                                    <td class="n-border">Issue Date</td>
+                                    <td class="n-border"><input type="text" name="" class="form-control" disabled></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5" class="n-border"></td>
+                                    <td class="n-border-bottom">PNR</td>
+                                    <td class="n-border">Agent Numeric Code</td>
+                                    <td class="n-border"><input type="text" name="" class="form-control" disabled></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5" class="n-border"></td>
+                                    <td class="n-border-top"><input type="text" name="" class="form-control" disabled></td>
+                                    <td class="n-border">Agent Legal Name</td>
+                                    <td class="n-border"><input type="text" name="" class="form-control" disabled></td>
+                                </tr>
+                                <tr>
+                                    <td class="n-border" rowspan="2"></td>
+                                    <td class="n-border-bottom">VENDOR IDENTIFIER</td>
+                                    <td class="n-border-bottom">REPORTING SYSTEM IDENTIFIER</td>
+                                    <td class="n-border-bottom" width="5%">CPUI</td>
+                                    <td class="n-border-bottom">TOUR CODE</td>
+                                    <td class="n-border-bottom">ISSUED IN EXCHANGE FOR</td>
+                                    <td class="n-border">Agent Location Add</td>
+                                    <td class="n-border"><input type="text" name="" class="form-control" disabled></td>
+                                </tr>
+                                <tr>
+                                    <td class="n-border-top"><input type="text" name="" class="form-control" disabled></td>
+                                    <td class="n-border-top"><input type="text" name="" class="form-control" disabled></td>
+                                    <td class="n-border-top"><input type="text" name="" class="form-control" disabled></td>
+                                    <td class="n-border-top">
+                                        <div class="col-sm-4">
+                                            <label class="col-form-label">
+                                                <input type="checkbox" name=""> IT/BT
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control" name="" disabled>
+                                        </div>
+                                    </td>
+                                    <td class="n-border-top"></td>
+                                    <td class="n-border">Agent Location City</td>
+                                    <td class="n-border"><input type="text" name="" class="form-control" disabled></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" class="n-border-bottom">
+                                        <label class="col-sm-8 n-padding col-form-label">NAME OF PASSENGER</label>
+                                        <label class="col-sm-4 col-form-label">DATE OF BIRTH</label>
+                                    </td>
+                                    <td colspan="2" class="n-border-bottom">CONJUNCTION TICKETS</td>
+                                    <td class="n-border">Agent Location Country</td>
+                                    <td class="n-border"><input type="text" name="" class="form-control" disabled></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" class="n-border-top">
+                                        <div class="col-sm-8 n-padding"><input type="text" name="" class="form-control" disabled></div>
+                                        <div class="col-sm-4"><input type="text" name="" class="form-control" disabled></div>
+                                    </td>
+                                    <td colspan="2" class="n-border-top"></td>
+                                    <td class="n-border">Booking Agent Id</td>
+                                    <td class="n-border"><input type="text" name="" class="form-control" disabled></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 tet-ticket n-paddin-left">
+                    <div class="col-sm-12" style="margin-left: 10px;">
+                        <div class="table-record-display" style="height: 180px;margin-top: -5px;color:white;border:1px solid rgba(152, 152, 152, 1);">
+                            <div class="col-sm-11">
+                                <table class="table table-bordered" style="margin-left: -16px;font-size:12px;">
+                                    <thead>
+                                        <tr>
+                                            <th class="pink">CPN</th>
+                                            <th class="pink">X/O</th>
+                                            <th class="pink">GTPA</th>
+                                            <th class="pink">CARRIER</th>
+                                            <th class="pink">FLIGHT</th>
+                                            <th class="pink">CLASS</th>
+                                            <th class="pink">DATE</th>
+                                            <th class="pink">TIME</th>
+                                            <th class="pink">STATUS</th>
+                                            <th class="pink">TARE BASIS</th>
+                                            <th class="pink">NOT VALID BEFORE</th>
+                                            <th class="pink">NOT VALID AFTER</th>
+                                            <th class="pink">BAGAGE ALLOWANCE</th>
+                                            <th class="pink">BOOKING STATUS</th>
+                                            <th class="green">RBD</th>
+                                            <th class="green">USAGE SECTOR</th>
+                                            <th class="green">USAGE AIRLINE</th>
+                                            <th class="green">USAGE FLIGHT NO</th>
+                                            <th class="green">USAGE DATE</th>
+                                            <th class="green">FTP</th>
+                                            <th class="pink">CJN TICKET</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="col-sm-12 n-padding-right n-padding-left" style="border:1px solid rgba(152, 152, 152, 1);">
+                            <div class="col-md-4">
+                                <div class="form-group row width-group faire-down">
+                                    <label class="col-sm-3 col-form-label">FARE</label>
+                                    <div class="col-sm-2">
+                                        <input type="text" name="" class="form-control" disabled>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <input type="text" name="" class="form-control" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row width-group">
+                                    <label class="col-sm-3 col-form-label">EQUIV FARE PD</label>
+                                    <div class="col-sm-2">
+                                        <input type="text" name="" class="form-control" disabled>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <input type="text" name="" class="form-control" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row width-group">
+                                    <label class="col-sm-3 col-form-label">TAX/FEE/CHARGE</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" name="" class="form-control" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row width-group">
+                                    <label class="col-sm-3 col-form-label">TAX/FEE/CHARGE</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" name="" class="form-control" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row width-group">
+                                    <label class="col-sm-3 col-form-label">TAX/FEE/CHARGE</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" name="" class="form-control" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row width-group">
+                                    <label class="col-sm-3 col-form-label">TOTAL</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" name="" class="form-control" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="Csv col-md-8" style="padding-right:0px; border-left: 1px solid rgba(152, 152, 152, 1);">
+                                <div class="col-md-12">
+                                    <div class="col-md-11">
+                                    </div>
+                                    <div class="col-md-1">
+                                        <img src='@Url.Content("~/images/CSVPic.jpg")' class="image-csv ml-existe">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 first-calculation-area">
+                                    <div class="form-group col-sm-12 fare-calcul-area">
+                                        <label class="col-form-label">Fare Calculation Area</label>
+                                        <input type="text" class="form-control" placeholder="" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 n-padding-right">
+                                    <div class="form-group col-md-3">
+                                        <label class="col-form-label">Endorsement/Restrictions</label>
+                                        <input type="text" class="form-control" placeholder="" disabled>
+                                    </div>
+                                    <div class="form-group col-md-1">
+                                        <label class="col-form-label">FCMI</label>
+                                        <input type="text" class="form-control" placeholder="" disabled>
+                                    </div>
+                                    <div class="form-group col-md-1">
+                                        <label class="col-form-label">Discount</label>
+                                        <input type="text" class="form-control" placeholder="" disabled>
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label class="col-form-label">Discrepency</label>
+                                        <input type="text" class="form-control" placeholder="" disabled>
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label class="col-form-label">Associated With </label>
+                                        <input type="text" class="form-control" placeholder="" disabled>
+                                    </div>
+                                    <div class="form-group col-md-3 n-padding-right">
+                                        <label class="col-form-label">Tracking Ref. ID </label>
+                                        <input type="text" class="form-control input-tracking" placeholder="" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-12" style="padding-right: 0px;">
+                                    <div class="form-group col-md-2" style="width: 15%">
+                                        <label class="col-form-label">Sales Country Code</label>
+                                        <input type="text" class="form-control" placeholder="" disabled>
+                                    </div>
+                                    <div class="form-group col-md-2 ml-none" style="width: 13%">
+                                        <label class="col-form-label">Service Agent Info</label>
+                                        <input type="text" class="form-control" placeholder="" disabled>
+                                    </div>
+                                    <div class="form-group col-md-2 ml-none" style="width: 13%">
+                                        <label class="col-form-label">Authorisation Code</label>
+                                        <input type="text" class="form-control" placeholder="" disabled>
+                                    </div>
+                                    <div class="form-group col-md-1 ml-none">
+                                        <label class="col-form-label">User ID</label>
+                                        <input type="text" class="form-control" placeholder="" disabled>
+                                    </div>
+                                    <div class="form-group col-md-2 ml-none" style="width: 11%">
+                                        <label class="col-form-label">Comm.Agmt.Ref</label>
+                                        <input type="text" class="form-control" placeholder="" disabled>
+                                    </div>
+                                    <div class="form-group col-md-2 ml-none" style="width: 12%">
+                                        <label class="col-form-label">Transaction Code</label>
+                                        <input type="text" class="form-control" placeholder="" disabled>
+                                    </div>
+                                    <div class="form-group col-md-2 ml-none ml-none-more">
+                                        <label class="col-form-label">Domestic/International</label>
+                                        <input type="text" class="form-control input-domestic" placeholder="" disabled>
+                                    </div>
+                                    <div class="form-group col-md-2 ml-none" style="width: 11.5%;padding-right: 0px;">
+                                        <label class="col-form-label">Amount Collected</label>
+                                        <input type="text" class="form-control" placeholder="" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 footer-ticket">
+                        <div class="ticket-payment">
+                            <div class="col-sm-3"><button class="payment-interogation btn" id="actionAncillary "><span class="search-span">PAYMENT/TFCs/COMM/ANCILLARIES</span></button></div>
+                            <div class="col-sm-3 payment-1"><button class="payment-1-interogation btn" data-toggle="modal" data-target="#moreDetails" id="actionMoreDetails"><span class="search-span">VIEW MOREDETAILS</span></button></div>
+                            <div class="col-sm-3 payment-1"><button class="payment-1-interogation btn" data-toggle="modal" data-target="#sputfca" onclick="clickSplitFCA()"><span class="search-span">SPLIT FCA</span></button></div>
+                            <div class="col-sm-3 payment-1"><button class="payment-1-interogation btn" data-toggle="modal" data-target="#tickethistory"><span class="search-span">TICKET HISTORY</span></button></div>
+                            <div class="col-sm-3 payment-1"><button class="payment-1-interogation btn" data-toggle="modal" data-target="#facsimile" id="actionFacsimile"><span class="search-span">FACSIMILE</span></button></div>
+                            <div class="col-sm-3 payment-1" style="margin-left: 25%"><button class="payment-1-interogation btn" data-toggle="modal" data-target="#proration"><span class="search-span">SHOW PRORATE</span></button></div>
+                            <div class="col-sm-3 payment-1"><button class="payment-1-interogation btn" onclick="closeTransaction()"><span class="search-span">CLOSE</span></button></div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+
+<!-- fin fait par NOMENTSOA christian-->
+
+

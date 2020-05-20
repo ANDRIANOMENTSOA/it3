@@ -1,0 +1,26 @@
+﻿<fieldset class="test-fieldst">
+    <div class="form-group row" style="padding-left:7px;margin-top:7px">
+        <label class="col-sm-5 col-form-label" style="">Fligth No:-</label>
+        <div class="col-sm-5" style="left:-35px">
+            <input type="hidden" id="testtrans"  />
+            <input type="hidden" id="dateTrans1" value="@ViewBag.dateHiddenF"/>
+            <input type="hidden" id="dateTrans2" value="@ViewBag.dateHiddenT"/>
+            <select id="@ViewBag.myId" class="form-control" onclick="getFlightNoSect1('@ViewBag.myId', '@ViewBag.dateFrom', '@ViewBag.dateTo', '@ViewBag.sector','@ViewBag.test', '@ViewBag.sectTest', '@ViewBag.id', '@ViewBag.test1', '@ViewBag.test2')" style="width:150px;">
+                <option>-All-</option>
+                @for (int i = 0; i < ViewBag.lon; i++)
+            {
+                    <option>@ViewBag.Flnum[i]</option>
+
+                }
+            </select>
+
+        </div>
+    </div>
+    <div class="form-group row" style="padding-left:7px;padding-top:45px">
+        <label class="col-sm-5 col-form-label" style="">Sector:-</label>
+        <div class="col-sm-5" style="left:-35px">
+            <input type="text" class="form-control" id="@ViewBag.sector" readonly />
+        </div>
+    </div>
+
+</fieldset>

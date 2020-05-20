@@ -1,0 +1,143 @@
+﻿<div class="col-sm-12 tab-content tab-cancellation">
+    <div class="content-cancellation col-sm-12">
+        <div class="ajax-loader">
+            <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+        </div>
+        <div class="row">
+
+            <div class="col-sm-6">
+                <fieldset class="test-fieldst" style="padding:20px">
+                    <legend class="test-fieldst">Search Criterias:</legend>
+                    <div class="col-sm-1">
+                        Flight No.
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" name="" style="width:120px" id="txtFlightNo" onchange="txtFlightNo_TextChanged()">
+                    </div>
+                    <div class="col-sm-3 " style="">
+                        <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">From:</label>
+                        <div class="col-sm-9 n-padding">
+                            <div class="input-group" id="divdtpFrom">
+                                <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateFromlifted')"></span>
+                                <input type="text" class="form-control" name="" id="dateFromlifted" value="@ViewBag.dateFrom" style="padding-right:3px">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3" style="">
+                        <label class="form-check-label col-form-label col-sm-2 n-padding fromTo">To:</label>
+                        <div class="col-sm-10 n-padding">
+                            <div class="input-group" id="divdtpTo">
+                                <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateTosectorValue')"></span>
+                                <input type="text" class="form-control" name="" id="dateTolifted" value="@ViewBag.dateTo" style="padding-right:3px">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <button class="btn-default btn-outward" style="" onclick="btnSearch_Clickfiftedcoupons()">Search</button>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <fieldset class="test-fieldst" style="padding:10px">
+                    <legend class="test-fieldst">Result</legend>
+                    <div class="col-sm-12" style="margin-bottom:10px">
+                        <div class="col-sm-2">Final Total Lift:</div>
+                        <div class="col-sm-3">
+                            <input type="text" name="" style="" id="txtFinalTotalLift" disabled>
+                        </div>
+                    </div>
+                    <div class="col-sm-12" style="left: 5px;">
+                        <div class="col-sm-5" style="height: 100px;background: white;" id="divdgtype">
+                            <table id="dgtype">
+
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="col-sm-12" style="height: 20px;background: orange;text-align: center">OWN</div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="col-sm-12" style="height: 150px;background: white;overflow: auto;" id="divdgOWN">
+                            <table style="width: 50%;margin-left: -15px;" id="dgOWN">
+                                <thead>
+                                    <tr>
+                                        <th class="green-tab">Airline</th>
+                                        <th class="green-tab">Lift File Record</th>
+                                        <th class="green-tab">Status</th>
+                                        <th class="green-tab">PNL/SLS/LDM/PFS</th>
+
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="col-sm-12" style="height: 20px;background: orange;text-align: center">OAL</div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="col-sm-12" style="height: 150px;background: white;overflow: auto;" id="divdgOAL">
+                            <table style="width: 50%;margin-left: -15px;" id="dgOAL">
+                                <thead>
+                                    <tr>
+                                        <th class="green-tab">Airline</th>
+                                        <th class="green-tab">Lift File Record</th>
+                                        <th class="green-tab">Status</th>
+                                        <th class="green-tab">PNL/SLS/LDM/PFS</th>
+                                        <th class="green-tab">OB</th>
+                                        <th class="green-tab">Billing Period</th>
+                                        <th class="green-tab">OAL Not Billed</th>
+
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="col-sm-12" style="height: 20px;background: orange;"></div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="col-sm-12" style="height: 100px;background: white;" id="divdgtotal">
+                            <table id="dgtotal">
+
+                            </table>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="col-sm-6">
+                <fieldset class="test-fieldst" style="padding:10px">
+                    <legend class="test-fieldst">Details</legend>
+                    <div class="col-sm-12">
+                        <div class="col-sm-12" style="height: 594px;background: white;overflow: auto;" id="divdgdetails">
+                            <table style="width: 100%;margin-left: -15px;height:100% !important;" id="dgdetails" class="table table-bordered table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th class="green-tab">Airline</th>
+                                        <th class="green-tab">Usage Type</th>
+                                        <th class="green-tab">Usage Flight No.</th>
+                                        <th class="green-tab">Usage Date</th>
+                                        <th class="green-tab">Doc Type</th>
+                                        <th class="green-tab">Doc Num</th>
+                                        <th class="green-tab">Billing Period</th>
+                                        <th class="green-tab">Invoice No</th>
+
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-2" style="margin-top:15px">
+                <button class="btn-default btn-outward" style="margin-left:0px" onclick="btnClear_Clickfiftedcoupons()">Clear</button>
+                <button class="btn-default btn-outward" style="margin-left:25px" onclick="removeSousMenu()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+

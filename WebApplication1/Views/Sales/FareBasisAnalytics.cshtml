@@ -1,0 +1,139 @@
+﻿@using System.Data
+@model DataSet
+<div class="containt-allpsr">
+    <table class="table table-bordered table-striped" id="psrFare">
+        <thead>
+            <tr>
+                <th class="pink">ROWNNUM</th>
+                <th class="pink">Date Of Issue</th>
+                <th class="pink">Ticket No</th>
+                <th class="pink">True OD City Code</th>
+                <th class="pink">Agent Num Code</th>
+                <th class="pink farebass-5">POS</th>
+                <th class="pink">Fare Basis</th>
+                <th class="pink farebass-7">Fare Component</th>
+                <th class="pink farebass-8">Origin Airport City Code</th>
+                <th class="pink farebass-9">Destination Airport City Code</th>
+                <th class="pink farebass-10">Tour Code</th>
+                <th class="pink farebass-11">Fare Curr</th>
+                <th class="pink farebass-12">Fare</th>
+                <th class="pink farebass-13">Equiv Fare Curr</th>
+                <th class="pink farebass-14">EFP</th>
+                <th class="pink farebass-15">Tax1Code</th>
+                <th class="pink farebass-16">Tax1Amount</th>
+                <th class="pink farebass-17">Tax2Code</th>
+                <th class="pink farebass-18">Tax2Amount</th>
+                <th class="pink farebass-19">Tax3Code</th>
+                <th class="pink farebass-20">Tax3Amount</th>
+                <th class="pink farebass-21">Surcharge Coll Curr</th>
+                <th class="pink farebass-22">Surcharge Coll</th>
+                <th class="pink farebass-23">Reservation Book Designator</th>
+                <th class="pink farebass-24">NVB</th>
+                <th class="pink farebass-25">NVA</th>
+                <th class="pink farebass-26">FBA</th>
+                <th class="pink farebass-27">Transaction Code</th>
+                <th class="pink farebass-28">Fare Calculation</th>
+            </tr>
+        </thead>
+        <tbody id="psrcmptTr2">
+            @foreach (DataRow dr in ViewBag.fareBasisAnalytics.Tables[0].Rows)
+            {
+                <tr>
+                    @for (int i = 0; i < ViewBag.fareBasisAnalytics.Tables[0].Columns.Count; i++)
+                    {
+                        if (i != 0 && i != 1 && i != 2 && i != 3 && i != 4 && i != 6)
+                        {
+                            <td class="farebass-@i">@dr[ViewBag.fareBasisAnalytics.Tables[0].Columns[i].ColumnName].ToString()</td>;
+                        }
+                        else
+                        {
+                            if (i == 1 && !string.IsNullOrEmpty(dr[ViewBag.fareBasisAnalytics.Tables[0].Columns[1].ColumnName].ToString()))
+                            {
+                                <td>@dr[ViewBag.fareBasisAnalytics.Tables[0].Columns[i].ColumnName].ToString().Substring(0,10)</td>;
+                            }
+                            else
+                            {
+                                <td>@dr[ViewBag.fareBasisAnalytics.Tables[0].Columns[i].ColumnName].ToString()</td>;
+                            }
+
+                        }
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="col-sm-12 noOfrecords">
+        <label class="form-check-label col-form-label col-sm-2 fromTo">No Of records</label>
+        <div class="col-sm-3" style="margin-top: 6px;">
+            <input type="text" class="form-control" id="noOfrecords2" value=""/>
+        </div>
+        <div class="col-sm-1 n-paddin-left">
+            <img src='@Url.Content("~/images/CSVPic.jpg")' class="image-csv" style="top: 6px;left: 548%;">
+        </div>
+    </div>
+</div>
+<div class="container-pax positionFoot">
+    <div class="container-psr1" style="overflow: auto;">
+        <table class="table table-bordered table-striped" id="fareSummary">
+            <thead>
+                <tr>
+                    <th class="pink">Agent Num Code</th>
+                    <th class="pink">Transaction Code</th>
+                    <th class="pink">Count</th>
+                    <th class="pink">True OD City Code</th>
+                    <th class="pink">Origin Airport City Code</th>
+                    <th class="pink">Destination Airport City Code</th>
+                    <th class="pink">Fare Currency</th>
+                    <th class="pink">Fare</th>
+                    <th class="pink">Equivalent Fare Currencyr</th>
+                    <th class="pink">EFP</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (DataRow dr in ViewBag.summary.Tables[0].Rows)
+                {
+                    <tr>
+                        @for (int i = 0; i < ViewBag.summary.Tables[0].Columns.Count; i++)
+                        {
+                            <td>@dr[ViewBag.summary.Tables[0].Columns[i].ColumnName].ToString()</td>;
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+        </div>
+        <div class="showAddDetails" style="left: 82.7%;height: 582px;border: 1px solid;width: 259px;">
+            <div class="col-sm-3"><button class="payment-interogation btn" onclick="showDetails('detailFaireAnalitique','textDetail2')"><span class="search-span" id="textDetail2">Show Add-on Details</span></button></div>
+            <div class="containt-details" id="detailFaireAnalitique" style="overflow-y:auto">
+                <ul class="list-group">
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('allfaire', 'farebass')" id="allfaire">All</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('faire5', 'farebass-5')" id="faire5">POS</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('faire7', 'farebass-7')" id="faire7">Fare Component</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('faire8', 'farebass-8')" id="faire8">Origin Airport City Code</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('faire9', 'farebass-9')" id="faire9">Destination Airport City Code</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('faire10', 'farebass-10')" id="faire10">Tour Code</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('faire11', 'farebass-11')" id="faire11">Fare Curr</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('faire12', 'farebass-12')" id="faire12">Fare</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('faire13', 'farebass-13')" id="faire13">Equiv Fare Curr</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('faire14', 'farebass-14')" id="faire14">EFP</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('faire15', 'farebass-15')" id="faire15">Tax1Code</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('faire16', 'farebass-16')" id="faire16">Tax1Amount</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('faire17', 'farebass-17')" id="faire17">Tax2Code</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('faire18', 'farebass-18')" id="faire18">Tax2Amount</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('faire19', 'farebass-19')" id="faire19">Tax3Code</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('faire20', 'farebass-20')" id="faire20">Tax3Amount</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('faire21', 'farebass-21')" id="faire21">Surcharge Coll Curr</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('faire22', 'farebass-22')" id="faire22">Surcharge Coll</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('faire23', 'farebass-23')" id="faire23">Reservation Book Designator</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('faire24', 'farebass-24')" id="faire24">NVB</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('faire25', 'farebass-25')" id="faire25">NVA</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('faire26', 'farebass-26')" id="faire26">FBA</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('faire27', 'farebass-27')" id="faire27">Transaction Code</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('faire28', 'farebass-28')" id="faire28">Fare Calculation</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+

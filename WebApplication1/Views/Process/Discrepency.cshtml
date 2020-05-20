@@ -1,0 +1,493 @@
+﻿<script src="~/Scripts/Process.js"></script>
+<div id="exTab1" class="container">
+    <ul class="nav nav-pills">
+        <li class="active">
+            <a href="#1a" data-toggle="tab">No Fare collected</a>
+        </li>
+        <li>
+            <a href="#2a" data-toggle="tab">RBD Discrepency</a>
+        </li>
+        <li>
+            <a href="#3a" data-toggle="tab">Date Discrepency</a>
+        </li>
+    </ul>
+</div>
+<fieldset class="test-fieldst">
+    <div class="tab-content clearfix">
+        <div class="tab-pane active" id="1a">
+            <div class="col-sm-12 tab-content tab-cancellation">
+                <div class="content-cancellation col-sm-12">
+                    <div id="">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <fieldset class="test-fieldst">
+                                    <legend class="test-fieldst">Date Of Issue</legend>
+                                    <div class="col-sm-6 width-group">
+                                        <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">From:</label>
+                                        <div class="col-sm-9 n-padding">
+                                            <div class="input-group">
+                                                <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateFromanal')"></span>
+                                                <input type="text" class="form-control" id="dateFromanal" value="@ViewBag.dateFromanal" style="padding-right:3px" onchange="changeDateanal()">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6" style="margin-bottom: 19px;">
+                                        <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">To:</label>
+                                        <div class="col-sm-9 n-padding">
+                                            <div class="input-group">
+                                                <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateToanal')"></span>
+                                                <input type="text" class="form-control" id="dateToanal" value="@ViewBag.dateToanal" style="padding-right:3px" onchange="changegetanal()">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+                            </div>
+
+                            <div class="col-sm-4" style="margin-top: 10px">
+                                <fieldset class="test-fieldst">
+                                    <div class="form-group row" style="padding-left:7px;margin-top:7px">
+                                        <label class="col-sm-5 col-form-label" style="">Agent Numeric Code:</label>
+                                        <div class="col-sm-5" id="">
+
+                                            <select class="form-control" id="AgentNumericCode" onclick="AgentNumericCode()" style="width:215px;">
+                                                <option>-All-</option>
+                                                <option></option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-1 containt-btn" style="width: 33px !important; height:30px;">
+                                            <button class="point-interogation green btn" data-toggle="modal" data-target="#ModalDiscrepancy" onclick="chercherefnLift(this)">
+                                                <span class="point-span">?</span>
+                                            </button>
+
+                                        </div>
+                                    </div>
+                                    <div class="resultAdr">
+                                        <div class="form-group row" style="padding-left:7px">
+                                            <label class="col-sm-5 col-form-label" style="position: relative;top: 9px;">Agent Name:</label>
+                                            <div class="col-sm-5" style="">
+                                                <input type="text" class="form-control" style="width:217px;" id="" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row" style="padding-left:7px">
+                                            <label class="col-sm-5 col-form-label" style="position: relative;top: 9px;">Agent Location:</label>
+                                            <div class="col-sm-5" style="">
+                                                <textarea class="" style="width:217px;" disabled></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+                            </div>
+
+                            <div class="col-sm-3" style="margin-top: 23px;">
+
+                                <button class="btn-default btn-outward" onclick="searchanalitics()" style="margin-left:25px;color:green">SEARCH</button>
+                                <button class="btn-default btn-outward" style="margin-left:25px;color:red" onclick="clearNofare()">CLEAR</button>
+                                <button class="btn-default btn-outward" onclick="removeSousMenu()" style="margin-left:25px">CLOSE</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-10" style="">
+                                <div class="table-record-display" style="height:600px;overflow:auto" id="tabNofarea">
+                                    <table id="tabNofare" class="table table-bordered table-striped" style="width: 84%;">
+                                        <thead>
+                                            <tr>
+                                                <th class="green-tab">Document No</th>
+                                                <th class="green-tab">Date of Issue</th>
+                                                <th class="green-tab">Agent Numeric Code</th>
+                                                <th class="green-tab">Passanger Name</th>
+                                                <th class="green-tab">IBT</th>
+                                                <th class="green-tab">Exchange</th>
+                                                <th class="green-tab">Intererlining</th>
+                                                <th class="green-tab">Fare Calculation Area</th>
+                                                <th class="green-tab">Original Issue Doc No</th>
+                                                <th class="green-tab">Original Issue Doc Date</th>
+                                                <th class="green-tab">Fare Cur</th>
+                                                <th class="green-tab">Fare</th>
+                                                <th style="display:none" class="green-tab keyelement-12">Equivalent Fare</th>
+                                                <th style="display:none" class="green-tab keyelement-13">Exchange ADC</th>
+                                                <th style="display:none" class="green-tab keyelement-14">Fare Collected</th>
+                                                <th style="display:none" class="green-tab keyelement-15">Amt Collected Cur</th>
+                                                <th style="display:none" class="green-tab keyelement-16">Amt Collected</th>
+                                                <th style="display:none" class="green-tab keyelement-17">Tax Collected</th>
+                                                <th style="display:none" class="green-tab keyelement-18">Surcharge Collected</th>
+                                                <th style="display:none" class="green-tab keyelement-19">Ori Fare Collected</th>
+                                                <th style="display:none" class="green-tab keyelement-20">Ori Amt Collected</th>
+                                                <th style="display:none" class="green-tab keyelement-21">Ori Tax Collected</th>
+                                                <th style="display:none" class="green-tab keyelement-22">Ori Surcharge Collected</th>
+                                                <th style="display:none" class="green-tab keyelement-23">Ori Transaction code</th>
+                                                <th style="display:none" class="green-tab keyelement-24">Fare Basis</th>
+                                                <th style="display:none" class="green-tab keyelement-25">Ori Fare Basis</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="searchanal"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-sm-2" style="margin-top: 0px;">
+                                <div class="row">
+                                    <div class="col-sm-7">
+                                        <button class="btn-default" onclick="HideShow('divDiscrepancy', 'bntDiscrepancy')" id="bntDiscrepancy" style="margin-left: -15px;width: 253px;">Show Add-on Details</button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-9" style="margin-top: 10px;border: 1px solid gray; height: 568px;background:white;display:none" id="divDiscrepancy">
+                                        <ul class="list-group">
+                                            <li class="list-group-item">
+                                                <input type="checkbox" name="" onclick="showreports('allkeyDisc', 'keyelement')" id="allkeyDisc">Select All
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreports('key12Disc', 'keyelement-12')" id="key12Disc">Equivalent Fare
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreports('key13Disc', 'keyelement-13')" id="key13Disc">Exchange ADC
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreports('key14Disc', 'keyelement-14')" id="key14Disc"> Fare Collected
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreports('key15Disc', 'keyelement-15')" id="key15Disc">Amt Collected Cur
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreports('key16Disc', 'keyelement-16')" id="key16Disc">Amt Collected
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreports('key17Disc', 'keyelement-17')" id="key17Disc">Tax Collected
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreports('key18Disc', 'keyelement-18')" id="key18Disc">Surcharge Collected
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreports('key19Disc', 'keyelement-19')" id="key19Disc">Ori Fare Collected
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreports('key20Disc', 'keyelement-20')" id="key20Disc">Ori Amt Collected
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreports('key21Disc', 'keyelement-21')" id="key21Disc">Ori Tax Collected
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreports('key22Disc', 'keyelement-22')" id="key22Disc">Ori Surcharge Collected
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreports('key23Disc', 'keyelement-23')" id="key23Disc">Ori Transaction code
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreports('key24Disc', 'keyelement-24')" id="key24Disc">Fare Basis
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreports('key25Disc', 'keyelement-25')" id="key25Disc">Ori Fare Basis
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6" style="margin-top:20px">
+
+                            <div class="col-sm-4"><label>Number of record per page</label></div>
+                            <div class="col-sm-2"><input type="text" name="" value="150" id="recordpage" disabled="" style="width: 80px"></div>
+                            <div class="col-sm-6">
+                                <button class="btn-default" style="width: 80px"><</button>
+                                <input type="text" name="" value="" id="numpage" disabled="" style="width: 100px">
+                                <button class="btn-default" style="width: 80px">></button>
+                                <img src="/images/CSVPic.jpg" class="image-csv" style="top:-2px;left:68px" onclick="exportNofare()">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane active" id="2a">
+            <div class="col-sm-12 tab-content tab-cancellation">
+                <div class="content-cancellation col-sm-12">
+                    <div id="">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <fieldset class="test-fieldst">
+                                    <legend class="test-fieldst">Date Of Issue</legend>
+                                    <div class="col-sm-6 width-group">
+                                        <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">From:</label>
+                                        <div class="col-sm-9 n-padding">
+                                            <div class="input-group">
+                                                <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateFromRBD')"></span>
+                                                <input type="text" class="form-control" id="dateFromRBD" value="@ViewBag.dateFromRBD" style="padding-right:3px" onchange="changeDateRBD()">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6" style="margin-bottom: 19px;">
+                                        <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">To:</label>
+                                        <div class="col-sm-9 n-padding">
+                                            <div class="input-group">
+                                                <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateToRBD')"></span>
+                                                <input type="text" class="form-control" id="dateToRBD" value="@ViewBag.dateToRBD" style="padding-right:3px" onchange="changegetRBD()">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+                            </div>
+
+                            <div class="col-sm-4" style="margin-top: 10px">
+                                <fieldset class="test-fieldst">
+                                    <div class="form-group row" style="padding-left:7px;margin-top:7px">
+                                        <label class="col-sm-5 col-form-label" style="">Agent Numeric Code:</label>
+                                        <div class="col-sm-5" id="">
+
+                                            <select class="form-control" id="AgentNumericCodeRBD" onclick="AgentNumericCode()" style="width:215px;">
+                                                <option>-All-</option>
+                                                <option></option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-1 containt-btn" style="width: 33px !important; height:30px;">
+                                            <button class="point-interogation green btn" data-toggle="modal" data-target="#ModalDiscrepancy" onclick="chercherefnLift(this)">
+                                                <span class="point-span">?</span>
+                                            </button>
+
+                                        </div>
+                                    </div>
+                                    <div class="resultAdr">
+                                        <div class="form-group row" style="padding-left:7px">
+                                            <label class="col-sm-5 col-form-label" style="position: relative;top: 9px;">Agent Name:</label>
+                                            <div class="col-sm-5" style="">
+                                                <input type="text" class="form-control" style="width:217px;" id="" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row" style="padding-left:7px">
+                                            <label class="col-sm-5 col-form-label" style="position: relative;top: 9px;">Agent Location:</label>
+                                            <div class="col-sm-5" style="">
+                                                <textarea class="" style="width:217px;" disabled></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+                            </div>
+
+                            <div class="col-sm-3" style="margin-top: 23px;">
+
+                                <button class="btn-default btn-outward" onclick="searchrbd()" style="margin-left:25px;color:green">SEARCH</button>
+                                <button class="btn-default btn-outward" style="margin-left:25px;color:red" onclick="clearRBD()">CLEAR</button>
+                                <button class="btn-default btn-outward" onclick="removeSousMenu()" style="margin-left:25px">CLOSE</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-9" style="">
+                                <div class="table-record-display" style="height:600px;overflow:auto" id="tabRBDa">
+                                    <table id="tabRBD" class="table table-bordered table-striped" style="width: 84%;">
+                                        <thead>
+                                            <tr>
+                                                <th class="green-tab">Document No</th>
+                                                <th class="green-tab">CPN</th>
+                                                <th class="green-tab">Agent No</th>
+                                                <th class="green-tab">Flight No</th>
+                                                <th class="green-tab">Flight Date</th>
+                                                <th class="green-tab">Fare Basis</th>
+                                                <th class="green-tab">Reserved RBD</th>
+                                                <th class="green-tab">Usage RBD</th>
+                                                <th class="green-tab">Remarks</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="searchRBDDiscrep"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6" style="margin-top:20px">
+
+                        <div class="col-sm-4"><label>Number of record per page</label></div>
+                        <div class="col-sm-2"><input type="text" name="" value="150" id="recordpage" disabled="" style="width: 80px"></div>
+                        <div class="col-sm-6">
+                            <button class="btn-default" style="width: 80px"><</button>
+                            <input type="text" name="" value="" id="numpage" disabled="" style="width: 100px">
+                            <button class="btn-default" style="width: 80px">></button>
+                            <img src="/images/CSVPic.jpg" class="image-csv" style="top:-2px;left:68px" onclick="exportRBD()">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane active" id="3a">
+            <div class="col-sm-12 tab-content tab-cancellation">
+                <div class="content-cancellation col-sm-12">
+                    <div id="">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <fieldset class="test-fieldst">
+                                    <legend class="test-fieldst">Date Of Issue</legend>
+                                    <div class="col-sm-6 width-group">
+                                        <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">From:</label>
+                                        <div class="col-sm-9 n-padding">
+                                            <div class="input-group">
+                                                <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateFromDate')"></span>
+                                                <input type="text" class="form-control" id="dateFromDate" value="@ViewBag.dateFromDate" style="padding-right:3px" onchange="changeDateDate()">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6" style="margin-bottom: 19px;">
+                                        <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">To:</label>
+                                        <div class="col-sm-9 n-padding">
+                                            <div class="input-group">
+                                                <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateToDate')"></span>
+                                                <input type="text" class="form-control" id="dateToDate" value="@ViewBag.dateToDate" style="padding-right:3px" onchange="changegetDate()">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+                            </div>
+
+                            <div class="col-sm-4" style="margin-top: 10px">
+                                <fieldset class="test-fieldst">
+                                    <div class="form-group row" style="padding-left:7px;margin-top:7px">
+                                        <label class="col-sm-5 col-form-label" style="">Agent Numeric Code:</label>
+                                        <div class="col-sm-5" id="datediscrep">
+                                            <select class="form-control" id="AgentNumericCodedate" onclick="AgentNumericCode()" style="width:215px;">
+                                                <option>-All-</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-1 containt-btn" style="width: 33px !important; height:30px;">
+                                            <button class="point-interogation green btn" data-toggle="modal" data-target="#ModalDiscrepancy" onclick="chercherefnLift(this)">
+                                                <span class="point-span">?</span>
+                                            </button>
+
+                                        </div>
+                                    </div>
+                                    <div class="resultAdr">
+                                        <div class="form-group row" style="padding-left:7px">
+                                            <label class="col-sm-5 col-form-label" style="position: relative;top: 9px;">Agent Name:</label>
+                                            <div class="col-sm-5" style="">
+                                                <input type="text" class="form-control" style="width:217px;" id="" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row" style="padding-left:7px">
+                                            <label class="col-sm-5 col-form-label" style="position: relative;top: 9px;">Agent Location:</label>
+                                            <div class="col-sm-5" style="">
+                                                <textarea class="" style="width:217px;" disabled></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+                            </div>
+
+                            <div class="col-sm-3" style="margin-top: 23px;">
+
+                                <button class="btn-default btn-outward" onclick="searchdate()" style="margin-left:25px;color:green">SEARCH</button>
+                                <button class="btn-default btn-outward" style="margin-left:25px;color:red" onclick="clearDate()">CLEAR</button>
+                                <button class="btn-default btn-outward" onclick="removeSousMenu()" style="margin-left:25px">CLOSE</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-8" style="">
+                                <div class="table-record-display" style="height:600px;overflow:auto" id="tabDatea">
+                                    <table id="tabDate" class="table table-bordered table-striped" style="width: 84%;">
+                                        <thead>
+                                            <tr>
+                                                <th class="green-tab">Document No</th>
+                                                <th class="green-tab">CPN</th>
+                                                <th class="green-tab">Agent No</th>
+                                                <th class="green-tab">Flight No</th>
+                                                <th class="green-tab"> Planned Flight Date</th>
+                                                <th class="green-tab">Usage Flight Date</th>
+                                                <th class="green-tab">Remarks</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="searchDateDiscrep"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6" style="margin-top:20px">
+
+                        <div class="col-sm-4"><label>Number of record per page</label></div>
+                        <div class="col-sm-2"><input type="text" name="" value="150" id="recordpage" disabled="" style="width: 80px"></div>
+                        <div class="col-sm-6">
+                            <button class="btn-default" style="width: 80px"><</button>
+                            <input type="text" name="" value="" id="numpage" disabled="" style="width: 100px">
+                            <button class="btn-default" onclick="nextValue(this)" style="width: 80px">></button>
+                            <img src="/images/CSVPic.jpg" class="image-csv" style="top:-2px;left:68px" onclick="exportDate()">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</fieldset>
+<div class="modal fade" id="ModalDiscrepancy" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="Doc modal-content" style="width: 58%;left: 17%; background-color: rgba(135, 206, 235, 1) !important; ">
+            <div class="agentModal">
+                <div class="modal-header" style="background-color: white; margin-bottom: 21px;">
+                    <h5 class="modal-title" id="myModalLabel">FrmCustomAgentQuery</h5>
+                    <button type="button" class="close close-agent-code" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="DocCollect-modal-body">
+                    <div class="scoll-tree scoll-agent-code">
+                        <div class="head-agent-code-content">
+                            <div class="form-row">
+                                <div class="col col-md-3" style="padding-left: 0px;">Agent Legal Name:</div>
+                                <div class="col col-md-4">
+                                    <input type="text" class="form-control" id="name" name="agentName" onkeyup="cherche(this.value,'GrandParent_@ViewBag.type')" />
+                                </div>
+                                <div class="col col-md-2">Agent Code:</div>
+                                <div class="col col-md-3">
+                                    <input type="text" class="form-control" id="code" name="agentCode" onkeyup="cherche(this.value,'GrandParent_@ViewBag.type')" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="agentContent" style="width: 98%; max-height: 515px;">
+                            <table class="table table-agent-code" style="margin-bottom:0px">
+                                <thead>
+                                    <tr>
+                                        <th width="35%">Agent Code</th>
+                                        <th width="70%">Agent Name</th>
+                                    </tr>
+                                </thead>
+
+
+                            </table>
+                        </div>
+                        <div class="autocomplete">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="background-color:rgba(135, 206, 235, 1) !important;">
+                    <div class="col-md-9 footer-agent-code">
+                        <div class="col-md-12">
+                            <label>Agent Name: </label>
+                            <label style="color:white;font-size:12px" id="agent-name-label"></label>
+                        </div>
+                        <div class="col-md-12">
+                            <label>Agent Code: </label>
+                            <label style="color:white; font-size:12px" id="agent-code-label"></label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <button type="button" onclick="removeSousMenu()" class="Close btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="Close btn" data-dismiss="modal" onclick="selectPsd()">Select</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

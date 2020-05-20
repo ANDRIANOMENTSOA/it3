@@ -1,0 +1,148 @@
+﻿@using System.Data
+@model DataSet
+<div class="containt-allpsr">
+    <table class="table table-bordered table-striped" id="psrKeyElement">
+        <thead>
+            <tr>
+                <th class="pink">ROWNNUM</th>
+                <th class="pink">Date Of Issue</th>
+                <th class="pink">Document No</th>
+                <th class="pink keyelement-3">Conjunction</th>
+                <th class="pink">Agent Num Code</th>
+                <th class="pink">Passenger Name</th>
+                <th class="pink keyelement-6">Tour Code</th>
+                <th class="pink keyelement-7">Endos Restriction</th>
+                <th class="pink keyelement-8">PNR</th>
+                <th class="pink keyelement-9">Original Issue</th>
+                <th class="pink keyelement-10">POS</th>
+                <th class="pink keyelement-11">SPC</th>
+                <th class="pink keyelement-12">FOP</th>
+                <th class="pink keyelement-13">FCMI</th>
+                <th class="pink keyelement-14">FCA</th>
+                <th class="pink keyelement-15">Fare Currency</th>
+                <th class="pink keyelement-16">Fare</th>
+                <th class="pink keyelement-17">Equivalent Fare Currency</th>
+                <th class="pink keyelement-18">Equivalent Fare</th>
+                <th class="pink keyelement-19">Tax1Code</th>
+                <th class="pink keyelement-20">Tax1Amount</th>
+                <th class="pink keyelement-21">Tax2Code</th>
+                <th class="pink keyelement-22">Tax2Amount</th>
+                <th class="pink keyelement-23">Tax3Code</th>
+                <th class="pink keyelement-24">Tax3Amount</th>
+                <th class="pink keyelement-25">Surcharge Collected Cur</th>
+                <th class="pink keyelement-26">Surcharge Collected</th>
+                <th class="pink keyelement-27">Coupon Num</th>
+                <th class="pink keyelement-28">Fare Basis</th>
+                <th class="pink keyelement-29">Reservation Book Designator</th>
+                <th class="pink keyelement-30">Interling</th>
+                <th class="pink keyelement-31">NVB</th>
+                <th class="pink keyelement-32">NVA</th>
+                <th class="pink keyelement-33">FBA</th>
+                <th class="pink keyelement-34">Transaction Code</th>
+            </tr>
+        </thead>
+        <tbody id="psrcmptTr1">
+        @foreach (DataRow dr in ViewBag.keyElement.Tables[0].Rows)
+        {
+            <tr>
+                @for (int i = 0; i < ViewBag.keyElement.Tables[0].Columns.Count; i++)
+                {
+                    if (i != 0 && i != 1 && i != 2 && i != 4 && i != 5)
+                    {
+                        <td class="keyelement-@i">@dr[ViewBag.keyElement.Tables[0].Columns[i].ColumnName].ToString()</td>;
+                    }
+                    else
+                    {
+                        if (i == 1 && !string.IsNullOrEmpty(dr[ViewBag.keyElement.Tables[0].Columns[1].ColumnName].ToString()))
+                        {
+                            <td>@dr[ViewBag.keyElement.Tables[0].Columns[i].ColumnName].ToString().Substring(0,10)</td>;
+                        }
+                        else
+                        {
+                            <td>@dr[ViewBag.keyElement.Tables[0].Columns[i].ColumnName].ToString()</td>;
+                        }
+
+                    }
+                }
+            </tr>
+        }
+
+        </tbody>
+    </table>
+    <div class="col-sm-12 noOfrecords">
+        <label class="form-check-label col-form-label col-sm-2 fromTo">No Of records</label>
+        <div class="col-sm-3" style="margin-top: 6px;">
+            <input type="text" class="form-control" id="noOfrecords1" />
+        </div>
+        <div class="col-sm-1 n-paddin-left">
+            <img src='@Url.Content("~/images/CSVPic.jpg")' class="image-csv" style="top: 6px;left: 548%;">
+        </div>
+    </div>
+</div>
+<div class="container-pax positionFoot">
+        <div class="container-psr1" style="overflow: auto;">
+            <table class="table table-bordered table-striped" id="keySummary">
+                <thead>
+                    <tr>
+                        <th class="pink">Agent Num Code</th>
+                        <th class="pink">Transaction Code</th>
+                        <th class="pink">FOP</th>
+                        <th class="pink">FareCurrency</th>
+                        <th class="pink">Fare</th>
+                        <th class="pink">Equivalent Fare Currency</th>
+                        <th class="pink">Equivalent Number</th>
+                        <th class="pink">Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (DataRow dr in ViewBag.keySummary.Tables[0].Rows)
+                    {
+                        <tr>
+                            @for (int i = 0; i < ViewBag.keySummary.Tables[0].Columns.Count; i++)
+                            {
+                                <td>@dr[ViewBag.keySummary.Tables[0].Columns[i].ColumnName].ToString()</td>;
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="showAddDetails" style="left: 82.7%;height: 582px;border: 1px solid;width: 259px;">
+            <div class="col-sm-3"><button class="payment-interogation btn" onclick="showDetails('detailPsrKey','textDetail1')"><span class="search-span" id="textDetail1">Show Add-on Details</span></button></div>
+            <div class="containt-details" id="detailPsrKey" style="overflow-y: auto;top:2px;height: 542px;">
+                <ul class="list-group">
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('allkey', 'keyelement')" id="allkey">All</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key3', 'keyelement-3')" id="key3">Conjunction</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key6', 'keyelement-6')" id="key6">Tour Code</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key7', 'keyelement-7')" id="key7">Endos Restriction</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key8', 'keyelement-8')" id="key8">PNR</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key9', 'keyelement-9')" id="key9">Original Issue</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key10', 'keyelement-10')" id="key10">POS</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key11', 'keyelement-11')" id="key11">SPC</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key12', 'keyelement-12')" id="key12">FOP</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key13', 'keyelement-13')" id="key13">FCMI</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key14', 'keyelement-14')" id="key14">FCA</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key15', 'keyelement-15')" id="key15">Fare Currency</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key16', 'keyelement-16')" id="key16">Fare</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key17', 'keyelement-17')" id="key17">Equivalent Fare Currency</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key18', 'keyelement-18')" id="key18">Equivalent Fare</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key19', 'keyelement-19')" id="key19">Tax1Code</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key20', 'keyelement-20')" id="key20">Tax1Amount</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key21', 'keyelement-21')" id="key21">Tax2Code</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key22', 'keyelement-22')" id="key22">Tax2Amount</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key23', 'keyelement-23')" id="key23">Tax3Code</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key24', 'keyelement-24')" id="key24">Tax3Amount</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key25', 'keyelement-25')" id="key25">Surcharge Collected Cur</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key26', 'keyelement-26')" id="key26">Surcharge Collected</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key27', 'keyelement-27')" id="key27">Coupon Num</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key28', 'keyelement-28')" id="key28">Fare Basis</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key29', 'keyelement-29')" id="key29">Reservation Book Designator</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key30', 'keyelement-30')" id="key30">Interling</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key31', 'keyelement-31')" id="key31">NVB</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key32', 'keyelement-32')" id="key32">NVA</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key33', 'keyelement-33')" id="key33">FBA</li>
+                    <li class="list-group-item"><input type="checkbox" onclick="showpsr('key34', 'keyelement-34')" id="key34">Transaction Code</li>
+                </ul>
+            </div>
+        </div>
+    </div>

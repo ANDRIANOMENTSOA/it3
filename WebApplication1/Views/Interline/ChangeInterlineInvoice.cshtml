@@ -1,0 +1,298 @@
+﻿
+<!-- En tete Interline Billing  -->
+
+<div id="Newcontenue">
+    <div class="panel-heading" style="background-color: #982c2c;height: 45px;font-size: 12px;padding: 2px 5px;">
+        <table class="col-lg-12">
+            <tbody>
+                <tr style="color:white">
+                    <td></td>
+                    <td>Invoice Number</td>
+                    <td>Billing Period</td>
+                    <td>Charge Code</td>
+                    <td>Processing Status</td>
+                    <td></td>
+                    <td>Currency Code</td>
+                    <td>Clearance Currency Code</td>
+                    <td>Exchange Rate</td>
+                    <td>Settlement Period</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="color:white">LOADED INVOICES</td>
+                    <td>
+                        <select id="invoiceNumber" onchange="ChangeInvoiceNumber()">
+                            <option>-ALL-</option>
+                            @for (int i = 0; i < ViewBag.logInvoice; i++)
+                            {
+                                <option value="@ViewBag.ItemInvoice[0, i]">@ViewBag.ItemInvoice[0, i]</option>
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        <select id="billingPeriod" onchange="ChangeBillingPeriodInterline()">
+                            <option>-ALL-</option>
+                            @for (int i = 0; i < ViewBag.logBillingP; i++)
+                            {
+                                <option value="@ViewBag.ItemBillingPeriode[0, i]">@ViewBag.ItemBillingPeriode[0, i]</option>
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        <select id="chargeCode" onchange="ChangeChargeCode()">
+                            <option>-ALL-</option>
+                            @for (int i = 0; i < ViewBag.logChargeC; i++)
+                            {
+                                <option value="@ViewBag.ItemChargeCode[0, i]">@ViewBag.ItemChargeCode[0, i]</option>
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        <select id="procesStatus" onchange="ChangeProcesStatus()">
+                            <option>-ALL-</option>
+                            <option>Already Processed</option>
+                            <option>Not Yet Processed</option>
+                        </select>
+                    </td>
+                    <td><button class="btn-default" style="width: 60px;" onclick="ChangeQuery()">Query</button></td>
+                    <td style="color:white">@ViewBag.lblCurrencyCode</td>
+                    <td style="color:white">@ViewBag.lblClearanceCode </td>
+                    <td style="color:white">@ViewBag.lblExchange</td>
+                    <td style="color:white">@ViewBag.lblSettlementPeriod</td>
+                    <td>
+                        <div id="buttonAlreadyP">
+                             <button id="BtAlreadyProcess" class="btn-default" style="width: 300px; height: 25px;" onclick="">@ViewBag.button15</button> 
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<!-- End En tete Interline Billing  -->
+
+
+<!-- Liste Interline Invoice -->
+<div id="NewListeInterlineResult">
+    <table class="col-lg-12 table table-bordered">
+        <thead style="background-color: #982c2c;color: white;font-size:11px">
+            <tr>
+                <td>Transmission Id change interline</td>
+                <td>Invoice Number</td>
+                <td>Invoice Date</td>
+                <td>Invoice Type</td>
+                <td>Charge Category</td>
+                <td>Seller Organization Id</td>
+                <td>Seller Organization Designator</td>
+                <td>Buyer Organization ID</td>
+                <td>Buyer Organization Designator</td>
+                <td>Settlement Month Period</td>
+                <td>Settlement Method</td>
+                <td>Line Item Number</td>
+                <td>Charge Code</td>
+                <td>Description</td>
+                <td>Charge Amount</td>
+                <td>Tax Type</td>
+                <td>Tax Amount</td>
+                <td>Total Net Amount</td>
+                <td>Detail Count</td>
+                <td>AddOn Charge Name</td>
+                <td>AddOn Charge Amount</td>
+                <td>Processed Date</td>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < ViewBag.logInvoices; i++)
+            {
+                <tr onclick="loadInterline('@ViewBag.ListeInvoices[0, i]','@ViewBag.ListeInvoices[1, i]','@ViewBag.ListeInvoices[2, i]','@ViewBag.ListeInvoices[3, i]',
+                                                            '@ViewBag.ListeInvoices[4, i]','@ViewBag.ListeInvoices[5, i]','@ViewBag.ListeInvoices[6, i]','@ViewBag.ListeInvoices[7, i]',
+                                                            '@ViewBag.ListeInvoices[8, i]','@ViewBag.ListeInvoices[9, i]','@ViewBag.ListeInvoices[10, i]','@ViewBag.ListeInvoices[11, i]',
+                                                            '@ViewBag.ListeInvoices[12, i]','@ViewBag.ListeInvoices[13, i]','@ViewBag.ListeInvoices[14, i]','@ViewBag.ListeInvoices[15, i]',
+                                                            '@ViewBag.ListeInvoices[16, i]','@ViewBag.ListeInvoices[17, i]','@ViewBag.ListeInvoices[18, i]','@ViewBag.ListeInvoices[19, i]',
+                                                            '@ViewBag.ListeInvoices[20, i]','@ViewBag.ListeInvoices[21, i]')">
+                    @for (int j = 0; j < 22; j++)
+                    {
+                        <td>@ViewBag.ListeInvoices[j, i]</td>;
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- End Liste Interline Invoice Joseph -->
+
+
+<!-- Load Liste Invoice   -->
+
+
+    <div id="NewLoadInvoiceResult"  class="col-lg-10 n-padding" style="height: 246px;overflow: auto;">
+
+        <table class="col-lg-12 table table-bordered">
+            <thead style="background-color: #982c2c;color: white;font-size:11px">
+                <tr>
+                    <td>Invoice Number</td>
+                    <td>Detail Number</td>
+                    <td>LineItem Number</td>
+                    <td>Batch Sequence Number</td>
+                    <td>Record Sequence Within Batch</td>
+                    <td>Charge AmountName GrossBilled</td>
+                    <td>Tax Type</td>
+                    <td>TaxAmount Name</td>
+                    <td>Total Net Amount</td>
+                    <td>Ticket Or FIM Issuing Airline</td>
+                    <td>Ticket Or FIM Coupon Number</td>
+                    <td>Ticket Doc or FIM Number</td>
+                    <td>Check Digit</td>
+                    <td>Curr Adjustment Indicator</td>
+                    <td>Electronic Ticket Indicator</td>
+                    <td>Airline Flight Designator</td>
+                    <td>Flight No</td>
+                    <td>Flight Date</td>
+                    <td>From Airport Code</td>
+                    <td>To Airport Code</td>
+                    <td>Settlement Authorization Code</td>
+                    <td>Attachment Indicator Validated</td>
+                    <td>Number Of Attachments</td>
+                    <td>Tax Amount Name Accepted</td>
+                    <td>Tax AmountName Difference</td>
+                    <td>AddOnChargePercentage</td>
+                    <td>AddOnChargeAmount</td>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < ViewBag.logInvoicesDetail; i++)
+                {
+                    <tr onclick="clickLoadInterline('@i','@ViewBag.ListeInvoicesDetail[0, i]','@ViewBag.ListeInvoicesDetail[1, i]','@ViewBag.ListeInvoicesDetail[2, i]','@ViewBag.ListeInvoicesDetail[3, i]',
+                                                            '@ViewBag.ListeInvoicesDetail[4, i]','@ViewBag.ListeInvoicesDetail[5, i]','@ViewBag.ListeInvoicesDetail[6, i]','@ViewBag.ListeInvoicesDetail[7, i]',
+                                                            '@ViewBag.ListeInvoicesDetail[8, i]','@ViewBag.ListeInvoicesDetail[9, i]','@ViewBag.ListeInvoicesDetail[10, i]','@ViewBag.ListeInvoicesDetail[11, i]',
+                                                            '@ViewBag.ListeInvoicesDetail[12, i]','@ViewBag.ListeInvoicesDetail[13, i]','@ViewBag.ListeInvoicesDetail[14, i]','@ViewBag.ListeInvoicesDetail[15, i]',
+                                                            '@ViewBag.ListeInvoicesDetail[16, i]','@ViewBag.ListeInvoicesDetail[17, i]','@ViewBag.ListeInvoicesDetail[18, i]','@ViewBag.ListeInvoicesDetail[19, i]',
+                                                            '@ViewBag.ListeInvoicesDetail[20, i]','@ViewBag.ListeInvoicesDetail[21, i]','@ViewBag.ListeInvoicesDetail[22, i]','@ViewBag.ListeInvoicesDetail[23, i]',
+															'@ViewBag.ListeInvoicesDetail[24, i]','@ViewBag.ListeInvoicesDetail[25, i]','@ViewBag.ListeInvoicesDetail[26, i]')">
+                        @for (int j = 0; j < 27; j++)
+                        {
+                            <td>@ViewBag.ListeInvoicesDetail[j, i]</td>;
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+<!-- End  Load Liste Invoice   -->
+
+<div id="NewdescriptionInvoice">
+    <div class="col-lg-8 n-padding">
+        <table class="table table-bordered modifTabPadding separeteTable" style="color:white;margin-bottom: 0px;">
+            <tbody>
+                <tr>
+                    <td>Charge Code Description</td>
+                    <td>Invoice No.</td>
+                    <td>Line Item Number</td>
+                    <td>Charge Amount</td>
+                    <td>Tax</td>
+                    <td>ISC</td>
+                    <td>Total Net Amount</td>
+                    <td>Detail Count</td>
+                    <td>Billing Period</td>
+                </tr>
+                <tr>
+                    <td>@ViewBag.label33</td>
+                    <td>@ViewBag.label47</td>
+                    <td>@ViewBag.label45</td>
+                    <td>@ViewBag.label34</td>
+                    <td>@ViewBag.label37</td>
+                    <td>@ViewBag.lblIsc</td>
+                    <td>@ViewBag.label38</td>
+                    <td>@ViewBag.label39</td>
+                    <td>@ViewBag.lblBillingPeriod</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+<!-- Button Process Invoice -->
+<div id="NewbuttonProcessInvoice">
+    <button id="BTprocessInvoice" class="btn-default btn" style="height: 46px;float: right;">PROCESS INVOICE</button>
+</div>
+
+<!-- End Button Process Invoice -->
+
+<!--Total Mached    -->
+<div id="NewTotalMached">
+    <table class="modifTabPadding separeteTable" style="color:white">
+        <tr>
+            <td style="border: 0px solid !important;">Matched</td>
+            <td style="width: 80px;">@ViewBag.lblAcp</td>
+            <td style="width: 80px;">@ViewBag.lblAcpPer </td>
+            <td style="border: 0px solid !important;"><span></span></td>
+            <td style="border: 0px solid !important;width: 180px;">Record Not Found In System</td>
+            <td style="border: 0px solid !important;">Matched Total Net Amount</td>
+            <td style="width: 80px;">@ViewBag.lblRejTNAmt</td>
+        </tr>
+        <tr>
+            <td style="border: 0px solid !important;width: 99px;">To Be Accepted</td>
+            <td>@ViewBag.lblRej</td>
+            <td>@ViewBag.lblRejPer</td>
+            <td style="border: 0px solid !important;"><span></span></td>
+            <td style="border: 0px solid !important;">Multiple Billings Received</td>
+            <td style="border: 0px solid !important; width: 201px;">To Be Accepted Total Net Amount</td>
+            <td>@ViewBag.lblAcpTNAmt</td>
+        </tr>
+    </table>
+</div>
+<!-- End Total Mached    -->
+
+
+
+<!-- get Document number et CPN -->
+<div id="NewdocumentNo_cpn">
+    <table class="table table-bordered separeteTable modifTabPadding" style="color:white">
+        <tr>
+            <td>Document No.</td>
+            <td>Coupon No.</td>
+        </tr>
+        <tr>
+            <td>@ViewBag.lblDocNo</td>
+            <td>@ViewBag.lblCpn</td>
+        </tr>
+    </table>
+</div>
+<!-- END get Document number et CPN -->
+
+
+<!-- Liste AddOnchange  -->
+
+<div id="NewListAddOnchange" style="overflow: auto;">
+            <table class="table table-bordered">
+                <thead style="background-color: #982c2c;color: white;font-size:11px">
+                    <tr>
+                        <td>Invoice Number</td>
+                        <td>Ticket No</td>
+                        <td>Coupon No</td>
+                        <td>ISC</td>
+                        <td>ISC %</td>
+                        <td>ISC Amount</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < ViewBag.logSelectedISC; i++)
+                    {
+                        <tr>
+                            @for (int j = 0; j < 6; j++)
+                            {
+                                <td>@ViewBag.ListeSelectedISC[j, i]</td>;
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+</div>
+
+<!-- End Liste AddOnchange  -->

@@ -1,0 +1,480 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Symphony web</title>
+    <link href="~/Content/Interline.css" rel="stylesheet" />
+    <link href="~/Content/Reporting.css" rel="stylesheet" />
+    <link href="~/Content/Sales.css" rel="stylesheet" />
+    <link href="~/Content/PAX_TKTs.css" rel="stylesheet" />
+    <link href="~/Content/lift.css" rel="stylesheet" />
+    <link href="~/Content/process.css" rel="stylesheet" />
+    <link href="~/Content/customised.css" rel="stylesheet" />
+    <link href="~/Assets/css/bootstrap3.min.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/non-responsive.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/jquery-ui-min.css" rel="stylesheet" />
+    <link href="~/Content/surnnot.css" rel="stylesheet" />
+    <link href="~/Content/process.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <ul class="nav navbar-nav">
+                <li class="nav-item"><a href="#" class="lien-image"><img src="~/Images/HomePageHH.png" class="home" /></a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toogle" id="navbarDropdown" role="button" data-toggle="dropdown" href="#">Sales Management</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="javaScript:verticalMenu('@Url.Action("Index", "Sales")')"> Sales Data Upload</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("TotalAmountPSR","Sales")" href="javaScript:ajout(this,'TotalAmountPSR', 'Sales', 'Total Amount PSR')">Total Amount Per PSR</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("KeyControllingData","Sales")" href="javaScript:ajout(this,'KeyControllingData', 'Sales', 'Key Controlling Data')">Key Controlling Data</a></li>
+                        <li><a class="dropdown-item" href="javaScript:0">Key Fields Breakdown</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("PAXTKTs","Sales")" href="javaScript:ajout(this,'PAXTKTs','Sales','Issues')">Issues</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("Cancellations","Sales")" href="javaScript:ajout(this,'Cancellations', 'Sales', 'Cancellations')">Cancellation</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("PAXTKTs","Sales")" href="javaScript:ajout(this,'PAXTKTs','Sales','ACMA')">ACMs</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("PAXTKTs","Sales")" href="javaScript:ajout(this,'PAXTKTs','Sales','ADMs')">ADMs</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toogle" id="navbarDropdown" role="button" data-toggle="dropdown" href="#">Refunds<span class="glyphicon glyphicon-play" style="position:relative!important;left:95px;"></span></a>
+                            <ul class="dropdown-menu pull-right" aria-labelledby="navbarDropdown" style="left:100%; top:0; width:270px;">
+                                <li><a class="dropdown-item" data-url="@Url.Action("FrmRefundEngine","Sales")" href="javaScript:ajout(this 'FrmRefundEngine', 'Sales', 'FrmRefundEngine')">Refunds</a></li>
+                                <li><a class="dropdown-item" data-url="@Url.Action("OALRefundedCouponsBilling","Sales")" href="javaScript:ajout(this,'OALRefundedCouponsBilling', 'Sales', 'OAL Refunded Coupons Billing')">Refunds-OAL (Exchage Cpns Billing)</a></li>
+                                <li><a class="dropdown-item" data-url="@Url.Action("RefundOwn","Sales")" href="javaScript:ajout(this,'RefundOwn', 'Sales', 'Refund-own')">Refunds OWN</a></li>
+                                <li><a class="dropdown-item" data-url="@Url.Action("ListofRefunds","Sales")" href="javaScript:ajout(this,'ListofRefunds', 'Sales', 'ListofRefunds','')">List of Refunds</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("CommissionReclaim","Sales")" href="javaScript:ajout(this,'CommissionReclaim', 'Sales', 'Commission Reclaim')">Commission Reclaim</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("Exchanges","Sales")" href="javaScript:ajout(this,'Exchanges', 'Sales', 'Exchanges')">Exchanges</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("ISCReclaimOAL","Sales")" href="javaScript:ajout(this,'ISCReclaimOAL','Sales','ISC Reclaim OAL')">ISC Reclaim</a></li>
+                        <li><a class="dropdown-item" href="javaScript:#">Retroactive Adjustments</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("FIMManager","Sales")" href="javaScript:ajout(this,'FIMManager', 'Sales', 'FIM Manager')">FIMs</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("UnusedDocsCpns","Sales")" href="javaScript:ajout(this,'UnusedDocsCpns', 'Sales', 'Unused Docs/Cpns')">Used Docs/Cpns</a></li>
+                        <li><a class="dropdown-item" href="javaScript:ajout('RET Anciliaries','')">RET Anciliaries</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("PAXTKTs","Sales")" href="javaScript:ajout(this,'PAXTKTs','Sales','PAX TKTs')">PAX TKTs</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("PAXTKTs","Sales")" href="javaScript:ajout(this,'PAXTKTs', 'Sales', 'EMDs')">EMDs</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("PAXTKTs","Sales")" href="javaScript:ajout(this,'PAXTKTs', 'Sales', 'EBTs')">EBTs</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("PAXTKTs","Sales")" href="javaScript:ajout(this,'PAXTKTs', 'Sales', 'MCOs')">MCOs</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("PAXTKTs","Sales")" href="javaScript:ajout(this,'PAXTKTs', 'Sales', 'MPDs')">MPDs</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("Tfcs","Sales")" href="javaScript:ajout(this,'Tfcs','Sales', 'Tfcs')">TFCs</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("Surcharges","Sales")" href="javaScript:ajout(this,'Surcharges', 'Sales', 'Surcharges')">Surcharges</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("Vat","Sales")" href="javaScript:ajout(this,'Vat', 'Sales', 'Vat')">VAT</a></li>
+                        <li><a class="dropdown-item" href="javaScript:#">Commission</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("FormOfPayementType","Sales")" href="javaScript:ajout(this,'FormOfPayementType', 'Sales', 'Form Of Payement Type')">FOP Types</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("FOPUATPBillingsToOALs","Sales")" href="javaScript:ajout(this,'FOPUATPBillingsToOALs', 'Sales', 'FOP-UATP Billings To OALs')">FOP-UATB Billing to OALS</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("UATPDiscountReclaim","Sales")" href="javaScript:ajout(this,'UATPDiscountReclaim', 'Sales', 'UATP Discount Reclaim')">UATP Discount Reclaimed</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("FOPOthers","Sales")" href="javaScript:ajout(this,'FOPOthers','Sales','FOP Others')">FOP Others</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("INAD","Sales")" href="javaScript:ajout(this,'INAD','Sales','INAD')">INAD</a></li>
+
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toogle" id="navbarDropdown" role="button" data-toggle="dropdown" href="#">
+                        Lift Management
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="javaScript:ajout('Test','Lift')">Lift Data Upload</a></li>
+                        <li><a class="dropdown-item" href="javaScript:ajout('Test','Lift')">SSIM</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("KeyControllingData","Sales")" href="javaScript:ajout(this,'KeyControllingData', 'Sales', 'Key Controlling Data')">Key Controlling Data</a></li>
+                        <li><a class="dropdown-item" href="javaScript:ajout('Test','Lift')">Total Head Counts Validated</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("SLS","Lift")" href="javaScript:ajout(this,'SLS','Lift','SLS')">SLS</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("LDM","Lift")" href="javaScript:ajout(this,'LDM','Lift','LDM')">LDM</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("PNLPFS","Lift")" href="javaScript:ajout(this,'PNLPFS','Lift','PNL/PFS')">PNL/PFS</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("Compare","Lift")" href="javaScript:ajout(this,'Compare','Lift','Compare')">Compare</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("PassengerLift","Lift")" href="javaScript:ajout(this,'PassengerLift','Lift','Passenger Lift')">Passenger Flown</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("PAXTKTs","Sales")" href="javaScript:ajout(this,'PAXTKTs', 'Sales', 'Flown TKTs')">TKTs</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("PAXTKTs","Sales")" href="javaScript:ajout(this,'PAXTKTs', 'Sales', 'Flown EBTs')">EBTs</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("PAXTKTs","Sales")" href="javaScript:ajout(this,'PAXTKTs', 'Sales', 'Flown EMDs')">EMDs</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("PAXTKTs","Sales")" href="javaScript:ajout(this,'PAXTKTs', 'Sales', 'Flown MCOs')">MCOs</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("LiftForTransportOwn","Lift")" href="javaScript:ajout(this,'LiftForTransportOwn','Lift','Lift For Transport-Own')">OWN</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("LiftForTransportOAL","Lift")" href="javaScript:ajout(this,'LiftForTransportOAL','Lift','LiftForTransport-OAL')">OAL</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("SalesMatching","Lift")" href="javaScript:ajout(this,'SalesMatching','Lift','Sales Matching')">Sales Matching</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toogle" id="navbarDropdown" role="button" data-toggle="dropdown" href="#">Outward Billing <span class="glyphicon glyphicon-play" style="left:35%; position:relative!important;"></span></a>
+                            <ul class="dropdown-menu pull-right" aria-labelledby="navbarDropdown" style="left:100%; top:0; width:270px;">
+                                <li><a class="dropdown-item" href="javaScript:ajout('Test','Sales')">Outward Billing Automated</a></li>
+                                <li><a class="dropdown-item" href="javaScript:ajout('Test','Sales')">Outward Billing Manual</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("FlownWithoutSales", "Lift")" href="javaScript:ajout(this,'FlownWithoutSales','Lift','Flown Without Sales')">Flown Without Sales</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("FlownRevenue", "Lift")" href="javaScript:ajout(this,'FlownRevenue','Lift','Flown Revenue')">Flown Revenue</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("NoShow","Lift")" href="javaScript:ajout(this,'NoShow','Lift','No Show')">No Show</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("TFCFLOWN", "Lift")" href="javaScript:ajout(this,'TFCFLOWN','Lift','TFC-FLOWN-')">Flown TFCs</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("Surcharges", "Lift")" href="javaScript:ajout(this,'Surcharges','Lift','Surcharges')">Flown Surcharges</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("VAT", "Lift")" href="javaScript:ajout(this,'VAT','Lift','VAT')">Flown VAT</a></li>
+
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Interline Management</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" data-url="@Url.Action("InterlineBilling","Interline")" href="javaScript:ajout(this,'InterlineBilling','Interline','Interline Billing')">Inwards Billing Files Management</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("KeyControllingData","Sales")" href="javaScript:ajout(this,'KeyControllingData', 'Sales', 'Key Controlling Data')">Key Controlling Data</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("InterlineBilling","Interline")" href="javaScript:ajout(this,'InterlineBilling','Interline','Interline Billing')">1st Rejection Source Code 4.44.91</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("InterlineBilling","Interline")" href="javaScript:ajout(this,'InterlineBilling','Interline','Interline Billing')">2nd Rejection Source Code 5.45.92</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("InterlineBilling","Interline")" href="javaScript:ajout(this,'InterlineBilling','Interline','Interline Billing')">3rd Rejection Source Code 6.46.93</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("RejectionToleranceValue","Interline")" href="javaScript:ajout(this, 'RejectionToleranceValue', 'Interline', 'Rejection Tolerance Value')">Tolerence Check (USD 5 Gross Fare USD 2 Net-FTC)</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("CheckTolerance","Interline")" href="javaScript:ajout(this, 'CheckTolerance', 'Interline', 'Check Tolerance')">Persistent Errors Check (Less than USD 5 or USD 2)</a></li>
+                        <li><a class="dropdown-item" href="javaScript:ajout('Test','Sales')">Rejection</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("FIMManager","Sales")" href="javaScript:ajout(this,'FIMManager', 'Sales', 'FIM Manager')">FIMs</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("INAD","Sales")" href="javaScript:ajout(this,'INAD','Sales','INAD')">INAD</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("FrmRefundEngine","Sales")" href="javaScript:ajout(this 'FrmRefundEngine', 'Sales', 'FrmRefundEngine')">Refunds</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("ExchangesOAL","Sales")" href="javaScript:ajout(this,'ExchangesOAL', 'Sales', 'Exchanges-OAL')">Exchages</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("SPAEngine","Interline")" href="javaScript:ajout(this,'SPAEngine', 'Interline', 'SPA Engine')">SPA</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("Codeshares","Interline")" href="javaScript:ajout(this,'Codeshares', 'Interline', 'Codeshares')">Code Shares</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("CreditMemos","Interline")" href="javaScript:ajout(this, 'CreditMemos', 'Interline', 'Credit Memos')">Credit Memos</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("InterlineBilling","Interline")" href="javaScript:ajout(this,'InterlineBilling','Interline','Interline Billing')">Billing Memos</a></li>
+                        <li><a class="dropdown-item" data-url="@Url.Action("RefundAdjustements","Interline")" href="javaScript:ajout(this, 'RefundAdjustements', 'Interline', 'Retroactive Adjustements')">Refund Adjustments</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Accouting</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Accouting</a></li>
+
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Engines</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="javaScript:ajout('Test','Sales'">Proration</a></li>
+                        <li><a class="dropdown-item" href="javaScript:ajout('Test','Sales'">SPA</a></li>
+                        <li><a class="dropdown-item" href="javaScript:ajout('Test','Sales'">Outward Billing Manual</a></li>
+                        <li><a class="dropdown-item" href="javaScript:ajout('Test','Sales'">Outward Billing Automated</a></li>
+                        <li><a class="dropdown-item" href="javaScript:ajout('Test','Sales'">Inward Billing</a></li>
+                        <li><a class="dropdown-item" href="javaScript:ajout('Test','Sales'">Manual Ticket Entry</a></li>
+                        <li><a class="dropdown-item" href="javaScript:ajout('Test','Sales'">Passenger Name list</a></li>
+                        <li><a class="dropdown-item" href="javaScript:ajout('Test','Sales'">Data Split Management</a></li>
+                        <li><a class="dropdown-item" href="javaScript:ajout('Test','Sales'">Banker's Rate</a></li>
+                        <li><a class="dropdown-item" href="javaScript:ajout('Test','Sales'">TFC</a></li>
+                        <li><a class="dropdown-item" href="javaScript:ajout('Test','Sales'">Refunds</a></li>
+                        <li><a class="dropdown-item" href="javaScript:ajout('Test','Sales'">Manual Excess Baggage Entry</a></li>
+
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Process</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Excess Baggage Proration</a></li>
+                        <li><a class="dropdown-item" href="#">Generate Facsimile</a></li>
+                        <li><a class="dropdown-item" href="#">Correspondences</a></li>
+                        <li><a class="dropdown-item" href="#">Proviso</a></li>
+                        <li><a class="dropdown-item" href="#">Villing Memos</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Queries</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Transaction in A Nutshell</a></li>
+                        <li><a class="dropdown-item" href="#">Free and Reduced Rate Discount/Rebate Travel</a></li>
+                        <li><a class="dropdown-item" href="#">Final Share vs Amount Collected</a></li>
+                        <li><a class="dropdown-item" href="#">Passenger Agency Management</a></li>
+                        <li><a class="dropdown-item" href="#">Expected Interline & Flown Revenue</a></li>
+                        <li><a class="dropdown-item" href="#">Sales Upload By FOP</a></li>
+                        <li><a class="dropdown-item" href="#">Discrepancy Analytics</a></li>
+                        <li><a class="dropdown-item" href="#">Sector Value Control</a></li>
+                        <li><a class="dropdown-item" href="#">File Upload Status</a></li>
+                        <li><a class="dropdown-item" href="#">File Share Check</a></li>
+                        <li><a class="dropdown-item" href="#">Passenger Flown Reports</a></li>
+                        <li><a class="dropdown-item" href="#">Lifted Coupons Validation</a></li>
+                        <li><a class="dropdown-item" href="#">Involontary Reroute</a></li>
+                        <li><a class="dropdown-item" href="#">Passenger Sales Reports</a></li>
+                        <li><a class="dropdown-item" href="#">Credit Card Management</a></li>
+                        <li><a class="dropdown-item" href="#">Proration Exception Viewer</a></li>
+                        <li><a class="dropdown-item" href="#">Special Purpose Code</a></li>
+                        <li><a class="dropdown-item" href="#">Usage Date v/s Booking Date</a></li>
+                        <li><a class="dropdown-item" href="#">Pricing Management</a></li>
+                        <li><a class="dropdown-item" href="#">Fare, TFC & surcharge Tracking</a></li>
+                        <li><a class="dropdown-item" href="#">POS Summary</a></li>
+                        <li><a class="dropdown-item" href="#">Revenue Analysis</a></li>
+                        <li><a class="dropdown-item" href="#">Coupon Usage Discrepancy</a></li>
+                        <li><a class="dropdown-item" href="#">EMD Transaction Screen</a></li>
+                        <li><a class="dropdown-item" href="#">Discount Uncollected</a></li>
+                        <li><a class="dropdown-item" href="#">Flight Irregularities</a></li>
+                        <li><a class="dropdown-item" href="#">Duplicate Utilisation</a></li>
+                        <li><a class="dropdown-item" href="#">View Lift Info</a></li>
+                        <li><a class="dropdown-item" href="#">Manual Tickets List</a></li>
+                        <li><a class="dropdown-item" href="#">Routing Change</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Audit</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">ATDA</a></li>
+                        <li><a class="dropdown-item" href="#">Refund</a></li>
+                        <li><a class="dropdown-item" href="#">Fare</a></li>
+                        <li><a class="dropdown-item" href="#">Commission</a></li>
+                        <li><a class="dropdown-item" href="#">Discount</a></li>
+                        <li><a class="dropdown-item" href="#">Free Baggage Allowance</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tools</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li class="menu"><a class="dropdown-item" href="#">Batch Prorate</a></li>
+                        <li><a class="dropdown-item" href="#">MD Agent</a></li>
+                        <li><a class="dropdown-item" href="#">MD Code Share</a></li>
+                        <li><a class="dropdown-item" href="#">MD DC Messaging Control</a></li>
+                        <li><a class="dropdown-item" href="#">MD Fare</a></li>
+                        <li><a class="dropdown-item" href="#">MD FLight Shedule</a></li>
+                        <li><a class="dropdown-item" href="#">MD Local Fare</a></li>
+                        <li><a class="dropdown-item" href="#">MD Rate Of Exchange(ROE) </a></li>
+                        <li><a class="dropdown-item" href="#">IT/BT Fare Export</a></li>
+                        <li><a class="dropdown-item" href="#">Fare Basis</a></li>
+                        <li><a class="dropdown-item" href="#">File Not Loaded</a></li>
+                        <li><a class="dropdown-item" href="#">Sales Validation</a></li>
+                        <li><a class="dropdown-item" href="#">Coupon Usage Validation</a></li>
+                        <li><a class="dropdown-item" href="#">MD Public Fare</a></li>
+                        <li><a class="dropdown-item" href="#">Fare Audit</a></li>
+                        <li><a class="dropdown-item" href="#">Manual Lift Update</a></li>
+                        <li><a class="dropdown-item"> @Html.ActionLink("sous menu", "SousMenu", routeValues: new { link = "sous menu", method = "Profile" })</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Reports</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">User Management</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">User Management</a></li>
+                        <li><a class="dropdown-item" href="#">Change Password</a></li>
+                        <li><a class="dropdown-item" href="#">User Log</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">References</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">View References</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ADMACM</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="javaScript:ajout('Create ADMACM')">Create ADMACM</a></li>
+                        <li><a class="dropdown-item" href="javaScript:ajout('Query ADMACM')">Query ADMACM</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="sous-menu sous-menu-fixed-top">
+        <ul class="nav nav-tabs" id="sous-menu">
+            <li class="nav-item"><a data-toggle="tab" href="#Startup" class="nav-link active"><span>Startup</span></a></li>
+        </ul>
+
+        <div role="tabpanel" class="close-down">
+            <ul class="nav navbar-nav right" style="height: 31px;">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-chevron-down" onclick="dropDownSousmenu()"></span></a>
+                    <ul class="dropdown-menu dropdown-sous-menu" aria-labelledby="navbarDropdown"></ul>
+                </li>
+                <li><span class="glyphicon glyphicon-remove" onclick="removeSousMenu()"></span></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            @RenderBody()
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script src="~/Scripts/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"> </script>
+    <script src="~/Scripts/summernote.js"></script>
+    <script src="~/Scripts/jquery.fixedheadertable.js"></script>
+    <script src="~/Scripts/paxTkts.js"></script>
+    <script src="~/Scripts/Lift.js"></script>
+    <script src="~/Scripts/html2canvas.js"></script>
+    <script src="~/Scripts/Process.js"></script>
+    <script src="~/Scripts/billingMemo.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+
+    <script>
+            /* script layout code by Fano */
+            /// evenement click menu puis ajout sous menu
+            function ajout(e, i, controller, text) {
+                let url = $(e).attr('data-url');
+                if (url == undefined) {
+                    url = "/symphony/" + controller + '/' + i;
+                    console.log(url);
+                }
+                console.log(url);
+                let tmp = true;
+                let newtmp = false;
+                let longSousMenu = i.length;
+                let lengthSousMenu = ($(".sous-menu").width() * 80) / 100;
+                let sommeLengthSousMenu = 0;
+                /// calculer la longueure des sous menu afficher
+                $('#sous-menu li').each(function (idx, li) {
+                    if ($(li).css('display') != 'none') {
+                        sommeLengthSousMenu = sommeLengthSousMenu + $(li).width();
+                    }
+                    if (text == $(li).text()) {
+                        newtmp = true;
+                    }
+                    /// ajouter et supprimer la classe active dans la liste <li>
+                    var sousMenuExist = $(li).text();
+                    $('#sous-menu li.active').removeClass('active');
+                    if (text == sousMenuExist) {
+                        tmp = false;
+                        $(li).children().trigger('click');
+                    }
+                });
+                /// condition pour cacher d'autre sous menu si la distance demandé est depassée
+                if (lengthSousMenu - sommeLengthSousMenu <= 0) {
+                    $('#sous-menu li').each(function (idx, li) {
+                        if ($(li).css('display') != 'none') {
+                            $(li).hide();
+                            return false;
+                        }
+                    })
+                }
+
+                if (tmp) {
+                    var nameAction = i.split(' ').join('');
+                    $('#sous-menu').append('<li class="nav-item active"><a data-toggle="tab" href="#' + nameAction + text.replace(/[|/\. ,:-]+/g, '') + '" class="nav-link" id="tab-transaction"><span>' + text.replace(/[|\.,:*]+/g, ' ') + '</span></a></li>');
+                    nameAction = nameAction.split('-').join('');
+                    loadAction(nameAction, url, newtmp, text);
+                    //console.log(nameAction, url, newtmp, text);
+                }
+            }
+            /// ajax pour loadé la page
+
+            function loadAction(nameAction, url, newtmp, text) {
+
+                /*    new code fano */
+                if (newtmp) {
+                    $('#sous-menu li a').each(function (idx, li) {
+                        if ($(li).text() == text) {
+                            $(this).addClass('active');
+                            $("#" + nameAction + text.replace(/[|/\. ,:-]+/g, '')).addClass('tab-pane fade in active');
+                        } else if ($(this).hasClass('active')) {
+                            let IdActive = $(this).attr('href');
+                            $(IdActive).removeClass();
+                            $(IdActive).addClass('tab-pane fade');
+                            $(this).removeClass('active');
+                        }
+                    });
+                } else {
+                    $('#sous-menu li a').each(function (idx, li) {
+                        if ($(this).hasClass('active')) {
+                            let IdActive = $(this).attr('href');
+                            $(IdActive).removeClass('active');
+                            $(IdActive).removeClass('in');
+                            $(IdActive).addClass('tab-pane fade');
+                        }
+                        $(this).removeClass('active');
+                    });
+
+                    $('#containt-all-tab div').each(function (idx, li) {
+                        if ($(li).hasClass('add-div')) {
+                            $(li).removeClass('active');
+                        }
+
+                    });
+
+                    $.ajax({
+                        type: 'POST',
+                        url: url,
+                        data: { type: text.replace(/[|/\. ,:-]+/g, '') },
+                        async: false,
+                        success: function (data) {
+                            //$(".container-body-pricipal").html(data);
+                            $("#containt-all-tab").append('<div id="' + nameAction + text.replace(/[|/\. ,:-]+/g, '') + '" class="add-div tab-pane fade in active">' + data + '</div>');
+                        },
+                        error: function () {
+                            console.log('error')
+                        }
+                    });
+                    /*  end code */
+
+                }
+
+
+            }
+
+            /// evenement click sur la list dans drop-down + load page
+            $(".close-down").on('click', '.list-sous-menu', function () {
+                let href = $(this).attr('data-controller');
+                $('#sous-menu li a').each(function (idx, li) {
+                    if (href == $(li).attr('href')) {
+                        $(li).trigger('click');
+                    }
+                });
+            });
+
+            /// charger tous les listes <li> dans le drop-down
+            function dropDownSousmenu() {
+                $('.dropdown-sous-menu').empty()
+                $('#sous-menu li a').each(function (idx, li) {
+                    if ($(li).text() != "Search" && $(li).text() != "Transaction") {
+                        $('.dropdown-sous-menu').append('<li class="list-sous-menu" data-controller="' + $(li).attr('href') + '"><a class="dropdown-item">' + $(li).text() + '</a></li>');
+                    }
+                });
+            }
+
+            /// supprimer le sous menu active et load une autre page
+            function removeSousMenu() {
+
+                $('#sous-menu li').each(function (idx, li) {
+                    if ($(li).hasClass('active') && $(li).children().attr('href') != '#Startup') {
+
+                        let id = $(li).children().attr('href');
+                        $(li).remove();
+                        $('#containt-all-tab ' + id).remove();
+                    }
+                    $('#sous-menu li').last().children().trigger('click');
+                });
+            }
+
+
+            /// Partial View
+            function verticalMenu(url) {
+                $('.liste-sous-menu-vertical li').each(function (idx, li) {
+                    $(li).removeClass('active');
+                });
+                if (url.includes('Sales')) {
+                    $('.liste-sous-menu-vertical li:eq(1)').addClass('active');
+                }
+                //ajout('Index', 'Sales', 'Startupsss');
+                $.get(url, function (data) {
+                    $('.container-body').html(data);
+                });
+
+            }
+    </script>
+
+
+
+    <!-- DataTable With connexion  Joseph    
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"> </script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"> </script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"> </script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.flash.min.js"> </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"> </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"> </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"> </script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"> </script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"> </script>
+
+         -->
+
+    <!-- DataTable Sans connexion  Joseph  -->
+    <script type="text/javascript" src="~/Scripts/DataScript/jquery.dataTables.min.js"> </script>
+    <script type="text/javascript" src="~/Scripts/DataScript/dataTables.bootstrap4.min.js"> </script>
+    <script type="text/javascript" src="~/Scripts/DataScript/dataTables.buttons.min.js"> </script>
+    <script type="text/javascript" src="~/Scripts/DataScript/buttons.flash.min.js"> </script>
+    <script type="text/javascript" src="~/Scripts/DataScript/jszip.min.js"> </script>
+    <script type="text/javascript" src="~/Scripts/DataScript/pdfmake.min.js"> </script>
+    <script type="text/javascript" src="~/Scripts/DataScript/vfs_fonts.js"> </script>
+    <script type="text/javascript" src="~/Scripts/DataScript/buttons.html5.min.js"> </script>
+    <script type="text/javascript" src="~/Scripts/DataScript/buttons.print.min.js"> </script>
+ 
+    <!-- End DataTable   -->
+
+</body>
+</html>

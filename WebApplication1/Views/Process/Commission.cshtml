@@ -1,0 +1,249 @@
+﻿<script src="~/Scripts/Process.js"></script>
+
+<div id="donne">
+    <div class="col-sm-12 tab-content tab-cancellation">
+        <div class="content-cancellation col-sm-12">
+            <div class="row">
+                <div class="col-sm-3">
+                    <fieldset class="test-fieldst">
+                        <legend class="test-fieldst">Date Of Issue</legend>
+                        <div class="col-sm-6 width-group">
+                            <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">From:</label>
+                            <div class="col-sm-9 n-padding">
+                                <div class="input-group">
+                                    <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateFromcommission')"></span>
+                                    <input type="text" class="form-control" id="dateFromcommission" value="@ViewBag.dateFrom"  style="padding-right:3px">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6" style="margin-bottom: 19px;">
+                            <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">To:</label>
+                            <div class="col-sm-9 n-padding">
+                                <div class="input-group">
+                                    <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateTocommission')" ></span>
+                                    <input type="text" class="form-control" id="dateTocommission" value="@ViewBag.dateTo" onchange="GetAgentCode()" style="padding-right:3px">
+                                </div>
+                            </div>
+                        </div>
+
+                    </fieldset>
+
+                </div>
+                <div class="col-sm-3" style="margin-top: 10px">
+                    <fieldset class="test-fieldst">
+                        <div class="form-group row" style="padding-left:7px;margin-top:7px">
+                            <label class="col-sm-5 col-form-label" style="">Agent Numeric Code:</label>
+                            <div class="col-sm-5" id="">
+
+                                <select class="form-control" style="width: auto" id="numericCode" >
+                                    <option>-All-</option>
+                                    @for (int i = 0; i < ViewBag.logAgent; i++)
+                                    {
+                                        <option> @ViewBag.ItemAgentNum[0, i]</option>
+                                    }
+                                </select>
+                                <input type="hidden" name="valAgentCode" id="valAgentCode" value="@ViewBag.valAgentCode" class="form-control">
+                            </div>
+                            <div class="col-sm-1 containt-btn" style="width: 33px !important; height:30px;">
+                                <button class="point-interogation green btn" data-toggle="modal" data-target="#modalcommission" onclick="chercherefnLift(this)">
+                                    <span class="point-span">?</span>
+                                </button>
+
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </div>
+                <div class="col-sm-3" style="top:26px">
+                    <button class="btn-outward green-tab" onclick="RechercheCommission()">Search</button>
+                    <button class="btn-outward green-tab" style="margin-left:25px" onclick="ClearCommission()">Clear</button>
+                    <button class="btn-outward green-tab" style="margin-left:25px" onclick="removeSousMenu()">Close</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="ajax-loader">
+                    <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+                </div>
+                <div class="col-sm-8" style="margin-top:17px">
+                    <div class="col-sm-12" style="height: 650px;background: white;margin-left:0px; overflow: auto;">
+                       
+                         <table class="table table-striped table-bordered" style="width: 85%;margin-left: -15px;">
+                            <thead>
+                                <tr>
+                                    <th class="green-tab">Date Of Issue</th>
+                                    <th class="green-tab">Agent Code</th>
+                                    <th class="green-tab">Document Number</th>
+                                    <th class="green-tab">Doc Amt Type</th>
+                                    <th class="green-tab">Other Amt Code</th>
+                                    <th class="green-tab">Comm%</th>
+                                    <th class="green-tab">Comm AMT</th>
+                                    <th class="green-tab">Agent Comm%</th>
+                                    <th class="green-tab">Comm% Diff</th>
+                                    <th class="green-tab" width="20%">Remarks</th>
+                                    <th class="green-tab">Transaction Group</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (int i = 0; i < ViewBag.logComm; i++)
+                                {
+                                    <tr data-url="@Url.Action("PAXTKTs","Sales")" ondblclick="ajout(this, 'PAXTKTs', 'Sales', 'PAX TKTs');clickLigneTransactionData(this, '@ViewBag.ListeComm[2, i]','', '')">
+                                        @for (int j = 0; j < 11; j++)
+                                        {
+                                            <td>@ViewBag.ListeComm[j, i]</td>;
+                                        }
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-sm-4" style="border:1px solid white;margin-top:17px">
+
+                    <div class="row">
+                        <div class="col-sm-12 green-tab" style="text-align: center;margin-left:0px;padding:3px">Passenger Sales Agency Details</div>
+                    </div>
+                    <div class="row" style="padding: 10px">
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-5">Date Of Appointment:-</div>
+                    </div>
+                    <div class="row" style="padding: 10px">
+                        <div class="col-sm-4">Name</div>
+                        <div class="col-sm-5">
+                            <input type="text" name="nameAgent" id="nameAgent" value="@ViewBag.nameAgent" style="width:270px">
+                        </div>
+                    </div>
+                    <div class="row" style="padding: 10px">
+                        <div class="col-sm-4">Address:-</div>
+                        <div class="col-sm-5">
+                            <textarea name="addressAgent" id="addressAgent" value="@ViewBag.addressAgent"  style="height: 80px;width:270px"></textarea>
+                        </div>
+                    </div>
+                    <div class="row" style="padding: 10px">
+                        <div class="col-sm-4">Satus:-</div>
+                        <div class="col-sm-5">
+                            <input type="text" name="statusAgent" id="statusAgent" value="@ViewBag.statusAgent" style="width:100px">
+                        </div>
+                    </div>
+                    <div class="row" style="padding: 10px">
+                        <div class="col-sm-4">Category:-</div>
+                        <div class="col-sm-5">
+                            <input type="text" name="categoryAgent" id="categoryAgent" value="@ViewBag.categoryAgent">
+                        </div>
+                    </div>
+                    <div class="row" style="padding: 10px">
+                        <div class="col-sm-4">Remarks:-</div>
+                        <div class="col-sm-5">
+                            <textarea style="height: 80px;width:270px" name="remarksAgent" id="remarksAgent" value="@ViewBag.remarksAgent"></textarea>
+                        </div>
+                    </div>
+                    <div class="row" style="padding: 10px">
+                        <div class="col-sm-12" style="height: 223px;background: white; overflow: auto;">
+                            <table class="table table-striped table-bordered"  style="width: 90%;margin-left: -15px;">
+                                <thead>
+                                    <tr>
+                                        <th class="green-tab">Types Of Remuneration</th>
+                                        <th class="green-tab">Per/Amount</th>
+                                        <th class="green-tab">Rate/Level</th>
+                                        <th class="green-tab">Applicability</th>
+                                        <th class="green-tab">Period From</th>
+                                        <th class="green-tab">Priod To</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (int i = 0; i < ViewBag.logAgency; i++)
+                                    {
+                                        <tr>
+                                            @for (int j = 0; j < 6; j++)
+                                            {
+                                                <td>@ViewBag.ListeTabAgency[j, i]</td>;
+                                            }
+                                        </tr>
+                                    }
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6" style="margin-top:20px">
+
+                    <div class="col-sm-4"><label>Number of record per page</label></div>
+                    <div class="col-sm-2"><input type="text" name="" disabled=""  value="@ViewBag.logComm" style="width: 50px"></div>
+                    <div class="col-sm-5">
+                        <button class="btn-default" style="width: 80px">&lt;</button>
+                        <input type="text" name="" disabled="" style="width: 100px">
+                        <button class="btn-default" style="width: 80px">&lt;</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="modal fade" id="modalcommission" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="Doc modal-content" style="width: 58%;left: 17%; background-color: rgba(135, 206, 235, 1) !important; ">
+            <div class="agentModal">
+                <div class="modal-header" style="background-color: white; margin-bottom: 21px;">
+                    <h5 class="modal-title" id="myModalLabel">FrmCustomAgentQuery</h5>
+                    <button type="button" class="close close-agent-code" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="DocCollect-modal-body">
+                    <div class="scoll-tree scoll-agent-code">
+                        <div class="head-agent-code-content">
+                            <div class="form-row">
+                                <div class="col col-md-3" style="padding-left: 0px;">Agent Legal Name:</div>
+                                <div class="col col-md-4">
+                                    <input type="text" class="form-control" id="name" name="agentName" onkeyup="cherche(this.value,'GrandParent_@ViewBag.type')" />
+                                </div>
+                                <div class="col col-md-2">Agent Code:</div>
+                                <div class="col col-md-3">
+                                    <input type="text" class="form-control" id="code" name="agentCode" onkeyup="cherche(this.value,'GrandParent_@ViewBag.type')" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="agentContent" style="width: 98%; max-height: 515px;">
+                            <table class="table table-agent-code" style="margin-bottom:0px">
+                                <thead>
+                                    <tr>
+                                        <th width="35%">Agent Code</th>
+                                        <th width="70%">Agent Name</th>
+                                    </tr>
+                                </thead>
+
+
+                            </table>
+                        </div>
+                        <div class="autocomplete">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="background-color:rgba(135, 206, 235, 1) !important;">
+                    <div class="col-md-9 footer-agent-code">
+                        <div class="col-md-12">
+                            <label>Agent Name: </label>
+                            <label style="color:white;font-size:12px" id="agent-name-label"></label>
+                        </div>
+                        <div class="col-md-12">
+                            <label>Agent Code: </label>
+                            <label style="color:white; font-size:12px" id="agent-code-label"></label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <button type="button" class="Close btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="Close btn" data-dismiss="modal" onclick="selectPsd()">Select</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

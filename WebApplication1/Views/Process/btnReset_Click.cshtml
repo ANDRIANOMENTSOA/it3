@@ -1,0 +1,65 @@
+﻿<div class="col" id="newfieldsetdiscount">
+    <fieldset class="test-fieldst">
+        <legend class="test-fieldst">Flight Date</legend>
+        <div class="col-sm-1 margin-issue">
+            <label class="form-check-label col-form-label">From:-</label>
+        </div>
+
+        <div class="col-sm-3 n-padding">
+            <div class="input-group date">
+                <input type="text" name="dateFromTFC" class="form-controls input-date" value="@ViewBag.date[1]" id="dateFromTFC" onchange="agentRBD()"/>
+                <span class="input-group-addon datetimepicker" onclick="setdate('dateFromTFC')">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        <div class="col-sm-1">
+            <label class="form-check-label col-form-label">To:-</label>
+        </div>
+        <div class="col-sm-3 n-padding">
+            <div class="input-group date">
+                <input type='text' name="dateToTFC" class="form-controls input-date input-datetimepicker" value="@ViewBag.date[1]" id="dateToTFC" onchange="agentRBD()" />
+                <span class="input-group-addon datetimepicker" onclick="setdate('dateToTFC')">
+                    <span class="glyphicon glyphicon-calendar" id="calendarPaxTo"></span>
+                </span>
+            </div>
+        </div>
+    </fieldset>
+</div>
+
+<div class="table-record-display col" style="height:664px;overflow:auto;" id="newtableagent">
+    <table class="table table-bordered table-striped table-hover" id="tablecontenuagent">
+        <thead>
+            <tr style="background-color: RGB(173,255,47);">
+                <th>Document No</th>
+                <th>CPN</th>
+                <th>Agent No</th>
+                <th>Figth No</th>
+                <th>Fight Date</th>
+                <th>Fight Basis</th>
+                <th>Fare & Pax Type Code</th>
+                <th>Discount</th>
+                <th>Passenger Name</th>
+                <th>Amt Collected Cur</th>
+                <th>Amt Collected</th>
+                <th>Fare calculation Area</th>
+                <th>RBD</th>
+            </tr>
+        </thead>
+        <tbody class=""></tbody>
+    </table>
+</div>
+
+<div class="col" id="newagentRBD">
+    <select class="form-control" id="selectagentRBD" onchange="param()">
+        <option class="form-control" value="-All-">-All-</option>
+    </select>
+</div>
+
+<div class="col" id="newdivtxtagtname">
+    <input type="text" class="form-control" value="" id="txtagtname">
+</div>
+
+<div class="col" id="newdivtxtagtadd">
+    <textarea style="position: relative;width: 449px;" rows="3" id="txtagtadd"></textarea>
+</div>

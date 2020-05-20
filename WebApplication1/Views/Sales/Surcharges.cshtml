@@ -1,0 +1,191 @@
+﻿@using System.Data
+@model DataSet
+<div class="col-sm-11 tab-content tab-cancellation">
+    <div class="content-cancellation col-sm-11">
+        <div class="col-sm-4">
+            <fieldset class="test-fieldst">
+                <legend class="test-fieldst">Date Range Selection</legend>
+
+                <div class="col-sm-6">
+                    <div class="form-group has-feedback">
+                        <label class="form-check-label col-form-label col-sm-2 fromTo">From:</label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateFromSurcharge')"></span>
+                                <input type="text" class="form-control" id="dateFromSurcharge" value="@ViewBag.dateFrom" style="padding-right:3px">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6" style="margin-bottom: 19px;">
+                    <div class="form-group has-feedback">
+                        <label class="form-check-label col-form-label col-sm-2 fromTo">To:</label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateToSurcharge')"></span>
+                                <input type="text" class="form-control" id="dateToSurcharge" value="@ViewBag.dateTo" style="padding-right:3px">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </fieldset>
+        </div>
+        <div class="col-sm-3">
+            <fieldset class="test-fieldst" style="height:73px">
+                <legend class="test-fieldst">Selection By</legend>
+                <div class="col-sm-6">
+                    <select class="form-control" id="dropDownSelctType">
+                        <option></option>
+                        <option>Agent Numeric Code</option>
+                        <option>Document Number</option>
+
+                    </select>
+                </div>
+                <div class="row div-showModal">
+                    <div class="col-sm-5">
+
+                        <div class="input-group date">
+                            <input type="text" id="dropDownSelctDoc" style="width:125px;" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-sm-1 containt-btn" style="width: 33px !important;height:30px;position: relative;top: -30px;left: 348px;"><button class="point-interogation pink btn" onclick="showSurchargesCodeModal()"><span class="point-span">?</span></button></div>
+                </div>
+            </fieldset>
+        </div>
+
+        <div class="col-sm-2">
+            <fieldset class="test-fieldst" style="height:73px">
+                <legend class="test-fieldst">.</legend>
+                <div class="form-group row" style="margin-left:7px">
+                    <label class="col-sm-4 col-form-label" style="position: relative;top: 7px;">Surcharges:</label>
+                    <div class="col-sm-5" style="height: 37px;">
+                        <div class="row div-showModal">
+
+                            <select class="form-control" id="dropDownSurcharges">
+                                <option>-All-</option>
+                                @foreach (var items in ViewBag.Surcharges)
+                                {
+                                    <option>@items.OtherAmountCode</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="col-sm-3">
+            <div class="search" style="top:4px">
+                <div class="col-sm-3"><button type="button" class="search-interogation pink btn" onclick="setCriteriaSurcharges()"><span class="search-span">SEARCH</span></button></div>
+                <div class="col-sm-3"><button class="search-interogation pink btn" onclick="ClearSurcharges()"><span class="search-span">CLEAR</span></button></div>
+                <div class="col-sm-3"><button class="search-interogation pink btn" onclick="removeSousMenu()"><span class="search-span">CLOSE</span></button></div>
+            </div>
+        </div>
+    </div>
+    <div class="ajax-loader">
+        <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+    </div>
+    <div class="col-sm-11" style="margin-top:40px" id="loadDataSurcharges">
+        <div class="col-sm-8">
+            <div class="table-record-display" style="height:694px">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="pink">Sales Date</th>
+                            <th class="pink">Agent Code</th>
+                            <th class="pink">Document No</th>
+                            <th class="pink">Cpn</th>
+                            <th class="pink">FOP</th>
+                            <th class="pink">StopOver Code</th>
+                            <th class="pink">CURR</th>
+                            <th class="pink">Surch Code</th>
+                            <th class="pink">Amount </th>
+                            <th class="pink">Endorsements/Restriction</th>
+                            <th class="pink">No. Of TKTs</th>
+                        </tr>
+                    </thead>
+
+                </table>
+            </div>
+        </div>
+        <div class="col-sm-4" style="margin-top: 15px;">
+            <fieldset class="test-fieldst">
+                <legend class="test-fieldst">Summary</legend>
+                <div class="table-summary" style="height:120px;overflow:auto">
+                    <table class="table table-bordered ">
+                        <thead>
+                            <tr>
+                                <th class="pink">FOP</th>
+                                <th class="pink">Trans.Code</th>
+                                <th class="pink">Curr</th>
+                                <th class="pink">Surch.Code</th>
+                                <th class="pink">Amount</th>
+                                <th class="pink">No. Of Docs</th>
+                            </tr>
+                        </thead>
+
+                    </table>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="SurchargesCodeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="Doc modal-content" style="width: 58%;left: 17%; background-color: rgba(135, 206, 235, 1) !important; ">
+            <div class="agentModal">
+                <div class="modal-header" style="background-color: white; margin-bottom: 21px;">
+                    <h5 class="modal-title" id="myModalLabel">Agent Numeric Code</h5>
+                    <button type="button" class="close close-agent-code" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="DocCollect-modal-body">
+                    <div class="scoll-tree scoll-agent-code">
+                        <div class="head-agent-code-content">
+
+                        </div>
+
+                        <div class="agentContent" style="width: 98%; max-height: 515px;overflow:auto">
+                            <table class="table table-bordered table-striped table-hover table-result-code-name">
+                                <thead>
+                                    <tr>
+                                        <th width="35%">Agent Code</th>
+                                        <th width="65%">Agent Name</th>
+
+                                    </tr>
+                                </thead>
+
+
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer" style="background-color:rgba(135, 206, 235, 1) !important;">
+                    <div class="col-md-9 footer-agent-code">
+                        <div class="col-md-12">
+                            <label>Agent Name: </label>
+                            <label style="color:white;font-size:12px" id="agent-name-label"></label>
+                        </div>
+                        <div class="col-md-12">
+                            <label>Agent Code: </label>
+                            <label style="color:white; font-size:12px" id="agent-code-label"></label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <button type="button" class="Close btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="Close btn" data-dismiss="modal" id="select-name-code" onclick="setNumeric()">Select</button>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

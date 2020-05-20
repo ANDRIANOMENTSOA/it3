@@ -1,0 +1,16 @@
+﻿<div class="col-sm-4">
+    <div class="form-group row">
+        <label class="col-sm-5 col-form-label" style="">File Type:</label>
+        <div class="col-sm-7">
+            <select class="form-controls" id="SelecteFileType" onclick="FileUploadStatusSelectFileType()">
+                <option class="form-controls"></option>
+                <option class="form-controls">-All-</option>
+                @for (int n = 0; n < ViewBag.lonAg; n++)
+                {
+                    <option class="form-controls">@ViewBag.AgCode[n]</option>
+                }
+            </select>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="message" value="@ViewBag.mes">

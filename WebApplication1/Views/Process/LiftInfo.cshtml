@@ -1,0 +1,41 @@
+﻿<div class="container-remuneration container-pax1" style="background-color: rgb(117, 228, 252);height:93vh">
+    <div class="row">
+        <div class="col-sm-2" style="top:20px">
+            <div class="col-sm-5"><span class="titre-text">Lift Files</span></div>
+            <div class="col-sm-7">
+                <div class="input-group">
+                    <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('couponUsageFrom')"></span>
+                    <input type="text" class="form-control" id="couponUsageFrom" value="" style="padding-right:3px">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3" style="top:5px;">
+            <fieldset class="test-fieldst">
+                <legend class="test-fieldst">Lift Entries</legend>
+                <div class="col-sm-6">
+                    <input type="radio" id="coupon-update" value="coupon" name="choix" />
+                    <span class="titre-text">View Coupon Update</span>
+                </div>
+                <div class="col-sm-6">
+                    <input type="radio" id="lift-entries" value="lift" name="choix" />
+                    <span class="titre-text">View Void Entry In Lift</span>
+                </div>
+            </fieldset>
+        </div>
+        <div class="col-sm-1" style="top:25px;"><button class="btn-default btn-search">SEARCH</button></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div id="content-lift" class="mycontent"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2" style="top:125px;"><img src="~/Images/CSVPic.jpg" style="width:25px" /></div>
+        <div class="col-sm-2" style="top:65px;left:70px"><span class="titre-text">Total No Of CPNs</span></div>
+        <div class="col-sm-1" style="top:65px;"><input type="text" class="myForm" id="nbCpn" /></div>
+        <div class="col-sm-4"></div>
+        <div class="col-sm-1" style="top:65px"><button class="btn-new" onclick="removeSousMenu()">Close</button></div>
+    </div>
+
+</div>
+

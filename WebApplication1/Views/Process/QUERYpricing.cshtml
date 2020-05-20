@@ -1,0 +1,175 @@
+﻿@if (ViewBag.cbSelection == "Journey")
+{
+    <div id="newcontent-pricing">
+        <input type="hidden" id="count" value="@ViewBag.ligne"/>
+        <table class="table table-bordered tablehead" id="tablepricing">
+            <thead>
+                <tr>
+                    <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">RowNo</th>
+                    <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Date Of Issue</th>
+                    <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Day Of The Week</th>
+                    <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Agent No</th>
+                    <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Agent Name</th>
+                    <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">POS</th>
+                    <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Document No</th>
+                    <th class="green-tabprocess" style="min-width:100px !important; text-align:center !important;">CK</th>
+                    <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Passenger Name</th>
+                    <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">FCMI</th>
+                    <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Orig.</th>
+                    <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Dest.</th>
+                    <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Journey</th>
+                    <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Endos Restriction</th>
+                    <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Sector Yield</th>
+                    <!--<th style="display:none" class="green-tabprocess keyelement-15">Stop Over Code</th>-->
+                    <th style="display:none;min-width:100px !important; text-align:center !important;" class="green-tabprocess keyelement-18">Passenger Type</th>
+                    <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-19">Passenger Special Purpose Code</th>
+                    <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-22">Commercial Agreement Reference</th>
+                    <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-23">Customer File Reference</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < ViewBag.ligne; i++)
+                {
+                    <tr data-url="@Url.Action("PAXTKTs","Sales")" onclick="ajout(this, 'PAXTKTs', 'Sales', 'PAX TKTs');CellContentDoubleClick(this, '@ViewBag.Liste[i, 6]')">
+                        @for (int j = 0; j < 15; j++)
+                        {
+                            <td>@ViewBag.Liste[i, j]</td>
+                        }
+                        <td style="display:none;min-width:100px !important; text-align:center;" class="keyelement-18">@ViewBag.Liste[i, 18]</td>
+                        <td style="display:none;min-width:100px !important; text-align:center;" class="keyelement-19">@ViewBag.Liste[i, 19]</td>
+                        <td style="display:none;min-width:100px !important; text-align:center;" class="keyelement-22">@ViewBag.Liste[i, 22]</td>
+                        <td style="display:none;min-width:100px !important; text-align:center;" class="keyelement-23">@ViewBag.Liste[i, 23]</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+@if (ViewBag.cbSelection == "Fare Component")
+{
+    <div id="newcontent-pricing">
+        <input type="hidden" id="count" value="@ViewBag.ligne" />
+        <table class="table-bordered" id="tablepricing">
+            <thead>
+                <tr>
+                    <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">RowNo</th>
+                    <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Date Of Issue</th>
+                    <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Day Of The Week</th>
+                    <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Agent No</th>
+                    <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Agent Name</th>
+                    <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">POS</th>
+                    <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Document No</th>
+                    <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">CK</th>
+                    <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Passenger Name</th>
+                    <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">FCMI</th>
+                    <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">FC Orig.</th>
+                    <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">FC Dest.</th>
+                    <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Journey</th>
+                    <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Endos Restriction</th>
+                    <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Sector Yield</th>
+                    <!--<th style="display:none" class="green-tabprocess keyelement-15">Stop Over Code</th>-->
+                    <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-15">Fare Component</th>
+                    <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-16">Fare Basis</th>
+                    <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-18">Passenger Type</th>
+                    <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-19">Passenger Special Purpose Code</th>
+                    <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-22">Commercial Agreement Reference</th>
+                    <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-23">Customer File Reference</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < ViewBag.ligne; i++)
+                {
+                    <tr  data-url="@Url.Action("PAXTKTs","Sales")" onclick="ajout(this, 'PAXTKTs', 'Sales', 'PAX TKTs');CellContentDoubleClick(this, '@ViewBag.Liste[i, 6]')">
+                        @for (int j = 0; j < 15; j++)
+                        {
+                            <td>@ViewBag.Liste[i, j]</td>
+                        }
+                        <td style="display:none;min-width:100px !important; text-align:center;" class="keyelement-15">@ViewBag.Liste[i, 15]</td>
+                        <td style="display:none;min-width:100px !important; text-align:center;" class="keyelement-16">@ViewBag.Liste[i, 16]</td>
+                        <td style="display:none;min-width:100px !important; text-align:center;" class="keyelement-18">@ViewBag.Liste[i, 18]</td>
+                        <td style="display:none;min-width:100px !important; text-align:center;" class="keyelement-19">@ViewBag.Liste[i, 19]</td>
+                        <td style="display:none;min-width:100px !important; text-align:center;" class="keyelement-22">@ViewBag.Liste[i, 22]</td>
+                        <td style="display:none;min-width:100px !important; text-align:center;" class="keyelement-23">@ViewBag.Liste[i, 23]</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+@if (ViewBag.cbSelection == "Sector")
+{
+    <div id="newcontent-pricing">
+        <input type="hidden" id="count" value="@ViewBag.ligne" />
+        <table class="table-bordered" id="tablepricing">
+            <thead>
+                <tr>
+                    <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">RowNo</th>
+                    <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Date Of Issue</th>
+                    <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Day Of The Week</th>
+                    <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Agent No</th>
+                    <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Agent Name</th>
+                    <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">POS</th>
+                    <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Document No</th>
+                    <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">CK</th>
+                    <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Passenger Name</th>
+                    <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">FCMI</th>
+                    <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Sector Orig.</th>
+                    <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Sector Dest.</th>
+                    <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Journey</th>
+                    <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Endos Restriction</th>
+                    <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Sector Yield</th>
+                    <!--<th style="display:none" class="green-tabprocess keyelement-15">Stop Over Code</th>-->
+                    <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-15">Fare Component</th>
+                    <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-16">Fare Basis</th>
+                    <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-17">RBD</th>
+                    <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-18">Passenger Type</th>
+                    <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-19">Passenger Special Purpose Code</th>
+                    <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-20">StopOver Code</th>
+                    <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-21">Frequent Flyer Reference</th>
+                    <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-22">Commercial Agreement Reference</th>
+                    <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-23">Customer File Reference</th>
+                    <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-24">Usage Airline</th>
+                    <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-25">Usage Date</th>
+                    <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-26">Travel Day</th>
+                    <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-27">Usage Origin Code</th>
+                    <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-28">Usage Destination Code</th>
+                    <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-29">Usage Flight No</th>
+                    <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-30">NVB</th>
+                    <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-31">NVA</th>
+                    <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-32">Ticketing & COT Lapse</th>
+                    <th style="display:none;min-width:100px !important; text-align:center;" class="green-tabprocess keyelement-33">PM</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < ViewBag.ligne; i++)
+                {
+                    <tr  data-url="@Url.Action("PAXTKTs","Sales")" onclick="ajout(this, 'PAXTKTs', 'Sales', 'PAX TKTs');CellContentDoubleClick(this, '@ViewBag.Liste[i, 6]')">
+                        @for (int j = 0; j < 15; j++)
+                        {
+                            <td>@ViewBag.Liste[i, j]</td>
+                        }
+                        <td style="display:none;min-width:100px !important; text-align:center;" class="keyelement-15">@ViewBag.Liste[i, 15]</td>
+                        <td style="display:none;min-width:100px !important; text-align:center;" class="keyelement-16">@ViewBag.Liste[i, 16]</td>
+                        <td style="display:none;min-width:100px !important; text-align:center;" class="keyelement-17">@ViewBag.Liste[i, 17]</td>
+                        <td style="display:none;min-width:100px !important; text-align:center;" class="keyelement-18">@ViewBag.Liste[i, 18]</td>
+                        <td style="display:none;min-width:100px !important; text-align:center;" class="keyelement-19">@ViewBag.Liste[i, 19]</td>
+                        <td style="display:none;min-width:100px !important; text-align:center;" class="keyelement-20">@ViewBag.Liste[i, 20]</td>
+                        <td style="display:none;min-width:100px !important; text-align:center;" class="keyelement-21">@ViewBag.Liste[i, 21]</td>
+                        <td style="display:none;min-width:100px !important; text-align:center;" class="keyelement-22">@ViewBag.Liste[i, 22]</td>
+                        <td style="display:none;min-width:100px !important; text-align:center;" class="keyelement-23">@ViewBag.Liste[i, 23]</td>
+                        <td style="display:none;min-width:100px !important; text-align:center;" class="keyelement-24">@ViewBag.Liste[i, 24]</td>
+                        <td style="display:none;min-width:100px !important; text-align:center;" class="keyelement-25">@ViewBag.Liste[i, 25]</td>
+                        <td style="display:none;min-width:100px !important; text-align:center;" class="keyelement-26">@ViewBag.Liste[i, 26]</td>
+                        <td style="display:none;min-width:100px !important; text-align:center;" class="keyelement-27">@ViewBag.Liste[i, 27]</td>
+                        <td style="display:none;min-width:100px !important; text-align:center;" class="keyelement-28">@ViewBag.Liste[i, 28]</td>
+                        <td style="display:none;min-width:100px !important; text-align:center;" class="keyelement-29">@ViewBag.Liste[i, 29]</td>
+                        <td style="display:none;min-width:100px !important; text-align:center;" class="keyelement-30">@ViewBag.Liste[i, 30]</td>
+                        <td style="display:none;min-width:100px !important; text-align:center;" class="keyelement-31">@ViewBag.Liste[i, 31]</td>
+                        <td style="display:none;min-width:100px !important; text-align:center;" class="keyelement-32">@ViewBag.Liste[i, 32]</td>
+                        <td style="display:none;min-width:100px !important; text-align:center;" class="keyelement-33">@ViewBag.Liste[i, 33]</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

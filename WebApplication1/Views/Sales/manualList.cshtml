@@ -1,0 +1,54 @@
+﻿<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">List Of Manual Refund</h5>
+            <button type="button" class="close" style="position: relative;top: 1px;" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="manualRefund modal-body" style="height:650px; top:20px;">
+            <div class="ajax-loader">
+                <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+            </div>
+            <table class="record-rfnd" style="margin-left:23px;margin-top:12px">
+                <tr>
+                    <td>Date Entry From:</td>
+                    <td>
+                        <div class="width-group">
+                            <div class="col-sm-9 n-padding">
+                                <div class="input-group">
+                                    <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateFrom')"></span>
+                                    <input type="text" class="form-control" id="dateFrom" value="@ViewBag.dateFrom">
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td></td>
+                    <td style="width: 25px;"></td>
+                    <td>Date Entry To:</td>
+                    <td>
+                        <div class="width-group">
+                            <div class="col-sm-9 n-padding">
+                                <div class="input-group">
+                                    <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateTo')"></span>
+                                    <input type="text" class="form-control" id="dateTo" value="@ViewBag.dateTo">
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td></td>
+                    <td>
+                        <div class="col-sm-1"><button type="button" class="search-interogation pink btn" onclick="setCriteriaManualRefund()"><span class="search-span">SEARCH</span></button></div>
+                    </td>
+                    <td></td>
+                    <td>
+                        <div class="col-sm-1"><button class="search-interogation pink btn" data-dismiss="modal"><span class="search-span">CLOSE</span></button></div>
+                    </td>
+                </tr>
+            </table>
+            <div class="manualRefund-content" id="table-formPayment" style="height:500px; background-color:white;margin-top: 25px;">
+
+            </div>
+        </div>
+
+    </div>
+</div>
+

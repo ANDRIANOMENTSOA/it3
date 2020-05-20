@@ -1,0 +1,83 @@
+﻿@using System.Data
+@model DataSet
+<div class="ajax-loader">
+    <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+</div>
+<div class="table-record-display" style="height:600px;overflow:auto">
+    <table class="table table-bordered table-striped" style="width: 84%;">
+        <thead>
+            <tr>
+
+                <th class="green-tab">Date of Issue</th>
+                <th class="green-tab">Document Number</th>
+                <th class="green-tab">Passenger Name</th>
+                <th class="green-tab">Transaction Code</th>
+                <th class="green-tab">Pax SPC</th>
+                <th class="green-tab">Equi. Fare Cur</th>
+                <th style="display:none" class="green-tab keyelement-6">Journey</th>
+                <th style="display:none" class="green-tab keyelement-7">FCMI</th>
+                <th style="display:none" class="green-tab keyelement-8">Fare Basis</th>
+                <th style="display:none" class="green-tab keyelement-9">Fare Currency</th>
+                <th style="display:none" class="green-tab keyelement-10">Fare</th>
+                <th style="display:none" class="green-tab keyelement-11">Equivalent Fare Currency</th>
+                <th style="display:none" class="green-tab keyelement-12">Equivalent Fare</th>
+                <th style="display:none" class="green-tab keyelement-13">Total Currency</th>
+                <th style="display:none" class="green-tab keyelement-14">Total Amount</th>
+                <th style="display:none" class="green-tab keyelement-15">Amount Collected Currency</th>
+                <th style="display:none" class="green-tab keyelement-16">Amount Collected</th>
+                <th style="display:none" class="green-tab keyelement-17">Tax Collected</th>
+                <th style="display:none" class="green-tab keyelement-18">Surcharges Collected</th>
+                <th style="display:none" class="green-tab keyelement-19">Endo Restriction</th>
+
+                <th class="green-tab" width="15%">FCA</th>
+                <th class="green-tab">FOP</th>
+
+            </tr>
+        </thead>
+        <tbody class="">
+            @foreach (DataRow dr in Model.Tables[0].Rows)
+            {
+                <tr ondblclick="loadDocNum(this,'@dr[Model.Tables[0].Columns[1].ColumnName].ToString()','TKTT')">
+                    <td>@dr[Model.Tables[0].Columns[0].ColumnName].ToString()</td>
+                    <td>@dr[Model.Tables[0].Columns[1].ColumnName].ToString()</td>
+                    <td>@dr[Model.Tables[0].Columns[2].ColumnName].ToString()</td>
+                    <td>@dr[Model.Tables[0].Columns[3].ColumnName].ToString()</td>
+                    <td>@dr[Model.Tables[0].Columns[4].ColumnName].ToString()</td>
+                    <td>@dr[Model.Tables[0].Columns[5].ColumnName].ToString()</td>
+
+                    <td class="keyelement-6" style="display:none">@dr[Model.Tables[0].Columns[6].ColumnName].ToString()</td>
+                    <td class="keyelement-7" style="display:none">@dr[Model.Tables[0].Columns[7].ColumnName].ToString()</td>
+                    <td class="keyelement-8" style="display:none">@dr[Model.Tables[0].Columns[8].ColumnName].ToString()</td>
+                    <td class="keyelement-9" style="display:none">@dr[Model.Tables[0].Columns[9].ColumnName].ToString()</td>
+                    <td class="keyelement-10" style="display:none">@dr[Model.Tables[0].Columns[10].ColumnName].ToString()</td>
+                    <td class="keyelement-11" style="display:none">@dr[Model.Tables[0].Columns[11].ColumnName].ToString()</td>
+                    <td class="keyelement-12" style="display:none">@dr[Model.Tables[0].Columns[12].ColumnName].ToString()</td>
+                    <td class="keyelement-13" style="display:none">@dr[Model.Tables[0].Columns[13].ColumnName].ToString()</td>
+                    <td class="keyelement-14" style="display:none">@dr[Model.Tables[0].Columns[14].ColumnName].ToString()</td>
+                    <td class="keyelement-15" style="display:none">@dr[Model.Tables[0].Columns[15].ColumnName].ToString()</td>
+                    <td class="keyelement-16" style="display:none">@dr[Model.Tables[0].Columns[16].ColumnName].ToString()</td>
+                    <td class="keyelement-17" style="display:none">@dr[Model.Tables[0].Columns[17].ColumnName].ToString()</td>
+                    <td class="keyelement-18" style="display:none">@dr[Model.Tables[0].Columns[18].ColumnName].ToString()</td>
+                    <td class="keyelement-18" style="display:none">@dr[Model.Tables[0].Columns[19].ColumnName].ToString()</td>
+                    <td>@dr[Model.Tables[0].Columns[20].ColumnName].ToString()</td>
+                    <td>@dr[Model.Tables[0].Columns[21].ColumnName].ToString()</td>
+
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+</div>
+
+<input type="hidden" id="comptSpec" value="@ViewBag.mes" />
+<input type="hidden" class="form-control" value="@ViewBag.txtCount" id="txtCountSpec" />
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,235 @@
+﻿
+<div class="col-sm-12 tab-content tab-cancellation">
+    <div class="ajax-loader">
+        <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+    </div>
+    <div id="LoadSecvalu">
+        <div class="row">
+            <fieldset class="test-fieldst" style="padding-bottom: 100px;margin-left: -19px;margin-right: -4px;">
+                <div class="col-sm-7" style="margin-top: 25px;">
+                    <div>
+                        <div class="table-record-display" style="height:600px;overflow:auto">
+                            <table id="tabSecValControl" class="table table-bordered table-striped" style="width: 84%;">
+                                <thead>
+                                    <tr>
+                                        <th class="green-tab">Origin City</th>
+                                        <th class="green-tab">Destination City</th>
+                                        <th class="green-tab">Prime Code</th>
+                                        <th class="green-tab">RBD</th>
+                                        <th class="green-tab">Min Sector Value</th>
+                                        <th class="green-tab">Max Sector Value</th>
+                                        <th class="green-tab">Validated</th>
+                                        <th class="green-tab">EDIT</th>
+                                    </tr>
+
+                                </thead>
+
+                                <tbody></tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <fieldset class="test-fieldst" style="margin-top:50px;padding:35px;font-size:12px">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="col-sm-12" style="border:1px solid gray;background:white">
+                                    <div class="col-sm-12 green-tab" style="margin-left:-15px;padding:7px;width:249px"><label>FIRST CLASS (F)</label></div>
+
+                                    <div class="row" style="padding:5px">
+                                        <div class="col-sm-3">P</div>
+                                        <div class="col-sm-9">First Class Premium</div>
+                                    </div>
+                                    <div class="row" style="padding:5px">
+                                        <div class="col-sm-3">F</div>
+                                        <div class="col-sm-9">First Class</div>
+                                    </div>
+                                    <div class="row" style="padding:5px">
+                                        <div class="col-sm-3">A</div>
+                                        <div class="col-sm-9">First Class Discounted</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12" style="border:1px solid gray;margin-top:15px;background:white">
+                                    <div class="col-sm-12 green-tab" style="margin-left:-15px;padding:7px;width:249px"><label>BUSINESS / INTERMEDIATE CLASS (C)</label></div>
+
+                                    <div class="row" style="padding:5px">
+                                        <div class="col-sm-3">J</div>
+                                        <div class="col-sm-9">Business Class Premium</div>
+                                    </div>
+                                    <div class="row" style="padding:5px">
+                                        <div class="col-sm-3">C</div>
+                                        <div class="col-sm-9">Business Class</div>
+                                    </div>
+                                    <div class="row" style="padding:5px">
+                                        <div class="col-sm-3">D</div>
+                                        <div class="col-sm-9">Business Class Discounted</div>
+                                    </div>
+                                    <div class="row" style="padding:5px">
+                                        <div class="col-sm-3">I</div>
+                                        <div class="col-sm-9">Business Class Discounted</div>
+                                    </div>
+                                    <div class="row" style="padding:5px">
+                                        <div class="col-sm-3">Z</div>
+                                        <div class="col-sm-9">Business Class Discounted</div>
+                                    </div>
+                                    <div class="row" style="padding:5px">
+                                        <div class="col-sm-3">T</div>
+                                        <div class="col-sm-9">Economy/Coach Dicounted</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6" style="border:1px solid gray;background:white">
+                                <div class="row">
+                                    <div class="col-sm-12 green-tab" style="margin-left:0px;padding:7px;width:279px"><label>ECONOMY/COACH CLASS (Y)</label></div>
+
+                                    <div class="row" style="padding:5px">
+                                        <div class="col-sm-3">W</div>
+                                        <div class="col-sm-9">Economy/Coach Premium</div>
+                                    </div>
+                                    <div class="row" style="padding:5px">
+                                        <div class="col-sm-3">S</div>
+                                        <div class="col-sm-9">Economy/Coach</div>
+                                    </div>
+                                    <div class="row" style="padding:5px">
+                                        <div class="col-sm-3">Y</div>
+                                        <div class="col-sm-9">Economy/Coach</div>
+                                    </div>
+                                    <div class="row" style="padding:5px">
+                                        <div class="col-sm-3">B</div>
+                                        <div class="col-sm-9">Economy/Coach Discounted</div>
+                                    </div>
+                                    <div class="row" style="padding:5px">
+                                        <div class="col-sm-3">H</div>
+                                        <div class="col-sm-9">Economy/Coach Discounted</div>
+                                    </div>
+                                    <div class="row" style="padding:5px">
+                                        <div class="col-sm-3">K</div>
+                                        <div class="col-sm-9">Economy/Coach Discounted</div>
+                                    </div>
+                                    <div class="row" style="padding:5px">
+                                        <div class="col-sm-3">L</div>
+                                        <div class="col-sm-9">Economy/Coach Discounted</div>
+                                    </div>
+                                    <div class="row" style="padding:5px">
+                                        <div class="col-sm-3">M</div>
+                                        <div class="col-sm-9">Economy/Coach Discounted</div>
+                                    </div>
+                                    <div class="row" style="padding:5px">
+                                        <div class="col-sm-3">N</div>
+                                        <div class="col-sm-9">Economy/Coach Discounted</div>
+                                    </div>
+                                    <div class="row" style="padding:5px">
+                                        <div class="col-sm-3">Q</div>
+                                        <div class="col-sm-9">Economy/Coach Discounted</div>
+                                    </div>
+                                    <div class="row" style="padding:5px">
+                                        <div class="col-sm-3">V</div>
+                                        <div class="col-sm-9">Economy/Coach Discounted</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-sm-5" style="margin-top: 140px;">
+                    <button class="btn-default" style="width: 380px" data-toggle="modal" data-target="#sectorValue">SECTOR VALUE DISCREPENCY</button>
+
+                </div>
+                <div class="col-sm-6" style="margin-top: 10px;">
+                    <fieldset class="test-fieldst" style="padding: 15px;">
+
+                        <div class="col-sm-12">
+                            <button class="btn-default btn-outward" onClick="searchSVC()" style="margin-left:25px">SEARCH</button>
+                            <button class="btn-default btn-outward" style="margin-left:25px" onclick="AddNewSVC()">ADD NEW</button>
+                            <button class="btn-default btn-outward" style="margin-left:25px">SAVE</button>
+                            <button class="btn-default btn-outward" onclick="clearSVC()" style="margin-left:25px">CLEAR</button>
+                            <button class="btn-default btn-outward" onclick="removeSousMenu()" style="margin-left:25px">CLOSE</button>
+                        </div>
+                    </fieldset>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+
+
+</div>
+<div id="sectorValue" class="modal fade" role="dialog">
+    <div class="ajax-loader">
+        <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+    </div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel">Interline Tolerance Check</h5>
+                <button type="button" class="close close-agent-code" data-dismiss="modal">×</button>
+            </div>
+            <div class="container-duplicatecontainer-pax1" style="background-color: rgb(117, 228, 252);height:735px;">
+                <div class="col-sm-4">
+                    <fieldset class="test-fieldst" style="width:370px;">
+                        <legend class="test-fieldst">Sales Date</legend>
+                        <div class="col-sm-6 width-group" style="padding-left:0px;">
+                            <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">From:</label>
+                            <div class="col-sm-9 n-padding">
+                                <div class="input-group">
+                                    <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateFromsectorValue')"></span>
+                                    <input type="text" class="form-control" name="dateFromsectorValue" id="dateFromsectorValue" value="@ViewBag.dateFrom" style="padding-right:3px">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6" style="margin-bottom: 19px;">
+                            <label class="form-check-label col-form-label col-sm-2 n-padding fromTo">To:</label>
+                            <div class="col-sm-10 n-padding">
+                                <div class="input-group">
+                                    <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateTosectorValue')"></span>
+                                    <input type="text" class="form-control" name="dateTosectorValue" id="dateTosectorValue" value="@ViewBag.dateTo" style="padding-right:3px">
+                                </div>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </div>
+                <div class="sol-sm-1">
+                    <button class="btn-default" style="position: relative;top: 20px;width: 100px;color:green;" onclick="setCriteriaSectorDiscrepency()">Search</button>
+                </div>
+                <div class="col-sm-1">
+                    <button class="btn-default" style="position: relative;left: 110px;width: 100px;top: -4px;" onclick="removeSousMenu()">Close</button>
+                </div>
+                <div class="col-sm-7"></div>
+                <div class="col-sm-12" id="LoadSecDiscrep">
+                    <div id="wrongTab" style="height: 495px;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="green-tab">Date Of Issue</th>
+                                    <th class="green-tab">Agent </th>
+                                    <th class="green-tab">Ticket No</th>
+                                    <th class="green-tab">Relate No</th>
+                                    <th class="green-tab">CPN</th>
+                                    <th class="green-tab">Ori</th>
+                                    <th class="green-tab">Des</th>
+                                    <th class="green-tab">RBD</th>
+                                    <th class="green-tab">Prime Code</th>
+                                    <th class="green-tab">Final Share</th>
+                                    <th class="green-tab">Min Sector Value</th>
+                                    <th class="green-tab">Max Sector Value</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+

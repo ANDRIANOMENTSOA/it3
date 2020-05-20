@@ -1,0 +1,176 @@
+﻿@using System.Data
+@model DataSet
+<div class="col-sm-11 tab-content tab-cancellation">
+    <div class="head-Vat">
+        <div class="col-sm-3">
+            <fieldset class="test-fieldst" style="margin-top:3px">
+                <legend class="test-fieldst" >Sales Period</legend>
+                <div class="dateContent" style="margin-left: 74px;">
+                    <form class="form-inline" style="margin-bottom:14px; margin-top:6px">
+                        <div class="form-group">
+                            <label class="col-form-label" for="dateVatFrom">From:</label>
+                            <select class="form-control" id="dateVatFrom">
+                                <option></option>
+                                @foreach (var items in ViewBag.Period)
+                                {
+                                    <option>@items.SalesPeriod</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="form-group" style="margin-left:40px">
+                            <label class="col-form-label" for="dateVatTo">To:</label>
+                            <select class="form-control" id="dateVatTo">
+                                <option></option>
+                                @foreach (var items in ViewBag.Period)
+                                {
+                                    <option>@items.SalesPeriod</option>
+                                }
+                            </select>
+                        </div>
+                    </form>
+                </div>
+            </fieldset>
+        </div>
+        <div class="col-sm-2">
+            <fieldset class="test-fieldst" style="top: 13px;position: relative;height: 64px;width:300px;">
+                <div class="dateContent">
+                    <form class="form-inline" style="top: 15px;position: relative; left:36px">
+                        <div class="form-group">
+                            <label for="dateVatFrom" class="col-form-label" style="top: 2px;position: relative;">Agent Code</label>
+                            <!--input type="text" class="form-control" id="AgentCode" value="-All-" /-->
+                            <select class="form-control" id="AgentCode" style="top: 2px;position: relative;">
+                                <option>-All-</option>
+                                @foreach (var items in ViewBag.Agent)
+                                {
+                                    <option>@items.AgentNumericCode</option>;
+                                }
+                            </select>
+                            <!--button class="point-interogation pink btn" id="showVatCodeModal" style="left:8px;top:-1px;"><span class="point-span">?</span></!--button-->
+                        </div>
+                    </form>
+
+                </div>
+            </fieldset>
+        </div>
+        <div class="col-sm-3">
+            <div class="search" style="top:13px">
+                <div class="col-sm-3"><button type="button" class="search-interogation pink btn" onclick="setCriteriaVat()"><span class="search-span">SEARCH</span></button></div>
+                <div class="col-sm-3"><button class="search-interogation pink btn" onclick="ClearVATS()"><span class="search-span">CLEAR</span></button></div>
+                <div class="col-sm-3"><button class="search-interogation pink btn" onclick="removeSousMenu()"><span class="search-span">CLOSE</span></button></div>
+            </div>
+        </div>
+    </div>
+    <div class="ajax-loader">
+        <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+    </div>
+    <div class="col-sm-11" style="margin-top:40px" id="loadDataVat">
+        <div class="col-sm-8">
+            <div class="table-record-display" style="height:560px;overflow:auto">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="pink">Document No</th>
+                            <th class="pink">Cpn</th>
+                            <th class="pink">Period</th>
+                            <th class="pink">Agent Code</th>
+                            <th class="pink">Orig</th>
+                            <th class="pink">Dest</th>
+                            <th class="pink">Final Share(USD)</th>
+                            <th class="pink">VAT %</th>
+                            <th class="pink">VAT Amount </th>
+                            <th class="pink">Total VAT Included</th>
+
+                        </tr>
+                    </thead>
+
+                </table>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <table class="table table-cancellation">
+                <tr>
+                    <td width="38%">Total No of Document</td>
+                    <td width="27%"><input type="text" class="form-control" name="" id="Document" /> </td>
+                    <td width="10%"></td>
+                </tr>
+            </table>
+            <table class="table table-cancellation">
+                <tr>
+                    <td width="38%">Total Final Share</td>
+                    <td width="27%"><input type="text" class="form-control" name="" id="share" /></td>
+                    <td width="10%"></td>
+                </tr>
+            </table>
+            <table class="table table-cancellation">
+                <tr>
+                    <td width="38%">Total VAT Amount</td>
+                    <td width="27%"><input type="text" class="form-control" name="" id="VatAmount" /></td>
+                    <td width="10%"></td>
+                </tr>
+            </table>
+            <table class="table table-cancellation">
+                <tr>
+                    <td width="38%">Total VAT Amount Included</td>
+                    <td width="27%"><input type="text" class="form-control" name="" id="VatIncluded" /></td>
+                    <td width="10%"></td>
+                </tr>
+            </table>
+
+
+        </div>
+    </div>
+    <div class="modal fade" id="VatCodeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="Doc modal-content" style="width: 58%;left: 17%; background-color: rgba(135, 206, 235, 1) !important; ">
+                <div class="agentModal">
+                    <div class="modal-header" style="background-color: white; margin-bottom: 21px;">
+                        <h5 class="modal-title" id="myModalLabel">Agent Numeric Code</h5>
+                        <button type="button" class="close close-agent-code" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="DocCollect-modal-body">
+                        <div class="scoll-tree scoll-agent-code">
+                            <div class="head-agent-code-content">
+
+                            </div>
+
+                            <div class="agentContent" style="width: 98%; max-height: 515px;">
+                                <table class="table table-bordered table-striped table-hover table-result-code-name">
+                                    <thead>
+                                        <tr>
+                                            <th width="35%">Agent Code</th>
+                                            <th width="65%">Agent Name</th>
+
+                                        </tr>
+                                    </thead>
+
+
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer" style="background-color:rgba(135, 206, 235, 1) !important;">
+                        <div class="col-md-9 footer-agent-code">
+                            <div class="col-md-12">
+                                <label>Agent Name: </label>
+                                <label style="color:white;font-size:12px" id="agent-name-label"></label>
+                            </div>
+                            <div class="col-md-12">
+                                <label>Agent Code: </label>
+                                <label style="color:white; font-size:12px" id="agent-code-label"></label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="Close btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="Close btn" data-dismiss="modal" id="select-name-code" onclick="setNumeric()">Select</button>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

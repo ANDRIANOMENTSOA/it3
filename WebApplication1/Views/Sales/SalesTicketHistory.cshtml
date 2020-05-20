@@ -1,0 +1,228 @@
+﻿@using System.Data
+@model DataSet
+@foreach (DataRow dr in Model.Tables[0].Rows)
+{
+    <fieldset class="ticket-fieldset">
+        <legend class="ticket-fieldset">Sale</legend>
+        <table class="table ticket-table">
+            <tr class="sale-head">
+                <td class="ticket-titre docNumCode" colspan="3" id="tick-docNumCode">@dr[Model.Tables[0].Columns[0].ColumnName].ToString() @dr[Model.Tables[0].Columns[1].ColumnName].ToString()</td>
+                <td class="ticket-titre">Document Type</td>
+                <td>@dr[Model.Tables[0].Columns[22].ColumnName].ToString()</td>
+                <td colspan="2" class="ticket-titre">Conj.Sequence N°</td>
+            </tr>
+        </table>
+        <table class="ticket-table">
+            <tr>
+                <td class="ticket-titre">Source</td>
+                <td class="ticket-titre">Issue Date</td>
+                <td class="ticket-titre">Agency</td>
+                <td class="ticket-titre">Agency Name</td>
+                <td class="ticket-titre">Agency Id</td>
+                <td class="ticket-titre">Town</td>
+                <td class="ticket-titre">Country</td>
+            </tr>
+            <tr>
+                <td id="tick-Source">@dr[Model.Tables[0].Columns[2].ColumnName].ToString()-@dr[Model.Tables[0].Columns[3].ColumnName].ToString()</td>
+                <td id="tick-DateofIssue">@dr[Model.Tables[0].Columns[4].ColumnName].ToString()</td>
+                <td id="tick-AgentNumericCode">@dr[Model.Tables[0].Columns[5].ColumnName].ToString()</td>
+                <td id="tick-LegalName">@ViewBag.agentDetail[0]</td>
+                <td id="tick-AgencyId">@dr[Model.Tables[0].Columns[6].ColumnName].ToString()</td>
+                <td id="tick-LocationCity">@ViewBag.agentDetail[1]</td>
+                <td id="tick-LocationCountry">@ViewBag.agentDetail[2]</td>
+            </tr>
+        </table>
+        <fieldset class="ticket-fieldset">
+            <legend class="ticket-fieldset">Sale Information</legend>
+            <table class="ticket-table">
+                <tr class="sale-information">
+                    <td class="ticket-titre">Pax Name</td>
+                    <td id="tick-paxName">@dr[Model.Tables[0].Columns[7].ColumnName].ToString()</td>
+                    <td class="ticket-titre">PNR</td>
+                    <td id="tick-pnr">@dr[Model.Tables[0].Columns[8].ColumnName].ToString()</td>
+                    <td class="ticket-titre">Tour Code</td>
+                    <td id="tick-tourCode">@dr[Model.Tables[0].Columns[9].ColumnName].ToString()</td>
+                </tr>
+                <tr class="sale-information">
+                    <td class="ticket-titre">Transaction Code</td>
+                    <td id="tick-transactionCode">@dr[Model.Tables[0].Columns[11].ColumnName].ToString()</td>
+                    <td class="ticket-titre">Reason for ISS. Code</td>
+                    <td id="tick-reasonForIss"></td>
+                </tr>
+                <tr class="sale-information">
+                    <td class="ticket-titre">Rep. System ID</td>
+                    <td id="tick-repSystemId">@dr[Model.Tables[0].Columns[10].ColumnName].ToString()</td>
+                    <td class="ticket-titre">FCIM</td>
+                    <td id="tick-fcim">@dr[Model.Tables[0].Columns[20].ColumnName].ToString()</td>
+                    <td class="ticket-titre">From/To</td>
+                    <td id="tick-fromTo">@dr[Model.Tables[0].Columns[21].ColumnName].ToString()</td>
+                </tr>
+                <tr class="sale-information">
+                    <td class="ticket-titre">Fare Calculation</td>
+                    <td id="tick-fareCalculation">@dr[Model.Tables[0].Columns[19].ColumnName].ToString()</td>
+                </tr>
+            </table>
+        </fieldset>
+        <fieldset class="ticket-fieldset">
+            <legend class="ticket-fieldset">Facsimile Calculation</legend>
+            <table class="ticket-table">
+                <tr>
+                    <td class="ticket-titre">Fasc. Fare</td>
+                    <td class="ticket-titre">Fasc. Eqfr</td>
+                    <td class="ticket-titre">Tax Box1</td>
+                    <td class="ticket-titre">Tax Box2</td>
+                    <td class="ticket-titre">Tax Box3</td>
+                    <td class="ticket-titre">Fasc. Total</td>
+                </tr>
+                <tr>
+                    <td id="tick-Fare">@dr[Model.Tables[0].Columns[12].ColumnName].ToString() @dr[Model.Tables[0].Columns[13].ColumnName].ToString()</td>
+                    <td id="tick-TotalCurrency">@dr[Model.Tables[0].Columns[14].ColumnName].ToString() @dr[Model.Tables[0].Columns[15].ColumnName].ToString()</td>
+                    <td id="tick-tax1">@dr[Model.Tables[0].Columns[16].ColumnName].ToString()</td>
+                    <td id="tick-tax2">@dr[Model.Tables[0].Columns[17].ColumnName].ToString()</td>
+                    <td id="tick-tax3"></td>
+                    <td id="tick-TotalAmount">@dr[Model.Tables[0].Columns[23].ColumnName].ToString()</td>
+                </tr>
+            </table>
+            <table class="ticket-table">
+                <tr>
+                    <td class="ticket-titre" width="24%">Endorsement/Restrictions</td>
+                    <td id="tick-EndosRestriction">@dr[Model.Tables[0].Columns[24].ColumnName].ToString()</td>
+                </tr>
+            </table>
+        </fieldset>
+    </fieldset>
+            <fieldset class="ticket-fieldset">
+                <legend class="ticket-fieldset">Sale Amounts</legend>
+                <table class="table ticket-table">
+                    <tr>
+                        <td class="ticket-titre col-md-3">Fare In Curr. Commencement of Travel (cuor/fare)</td>
+                        <td id="tick-fareInCure">@ViewBag.salesAmount[0, 0]</td>
+                        <td class="ticket-titre">Exchange Rate</td>
+                        <td id="tick-exchangeRate">@ViewBag.salesAmount[0, 1]</td>
+                    </tr>
+                </table>
+                <div class="ticket-table1">
+                    <table class="table table-bordered sale-amount">
+                        <tr>
+                            <td class="ticket-titre">Currency</td>
+                            <td class="ticket-titre">Fare in Curr.Of Payement</td>
+                            <td class="ticket-titre">Commission</td>
+                            <td class="ticket-titre">Uatp</td>
+                            <td class="ticket-titre">Transport taxes</td>
+                            <td class="ticket-titre">Sales Taxes</td>
+                        </tr>
+                        @for (int row = 0; row < ViewBag.salesAmount.GetUpperBound(0); row++)
+                        {
+                            if (!String.IsNullOrEmpty(@ViewBag.salesAmount[0, row]) || !String.IsNullOrWhiteSpace(@ViewBag.salesAmount[0, row]))
+                            {
+                                <tr>
+                                    @for (int column = 0; column < ViewBag.salesAmount.GetUpperBound(1); column++)
+                                    {
+                                        <td>@ViewBag.salesAmount[column, row]</td>
+                                    }
+                                </tr>
+                            }
+                        }
+                    </table>
+                </div>
+            </fieldset>
+            <fieldset class="ticket-fieldset">
+                <legend class="ticket-fieldset">Payement</legend>
+                <table class="table ticket-table">
+                    <tr>
+                        <td class="ticket-titre col-md-3">Amount Collected</td>
+                        <td id="tick-amountCollected"></td>
+                    </tr>
+                </table>
+                <div class="ticket-table1" id="table-formPayment">
+                    <table class="table table-bordered sale-amount">
+                        <tr>
+                            <td class="ticket-titre">Form of Payment</td>
+                            <td class="ticket-titre">Payment Date</td>
+                            <td class="ticket-titre">Comm Rate</td>
+                            <td class="ticket-titre">Curr.</td>
+                            <td class="ticket-titre">Fare</td>
+                            <td class="ticket-titre">Comm Amount</td>
+                            <td class="ticket-titre">Sales Taxes</td>
+                            <td class="ticket-titre">Net Amount</td>
+
+                        </tr>
+                        @for (int row = 0; row < ViewBag.payment.GetUpperBound(0); row++)
+                        {
+                            if (!String.IsNullOrEmpty(@ViewBag.payment[0, row]) || !String.IsNullOrWhiteSpace(@ViewBag.payment[0, row]))
+                            {
+                                <tr>
+                                    @for (int column = 0; column < ViewBag.payment.GetUpperBound(1); column++)
+                                    {
+                                        <td>@ViewBag.payment[column, row]</td>
+                                    }
+                                </tr>
+                            }
+                        }
+                    </table>
+                </div>
+            </fieldset>
+            <fieldset class="ticket-fieldset">
+                <legend class="ticket-fieldset">COUPONS</legend>
+                <div class="ticket-table1" id="table-formPayment">
+                    <table class="table table-bordered sale-amount">
+                        <tr>
+                            <td class="ticket-titre">Cpn</td>
+                            <td class="ticket-titre">Origin</td>
+                            <td class="ticket-titre">Dest</td>
+                            <td class="ticket-titre">Carr</td>
+                            <td class="ticket-titre">RBD</td>
+                            <td class="ticket-titre">Fare Basis</td>
+                            <td class="ticket-titre">Flight#</td>
+                            <td class="ticket-titre" style="width:100px">Flight Date</td>
+                            <td class="ticket-titre">Cpn Status Date</td>
+                            <td class="ticket-titre">Fare(USD) Date</td>
+                        </tr>
+                        @foreach (var tmps in ViewBag.coupon)
+                        {
+                            <tr>
+                                <td>@tmps.CouponNumber</td>
+                                <td>@tmps.OriginCity</td>
+                                <td>@tmps.DestinationCity</td>
+                                <td>@tmps.Carrier</td>
+                                <td>@tmps.ReservationBookingDesignator</td>
+                                <td>@tmps.FareBasisTicketDesignator</td>
+                                <td>@tmps.FlightNumber</td>
+                                <td>@tmps.FlightDepartureDate</td>
+                                <td>@tmps.CouponStatus</td>
+                                <td>@tmps.FinalShare</td>
+                            </tr>
+                        }
+
+                    </table>
+                </div>
+            </fieldset>
+            <fieldset class="ticket-fieldset">
+                <legend class="ticket-fieldset">USES</legend>
+                <div class="ticket-table1" id="table-formPayment">
+                    <table class="table table-bordered sale-amount">
+                        <tr>
+                            <td class="ticket-titre">Tuti</td>
+                            <td class="ticket-titre">Cpn</td>
+                            <td class="ticket-titre">Information</td>
+                            <td class="ticket-titre" style="width:100px">Transaction Date</td>
+                            <td class="ticket-titre">Fare</td>
+                        </tr>
+                        @foreach (var tmp in ViewBag.uses)
+                        {
+                            <tr>
+                                <td>@tmp.CouponStatus</td>
+                                <td>@tmp.CouponNumber</td>
+                                <td>@tmp.Regkey</td>
+                                <td>@tmp.UsageDate</td>
+                                <td>@tmp.FinalShare</td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </fieldset>
+            <fieldset class="ticket-fieldset">
+                <legend class="ticket-fieldset">REMARKS</legend>
+
+                <textarea class="form-controls" name=""></textarea>
+            </fieldset>}

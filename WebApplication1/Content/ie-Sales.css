@@ -1,0 +1,285 @@
+﻿body {
+}
+.container-sales{
+	width: 1299px;
+	height: 746px;
+	position: fixed;
+	top: 146px;
+    left: 453px;
+}
+.button-sales-1{
+	position: relative;
+	width: 264px;
+	height: 69px;
+	top: 10px;
+	left: 90px;
+}
+.button-sales-1-2{
+	position: relative;
+	width: 577px;
+	height: 68px;
+	top: -4px;
+	left: 410px;
+}
+.button-sales-2{
+	position: relative;
+	width: 127px;
+	height: 612px;
+	top: -47px;
+	left: 9px;
+}
+
+.button-sales-2 > span.glyphicon-triangle-left{
+    position: relative!important;
+    left: -7px;
+    top: 5px;
+}
+
+/*.button-sales-2 > .sales-arrow-left > span.glyphicon-triangle-left{
+    position: relative!important;
+    left: -7px;
+    top: -12px;
+}*/
+
+.button-sales-2 > span.glyphicon-triangle-bottom {
+    position:relative!important;
+    left:0px;
+    top:10px;
+    margin-left: 49px;    
+}
+
+.button-sales-3{
+	position: relative;
+	width: 127px;
+	height: 585px;
+	top: -635px;
+	left: 167px;
+}
+.button-sales-4{
+	border: 3px solid #7b6565;
+	position: relative;
+	width: 562px;
+	height: 121px;
+	top: -1154px;
+	left: 343px;
+	background-color: #d497F9;
+	border-radius: 13px;
+}
+.button-sales-5{
+	position: relative;
+	width: 311px;
+	height: 79px;
+	top: -1084px;
+	left: 375px;
+}
+.button-sales-6{
+	position: relative;
+	width: 447px;
+	height: 188px;
+	top: -1030px;
+	left: 306px;
+}
+
+.button-sales-6 > span.down1{
+    margin-left: 45px;
+    margin-right: 5px;
+    position: relative!important;
+    left: 0px;
+    top: 18px;
+}
+
+.button-sales-6 > span.down2 {
+    margin-left: 95px;
+    margin-right: 31px;
+    position: relative!important;
+    left: 0px;
+    top: 18px;
+}
+
+.button-sales-6 > span.down3{
+    margin-left: 58px;
+    margin-right: 22px;
+    position: relative!important;
+    left: 0px;
+    top: 18px;
+}
+
+.button-sales-6 > span.down4{
+    margin-left: 74px;
+    margin-right: 5px;
+    position: relative!important;
+    left: 0px;
+    top: 18px;
+}
+
+.button-sales-6 > span.down5{
+    margin-left: 45px;
+    margin-right: 216px;
+    margin-top: 36px;
+    position: relative!important;
+    left: 0px;
+    top: 10px;
+}
+
+.button-sales-6 > span.down6{
+    margin-left: 105px;
+    margin-right: 5px;
+    margin-top: 36px;
+    position: relative!important;
+    left: 0px;
+    top: 10px;
+}
+
+.button-sales-7{
+	position: relative;
+	width: 126px;
+	height: 285px;
+	top: -1342px;
+	left: 817px;
+}
+.button-sales-8{
+	position: relative;
+	width: 131px;
+	height: 337px;
+	top: -1606px;
+	left: 996px;
+}
+.button-sales-9{
+	position: relative;
+    width: 143px;
+    height: 73px;
+    top: -1918px;
+    left: 1159px;
+}
+
+.button-sales-4 > .glyphicon{
+    position: absolute!important;
+    left: -15px;
+    top: 53px;
+}
+
+.type-sales-2{
+	width: 102px;
+	
+	border-radius: 7px 7px 7px 7px;
+	font-size: 13px;
+	background-image: linear-gradient(#fef6f4,#ffb7bb);
+	height:64px;
+	font-family:times;
+}
+.type-sales-3{
+	width: 99px;
+	
+	border-radius: 7px 7px 7px 7px;
+	font-size: 13px;
+	background-image: linear-gradient(rgb(209,255,245),rgb(138,255,228));
+	height: 51px;
+	font-family: times;
+}
+.type-sales-4{
+	width: 85px;
+	
+	font-size: 13px;
+	background-image: linear-gradient(#fef9e0,#ebdf34);
+	height:50px;
+	font-family:times;
+}
+.type-sales-5{
+	width: 102px;
+	
+	border-radius: 7px 7px 7px 7px;
+	font-size: 13px;
+	background-image: linear-gradient(rgb(239,220,203),rgb(168,100,38));
+	height:64px;
+	font-family:times;
+}
+.type-sales-6{
+	width: 93px;
+	background-image: linear-gradient(#fef9e0,#ebdf34);
+	border: 1px;
+	
+	border-radius: 7px 7px 7px 7px;
+	font-size: 13px;
+	position: relative;
+	height: 55px;
+	font-family: times;
+    top:-4px;
+}
+.type-sales-7{
+	width: 69px;
+	
+	font-size: 13px;
+	background-image: linear-gradient(#fef9e0,#ebdf34);
+	height:50px;
+	font-family:times;
+    position:relative;
+    top:1px;
+}
+.type-sales-8{
+	width: 106px;
+	
+	font-size: 13px;
+	background-image: linear-gradient(rgb(253,226,196),rgb(252,153,23));
+	height:50px;
+	font-family:times;
+}
+.type-sales-9{
+	width: 102px;
+	
+	font-size: 13px;
+	background-image: linear-gradient(rgb(233, 252, 248),rgb(71, 104, 171));
+	height: 80px;
+	font-family: times;
+	border-radius: 10px;
+}
+.type-sales-10{
+	width: 102px;
+	
+	font-size: 13px;
+	background-image: linear-gradient(rgb(214, 255, 237),rgb(172, 255, 165));
+	height: 57px;
+	font-family: times;
+	border-radius: 30px;
+}
+
+.button-sales-1-2 > span{
+    position: relative !important;
+    left: 8px;
+    top: 0px;
+}
+.button-sales-5 > span{
+    position: relative !important;
+    left: 1px;
+    top: 10px;
+}
+.button-sales-3 > span.glyphicon-triangle-right{
+    position: relative !important;
+    left: 9px;
+    top: 5px;
+}
+.button-sales-3 > span.glyphicon-triangle-bottom{
+    position: relative !important;
+    left: 1px;
+    top: 10px;
+}
+.button-sales-7 > span{
+    position: relative !important;
+    left: 8px;
+    top: 1px;
+}
+.button-sales-8 > span{
+    position: relative !important;
+    left: 9px;
+    top: 10px;
+}
+.button-sales-8 > span.glyphicon-triangle-bottom {
+    position: relative !important;
+    left: 2px;
+    top: 10px;
+}
+.button-sales-9 > span{
+    position: relative !important;
+    left: 10px;
+    top: -8px;
+}
+

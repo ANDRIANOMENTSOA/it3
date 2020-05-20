@@ -1,0 +1,9 @@
+﻿
+
+<select class="form-control" style="width:215px;">
+    <option>-All-</option>
+    @for (int id = 0; id < ViewBag.lignerbdag; id++)
+    {
+        <option>@ViewBag.datarbdag[0, id]</option>
+    }
+</select>

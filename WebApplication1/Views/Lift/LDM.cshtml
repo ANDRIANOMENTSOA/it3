@@ -1,0 +1,107 @@
+﻿
+
+<div class="col-sm-11 tab-content tab-cancellation">
+    <div id="search" class="tab-pane fade in active">
+        <div class="content col-sm-12">
+
+            <table>
+                <tr>
+                    <td>
+
+                        <fieldset class="test-fieldst">
+                            <legend class="test-fieldst">Date Range Selection</legend>
+                            <div class="col-sm-3 margin-issue" style="width: 24% !important;">
+                                <label class="form-check-label col-form-label">From:</label>
+                            </div>
+
+                            <div class="col-sm-4 n-padding">
+                                <div class="input-group date">
+                                    <input type="text" name="datedtpIssueDateFromLdm" class="form-controls input-date" value="@ViewBag.date[0]" id="datedtpIssueDateFromLdm" />
+                                    <span class="input-group-addon datetimepicker" onclick="setdate('datedtpIssueDateFromLdm')">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-sm-1">
+                                <label class="form-check-label col-form-label">To:</label>
+                            </div>
+                            <div class="col-sm-4 n-padding" style="margin-top:-23px;position: relative;left: 58px;">
+                                <div class="input-group date">
+                                    <input type='text' name="datedtpIssueDateToLdm" class="form-controls input-date input-datetimepicker" value="@ViewBag.date[1]" id="datedtpIssueDateToLdm" />
+                                    <span class="input-group-addon datetimepicker" onclick="setdate('datedtpIssueDateToLdm')">
+                                        <span class="glyphicon glyphicon-calendar" id="calendarPaxTo"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <fieldset class="test-fieldst" style="position: relative;left:20px;">
+                            <legend class="test-fieldst">Fight</legend>
+                            <div class="col-sm-3 margin-issue">
+                                <label class="form-check-label col-form-label">Fight:</label>
+                                <input type="hidden" id="test" value="">
+                                <input type="hidden" id="stock" value="">
+                            </div>
+
+                            <div class="col-sm-4 n-padding" id="selectLDM">
+                                <select class="form-control" id="Fight" onclick="FightselectLDM()" name="Fight" style="width: 150px; float: left;">
+                                    <option class="form-control">-All-</option>
+                                    @for (int n = 0; n < ViewBag.lonAg; n++)
+                                    {
+                                        <option>@ViewBag.AgCode[n]</option>
+                                    }
+                                </select>
+                            </div>
+                        </fieldset>
+                    </td>
+
+                </tr>
+            </table>
+            <div class="showresultLDM">
+                <div class="col-sm-12">
+                    <div class="table-record-display" id="" style="height:700px;overflow:auto;position: relative;left: -20px;">
+                        <div class="ajax-loader">
+                            <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+                        </div>
+                        <table class="table table-bordered table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="green" id="test">FLT DATE</th>
+                                    <th class="green">FLIGHT NO</th>
+                                    <th class="green">DES</th>
+                                    <th class="green">FIRST</th>
+                                    <th class="green">BUDINESS</th>
+                                    <th class="green">ECONOMY</th>
+                                    <th class="green">INFANT</th>
+                                    <th class="green">CHILDREN</th>
+                                    <th class="green">TOTAL PAX</th>
+                                    <th class="green">COCKPIT CREW</th>
+                                    <th class="green">CABIN CREW</th>
+                                </tr>
+                            </thead>
+                            <tbody class="loadSLS"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-sm-10">
+                    <div class="footer-lookUp">
+                        <fieldset>
+                            <form class="form-inline">
+                                <div class="form-group col-sm-4 width-group">
+                                    <img src='@Url.Content("~/images/CSVPic.jpg")' class="image-csv" style="top:-5px">
+                                </div>
+                                <div class="form-group col-sm-4 width-group">
+                                    <button class="search-interogation green" onclick="removeSousMenu()"><span class="search-span">CLOSE</span></button>
+                                </div>
+                            </form>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

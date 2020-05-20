@@ -1,0 +1,15 @@
+﻿@using System.Data
+@model DataSet
+
+@foreach (DataRow dr in Model.Tables[0].Rows)
+{
+    <tr ondblclick="ShowSearch(this,'@dr[Model.Tables[0].Columns[1].ColumnName].ToString()')">
+        @for (int i = 0; i < Model.Tables[0].Columns.Count; i++)
+        {
+            <td>@dr[Model.Tables[0].Columns[i].ColumnName].ToString()</td>;
+        }
+    </tr>
+}
+
+<input type="hidden" id="message" value="@ViewBag.messageInvalid">
+<input type="hidden" id="message1" value="@ViewBag.messageNodata">

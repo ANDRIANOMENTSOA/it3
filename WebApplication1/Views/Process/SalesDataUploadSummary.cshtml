@@ -1,0 +1,124 @@
+﻿<div class="container-remuneration container-pax1" style="background-color: rgb(117, 228, 252);">
+    <div class="row">
+        <div class="col-sm-5">
+            <div class="row pink" style="height:90px;">
+                <div class="row" style="position:relative;top:15px;">
+                    <div class="col-sm-3" style="top: 7px;left: 25px;"><span class="titre-text">Processing Date From</span></div>
+                    <div class="col-sm-3">
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('upSumDateFrom')"></span>
+                            <input type="text" class="form-control" id="upSumDateFrom" value="" style="padding-right:3px">
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="position:relative;top:25px;">
+                    <div class="col-sm-3" style="top: 7px;left: 25px;"><span class="titre-text">Processing Date To</span></div>
+                    <div class="col-sm-3">
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('upSumDateTo')"></span>
+                            <input type="text" class="form-control" id="upSumDateTo" value="" style="padding-right:3px">
+                        </div>
+                    </div>
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-3">
+                        <div class="row" style="position: relative;top: 4px;left:-5px">
+                            <div class="col-sm-6"><button class="btn-default launch-btn">Launch</button></div>
+                            <div class="col-sm-6"><button class="btn-default launch-btn">Selector</button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-5" style="top:10px;">
+            <div class="row">
+                <div class="col-sm-4"><span class="titre-text">SMTP SERVER</span></div>
+                <div class="col-sm-2"></div>
+                <div class="col-sm-4" style="left:-40px;"><span class="titre-text">PORT</span></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4"><input type="text" class="myForm" id="smtp" readonly /></div>
+                <div class="col-sm-2"></div>
+                <div class="col-sm-4" style="left:-40px;"><input type="text" class="myForm" id="port" readonly /></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div id="content-dataUp">
+            <div class="col-sm-5">
+                <div class="row">
+                    <div class="col-sm-12" style="padding:0;margin:0">
+                        <div id="dataUp">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="height:50px;">
+                    <div class="col-sm-2" style="top:71px;">
+                        <img src="~/Images/CSVPic.jpg" style="width:25px;" />
+                    </div>
+                    <div class="col-sm-7"></div>
+                    <div class="col-sm-3">
+                        <div class="col-sm-3" style="top:6px;"><span class="titre-text">Count</span></div>
+                        <div class="col-sm-9"><input type="text" class="myForm" /></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="row">
+                    <div class="col-sm-12"><span class="titre-text">EMAIL FROM</span></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-10"><input type="text" class="myForm" id="emailfrom" readonly style="margin-bottom:5px;" /></div>
+                    <div class="col-sm-2"><button class="pink btn-dataUp">EDIT</button></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12"><span class="titre-text">EMAIL RECIPIENTS</span></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-10"><input type="text" class="myForm" id="mailrec1" readonly /></div>
+                    <div class="col-sm-2"><button class="pink btn-dataUp">Save Email Recipients</button></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-10"><input type="text" class="myForm" id="mailrec2" readonly /></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-10"><input type="text" class="myForm" id="mailrec3" readonly /></div>
+                    <div class="col-sm-2"><button class="pink btn-dataUp">SEND REPORT</button></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-10"><input type="text" class="myForm" id="mailrec4" readonly style="margin-bottom:5px;" /></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12"><button class="pink btn-dataUp" style="margin-top:25px;margin-bottom:25px;">View Keyfield Breakdown</button></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-10">
+                        <fieldset class="test-fieldst">
+                            <legend class="test-fieldst">FOP Summary</legend>
+                            <div id="fopSum">
+                                <table class="table-bordered" style="width:90%">
+                                    <thead>
+                                        <tr>
+                                            <th class="pink" style="text-align:center">FOP</th>
+                                            <th class="pink" style="text-align:center">Transaction Code</th>
+                                            <th class="pink" style="text-align:center">Currency</th>
+                                            <th class="pink" style="text-align:center">Amount</th>
+                                            <th class="pink" style="text-align:center">Counts</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <div class="col-sm-2" style="top:65px"><img src="~/Images/CSVPic.jpg" style="width:25px" /></div>
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-3" style="top:6px;"><span class="titre-text">No Of Records</span> </div>
+                            <div class="col-sm-3"><input type="text" class="myForm" id="sumdataup" /></div>
+                        </fieldset>
+                    </div>
+                    <div class="col-sm-2" style="top:495px;"><button class="pink btn-dataUp" onclick="removeSousMenu()">Close</button></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+

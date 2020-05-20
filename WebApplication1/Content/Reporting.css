@@ -1,0 +1,40 @@
+﻿.reporting-button1{
+	width: 214px;
+	height: 40px;
+	border-radius: 12px 12px 12px 12px;
+	background-image: linear-gradient(#fff4f8,#ffb9bb);
+}
+
+.espace{
+	height:100px;
+}
+.title{
+	color:#675ea8;
+}
+
+.space{
+	height:10px;
+}
+
+.reporting-button2{
+	width: 214px;
+	height: 40px;
+	border-radius: 12px 12px 12px 12px;
+	background-image: linear-gradient(#fff5fe,#fba3ef);
+}
+
+img{
+	top: -64px;
+	/*align-content: baseline;*/
+	position: relative;
+}
+
+.reporting-content{
+    position: relative;
+    left: 285px;
+    top: 55px;
+}
+
+.mygrind > .col-md-1{
+    width:50px;
+}

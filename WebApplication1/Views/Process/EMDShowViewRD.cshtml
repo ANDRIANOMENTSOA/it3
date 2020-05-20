@@ -1,0 +1,298 @@
+﻿
+<div class="" id="IdEMShowview">
+    <table class="table table-bordered tablehead">
+        <tr>
+            <th id="par" colspan="4" scope="colgroup" class="col-sm-7">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label class="blueee col-form-label n-padding">TICKET NUMBER</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="col-lg-2">
+                                    <input type="text" class="form-control" value="@ViewBag.txtDocumentCarrier">
+                                </div>
+                                <div class="col-lg-8">
+                                    <input type="text" class="form-control" value="@ViewBag.txtDocumentNumber">
+                                </div>
+                                <div class="col-lg-2">
+                                    <input type="text" class="form-control" value="@ViewBag.txtChkDgt">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="row">
+                            <label class="col-form-label n-padding blueee" style="text-align: center;">PASSENGER TICKET AND BAGGAGE CHECK</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-2">
+                    </div>
+                    <div class="col-lg-10">
+                        <div>
+                            <div class=" col-lg-3">
+                                <label class="col-form-label n-padding blueee">VENDOR IDENTIFIER</label>
+                                <input type="text" class="form-control" value="@ViewBag.txtVendorIdentifier">
+                            </div>
+                            <div class="table-bordered col-lg-4">
+                                <label class="col-form-label n-padding blueee">REPORTING SYSTEM IDENTIFIER</label>
+                                <input type="text" class="form-control" value="@ViewBag.txtReportingSystemIdentifier">
+                            </div>
+                            <div class=" col-lg-1">
+                                <label class="col-form-label n-padding blueee">CPUI</label>
+                                <input type="text" class="form-control" value="@ViewBag.txtCPUI">
+                            </div>
+                            <div class="table-bordered col-lg-4">
+                                <label class="col-form-label n-padding blueee">TOUR CODE</label>
+                                <div class="col-lg-12">
+                                    <div class="col-lg-3">
+                                        <input type="checkbox" class=" form-control col-lg-2" value="@ViewBag.It">
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <label class="col-form-label n-padding blueee col-lg-2">IT/BT</label>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <input type="text" class="form-control col-lg-8" value="@ViewBag.txtTourCode">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="col-lg-8">
+                            <label class="col-form-label n-padding blueee">NAME OF PASSENGER</label>
+                            <input type="text" class="form-control" value="@ViewBag.txtPassengerName">
+                        </div>
+                        <div class="col-lg-4">
+                            <label class="col-form-label n-padding blueee">RELATED DOCUMENT NO</label>
+                            <input type="text" class="form-control col-lg-4" value="@ViewBag.txtRelateDocNo">
+                        </div>
+                    </div>
+                </div>
+            </th>
+            <th id="par" colspan="1" scope="colgroup" class="col-sm-2">
+                <div class="col-sm-12 width-group">
+                    <label class="form-check-label col-form-label n-padding fromTo">ORIGIN/DESTINATION </label>
+                    <div class="n-padding">
+                        <input type="text" class="form-control" id="ORIGINDESTINATIONEMD" value="@ViewBag.txtOrgDest">
+                    </div>
+                </div>
+                <div class="col-sm-12 width-group">
+                    <label class="form-check-label col-form-label n-padding fromTo">PNR</label>
+                    <div class="n-padding">
+                        <input type="text" class="form-control" id="PNREMD" value="@ViewBag.txtPnr">
+                    </div>
+                </div>
+                <div class="col-sm-12 width-group">
+                    <label class="form-check-label col-form-label n-padding fromTo">ISSUE IN EXCHANGE FOR</label>
+                    <div class=" n-padding">
+                        <input type="hidden" class="form-control" id="ISSUEINEXCHANGEFOREMD">
+                    </div>
+                </div>
+                <div class="col-sm-12 width-group">
+                    <label class="form-check-label col-form-label n-padding fromTo">TRANSACTION CODE</label>
+                    <div class="n-padding">
+                        <input type="text" class="form-control" id="TRANSACTIONCODEEMD" value="@ViewBag.txtTransCode">
+                    </div>
+                </div>
+            </th>
+            <th id="par" colspan="2" scope="colgroup" class="col-sm-3">
+                <div class="col-sm-12">
+                    <label class="form-check-label col-form-label col-sm-8 n-padding fromTo">DATE AND PLACE OF ISSUE</label>
+                </div>
+                <div class="col-sm-12 width-group">
+                    <label class="form-check-label col-form-label col-sm-8 n-padding fromTo">ISSUE DATE</label>
+                    <div class="col-sm-4 n-padding">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="ISSUEDATEEMD">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 width-group">
+                    <label class="form-check-label col-form-label col-sm-8 n-padding fromTo">AGENT NUMERIC CODE</label>
+                    <div class="col-sm-4 n-padding">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="AGENTNUMERICCODEEMD">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 width-group">
+                    <label class="form-check-label col-form-label col-sm-8 n-padding fromTo">AGENT NAME</label>
+                    <div class="col-sm-4 n-padding">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="AGENTNAMEEMD" value="@ViewBag.txtAgentName">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 width-group">
+                    <label class="form-check-label col-form-label col-sm-8 n-padding fromTo">AGENT POINT OF SALES</label>
+                    <div class="col-sm-4 n-padding">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="AGENTPOINTOFSALESEMD" value="@ViewBag.txtPOS">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 width-group">
+                    <label class="form-check-label col-form-label col-sm-8 n-padding fromTo">ABOOKING AGENT ID.</label>
+                    <div class="col-sm-4 n-padding">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="ABOOKINGAGENTIDEMD" value="@ViewBag.txtBookingAgentID">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 width-group">
+                    <label class="form-check-label col-form-label col-sm-8 n-padding fromTo">AGENT COMM %</label>
+                    <div class="col-sm-4 n-padding">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="AGENTCOMMEMD">
+                        </div>
+                    </div>
+                </div>
+            </th>
+        </tr>
+        <tr>
+            <th id="par" colspan="1" scope="colgroup" class="col-sm-4">
+                <div class="col-sm-12 width-group">
+                    <label class="form-check-label col-form-label col-sm-6 n-padding fromTo">FARE</label>
+                    <div class=" col-sm-2 n-padding">
+                        <input type="text" class="form-control" id="FARE1EMD" value="@ViewBag.txtfarecur ">
+                    </div>
+                    <div class="col-sm-4 n-padding">
+                        <input type="text" class="form-control" id="FARE2EMD" value=" @ViewBag.txtfare">
+                    </div>
+                </div>
+                <div class="col-sm-12 width-group">
+                    <label class="form-check-label col-form-label col-sm-6 n-padding fromTo">EQUIVALENT FARE PAID (EFP)</label>
+                    <div class=" col-sm-2 n-padding">
+                        <input type="text" class="form-control" id="EFP1EMD" value="@ViewBag.txtEfpcur">
+                    </div>
+                    <div class="col-sm-4 n-padding">
+                        <input type="text" class="form-control" id="EFP2EMD" value="@ViewBag.txtEfp">
+                    </div>
+                </div>
+                <div class="col-sm-12 width-group">
+                    <label class="form-check-label col-form-label col-sm-6 n-padding fromTo">SURCHARGES COLLECTED</label>
+                    <div class=" col-sm-2 n-padding">
+                        <input type="text" class="form-control" id="SURCHARGESCOLLECTED1EMD" value="@ViewBag.txtSurchargeCur">
+                    </div>
+                    <div class="col-sm-4 n-padding">
+                        <input type="text" class="form-control" id="SURCHARGESCOLLECTED2EMD" value="@ViewBag.txtSurcharge">
+                    </div>
+                </div>
+                <div class="col-sm-12 width-group">
+                    <label class="form-check-label col-form-label col-sm-6 n-padding fromTo">TAX COLLLECTED</label>
+                    <div class=" col-sm-2 n-padding">
+                        <input type="text" class="form-control" id="TAXCOLLLECTED1EMD" value="@ViewBag.txttotaltaxCur">
+                    </div>
+                    <div class="col-sm-4 n-padding">
+                        <input type="text" class="form-control" id="TAXCOLLLECTED2EMD" value="@ViewBag.txttotaltax">
+                    </div>
+                </div>
+                <div class="col-sm-12 width-group">
+                    <label class="form-check-label col-form-label col-sm-6 n-padding fromTo">CAF</label>
+                    <div class=" col-sm-2 n-padding">
+                        <input type="text" class="form-control" id="CAF1EMD">
+                    </div>
+                    <div class="col-sm-4 n-padding">
+                        <input type="text" class="form-control" id="CAF2EMD">
+                    </div>
+                </div>
+                <div class="col-sm-12 width-group">
+                    <label class="form-check-label col-form-label col-sm-6 n-padding fromTo">TOTAL FARE/EFP+TFCs COLLECTED</label>
+                    <div class=" col-sm-2 n-padding">
+                        <input type="text" class="form-control" id="TFCsCOLLECTED1EMD" value="@ViewBag.txtAmtColCur">
+                    </div>
+                    <div class="col-sm-4 n-padding">
+                        <input type="text" class="form-control" id="TFCsCOLLECTED2EMD" value="@ViewBag.txtAmtCol">
+                    </div>
+                </div>
+            </th>
+            <th id="par" colspan="6" scope="colgroup">
+                <div class="col-sm-12">
+                    <label class="form-check-label col-form-label n-padding fromTo">FARE CALCULATION AREA</label>
+                    <div class="n-padding">
+                        <input type="text" class="form-control" id="FARECALCULATIONAREAEMD" value="@ViewBag.txtFareComponent">
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class=" col-sm-2">
+                        <label class="form-check-label col-form-labeln-padding fromTo">EXCHANGE ADC</label>
+                        <div class=" n-padding">
+                            <input type="text" class="form-control" id="EXCHANGEADCEMD" value="@ViewBag.txtExchangeADC">
+                        </div>
+                    </div>
+                    <div class=" col-sm-4">
+                        <label class="form-check-label col-form-labeln-padding fromTo">SETTLEMENT AUTHORISATION CODE</label>
+                        <div class=" n-padding">
+                            <input type="text" class="form-control" id="AUTHORISATIONCODEEMD" value="@ViewBag.txtAuthorisationCode">
+                        </div>
+                    </div>
+                    <div class=" col-sm-2">
+                        <label class="form-check-label col-form-labeln-padding fromTo">REPORTING ENTITY</label>
+                        <div class=" n-padding">
+                            <input type="text" class="form-control" id="REPORTINGENTITY">
+                        </div>
+                    </div>
+                    <div class=" col-sm-4">
+                        <label class="form-check-label col-form-labeln-padding fromTo">ENDORSEMENT / RESTRICTIONS</label>
+                        <div class=" n-padding">
+                            <input type="text" class="form-control" id="RESTRICTIONSEMD" value="@ViewBag.txtEndorsementArea">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class=" col-sm-2">
+                        <label class="form-check-label col-form-labeln-padding fromTo">IN CONNECTION WITH</label>
+                        <div class=" n-padding">
+                            <input type="text" class="form-control" id="INCONNECTIONWITHEMD" value="@ViewBag.txtInConnectionWith">
+                        </div>
+                    </div>
+                    <div class=" col-sm-2">
+                        <label class="form-check-label col-form-labeln-padding fromTo">BOOKING AGENCY LOCATION NO</label>
+                        <div class=" n-padding">
+                            <input type="text" class="form-control" id="BOOKINGAGENCYEMD" value="@ViewBag.txtBAlocationNo">
+                        </div>
+                    </div>
+                    <div class=" col-sm-1">
+                        <label class="form-check-label col-form-labeln-padding fromTo">FCMI</label>
+                        <div class=" n-padding">
+                            <input type="text" class="form-control" id="FCMIEMD" value="@ViewBag.txtFcmi">
+                        </div>
+                    </div>
+                    <div class=" col-sm-2">
+                        <label class="form-check-label col-form-labeln-padding fromTo">TRANSACTION DESCRIPTION</label>
+                        <div class=" n-padding">
+                            <input type="text" class="form-control" id="DESCRIPTIONEMD" value="@ViewBag.txtTransactionGroup">
+                        </div>
+                    </div>
+                    <div class=" col-sm-1">
+                        <label class="form-check-label col-form-labeln-padding fromTo">INVOL.REROUTE</label>
+                        <div class=" n-padding">
+                            <input type="text" class="form-control" id="INVOLREROUTEEMD" value="@ViewBag.txtInvRer">
+                        </div>
+                    </div>
+                    <div class=" col-sm-1">
+                        <label class="form-check-label col-form-labeln-padding fromTo">PAX TYPE</label>
+                        <div class=" n-padding">
+                            <input type="text" class="form-control" id="PAXTYPEEMD" value="@ViewBag.txtPaxType">
+                        </div>
+                    </div>
+                    <div class=" col-sm-1">
+                        <label class="form-check-label col-form-labeln-padding fromTo">SPC</label>
+                        <div class=" n-padding">
+                            <input type="text" class="form-control" id="SPC" value="@ViewBag.txtSPC">
+                        </div>
+                    </div>
+                </div>
+            </th>
+        </tr>
+    </table>
+</div>
+

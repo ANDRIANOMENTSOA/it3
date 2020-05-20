@@ -1,0 +1,35 @@
+﻿@using System.Data
+@model DataSet
+<div class="table-record-display" style="height:680px; overflow:auto; top: 17px;position: relative;">
+    <table class="table table-bordered table-striped">
+        <thead >
+            <tr>
+                @foreach (var listName in ViewBag.colName)
+            {
+                    <th class="pink">@listName</th>
+                }
+            </tr>
+
+        </thead>
+        <tbody>
+            @foreach (DataRow dr in Model.Tables[0].Rows)
+            {
+                <tr ondblclick="loadDocNum(this,@dr[Model.Tables[0].Columns[2].ColumnName].ToString(),'TKTT')">
+                    @for (int i = 0; i < Model.Tables[0].Columns.Count; i++)
+                    {
+                        if ((i == 0)||(i==6))
+                        {
+                            string date = Convert.ToDateTime(dr[Model.Tables[0].Columns[i].ColumnName].ToString()).ToString("dd-MMM-yyyy");
+                            <td style="width:95px;">@date</td>
+                        }
+                        else
+                        {
+                            <td>@dr[Model.Tables[0].Columns[i].ColumnName].ToString()</td>;
+                        }
+
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

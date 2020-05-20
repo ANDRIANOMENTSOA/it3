@@ -1,0 +1,414 @@
+﻿<script src="~/Scripts/Process.js"></script>
+
+<div class="col-sm-11 tab-content tab-cancellation">
+    <div class="content-cancellation col-sm-11">
+        <div class="row">
+            <div class="col-xs-6 col-sm-3">
+                <fieldset class="test-fieldst">
+                    <legend class="test-fieldst">Date Of Issue</legend>
+                    <div class="col-sm-6 width-group">
+                        <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">From:</label>
+                        <div class="col-sm-9 n-padding">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('from')"></span>
+                                <input type="text" class="form-control" id="from" value="@ViewBag.date[1]" style="padding-right:3px">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6" style="margin-bottom: 19px;">
+                        <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">To:</label>
+                        <div class="col-sm-9 n-padding">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('to')"></span>
+                                <input type="text" class="form-control" id="to" value="@ViewBag.date[1]" style="padding-right:3px">
+                            </div>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <fieldset class="test-fieldst" style="padding: 15px;">
+                    <div class="row">
+                        <!-- Default inline 1-->
+                        <div class="col-xs-6 col-md-4">
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" class="custom-control-input" name="inlineDefaultRadiosExample"  value="Inline1" checked onclick="masquedivmasque()">
+                                <label class="custom-control-label" for="defaultInline1">All</label>
+                            </div>
+                        </div>
+                        <!-- Default inline 2-->
+                        <div class="col-xs-6 col-md-4">
+                            <div class="col custom-control custom-radio custom-control-inline">
+                                <input type="radio" class="custom-control-input" name="inlineDefaultRadiosExample" value="Inline2" onclick="masquedivmasque()">
+                                <label class="custom-control-label" for="defaultInline2">Intraline</label>
+                            </div>
+                        </div>
+
+                        <!-- Default inline 3-->
+                        <div class="col-xs-6 col-md-4">
+                            <div class="col custom-control custom-radio custom-control-inline">
+                                <input type="radio" class="custom-control-input"  name="inlineDefaultRadiosExample" value="Inline3" onclick="showdivmasque()">
+                                <label class="custom-control-label" for="defaultInline3">Interline</label>
+                            </div>
+                        </div>
+                        <input type="hidden" name="control" id="control"  class="form-control">
+                    </div>
+                </fieldset>
+            </div>
+            <div class="col-xs-6 col-sm-3" id="divmasque" style="visibility:hidden;">
+                <fieldset class="test-fieldst" style="padding: 15px;">
+                    <legend class="test-fieldst">Interline Selection</legend>
+                    <div class="col">
+                        <select class="select0" id="selectinterline">
+                            <option value="-All-">-All-</option>
+                            <option value="Option1">Option1</option>
+                            <option value="Option2">Option2</option>
+                        </select>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                    <div class="form-inline">
+                        <button class="btn-default btn-outward" style="margin-left:25px" onclick="SerachDataSplit()">SEARCH</button>
+                        <button class="btn-default btn-outward" style="margin-left:25px" onclick="removeSousMenu()">CLOSE</button>
+                    </div>             
+            </div>
+        </div>
+        <div class="row">
+            <div class="">
+                <ul class="nav nav-tabs" style="margin-left: 29px;">
+                    <li class="active"><a data-toggle="tab" href="#SALESDSM" class="nav-pax" onclick="ControlSales()">SALES</a></li>
+                    <li><a data-toggle="tab" href="#LIFTDSM" class="nav-pax" onclick="ControlLift()">LIFT</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="col-sm-12 tab-pane fade in active" id="SALESDSM">
+                        <div class="row">
+                            <div class="col-sm-9" style="margin-top: 25px;" id="loadFreeAndReduced">
+                                <div class="ajax-loader">
+                                    <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+                                </div>
+
+                                <div class="table-record-display" style="height:600px;overflow:auto">
+                                    <table class="table table-bordered table-striped" style="width: 84%;">
+                                        <thead>
+                                            <tr>
+                                                <th class="green-tab">Rownum</th>
+                                                <th class="green-tab">Date of Issue</th>
+                                                <th class="green-tab">Document Number</th>
+                                                <th class="green-tab">Carrier</th>
+                                                <th class="green-tab">Flight No</th>
+                                                <th class="green-tab">Coupon Number</th>
+                                                <th class="green-tab">FCMI</th>
+                                                <th class="green-tab">Fare Basis</th>
+                                                <th class="green-tab">RBD</th>
+                                                <th class="green-tab">Interlining</th>
+                                                <th style="display:none" class="green-tab keyelement-10">Stop Over Code</th>
+                                                <th style="display:none" class="green-tab keyelement-11">Tour Code</th>
+                                                <th style="display:none" class="green-tab keyelement-12">Endos Restriction</th>
+                                                <th style="display:none" class="green-tab keyelement-13">FCA</th>
+                                                <th style="display:none" class="green-tab keyelement-14">Original Issue</th>
+                                                <th style="display:none" class="green-tab keyelement-15">Passenger Name</th>
+                                                <th style="display:none" class="green-tab keyelement-16">Special Purpose Code</th>
+                                                <th style="display:none" class="green-tab keyelement-17">Form Of Payment</th>
+                                                <th style="display:none" class="green-tab keyelement-18">Fare Cur</th>
+                                                <th style="display:none" class="green-tab keyelement-19">Fare Amt</th>
+                                                <th style="display:none" class="green-tab keyelement-20">Equi Fare Cur</th>
+                                                <th style="display:none" class="green-tab keyelement-21">Equi Fare Amt</th>
+                                                <th style="display:none" class="green-tab keyelement-22">Tax1 Code</th>
+                                                <th style="display:none" class="green-tab keyelement-23">Tax1 Amount</th>
+                                                <th style="display:none" class="green-tab keyelement-24">Tax2 Code</th>
+                                                <th style="display:none" class="green-tab keyelement-25">Tax2 Amount</th>
+                                                <th style="display:none" class="green-tab keyelement-26">Tax3 Code</th>
+                                                <th style="display:none" class="green-tab keyelement-27">Tax3 Amount</th>
+                                                <th style="display:none" class="green-tab keyelement-28">Surcharge Collected Cur</th>
+                                                <th style="display:none" class="green-tab keyelement-29">Surcharge Collected</th>
+                                                <th style="display:none" class="green-tab keyelement-30">Final Share</th>
+                                                <th style="display:none" class="green-tab keyelement-31">Not Valid Before</th>
+                                                <th style="display:none" class="green-tab keyelement-32">Not Valid After</th>
+                                                <th style="display:none" class="green-tab keyelement-33">Free Baggage Allowance</th>
+                                                <th style="display:none" class="green-tab keyelement-34">Transaction Code</th>
+                                                <th class="green-tab">Agent Numeric Code</th>
+                                                <th class="green-tab">Coupon Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-sm-3" style="margin-top: 25px;">
+                                <div class="row">
+                                    <div class="col-sm-7">
+                                        <button class="btn-default" id="bntShowHide" onclick="HideShow('divHideShow', 'bntShowHide')" style="margin-left: -15px;width: 253px;">Show Add-on Details</button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-7" style="margin-top: 10px;border: 1px solid gray; height: 568px;background:white;display:none" id="divHideShow">
+                                        <ul class="list-group">
+                                            <li class="list-group-item">
+                                                <input type="checkbox" name="" onclick="showreportsdatasals('allkeyFR', 'keyelement')" id="allkeyFR">Select All
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreportsdatasals('key10FR', 'keyelement-10')" id="key10FR">Stop Over Code
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreportsdatasals('key11FR', 'keyelement-11')" id="key11FR">Tour Code
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreportsdatasals('key12FR', 'keyelement-12')" id="key12FR">Endos Restriction
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreportsdatasals('key13FR', 'keyelement-13')" id="key13FR">FCA
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreportsdatasals('key14FR', 'keyelement-14')" id="key14FR">Original Issue
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreportsdatasals('key15FR', 'keyelement-15')" id="key15FR">Passenger Name
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreportsdatasals('key16FR', 'keyelement-16')" id="key16FR">Special Purpose Code
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreportsdatasals('key17FR', 'keyelement-17')" id="key17FR">Form Of Payment
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreportsdatasals('key18FR', 'keyelement-18')" id="key18FR">Fare Cur
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreportsdatasals('key19FR', 'keyelement-19')" id="key19FR">Fare Amt
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreportsdatasals('key20FR', 'keyelement-20')" id="key20FR">Equi Fare Cur
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreportsdatasals('key21FR', 'keyelement-21')" id="key21FR">Equi Fare Amt
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreportsdatasals('key22FR', 'keyelement-22')" id="key22FR">Tax1 Code
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreportsdatasals('key23FR', 'keyelement-23')" id="key23FR">Tax1 Amount
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreportsdatasals('key24FR', 'keyelement-24')" id="key24FR">Tax2 Code
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreportsdatasals('key25FR', 'keyelement-25')" id="key25FR">Tax2 Amount
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreportsdatasals('key26FR', 'keyelement-26')" id="key26FR">Tax3 Code
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreportsdatasals('key27FR', 'keyelement-27')" id="key27FR">Tax3 Amount
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreportsdatasals('key28FR', 'keyelement-28')" id="key28FR">Surcharge Collected Cur
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreportsdatasals('key29FR', 'keyelement-29')" id="key29FR">Surcharge Collected
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreportsdatasals('key30FR', 'keyelement-30')" id="key30FR">Final Share
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreportsdatasals('key31FR', 'keyelement-31')" id="key31FR">Not Valid Before
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreportsdatasals('key32FR', 'keyelement-32')" id="key32FR">Not Valid After
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreportsdatasals('key33FR', 'keyelement-33')" id="key33FR">Free Baggage Allowance
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreportsdatasals('key34FR', 'keyelement-34')" id="key34FR">Transaction Code
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6" style="margin-top:20px">
+                                <fieldset class="test-fieldst" style="padding:20px">
+                                    <div class="col-sm-4"><label>Number of record per page</label></div>
+                                    <div class="col-sm-2"><input type="text" name="" disabled style="width: 50px" value="150"></div>
+                                    <div class="col-sm-6">
+                                        <button class="btn-default" style="width: 80px"><</button>
+                                        <input type="text" name="" disabled style="width: 100px" id="page1">
+                                    </div>
+
+                                </fieldset>
+                            </div>
+                        </div>
+                        
+
+                    </div>
+                    <div class="col-sm-12 tab-pane fade" id="LIFTDSM">
+                        <div class="row">
+                            <div class="col-sm-9" style="margin-top: 25px;" id="loadFreeAndReduced">
+                                <div class="ajax-loader">
+                                    <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+                                </div>
+
+                                <div class="table-record-display" style="height:600px;overflow:auto">
+                                    <table class="table table-bordered table-striped" style="width: 84%;">
+                                        <thead>
+                                            <tr>
+                                                <th class="green-tab">Rownum</th>
+                                                <th class="green-tab">Date of Issue</th>
+                                                <th class="green-tab">Document Number</th>
+                                                <th class="green-tab">Carrier</th>
+                                                <th class="green-tab">Flight No</th>
+                                                <th class="green-tab">Coupon Number</th>
+                                                <th class="green-tab">FCMI</th>
+                                                <th class="green-tab">Fare Basis</th>
+                                                <th class="green-tab">RBD</th>
+                                                <th class="green-tab">Interlining</th>
+                                                <th style="display:none" class="green-tab keyelement-10">Stop Over Code</th>
+                                                <th style="display:none" class="green-tab keyelement-11">Tour Code</th>
+                                                <th style="display:none"class="green-tab keyelement-12">Endos Restriction</th>
+                                                <th style="display:none" class="green-tab keyelement-13">FCA</th>
+                                                <th style="display:none" class="green-tab keyelement-14">Original Issue</th>
+                                                <th style="display:none" class="green-tab keyelement-15">Passenger Name</th>
+                                                <th style="display:none" class="green-tab keyelement-16">Special Purpose Code</th>
+                                                <th style="display:none" class="green-tab keyelement-17">Form Of Payment</th>
+                                                <th style="display:none" class="green-tab keyelement-18">Fare Cur</th>
+                                                <th style="display:none" class="green-tab keyelement-19">Fare Amt</th>
+                                                <th style="display:none" class="green-tab keyelement-20">Equi Fare Cur</th>
+                                                <th style="display:none" class="green-tab keyelement-21">Equi Fare Amt</th>
+                                                <th style="display:none" class="green-tab keyelement-22">Tax1 Code</th>
+                                                <th style="display:none" class="green-tab keyelement-23">Tax1 Amount</th>
+                                                <th style="display:none" class="green-tab keyelement-24">Tax2 Code</th>
+                                                <th style="display:none" class="green-tab keyelement-25">Tax2 Amount</th>
+                                                <th style="display:none" class="green-tab keyelement-26">Tax3 Code</th>
+                                                <th style="display:none" class="green-tab keyelement-27">Tax3 Amount</th>
+                                                <th style="display:none" class="green-tab keyelement-28">Surcharge Collected Cur</th>
+                                                <th style="display:none" class="green-tab keyelement-29">Surcharge Collected</th>
+                                                <th style="display:none" class="green-tab keyelement-30">Final Share</th>
+                                                <th style="display:none" class="green-tab keyelement-31">Not Valid Before</th>
+                                                <th style="display:none" class="green-tab keyelement-32">Not Valid After</th>
+                                                <th style="display:none" class="green-tab keyelement-33">Free Baggage Allowance</th>
+                                                <th style="display:none" class="green-tab keyelement-34">Transaction Code</th>
+                                                <th class="green-tab">Agent Numeric Code</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-sm-3" style="margin-top: 25px;">
+                                <div class="row">
+                                    <div class="col-sm-7">
+                                        <button class="btn-default" id="bntShowHideLift" onclick="HideShowLift('divHideShowLift', 'bntShowHideLift')" style="margin-left: -15px;width: 253px;">Show Add-on Details </button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-7" style="margin-top: 10px;border: 1px solid gray; height: 568px;background:white;display:none" id="divHideShowLift">
+                                        <ul class="list-group">
+                                            <li class="list-group-item">
+                                                <input type="checkbox" name="" onclick="showreportsLift('allkeyFR2', 'keyelement')" id="allkeyFR2">Select All
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreportsLift('key10FR2', 'keyelement-10')" id="key10FR2">Stop Over Code
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreports('key11FR2', 'keyelement-11')" id="key11FR2">Tour Code
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreports('key12FR2', 'keyelement-12')" id="key12FR2">Endos Restriction
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreports('key13FR2', 'keyelement-13')" id="key13FR2">FCA
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreports('key14FR2', 'keyelement-14')" id="key14FR2">Original Issue
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreports('key15FR2', 'keyelement-15')" id="key15FR2">Passenger Name
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreports('key16FR2', 'keyelement-16')" id="key16FR2">Special Purpose Code
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreports('key17FR2', 'keyelement-17')" id="key17FR2">Form Of Payment
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreports('key18FR2', 'keyelement-18')" id="key18FR2">Fare Cur
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreports('key19FR2', 'keyelement-19')" id="key19FR2">Fare Amt
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreports('key20FR2', 'keyelement-20')" id="key20FR2">Equi Fare Cur
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreports('key21FR2', 'keyelement-21')" id="key21FR2">Equi Fare Amt
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreports('key22FR2', 'keyelement-22')" id="key22FR2">Tax1 Code
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreportsLift('key23FR2', 'keyelement-23')" id="key23FR2">Tax1 Amount
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreports('key24FR2', 'keyelement-24')" id="key24FR2">Tax2 Code
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreports('key25FR2', 'keyelement-25')" id="key25FR2">Tax2 Amount
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreports('key26FR2', 'keyelement-26')" id="key26FR2">Tax3 Code
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreports('key27FR2', 'keyelement-27')" id="key27FR2">Tax3 Amount
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreports('key28FR2', 'keyelement-28')" id="key28FR2">Surcharge Collected Cur
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreports('key29FR2', 'keyelement-29')" id="key29FR2">Surcharge Collected
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreports('key30FR2', 'keyelement-30')" id="key30FR2">Final Share
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreports('key31FR2', 'keyelement-31')" id="key31FR2">Not Valid Before
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreports('key32FR2', 'keyelement-32')" id="key32FR2">Not Valid After
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreports('key33FR2', 'keyelement-33')" id="key33FR2">Free Baggage Allowance
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input type="checkbox" onclick="showreports('key34FR2', 'keyelement-34')" id="key34FR2">Transaction Code
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6" style="margin-top:20px">
+                                <fieldset class="test-fieldst" style="padding:20px">
+                                    <div class="col-sm-4"><label>Number of record per page</label></div>
+                                    <div class="col-sm-2"><input type="text" name="" disabled style="width: 50px" value="150"></div>
+                                    <div class="col-sm-6">
+                                        <button class="btn-default" style="width: 80px"><</button>
+                                        <input type="text" name="" disabled style="width: 100px" id="page1">
+                                    </div>
+
+                                </fieldset>
+                            </div>
+                        </div>
+
+                    </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,90 @@
+﻿@using System.Data
+@model DataSet
+<div class="col-sm-11 tab-content tab-cancellation">
+    <div class="content-cancellation col-sm-11">
+        <div class="col-sm-4">
+            <fieldset class="test-fieldst">
+                <legend class="test-fieldst">Refund Period</legend>
+                <div class="col-sm-6 width-group">
+                    <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">From:</label>
+                    <div class="col-sm-7 n-padding">
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateFromOalRefund')"></span>
+                            <input type="text" class="form-control" id="dateFromOalRefund" value="@ViewBag.dateFrom">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 width-group style=" margin-bottom 19px;">
+                    <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">From:</label>
+                    <div class="col-sm-7 n-padding">
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateToOalRefund')"></span>
+                            <input type="text" class="form-control" id="dateToOalRefund" value="@ViewBag.dateTo">
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="col-sm-4">
+            <div class="search">
+                <div class="col-sm-3"><button type="button" class="search-interogation pink btn" onclick="setCriteriaOalRefund()" style="background-color:#cec5c5"><span class="search-span" style="color:black"><b>SEARCH</b></span></button></div>
+                <div class="col-sm-3"><button class="search-interogation pink btn" onclick="ClearOalRefund()" style="background-color:#cec5c5"><span class="search-span" style="color:black"><b>CLEAR</b></span></button></div>
+                <div class="col-sm-3"><button class="search-interogation pink btn" onclick="removeSousMenu()" style="background-color:#cec5c5"><span class="search-span" style="color:black"><b>CLOSE</b></span></button></div>
+            </div>
+        </div>
+    </div>
+    <div class="ajax-loader">
+        <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+    </div>
+    <div id="loadOalRefunded">
+        <div class="col-sm-11" style="margin-top:40px">
+            <div class="col-sm-8">
+                <div class="table-record-display" style="height:500px; overflow:auto; top: -25px;position: relative;">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="pink">Date Of Refund</th>
+                                <th class="pink">Passenger Name</th>
+                                <th class="pink">Document No</th>
+                                <th class="pink">Fare Basis</th>
+                                <th class="pink">Date Of Issue</th>
+                                <th class="pink">Orig.Fare Currency Paid</th>
+                                <th class="pink">Orig.Fair Paid</th>
+                                <th class="pink">Total Amt Retained By Issuing Airline</th>
+                                <th class="pink">Refunded Currency</th>
+                                <th class="pink"> Refunded Amount</th>
+
+
+                            </tr>
+                        </thead>
+
+                    </table>
+                </div>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+
+        <div class="col-sm-11" id="loadOalSummary">
+            <div class="col-sm-4">
+                <div class="summary"><span>Summary</span></div>
+                <div class="table-summary" style="height: 150px;background-color: white;">
+                    <table class="table table-bordered  ">
+                        <thead>
+                            <tr>
+                                <th class="pink">Currency</th>
+                                <th class="pink">Amt Retained By Issuing Airline</th>
+                                <th class="pink">Refunded Amount</th>
+
+                            </tr>
+                        </thead>
+
+                    </table>
+                </div>
+            </div>
+            <div class="col-sm-2"></div>
+            <div class="col-sm-2">Total No of Doc: 0</div>
+
+        </div>
+    </div>
+</div>

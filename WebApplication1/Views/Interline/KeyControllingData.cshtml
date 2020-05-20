@@ -1,0 +1,40 @@
+﻿<div class="col-sm-11 tab-content tab-cancellation">
+    <div class="content-cancellation col-sm-11">
+        <div class="row">
+            <div class="col-sm-8">
+                <label class="form-check-label col-form-label col-sm-2 n-padding fromTo">Select Reference Table:</label>
+                <div class="col-sm-4 n-padding" id="SelectReferenceTable">
+                    <select class="form-control" id="SelectReferenceTable" namr="SelectReferenceTable" onclick="SelectReferenceTable()" style="width: 300px; float: left;">
+                        <option class="form-control"></option>
+                    </select>
+                </div>
+                <button class="search-interogation pink btn" onclick="clearNoShow()"><span class="search-span col-sm-2 n-padding">SEARCH</span></button>
+          </div>
+        </div>
+        <div class="row">
+            <div class="table-record-display" id="SelectReferenceTable" style="height:750px;overflow:auto; position: relative; left: 20px;">
+            
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="col-sm-1">
+                    <img src='@Url.Content("~/images/CSVPic.jpg")' class="image-csv ml-existe">
+                 </div>
+                <div class="col-sm-5">
+                </div>
+                <div class="col-sm-6">
+                    <div class="col-sm-5">
+                    </div>
+                    <div class="col-sm-7" style="position: relative; left: 135px;">
+                        <button class="search-interogation pink btn" onclick="clearNoShow()"><span class="search-span col-sm-2 n-padding">SEARCH</span></button>
+                        <button class="search-interogation pink btn" onclick="clearNoShow()"><span class="search-span col-sm-2 n-padding">DELETE</span></button>
+                        <button class="search-interogation pink btn" onclick="clearNoShow()"><span class="search-span col-sm-2 n-padding">ADD</span></button>
+                        <button class="search-interogation pink btn" onclick="clearNoShow()"><span class="search-span col-sm-2 n-padding">SAVE</span></button>
+                        <button class="search-interogation pink btn" onclick="clearNoShow()"><span class="search-span col-sm-2 n-padding">CLOSE</span></button>
+                     </div>
+                   </div>
+            </div>
+        </div>
+    </div>
+</div>

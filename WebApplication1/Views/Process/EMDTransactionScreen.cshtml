@@ -1,0 +1,589 @@
+﻿<div class="col-sm-11 tab-content tab-cancellation">
+    <div id="search" class="tab-pane fade in active">
+        <div class="content col-sm-12">
+            <div class="row">
+                <div class="">
+                    <ul class="nav nav-tabs" style="margin-left: 29px;">
+                        <li class="active"><a data-toggle="tab" href="#MAIN" class="nav-pax">MAIN</a></li>
+                        <li><a data-toggle="tab" href="#EMDTransactionScreen" id="EMDTransactionScreenshow" class="nav-pax disabledTab" style="display: none">EMD Transaction Screen</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="col-sm-12 tab-pane fade in active" id="MAIN">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <fieldset class="test-fieldst" id="sqlCriteriaEMD">
+                                        <legend class="test-fieldst">DATA LOOKUP</legend>
+                                        <div class="row">
+                                            <div class="col-sm-3 margin-issue">
+                                                <label class="form-check-label col-form-label">Issue Date:</label>
+                                                <input type="hidden" id="testFrom" value="">
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">From:</label>
+                                                <div class="input-group date">
+                                                    <span class="input-group-addon check-dape"><input type="checkbox" name="DateFromEMD" value="oui" id="DateFromEMD" onclick="uncheked('DateFromEMD', 'DateToEMD', 'datedtpIssueDateEMD', 'datedtpIssueDateToEMD')"></span>
+                                                    <input type="text" name="datedtpIssueDateEMD" class="form-controls input-date" id="datedtpIssueDateEMD" value="@ViewBag.date[1]" readonly />
+                                                    <span class="input-group-addon datetimepicker" onclick="setdate1('datedtpIssueDateEMD', 'DateFromEMD', 'DateToEMD')">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">To:</label>
+                                                <input type="hidden" id="testTo" value="">
+                                                <div class="input-group date">
+                                                    <span class="input-group-addon check-dape"><input type="checkbox" name="DateToEMD" value="oui" id="DateToEMD" onclick="uncheked1('DateFromEMD', 'DateToEMD', 'datedtpIssueDateEMD', 'datedtpIssueDateToEMD')"></span>
+                                                    <input type='text' name="datedtpIssueDateToEMD" class="form-controls input-date input-datetimepicker" id="datedtpIssueDateToEMD" value="@ViewBag.date[1]" readonly />
+                                                    <span class="input-group-addon datetimepicker" onclick="setdate1('datedtpIssueDateToEMD')">
+                                                        <span class="glyphicon glyphicon-calendar" id="calendarPaxTo"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="position: relative; height: 40px;">
+                                            <div class="col-sm-3">
+                                                <label class="form-check-label col-form-label">Document Number:</label>
+                                            </div>
+                                            <div class="col-sm-7 n-padding">
+                                                <input type="text" class="form-controls" id="DocumentNumberEMD"/>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                        </div>
+                                            <div class="row">
+                                                <div class="col-sm-3">
+
+                                                </div>
+                                                <div class="col-sm-8 n-padding">
+                                                    <div class="col-sm-4">
+                                                        <input type="button" class="btn" value="Search" onclick="SearchEMD()"/>
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <input type="button" class="btn" value="Clear" onclick="clearEMD()"/>
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <input type="button" class="btn" onclick="removeSousMenu()" value="Close" />
+                                                    </div>
+                                                </div>
+                                            </div>
+</fieldset>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="table-record-display col-lg-7" id="tabnowshow" style="height:600px;overflow:auto; position: relative; left: 20px;">
+                                    <div class="ajax-loader">
+                                        <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+                                    </div>
+                                    <table class="table table-bordered tablehead">
+                                        <thead>
+                                            <tr style="background-color: RGB(173,255,47);">
+                                                <th>Date Of Issue</th>
+                                                <th>Doc Num</th>
+                                                <th>Agent Code</th>
+                                                <th>Passeger Name</th>
+                                                <th>Transaction Code</th>
+                                                <th>Data Source</th>
+                                            </tr>
+
+                                        </thead>
+                                        <tbody id="tableEMD">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                         </div>
+
+                        <div class="col-sm-12 tab-pane fade blueee" id="EMDTransactionScreen">
+                            <div class="row">
+                                <div class="col-lg-9" style="text-align: center;color:#900606;">
+                                    <label class="form-check-label col-form-label n-padding fromTo" style="font-size:large;">EMD TRANSACTION SCREEN</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-10" id="IdShowSearchEMD">
+                                    <table class="table table-bordered tablehead">
+                                        <caption style="text-align: center;background-color: greenyellow;">EMD DETAILS</caption>
+                                            <tr>
+                                                <th>
+                                                    <div class="col-sm-12 width-group">
+                                                        <label class="form-check-label col-form-label col-sm-5 n-padding fromTo">DOCUMENT NO</label>
+                                                        <div class="col-sm-7 n-padding">
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control" id="DOCUMENTNOEMD">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 width-group">
+                                                        <label class="form-check-label col-form-label col-sm-5 n-padding fromTo">COUPON NO</label>
+                                                        <div class="col-sm-7 n-padding">
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control" id="COUPONNOEMD">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 width-group">
+                                                        <label class="form-check-label col-form-label col-sm-5 n-padding fromTo">COUPON VALUE</label>
+                                                        <div class="col-sm-7 n-padding">
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control" id="COUPONVALUEEMD">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 width-group">
+                                                        <label class="form-check-label col-form-label col-sm-5 n-padding fromTo">COUPON CURRENCY</label>
+                                                        <div class="col-sm-7 n-padding">
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control" id="COUPONCURRENCYEMD">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 width-group">
+                                                        <label class="form-check-label col-form-label col-sm-5 n-padding fromTo">TRANSACTIONCODE</label>
+                                                        <div class="col-sm-7 n-padding">
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control" id="TRANSACTIONCODEEMD">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </th>
+                                                <th>
+                                                <div class="col-sm-12 width-group">
+                                                <label class="form-check-label col-form-label col-sm-7 n-padding fromTo">RELATED TICKET NO</label>
+                                                <div class="col-sm-5 n-padding">
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" id="RELATEDTICKETNOEMD">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                <div class="col-sm-12 width-group">
+                                                    <label class="form-check-label col-form-label col-sm-7 n-padding fromTo">RELATED COUPON NO</label>
+                                                    <div class="col-sm-5 n-padding">
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" id="RELATEDCOUPONNO">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12 width-group">
+                                                    <label class="form-check-label col-form-label col-sm-7 n-padding fromTo">FEE OWNER AIRLINE DESIGNATOR</label>
+                                                    <div class="col-sm-5 n-padding">
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" id="FEEOWNERAIRLINEDESIGNATOREMD">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12 width-group">
+                                                    <label class="form-check-label col-form-label col-sm-7 n-padding fromTo">CONSUMED AT ISSUANCE INDICATOR</label>
+                                                    <div class="col-sm-5 n-padding">
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" id="CONSUMEDATISSUANCEINDICATOREMD">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </th>
+                                                <th>
+                                                    <div class="col-sm-12 width-group">
+                                                        <label class="form-check-label col-form-label col-sm-8 n-padding fromTo">EXCESS BAGGAGE OVER ALLOWANCE QUALIFIER</label>
+                                                        <div class="col-sm-4 n-padding">
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control" id="EXCESSBAGGAGEEMD">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 width-group">
+                                                        <label class="form-check-label col-form-label col-sm-8 n-padding fromTo">EXCESS BAGGAGE RATE PER UNIT</label>
+                                                        <div class="col-sm-4 n-padding">
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control" id="RATEPERUNITEMD">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 width-group">
+                                                        <label class="form-check-label col-form-label col-sm-8 n-padding fromTo">EXCESS BAGGAGE TOTAL NUMBER IN EXCESS</label>
+                                                        <div class="col-sm-4 n-padding">
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control" id="NUMBERINEXCESSEMD">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 width-group">
+                                                        <label class="form-check-label col-form-label col-sm-8 n-padding fromTo">EXCESS BAGGAGE CURRENCY TYPE</label>
+                                                        <div class="col-sm-4 n-padding">
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control" id="CURRENCYTYPEEMD">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                            <th id="par" colspan="3" scope="colgroup">
+                                                <div class="col-sm-2">
+                                                    <label class="form-check-label col-form-label n-padding fromTo">REASON ISSUANCE SUB CODE</label>
+                                                    <div class="n-padding">
+                                                        <div class="">
+                                                            <input type="text" class="form-control" id="SUBCODEEMD">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <label class="form-check-label col-form-labeln-padding fromTo">REASON FOR ISSUANCE CODE</label>
+                                                    <div class=" n-padding">
+                                                        <div class="">
+                                                            <input type="text" class="form-control" id="CODEEMD">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label class="form-check-label col-form-label n-padding fromTo">REASON ISSUANCE DESCRIPTION</label>
+                                                    <div class="n-padding">
+                                                        <div class="">
+                                                            <input type="text" class="form-control" id="DESCRIPTIONEMD">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <label class="form-check-label col-form-label  n-padding fromTo">REMARKS</label>
+                                                    <div class=" n-padding">
+                                                        <div class="">
+                                                            <input type="text" class="form-control" id="REMARKSEMD">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </th>
+                                        </tr>
+                                   </table>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-5 width-group">
+
+                                    <fieldset class="test-fieldst" id="sqlCriteriaSelectView">
+                                        <legend class="test-fieldst">SELECT TO VIEW</legend>
+                                        <div class="custom-control custom-radio col-sm-6">
+                                            <input type="radio" class="custom-control-input" id="defaultGroupExample1" name="groupOfDefaultRadios" value="EMD" onclick="radioEMD()">
+                                            <label class="form-check-label col-form-label" for="defaultGroupExample1">EMD</label>
+                                        </div>
+
+                                        <!-- Group of default radios - option 2 -->
+                                        <div class="custom-control custom-radio col-sm-6">
+                                            <input type="radio" class="custom-control-input" id="defaultGroupExample2" name="groupOfDefaultRadios" value="RELATED DOCUMENT" onclick="radioEMD()">
+                                            <label class="form-check-label col-form-label" for="defaultGroupExample2">RELATED DOCUMENT</label>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="row"> 
+                                 <div class="col-lg-10" id="IdEMShowview">
+                                     <table class="table table-bordered tablehead">
+                                         <tr>
+                                             <th id="par" colspan="4" scope="colgroup" class="col-sm-7">
+                                                 <div class="row">
+                                                     <div class="col-lg-8">
+                                                         <div class="row">
+                                                             <div class="col-lg-6">
+                                                                 <label class="blueee col-form-label n-padding">TICKET NUMBER</label>
+                                                             </div>
+                                                         </div>
+                                                         <div class="row">
+                                                             <div class="col-lg-7">
+                                                                 <div class="col-lg-4">
+                                                                     <input type="text" class="form-control">
+                                                                 </div>
+                                                                 <div class="col-lg-5">
+                                                                     <input type="text" class="form-control">
+                                                                 </div>
+                                                                 <div class="col-lg-3">
+                                                                     <input type="text" class="form-control">
+                                                                 </div>
+                                                             </div>
+                                                         </div>
+                                                     </div>
+                                                     <div class="col-lg-2">
+                                                         <div class="row">
+                                                             <label class="col-form-label n-padding blueee" style="text-align: center;">PASSENGER TICKET AND BAGGAGE CHECK</label>
+                                                         </div>
+                                                     </div>
+                                                 </div>
+                                                 <div class="row">
+                                                     <div class="col-lg-2">
+                                                     </div>
+                                                         <div class="col-lg-10">
+                                                             <div>
+                                                                 <div class=" col-lg-3">
+                                                                     <label class="col-form-label n-padding blueee">VENDOR IDENTIFIER</label>
+                                                                     <input type="text" class="form-control">
+                                                                 </div>
+                                                                 <div class="table-bordered col-lg-4">
+                                                                     <label class="col-form-label n-padding blueee">REPORTING SYSTEM IDENTIFIER</label>
+                                                                     <input type="text" class="form-control">
+                                                                 </div>
+                                                                 <div class=" col-lg-1">
+                                                                     <label class="col-form-label n-padding blueee">CPUI</label>
+                                                                     <input type="text" class="form-control">
+                                                                 </div>
+                                                                 <div class="table-bordered col-lg-4">
+                                                                     <label class="col-form-label n-padding blueee">TOUR CODE</label>
+                                                                     <div class="col-lg-12">
+                                                                         <div class="col-lg-3">
+                                                                             <input type="checkbox" class=" form-control col-lg-2">
+                                                                         </div>
+                                                                         <div class="col-lg-2">
+                                                                             <label class="col-form-label n-padding blueee col-lg-2">IT/BT</label>
+                                                                         </div>
+                                                                         <div class="col-lg-7">
+                                                                             <input type="text" class="form-control col-lg-8">
+                                                                         </div>
+                                                                     </div>
+                                                                 </div>
+                                                             </div>
+                                                         </div>
+                                                     </div>
+                                                 <div class="row">
+                                                     <div class="col-lg-12">
+                                                         <div class="col-lg-8">
+                                                             <label class="col-form-label n-padding blueee">NAME OF PASSENGER</label>
+                                                             <input type="text" class="form-control">
+                                                         </div>
+                                                         <div class="col-lg-4">
+                                                             <label class="col-form-label n-padding blueee">RELATED DOCUMENT NO</label>
+                                                             <input type="text" class="form-control col-lg-4">
+                                                         </div>
+                                                     </div>
+                                                 </div>  
+                                                 </th>
+                                             <th id="par" colspan="1" scope="colgroup" class="col-sm-2">
+                                                 <div class="col-sm-12 width-group">
+                                                     <label class="form-check-label col-form-label n-padding fromTo">ORIGIN/DESTINATION </label>
+                                                     <div class="n-padding">
+                                                             <input type="text" class="form-control" id="ORIGINDESTINATIONEMD">
+                                                      </div>
+                                                 </div>
+                                                 <div class="col-sm-12 width-group">
+                                                     <label class="form-check-label col-form-label n-padding fromTo">PNR</label>
+                                                     <div class="n-padding">
+                                                             <input type="text" class="form-control" id="PNREMD">
+                                                     </div>
+                                                 </div>
+                                                 <div class="col-sm-12 width-group">
+                                                     <label class="form-check-label col-form-label n-padding fromTo">ISSUE IN EXCHANGE FOR</label>
+                                                     <div class=" n-padding">
+                                                             <input type="hidden" class="form-control" id="ISSUEINEXCHANGEFOREMD">
+                                                     </div>
+                                                 </div>
+                                                 <div class="col-sm-12 width-group">
+                                                     <label class="form-check-label col-form-label n-padding fromTo">TRANSACTION CODE</label>
+                                                     <div class="n-padding">
+                                                             <input type="text" class="form-control" id="TRANSACTIONCODEEMD">
+                                                     </div>
+                                                 </div>
+                                             </th>
+                                             <th id="par" colspan="2" scope="colgroup" class="col-sm-3">
+                                                 <div class="col-sm-12" style="text-align: center;background-color: greenyellow;">
+                                                    <label class="form-check-label col-form-label col-sm-8 n-padding fromTo">DATE AND PLACE OF ISSUE</label>
+                                                </div>
+                                                 <div class="col-sm-12 width-group">
+                                                     <label class="form-check-label col-form-label col-sm-8 n-padding fromTo">ISSUE DATE</label>
+                                                     <div class="col-sm-4 n-padding">
+                                                         <div class="input-group">
+                                                             <input type="text" class="form-control" id="ISSUEDATEEMD">
+                                                         </div>
+                                                     </div>
+                                                 </div>
+                                                 <div class="col-sm-12 width-group">
+                                                     <label class="form-check-label col-form-label col-sm-8 n-padding fromTo">AGENT NUMERIC CODE</label>
+                                                     <div class="col-sm-4 n-padding">
+                                                         <div class="input-group">
+                                                             <input type="text" class="form-control" id="AGENTNUMERICCODEEMD">
+                                                         </div>
+                                                     </div>
+                                                 </div>
+                                                 <div class="col-sm-12 width-group">
+                                                     <label class="form-check-label col-form-label col-sm-8 n-padding fromTo">AGENT NAME</label>
+                                                     <div class="col-sm-4 n-padding">
+                                                         <div class="input-group">
+                                                             <input type="text" class="form-control" id="AGENTNAMEEMD">
+                                                         </div>
+                                                     </div>
+                                                 </div>
+                                                 <div class="col-sm-12 width-group">
+                                                     <label class="form-check-label col-form-label col-sm-8 n-padding fromTo">AGENT POINT OF SALES</label>
+                                                     <div class="col-sm-4 n-padding">
+                                                         <div class="input-group">
+                                                             <input type="text" class="form-control" id="AGENTPOINTOFSALESEMD">
+                                                         </div>
+                                                     </div>
+                                                 </div>
+                                                 <div class="col-sm-12 width-group">
+                                                     <label class="form-check-label col-form-label col-sm-8 n-padding fromTo">ABOOKING AGENT ID.</label>
+                                                     <div class="col-sm-4 n-padding">
+                                                         <div class="input-group">
+                                                             <input type="text" class="form-control" id="ABOOKINGAGENTIDEMD">
+                                                         </div>
+                                                     </div>
+                                                 </div>
+                                                 <div class="col-sm-12 width-group">
+                                                     <label class="form-check-label col-form-label col-sm-8 n-padding fromTo">AGENT COMM %</label>
+                                                     <div class="col-sm-4 n-padding">
+                                                         <div class="input-group">
+                                                             <input type="text" class="form-control" id="AGENTCOMMEMD">
+                                                         </div>
+                                                     </div>
+                                                 </div>
+                                             </th>
+                                         </tr>
+                                         <tr>
+                                             <th id="par" colspan="1" scope="colgroup" class="col-sm-4">
+                                                 <div class="col-sm-12 width-group">
+                                                     <label class="form-check-label col-form-label col-sm-6 n-padding fromTo">FARE</label>
+                                                     <div class=" col-sm-2 n-padding">
+                                                         <input type="text" class="form-control" id="FARE1EMD">
+                                                     </div>
+                                                     <div class="col-sm-4 n-padding">
+                                                         <input type="text" class="form-control" id="FARE2EMD">
+                                                     </div>
+                                                 </div>
+                                                 <div class="col-sm-12 width-group">
+                                                     <label class="form-check-label col-form-label col-sm-6 n-padding fromTo">EQUIVALENT FARE PAID (EFP)</label>
+                                                     <div class=" col-sm-2 n-padding">
+                                                         <input type="text" class="form-control" id="EFP1EMD">
+                                                     </div>
+                                                     <div class="col-sm-4 n-padding">
+                                                         <input type="text" class="form-control" id="EFP2EMD">
+                                                     </div>
+                                                 </div>
+                                                 <div class="col-sm-12 width-group">
+                                                     <label class="form-check-label col-form-label col-sm-6 n-padding fromTo">SURCHARGES COLLECTED</label>
+                                                     <div class=" col-sm-2 n-padding">
+                                                         <input type="text" class="form-control" id="SURCHARGESCOLLECTED1EMD">
+                                                     </div>
+                                                     <div class="col-sm-4 n-padding">
+                                                         <input type="text" class="form-control" id="SURCHARGESCOLLECTED2EMD">
+                                                     </div>
+                                                 </div>
+                                                 <div class="col-sm-12 width-group">
+                                                     <label class="form-check-label col-form-label col-sm-6 n-padding fromTo">TAX COLLLECTED</label>
+                                                     <div class=" col-sm-2 n-padding">
+                                                         <input type="text" class="form-control" id="TAXCOLLLECTED1EMD">
+                                                     </div>
+                                                     <div class="col-sm-4 n-padding">
+                                                         <input type="text" class="form-control" id="TAXCOLLLECTED2EMD">
+                                                     </div>
+                                                 </div>
+                                                 <div class="col-sm-12 width-group">
+                                                     <label class="form-check-label col-form-label col-sm-6 n-padding fromTo">CAF</label>
+                                                     <div class=" col-sm-2 n-padding">
+                                                         <input type="text" class="form-control" id="CAF1EMD">
+                                                     </div>
+                                                     <div class="col-sm-4 n-padding">
+                                                         <input type="text" class="form-control" id="CAF2EMD">
+                                                     </div>
+                                                 </div>
+                                                 <div class="col-sm-12 width-group">
+                                                     <label class="form-check-label col-form-label col-sm-6 n-padding fromTo">TOTAL FARE/EFP+TFCs COLLECTED</label>
+                                                     <div class=" col-sm-2 n-padding">
+                                                         <input type="text" class="form-control" id="TFCsCOLLECTED1EMD">
+                                                     </div>
+                                                     <div class="col-sm-4 n-padding">
+                                                         <input type="text" class="form-control" id="TFCsCOLLECTED2EMD">
+                                                     </div>
+                                                 </div>
+                                             </th>
+                                             <th id="par" colspan="6" scope="colgroup">
+                                                 <div class="col-sm-12">
+                                                     <label class="form-check-label col-form-label n-padding fromTo">FARE CALCULATION AREA</label>
+                                                     <div class="n-padding">
+                                                             <input type="text" class="form-control" id="FARECALCULATIONAREAEMD">
+                                                     </div>
+                                                 </div>
+                                                 <div class="col-sm-12">
+                                                     <div class=" col-sm-2">
+                                                         <label class="form-check-label col-form-labeln-padding fromTo">EXCHANGE ADC</label>
+                                                         <div class=" n-padding">
+                                                                 <input type="text" class="form-control" id="EXCHANGEADCEMD">
+                                                         </div>
+                                                     </div>
+                                                     <div class=" col-sm-4">
+                                                         <label class="form-check-label col-form-labeln-padding fromTo">SETTLEMENT AUTHORISATION CODE</label>
+                                                         <div class=" n-padding">
+                                                                 <input type="text" class="form-control" id="AUTHORISATIONCODEEMD">
+                                                         </div>
+                                                     </div>
+                                                     <div class=" col-sm-2">
+                                                         <label class="form-check-label col-form-labeln-padding fromTo">REPORTING ENTITY</label>
+                                                         <div class=" n-padding">
+                                                                 <input type="text" class="form-control" id="REPORTINGENTITY">
+                                                         </div>
+                                                     </div>
+                                                     <div class=" col-sm-4">
+                                                         <label class="form-check-label col-form-labeln-padding fromTo">ENDORSEMENT / RESTRICTIONS</label>
+                                                         <div class=" n-padding">
+                                                                 <input type="text" class="form-control" id="RESTRICTIONSEMD">
+                                                          </div>
+                                                     </div>
+                                                  </div>
+                                                 <div class="col-sm-12">
+                                                     <div class=" col-sm-2">
+                                                         <label class="form-check-label col-form-labeln-padding fromTo">IN CONNECTION WITH</label>
+                                                         <div class=" n-padding">
+                                                             <input type="text" class="form-control" id="INCONNECTIONWITHEMD">
+                                                         </div>
+                                                     </div>
+                                                     <div class=" col-sm-2">
+                                                         <label class="form-check-label col-form-labeln-padding fromTo">BOOKING AGENCY LOCATION NO</label>
+                                                         <div class=" n-padding">
+                                                             <input type="text" class="form-control" id="BOOKINGAGENCYEMD">
+                                                         </div>
+                                                     </div>
+                                                     <div class=" col-sm-1">
+                                                         <label class="form-check-label col-form-labeln-padding fromTo">FCMI</label>
+                                                         <div class=" n-padding">
+                                                             <input type="text" class="form-control" id="FCMIEMD">
+                                                         </div>
+                                                     </div>
+                                                     <div class=" col-sm-2">
+                                                         <label class="form-check-label col-form-labeln-padding fromTo">TRANSACTION DESCRIPTION</label>
+                                                         <div class=" n-padding">
+                                                             <input type="text" class="form-control" id="DESCRIPTIONEMD">
+                                                         </div>
+                                                     </div>
+                                                     <div class=" col-sm-1">
+                                                         <label class="form-check-label col-form-labeln-padding fromTo">INVOL.REROUTE</label>
+                                                         <div class=" n-padding">
+                                                             <input type="text" class="form-control" id="INVOLREROUTEEMD">
+                                                         </div>
+                                                     </div>
+                                                     <div class=" col-sm-1">
+                                                         <label class="form-check-label col-form-labeln-padding fromTo">PAX TYPE</label>
+                                                         <div class=" n-padding">
+                                                             <input type="text" class="form-control" id="PAXTYPEEMD">
+                                                         </div>
+                                                     </div>
+                                                     <div class=" col-sm-1">
+                                                         <label class="form-check-label col-form-labeln-padding fromTo">SPC</label>
+                                                         <div class=" n-padding">
+                                                             <input type="text" class="form-control" id="SPC">
+                                                         </div>
+                                                     </div>
+                                                 </div>
+                                             </th>
+                                         </tr>
+                                     </table>
+                                 </div>
+                             </div>
+                            <div class="row">
+                                <div class="col-lg_10">
+                                </div>
+                                <div class="col-lg_10">
+                                    <input type="button" class="btn" onclick="removeSousMenu()" value="Close" />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

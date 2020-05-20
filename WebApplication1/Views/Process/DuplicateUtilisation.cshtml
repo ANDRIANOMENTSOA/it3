@@ -1,0 +1,150 @@
+﻿<div class="col-sm-11 tab-content tab-cancellation">
+    <div id="search" class="tab-pane fade in active">
+        <div class="content col-sm-12">
+            <div class="row">
+                <div class="">
+                    <ul class="nav nav-tabs" style="margin-left: 29px;">
+                        <li class="active"><a data-toggle="tab" href="#LIFTFILES" class="nav-pax">LIFT FILES</a></li>
+                        <li><a data-toggle="tab" href="#LIFTEMDFILES" class="nav-pax">LIFTEMD FILES</a></li>
+                    </ul>
+                    <div class="tab-content" style="height:650px;">
+                        <div class="col-sm-12 tab-pane fade in active" id="LIFTFILES">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <fieldset class="test-fieldst">
+                                        <legend class="test-fieldst">Processing Date</legend>
+                                        <div class="col-sm-6">
+                                            <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">From:</label>
+                                            <div class="input-group date">
+                                                <span class="input-group-addon check-dape"><input type="checkbox" name="dtpIssueDateFromNoshow" value="oui" id="dtpIssueDateFromNoshow" onclick="uncheked('dtpIssueDateFromNoshow', 'dtpIssueDateToNoshow', 'datedtpIssueDateFromNoshow', 'datedtpIssueDateToNoshow')"></span>
+                                                <input type="text" name="datedtpIssueDateFromNoshow" class="form-controls input-date" id="datedtpIssueDateFromNoshow" value="@ViewBag.date[1]" readonly />
+                                                <span class="input-group-addon datetimepicker" onclick="setdate1('datedtpIssueDateFromNoshow', 'dtpIssueDateFromNoshow', 'dtpIssueDateToNoshow')">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">To:</label>
+                                            <div class="input-group date">
+                                                <span class="input-group-addon check-dape"><input type="checkbox" name="dtpIssueDateToNoshow" value="oui" id="dtpIssueDateToNoshow" onclick="uncheked1('dtpIssueDateFromNoshow', 'dtpIssueDateToNoshow', 'datedtpIssueDateFromNoshow', 'datedtpIssueDateToNoshow')"></span>
+                                                <input type='text' name="datedtpIssueDateToNoshow" class="form-controls input-date input-datetimepicker" id="datedtpIssueDateToNoshow" value="@ViewBag.date[1]" readonly />
+                                                <span class="input-group-addon datetimepicker" onclick="setdate1('datedtpIssueDateToNoshow')">
+                                                    <span class="glyphicon glyphicon-calendar" id="calendarPaxTo"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <div class="col-lg-4">
+                                    <fieldset class="test-fieldst">
+                                        <legend class="test-fieldst">Usage Date</legend>
+                                        <div class="col-sm-6">
+                                            <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">From:</label>
+                                            <div class="input-group date">
+                                                <span class="input-group-addon check-dape"><input type="checkbox" name="DateDuplicateUtilisation" value="oui" id="DateDuplicateUtilisation" onclick="uncheked('DateDuplicateUtilisation', 'checktoDuplication', 'DateDuplicateUtilisationinput', 'inputtoDuplication')"></span>
+                                                <input type="text" name="DateDuplicateUtilisationinput" class="form-controls input-date" id="DateDuplicateUtilisationinput" value="@ViewBag.date[1]" readonly />
+                                                <span class="input-group-addon datetimepicker" onclick="setdate1('DateDuplicateUtilisationinput', 'dtpIssueDateFromNoshow', 'checktoDuplication')">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">To:</label>
+                                            <div class="input-group date">
+                                                <span class="input-group-addon check-dape"><input type="checkbox" name="checktoDuplication" value="oui" id="checktoDuplication" onclick="uncheked1('DateDuplicateUtilisation', 'checktoDuplication', 'DateDuplicateUtilisationinput', 'inputtoDuplication')"></span>
+                                                <input type='text' name="inputtoDuplication" class="form-controls input-date input-datetimepicker" id="inputtoDuplication" value="@ViewBag.date[1]" readonly />
+                                                <span class="input-group-addon datetimepicker" onclick="setdate1('inputtoDuplication')">
+                                                    <span class="glyphicon glyphicon-calendar" id="calendarPaxTo"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <div class="col-lg-4" style="position: relative;top: 22px;">
+                                    <button class="btn">SEARCH</button>
+                                </div>
+                                </div>
+                            <div class="row">
+                                <div class="table-record-display" id="tabnowshow" style="height:677px;overflow:auto; position: relative; left: 20px;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <img src='@Url.Content("~/images/CSVPic.jpg")' class="image-csv" style="top:0px;left:10px;">
+                                </div>
+                                <div class="col-sm-4"  style=" position: relative; top: 48px;">
+                                    <div class="col-sm-6">
+                                        <label> Total No.of CPNs</label>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-controls"/>
+                                    </div>
+                                 </div>
+                            </div>
+
+                         </div>
+                        <div class="col-sm-12 tab-pane fade" id="LIFTEMDFILES">
+                            <div class="col-sm-12 tab-pane fade in active" id="LIFTFILES">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <fieldset class="test-fieldst">
+                                            <legend class="test-fieldst">Processing Date</legend>
+                                            <div class="col-sm-1 margin-issue">
+                                                <label class="form-check-label col-form-label">From:-</label>
+                                            </div>
+
+                                            <div class="col-sm-3 n-padding">
+                                                <div class="input-group date">
+                                                    <input type="text" name="FromDuplicateUtilisationLiftemdfiles" class="form-controls input-date" value="@ViewBag.date[1]" id="FromDuplicateUtilisationLiftemdfiles" />
+                                                    <span class="input-group-addon datetimepicker" onclick="setdate('FromDuplicateUtilisationLiftemdfiles')">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <label class="form-check-label col-form-label">To:-</label>
+                                            </div>
+                                            <div class="col-sm-3 n-padding">
+                                                <div class="input-group date">
+                                                    <input type='text' name="ToDuplicateUtilisationLiftemdfiles" class="form-controls input-date input-datetimepicker" value="@ViewBag.date[1]" id="ToDuplicateUtilisationLiftemdfiles" />
+                                                    <span class="input-group-addon datetimepicker" onclick="setdate('ToDuplicateUtilisationLiftemdfiles')">
+                                                        <span class="glyphicon glyphicon-calendar" id="calendarPaxTo"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-lg-4" style="position: relative;top: 22px;">
+                                        <button class="btn">SEARCH</button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="table-record-display" id="tabnowshow" style="height:600px;overflow:auto; position: relative; left: 20px;">
+                                    </div>
+                                </div>
+                                <div class="row" style=" position: relative; top: 48px;">
+                                    <div class="col-sm-2">
+                                        <img src='@Url.Content("~/images/CSVPic.jpg")' class="image-csv" style="top:0px;left:10px;">
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="col-sm-6">
+                                            <label> Total No.of CPNs</label>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-controls" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

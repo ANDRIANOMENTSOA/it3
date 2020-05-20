@@ -1,0 +1,266 @@
+﻿.top-lift{
+     height: 29px;
+    background-color: #655c5d;
+    box-shadow: 0px 4px #44403f;
+    position: relative;
+    top: -19px;
+    left: 3px;
+    color:white;
+}
+.left-button1 > button{
+    margin-top: 40px;
+    margin-left:18px;
+}
+
+.left-button1 > button.type2{
+    margin-left:39px;
+}
+
+
+
+.arrow-left{
+    width: 2px;
+    position: relative;
+    /* margin-bottom: 0px; */
+    top: -566px;
+    left: 207px;
+    height: 120px;
+}
+
+
+.arrow-left > span{
+    display: block;
+    /*left: 206px;
+    top: -552px;
+    /* margin-top: 40px; */
+    margin-bottom: 100px;
+}
+
+/****** denier 1*******/
+.button-prim{
+    
+    position: relative;
+    top: 50px;
+    left: 122px;
+    height: 81px;
+    width: 861px;
+}
+.button-secon{  
+    position: relative;
+    top: 70px;
+    left: 50px;
+    height: 159px;
+    width: 123px;
+}
+.button-trois{
+    position: relative;
+    top: 27px;
+    left: 121px;
+    height: 390px;
+    width: 152px;
+}
+.button-quatre{
+    position: relative;
+    top: -42px;
+    left: 210px;
+    height: 81px;
+    width: 102px;
+}
+.button-cinq{
+    position: relative;
+    top: -508px;
+    left: 411px;
+    height: 129px;
+    width: 416px;
+    padding: 2px;
+    border-radius: 11px;
+    background-color: rgb(219,188,255);
+}
+.button-six{
+    position: relative;
+    top: -459px;
+    left: 492px;
+    height: 192px;
+    width: 268px;
+    padding: 2px;
+}
+.button-sept{
+    position: relative;
+    top: -373px;
+    left: 361px;
+    height: 92px;
+    width: 320px;
+    padding: 2px;
+}
+.button-huit{
+    position: relative;
+    top: -740px;
+    left: 848px;
+    height: 324px;
+    width: 147px;
+    padding: 2px;
+}
+.button-glyf{
+    position: relative;
+    top: -506px;
+    left: 600px;
+    height: 15px;
+    width: 41px;
+}
+.type2-1{
+    width: 99px;
+    
+    border-radius: 7px 7px 7px 7px;
+    font-size: 13px;
+    background-image: linear-gradient(#fef6f4,#ffb7bb);
+    height: 64px;
+    font-family: times;
+}
+
+
+.type9{
+    background-image: linear-gradient(#fef6f4,#ffb7bb);
+    width: 110px;
+    height: 46px;
+    font-family: times;
+    border-radius: 18px;
+}
+.type10 {
+    width: 106px;
+    
+    border-radius: 7px 7px 7px 7px;
+    font-size: 13px;
+    background-image: linear-gradient(#fef6f4,#ffb7bb);
+    height: 85px;
+    font-family: times;
+}
+.type11{
+    height: 55px;
+    margin-top: 20px;
+    margin-left: 16px;
+    background-image: linear-gradient(#fef9e0,#ebdf34);
+    font-size: 13px;
+    font-family: times;
+    width: 59px;
+}
+
+.type12{
+    background-image: linear-gradient(rgb(254,242,228),rgb(251,144,16));
+    width: 98px;
+    height: 46px;
+    font-family: times;
+    border-radius: 18px;
+}
+
+.type13{
+    width: 106px;
+    
+    border-radius: 7px 7px 7px 7px;
+    font-size: 13px;
+    background-image: linear-gradient(rgb(236,246,247),rgb(47,175,142));
+    height: 85px;
+    font-family: times;
+}
+
+
+.type14{
+    width: 97px;
+    
+    border-radius: 7px 7px 7px 7px;
+    font-size: 13px;
+    background-image: linear-gradient(rgb(243,255,253),rgb(168,252,237));
+    height:64px;
+    font-family:times;
+}
+
+.type15{
+    width: 97px;
+    
+    border-radius: 7px 7px 7px 7px;
+    font-size: 13px;
+    background-image: linear-gradient(rgb(255,253,255),rgb(255,223,164));
+    height:64px;
+    font-family:times;
+}
+
+.type16{
+    width: 97px;
+    
+    border-radius: 7px 7px 7px 7px;
+    font-size: 13px;
+    background-image: linear-gradient(rgb(252,237,234),rgb(244,35,3));
+    height:64px;
+    font-family:times;
+}
+.containers1{
+    top: 85px;
+    left: 406px;
+    position: fixed;
+    width: 1055px;
+    height: 795px;
+    min-width: 1055px;
+    min-height: 795px;
+    /*border: 1px solid;*/
+    box-sizing: border-box;
+}
+.glyphicon{
+    position: static !important;
+    font-size: 18px;
+}
+
+
+.parallellogramme
+{
+    background-image: linear-gradient(#f8fdee,#5cbe45);
+    width:110px;
+    height:56px;
+    transform: skew(-20deg);
+    border-radius: 7px 7px 7px 7px;
+    font-style: normal;
+}
+.button-secon > span{
+    position:relative !important;
+    left:-9px;
+}
+.button-six > span{
+    position:relative !important;
+    top:10px;
+    left:-1px;
+}
+.button-sept > span{
+    position:relative !important;
+    top:10px;
+    left:0px;
+}
+.button-huit > span{
+    position:relative !important;
+    left:-7px;
+}
+
+.afiche-result td{
+    white-space:nowrap;
+}
+
+
+
+/*proceesss*/
+
+.blueee {
+    color:blue;
+}
+.rotateATDA {
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  width: 12.5em;
+  HEIGHT: 154PX;
+}
+.rotateATDA div {
+     -moz-transform: rotate(-90.0deg);  /* FF3.5+ */
+       -o-transform: rotate(-90.0deg);  /* Opera 10.5 */
+  -webkit-transform: rotate(-90.0deg);  /* Saf3.1+, Chrome */
+             filter:  progid:DXImageTransform.Microsoft.BasicImage(rotation=0.083);  /* IE6,IE7 */
+         -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=0.083)"; /* IE8 */
+         margin-left: -10em;
+         margin-right: -10em;
+}

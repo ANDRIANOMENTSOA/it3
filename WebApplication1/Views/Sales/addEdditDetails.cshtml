@@ -1,0 +1,30 @@
+﻿@using System.Data
+@model DataSet
+
+@{ bool tmp = false;}
+@foreach (DataRow dr in Model.Tables[0].Rows)
+{
+    <tr onclick="SelectSingleRenumerate('@dr[Model.Tables[0].Columns[1].ColumnName].ToString()','@dr[Model.Tables[0].Columns[2].ColumnName].ToString()','@dr[Model.Tables[0].Columns[3].ColumnName].ToString()','@dr[Model.Tables[0].Columns[4].ColumnName].ToString()','@dr[Model.Tables[0].Columns[5].ColumnName].ToString()','@dr[Model.Tables[0].Columns[6].ColumnName].ToString()')">
+        @for (int i = 1; i < Model.Tables[0].Columns.Count; i++)
+        {
+            if (i == 2 && dr[Model.Tables[0].Columns[2].ColumnName].ToString() == "0")
+            {
+                <td>Amount</td>
+            }
+            else if (i == 2 && dr[Model.Tables[0].Columns[2].ColumnName].ToString() != "0")
+            {
+                tmp = true;
+                <td>Percentage</td>
+            }
+            else if(tmp && i==3)
+            {
+                <td>@dr[Model.Tables[0].Columns[2].ColumnName].ToString()</td>;
+                tmp = false;
+            }
+            else
+            {
+                <td>@dr[Model.Tables[0].Columns[i].ColumnName].ToString()</td>;
+            }
+        }
+    </tr>
+}

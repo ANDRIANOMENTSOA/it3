@@ -1,0 +1,15 @@
+﻿<div class="col" id="newwdivFlightTrans">
+    <select class="form-control" id="FlightTrans" onchange="valoption()">
+        <option>@ViewBag.cboSector</option>
+        @for (int i = 0; i < ViewBag.lonItemsec; i++)
+        {
+            <option value="@ViewBag.ListeItemsec[0, i]">@ViewBag.ListeItemsec[0, i]</option>
+        }
+    </select>
+</div>
+
+<div class="col" id="newwtaxx">
+    <select class="form-control" id="FlightTrans1">
+        <option>@ViewBag.cbotaxcode</option>
+    </select>
+</div>

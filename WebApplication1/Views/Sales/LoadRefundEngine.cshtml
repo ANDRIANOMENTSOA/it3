@@ -1,0 +1,38 @@
+﻿@using System.Data
+@model DataSet
+<table class="table table-bordered table-hover table-striped">
+    <thead>
+        <tr>
+            <th class="pink">Doc Num</th>
+            <th class="pink">Passenger Name</th>
+            <th class="pink">Doc Type</th>
+            <th class="pink" width="100px;">Date Of Issue</th>
+            <th class="pink" width="100px;">Sale Date</th>
+            <th class="pink">Agent Code</th>
+            <th class="pink">Fare Calculation Area</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (DataRow dr in Model.Tables[0].Rows)
+            {
+            <tr ondblclick="clickLigneRefundEngine('@dr[Model.Tables[0].Columns[0].ColumnName].ToString()')">
+                @for (int i = 0; i < Model.Tables[0].Columns.Count; i++)
+                {
+                    if ((i == 3)||(i==4))
+                    {
+                        string date = Convert.ToDateTime(dr[Model.Tables[0].Columns[i].ColumnName].ToString()).ToString("dd-MMM-yyyy");
+                        <td>@date</td>
+                    }
+                    else
+                    {
+                        <td>@dr[Model.Tables[0].Columns[i].ColumnName].ToString()</td>;
+                    }
+
+                }
+            </tr>
+        }
+    </tbody>
+   
+
+</table>
+<input type="hidden" class="form-control" name="valRefun" id="valRefun" value="@ViewBag.nbRefun" />

@@ -1,0 +1,9 @@
+﻿<div class="col" id="newdivcboReasonCode">
+    <input type="text" name="" style="width: 32px" id="txtReasonCode">
+    <select style="width: 765px" id="cboReasonCode">
+        @for(int i = 0; i < ViewBag.ligne; i++)
+        {
+            <option value="@ViewBag.cboReasonCode[i]" style="">@ViewBag.cboReasonCode[i]</option>
+        }
+    </select>
+</div>

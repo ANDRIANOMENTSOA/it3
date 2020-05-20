@@ -1,0 +1,137 @@
+﻿<div id="FareInput" class="tab-pane fade in active">
+    <div class="col-sm-12 n-padding">
+        <div class="col-sm-10 n-padding" style="background-color:RGB(240,230,140); left:6px;border: 2px solid white;">
+            <div class="col-sm-9 n-padding" style="margin-top: 15px;margin-bottom: 13px;border: 1px solid;padding: 16px !important;">
+                <table style="border-collapse: separate;border-spacing: 4px;">
+                    <tbody>
+                        <tr>
+                            <td>Fare - ISN</td>
+                            <td><input type="text" name="fareIsn" id="fareIsn" class="form-control" style="width:100%;" value="@ViewBag.fareIsn"></td>
+                            <td>Rule</td>
+                            <td><input type="text" name="rule" id="rule" class="form-control" style="width:100%;" maxlength="10"></td>
+                            <td>Prime Code</td>
+                            <td><input type="text" name="primeCode" id="primeCode" class="form-control" style="width:100%;" maxlength="1"></td>
+                        </tr>
+                        <tr>
+                            <td>Carrier Code</td>
+                            <td><input type="text" name="carrierCode" id="carrierCode" class="form-control" style="width:100%;" maxlength="3"></td>
+                            <td>MPM</td>
+                            <td><input type="text" name="mpm" id="mpm" class="form-control" style="width:100%;" maxlength="10"></td>
+                            <td>Seasonal Code</td>
+                            <td><input type="text" name="seasonal" id="seasonal" class="form-control" style="width:100%;" maxlength="10"></td>
+                        </tr>
+                        <tr>
+                            <td>Sector From</td>
+                            <td><input type="text" name="sectorFromInput" id="sectorFromInput" class="form-control" style="width:100%;" maxlength="3"></td>
+                            <td>GI</td>
+                            <td><input type="text" name="gi" id="gi" class="form-control" style="width:100%;" maxlength="2"></td>
+                            <td>Part of Week Code</td>
+                            <td><input type="text" name="partofWeek" id="partofWeek" class="form-control" style="width:100%;" maxlength="10"></td>
+                        </tr>
+                        <tr>
+                            <td>Sector To</td>
+                            <td><input type="text" name="sectorToInput" id="sectorToInput" class="form-control" style="width:100%;" maxlength="3"></td>
+                            <td>RBD</td>
+                            <td><input type="text" name="rbd" id="rbd" class="form-control" style="width:100%;" maxlength="1"></td>
+                            <td>Part Of Day Code</td>
+                            <td><input type="text" name="partOfDayCode" id="partOfDayCode" class="form-control" style="width:100%;" maxlength="10"></td>
+                        </tr>
+                        <tr>
+                            <td>Fare Basis</td>
+                            <td><input type="text" name="fareBasis" id="fareBasis" class="form-control" style="width:100%;" maxlength="15"></td>
+                            <td>Sales Validity From</td>
+                            <td>
+                                <div class="input-group date">
+                                    <input type="text" class="form-control" style="width: 120px" id="salesValidityFrom" value="@ViewBag.salesValidityFrom">
+                                    <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('salesValidityFrom')"></span>
+                                </div>
+                            </td>
+                            <td>FPT-C</td>
+                            <td><input type="text" name="fptc" id="fptc" class="form-control" style="width:100%;" maxlength="10"></td>
+                        </tr>
+                        <tr>
+                            <td>Journey Type</td>
+                            <td>
+                                <select class="form-control" id="journeyType" style="width: 170px">
+                                    <option value=""></option>
+                                    <option value="OW">OW</option>
+                                    <option value="RT">RT</option>
+                                </select>
+                            </td>
+                            <td>Sales Validity To</td>
+                            <td>
+                                <div class="input-group date">
+                                    <input type="text" class="form-control" style="width: 120px" id="salesValidityTo" value="@ViewBag.salesValidityTo">
+                                    <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('salesValidityTo')"></span>
+                                </div>
+                            </td>
+                            <td>Fare level Identifier</td>
+                            <td><input type="text" name="fareLevelId" id="fareLevelId" class="form-control" style="width:100%;" maxlength="10"></td>
+                        </tr>
+                        <tr>
+                            <td>Currency Code</td>
+                            <td><input type="text" name="currencyCode" id="currencyCode" class="form-control" style="width:100%;" maxlength="3"></td>
+                            <td>Flown Validity From</td>
+                            <td>
+                                <div class="input-group date">
+                                    <input type="text" class="form-control" style="width: 120px" id="flownValidityFrom" value="@ViewBag.flownValidityFrom">
+                                    <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('flownValidityFrom')"></span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Local Currency Fare</td>
+                            <td><input type="text" name="localCurrencyFare" id="localCurrencyFare" class="form-control" style="width:100%;" maxlength="10"></td>
+                            <td>Flown Validity To</td>
+                            <td>
+                                <div class="input-group date">
+                                    <input type="text" class="form-control" style="width: 120px" id="flownValidityTo" value="@ViewBag.flownValidityTo">
+                                    <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('flownValidityTo')"></span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>NUC</td>
+                            <td><input type="text" name="nuc" id="nuc" class="form-control" style="width:100%;" maxlength="10"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="col-sm-11" style="float: right;background-color: #983f3f;padding: 6px;text-align: right;width: 17%;">
+                    <button class="btn btn-default" type="button" onclick="saveInputeScreen()">Save</button>
+                    <button class="btn btn-default" type="button" onclick="clearSaveInpute()">Clear</button>
+                    <button class="btn btn-default" type="button">Back</button>
+                </div>
+            </div>
+            <div class="col-sm-9 n-padding" style="border:1px solid;height: 177px;">
+                <table class="table table-bordered">
+                    <thead style="background-color:RGB(173,255,47);">
+                        <tr>
+                            <th>Document Number</th>
+                            <th>Related Document Number</th>
+                            <th>Coupon Number</th>
+                            <th>Flight Departure Date</th>
+                            <th>Not Valid Before</th>
+                            <th>Not Valid After</th>
+                            <th>Fare Basis</th>
+                            <th>Maximun Validity</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+
+            <div class="col-sm-9 n-padding" style="border:1px solid;height: 177px;margin-bottom: 54px;">
+                <table class="table table-bordered">
+                    <thead style="background-color:RGB(173,255,47);">
+                        <tr>
+                            <th>Maximum Validity</th>
+                            <th>Code</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>

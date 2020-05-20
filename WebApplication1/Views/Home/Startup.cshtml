@@ -1,0 +1,113 @@
+﻿
+    @{
+        ViewBag.Title = "Startup";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    <div class="tab-content" id="containt-all-tab">
+        <div id="Startup" class="add-div tab-pane fade in active">
+            <div class="vertical-menu">
+                <div class="container-fluid">
+                    <ul class="liste-sous-menu-vertical">
+                        <li class="active rotate li-menu-vertical1"><a class="menu1" href="#Welcome" aria-controls="home" role="tab" data-toggle="tab"><span>Welcome</span></a></li>
+                        <li class="rotate li-menu-vertical2"><a class="menu2" href="#Sales" aria-controls="home" role="tab" data-toggle="tab"><span>Sales</span></a></li>
+                        <li class="rotate li-menu-vertical3"><a class="menu3" href="#Lift" aria-controls="home" role="tab" data-toggle="tab"><span>Lift</span></a></li>
+                        <li class="rotate li-menu-vertical4"><a class="menu4" href="#Interline" aria-controls="home" role="tab" data-toggle="tab"><span>Interline</span></a></li>
+                        <li class="rotate li-menu-vertical5"><a class="menu5" href="#Reporting" aria-controls="home" role="tab" data-toggle="tab"><span>Reporting & Accounting</span></a></li>
+                        <li class="rotate li-menu-vertical6"><a class="menu6" href="#Proccess" aria-controls="home" role="tab" data-toggle="tab"><span>Process & Enquiry</span></a></li>
+                        <li class="rotate li-menu-vertical7"><a class="menu7" href="#Customised" aria-controls="home" role="tab" data-toggle="tab"><span>Customised</span></a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="container-body">
+                <div class="tab-content" id="pills-tabContent">
+                    <div id="Welcome" class="tab-pane fade active in" role="tabpanel" aria-labelledby="pills-welcome-tab">
+                        <div class="newbackgroung">
+
+                        </div>
+                    </div>
+                    <div id="Sales" class="tab-pane fade" role="tabpanel" aria-labelledby="pills-sales-tab">
+                        @{Html.RenderPartial("~/Views/Sales/Index.cshtml");}
+                    </div>
+                    <div id="Lift" class="tab-pane fade" role="tabpanel" aria-labelledby="pills-purchases-tab">
+                        @{Html.RenderPartial("~/Views/Lift/Index.cshtml");}
+                    </div>
+                    <div id="Interline" class="tab-pane fade" role="tabpanel" aria-labelledby="pills-interline-tab">
+                        @{Html.RenderPartial("~/Views/Interline/Index.cshtml");}
+                    </div>
+                    <div id="Reporting" class="tab-pane fade" role="tabpanel" aria-labelledby="pills-reporting-tab">
+                        @{Html.RenderPartial("~/Views/Reporting/Index.cshtml");}
+                    </div>
+                    <div id="Proccess" class="tab-pane fade" role="tabpanel" aria-labelledby="pills-reporting-tab">
+                        @{Html.RenderPartial("~/Views/Process/Index.cshtml");}
+                    </div>
+                    <div id="Customised" class="tab-pane fade" role="tabpanel" aria-labelledby="pills-reporting-tab">
+                        @{Html.RenderPartial("~/Views/Customised/Index.cshtml");}
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        
+    </div>
+    <!-- modal error -->
+    <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="width: 58%;left: 17%;">
+                <div class="agentModal">
+                    <div class="modal-header" style="background-color:#ac2925;">
+                        <h5 class="modal-title">Error</h5>
+                        <button type="button" class="close close-agent-code" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body modalError">
+                        <label>Error! no data</label>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="Close btn btn-secondary btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <!--infos modal-->
+        <div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="width: 58%;left: 17%;">
+                    <div class="agentModal">
+                        <div class="modal-header" style="background-color:#e8ae72;">
+                            <h5 class="modal-title">Information</h5>
+                            <button type="button" class="close close-agent-code" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body modalError">
+                            <label id="msgalert"></label>
+                        </div>
+                        <div class="modal-footer modal-confirmation">
+                            <button type="button" class="Close btn btn-secondary btn-default" style="background-color:#e8ae72;" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--success modal-->
+        <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="width: 58%;left: 17%;">
+                    <div class="agentModal">
+                        <div class="modal-header" style="background-color: #337ab7;color: white;">
+                            <h5 class="modal-title">Information</h5>
+                            <button type="button" class="close close-agent-code" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body modalError">
+                            <label id="msgsuccess"></label>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="Close btn btn-secondary btn-default" style="background-color:#337ab7; color:white" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+

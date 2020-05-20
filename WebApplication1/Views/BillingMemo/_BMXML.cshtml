@@ -1,0 +1,31 @@
+﻿<table class="table table-bordered tablehead">
+    <thead style="background-color: #8B0000;">
+    <tr>
+        <th>Billied Airline</th>
+        <th>Airline</th>
+        <th>Airline Name</th>
+        <th>Billing Period</th>
+        <th>Coupon Count</th>
+        <th>Amount</th>
+        <th>ISC Comm Amount</th>
+        <th>Net Amount</th>
+        <th>Total Tax</th>
+        <th>Amount To Bill</th>
+        <th>Invoice Number</th>
+        <th>XML File</th>
+        <th>Status</th>
+    </tr>
+
+    </thead>
+    <tbody>
+    @for (int i = 0; i < ViewBag.MBXMLListLon; i++)
+    {
+        <tr>
+            @for (int j = 0; j < 11; j++)
+            {
+                <td>@ViewBag.TaxRateRecordAdded[j, i]</td>
+            }
+        </tr>
+    }
+    </tbody>
+</table>

@@ -1,0 +1,78 @@
+﻿<div class="container-remuneration container-pax1" style="background-color: rgb(117, 228, 252);height:93vh">
+    <div class="ajax-loader">
+        <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+    </div>
+    <div class="row">
+        <div class="col-sm-4" style="top:5px;">
+            <fieldset class="test-fieldst">
+                <legend class="test-fieldst">Date Of Issue</legend>
+                <div class="col-sm-2"><span class="titre-text">From :</span></div>
+                <div class="col-sm-4" style="top:-5px">
+                    <div class="input-group">
+                        <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('creditCardFrom')"></span>
+                        <input type="text" class="form-control" id="creditCardFrom" value="@ViewBag.date[0]" style="padding-right:3px">
+                    </div>
+                </div>
+                <div class="col-sm-2"><span class="titre-text">To :</span></div>
+                <div class="col-sm-4" style="top:-5px">
+                    <div class="input-group">
+                        <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('creditCardTo')"></span>
+                        <input type="text" class="form-control" id="creditCardTo" value="@ViewBag.date[1]" style="padding-right:3px">
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="col-sm-1" style="top:25px;"><button class="btn-default btn-search" onclick="btnCCMSearch_Click()">SEARCH</button></div>
+        <div class="col-sm-1" style="top:25px;"><button class="btn-default btn-search" onclick="removeSousMenu()">CLOSE</button></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-10">
+            <div id="content-creditManagement">
+                <table class="table table-striped table-bordered" id="tablecreditManagementaz">
+                    <thead>
+                        <tr>
+                            <th class="green-tabprocess" style="text-align:center;color:white;">Date Of Issue</th>
+                            <th class="green-tabprocess" style="text-align:center;color:white;">Document No</th>
+                            <th class="green-tabprocess" style="text-align:center;color:white;">Passenger Name</th>
+                            <th class="green-tabprocess" style="text-align:center;color:white;">Transaction Code</th>
+                            <th class="green-tabprocess" style="text-align:center;color:white;">FOP</th>
+                            <th class="green-tabprocess keyelement-5" style="display:none;text-align:center;color:white;">Account No</th>
+                            <th class="green-tabprocess keyelement-6" style="display:none;text-align:center;color:white;">Card Verification</th>
+                            <th class="green-tabprocess keyelement-7" style="display:none;text-align:center;color:white;">Credit Card Corporate</th>
+                            <th class="green-tabprocess keyelement-8" style="display:none;text-align:center;color:white;">Expiry Date</th>
+                            <th class="green-tabprocess keyelement-9" style="display:none;text-align:center;color:white;">Currency</th>
+                            <th class="green-tabprocess keyelement-10" style="display:none;text-align:center;color:white;">Amount</th>
+                            <th class="green-tabprocess keyelement-11" style="display:none;text-align:center;color:white;">Amt Collected Cur</th>
+                            <th class="green-tabprocess keyelement-12" style="display:none;text-align:center;color:white;">Amount Collected</th>
+                            <th class="green-tabprocess keyelement-13" style="display:none;text-align:center;color:white;">Fare Cur</th>
+                            <th class="green-tabprocess keyelement-14" style="display:none;text-align:center;color:white;">Fare Collected</th>
+                            <th class="green-tabprocess keyelement-15" style="display:none;text-align:center;color:white;">Taxe Collecetd</th>
+                            <th class="green-tabprocess keyelement-16" style="display:none;text-align:center;color:white;">Surcharge Collected</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        <div class="col-sm-2" style="top:55px;">
+            <button class="btn-default" id="bntShowHidecredit" onclick="HideShow('divhideShowcredit', 'bntShowHidecredit')">Hide Add-on Details</button>
+            <div id="divhideShowcredit" class="containt-showhide" style="display:none;">
+                    <ul class="list-group">
+                        <li class="list-group-credit"><input type="checkbox" onclick="showreportsCreditmanagement('allkeyFR', 'keyelement')" id="allkeyFR">All</li>
+                        <li class="list-group-credit"><input type="checkbox" onclick="showreportsCreditmanagement('credit5a', 'keyelement-5')" id="credit5a">Account Number</li>
+                        <li class="list-group-credit"><input type="checkbox" onclick="showreportsCreditmanagement('credit6a', 'keyelement-6')" id="credit6a">Card Verification Value Result</li>
+                        <li class="list-group-credit"><input type="checkbox" onclick="showreportsCreditmanagement('credit7a', 'keyelement-7')" id="credit7a">Credit Card Corporate Contract</li>
+                        <li class="list-group-credit"><input type="checkbox" onclick="showreportsCreditmanagement('credit8a', 'keyelement-8')" id="credit8a">Expiry Date</li>
+                        <li class="list-group-credit"><input type="checkbox" onclick="showreportsCreditmanagement('credit9a', 'keyelement-9')" id="credit9a">Currency</li>
+                        <li class="list-group-credit"><input type="checkbox" onclick="showreportsCreditmanagement('credit10a', 'keyelement-10')" id="credit10a">Amount</li>
+                        <li class="list-group-credit"><input type="checkbox" onclick="showreportsCreditmanagement('credit11a', 'keyelement-11')" id="credit11a">Amount Collected Currency</li>
+                        <li class="list-group-credit"><input type="checkbox" onclick="showreportsCreditmanagement('credit12a', 'keyelement-12')" id="credit12a">Amount Collected</li>
+                        <li class="list-group-credit"><input type="checkbox" onclick="showreportsCreditmanagement('credit13a', 'keyelement-13')" id="credit13a">Fare Currency</li>
+                        <li class="list-group-credit"><input type="checkbox" onclick="showreportsCreditmanagement('credit14a', 'keyelement-14')" id="credit14a">Fare Collected</li>
+                        <li class="list-group-credit"><input type="checkbox" onclick="showreportsCreditmanagement('credit15a', 'keyelement-15')" id="credit15a">Tax Collected</li>
+                        <li class="list-group-credit"><input type="checkbox" onclick="showreportsCreditmanagement('credit16a', 'keyelement-16')" id="credit16a">Surcharge Collected</li>
+                    </ul>
+                </div>
+        </div>
+    </div>
+</div>
+

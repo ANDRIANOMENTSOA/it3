@@ -1,0 +1,50 @@
+﻿<div class="col-sm-11 tab-content tab-cancellation">
+    <div class="content-cancellation col-sm-11">
+        <div class="row" style="margin-top:10px">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-3" id="lblCONNECTIONSTATUS"><!--CONNECTED TO DESKTOP--></div>
+
+        </div>
+        <div class="row" style="margin-top:10px">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-3" id="lblLastUpdated"><!--lAST dOWNLOADED 09-fEB-2016--></div>
+        </div>
+        <div class="row" style="margin-top:10px">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-2">
+                <button class="btn-default" style="width: 271px;" onclick="button2_Clickchehconnection()">Chek Connection</button>
+            </div>
+        </div>
+        <div class="row" style="margin-top:20px">
+            <div class="col-sm-6">
+                <button class="btn-default " style="margin-left: -15px;width:865px" onclick="button1_Clickchehconnection()">Download Banker Rate</button>
+            </div>
+        </div>
+        <div class="row" style="margin-top:20px">
+            <div class="col-sm-6" style="border:1px solid black;background:white;height:400px;overflow: auto;" id="divdataGridView1">
+                <div class="ajax-loader">
+                    <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+                </div>
+                <table class="table table-stripted table-bordered table-outward" style="width: 100%;" id="dataGridView1">
+                    <thead style="color:Khaki !important;cursor: pointer;">
+                        <tr>
+                            <th>Currency Code</th>
+                            <th>Currency Name</th>
+                            <th>Buying</th>
+                            <th>Selling</th>
+                            <th>Central Bank-Buying</th>
+                            <th>Central Bank-Selling</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        <div class="row" style="margin-top:20px">
+            <div class="col-sm-5"><img src="/images/CSVPic.jpg" class="image-csv" style="top: -5px;"></div>
+            <div class="col-sm-1"><button class="btn-default btn-outward" style="margin-left:25px"  onclick="removeSousMenu()">Close</button></div>
+        </div>
+    </div>
+</div>
+

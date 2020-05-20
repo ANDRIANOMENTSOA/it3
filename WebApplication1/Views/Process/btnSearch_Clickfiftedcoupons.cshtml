@@ -1,0 +1,96 @@
+﻿@using System.Data
+@model DataSet
+<div class="col" style="height: 150px;background: white ;overflow: auto;" id="newdivdgOAL">
+    <input type="hidden" id="tempstxtFinalTotalLift" value="@ViewBag.count"/>
+    <table style="width: 50%;" id="dgOAL" class="table-hover">
+        <thead>
+            <tr>
+                <th class="green-tab">Airline</th>
+                <th class="green-tab">Lift File Record</th>
+                <th class="green-tab">Status</th>
+                <th class="green-tab">PNL/SLS/LDM/PFS</th>
+                <th class="green-tab">OB</th>
+                <th class="green-tab">Billing Period</th>
+                <th class="green-tab">OAL Not Billed</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < ViewBag.ligne; i++)
+            {
+                <tr style="cursor: pointer;" onclick="dgOAL_CellContentDoubleClick('@ViewBag.dgOAL[i, 1]', '@ViewBag.dgOAL[i, 3]')">
+                    @for (int j = 0; j < 8; j++)
+                    {
+                        if(ViewBag.coloredgOAL567 == "1") { 
+                            if (j == 5 || j == 6 || j == 7)
+                            {
+                                <td style="color:red !important;">@ViewBag.dgOAL[i, j]</td>
+                            }
+                            else
+                            {
+                                <td style="">@ViewBag.dgOAL[i, j]</td>
+                            }
+                        }
+                        else
+                        {
+                            <td style="">@ViewBag.dgOAL[i, j]</td>
+                        }
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="col" style="height: 150px;background: white;overflow: auto;" id="newdivdgOWN">
+    <table style="width: 50%;" id="dgOWN" class="table-hover">
+        <thead>
+            <tr>
+                <th class="green-tab">Airline</th>
+                <th class="green-tab">Lift File Record</th>
+                <th class="green-tab">Status</th>
+                <th class="green-tab">PNL/SLS/LDM/PFS</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < ViewBag.ligne; i++)
+            {
+                <tr style="cursor: pointer;" onclick="dgOWN_CellContentDoubleClick('@ViewBag.dgOWN[i, 1]','@ViewBag.dgOWN[i, 3]')">
+                    @for (int j = 0; j < 4; j++)
+                    {
+                        <td style="">@ViewBag.dgOWN[i, j]</td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="col" style="height: 100px;background: white;" id="newdivdgtype">
+    <table id="dgtype">
+        @for (int i = 0; i < ViewBag.lignea; i++)
+            {
+            <tr>
+                @for (int j = 0; j < 2; j++)
+                {
+                    <td style="">@ViewBag.dgtype[i, j]</td>
+                }
+            </tr>
+        }
+    </table>
+</div>
+
+<div class="col" style="height: 100px;background: white;" id="newdivdgtotal">
+    <table id="dgtotal">
+        <tbody>
+            @for (int i = 0; i < 3; i++)
+            {
+                <tr>
+                    @for (int j = 0; j < 4; j++)
+                    {
+                        <td style="">@ViewBag.dgtotal[i, j]</td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

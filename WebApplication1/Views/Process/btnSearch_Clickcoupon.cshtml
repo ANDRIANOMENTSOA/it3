@@ -1,0 +1,36 @@
+﻿@using System.Data
+@model DataSet
+<!--fait par christian-->
+<div id="newcoupon-content">
+    <input type="hidden" id="tempscoupona" value="@ViewBag.ligne"/>
+    <table class="table table-bordered tablehead" id="tablecoupon">
+        <thead>
+            <tr>
+                <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Date Of Issue</th>
+                <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Agent</th>
+                <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Ticket No</th>
+                <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Relate No</th>
+                <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">CPN</th>
+                <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Ori</th>
+                <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Des</th>
+                <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">RBD</th>
+                <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Prime Code</th>
+                <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Final Share</th>
+                <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Min Sector Value</th>
+                <th class="green-tabprocess" style="min-width:100px !important; text-align:center;">Max Sector Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < ViewBag.ligne; i++)
+            {
+                <tr data-url="@Url.Action("PAXTKTs","Sales")" onclick="ajout(this, 'PAXTKTs', 'Sales', 'PAX TKTs');CellContentDoubleClick(this, '@ViewBag.Liste[i, 2]')">
+                    @for (int j = 0; j < ViewBag.colone; j++)
+                    {
+                        <td style="text-align:center !important;">@ViewBag.Liste[i, j]</td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<!-- fin fait par christian-->

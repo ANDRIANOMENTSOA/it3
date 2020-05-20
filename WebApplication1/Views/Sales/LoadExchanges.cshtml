@@ -1,0 +1,34 @@
+﻿@using System.Data
+@model DataSet
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <th class="pink">Date Of Issue</th>
+            <th class="pink">Agent Num Code</th>
+            <th class="pink">Document No.</th>
+            <th class="pink">Passenger Name</th>
+            <th class="pink">Trans.Code</th>
+            <th class="pink">Doc Type</th>
+            <th class="pink">Orig Doc Num</th>
+            <th class="pink">Preceding Doc Num</th>
+            <th class="pink">Preceding Date Of Issue</th>
+            <th class="pink">Preceding Doc Type</th>
+            <th class="pink">Billing Period</th>
+            <th class="pink">Invoice No</th>
+        </tr>
+    </thead>
+    <tbody id="compteurRows" class=".pdays">
+        @{ int j = 0; }
+        @foreach (DataRow dr in Model.Tables[0].Rows)
+        {
+            <tr>
+                @for (int i = 0; i < Model.Tables[0].Columns.Count; i++)
+                {
+                    <td id="ici-@j-@i" onclick="setMenuExchange(this.id,'@dr[Model.Tables[0].Columns[2].ColumnName].ToString()','@dr[Model.Tables[0].Columns[7].ColumnName].ToString()','@dr[Model.Tables[0].Columns[4].ColumnName].ToString()')">@dr[Model.Tables[0].Columns[i].ColumnName].ToString()</td>;
+                }
+            </tr>
+            j++;
+        }
+
+    </tbody>
+</table>

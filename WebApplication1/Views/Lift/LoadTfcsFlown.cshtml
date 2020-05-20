@@ -1,0 +1,94 @@
+﻿<div class="col-sm-9">
+    <div class="table-record-display" style="overflow:auto;height:590px;position:relative;left:-14px">
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th class="green">Airline Code</th>
+                    <th class="green">Iicket No</th>
+                    <th class="green">Agent Num Code</th>
+                    <th class="green">CPN</th>
+                    <th class="green">Flight No</th>
+                    <th class="green">Sector From</th>
+                    <th class="green">Sector To</th>
+                    <th class="green">Flight Date</th>
+                    <th class="green">Gross Value</th>
+                    <th class="green">Comm</th>
+                    <th class="green">UATP</th>
+                    <th class="green">Total Tax</th>
+                    <th class="green">Net Amt</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @for(int i=0; i< ViewBag.compt; i++)
+                {
+                    <tr>
+                        @for(int j=0; j<13; j++)
+                        {
+                           
+                                <td>@ViewBag.tableau[j, i]</td>
+                           
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="col-sm-3">
+    <table class="table table-cancellation">
+        <tr>
+            <td width="38%">Gross Value</td>
+            <td width="27%"><input type="text" class="form-control" name="" id="Document" value="@ViewBag.Grossval"/> </td>
+            <td width="10%"></td>
+        </tr>
+    </table>
+    <table class="table table-cancellation">
+        <tr>
+            <td width="38%">Commission</td>
+            <td width="27%"><input type="text" class="form-control" name="" id="share" value="@ViewBag.Com"/></td>
+            <td width="10%"></td>
+        </tr>
+    </table>
+    <table class="table table-cancellation">
+        <tr>
+            <td width="38%">UATP</td>
+            <td width="27%"><input type="text" class="form-control" name="" id="VatAmount" value="@ViewBag.Uatp"/></td>
+            <td width="10%"></td>
+        </tr>
+    </table>
+    <table class="table table-cancellation">
+        <tr>
+            <td width="38%">Total Tax</td>
+            <td width="27%"><input type="text" class="form-control" name="" id="VatAmount" value="@ViewBag.Tax"/></td>
+            <td width="10%"></td>
+        </tr>
+    </table>
+    <table class="table table-cancellation">
+        <tr>
+            <td width="38%">Total Net Amount</td>
+            <td width="27%"><input type="text" class="form-control" name="" id="VatAmount" value="@ViewBag.Net"/></td>
+            <td width="10%"></td>
+        </tr>
+    </table>
+</div>
+<div class="col-sm-9" style="height:50px;background-color:white;width:1120px;top:20px">
+    <table class="table table-bordered">
+        <tr>
+            @for(int n=0; n < 1; n++)
+            {
+                for(int k = 0; k < 13; k++)
+                {
+                    <td style="color:red;width:280px">@ViewBag.tabtot[k,n]</td>
+                }
+            }
+        </tr>
+    </table>
+</div>
+<div class="col-sm-3"></div>
+<div class="col-sm-4">
+    <img src="@Url.Content("~/Images/CSVPic.jpg")" style="height: 35px; top:35px;" />
+</div>
+<div class="col-sm-8" style="top:35px">
+    <div class="col-sm-3"><button class="search-interogation pink btn" onclick="removeSousMenu()"><span class="search-span">CLOSE</span></button></div>
+</div>

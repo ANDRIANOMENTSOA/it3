@@ -1,0 +1,470 @@
+﻿@using System.Data
+@model DataSet
+
+<div id="donne">
+    <div class="tab-content-proration" style="height: 78vh; overflow:auto">
+
+        <div class="proration col-md-11">
+            <div class="content col-sm-4">
+
+                <div class="Ticket col-sm-12">
+                    <div class="form-group row width-group">
+                        <label class="col-sm-4 col-form-label">Ticket NO:</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" name="txtTicketNo" id="txtTicketNo">
+                        </div>
+
+                        <div>
+                            <img onclick="searchTransaction()" src='@Url.Content("~/images/search.png")' class="image-search">
+                        </div>
+                    </div>
+                    <div class="form-group row width-group">
+                        <label class="col-sm-4 col-form-label">Fare:</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" name="txtFare" id="txtFare">
+                            <input type="hidden" id="valfare" value="@ViewBag.fare">
+                        </div>
+                    </div>
+                    <div class="form-group row width-group">
+                        <label class="col-sm-4 col-form-label">Equiv Fare:</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" name="txtEfp" id="txtEfp">
+                            <input type="hidden" id="valEfp" value="@ViewBag.Efp">
+                        </div>
+                    </div>
+                    <div class="form-group row width-group">
+                        <label class="col-sm-4 col-form-label">Issue Date:</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control input-date" name="dtpDateOfSale" id="dtpDateOfSale">
+                            <input type="hidden" id="valdtpDateOfSale" value="@ViewBag.dtpDateOfSale">
+                        </div>
+                    </div>
+                    <div class="form-group row width-group">
+                        <label class="col-sm-4 col-form-label">Original Issue Date:</label>
+                        <div class="col-sm-5">
+                            <input type="text" name="txtOrigIssueDate" id="txtOrigIssueDate" class="form-control input-date">
+                            <input type="hidden" id="valtxtOrigIssueDate" value="@ViewBag.txtOrigIssueDate">
+                        </div>
+                    </div>
+                    <div class="form-group row width-group">
+                        <label class="col-sm-4 col-form-label">Date Of Ssale:</label>
+                        <div class="col-sm-5">
+                            <input type="text" name="txtDateOfSale" id="txtDateOfSale" class="form-control">
+                            <input type="hidden" id="valtxtDateOfSale" value="@ViewBag.txtDateOfSale">
+                        </div>
+                    </div>
+                    <div class="form-group row width-group">
+                        <label class="col-sm-4 col-form-label">Clearance Month:</label>
+                        <div class="col-sm-5">
+                            <input type="text" name="txtMOC" class="form-control">
+                        </div>
+                        <div class="YY">
+                            <label>(yyyMM)</label>
+                        </div>
+                    </div>
+                    <div class="form-group row width-group">
+                        <label class="col-sm-4 col-form-label">Coupon Status:</label>
+                        <div class="col-sm-5">
+                            <input type="text" name="txtCps" class="form-control">
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="content col-sm-8">
+                <table class="table table-bordered">
+                    <!-- Debut -->
+                    <tr>
+                        <th class="col-sm-3"></th>
+                        <th class="col-sm-3"></th>
+                        <th class="col-sm-3">D</th>
+                        <th class="col-sm-3">Q</th>
+                    </tr>
+                    <!-- Fare Component To Be Prorated (FCTBP): -->
+                    <tr>
+                        <th class="col-sm-3">
+                            Fare Component To Be Prorated (FCTBP):
+                        </th>
+                        <th class="IS col-sm-3">
+                            <input type="text" class="form-control" name="txtFCTBP" id="txtFCTBP">
+                            <input type="hidden" id="valtxtFCTBP" value="">
+                        </th>
+                        <th class="IS1 col-sm-3">
+                            <input type="text" class="form-control" name="DtxtFCTBP" id="DtxtFCTBP">
+                            <input type="hidden" id="valDtxtFCTBP" value="">
+                        </th>
+                        <th class="IS2 col-sm-3">
+                            <input type="text" class="form-control" name="QtxtFCTBP" id="QtxtFCTBP">
+                            <input type="hidden" id="valQtxtFCTBP" value="">
+                        </th>
+                    </tr>
+                    <!-- Fare in NUC: -->
+                    <tr>
+                        <th class="col-sm-3">
+                            Fare in NUC:
+                        </th>
+                        <th class="col-sm-3">
+                            <input type="text" class="form-control" name="" id="">
+                            <input type="hidden" id="" value="">
+                        </th>
+                        <th class="col-sm-3">
+                            <input type="text" class="form-control" name="" id="">
+                            <input type="hidden" id="" value="">
+                        </th>
+                        <th class="col-sm-3">
+                            <input type="text" class="form-control" name="" id="">
+                            <input type="hidden" id="" value="">
+                        </th>
+                    </tr>
+                    <!-- NUC-Fare IROE: -->
+                    <tr>
+                        <th class="col-sm-3">
+                            NUC-Fare IROE:
+                        </th>
+                        <th class="col-sm-3">
+                            <input type="text" class="form-control" name="" id="">
+                            <input type="hidden" id="" value="">
+                        </th>
+                        <th class="col-sm-3">
+                            <input type="text" class="form-control" name="" id="">
+                            <input type="hidden" id="" value="">
+                        </th>
+                        <th class="col-sm-3">
+                            <input type="text" class="form-control" name="" id="">
+                            <input type="hidden" id="" value="">
+                        </th>
+                    </tr>
+                    <!-- ATBP-Fare: -->
+                    <tr>
+                        <th class="col-sm-3">
+                            ATBP-Fare:
+                        </th>
+                        <th class="col-sm-3">
+                            <input type="text" class="form-control" name="" id="">
+                            <input type="hidden" id="" value="">
+                        </th>
+                        <th class="col-sm-3">
+                            <input type="text" class="form-control" name="" id="">
+                            <input type="hidden" id="" value="">
+                        </th>
+                        <th class="col-sm-3">
+                            <input type="text" class="form-control" name="" id="">
+                            <input type="hidden" id="" value="">
+                        </th>
+                    </tr>
+                    <!-- Equiv.Fare Pd-BSR or 5DR-Prec.MOS ATT.A or B: -->
+                    <tr>
+                        <th class="col-sm-3">
+                            Equiv.Fare Pd-BSR or 5DR-Prec.MOS ATT.A or B:
+                        </th>
+                        <th class="col-sm-3">
+                            <input type="text" class="form-control" name="" id="">
+                            <input type="hidden" id="" value="">
+                        </th>
+                        <th class="col-sm-3">
+                            <input type="text" class="form-control" name="" id="">
+                            <input type="hidden" id="" value="">
+                        </th>
+                        <th class="col-sm-3">
+                            <input type="text" class="form-control" name="" id="">
+                            <input type="hidden" id="" value="">
+                        </th>
+                    </tr>
+                    <!-- ATBP-Equiv .Fare Pd: -->
+                    <tr>
+                        <th class="col-sm-3">
+                            ATBP-Equiv .Fare Pd:
+                        </th>
+                        <th class="col-sm-3">
+                            <input type="text" class="form-control" name="" id="">
+                            <input type="hidden" id="" value="">
+                        </th>
+                        <th class="col-sm-3">
+                            <input type="text" class="form-control" name="" id="">
+                            <input type="hidden" id="" value="">
+                        </th>
+                        <th class="col-sm-3">
+                            <input type="text" class="form-control" name="" id="">
+                            <input type="hidden" id="" value="">
+                        </th>
+                    </tr>
+                    <!-- COP USD 5 Day Rate Prec. MOC/Mean Rate: -->
+                    <tr>
+                        <th class="col-sm-3">
+                            COP USD 5 Day Rate Prec. MOC/Mean Rate:
+                        </th>
+                        <th class="col-sm-3">
+                            <input type="text" class="form-control" name="" id="">
+                            <input type="hidden" id="" value="">
+                        </th>
+                        <th class="col-sm-3">
+                            <input type="text" class="form-control" name="" id="">
+                            <input type="hidden" id="" value="">
+                        </th>
+                        <th class="col-sm-3">
+                            <input type="text" class="form-control" name="" id="">
+                            <input type="hidden" id="" value="">
+                        </th>
+                    </tr>
+                    <!-- ATBP-USD: -->
+                    <tr>
+                        <th class="col-sm-3">
+                            ATBP-USD:
+                        </th>
+                        <th class="col-sm-3">
+                            <input type="text" class="form-control" name="" id="">
+                            <input type="hidden" id="" value="">
+                        </th>
+                        <th class="col-sm-3">
+                            <input type="text" class="form-control" name="" id="">
+                            <input type="hidden" id="" value="">
+                        </th>
+                        <th class="col-sm-3">
+                            <input type="text" class="form-control" name="" id="">
+                            <input type="hidden" id="" value="">
+                        </th>
+                    </tr>
+                    <!-- Total Proviso(s)-USD: -->
+                    <tr>
+                        <th class="col-sm-3">
+                            Total Proviso(s)-USD:
+                        </th>
+                        <th class="col-sm-3">
+                            <input type="text" class="form-control" name="" id="">
+                            <input type="hidden" id="" value="">
+                        </th>
+                        <th class="col-sm-3">
+                            <input type="text" class="form-control" name="" id="">
+                            <input type="hidden" id="" value="">
+                        </th>
+                        <th class="col-sm-3">
+                            <input type="text" class="form-control" name="" id="">
+                            <input type="hidden" id="" value="">
+                        </th>
+                    </tr>
+                    <!-- BTBP-USD: -->
+                    <tr>
+                        <th class="col-sm-3">
+                            BTBP-USD:
+                        </th>
+                        <th class="col-sm-3">
+                            <input type="text" class="form-control" name="" id="">
+                            <input type="hidden" id="" value="">
+                        </th>
+                        <th class="col-sm-3">
+                            <input type="text" class="form-control" name="" id="">
+                            <input type="hidden" id="" value="">
+                        </th>
+                        <th class="col-sm-3">
+                            <input type="text" class="form-control" name="" id="">
+                            <input type="hidden" id="" value="">
+                        </th>
+                    </tr>
+                    <!-- Total Prorata Factors: -->
+                    <tr>
+                        <th class="col-sm-3">
+                            Total Prorata Factors:
+                        </th>
+                        <th class="col-sm-3">
+                            <input type="text" class="form-control" name="" id="">
+                            <input type="hidden" id="" value="">
+                        </th>
+                        <th class="col-sm-3">
+                            <input type="text" class="form-control" name="" id="">
+                            <input type="hidden" id="" value="">
+                        </th>
+                        <th class="col-sm-3">
+                            <input type="text" class="form-control" name="" id="">
+                            <input type="hidden" id="" value="">
+                        </th>
+                    </tr>
+                    <!-- Quotient (5d.p.Unroundead): -->
+                    <tr>
+                        <th class="col-sm-3">
+                            Quotient (5d.p.Unroundead):
+                        </th>
+                        <th class="col-sm-3">
+                            <input type="text" class="form-control" name="" id="">
+                            <input type="hidden" id="" value="">
+                        </th>
+                        <th class="col-sm-3">
+                            <input type="text" class="form-control" name="" id="">
+                            <input type="hidden" id="" value="">
+                        </th>
+                        <th class="col-sm-3">
+                            <input type="text" class="form-control" name="" id="">
+                            <input type="hidden" id="" value="">
+                        </th>
+                    </tr>
+                    <!-- MPR%:-->
+                    <tr>
+                        <th class="col-sm-3">
+                            MPR%:
+                        </th>
+                        <th class="col-sm-3">
+                            <input type="text" class="form-control" name="" id="">
+                            <input type="hidden" id="" value="">
+                        </th>
+                        <th class="col-sm-3">
+                            <input type="text" class="form-control" name="" id="">
+                            <input type="hidden" id="" value="">
+                        </th>
+                        <th class="col-sm-3">
+                            <input type="text" class="form-control" name="" id="">
+                            <input type="hidden" id="" value="">
+                        </th>
+                    </tr>
+
+                </table>
+            </div>
+
+
+        </div>
+        <div class="content col-md-12">
+            <div class="col-sm-3">
+            </div>
+            <div class="bt-view-component col-sm-9">
+                <div class="col-sm-2">
+                    <!-- modal view coupons -->
+                    <input type="button" name="" value="View coupons" class="bouttons1" data-toggle="modal" data-target="#exampleModalCenter">
+                </div>
+                <div class="col-sm-2">
+                    <input type="button" name="" value="Prorate" class="bouttons2">
+                </div>
+                <div class="col-sm-2">
+                    <input type="button" name="" value="PreviousD" class="bouttons">
+                </div>
+                <div class="col-sm-2">
+                    <input type="button" name="" value="NextD" class="bouttons3">
+                </div>
+                <div class="col-sm-2">
+                    <input type="button" name="" value="PreviousQ" class="bouttons">
+                </div>
+                <div class="col-sm-2">
+                    <input type="button" name="" value="NextQ" class="bouttons3">
+                </div>
+            </div>
+        </div>
+        <div class="content col-md-12">
+            <label class="col-sm-11 col-form-label">Fare Calculation Area</label>
+            <input type="text" name="txtFca" id="txtFca" class="form-control">
+            <input type="hidden" id="valFca" value="@ViewBag.Fca">
+        </div>
+        <div class="content col-md-12">
+            <div class="Involve">
+                <input type="checkbox" name="">
+                <label class="form-label">Involve Manual Correction</label>
+            </div>
+        </div>
+        <div class="content col-md-12">
+            <div class="Sec-orig">
+                <table class="table table-bordered" style="margin-left: -16px;">
+                    <thead>
+                        <tr>
+                            <th>Sec Ori</th>
+                            <th>Carrier</th>
+                            <th>Sec Dest</th>
+                            <th>FareBasis</th>
+                            <th>Pro.Factors</th>
+                            <th>Proviso(s) & Base Amount</th>
+                            <th>Prorate/Proviso Value</th>
+                            <th>RBO</th>
+                            <th>SRP</th>
+                            <th>SPA</th>
+                            <th>Diff.(D)</th>
+                            <th>Surch.(Q)</th>
+                            <th>Final Share</th>
+                            <th>ISC %</th>
+                            <th>Code Share</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        <div class="content col-md-12">
+            <div class="col-sm-4"></div>
+            <div class="bbt col-sm-7">
+                <div class="col-sm-4">
+                    <input type="button" name="" value="Previous Fare Component" class="bouttons4">
+                </div>
+                <div class="col-sm-4">
+                    <input type="button" name="" value="Next Fare Component" class="bouttons4">
+                </div>
+                <div class="col-sm-2">
+                    <input type="button" name="" value="Clear" class="bouttons3">
+                </div>
+                <div class="col-sm-2">
+                    <input type="button" name="" value="Close" class="bouttons3" data-dismiss="modal">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLongTitle">View coupons </h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+            </div>
+            <div class="modal-body">
+                <div class="content col-md-12">
+                    <label class="col-sm-11 col-form-label">Documment Number: @ViewBag.numberTicket </label>
+
+                    <label class="col-sm-11 col-form-label">Fare Calculation Area</label>
+                    <input type="text" name="txtFca" id="txtFca" class="form-control" value="@ViewBag.Fca">
+                    <input type="hidden" id="valFca" value="@ViewBag.Fca">
+                </div>
+
+
+
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">DOC No.</th>
+                            <th scope="col">CPN</th>
+                            <th scope="col">X/O</th>
+                            <th scope="col">GFPA</th>
+                            <th scope="col">CARRIER</th>
+                            <th scope="col">FLIGHT</th>
+                            <th scope="col">DATE</th>
+                            <th scope="col">TIME</th>
+                            <th scope="col">STATUS</th>
+                            <th scope="col">FARE BASIS</th>
+                            <th scope="col">NOT VALID AFTER</th>
+                            <th scope="col">RBD</th>
+                            <th scope="col">USAGE SECTOR</th>
+                            <th scope="col">USAGE AIRLINE</th>
+                            <th scope="col">USAGE FLIGHT NO.</th>
+                            <th scope="col">USAGE DATE</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < ViewBag.lon; i++)
+                        {
+                            <tr>
+                                @for (int j = 0; j < 28; j++)
+                                {
+                                    <td>@ViewBag.CouponView[j, i]</td>;
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

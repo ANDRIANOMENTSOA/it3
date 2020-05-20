@@ -1,0 +1,985 @@
+﻿@using System.Data
+@model DataSet
+
+
+<div id="contenu">
+
+    <div class="col-sm-11 tab-content tab-cancellation">
+        <h5>BIILING MEMO DATA CAPTURE</h5>
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-6" style=" margin-left -15px;">
+                                <label class="col-sm-2">From</label>
+                                <div class="col-sm-8">
+                                    <select class="select0" id="selectFrom"> 
+                                        <option value="@ViewBag.codeFromId">@ViewBag.codeFromCode</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-2">
+                                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#airlineDetails1" id="RefFrom" onclick="getKKFrom()">...</button>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="col-sm-2">To</label>
+                                <div class="col-sm-8">
+                                    <select class="select0" id="selectTo" onchange="getBilledAirline()">
+                                        <option></option>
+                                        @for (int i = 0; i < @ViewBag.lon; i++)
+                                        {
+                                            <option value="@ViewBag.tabId[0, i]">@ViewBag.tab[0, i]</option>
+                                        }
+
+                                    </select>
+                                </div>
+                                <div class="col-sm-2">
+                                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#airlineDetails2" onclick="getRefTo()">...</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top:10px">
+                            <label class="col-sm-6">Our Reference</label>
+                            <label class="col-sm-6">Your Reference</label>
+                        </div>
+                        <div class="row textlabel">
+                            <label class="col-sm-3">Billing Memo Number</label>
+                            <div class="col-sm-3">
+                                <input type="text" id="txtCreditMemoNumber" />
+                            </div>
+                            <div class="col-sm-6" id="BilledAirline">
+                                @*
+                                    -- content : _Billed Airline
+                                *@
+                            </div>
+                        </div>
+
+                        <div class="row textlabel">
+                            <label class="col-sm-3">Invoice Number</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="" id="txtInvoiceNumber" />
+                            </div>
+                            <label class="col-sm-3">Your Invoice Number</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="" id="txtYourInvoiceNumber" />
+                            </div>
+                        </div>
+                        <div class="row textlabel">
+                            <label class="col-sm-3">Billing Month(yymm)</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="" id="txtBillingMonth" />
+                            </div>
+                            <label class="col-sm-3">Your Billing Month</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="" id="txtYourBillingMonth" />
+                            </div>
+                        </div>
+                        <div class="row textlabel">
+                            <label class="col-sm-3">Billing Period</label>
+                            <div class="col-sm-3">
+                                <select class="select1" id="txtBillingPeriod">
+                                    <option></option>
+                                    <option value="1">01</option>
+                                    <option value="2">02</option>
+                                    <option value="3">03</option>
+                                    <option value="4">04</option>
+                                </select>
+                            </div>
+                            <label class="col-sm-3">Your Billing Period</label>
+                            <div class="col-sm-3">
+                                <select class="select1" id="txtYourBillingPeriod">
+                                    <option></option>
+                                    <option value="1">01</option>
+                                    <option value="2">02</option>
+                                    <option value="3">03</option>
+                                    <option value="4">04</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row textlabel">
+                            <label class="col-sm-3">Our Ref(Internal use)</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="" id="txtOurRefIntUseFrom" />
+                            </div>
+                            <label class="col-sm-3">Your Ref(Internal use)</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="" id="txtOurRefIntUseTo" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6" style="margin-top: 22px;">
+                        <div class="row textlabel">
+                            <label class="col-sm-3">Source code</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="" id="txtSourceCode" value="9" />
+                            </div>
+                            <label class="col-sm-3">Batch Number</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="" id="txtBatchNumber" value="1" />
+                            </div>
+                        </div>
+                        <div class="row textlabel">
+                            <label class="col-sm-4">Correspondance Number</label>
+                            <div class="col-sm-2" style="left: -52px;">
+                                <input type="text" id="txtCorrespondanceNumber" />
+                            </div>
+                            <label class="col-sm-3">Sequence Number</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="" id="txtSequenceNumber" />
+                            </div>
+                        </div>
+                        <div class="row textlabel">
+                            <label class="col-sm-4">Attachment Indicator Original</label>
+                            <div class="col-sm-2" style="left: -52px;">
+                                <input type="text" id="txtAttachmentIndicatorOriginal" />
+                            </div>
+                            <label class="col-sm-3">Reason code</label>
+                            <div class="col-sm-3">
+                                <select class="select1" id="reasonCodeDropdown">
+                                    <option> </option>
+                                    @for (int i = 0; i < @ViewBag.lon; i++)
+                                    {
+                                        <option>@ViewBag.reasonCode[0, i]</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row textlabel">
+                            <label class="col-sm-3">Exchange rate</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="" id="txtExchangeRate" />
+                            </div>
+                            <label class="col-sm-3">Settlement Method</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="" id="txtSettlementMethod" value="ICH" />
+                            </div>
+                        </div>
+                        <div class="row textlabel">
+                            <label class="col-sm-4">Currency Of Billing Memo</label>
+                            <div class="col-sm-2" style="left: -52px;">
+                                <input type="text" class="" id="txtCurrencyOfBillingMemo" value="USD" />
+                            </div>
+                        </div>
+                        <div class="row textlabel">
+                            <label class="col-sm-3">FIM Number</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="" id="txtFIMNumber" />
+                            </div>
+                        </div>
+                        <div class="row textlabel">
+                            <label class="col-sm-3">FIM Coupon Number</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="" id="txtFIMCouponNumber" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-6">Invoice Totals</label>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <table class="table table-bordered tablehead">
+                            <thead>
+                                <tr>
+                                    <th>Total</th>
+                                    <th>Total</th>
+                                    <th>Total</th>
+                                    <th>Total</th>
+                                    <th>Total</th>
+                                    <th>Total</th>
+                                    <th>Total</th>
+                                    <th>Total</th>
+                                    <th>Net</th>
+                                </tr>
+
+                                <tr>
+                                    <th>Gross Billed</th>
+                                    <th>Tax Amount</th>
+                                    <th>ISC Amount</th>
+                                    <th>Other Commission</th>
+                                    <th>UATP Amount</th>
+                                    <th>Handing Fees</th>
+                                    <th>VAT Amount</th>
+                                    <th>Net Amount</th>
+                                    <th>Billing Amount</th>
+                                </tr>
+
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8" style="top:-19px;font-size:11px">
+                        <input type="text" id="ItGrossBilled" onblur="InvoiceTotals()" placeholder="0.000" style="width: 85px;">
+                        <input type="text" id="ItTaxAmount" onblur="InvoiceTotals()" placeholder="0.000" style="width: 82px;margin-left: -4px;">
+                        <input type="text" id="ItISCAmount" onblur="InvoiceTotals()" placeholder="0.000" style="width: 82px;margin-left: -4px;">
+                        <input type="text" id="ItOtherCommission" onblur="InvoiceTotals()" placeholder="0.000" style="width: 124px;margin-left: -4px;">
+                        <input type="text" id="ItUATPAmount" onblur="InvoiceTotals()" placeholder="0.000" style="width: 95px;margin-left: -4px;">
+                        <input type="text" id="ItHandingFees" onblur="InvoiceTotals()" placeholder="0.000" style="width: 94px;margin-left: -4px;">
+                        <input type="text" id="ItVATAmount" onblur="InvoiceTotals()" placeholder="0.000" style="width: 85px;margin-left: -4px;">
+                        <input type="text" id="ItNetAmount" placeholder="0.000" style="width: 82px;margin-left: -4px;">
+                        <input type="text" id="ItBillingAmount" placeholder="0.000" style="width: 100px;margin-left: -4px;">
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <button class="btn-default" data-toggle="modal" data-target="#docDetails">Search Ticket/Doc Details</button>
+                        <button class="btn-default" onclick="ClearDetails()">Clear Details</button>
+                    </div>
+                </div>
+                <div class="row" id="DocDetailsSearched">
+                    <div class="col-sm-6">
+                        <div class="row textlabel">
+                            <label class="col-sm-3">Ticket Issuing Airline</label>
+                            <div class="col-sm-3">
+                                <input type="text" id="" value="@ViewBag.IssuingAirline" />
+                            </div>
+                            <label class="col-sm-3">Airline Flight Desinator</label>
+                            <div class="col-sm-3">
+                                <input type="text" id="" value="@ViewBag.Carrier" />
+                            </div>
+                        </div>
+
+                        <div class="row textlabel">
+                            <label class="col-sm-3">Coupon Number</label>
+                            <div class="col-sm-3">
+                                <input type="text" id="" value="@ViewBag.cpn" />
+                            </div>
+                            <label class="col-sm-3">Flight Number</label>
+                            <div class="col-sm-3">
+                                <input type="text" id="" value="@ViewBag.FlightNumber" />
+                            </div>
+                        </div>
+                        <div class="row textlabel">
+                            <label class="col-sm-4">Ticket/Document Number</label>
+                            <div class="col-sm-2" style="left: -55px;">
+                                <input type="text" class="" id="" value="@ViewBag.doc" />
+                            </div>
+                            <label class="col-sm-3">Flight Date</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="" id="" value="@ViewBag.FlightDepartureDate" />
+                            </div>
+                        </div>
+                        <div class="row textlabel">
+                            <label class="col-sm-3">Chek Digit</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="" id="" value="@ViewBag.CheckDigit" />
+                            </div>
+                            <label class="col-sm-3">From Airport</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="" id="" value="@ViewBag.OriginCity" />
+                            </div>
+                        </div>
+                        <div class="row textlabel">
+                            <label class="col-sm-4">Electronik Ticket Indicator</label>
+                            <div class="col-sm-2" style="left: -55px;">
+                                <input type="text" class="" id="" value="@ViewBag.TicketingModeIndicator" />
+                            </div>
+                            <label class="col-sm-3">To Airport</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="" id="" value="@ViewBag.DestinationCity" />
+                            </div>
+                        </div>
+                        <div class="row textlabel">
+                            <label class="col-sm-3">ESAC</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="" id="" value="@ViewBag.SettlementAuthorizationCode" />
+                            </div>
+                            <label class="col-sm-3">Cabin Class</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="" id="" value="@ViewBag.FareBasisTicketDesignator" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="row textlabel">
+                            <label class="col-sm-3">Agreement Indicator</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="" id="" value="" />
+                            </div>
+                            <label class="col-sm-3">Reference Field 1</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="" id="" />
+                            </div>
+                        </div>
+                        <div class="row textlabel">
+                            <label class="col-sm-3">Original PMI</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="" id="" />
+                            </div>
+                            <label class="col-sm-3">Reference Field 2</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="" id="" />
+                            </div>
+                        </div>
+                        <div class="row textlabel">
+                            <label class="col-sm-3">Validate MPI</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="" id="" />
+                            </div>
+                            <label class="col-sm-3">Reference Field 3</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="" id="" />
+                            </div>
+                        </div>
+                        <div class="row textlabel">
+                            <label class="col-sm-3">Protate Methodologie</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="" id="" />
+                            </div>
+                            <label class="col-sm-3">Reference Field 4</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="" id="" />
+                            </div>
+                        </div>
+                        <div class="row textlabel">
+                            <label class="col-sm-3">Airline Own Use</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="" id="" />
+                            </div>
+                            <label class="col-sm-3">Reference Field 5</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="" id="" />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <ul class="nav nav-tabs" style="margin-left: 5px;margin-top:10px">
+
+                        <li class="active"><a data-toggle="tab" href="#search1" class="nav-pax">Charge Amount</a></li>
+                        <li><a data-toggle="tab" href="#tax1" class="nav-pax" id="tab-INAD">Attachment</a></li>
+                        <li><a data-toggle="tab" href="#tax2" class="nav-pax" id="tab-INAD">Billing Memo List</a></li>
+                        <li><a data-toggle="tab" href="#tax3" class="nav-pax" id="tab-INAD">SIS XML File</a></li>
+                    </ul>
+                    <div class="tab-content" style="background:white;height:232px">
+                        <div class="tab-pane fade in active" style="" id="search1">
+                            <div class="col-sm-10 darkblue" style="">
+                                <div class=" row reddark" style=" margin 0px;margin-left -15px;width 1040px;">Billing Coupon Details</div>
+                                <div class="row" style="margin: 1px;margin-left: -13px;width: 1007px;">
+                                    <table class="table table-bordered tablehead">
+                                        <thead style="font-size: 10px">
+                                            <tr>
+                                                <th>Gross Billied</th>
+                                                <th>ISC %</th>
+                                                <th>ISC Amount</th>
+                                                <th>Other Comm %</th>
+                                                <th>Other Commission</th>
+                                                <th>UATP %</th>
+                                                <th>UATP</th>
+                                                <th>Handling Fees %</th>
+                                                <th>Handling Fees</th>
+                                                <th>VAT Amount %</th>
+                                                <th>VAT Amount</th>
+                                                <th>Tax</th>
+                                                <th>Net Amount</th>
+                                            </tr>
+
+                                        </thead>
+
+                                    </table>
+                                </div>
+
+                                <div class="row" style="margin-top: -19px;margin-left: -13px;font-size: 11px;">
+                                    <input type="text" id="CaGrossBilled" placeholder="0.000" style="width: 84px;">
+                                    <input type="text" id="CaIscPer" placeholder="00.00" style="width: 47px;margin-left: -4px;">
+                                    <input type="text" id="CaIscAmount" onblur="ChargeAmount()" placeholder="0.000" style="width: 80px;margin-left: -4px;">
+                                    <input type="text" id="CaOhterCommissionPer" placeholder="00.00" style="width: 100px;margin-left: -4px;">
+                                    <input type="text" id="CaOtherCommission" onblur="ChargeAmount()" placeholder="0.000" style="width: 119px;margin-left: -4px;">
+                                    <input type="text" id="CaUatpPer" placeholder="00.00" style="width: 58px;margin-left: -4px;">
+                                    <input type="text" id="CaUatp" onblur="ChargeAmount()" placeholder="0.000" style="width: 44px;margin-left: -4px;">
+                                    <input type="text" id="CaHandlingFeesPer" placeholder="00.00" style="width: 107px;margin-left: -4px;">
+                                    <input type="text" id="CaHandlingFees" onblur="ChargeAmount()" placeholder="0.000" style="width: 94px;margin-left: -4px;">
+                                    <input type="text" id="CaVatAmountPer" placeholder="00.00" style="width: 97px;margin-left: -4px;">
+                                    <input type="text" id="CaVatAmount" onblur="ChargeAmount()" placeholder="0.000" style="width: 82px;margin-left: -4px;">
+                                    <input type="text" id="CaTax" onblur="ChargeAmount()" placeholder="0.000" style="width: 35px;margin-left: -4px;">
+                                    <input type="text" id="CaNetAmount" placeholder="0.000" style="width: 71px;margin-left: -4px;">
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-10"></div>
+                                    <div class="col-sm-2" style="left: 25px;">
+                                        <button class="tablehead" data-toggle="modal" data-target="#taxBreakdown">Tax Break down...</button>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top: 10px">
+                                    <div class="col-sm-4">
+                                        <label class="col-sm-10 curlabel" style="margin-left: -27px;">Currency Adjustment Indicator</label>
+                                        <div class="col-sm-2" style=" left 10px;">
+                                            <input type="text" name="" id="CurrencyAdjustmentIndicator" style="width: 60px;left: 10px;">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6"></div>
+                                    <div class="col-sm-2" style="left: 25px;">
+                                        <button class="tablehead">Reset</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" col-sm-1">
+                                <button class="btn btn-default" style="width: 100px;" onclick="saveInforamtion()">Save</button>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" style="" id="tax1">
+                            <div class="row" style="padding-top:10px;margin-left:10px">
+                                <label class="col-sm-2">Attachment File</label>
+                                <div class="col-sm-8" style="margin-left: -48px;">
+                                    <input type="text" name="" style="width: 811px;">
+                                </div>
+                                <div class="col-sm-2" style="left: 25px;">
+                                    <button class="tablehead">Browse</button>
+                                </div>
+                            </div>
+                            <div class="row" style="margin:9px">
+                                <label class="col-sm-2">Attachment File</label>
+                                <div class="col-sm-2" style="margin-left: -53px;">
+                                    <input type="text" name="" style="width: 70px;">
+                                </div>
+                                <label class="col-sm-2">Attachment Indicator</label>
+                                <label class="col-sm-2">0</label>
+                            </div>
+                            <div class=" row reddark" style=" margin 0px;margin-left 10px;width 1232px;"></div>
+                            <div class="col-sm-10 darkblue" style="margin-top: 0px; height: 107px;">
+
+                            </div>
+
+                        </div>
+                        <div class="tab-pane fade" id="tax2">
+                            <div class="col-sm-12" style="border: 1px solid black;height:230px;width: 1271px;">
+                                <div id="BMDisplayList">
+                                    @*
+                                    --content
+
+                                <table class="table table-bordered tablehead">
+                                    <thead style="background-color: #8B0000; color:aliceblue;">
+                                        <tr>
+                                            <th>Sequences</th>
+                                            <th>Gross Billed</th>
+                                            <th>Tax</th>
+                                            <th>ISC Percentage</th>
+                                            <th>ISC Amount</th>
+                                            <th>Ohter Commission %</th>
+                                            <th>Other Commission Amount</th>
+                                            <th>UATP %</th>
+                                            <th>UATP Amount</th>
+                                            <th>Handling Fees %</th>
+                                            <th>Handling Fees Amount</th>
+                                            <th>VAT Amount %</th>
+                                            <th>VAT Amount</th>
+                                            <th>Net Amount</th>
+                                        </tr>
+
+                                    </thead>
+                                    <tbody>
+                                        @for (int i = 0; i < ViewBag.MBListLon; i++)
+                                        {
+                                            <tr>
+                                                @for (int j = 0; j < 14; j++)
+                                                {
+                                                    <td>@ViewBag.MBList[j, i]</td>
+                                                }
+                                            </tr>
+                                        }
+
+                                    </tbody>
+
+                                </table>
+                                *@
+
+                                </div>
+                               
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" style="top:-15px;" id="tax3">
+
+                            <div class="col-sm-10 darktab" style="margin-left:10px">
+
+                                <div class="col-sm-12" style="margin: 1px;margin-left: -28px;width: 1046px;" id="BMXML">
+                                    <table class="table table-bordered tablehead">
+                                        <thead style="background-color: #8B0000;">
+                                            <tr>
+                                                <th>Billied Airline</th>
+                                                <th>Airline</th>
+                                                <th>Airline Name</th>
+                                                <th>Billing Period</th>
+                                                <th>Coupon Count</th>
+                                                <th>Amount</th>
+                                                <th>ISC Comm Amount</th>
+                                                <th>Net Amount</th>
+                                                <th>Total Tax</th>
+                                                <th>Amount To Bill</th>
+                                                <th>Invoice Number</th>
+                                                <th>XML File</th>
+                                                <th>Status</th>
+                                            </tr>
+
+                                        </thead>
+
+                                    </table>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-sm-4" style="top:-35px">
+
+                <ul class="nav nav-tabs" style="margin-left:10px">
+                    <li class="active"><a data-toggle="tab" href="#searchBill" class="nav-pax">Search</a></li>
+                    <li><a data-toggle="tab" href="#taxBill" class="nav-pax" id="tab-intbil">Tax Breakdown</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div id="searchBill" class="tab-pane fade in active">
+                        <div class="col-sm-12 AlBlu" style="background-color: white;height: 480px;">
+                            <label class=" col-sm-12 redd" style="margin-top:5px;margin-bottom:6px;">Billing Memo Record Query</label>
+                            <div class="col-sm-10" style="font-size: 11px;">
+                                <label style="padding-right: 33px">Billing Period</label>
+                                <label style="padding-right: 19px">Billing Memo Number</label>
+                                <label>Invoice Number</label>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-10">
+                                    <select class="col-sm-4" style="width:100px;height: 22px; margin:10px;" id="billingPeriodQuery" onchange="getBillingPeriodQuery()">
+                                        <option>Select </option>
+                                        @for (int i = 0; i < @ViewBag.lonBpQ; i++)
+
+                                        {
+                                            <option value="@ViewBag.billingPeriodQuery[0, i]">@ViewBag.billingPeriodQuery[0, i]</option>
+                                        }
+                                    </select>
+
+                                    <select class="col-sm-4" style="width:100px;height: 22px; margin:10px;" id="billingMemoNumberQuery" onchange="getBillingMemoNumberQuery()">
+                                        <option>Select </option>
+                                        @for (int i = 0; i < @ViewBag.lonBpQBM; i++)
+                                        {
+                                            <option value="@ViewBag.tabtest[0, i]">@ViewBag.tabtest[0, i]</option>
+                                        }
+                                    </select>
+                                    <select class="col-sm-4" style="width:100px;height: 22px; margin:10px;" id="invoiceNumberQuery" onchange="BMRecordsDisplayQry()">
+                                        <option>Select </option>
+                                        @for (int i = 0; i < @ViewBag.lonCMNQ; i++)
+                                        {
+                                            <option value="@ViewBag.InvoiceMemoNumber[0, i]">@ViewBag.InvoiceMemoNumber[0, i]</option>
+                                        }
+                                    </select>
+
+                                </div>
+                            </div>
+                            <div class="row darkbl" style="margin-left: 7px;">
+                                <div id="bmQueryContent_fromDropdown">
+                                    @*
+                                        -- content
+                                    *@
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div id="taxBill" class="tab-pane fade">
+                        <div class="col-sm-12 AlBlu" style="background-color: white;height: 480px;">
+                            <label class=" col-sm-12 redd" style="margin-top: 2px;margin-left:0px;">TAX BREA</label>
+                            <div class="row darkbl" style="margin-left: 0px;margin-top: 34px;height: 140px">
+
+                            </div>
+                            <div class="redd" style="height:75px">
+                                <label class="col-sm-4">TOTAL TAX AMOUNT</label>
+                                <label class=" col-sm-8 ">0.00</label>
+                                <label class=" col-sm-4" style="margin-top:10px">TAX ADJUSTEMENT</label>
+
+                                <button class=" col-sm-8" style="width: 80px;margin-top:10px;color:black">Update</button>
+
+                            </div>
+                            <div class="row " style="margin-left: 0px;margin-top: 15px;">
+                                <label class=" col-sm-2"></label>
+                                <label class=" col-sm-3">TAX CODE</label>
+                                <label class=" col-sm-3" style="left: -57px;">TAX AMOUNT</label>
+                                <label class=" col-sm-4"></label>
+
+                            </div>
+                            <div class="row " style="margin-left: 0px;margin-top: 1px;">
+                                <label class=" col-sm-2"></label>
+
+                                <input type="text" class=" col-sm-3" style="width: 73px;left: 16px;" />
+                                <input type="text" class=" col-sm-3" style="left: 22px;width: 100px;" />
+                                <button class=" col-sm-2" style="width: 114px;margin-left: 43px;">Accept Tax</button>
+                                <label class=" col-sm-2"></label>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    @*
+        Harentsoa
+        Modal : _AirlineDetails1
+    *@
+
+    <div id="airlineDetails1" class="modal fade" role="dialog">
+        @* @Html.Partial("~RefAirlines/AirlineDetails")*@
+        <div class="modal-dialog" style="position:relative;top:55px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h5 class="modal-title">Airline Details: @ViewBag.AirlineCode</h5>
+                </div>
+                <div class="modal-body" id="airlineDetailContent1">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @*
+        Harentsoa
+        Modal : _AirlineDetails2
+    *@
+
+    <div id="airlineDetails2" class="modal fade" role="dialog">
+        @* @Html.Partial("~RefAirlines/AirlineDetails")*@
+        <div class="modal-dialog" style="position:relative;top:55px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h5 class="modal-title">Airline Details: @ViewBag.AirlineCode</h5>
+                </div>
+                <div class="modal-body" id="airlineDetailContent2">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    @*
+        Harentsoa
+        Modal : _Ticket/Documents Details
+    *@
+    <div id="docDetails" class="modal fade" role="dialog">
+        <div class="modal-dialog" style="position:relative;top:55px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h5 class="modal-title">Ticket/Document Details</h5>
+                </div>
+                <div class="modal-body" id="docDetailsContent">
+                    @*
+                        ***content
+                    *@
+
+                    <form class="form-inline row">
+                        <div class="col-sm-10 textlabel">
+                            <label class="col-sm-2">Ticket/Document No :</label>
+                            <div class="col-sm-4">
+                                <input type="text" id="docNumberAren" />
+                            </div>
+                        </div>
+                        <div class="col-sm-2" style="top:12px; position:absolute; width: 20%;left: 82%;">
+                            <input type="button" class="btn-default btn-search" value="Search" onclick="docDetailsSearch()" />
+                            <input type="button" class="btn-default btn-search" data-dismiss="modal" value="Close" onclick="DisplayDetails()" />
+                        </div>
+                    </form>
+                    <br />
+                    <div class="row" id="docDetailsOnClickAbove">
+                        @*
+                            --content to toggle
+                        *@
+                        <div class="col-sm-10 textlabel">
+                            <label class="col-sm-3">Coupon No :</label>
+                            <span class="col-sm-3">
+                                <b>@ViewBag.CouponNumber</b>
+                            </span>
+                        </div>
+                        <div class="col-sm-10 textlabel">
+                            <label class="col-sm-3">Sector Origin :</label>
+                            <span class="col-sm-3">
+                                <b>@ViewBag.UsageOriginCode</b>
+                            </span>
+                            <label class="col-sm-3">Sector Destination :</label>
+                            <span class="col-sm-3">
+                                <b>@ViewBag.UsageDestinationCode</b>
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-10 textlabel">
+                            <div><em><i>*Click on a Row To Select a Coupon</i></em></div>
+                        </div>
+                    </div>
+
+                    <table class="table table-bordered table-hover table-striped tablehead">
+
+                        <thead style="background-color: aquamarine; color: aliceblue">
+                            <tr>
+                                <th>Cpn</th>
+                                <th>Cpn Status</th>
+                                <th>Sec Orig</th>
+                                <th>Sec Dest</th>
+                                <th>Carrier</th>
+                                <th>Fare Basis</th>
+                                <th>RBD</th>
+                                <th>Usage Flight</th>
+                                <th>Usage Airline</th>
+                                <th>Usage Date</th>
+                                <th>Is OAL?</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="tabDocumentDetails"></tbody>
+
+                        <table />
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @*
+        Harentsoa
+        Modal : _Reference/Tax Breakdown
+    *@
+    <div id="taxBreakdown" class="modal fade" role="dialog">
+        <div class="modal-dialog" style="position:relative;top:55px;width:1800px!important;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h5 class="modal-title">Tax Reference</h5>
+                </div>
+                <div class="modal-body" id="">
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label class="col-sm-2">Airport Sector</label>
+                            <div class="col-sm-8">
+                                <select class="select0" id="sourceCodeDrop" onchange="GetTax()">
+                                    <option>-All-</option>
+                                    @for (int i = 0; i < @ViewBag.lonSectorCode; i++)
+                                    {
+                                        <option value="@ViewBag.sectorCode[0, i]">@ViewBag.sectorCode[0, i]</option>
+                                    }
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-4">
+                            <label class="col-sm-2">Tax Log</label>
+                            <div class="col-sm-8">
+                                <select class="select0" id="taxLogDrop" onchange="GetTaxCode()">
+                                    <option>-All-</option>
+                                    @for (int i = 0; i < @ViewBag.lonTaxLog; i++)
+                                    {
+                                        <option value="@ViewBag.taxLog[0, i]">@ViewBag.taxLog[0, i]</option>
+                                    }
+
+                                </select>
+                                <br /><br />
+                                <button class="btn-default" onclick="ClearTaxLog()">Clear From Tax Log</button>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+
+                            <table class="table table-bordered" id="TabRate">
+                            <tr>
+                                <td rowspan="2">5D Rate</td>
+                                <td>Period</td>
+                                <td>Currency</td>
+                                <td>USD Rate</td>
+                            </tr>
+                            <tr>
+                                <td id="lbl5drP"></td>
+                                <td>USD</td>
+                                <td id="lbl5drR"></td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2">MM Rate</td>
+                                <td>Period</td>
+                                <td>Currency</td>
+                                <td>USD Rate</td>
+                            </tr>
+                            <tr>
+                                <td id="lblMmrP"></td>
+                                <td>USD</td>
+                                <td id="lblMmrR"></td>
+                            </tr>
+                            <table />
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <div id="taxBreakdownList">
+
+                                @*
+                                    --CONTENT
+                                *@
+
+                            </div>
+                            
+                            <div class="amban">
+                                <div class="row">
+                                    <div class="col-md-1">
+                                        <label>From Airport :</label>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <label>To Airport :</label>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <label>Mapped Prime Code :</label>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <label>Passenger Type :</label>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <label>Domestic International :</label>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <label>Transit Duration :</label>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <label>Valid From :</label>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <label>Valid To :</label>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <label>Tax Code :</label>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <label>Tax Currency :</label>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <label>Tax Amount :</label>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <label>Tax Percentage :</label>
+                                    </div>
+                                </div>
+                                <div class="row" id="taxRefDetails">
+                                    
+                                    <div class="col-md-1">
+                                        <input type="text" value="@ViewBag.FromAirport" id="TaxRefFromAirport"/>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <input type="text" value="@ViewBag.ToAirport" id="taxRefToAirport"/>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <input type="text" value="@ViewBag.MappedPrimeCode" id="taxRefMappedPrimeCode"/>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <input type="text" value="@ViewBag.PassengerType" id="taxRefPassengerType"/>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <input type="text" value="@ViewBag.DomInt" id="taxRefDomInt"/>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <input type="text" value="@ViewBag.TransitDuration" id="taxRefTransitDuration"/>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <input type="text" value="@ViewBag.ValidFrom" id="taxRefValidFrom"/>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <input type="text" value="@ViewBag.ValidTo" id="taxRefValidTo"/>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <input type="text" value="@ViewBag.TaxCode" id="taxRefTaxCode"/>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <input type="text" value="@ViewBag.TaxCurrency" id="taxRefTaxCurrency"/>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <input type="text" value="@ViewBag.TaxAmount" id="taxRefTaxAmount"/>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <input type="text" value="@ViewBag.TaxPercentage" id="taxRefTaxPercentage"/>
+                                    </div>
+                                </div>
+                                
+                                
+                                <div class="row" id="taxRefAdd">
+                                    <input type="hidden" value="@ViewBag.ActionId" id="idActionRef" />
+                                    <div class="col-md-1">
+                                        <input type="text" id="TaxRefFromAirportToAdd"/>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <input type="text" id="taxRefToAirportToAdd"/>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <input type="text" id="taxRefMappedPrimeCodeToAdd"/>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <input type="text" id="taxRefPassengerTypeToAdd"/>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <input type="text" id="taxRefDomIntToAdd"/>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <input type="text" id="taxRefTransitDurationToAdd"/>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <input type="text" id="taxRefValidFromToAdd"/>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <input type="text" id="taxRefValidToToAdd"/>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <input type="text" id="taxRefTaxCodeToAdd"/>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <input type="text" id="taxRefTaxCurrencyToAdd"/>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <input type="text" id="taxRefTaxAmountToAdd"/>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <input type="text" id="taxRefTaxPercentageToAdd"/>
+                                    </div>
+                                </div>
+
+                                <br />
+                                <div class="text-center well arn-btns">
+                                    <button type="button" class="btn btn-default" onclick="AddRefTax()">Add</button>
+                                    <button type="button" class="btn btn-default" onclick="SaveRefTax()">Save</button>
+                                    <button type="button" class="btn btn-default" onclick="EdittaxRef()">Edit</button>
+                                    <button type="button" class="btn btn-default" onclick="UpdateRefTax()">Update</button>
+                                    <button type="button" class="btn btn-default" onclick="clearTaxdRef()">Undo</button>
+                                    <button type="button" class="btn btn-default" id="RefTaxDelete" onclick="DeleteTaxRef()">Delete</button>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div> 
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default left card-link" disabled>Select</button>
+                    <button type="button" class="btn btn-default right card-link" data-dismiss="modal">close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

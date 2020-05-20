@@ -1,0 +1,40 @@
+﻿
+@using System.Data
+@model DataSet
+@{ int j = 0; }
+@foreach (DataRow dr in Model.Tables[0].Rows)
+{
+    <tr>
+        @for (int i = 0; i < Model.Tables[0].Columns.Count; i++)
+        {
+            if (i == 22)
+            {
+                if (dr[Model.Tables[0].Columns[i].ColumnName].ToString() == "True")
+                {
+                    <td id="ici-@j-@i" onclick="setMenuValidatePrime(this.id, '@dr[Model.Tables[0].Columns[0].ColumnName].ToString()')"><input type="checkbox" checked id="check-@j-@i" name="validate" /></td>;
+                }
+                else
+                {
+                    <td id="ici-@j-@i" onclick="setMenuValidatePrime(this.id, '@dr[Model.Tables[0].Columns[0].ColumnName].ToString()')"><input type="checkbox" id="check-@j-@i" name="validate" /></td>;
+                }
+
+            }
+            else if (i == 29)
+            {
+                <td id="ici-@j-@i"><input type="text" class="form-control" value="@dr[Model.Tables[0].Columns[i].ColumnName].ToString()" maxlength="3" id="editUser-@j-@i" onkeyup="userMethod(this)" /></td>;
+            }
+            else if (i != 13)
+            {
+                <td id="ici-@j-@i" onclick="setMenuValidatePrime(this.id, '@dr[Model.Tables[0].Columns[0].ColumnName].ToString()')">@dr[Model.Tables[0].Columns[i].ColumnName].ToString()</td>;
+            }
+
+
+
+        }
+    </tr>
+    j++;
+}
+
+<input type="hidden" id="nbLigne" value="@ViewBag.nbLigne" />
+<input type="hidden" id="msgValidate" value="@ViewBag.msg" />
+<input type="hidden" id="ErrorMsgValidate" value="@ViewBag.ErrorMsg" />

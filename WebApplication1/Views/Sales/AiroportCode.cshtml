@@ -1,0 +1,28 @@
+﻿@using System.Data
+@model DataSet
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th class="pink">AirportCode</th>
+            <th class="pink">City Code</th>
+            <th class="pink">Airport Name</th>
+            <th class="pink">City Name</th>
+            <th class="pink">Country</th>
+            <th class="pink">City Iso Code</th>
+            <th class="pink">Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (DataRow dr in Model.Tables[0].Rows)
+        {
+            <tr onclick="setAirportCode('@dr[Model.Tables[0].Columns[0].ColumnName].ToString()')">
+                @for (int i = 0; i < Model.Tables[0].Columns.Count; i++)
+                {
+                    <td>@dr[Model.Tables[0].Columns[i].ColumnName].ToString()</td>;
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+

@@ -1,0 +1,238 @@
+﻿<div class="col-sm-11 tab-content tab-cancellation">
+    <div class="content-cancellation col-sm-11">
+        <div class="row">
+            <div class="col-sm-3">
+                <fieldset class="test-fieldst">
+                    <legend class="test-fieldst">Date Of Issue</legend>
+                    <div class="col-sm-6 width-group">
+                        <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">From:</label>
+                        <div class="col-sm-9 n-padding">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateFromPOS')"></span>
+                                <input type="text" class="form-control" id="dateFromPOS" value="@ViewBag.dateFrom" style="padding-right:3px">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6" style="margin-bottom: 19px;">
+                        <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">To:</label>
+                        <div class="col-sm-9 n-padding">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateToPOS')"></span>
+                                <input type="text" class="form-control" id="dateToPOS" value="@ViewBag.dateTo" style="padding-right:3px">
+                            </div>
+                        </div>
+                    </div>
+
+                </fieldset>
+                <div class="row">
+                    <div class="col-sm-12" style="margin-top:20px">
+                        <label>...Double Clicking on the Dtagrid Below open Details Info</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2" style="margin-top: 10px">
+                <input type="hidden" id="testpos" />
+                <input type="hidden" id="testpos1" />
+                <fieldset class="test-fieldst" style="padding: 20px;">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            SPC:
+                        </div>
+                        <div class="col-sm-9">
+                            <select style="width:120px" id="namepos" onclick="recupeNamePOS()">
+                                <option>-All-</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </div>
+            <div class="col-sm-3" style="margin-top: 10px">
+                <input type="hidden" id="testAgtPOS">
+                <input type="hidden" id="testAgtPOS1">
+                <fieldset class="test-fieldst" style="padding: 5px;">
+                    <table class="tab-refundEng">
+                        <tr>
+                            <td>Agent Numeric Code</td>
+                            <td>
+                                <select class="form-control" id="AgtPOS" onclick="recupeAgtPOS()" style="width:217px;">
+                                    <option>-All-</option>
+                                    <option value="1"></option>
+                                </select>
+                            </td>
+                            <td>
+                                <button class="point-interogation green btn" id="showCodeModalPOS" data-toggle="modal" data-target="#AgentCodeModalPOS" style="left:1px; top:-1px" onclick="chercherefn()"><span class="point-span">?</span></button>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="resultAdrTransP ">
+                        <table class="tab-refundEng">
+                            <tr>
+                                <td>Agent Name</td>
+                                <td><input type="text" id="AgPOSS" class="form-control" style="width: 217px;left: 33px;position: relative;" readonly /></td>
+                            </tr>
+                            <tr>
+                                <td>Agent Location</td>
+                                <td><input type="text" id="locPOSS" class="form-control" style="width: 217px;left: 33px;position: relative;" readonly /></td>
+                            </tr>
+                        </table>
+
+                    </div>
+
+
+                </fieldset>
+            </div>
+            <div class="col-sm-2" style="margin-top: 10px">
+                <div class="col-sm-12">
+                    <input type="hidden" id="testfcmi" />
+                    <input type="hidden" id="testfcmi1" />
+                    <fieldset class="test-fieldst" style="padding: 15px;">
+
+                        <div class="row">
+                            <div class="col-sm-3">
+                                FCMI:
+                            </div>
+                            <div class="col-sm-9">
+                                <select style="width:120px" id="FCMI" onclick="recupeFCMI()">
+                                    <option>-All-</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </div>
+                <div class="col-sm-12" style="margin-top: 17px;">
+                    <input type="hidden" id="testFareBasis" />
+                    <input type="hidden" id="testFareBasis1" />
+                    <fieldset class="test-fieldst" style="padding: 15px;">
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                Fare Basis:
+                                <select style="width:120px" id="FareBasis" onclick="recupeFareBasis()">
+                                    <option>-All-</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </div>
+            </div>
+            <div class="col-sm-2" style="margin-top: 23px;">
+                <div class="row">
+                    <button class="btn-default btn-outward" style="margin-left:25px;color:green" onclick="searchPOSSummary()">SEARCH</button>
+                    <button class="btn-default btn-outward" style="margin-left:25px">CLOSE</button>
+                </div>
+                <div class="row" style="margin-top: 27px;">
+                    <input type="hidden" id="testFopPOS" />
+                    <input type="hidden" id="testFopPOS1" />
+                    <fieldset class="test-fieldst" style="padding: 15px;">
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                FOP TYPE:
+                                <select style="width:162px" id="FopPOS" onclick="recupeFopPOS()">
+                                    <option>-All-</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-11" style="margin-top: 20px" id="loadPOSSummary">
+                <div class="ajax-loader">
+                    <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+                </div>
+
+                <div class="table-record-display" style="height:611px;overflow:auto">
+                    <table class="table table-bordered table-striped table-outward" style="width: 94%;">
+                        <thead>
+
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row" style="margin-top:20px">
+            <div class="col-sm-1"><img src="/images/CSVPic.jpg" class="image-csv" style="top:-5px"></div>
+            <div class="col-sm-2">
+                Total Number of Tickets:-
+            </div>
+            <div class="col-sm-2">
+                <input type="text" name="" id="TotPOS" disabled>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="AgentCodeModalPOS" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="Doc modal-content" style="width: 58%;left: 17%; background-color: rgba(135, 206, 235, 1) !important; ">
+            <div class="agentModal">
+                <div class="modal-header" style="background-color: white; margin-bottom: 21px;">
+                    <h5 class="modal-title" id="myModalLabel">FrmCustomAgentQuery</h5>
+                    <button type="button" class="close close-agent-code" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="DocCollect-modal-body">
+                    <div class="ajax-loader">
+                        <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+                    </div>
+                    <div class="scoll-tree scoll-agent-code">
+                        <div class="head-agent-code-content">
+                            <div class="form-row">
+                                <div class="col col-md-3" style="padding-left: 0px;">Agent Legal Name:</div>
+                                <div class="col col-md-4">
+                                    <input type="text" class="form-control" id="nameAgPoss" name="agentName" onkeyup="cherche(this.value,'nameAgPoss')" />
+                                </div>
+                                <div class="col col-md-2">Agent Code:</div>
+                                <div class="col col-md-3">
+                                    <input type="text" class="form-control" id="codePoss" name="agentCode" onkeyup="cherche(this.value,'codePoss')" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="agentContent" style="width: 98%; max-height: 515px;">
+                            <table class="table table-agent-code" style="margin-bottom:0px">
+                                <thead>
+                                    <tr>
+                                        <th width="35%">Agent Code</th>
+                                        <th width="70%">Agent Name</th>
+                                    </tr>
+                                </thead>
+
+
+                            </table>
+                        </div>
+                        <div class="autocomplete">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="background-color:rgba(135, 206, 235, 1) !important;">
+                    <div class="col-md-9 footer-agent-code">
+                        <div class="col-md-12">
+                            <label>Agent Name: </label>
+                            <label style="color:white;font-size:12px" id="agent-name-label"></label>
+                        </div>
+                        <div class="col-md-12">
+                            <label>Agent Code: </label>
+                            <label style="color:white; font-size:12px" id="agent-code-label"></label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <button type="button" class="Close btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="Close btn" data-dismiss="modal" id="select-name-code" onclick="setNumericodePOS()">Select</button>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

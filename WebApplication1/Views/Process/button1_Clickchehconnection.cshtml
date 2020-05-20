@@ -1,0 +1,37 @@
+﻿@using System.Data
+@model DataSet
+<div class="col" id="newlblCONNECTIONSTATUS">@ViewBag.lblCONNECTIONSTATUS</div>
+<div class="col" id="newlblLastUpdated">@ViewBag.lblLastUpdated</div>
+<div class="col" id="newdivdataGridView1">
+    <div class="ajax-loader">
+        <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+    </div>
+    <table class="table table-stripted table-bordered table-outward" style="width: 100%;" id="dataGridView1">
+        <thead style="color:Khaki !important;cursor: pointer;">
+            <tr>
+                <th>Currency Code</th>
+                <th>Currency Name</th>
+                <th>Buying</th>
+                <th>Selling</th>
+                <th>Central Bank-Buying</th>
+                <th>Central Bank-Selling</th>
+                <th>Date</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < ViewBag.ligne; i++)
+            {
+                if (ViewBag.dataGridView1[i, 0] != "")
+                {
+                    <tr>
+                        @for (int j = 0; j < ViewBag.colone; j++)
+                        {
+                            <td>@ViewBag.dataGridView1[i, j]</td>
+                        }
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

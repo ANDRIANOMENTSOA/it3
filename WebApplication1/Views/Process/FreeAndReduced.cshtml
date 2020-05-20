@@ -1,0 +1,151 @@
+﻿<div class="col-sm-11 tab-content tab-cancellation">
+    <div class="content-cancellation col-sm-11">
+        <div class="row">
+            <div class="col-sm-4">
+                <fieldset class="test-fieldst">
+                    <legend class="test-fieldst">Date Of Issue</legend>
+                    <div class="col-sm-6 width-group">
+                        <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">From:</label>
+                        <div class="col-sm-9 n-padding">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateFromFreeReduced')"></span>
+                                <input type="text" class="form-control" id="dateFromFreeReduced" value="@ViewBag.dateFrom" style="padding-right:3px">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6" style="margin-bottom: 19px;">
+                        <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">To:</label>
+                        <div class="col-sm-9 n-padding">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateToFreeReduced')"></span>
+                                <input type="text" class="form-control" id="dateToFreeReduced" value="@ViewBag.dateTo" style="padding-right:3px">
+                            </div>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </div>
+            <div class="col-sm-4" style="margin-top: 10px;">
+                <fieldset class="test-fieldst" style="padding: 15px;">
+                    <div class="col-sm-5">
+                        <input type="checkbox" id="ExcludedId"> ExcludedExchange
+                    </div>
+                    <div class="col-sm-7">
+                        <button class="btn-default btn-outward" style="margin-left:25px" onclick="searchFreeAndReduced()">SEARCH</button>
+                        <button class="btn-default btn-outward" style="margin-left:25px" onclick="removeSousMenu()">CLOSE</button>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-9" style="margin-top: 25px;" id="loadFreeAndReduced">
+                <div class="ajax-loader">
+                    <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+                </div>
+
+                <div class="table-record-display" style="height:600px;overflow:auto">
+                    <table class="table table-bordered table-striped" style="width: 84%;">
+                        <thead>
+                            <tr>
+                                <th class="green-tab">Rownum</th>
+                                <th class="green-tab">Date of Issue</th>
+                                <th class="green-tab">Document Number</th>
+                                <th class="green-tab">Origin Issue Document</th>
+                                <th class="green-tab">Passenger Name</th>
+                                <th class="green-tab">IBT</th>
+                                <th style="display:none" class="green-tab keyelement-6">Exchange ADC</th>
+                                <th style="display:none" class="green-tab keyelement-7">Exchange</th>
+                                <th style="display:none" class="green-tab keyelement-8">Fare Basis</th>
+                                <th style="display:none" class="green-tab keyelement-9">FCMI</th>
+                                <th style="display:none" class="green-tab keyelement-10">Fare Currency</th>
+                                <th style="display:none" class="green-tab keyelement-11">Fare</th>
+                                <th style="display:none" class="green-tab keyelement-12">Equivalent Fare Currency</th>
+                                <th style="display:none" class="green-tab keyelement-13">Equivalent Fare</th>
+                                <th style="display:none" class="green-tab keyelement-14">Amount Collected Currency</th>
+                                <th style="display:none" class="green-tab keyelement-15">Amount Collected</th>
+                                <th style="display:none" class="green-tab keyelement-16">Fare Collected</th>
+                                <th style="display:none" class="green-tab keyelement-17">Tax Collected</th>
+                                <th style="display:none" class="green-tab keyelement-18">Surcharges Collected</th>
+
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-sm-3" style="margin-top: 25px;">
+                <div class="row">
+                    <div class="col-sm-7">
+                        <button class="btn-default" id="bntShowHide" onclick="HideShow('divHideShow', 'bntShowHide')" style="margin-left: -15px;width: 253px;">Show Add-on Details</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-7" style="margin-top: 10px;border: 1px solid gray; height: 568px;background:white;display:none" id="divHideShow">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <input type="checkbox" name="" onclick="showreports('allkeyFR', 'keyelement')" id="allkeyFR">Select All
+                            </li>
+                            <li class="list-group-item">
+                                <input type="checkbox" onclick="showreports('key6FR', 'keyelement-6')" id="key6FR">Exchange ADC
+                            </li>
+                            <li class="list-group-item">
+                                <input type="checkbox" onclick="showreports('key7FR', 'keyelement-7')" id="key7FR">Exchange
+                            </li>
+                            <li class="list-group-item">
+                                <input type="checkbox" onclick="showreports('key8FR', 'keyelement-8')" id="key8FR">Fare Basis
+                            </li>
+                            <li class="list-group-item">
+                                <input type="checkbox" onclick="showreports('key9FR', 'keyelement-9')" id="key9FR">FCMI
+                            </li>
+                            <li class="list-group-item">
+                                <input type="checkbox" onclick="showreports('key10FR', 'keyelement-10')" id="key10FR">Fare Currency
+                            </li>
+                            <li class="list-group-item">
+                                <input type="checkbox" onclick="showreports('key11FR', 'keyelement-11')" id="key11FR">Fare
+                            </li>
+                            <li class="list-group-item">
+                                <input type="checkbox" onclick="showreports('key12FR', 'keyelement-12')" id="key12FR">Equivalent Fare Currency
+                            </li>
+                            <li class="list-group-item">
+                                <input type="checkbox" onclick="showreports('key13FR', 'keyelement-13')" id="key13FR">Equivalent Fare
+                            </li>
+                            <li class="list-group-item">
+                                <input type="checkbox" onclick="showreports('key14FR', 'keyelement-14')" id="key14FR">Amount Collected Currency
+                            </li>
+                            <li class="list-group-item">
+                                <input type="checkbox" onclick="showreports('key15FR', 'keyelement-15')" id="key15FR">Amount Collected
+                            </li>
+                            <li class="list-group-item">
+                                <input type="checkbox" onclick="showreports('key16FR', 'keyelement-16')" id="key16FR">Fare Collected
+                            </li>
+                            <li class="list-group-item">
+                                <input type="checkbox" onclick="showreports('key17FR', 'keyelement-17')" id="key17FR">Tax Collected
+                            </li>
+                            <li class="list-group-item">
+                                <input type="checkbox" onclick="showreports('key18FR', 'keyelement-18')" id="key18FR">Surcharges Collected
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6" style="margin-top:20px">
+                <fieldset class="test-fieldst" style="padding:20px">
+                    <div class="col-sm-4"><label>Number of record per page</label></div>
+                    <div class="col-sm-2"><input type="text" name="" disabled style="width: 50px" value="150"></div>
+                    <div class="col-sm-6">
+                        <button class="btn-default" style="width: 80px"><</button>
+                        <input type="text" name="" disabled style="width: 100px" id="page1">
+                        <button class="btn-default" style="width: 80px" onclick="nextValue(this)">></button>
+                        <img src="/images/CSVPic.jpg" class="image-csv" style="top:-2px;left:68px">
+                    </div>
+
+                </fieldset>
+            </div>
+        </div>
+    </div>
+
+</div>
+

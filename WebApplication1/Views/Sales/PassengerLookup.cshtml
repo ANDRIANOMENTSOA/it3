@@ -1,0 +1,42 @@
+﻿
+@using System.Data
+@model DataSet
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th class="pink">Document Number</th>
+            <th class="pink">Coupon Number</th>
+            <th class="pink">Passenger Name</th>
+            <th class="pink">Pax Type</th>
+            <th class="pink">Airline</th>
+            <th class="pink">Flight Date</th>
+            <th class="pink">Flight Number</th>
+            <th class="pink">Origin</th>
+            <th class="pink">Destination</th>
+            <th class="pink">Intl Dom</th>
+            <th class="pink">Id OAL</th>
+            <th class="pink">Involuntary Reroute</th>
+            <th class="pink">Check Digit</th>
+            <th class="pink">Document Airline ID</th>
+            <th class="pink">Own Ticket</th>
+            <th class="pink">Own Carrier</th>
+            <th class="pink">Fare Basis</th>
+            <th class="pink">Document Type</th>
+        </tr>
+    </thead>
+    <tbody id="loadBodyPassLookup">
+        @foreach (DataRow dr in Model.Tables[0].Rows)
+        {
+            
+            <tr onclick="setPassengerLookup('@dr[Model.Tables[0].Columns[2].ColumnName].ToString()','@dr[Model.Tables[0].Columns[1].ColumnName].ToString()','@dr[Model.Tables[0].Columns[13].ColumnName].ToString()','@dr[Model.Tables[0].Columns[0].ColumnName].ToString()','@dr[Model.Tables[0].Columns[12].ColumnName].ToString()','@dr[Model.Tables[0].Columns[17].ColumnName].ToString()','@dr[Model.Tables[0].Columns[16].ColumnName].ToString()','@dr[Model.Tables[0].Columns[5].ColumnName].ToString()','@dr[Model.Tables[0].Columns[6].ColumnName].ToString()','@dr[Model.Tables[0].Columns[15].ColumnName].ToString()')">
+                @for (int i = 0; i < Model.Tables[0].Columns.Count; i++)
+                {
+                    <td>@dr[Model.Tables[0].Columns[i].ColumnName].ToString()</td>;
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+
+

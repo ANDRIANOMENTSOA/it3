@@ -1,0 +1,85 @@
+﻿<div class="input-group date" id="newdivprocessdatefrom">
+
+    <span class="input-group-addon check-dape"><input type="checkbox" name="dtpIssueDateFrom" id="dtpFromChecked" @ViewBag.dtpFromChecked></span>
+
+    <input type="text" name="dtpFromValue" id="dtpFromValue" class="form-controls input-date" value="@ViewBag.dtpFromValue" onchange="onchangedtpToValue()" />
+    <span class="input-group-addon datetimepicker" onclick="setdate('dtpFromValue')">
+        <span class="glyphicon glyphicon-calendar"></span>
+    </span>
+
+</div>
+
+<div class="input-group date" id="newdivprocessdateto">
+
+    <span class="input-group-addon check-dape"><input type="checkbox" name="dtpIssueDateTo" id="dtpToChecked" @ViewBag.dtpToChecked></span>
+
+    <input type='text' name="dtpToValue" id="dtpToValue" class="form-controls input-date input-datetimepicker" value="@ViewBag.dtpToValue" onchange="onchangedtpToValue()" />
+    <span class="input-group-addon datetimepicker" onclick="setdate('dtpToValue')">
+        <span class="glyphicon glyphicon-calendar" id="calendarPaxTo"></span>
+    </span>
+
+</div>
+
+<div class="input-group date" id="newdivissuedatefrom">
+
+    <span class="input-group-addon check-dape"><input type="checkbox" name="dtpIssueDateFrom" id="dtpIssueDateFromChecked" @ViewBag.dtpIssueDateFromChecked></span>
+
+    <input type="text" name="dtpIssueDateFromValue" id="dtpIssueDateFromValue" class="form-controls input-date" value="@ViewBag.dtpIssueDateFromValue" onchange="onchangedtpToValue()" />
+    <span class="input-group-addon datetimepicker" onclick="setdate('dtpIssueDateFromValue')">
+        <span class="glyphicon glyphicon-calendar"></span>
+    </span>
+
+</div>
+
+<div class="input-group date" id="newdivissuedateto">
+
+    <span class="input-group-addon check-dape"><input type="checkbox" name="dtpIssueDateTo" id="dtpIssueDateToChecked" @ViewBag.dtpIssueDateToChecked></span>
+
+    <input type='text' name="dtpIssueDateToValue" id="dtpIssueDateToValue" class="form-controls input-date input-datetimepicker" value="@ViewBag.dtpIssueDateToValue" onchange="onchangedtpToValue()" />
+    <span class="input-group-addon datetimepicker" onclick="setdate('dtpIssueDateToValue')">
+        <span class="glyphicon glyphicon-calendar" id="calendarPaxTo"></span>
+    </span>
+
+</div>
+
+<div class="col n-padding" style="top: 41px;background-color: white;height: 478px;left: 14px;overflow: auto;width: 100%;" id="newdivtablepev">
+    <div class="ajax-loader">
+        <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+    </div>
+    <table class="table table-bordered" id="tablepev" style="width:100% !important">
+        <thead>
+            <tr>
+                <th class="pink">Document No</th>
+                <th class="pink">Date Of Issue</th>
+                <th class="pink">Fare Calculation Area</th>
+                <th class="pink">Fare</th>
+                <th class="pink">Equi. Fare</th>
+                <th class="pink">Error Message</th>
+                <th class="pink">Date Process</th>
+                <th class="pink">Data Source</th>
+                <th class="pink">AgentNumCode</th>
+                <th class="pink">Endos. Restriction</th>
+                <th class="pink">Transaction Code</th>
+                <th class="pink">Original Doc No</th>
+                <th class="pink">Additional Remarks</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

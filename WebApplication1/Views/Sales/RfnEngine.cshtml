@@ -1,0 +1,546 @@
+﻿@using System.Data
+@model DataSet
+<div class="col-sm-12">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-11">
+        <fieldset class="test-fieldst">
+            <legend class="test-fieldst">ORIGINAL INFORMATION</legend>
+            <table class="tab-refundEng">
+                <tr>
+                    <td>Ticket Number</td>
+                    <td>Origin/Destination</td>
+                    <td>Original Issue Doc No</td>
+                    <td>Transaction Code</td>
+                    <td>Issue Date</td>
+                    <td>Agent Numeric Code</td>
+                    <td colspan="2">Doc Type</td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="text" class="form-engine" value="@ViewBag.Info[0]" />
+                    </td>
+                    <td>
+                        <input type="text" class="form-engine" value="@ViewBag.Info[1]" />
+                    </td>
+                    <td>
+                        <input type="text" class="form-engine" value="@ViewBag.Info[2]" />
+                    </td>
+                    <td>
+                        <input type="text" class="form-engine" value="@ViewBag.Info[3]" />
+                    </td>
+                    <td>
+                        <input type="text" class="form-engine" value="@ViewBag.Info[4]" />
+                    </td>
+                    <td>
+                        <input type="text" class="form-engine" value="@ViewBag.Info[5]" />
+                    </td>
+                    <td colspan="2">
+                        <input type="text" class="form-engine" style="width: 205px;" value="@ViewBag.Info[6]" />
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td colspan="4">Name of Passenger</td>
+                    <td colspan="2">Endorsement Restriction</td>
+                    <td style="width:50px"></td>
+                    <td colspan="3" rowspan="0">
+                        <table class="tab-refundEng1">
+                            <tr>
+                                <td>Fare</td>
+                                <td>
+                                    <input type="text" class="form-engine" style="width:50px" value="@ViewBag.Info[10]" />
+                                </td>
+                                <td>
+                                    <input typeof="text" class="form-engine" style="text-align:right" id="fare" value="@ViewBag.Info[11]" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Equiv Fare PD</td>
+                                <td>
+                                    <input type="text" class="form-engine" style="width:50px" value="@ViewBag.Info[12]" />
+                                </td>
+                                <td>
+                                    <input typeof="text" class="form-engine" style="text-align:right" id="equivFare" value="@ViewBag.Info[13]" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Total Amount</td>
+                                <td>
+                                    <input type="text" class="form-engine" style="width:50px" value="@ViewBag.Info[14]" />
+                                </td>
+                                <td>
+                                    <input typeof="text" class="form-engine" style="text-align:right" value="@ViewBag.Info[15]" />
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        <input type="text" class="form-engine" value="@ViewBag.Info[7]" />
+                    </td>
+                    <td colspan="2">
+                        <input type="text" class="form-engine" value="@ViewBag.Info[8]" />
+                    </td>
+
+                </tr>
+                <tr>
+                    <td colspan="6">Fare Calculation Area</td>
+                </tr>
+                <tr>
+                    <td colspan="6">
+                        <input type="text" class="form-engine" value="@ViewBag.Info[9]" />
+                    </td>
+                </tr>
+            </table>
+
+        </fieldset>
+
+    </div>
+</div>
+<div class="col-sm-12">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-11">
+        <fieldset class="test-fieldst">
+            <legend class="test-fieldst">REFUNDED INFORMATION</legend>
+            <table class="tab-refundEng">
+                <tr>
+                    <td>Issue Date</td>
+                    <td>Agent Numeric Code</td>
+                    <td colspan="3" style="width:545px;">Endorsement Restriction</td>
+                    <td>Refund Type</td>
+                    <td>Refund Amt Type</td>
+                    <td colspan="2">Fare Refund</td>
+                </tr>
+                <tr>
+                    <td><input type="text" class="form-engine" value="@ViewBag.refund[0]" /></td>
+                    <td><input type="text" class="form-engine" value="@ViewBag.refund[1]" /></td>
+                    <td colspan="3"><input type="text" class="form-engine" value="@ViewBag.refund[2]" /></td>
+                    @if (ViewBag.mainRef[0] == "VOLUNTARY")
+                    {
+                        <td>
+                            <select class="form-engine" id="dropdownRefundType" style="width:170px;" onclick="shoReasonRfn()">
+
+                                <option>VOLUNTARY</option>
+                                <option>INVOLUNTARY</option>
+                            </select>
+                        </td>
+                    }
+                    else if (ViewBag.mainRef[0] == "INVOLUNTARY")
+                    {
+                        <td>
+                            <select class="form-engine" id="dropdownRefundType" style="width:170px;" onclick="shoReasonRfn()">
+
+                                <option>VOLUNTARY</option>
+                                <option>INVOLUNTARY</option>
+                            </select>
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            <select class="form-engine" id="dropdownRefundType" style="width:170px;" onclick="shoReasonRfn()">
+                                <option></option>
+                                <option>VOLUNTARY</option>
+                                <option>INVOLUNTARY</option>
+                            </select>
+                        </td>
+                    }
+
+                    <td>
+                        <select class="form-engine" id="dropdownAmtType" style="width:136px;" onclick="showfarcurr('@ViewBag.Info[10]', '@ViewBag.Info[12]')">
+                            <option></option>
+                            <option>Fare</option>
+                            <option>Equivalent Fare</option>
+                        </select>
+                    </td>
+                    <td><input type="text" class="form-engine curfare" style="width:50px;" /></td>
+                    <td><input type="text" class="form-engine" id="textFare" onkeyup="checkfare('textFare')" /></td>
+                </tr>
+                <tr>
+                    <td colspan="6">Fare Calculation Area</td>
+                    <td></td>
+                    <td colspan="2">Fare Remain</td>
+                </tr>
+                <tr>
+                    <td colspan="6"><input type="text" class="form-engine" value="@ViewBag.refund[3]" /></td>
+                    <td></td>
+                    <td><input type="text" class="form-engine curfare" style="width:50px;" /></td>
+                    <td><input type="text" class="form-engine" id="totfare" /></td>
+                </tr>
+            </table>
+        </fieldset>
+
+    </div>
+</div>
+<div class="col-sm-12">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-11">
+        <div class="table-record-display" style="height: 150px;margin-top: -5px;color:white;border:1px solid rgba(152, 152, 152, 1);">
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th class="pink">CPN</th>
+                        <th class="pink">X/O</th>
+                        <th class="pink" style="width:5%">GFPA</th>
+                        <th class="pink">CARRIER</th>
+                        <th class="pink">FLIGHT</th>
+                        <th class="pink">CLASS</th>
+                        <th class="pink" style="width: 95px;">DATE</th>
+                        <th class="pink">TIME</th>
+                        <th class="pink">STATUS</th>
+                        <th class="pink">FARE BASIS</th>
+                        <th class="pink" style="width: 95px;">NOT VALID BEFORE</th>
+                        <th class="pink" style="width: 95px;">NOT VALID AFTER</th>
+                        <th class="pink">BAGAGE ALLOWANCE</th>
+                        <th class="pink">BOOKING STATUS</th>
+                        <th class="pink">RBD</th>
+                        <th class="pink">USAGE SECTOR</th>
+                        <th class="pink">USAGE AIRLINE</th>
+                        <th class="pink">USAGE FLIGHT NO</th>
+                        <th class="pink">USAGE DATE</th>
+                        <th class="pink">FFP</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < ViewBag.compt; i++)
+                    {
+                        <tr>
+                            @for (int j = 0; j < 20; j++)
+                            {
+                                <td>@ViewBag.Tableau[j, i]</td>
+                            }
+                        </tr>
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="col-sm-12">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-11" style="border: 1px solid;width: 1703px;left: 15px;">
+        <div class="col-sm-3" style="height: 190px;">
+            <h3>OTHER AMOUNT</h3>
+            <div class="table-record-display" style="height: 130px;margin-top: -5px;color:white;border:1px solid rgba(152, 152, 152, 1);">
+                <table class="table-bordered other-amount" style="color:black">
+                    <thead>
+                        <tr>
+                            <th class="green" style="width:110px"><center>DocAmtType</center></th>
+                            <th class="green" style="width:110px"><center>Currency</center></th>
+                            <th class="green" style="width:110px"><center>DocAmtCode</center></th>
+                            <th class="green" style="width:110px"><center>Amount</center></th>
+                            <th class="green" style="width:110px"><center>Refund</center></th>
+                            <th style="display:none"></th>
+                            <th style="display:none"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="otherTax">
+
+                        @for (int i = 0; i < ViewBag.count; i++)
+                        {
+                            <tr>
+                                <td id="docAmtType_@i">@ViewBag.other[0, i]</td>
+                                <td id="docCur_@i">@ViewBag.other[1, i]</td>
+                                <td id="docAmtCode_@i">@ViewBag.other[2, i]</td>
+                                <td id="value_@i">@ViewBag.other[3, i]</td>
+                                @if (ViewBag.other[4, i] == "true")
+                                {
+
+                                    <td><input type="checkbox" name="refnchk" class="chkrfn" checked="checked" onclick="calculRefund('value_@i','check_@i')" id="check_@i" /></td>
+                                }
+                                else
+                                {
+                                    <td><input type="checkbox" name="refnchk" class="chkrfn" onclick="calculRefund('value_@i','check_@i')" id="check_@i" /></td>
+                                }
+                                <td style="display:none">@ViewBag.other[5, i]</td>
+                                <td style="display:none">@ViewBag.other[6, i]</td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="col-sm-2" style="top:65px;">
+            <table class="tab-refundEng">
+                <tr>
+                    <td>Total Tax</td>
+                    <td><input type="text" class="form-engine" id="totalTax" value="@ViewBag.TotalTax" /></td>
+                </tr>
+                <tr>
+                    <td>Total Refund</td>
+
+                    <td><input type="text" class="form-engine" id="reftot" value="@ViewBag.TaxRefund" /></td>
+
+
+                </tr>
+                <tr style="height:25px"></tr>
+                <tr>
+                    <td>Total Remain</td>
+                    <td><input type="text" class="form-engine" id="taxremain" value="@ViewBag.TaxRemain" /></td>
+
+
+
+                </tr>
+            </table>
+        </div>
+        <div class="col-sm-5">
+            <div class="choix" id="defaultchoiceRfn" style="display:block">
+
+            </div>
+
+            <div class="choix" id="voluntarychoiceRfn" style="display:none;border:1px solid black">
+                <table class="tab-refundEng">
+                    <tr>
+                        <td>Total A</td>
+                        <td colspan="2"><hr class="traitHor" /></td>
+                        <td><input type="text" class="form-engine" id="totA" value="@ViewBag.Info[15]" /></td>
+                    </tr>
+                    <tr>
+                        <td>Total B</td>
+                        <td style="width:65px"><hr class="traitHor" /></td>
+                        <td><input type="text" class="form-engine" id="totalB" value="@ViewBag.TotalB" /></td>
+                    </tr>
+                    <tr></tr>
+                    <tr>
+                        <td colspan="2">Taxes et divers E</td>
+                        <td><input type="text" class="form-engine" onkeyup="checkfare('taxe')" id="taxe" value="@ViewBag.TaxE" /></td>
+                    </tr>
+                    <tr>
+                        <td>TOTAL B+E</td>
+                        <td colspan="2"><hr class="traitHor" /></td>
+                        <td><input type="text" class="form-engine" id="totBE" value="@ViewBag.TotBE" /></td>
+                    </tr>
+                    <tr></tr>
+                    <tr>
+                        <td>REMBOURSEMENT</td>
+                        <td colspan="2"><hr class="traitHor" /></td>
+                        <td><input type="text" class="form-engine" id="rbt" value="@ViewBag.Rbt" /></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="choix" id="involuntarychoiceRfn" style="display:none;border:1px solid black">
+                <table>
+                    <tr>
+                        <td></td>
+                        <td><input type="text" class="form-engine" id="totA1" value="@ViewBag.Info[15]" /></td>
+                        <td colspan="2"><hr class="traitHor" /></td>
+                        <td>Total A</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="text" class="form-engine" id="totalB1" value="@ViewBag.TotalB" /></td>
+                        <td colspan="2"><hr class="traitHor" /></td>
+                        <td>Total B</td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" class="form-engine" id="difAB" value="@ViewBag.DifAB" /></td>
+                        <td colspan="2"><hr class="traitHor" /></td>
+                        <td>Difference A-B</td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" class="form-engine" id="totalC" value="@ViewBag.TotalB" /></td>
+                        <td colspan="2"><hr class="traitHor" /></td>
+                        <td>Total C</td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" class="form-engine" id="totalD" value="@ViewBag.TaxD" onkeyup="calcultaxe()" /></td>
+                        <td colspan="2"><hr class="traitHor" /></td>
+                        <td>Taxes Dues D</td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" class="form-engine" id="toteleve" value="@ViewBag.DestVal" /></td>
+                        <td><hr class="traitHor" /></td>
+                        <td colspan="2">Total le plus eleve(D+C ou D+A-B)</td>
+                    </tr>
+                </table>
+            </div>
+
+
+        </div>
+        <div class="col-sm-12">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-11" style="border: 1px solid;width: 1703px;left: -36px;height:110px;">
+                <div class="col-sm-5" style="top:10px;">
+                    <div class="col-sm-4">Observation or reference</div>
+                    <div class="col-sm-8">
+                        <textarea class="ref" style="width: 421px;height: 90px;" id="observation">
+                            @ViewBag.observation;
+                        </textarea>
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <table class="tab-refundEng">
+                        <tr>
+                            <td>Refunded Amount</td>
+                            <td><input type="text" class="form-engine curfare" id="curRfn" style="width:50px" /></td>
+                            <td><input type="text" class="form-engine" id="totRfnAmt" /></td>
+                        </tr>
+                        <tr>
+                            <td>Reason For Refund</td>
+                            @if (ViewBag.mainRef[0] == "VOLUNTARY")
+                            {
+                                if (ViewBag.mainRef[9] != "")
+                                {
+                                    <td colspan="2">
+                                        <input type="text" class="form-engine" value="@ViewBag.mainRef[9]" />
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td colspan="2">
+
+                                        <select class="form-engine" id="defaultReson" style="display:block">
+                                            <option></option>
+                                        </select>
+                                        <select class="form-engine" id="voluntaryReson" style="display:block">
+                                            <option></option>
+                                            <option>Excursion Fare</option>
+                                            <option>Students Rubates</option>
+                                            <option>Agents Discounts</option>
+                                            <option>Industry Discounts</option>
+                                            <option>Family Plan Adjustments</option>
+                                            <option>Changes in Class of Service</option>
+                                            <option>Reduction In Mileage Surcharges</option>
+                                            <option>Children's Discounts</option>
+                                            <option>Fare Reassesments</option>
+                                            <option>Duplicate Collections</option>
+                                            <option>Mislaid Tickets</option>
+                                        </select>
+                                        <select class="form-engine" id="involuntaryReson" style="display:none">
+                                            <option></option>
+                                            <option>Flight Cancellation</option>
+                                            <option>Flight Schedule Change</option>
+                                            <option>Over Or Under Carriage</option>
+                                            <option>Offloading</option>
+                                            <option>Misconnection</option>
+                                            <option>Safety Or Legal Reasons</option>
+                                            <option>Condition Or Conduct Passenger</option>
+                                        </select>
+                                    </td>
+                                }
+
+                            }
+                            else if (ViewBag.mainRef[0] == "INVOLUNTARY")
+                            {
+                                if (ViewBag.mainRef[9] != "")
+                                {
+                                    <td colspan="2">
+                                        <input type="text" class="form-engine" value="@ViewBag.mainRef[9]" />
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td colspan="2">
+
+                                        <select class="form-engine" id="defaultReson" style="display:block">
+                                            <option></option>
+                                        </select>
+                                        <select class="form-engine" id="voluntaryReson" style="display:none">
+                                            <option></option>
+                                            <option>Excursion Fare</option>
+                                            <option>Students Rubates</option>
+                                            <option>Agents Discounts</option>
+                                            <option>Industry Discounts</option>
+                                            <option>Family Plan Adjustments</option>
+                                            <option>Changes in Class of Service</option>
+                                            <option>Reduction In Mileage Surcharges</option>
+                                            <option>Children's Discounts</option>
+                                            <option>Fare Reassesments</option>
+                                            <option>Duplicate Collections</option>
+                                            <option>Mislaid Tickets</option>
+                                        </select>
+                                        <select class="form-engine" id="involuntaryReson" style="display:block">
+                                            <option></option>
+                                            <option>Flight Cancellation</option>
+                                            <option>Flight Schedule Change</option>
+                                            <option>Over Or Under Carriage</option>
+                                            <option>Offloading</option>
+                                            <option>Misconnection</option>
+                                            <option>Safety Or Legal Reasons</option>
+                                            <option>Condition Or Conduct Passenger</option>
+                                        </select>
+                                    </td>
+                                }
+                            }
+                            else
+                            {
+                                <td colspan="2">
+                                    <select class="form-engine" id="defaultReson" style="display:block">
+                                        <option></option>
+                                    </select>
+                                    <select class="form-engine" id="voluntaryReson" style="display:none">
+                                        <option></option>
+                                        <option>Excursion Fare</option>
+                                        <option>Students Rubates</option>
+                                        <option>Agents Discounts</option>
+                                        <option>Industry Discounts</option>
+                                        <option>Family Plan Adjustments</option>
+                                        <option>Changes in Class of Service</option>
+                                        <option>Reduction In Mileage Surcharges</option>
+                                        <option>Children's Discounts</option>
+                                        <option>Fare Reassesments</option>
+                                        <option>Duplicate Collections</option>
+                                        <option>Mislaid Tickets</option>
+                                    </select>
+                                    <select class="form-engine" id="involuntaryReson" style="display:none">
+                                        <option></option>
+                                        <option>Flight Cancellation</option>
+                                        <option>Flight Schedule Change</option>
+                                        <option>Over Or Under Carriage</option>
+                                        <option>Offloading</option>
+                                        <option>Misconnection</option>
+                                        <option>Safety Or Legal Reasons</option>
+                                        <option>Condition Or Conduct Passenger</option>
+                                    </select>
+                                </td>
+                            }
+
+
+
+
+                        </tr>
+                        <tr>
+                            <td>Refund By</td>
+                            @if (ViewBag.mainRef[10] != "")
+                            {
+                                <td colspan="2">
+                                    <input type="text" class="form-engine" id="refundBy" value="@ViewBag.mainRef[10]" />
+                                </td>
+                            }
+                            else
+                            {
+                                <td colspan="2">
+                                    <select class="form-engine" id="refundBy">
+                                        <option></option>
+                                        <option>CREDIT CARD</option>
+                                        <option>CASH</option>
+                                        <option>CHEQUE</option>
+                                        <option>E-CREDIT-NOTE</option>
+                                    </select>
+                                </td>
+                            }
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-11" style="background-color:darkred;height:50px;width: 176vh;left: -37px;">
+                <div class="col-sm-11"></div>
+                <div class="col-sm-1">
+                    <img src="~/Images/Save.png" style="top:10px;cursor:pointer" onclick="saveRfn('@ViewBag.Info[0]','@ViewBag.Info[16]','@ViewBag.Info[17]','@ViewBag.Info[10]', '@ViewBag.Info[12]','@ViewBag.Info[11]','@ViewBag.Info[13]','@ViewBag.refund[0]');" />
+                    <img src="~/Images/windows_close.png" style="top:10px;left:25px;cursor:pointer" onclick="removeSousMenu()"/>
+                </div>
+
+            </div>
+        </div>
+    </div>

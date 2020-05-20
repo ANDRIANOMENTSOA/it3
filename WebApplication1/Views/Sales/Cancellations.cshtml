@@ -1,0 +1,162 @@
+﻿<div class="col-sm-11 tab-content tab-cancellation">
+    <div class="content-cancellation">
+        <div class="col-sm-4" style="width:31% !important">
+            <fieldset class="test-fieldst">
+                <legend class="test-fieldst">Sales Date</legend>
+                <div class="col-sm-6 width-group n-padding-right">
+                    <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">From:</label>
+                    <div class="col-sm-7 n-padding">
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('cancelDateFrom')"></span>
+                            <input type="text" class="form-control" id="cancelDateFrom" value="@ViewBag.date[0]">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 n-padding" style="margin-bottom: 19px;">
+                    <label class="form-check-label col-form-label col-sm-2 n-padding fromTo">To:</label>
+                    <div class="col-sm-7 n-padding">
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('cancelDateTo')"></span>
+                            <input type="text" class="form-control" id="cancelDateTo" value="@ViewBag.date[1]">
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="col-sm-2" style="width:19% !important">
+            <fieldset class="test-fieldst" style="position: relative;top: 10px;">
+                <legend class="test-fieldst"></legend>
+                <div class="form-group row" style="margin-left:26px; margin-top:2px;position: relative;top: 8px;">
+                    <label class="col-sm-4 col-form-label n-padding" style="margin-top:6px">Agent Num Code:</label>
+                    <div class="col-sm-5" style="height: 37px;">
+                        <div class="row div-showModal">
+                            <div class="col-sm-10" style="width: 100%"><input type="text" name="agentCode" id="agentCodeSet" class="form-control"></div>
+                            <div class="col-sm-1 containt-btn" style="width: 33px !important;height:30px;position: relative;top: -30px;left: 127px;"><button class="point-interogation pink btn" onclick="showAgentCodeModal()"><span class="point-span">?</span></button></div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="col-sm-3">
+            <fieldset class="test-fieldst" id="rbcancellation">
+                <legend class="test-fieldst">Lift Entries</legend>
+                <div class="col-sm-3 margin-issue">
+                    <input class="form-check-input" type="radio" name="rbcancellation" value="all" checked>
+                    <label class="form-check-label col-form-label" for="inlineRadio1">View ALL</label>
+                </div>
+                <div class="col-sm-4">
+                    <input class="form-check-input" type="radio" name="rbcancellation" value="cancel">
+                    <label class="form-check-label col-form-label" for="inlineRadio1">View Cancel Docs</label>
+                </div>
+                <div class="col-sm-4">
+                    <input class="form-check-input" type="radio" name="rbcancellation" value="void">
+                    <label class="form-check-label col-form-label" for="inlineRadio1">View Void Docs</label>
+                </div>
+            </fieldset>
+        </div>
+        <div class="col-sm-3" style="top: 7px;left: -26px;">
+            <div class="search">
+                <div class="col-sm-3"><button type="button" class="search-interogation pink btn" onclick="setCriteriaCancellation()"><span class="search-span">SEARCH</span></button></div>
+                <div class="col-sm-3"><button class="search-interogation pink btn" onclick="clearCancellation()"><span class="search-span">CLEAR</span></button></div>
+                <div class="col-sm-3"><button class="search-interogation pink btn" onclick="removeSousMenu()"><span class="search-span">CLOSE</span></button></div>
+            </div>
+        </div>
+
+        <div class="col-sm-9">
+            <div class="ajax-loader">
+                <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+
+            </div>
+            <div class="table-record-display" style="height:694px;overflow:auto">
+
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <table class="table table-cancellation">
+                <tr>
+                    <td width="38%">Total No of Doc CANX</td>
+                    <td width="27%"><input type="text" class="form-control" name="" id="newtotalCanx" /> </td>
+                </tr>
+                <tr>
+                    <td>Total No of Doc CANN</td>
+                    <td><input type="text" class="form-control" name="" id="newtotalCann" /></td>
+                </tr>
+                <tr>
+                    <td>Total No of Doc CANR</td>
+                    <td><input type="text" class="form-control" name="" id="newtotalCanr" /></td>
+                </tr>
+                <tr>
+                    <td>Total No of Doc OTHERS</td>
+                    <td><input type="text" class="form-control" name="" id="newtotalOther" /></td>
+                </tr>
+            </table>
+
+            <table class="table table-cancellation">
+                <tr>
+                    <td width="38%">Total No of Doc</td>
+                    <td width="27%"><input type="text" class="form-control" name="" id="newtotalDoc" /></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="AgentCodeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="Doc modal-content" style="width: 58%;left: 17%; background-color: rgba(135, 206, 235, 1) !important; ">
+            <div class="agentModal">
+                <div class="modal-header" style="background-color: white; margin-bottom: 21px;">
+                    <h5 class="modal-title" id="myModalLabel">FrmCustomAgentQuery</h5>
+                    <button type="button" class="close close-agent-code" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="DocCollect-modal-body">
+                    <div class="scoll-tree scoll-agent-code">
+                        <div class="head-agent-code-content">
+                            <div class="form-row">
+                                <div class="col col-md-3" style="padding-left: 0px;">Agent Legal Name:</div>
+                                <div class="col col-md-4">
+                                    <input type="text" class="form-control" id="name" name="agentName" onkeyup="CherchByCodeCancellation(this.value)" />
+                                </div>
+                                <div class="col col-md-2">Agent Code:</div>
+                                <div class="col col-md-3">
+                                    <input type="text" class="form-control" id="code" name="agentCode" onkeyup="CherchByCodeCancellation(this.value)" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="agentContent" style="width: 98%; max-height: 515px;">
+                            <table class="table table-agent-code" style="margin-bottom:0px">
+                                <thead>
+                                    <tr>
+                                        <th width="35%">Agent Code</th>
+                                        <th width="50%">Agent Name</th>
+                                        <th width="15%">Cancel Count</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <div class="autocomplete">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="background-color:rgba(135, 206, 235, 1) !important;">
+                    <div class="col-md-9 footer-agent-code">
+                        <div class="col-md-12">
+                            <label>Agent Name: </label>
+                            <label style="color:white;font-size:12px" id="agent-name-label"></label>
+                        </div>
+                        <div class="col-md-12">
+                            <label>Agent Code: </label>
+                            <label style="color:white; font-size:12px" id="agent-code-label"></label>
+                        </div>
+                    </div>
+                    <div class="col-md-3" id="select-agent-code">
+                        <button type="button" class="Close btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="Close btn" data-dismiss="modal" onclick="selectNameCode()">Select</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,393 @@
+﻿@using System.Data
+@model DataSet
+<div class="col-sm-11 tab-content tab-cancellation">
+    <div class="content-cancellation col-sm-11" style="top: 21px;">
+        <fieldset class="test-fieldst1" style="position: relative;top: -30px;">
+            <legend class="test-fieldst">Original Ticket Details</legend>
+            <table class="tab-refundEng" style="position:relative;left:2%;border-spacing: 5px;">
+                @{ string faredif = ""; }
+                @foreach (DataRow dr in ViewBag.originDetail.Tables[0].Rows)
+                {
+                    faredif = dr[ViewBag.originDetail.Tables[0].Columns[0].ColumnName].ToString();
+                    <tr>
+                        <td>Ticket Number</td>
+                        <td><input type="text" class="form-engine width-engine" value="@ViewBag.originDoc" /></td>
+                        <td class="padding-engine">
+                            Fare <input type="text" class="form-engine width-engine" style="width: 50px !important;" value="@dr[ViewBag.originDetail.Tables[0].Columns[0].ColumnName].ToString()" />
+                        </td>
+                        <td><input type="text" class="form-engine" value="@dr[ViewBag.originDetail.Tables[0].Columns[1].ColumnName].ToString()" /></td>
+                        <td class="padding-engine">EFP <input type="text" class="form-engine width-engine" style="width: 50px !important;" value="@dr[ViewBag.originDetail.Tables[0].Columns[2].ColumnName].ToString()" /></td>
+                        <td><input type="text" class="form-engine" value="@dr[ViewBag.originDetail.Tables[0].Columns[3].ColumnName].ToString()" /></td>
+                        <td class="padding-engine">Agent Num Code</td>
+                        <td><input type="text" class="form-engine width-engine" value="@dr[ViewBag.originDetail.Tables[0].Columns[4].ColumnName].ToString()" /></td>
+                        <td class="padding-engine">Transaction Code </td>
+                        <td><input type="text" class="form-engine width-engine" value="@dr[ViewBag.originDetail.Tables[0].Columns[5].ColumnName].ToString()" /></td>
+                        <td class="padding-engine">Amount Collected </td>
+                        <td><input type="text" class="form-engine width-engine" value="@dr[ViewBag.originDetail.Tables[0].Columns[9].ColumnName].ToString()" /></td>
+                    </tr>
+
+                        <tr>
+                            <td>Original Routing</td>
+                            <td colspan="5"><textarea rows="4" style="width: 100%;">@dr[ViewBag.originDetail.Tables[0].Columns[8].ColumnName].ToString()</textarea></td>
+                            <td class="padding-engine">Doc Type</td>
+                            <td> <input type="text" class="form-engine width-engine" value="@dr[ViewBag.originDetail.Tables[0].Columns[7].ColumnName].ToString()" /></td>
+                            <td class="padding-engine">Date of Issue</td>
+                            <td><input type="text" class="form-engine width-engine" value="@dr[ViewBag.originDetail.Tables[0].Columns[6].ColumnName].ToString()" /></td>
+                        </tr>
+                        <tr>
+                            <td colspan="6"></td>
+                            <td colspan="5" class="padding-engine"><button type="button" class="btn-close btn" onclick="showMoreDetailsEx('@ViewBag.originDoc')" style="width: 81.2%;">View All Exchanged Tickets Against Original Ticket</button></td>
+                        </tr>
+                }
+
+            </table>
+        </fieldset>
+    </div>
+    <div class="content-cancellation col-sm-11">
+        <fieldset class="test-fieldst1" style="position: relative;top: -29px;">
+            <legend class="test-fieldst">New Ticket Details</legend>
+            <table class="tab-refundEng" style="position:relative;left:2%;border-spacing: 1px;">
+                @foreach (DataRow dr in ViewBag.newDetail.Tables[0].Rows)
+                {
+                    <tr>
+                        <td>Ticket Number</td>
+                        <td><input type="text" class="form-engine width-engine" value="@ViewBag.newDoc" /></td>
+                        <td class="padding-engine">
+                            Fare <input type="text" class="form-engine width-engine" style="width: 50px !important;" value="@dr[ViewBag.newDetail.Tables[0].Columns[0].ColumnName].ToString()" />
+                        </td>
+                        <td><input type="text" class="form-engine" value="@dr[ViewBag.newDetail.Tables[0].Columns[1].ColumnName].ToString()" /></td>
+                        <td class="padding-engine">EFP <input type="text" class="form-engine width-engine" style="width: 50px !important;" value="@dr[ViewBag.newDetail.Tables[0].Columns[2].ColumnName].ToString()" /></td>
+                        <td><input type="text" class="form-engine" value="@dr[ViewBag.newDetail.Tables[0].Columns[3].ColumnName].ToString()" /></td>
+                        <td class="padding-engine">Agent Num Code</td>
+                        <td><input type="text" class="form-engine width-engine" value="@dr[ViewBag.newDetail.Tables[0].Columns[4].ColumnName].ToString()" /></td>
+                        <td class="padding-engine">Transaction Code </td>
+                        <td><input type="text" class="form-engine width-engine" value="@dr[ViewBag.newDetail.Tables[0].Columns[5].ColumnName].ToString()" /></td>
+                        <td class="padding-engine">Amount Collected </td>
+                        <td><input type="text" class="form-engine width-engine" value="@dr[ViewBag.newDetail.Tables[0].Columns[9].ColumnName].ToString()" /></td>
+                    </tr>
+                    <tr>
+                        <td>Original Routing</td>
+                        <td colspan="5"><textarea rows="4" style="width: 100%;">@dr[ViewBag.newDetail.Tables[0].Columns[8].ColumnName].ToString()</textarea></td>
+                        <td class="padding-engine">Doc Type</td>
+                        <td> <input type="text" class="form-engine width-engine" value="@dr[ViewBag.newDetail.Tables[0].Columns[7].ColumnName].ToString()" /></td>
+                        <td class="padding-engine">Date of Issue</td>
+                        <td><input type="text" class="form-engine width-engine" value="@dr[ViewBag.newDetail.Tables[0].Columns[6].ColumnName].ToString()" /></td>
+                    </tr>
+                }
+            </table>
+        </fieldset>
+    </div>
+    <div class="content-cancellation col-sm-11" style="top:2px">
+        <fieldset class="test-fieldst1">
+            <legend class="test-fieldst">Additional Information of the New Document</legend>
+            <ul class="nav nav-tabs">
+                <li class="active" style="margin-left: 6px"><a data-toggle="tab" href="#bmp70" class="nav-pax">Bmp70 Reason For Issuance</a></li>
+                <li><a data-toggle="tab" href="#bmp71" class="nav-pax">Bmp71 Additional Information</a></li>
+                <li><a data-toggle="tab" href="#bmp72" class="nav-pax">Bmp72 Amount In Letters</a></li>
+                <li><a data-toggle="tab" href="#bmp73" class="nav-pax">Bmp73 Airline Information</a></li>
+                <li><a data-toggle="tab" href="#bmp74" class="nav-pax">Bmp74 Document Print Lines</a></li>
+                <li><a data-toggle="tab" href="#bmp75" class="nav-pax">Bmp75 ECoupon Records</a></li>
+                <li><a data-toggle="tab" href="#bmp76" class="nav-pax">Bmp76 ERemark Records</a></li>
+                <li><a data-toggle="tab" href="#penality" class="nav-pax">PENALITY</a></li>
+            </ul>
+            <div class="tab-content" style="height:150px;background-color:white">
+                <div id="bmp70" class="tab-pane fade in active">
+                    <table class="table table-bordered table-striped" style="width: 41%;">
+                        <thead>
+                            <tr>
+                                <th class="pink">Ticket Document No.</th>
+                                <th class="pink">Reason For Issuance Code</th>
+                                <th class="pink">Reason For Issuance Code1</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (DataRow dr in ViewBag.bmd70.Tables[0].Rows)
+                            {
+                                <tr>
+                                    @for (int i = 0; i < ViewBag.bmd70.Tables[0].Columns.Count; i++)
+                                    {
+                                        <td>@dr[ViewBag.bmd70.Tables[0].Columns[i].ColumnName].ToString()</td>;
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div id="bmp71" class="tab-pane fade">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th class="pink">Ticket Document No.</th>
+                                <th class="pink">In Connection With Doc No.</th>
+                                <th class="pink">Bank Exchange Rate</th>
+                                <th class="pink">MPD EquiCharge Paid</th>
+                                <th class="pink">MPD Other Charges</th>
+                                <th class="pink">MPD Service Charge</th>
+                                <th class="pink">MPD Total</th>
+                                <th class="pink">MPD Exchange Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (DataRow dr in ViewBag.bmd71.Tables[0].Rows)
+                            {
+                                <tr>
+                                    @for (int i = 0; i < ViewBag.bmd71.Tables[0].Columns.Count; i++)
+                                    {
+                                        <td>@dr[ViewBag.bmd71.Tables[0].Columns[i].ColumnName].ToString()</td>;
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div id="bmp72" class="tab-pane fade">
+                    <table class="table table-bordered table-striped" style="width: 30%;">
+                        <thead>
+                            <tr>
+                                <th class="pink">Ticket Document No.</th>
+                                <th class="pink">Amount in Letters</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (DataRow dr in ViewBag.bmd72.Tables[0].Rows)
+                            {
+                                <tr>
+                                    @for (int i = 0; i < ViewBag.bmd72.Tables[0].Columns.Count; i++)
+                                    {
+                                        <td>@dr[ViewBag.bmd72.Tables[0].Columns[i].ColumnName].ToString()</td>;
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div id="bmp73" class="tab-pane fade">
+                    <table class="table table-bordered table-striped" style="width: 30%;">
+                        <thead>
+                            <tr>
+                                <th class="pink">Ticket Document No.</th>
+                                <th class="pink">Optional Agency Airline Information</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (DataRow dr in ViewBag.bmd73.Tables[0].Rows)
+                            {
+                                <tr>
+                                    @for (int i = 0; i < ViewBag.bmd73.Tables[0].Columns.Count; i++)
+                                    {
+                                        <td>@dr[ViewBag.bmd73.Tables[0].Columns[i].ColumnName].ToString()</td>;
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div id="bmp74" class="tab-pane fade">
+                    <table class="table table-bordered table-striped" style="width: 41%;">
+                        <thead>
+                            <tr>
+                                <th class="pink">Ticket Document No.</th>
+                                <th class="pink">Print Line Identifier</th>
+                                <th class="pink">Print Line Text</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (DataRow dr in ViewBag.bmd74.Tables[0].Rows)
+                            {
+                                <tr>
+                                    @for (int i = 0; i < ViewBag.bmd74.Tables[0].Columns.Count; i++)
+                                    {
+                                        <td>@dr[ViewBag.bmd74.Tables[0].Columns[i].ColumnName].ToString()</td>;
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div id="bmp75" class="tab-pane fade">
+                    <div style="overflow-x:auto">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="pink">Ticket Document No.</th>
+                                    <th class="pink">EMD Coupon Number</th>
+                                    <th class="pink">EMD Coupon Value</th>
+                                    <th class="pink">EMD Coupon Currency</th>
+                                    <th class="pink">EMD Related Ticket No.</th>
+                                    <th class="pink">EMD Reason For Issuance Sub Code</th>
+                                    <th class="pink">EMD Fee Owner Airline Designator</th>
+                                    <th class="pink">EMD Excess Baggage Over Allowance Q</th>
+                                    <th class="pink">EMD Excess Baggage Total Nu Ex</th>
+                                    <th class="pink">EMD Consume dat Issuance Indicator</th>
+                                    <th class="pink">EMD Excess Baggage Curr Ty</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (DataRow dr in ViewBag.bmd75.Tables[0].Rows)
+                                {
+                                    <tr>
+                                        @for (int i = 0; i < ViewBag.bmd75.Tables[0].Columns.Count; i++)
+                                        {
+                                            <td>@dr[ViewBag.bmd75.Tables[0].Columns[i].ColumnName].ToString()</td>;
+                                        }
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div id="bmp76" class="tab-pane fade">
+                    <table class="table table-bordered table-striped" style="width: 41%;">
+                        <thead>
+                            <tr>
+                                <th class="pink">Ticket Document No.</th>
+                                <th class="pink">Coupon Number</th>
+                                <th class="pink">EMD Remarks</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (DataRow dr in ViewBag.bmd76.Tables[0].Rows)
+                            {
+                                <tr>
+                                    @for (int i = 0; i < ViewBag.bmd76.Tables[0].Columns.Count; i++)
+                                    {
+                                        <td>@dr[ViewBag.bmd76.Tables[0].Columns[i].ColumnName].ToString()</td>;
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div id="penality" class="tab-pane fade">
+                    <table class="table table-bordered table-striped" style="width: 50%;">
+                        <thead>
+                            <tr>
+                                <th class="pink">Date Of Issue</th>
+                                <th class="pink">Currency Type</th>
+                                <th class="pink">Other Amount Code</th>
+                                <th class="pink">Other Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (DataRow dr in ViewBag.penality.Tables[0].Rows)
+                            {
+                                <tr>
+                                    @for (int i = 0; i < ViewBag.penality.Tables[0].Columns.Count; i++)
+                                    {
+                                        <td>@dr[ViewBag.penality.Tables[0].Columns[i].ColumnName].ToString()</td>;
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+
+    <div class="content-cancellation col-sm-11">
+        <div class="col-sm-9" style="left:10%">
+            <div class="panel">
+                <div class="panel-heading" style="padding: 4px 0px;background-color:rgb(68, 35, 89)">
+                    <table class="tab-refundEng" style="position:relative;left:2%;border-spacing: 5px;width:100%">
+                        <tr>
+                            <td class="label-panel">Cpn Exchanged</td>
+                            <td><input type="text" class="form-engine width-engine" value="@ViewBag.cpnExchange" /></td>
+                            <td class="padding-engine label-panel">@ViewBag.descTicket</td>
+                            <td class="padding-engine label-panel">Fare Difference <input type="text" class="form-engine width-engine" style="width: 50px !important;color:black" value="@faredif" /></td>
+                            <td><input type="text" class="form-engine width-engine" value="@ViewBag.differentFare"/></td>
+                            <td></td>
+                            <td class="padding-engine label-panel">@ViewBag.labelText</td>
+                            <td class="padding-engine label-panel">Fare Difference in USD</td>
+                            <td><input type="text" class="form-engine width-engine" value=""/></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="panel-body" style="height:128px; padding:0px;overflow-y:auto;overflow-x:hidden">
+                    <div class="col-sm-12">
+                        <div class="col-sm-5">
+                            <label id="originalTick">ORIGINAL TICKET</label>
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="pink">Cpn</th>
+                                        <th class="pink">Status</th>
+                                        <th class="pink">Sec Org</th>
+                                        <th class="pink">Carr</th>
+                                        <th class="pink">Sec Dest</th>
+                                        <th class="pink">Usage Date</th>
+                                        <th class="pink">Share Values</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="originalTicket">
+                                    @foreach (DataRow dr in ViewBag.displayOriginDetail.Tables[0].Rows)
+                                    {
+                                        <tr>
+                                            @for (int i = 0; i < ViewBag.displayOriginDetail.Tables[0].Columns.Count; i++)
+                                            {
+                                                <td>@dr[ViewBag.displayOriginDetail.Tables[0].Columns[i].ColumnName].ToString()</td>;
+                                            }
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-5">
+                            <label id="newTick">NEW TICKET</label>
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="pink">Cpn</th>
+                                        <th class="pink">Status</th>
+                                        <th class="pink">Sec Org</th>
+                                        <th class="pink">Carr</th>
+                                        <th class="pink">Sec Dest</th>
+                                        <th class="pink">Usage Date</th>
+                                        <th class="pink">Share Values</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="newTicket">
+                                    @foreach (DataRow dr in ViewBag.DisplayNewDetails.Tables[0].Rows)
+                                    {
+                                        <tr>
+                                            @for (int i = 0; i < ViewBag.DisplayNewDetails.Tables[0].Columns.Count; i++)
+                                            {
+                                                <td>@dr[ViewBag.DisplayNewDetails.Tables[0].Columns[i].ColumnName].ToString()</td>;
+                                            }
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer" style="background-color:rgb(68,35,89);padding: 4px 0px;">
+                    <table class="tab-refundEng" style="position:relative;left:2%;width:96%;border-spacing: 1px;">
+                        <tr>
+                            <td width="22%" class="label-panel">Total Original Document Prorated Values (USD)</td>
+                            <td width="5%"><input type="text" class="form-engine" id="oldProrateValue" /></td>
+                            <td style="width:45%"></td>
+                            <td width="20%" class="label-panel">New Prorated Value Exchanged (USD)</td>
+                            <td width="5%"><input type="text" class="form-engine" id="newProrateValue" /></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <table class="tab-refundEng" style="position:relative;left:2%;width:96%;border-spacing: 1px;">
+                <tr>
+                    <td width="12%" id="amountCruded"></td>
+                    <td width="5%"><input type="text" class="form-engine" id="valueAmountCruded" /></td>
+                    @if (ViewBag.labelText == "REFUND")
+                    {
+                        <td class="padding-engine" style="width:21%">Recover ISC [if applicable -RAM A11 3(b)ii]</td>
+                        <td width="5%"><input type="text" class="form-engine" /></td>
+                        <td width="7%" class="padding-engine">Net Billing</td>
+                        <td width="5%"><input type="text" class="form-engine" value="@ViewBag.txtNetBilling" /></td>
+                    }
+                    <td style="float:right"><button type="button" class="btn btn-close" onclick="closeTab('tabExchangeTicket')">CLOSE TAB</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

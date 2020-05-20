@@ -1,0 +1,83 @@
+﻿<div class="container-remuneration container-pax1" style="background-color: rgb(117, 228, 252);height:93vh">
+    <div class="row">
+        <div class="col-sm-4">
+            <fieldset class="test-fieldst">
+                <legend class="test-fieldst">Date Of Issue</legend>
+                <div class="col-sm-2"><span class="titre-text">From :</span></div>
+                <div class="col-sm-4" style="top:-5px" id="divfinalSareFrom">
+                    <div class="input-group">
+                        <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('finalSareFrom')"></span>
+                        <input type="text" class="form-control" id="finalSareFrom" value="@ViewBag.date[0]" style="padding-right:3px">
+                    </div>
+                </div>
+                <div class="col-sm-2"><span class="titre-text">To :</span></div>
+                <div class="col-sm-4" style="top:-5px" id="divfinalSareTo">
+                    <div class="input-group">
+                        <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('finalSareTo')"></span>
+                        <input type="text" class="form-control" id="finalSareTo" value="@ViewBag.date[0]" style="padding-right:3px">
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="col-sm-5" style="top:10px;">
+            <fieldset class="test-fieldst" style="height:44px;">
+                <div class="col-sm-4" style="top:6px;"><span class="titre-text">Residual Value threshold</span></div>
+                <div class="col-sm-2" style="top:1px;"><input type="text" class="myForm" id="residual" /></div>
+                <div class="col-sm-2" style="top:5px;"><button class="btn-default btn-search" onclick="searchfinalsharevalidation()">SEARCH</button></div>
+                <div class="col-sm-2" style="top:5px;"><button class="btn-default btn-search" onclick="clearfinalsharevalidation()">CLEAR</button></div>
+                <div class="col-sm-2" style="top:5px;"><button class="btn-default btn-search" onclick="removeSousMenu()">CLOSE</button></div>
+            </fieldset>
+        </div>
+    </div>
+    <div id="content-finalShare">
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="display-datashare" >
+                    <div class="ajax-loader">
+                        <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+                    </div>
+                    <table class="table-bordered" style="width:100%;height:100% !important" id="tablefinalsharevalidation">
+                        <thead>
+                            <tr>
+                                <th class="green-tabprocess" style="text-align:center">Rownum</th>
+                                <th class="green-tabprocess" style="text-align:center">Date Of Issue</th>
+                                <th class="green-tabprocess" style="text-align:center">Doc No</th>
+                                <th class="green-tabprocess" style="text-align:center">Cpn</th>
+                                <th class="green-tabprocess" style="text-align:center">Carrier</th>
+                                <th class="green-tabprocess" style="text-align:center">Billing Type</th>
+                                <th class="green-tabprocess" style="text-align:center">Ori</th>
+                                <th class="green-tabprocess" style="text-align:center">Des</th>
+                                <th class="green-tabprocess" style="text-align:center">RBD</th>
+                                <th class="green-tabprocess" style="text-align:center">Fare Basis</th>
+                                <th class="green-tabprocess" style="text-align:center">PM</th>
+                                <th class="green-tabprocess" style="text-align:center">Differentials</th>
+                                <th class="green-tabprocess" style="text-align:center">Surcharges</th>
+                                <th class="green-tabprocess" style="text-align:center">Final Share</th>
+                                <th class="green-tabprocess" style="text-align:center">Fare</th>
+                                <th class="green-tabprocess" style="text-align:center">Equivalent Fare</th>
+                                <th class="green-tabprocess" style="text-align:center">Tax And Surcharge</th>
+                                <th class="green-tabprocess" style="text-align:center">Total Amount</th>
+                                <th class="green-tabprocess" style="text-align:center">ROE</th>
+                                <th class="green-tabprocess" style="text-align:center">Fare In USD</th>
+                                <th class="green-tabprocess" style="text-align:center">Residual Value</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-7">
+                <fieldset class="test-fieldst" style="height: 85px; position:relative;top:24px;">
+                    <div class="col-sm-3" style="top:26px"><span class="titre-text">Number of Record per Page</span></div>
+                    <div class="col-sm-2" style="top:25px"><input type="text" class="myForm" id="countShare" value="150" readonly /></div>
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-1" style="top:30px;left:40px;"><button class="btn-default" style="width:50px"><</button></div>
+                    <div class="col-sm-1" style="top:25px"><input type="text" class="myForm" id="pageShare" /></div>
+                    <div class="col-sm-1" style="top:30px;left:-15px;"><button class="btn-default" style="width:50px">></button></div>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,186 @@
+﻿<div class="provisio-content">
+    <div class="row">
+        <div class="col-sm-12" style="top:10px;">
+            <div class="col-sm-2">
+                <input type="text" class="myForm" id="provisio" value="...." />
+            </div>
+            <div class="col-sm-1" style="top:5px"><button class="btn-default btn-new" style="width:30px;">...</button></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12" style="top:25px">
+            <div class="col-sm-3">
+                <div class="col-sm-12">
+                    <div id="provisio-left"></div>
+                </div>
+                <div class="col-sm-9"></div>
+                <div class="col-sm-2" style="top:5px;"><button class="btn-default btn-search" onclick="removeSousMenu()">close</button></div>
+            </div>
+            <div class="col-sm-9">
+                <ul class="nav nav-tabs mynav">
+                    <li class="active"><a data-toggle="tab" href="#provisionEntries" class="nav-provisio">Provision Entries</a></li>
+                    <li><a data-toggle="tab" href="#sectionA" class="nav-provisio" id="tab-intbil">Section A</a></li>
+                    <li><a data-toggle="tab" href="#sectionB" class="nav-provisio" id="tab-intbil">Section B</a></li>
+                    <li><a data-toggle="tab" href="#sectionCparser" class="nav-provisio" id="tab-intbil">Section C Parser</a></li>
+                    <li><a data-toggle="tab" href="#sectionC" class="nav-provisio" id="tab-intbil">Section C</a></li>
+                    <li><a data-toggle="tab" href="#testPlan" class="nav-provisio" id="tab-intbil">Test Plan</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div id="provisionEntries" class="tab-pane fade in active">
+                        <div class="border-entries">
+                            <div id="entries-content"></div>
+                        </div>
+
+                    </div>
+                    <div id="sectionA" class="tab-pane fade">
+                        <div class="border-entries">
+                            <div id="sectionA-content" class="section-content"></div>
+                        </div>
+                    </div>
+                    <div id="sectionB" class="tab-pane fade">
+                        <div class="border-entries">
+                            <div id="sectionB-content" class="section-content"></div>
+                        </div>
+                    </div>
+                    <div id="sectionCparser" class="tab-pane fade">
+                        <div class="border-entries">
+                            <div class="col-sm-12">
+                                <div class="sectionC-head">
+                                    <div class="col-sm-1" style="top:5px;">
+                                        <span class="titre-text"><b>Period</b></span>
+                                    </div>
+                                    <div class="col-sm-1" style="left:-70px;">
+                                        <select id="secperiod" class="myForm">
+                                            <option></option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-1" style="left:-100px">
+                                        <select id="secmounth" class="myForm">
+                                            <option></option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-1" style="left:-100px;top:5px"><span class="titre-text"><b>Airline</b></span></div>
+                                    <div class="col-sm-1" style="left:-170px;"><input type="text" class="myForm" id="secairline" readonly /></div>
+                                    <div class="col-sm-2" style="left:-170px;top:5px"><button style="background-color:rgb(240,240,240);width:125px;">Parse Section C</button></div>
+                                </div>
+                                <div id="sectionC-content" class="content-sectionC"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div id="sectionC" class="tab-pane fade">
+                        <div class="border-entries">
+                            <div class="col-sm-12">
+                                <div class="sectionC-head">
+                                    <div class="col-sm-1" style="top:5px;">
+                                        <span class="titre-text"><b>Period</b></span>
+                                    </div>
+                                    <div class="col-sm-1" style="left:-70px;">
+                                        <select id="secperiod1" class="myForm">
+                                            <option></option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-1" style="left:-100px">
+                                        <select id="secmounth1" class="myForm">
+                                            <option></option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-1" style="left:-100px;top:5px"><span class="titre-text"><b>Airline</b></span></div>
+                                    <div class="col-sm-1" style="left:-170px;"><input type="text" class="myForm" id="secairline" readonly /></div>
+                                    <div class="col-sm-2" style="left:-170px;top:5px"><button style="background-color:rgb(240,240,240);width:175px;">Update Provisio Table</button></div>
+                                    <div class="col-sm-3"></div>
+                                    <div class="col-sm-2" style="left: 455px;top: 5px;">
+                                        <input type="checkbox" id="sectCprov" />
+                                        <span class="titre-text"><b>JAPS</b></span>
+                                    </div>
+                                </div>
+                                <div id="sectionC-content1" class="content-sectionC"></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div id="testPlan" class="tab-pane fade">
+                        <div class="border-entries">
+                            <div id="testplan-content">
+                                <div class="row">
+                                    <div class="col-sm-3"><span class="titre-text"><b>Period</b></span></div>
+                                    <div class="col-sm-2"><input type="text" class="myForm" id="testPeriod" /></div>
+                                    <div class="col-sm-1"><span class="titre-text"><b>Airline</b></span></div>
+                                    <div class="col-sm-2"><input type="text" class="myForm" id="testAirline" /></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <input type="checkbox" id="journey" />
+                                        <span class="titre-text"><b>Journey Originating From</b></span>
+                                    </div>
+                                    <div class="col-sm-2"><input type="text" class="myForm" id="journeyDate" /></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <input type="checkbox" id="atbp" />
+                                        <span class="titre-text"><b>ATBP</b></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <input type="checkbox" id="journey" />
+                                        <span class="titre-text"><b>Between/Within</b></span>
+                                    </div>
+                                    <div class="col-sm-2"><input type="text" class="myForm" id="between" /></div>
+                                    <div class="col-sm-1"><span class="titre-text"><b>AND</b></span></div>
+                                    <div class="col-sm-2"><input type="text" class="myForm" id="within" /></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <input type="checkbox" id="journey" />
+                                        <span class="titre-text"><b>From</b></span>
+                                    </div>
+                                    <div class="col-sm-2"><input type="text" class="myForm" id="datePlanFrom" /></div>
+                                    <div class="col-sm-1"><span class="titre-text"><b>To</b></span></div>
+                                    <div class="col-sm-2"><input type="text" class="myForm" id="datePlanTo" /></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3"><span class="titre-text"><b>Flight Date</b></span></div>
+                                    <div class="col-sm-2"><input type="text" class="myForm" id="fldatePlan" /></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3"><span class="titre-text"><b>Class</b></span></div>
+                                    <div class="col-sm-2"><input type="text" class="myForm" id="classPlan" /></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3"><span class="titre-text"><b>Fare</b></span></div>
+                                    <div class="col-sm-2"><input type="text" class="myForm" id="farePlan" /></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3"><span class="titre-text"><b>Pax Fare Type</b></span></div>
+                                    <div class="col-sm-2"><input type="text" class="myForm" id="paxfarePlan" /></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3"><span class="titre-text"><b>Exception</b></span></div>
+                                    <div class="col-sm-2"><input type="text" class="myForm" id="exception" /></div>
+                                    <div class="col-sm-1"></div>
+                                    <div class="col-sm-2"><button style="background-color:rgb(240,240,240);width:90px">check</button></div>
+                                </div>
+                                <div class="row" style="background-color:rgb(240,240,240)">
+
+                                    <div class="col-sm-3"><span class="titre-text"><b>Provisio</b></span></div>
+                                    <div class="col-sm-2"><input type="text" class="myForm" id="provisioPlan" /></div>
+
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6"></div>
+                                    <div class="col-sm-2"><button style="background-color:rgb(240,240,240);width:120px">LOG TEST DATA</button></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,167 @@
+﻿
+<div style="background-color: RGB(135,206,235);height: 100vh;">
+    <div class="col-sm-12" style="top:11px">
+        <div class="col-sm-10 n-padding" style="border: 1px solid #777777;box-shadow: 1px -1px 0px 2px white;top: 15px;padding: 8px !important;">
+            <div class="col-sm-10">
+                <div class="col-sm-6" style="top: 3px;">
+                    <fieldset class="test-fieldst legent-issue-date" style="border: 1px solid white !important;padding: 11px;">
+                        <legend class="test-fieldst" style="background-color:transparent">Process Date</legend>
+                        <div class="col-sm-4 n-padding">
+                            <div class="input-group date" id="divprocessdatefrom">
+
+                                <span class="input-group-addon check-dape"><input type="checkbox" name="dtpIssueDateFrom" id="dtpFromChecked" @ViewBag.dtpFromChecked></span>
+
+                                <input type="text" name="dtpFromValue" id="dtpFromValue" class="form-controls input-date" value="@ViewBag.dtpFromValue" onchange="onchangedtpToValue()"/>
+                                <span class="input-group-addon datetimepicker" onclick="setdate('dtpFromValue')">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="col-sm-1">
+                            <label class="form-check-label col-form-label">To:</label>
+                        </div>
+                        <div class="col-sm-4 n-padding">
+                            <div class="input-group date" id="divprocessdateto">
+
+                                <span class="input-group-addon check-dape"><input type="checkbox" name="dtpIssueDateTo" id="dtpToChecked" @ViewBag.dtpToChecked></span>
+
+                                <input type='text' name="dtpToValue" id="dtpToValue" class="form-controls input-date input-datetimepicker" value="@ViewBag.dtpToValue" onchange="onchangedtpToValue()"/>
+                                <span class="input-group-addon datetimepicker" onclick="setdate('dtpToValue')">
+                                    <span class="glyphicon glyphicon-calendar" id="calendarPaxTo"></span>
+                                </span>
+
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-sm-5" style="top: 37px;">
+                    <div class="col-sm-1">
+                        <label class="form-check-label col-form-label">Error Message:</label>
+                    </div>
+                    <div class="col-sm-8 n-padding">
+                        <input type="hidden" id="ag" value="%" />
+                        <select class="form-control" id="selectpev" onchange="onchangeselectpev()">
+                            <option value="-All-">-All-</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-10">
+                <div class="col-sm-6">
+                    <fieldset class="test-fieldst legent-issue-date" style="border: 1px solid white !important;padding: 11px;">
+                        <legend class="test-fieldst" style="background-color:transparent">Issue Date</legend>
+                        <div class="col-sm-4 n-padding">
+                            <div class="input-group date" id="divissuedatefrom">
+
+                                <span class="input-group-addon check-dape"><input type="checkbox" name="dtpIssueDateFrom" id="dtpIssueDateFromChecked" @ViewBag.dtpIssueDateFromChecked></span>
+
+                                <input type="text" name="dtpIssueDateFromValue" id="dtpIssueDateFromValue" class="form-controls input-date" value="@ViewBag.dtpIssueDateFromValue" onchange="onchangedtpToValue()"/>
+                                <span class="input-group-addon datetimepicker" onclick="setdate('dtpIssueDateFromValue')">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="col-sm-1">
+                            <label class="form-check-label col-form-label">To:</label>
+                        </div>
+                        <div class="col-sm-4 n-padding">
+                            <div class="input-group date" id="divissuedateto">
+
+                                <span class="input-group-addon check-dape"><input type="checkbox" name="dtpIssueDateTo" id="dtpIssueDateToChecked" @ViewBag.dtpIssueDateToChecked></span>
+
+                                <input type='text' name="dtpIssueDateToValue" id="dtpIssueDateToValue" class="form-controls input-date input-datetimepicker" value="@ViewBag.dtpIssueDateToValue" onchange="onchangedtpToValue()"/>
+                                <span class="input-group-addon datetimepicker" onclick="setdate('dtpIssueDateToValue')">
+                                    <span class="glyphicon glyphicon-calendar" id="calendarPaxTo"></span>
+                                </span>
+
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-sm-3" style="top: 34px;">
+                    <div class="col-sm-1">
+                        <label class="form-check-label col-form-label">Document No:</label>
+                    </div>
+                    <div class="col-sm-6 n-padding">
+                        <input id="doc" name="doc" type="hidden" value="%"/>
+                        <input type="text" class="form-control" name="docpev" id="docpev" onchange="onchangedocpev()"/>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-sm-2" style="top:124px; position:absolute; width: 20%;left: 82%;">
+                <button class="btn btn-default" onclick="SEARCHpev()">SEARCH</button>
+                <button class="btn btn-default" onclick="clearpev()">CLEAR</button>
+                <button class="btn btn-default" onclick="removeSousMenu()">CLOSE</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-10 n-padding" style="top: 41px;background-color: white;height: 478px;left: 14px;overflow: auto;width: 82.3%;" id="divtablepev">
+        <div class="ajax-loader">
+            <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+        </div>
+        <table class="table table-bordered" id="tablepev" style="width:100% !important">
+            <thead>
+                <tr>
+                    <th class="pink">Document No</th>
+                    <th class="pink">Date Of Issue</th>
+                    <th class="pink">Fare Calculation Area</th>
+                    <th class="pink">Fare</th>
+                    <th class="pink">Equi. Fare</th>
+                    <th class="pink">Error Message</th>
+                    <th class="pink">Date Process</th>
+                    <th class="pink">Data Source</th>
+                    <th class="pink">AgentNumCode</th>
+                    <th class="pink">Endos. Restriction</th>
+                    <th class="pink">Transaction Code</th>
+                    <th class="pink">Original Doc No</th>
+                    <th class="pink">Additional Remarks</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-sm-12" style="top: 79px;">
+        <div class="col-sm-11">
+            <label id="label">|</label>
+            <div class="col-sm-2" style="float: right;">
+             <!--<button class="btn btn-default" type="button">Reprorate Errors</button>-->   
+            </div>
+        </div>
+
+        <div class="col-sm-10">
+            <label style="font-size: 12px;">No of Doc Unprorated with this Type FCA:</label> <label id="label1" style="margin-left:5px"> |</label>
+        </div>
+        <div class="col-sm-6 n-padding">
+            <label style="font-size: 12px;" class="col-sm-4">Total No. of Doc Unprorated Document:</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="txtDocCount" />
+            </div>
+        </div>
+        <div style="visibility:hidden" id="divfca">
+            <input type="hidden" id="fca" value=""/>
+        </div>
+    </div>
+</div>
+

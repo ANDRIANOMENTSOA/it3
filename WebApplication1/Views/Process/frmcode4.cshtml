@@ -1,0 +1,17 @@
+﻿@using System.Data
+@model DataSet
+<!--fait par christian-->
+<div class="col" id="newdivcboagt5farecomppricing">
+    <select type="text" id="cboagt5farecomppricing" class="myForm" onchange="onchangecboagt5farecomppricing(this.value)">
+        <option value="-All-">-All-</option>
+        <option class="form-control" value="@ViewBag.code" selected>@ViewBag.code</option>
+        @for (int i = 0; i < ViewBag.loncboagt5; i++)
+        {
+            <option class="form-control" value="@ViewBag.Listecboagt5[0, i]">@ViewBag.Listecboagt5[0, i]</option>
+        }
+    </select>
+</div>
+
+<div class="col" id="newdivfare-Agn"><input type="text" id="fare-Agn" class="myForm" value="@ViewBag.agtname4"/></div>
+
+<div class="col" id="newdivfare-Agc"><input type="text" id="fare-Agc" class="myForm" value="@ViewBag.agtpos4"/></div>

@@ -1,0 +1,10 @@
+﻿<div class="col" id="newdivcboRAChargeCode">
+    <select style="width: 345px;" id="cboRAChargeCode">
+        <option value="--ALL--">--ALL--</option>
+        @for(int i = 0; i < ViewBag.ligne; i++) { 
+            <option value="@ViewBag.cboRAChargeCode[i]">@ViewBag.cboRAChargeCode[i]</option>
+        }
+    </select>
+    <button id="button17" onclick="button17_Click_1rejectionanalytic()">Query</button>
+    <input type="text" style="display:none;" value="@ViewBag.cboRAChargeCodeSelectedIndex" id="cboRAChargeCodeSelectedIndex"/>
+</div>

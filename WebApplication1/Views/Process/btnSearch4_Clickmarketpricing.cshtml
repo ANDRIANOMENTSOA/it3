@@ -1,0 +1,48 @@
+﻿@using System.Data
+@model DataSet
+<!--fait par christian-->
+<div id="newcontent-market">
+    <input type="hidden" id="tempsmarket" value="@ViewBag.ligne"/>
+
+    <div class="ajax-loader">
+        <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+    </div>
+    <table class="table table-bordered tablehead">
+        <thead>
+            <tr>
+                <th class="green-tabprocess">Date Of Issue</th>
+                <th class="green-tabprocess">Purchase Day</th>
+                <th class="green-tabprocess">Agent No</th>
+                <th class="green-tabprocess">Agent Name</th>
+                <th class="green-tabprocess">POS</th>
+                <th class="green-tabprocess">Document No</th>
+                <th class="green-tabprocess">CPN</th>
+                <th class="green-tabprocess">FCMI</th>
+                <th class="green-tabprocess">Orig.</th>
+                <th class="green-tabprocess">Dest.</th>
+                <th class="green-tabprocess">Fare Basis</th>
+                <th class="green-tabprocess">RBD</th>
+                <th class="green-tabprocess">EndoRestriction</th>
+                <th class="green-tabprocess">Travel Date</th>
+                <th class="green-tabprocess">Travel Day</th>
+                <th class="green-tabprocess">Ticketing&COT Lapse</th>
+                <th class="green-tabprocess">FOP Type</th>
+                <th class="green-tabprocess">Remittance Currency</th>
+                <th class="green-tabprocess">Remittance Amount</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < ViewBag.ligne; i++)
+            {
+                <tr data-url="@Url.Action("PAXTKTs","Sales")" onclick="ajout(this, 'PAXTKTs', 'Sales', 'PAX TKTs');CellContentDoubleClick(this, '@ViewBag.Liste[i, 5]')">
+                    @for (int j = 0; j < ViewBag.colone; j++)
+                    {
+                        <td>@ViewBag.Liste[i, j]</td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<!-- fin fait par christian-->

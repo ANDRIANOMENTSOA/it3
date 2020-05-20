@@ -1,0 +1,2522 @@
+﻿//var symphony = "/symphony";
+var symphony = "";
+$("#firstDocNumber :input").prop("disabled", true);
+
+//// modal dans sales
+$('.ticket-payment').on('click', '#modal-ancillary', function () {
+    let url = symphony + "/Sales/PayementTFCs";
+    $.get(url, function (data) {
+        $('.modal-body').html(data);
+    });
+})
+
+function setdate(id) {
+    $("#" + id).datepicker({
+        changeYear: true,
+        yearRange: "2010:2035",
+        dateFormat: "dd-M-yy"
+    }).datepicker("show");
+    $("#dtpIssueDateFrom").prop("checked", true);
+    $("#dtpIssueDateTo").prop("checked", true);
+}
+
+function uncheked(id, id1, input, input1) {
+    if ($("#" + id).is(':checked')) {
+        $("#" + id).prop("checked", true);
+        $("#" + id1).prop("checked", true);
+    } else {
+        $("#" + id).prop("checked", false);
+        $("#" + id1).prop("checked", false);
+        $("#" + input).val('');
+        $("#" + input1).val('');
+    }
+}
+function uncheked1(id, id1, input, input1) {
+    if ($("#" + id1).is(':checked')) {
+        $("#" + id).prop("checked", true);
+        $("#" + id1).prop("checked", true);
+    } else {
+        $("#" + id).prop("checked", false);
+        $("#" + id1).prop("checked", false);
+        $("#" + input).val('');
+        $("#" + input1).val('');
+    }
+}
+
+function reduire(myid) {
+    //var i= myid;//console.log(i);
+    var etat = document.getElementById(myid).style.display;
+    if (etat == 'none') {
+        document.getElementById(myid).style.display = 'block';
+    }
+    else {
+        document.getElementById(myid).style.display = 'none';
+    }
+}
+
+function Ajaxs(array, classSuccess, url) {
+    $.ajax({
+        type: 'POST',
+        data: { dataValue: array },
+        url: url,
+        //async: false,
+        beforeSend: function () {
+            $('.ajax-loader').css("visibility", "visible");
+        },
+        success: function (data) {
+            $("." + classSuccess).html(data);
+        },
+        complete: function () {
+            $('.ajax-loader').css("visibility", "hidden");
+        },
+        error: function () {
+            $('#errorModal').modal('show');
+        }
+    });
+}
+
+function clearPax() {
+    let url = symphony + "/Sales/PAXTKTs";
+    let classe = "container-body-pricipal";
+    let data = "";
+    Ajaxs('', classe, url);
+}
+
+function postRequeteCriter(nextOrPreview, type, tab) { /// type = transaction code, tab = condition click group transaction code "little table"
+    let agentCode = $("#sqlCriteria [name=agentCode]").val();
+    let docummentNo = $("#sqlCriteria [name=docummentNo]").val();
+    let pnr = $("#sqlCriteria [name=pnr]").val();
+    let passengerName = $("#sqlCriteria [name=passengerName]").val();
+    let datedtpIssueDateFrom = $("#sqlCriteria [name=datedtpIssueDateFrom]").val();
+    let dtpIssueDateFrom = $("#sqlCriteria input[name=dtpIssueDateFrom]:checkbox:checked").val();
+    let dtpIssueDateTo = $("#sqlCriteria input[name=dtpIssueDateTo]:checkbox:checked").val();
+    let datedtpIssueDateTo = $("#sqlCriteria [name=datedtpIssueDateTo]").val();
+    let radContains = $("#sqlCriteria input:radio[name=radContains]:checked").val();
+    let domeInt = $("#sqlCriteria input:radio[name=domeInt]:checked").val();
+    let ownOal = $("#sqlCriteria input:radio[name=ownOal]:checked").val();
+    let lastRow = $("#lastRow").val();
+    let nbResult = $("#nbResult").val();
+    let next = $("#plus").val();
+    let preview = $("#moin").val();
+    let totalPage = $("#total-page").val();
+    let allerAjax = false;
+    let url = symphony + "/Sales/GetSearchCriteria";
+    if (nextOrPreview == "next") {
+        if (next <= totalPage) {
+            allerAjax = true;
+        }
+    }
+    if (nextOrPreview == "preview") {
+        if (preview != "0" && preview >= 1) {
+            allerAjax = true;
+        }
+    }
+
+    if (nextOrPreview == "last") {
+        if (next <= totalPage) {
+            allerAjax = true;
+        }
+    }
+    if (nextOrPreview == "first") {
+        if (preview != "0" && preview >= 1) {
+            allerAjax = true;
+        }
+    }
+
+    if (tab) {
+        allerAjax = true;
+        next = "";
+        preview = "";
+    }
+
+    if (allerAjax == true) {
+        $.ajax({
+            type: 'POST',
+            data: {
+                agentCode: agentCode, docummentNo: docummentNo, pnr: pnr, passengerName: passengerName,
+                datedtpIssueDateFrom: datedtpIssueDateFrom, dtpIssueDateFrom: dtpIssueDateFrom, dtpIssueDateTo: dtpIssueDateTo,
+                datedtpIssueDateTo: datedtpIssueDateTo, radContains: radContains, ownOal: ownOal, domeInt: domeInt, type: type,
+                lastRow: lastRow, nbResult: nbResult, nextOrPreview: nextOrPreview, next: next, preview: preview, totalPage: totalPage
+            },
+            url: url,
+            beforeSend: function () {
+                $('.ajax-loader').css("visibility", "visible");
+            },
+            success: function (data) {
+                console.log(data);
+                $("#table-pax").html($(data).filter('#newTable-pax'));
+                $(".transaction-code-record").html($(data).filter('#newCountTransaction'))
+                $(".Data-pagination").html($(data).filter('#infoPagination'));
+                $('#input-next').val($("#total-page").val());
+                $('#input-preview').val($("#moin").val());
+                let from = 1
+                if ($("#lastRow").val() > 1000) {
+                    from = $("#moin").val() * 1000 - 1000;
+                }
+                let to = $("#plus").val() * 1000 < $("#nbResult").val() ? $("#plus").val() * 1000 : $("#nbResult").val();
+                $('#input-nb-page').val(from + ' to ' + to + ' of ' + $("#nbResult").val());
+
+                if ($("#input-next").val() == $("#input-preview").val()) {
+                    $("#displayRecord").text("Completed");
+                } else {
+                    $("#displayRecord").text("Displaying record(s)");
+                }
+            },
+            complete: function () {
+                $('.ajax-loader').css("visibility", "hidden");
+            },
+            error: function () {
+                $('#errorModal').modal('show');
+            }
+        });
+    }
+
+}
+function postedSqlCriteria(nameController, nameAction) {
+
+    let url = symphony + "/Sales/GetSearchCriteria";
+    let type = $("#first-nav-tabs").find("li.active").text();
+    let agentCode = $("#sqlCriteria [name=agentCode]").val();
+    let docummentNo = $("#sqlCriteria [name=docummentNo]").val();
+    let pnr = $("#sqlCriteria [name=pnr]").val();
+    let passengerName = $("#sqlCriteria [name=passengerName]").val();
+    let datedtpIssueDateFrom = $("#sqlCriteria [name=datedtpIssueDateFrom]").val();
+    let dtpIssueDateFrom = $("#sqlCriteria input[name=dtpIssueDateFrom]:checkbox:checked").val();
+    let dtpIssueDateTo = $("#sqlCriteria input[name=dtpIssueDateTo]:checkbox:checked").val()
+    let datedtpIssueDateTo = $("#sqlCriteria [name=datedtpIssueDateTo]").val();
+    let radContains = $("#sqlCriteria input:radio[name=radContains]:checked").val();
+    let domeInt = $("#sqlCriteria input:radio[name=domeInt]:checked").val();
+    let ownOal = $("#sqlCriteria input:radio[name=ownOal]:checked").val();
+    let lastRow = $("#nbResult").val();
+    let nbResult = $("#nbResult").val();
+    let vide = false;
+    if (passengerName == '' && pnr == '' && docummentNo == '' && agentCode == '') { vide = true; }
+    if (vide == true && dtpIssueDateFrom == "on" && (datedtpIssueDateFrom == "" || datedtpIssueDateTo == "")) {
+        $('#alertModal').modal('show');
+        $("#msgalert").html("Select a date range");
+    } else if (vide == true && datedtpIssueDateFrom == "" && datedtpIssueDateTo == "") {
+        $('#alertModal').modal('show');
+        $("#msgalert").html("Please enter the criteria");
+    } else if (vide == true && dtpIssueDateFrom == undefined) {
+        $('#alertModal').modal('show');
+        $("#msgalert").html("Select the check box in the date range");
+    } else {
+
+        $.ajax({
+            type: 'POST',
+            data: {
+                agentCode: agentCode, docummentNo: docummentNo, pnr: pnr, passengerName: passengerName, datedtpIssueDateFrom: datedtpIssueDateFrom,
+                dtpIssueDateFrom: dtpIssueDateFrom, dtpIssueDateTo: dtpIssueDateTo, datedtpIssueDateTo: datedtpIssueDateTo, radContains: radContains,
+                ownOal: ownOal, domeInt: domeInt, type: type, lastRow: lastRow
+            },
+            url: url,
+            //async: false,
+            beforeSend: function () {
+                $('.ajax-loader').css("visibility", "visible");
+            },
+            success: function (data) {
+                $("#table-pax").html($(data).filter('#newTable-pax'));
+                //$("#countTransaction").html($(data).filter('#newCountTransaction'));
+                $(".transaction-code-record").html($(data).filter('#newCountTransaction'))
+                $(".Data-pagination").html($(data).filter('#infoPagination'));
+                let totalPage = $("#total-page").val();
+                $('#input-next').val(totalPage);
+                $('#input-preview').val($("#moin").val());
+                let from = 1
+                if ($("#lastRow").val() > 1000) {
+                    from = $("#moin").val() * 1000;
+                }
+
+                let to = $("#plus").val() * 1000 < $("#nbResult").val() ? $("#plus").val() * 1000 : $("#nbResult").val();
+                $('#input-nb-page').val(from + ' to ' + to + ' of ' + $("#nbResult").val());
+            },
+            complete: function () {
+                $('.ajax-loader').css("visibility", "hidden");
+                if ($("#input-next").val() == $("#input-preview").val()) {
+                    $("#displayRecord").text("Completed");
+                } else {
+                    $("#displayRecord").text("Displaying record(s)");
+                }
+            },
+            error: function () {
+                $('#errorModal').modal('show');
+            }
+        });
+    }
+
+}
+
+
+function previewValue() {
+    let type = "";
+    if ($('div#infoPagination #type').val() == "") {
+        type = "PAX TKTs";
+    } else {
+        type = $('div #infoPagination #type').val();
+    }
+    if ($("#input-preview").val() > 1) {
+        postRequeteCriter('preview', type, false);
+    }
+
+}
+
+function nextValue() {
+    let type = "";
+    if ($('div#infoPagination #type').val() == "") {
+        type = "PAX TKTs";
+    } else {
+        type = $('div #infoPagination #type').val();
+    }
+    if ($("#input-next").val() > $("#input-preview").val()) {
+        postRequeteCriter('next', type, false);
+    }
+
+
+}
+
+function fistValue() {
+    let type = "";
+    if ($('div#infoPagination #type').val() == "") {
+        type = "PAX TKTs";
+    } else {
+        type = $('div #infoPagination #type').val();
+    }
+    if ($("#input-preview").val() > 1) {
+        postRequeteCriter('first', type, false);
+    }
+
+}
+function lastValue() {
+    let type = "";
+    if ($('div#infoPagination #type').val() == "") {
+        type = "PAX TKTs";
+    } else {
+        type = $('div #infoPagination #type').val();
+    }
+    if ($("#input-next").val() > $("#input-preview").val()) {
+        postRequeteCriter('last', type, false);
+    }
+
+}
+
+function clickDocType(type) {
+    if (type == "TKTT") {
+        type = "PAX TKTs";
+    }
+    postRequeteCriter('none', type, true);
+}
+
+function clickLigneTransaction(docNumber, transactionCode, domInt) {
+    let url = symphony + "/Sales/Transaction";
+    $.ajax({
+        type: 'POST',
+        data: { docNumber: docNumber, transactionCode: transactionCode },
+        url: url,
+        //async: false,
+        beforeSend: function () {
+            $('.ajax-loader').css("visibility", "visible");
+        },
+        success: function (data) {
+            $('#tab-transaction').trigger('click');
+            $(".data-transaction").html(data);
+            if (domInt == "I") {
+                domInt = "INTERNATIONAL";
+            }
+            if (domInt == "D") {
+                domInt = "DOMESTIC";
+            }
+            $("#domInt").val(domInt);
+        },
+        complete: function () { 
+            $('.ajax-loader').css("visibility", "hidden");
+        },
+        error: function () {
+            $('#errorModal').modal('show');
+        }
+    });
+}
+function cherche(myvar) {
+    let url = symphony + "/Sales/CherchByCode";
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: { value: myvar },
+        // dataType: "text",
+        beforeSend: function () {
+            $('.ajax-loader').css("visibility", "visible");
+        },
+        success: function (msg) {
+            $('.autocomplete').html(msg);
+        },
+        error: function (msg) {
+            $('#errorModal').modal('show');
+        },
+        complete: function () {
+            $('.ajax-loader').css("visibility", "hidden");
+        },
+    });
+
+}
+
+$(".autocomplete").on('click', ".table-result-code-name tbody tr", function () {
+
+    let code = $(this).find('td:eq(0)').text();
+    let name = $(this).find('td:eq(1)').text();
+    let city = $(this).find('td:eq(2)').text();
+    $('#agent-name-label').html(name)
+    $('#agent-code-label').html(code)
+    $('#agent-city-label').html(code)
+
+});
+
+/*$(function () {   datedtpIssueDateFrom   datedtpIssueDateTo
+    $('.datetimepicker').datepicker();
+});*/
+
+/// click sur payement et recuperer les valeur du requette sql
+
+function showModalAncillary() {
+    let url = symphony + "/Sales/FrmOfPayementTfcComm";
+    let docNumber = $("#firstDocNumber").val() + $("#secondDocNumber").val();
+    $("#documentNumber").val(docNumber);
+    $('#Ancillary').modal('show');
+    $.ajax({
+        type: 'POST',
+        data: { docNumber: docNumber },
+        url: url,
+        success: function (data) {
+            $("#newFrmPayement").html(data);
+            showTF(docNumber);
+        },
+        error: function () {
+        }
+    });
+
+}
+$(".ticket-payment").on('click', '#actionAncillary', function () {
+
+    let url = symphony + "/Sales/FrmOfPayementTfcComm";
+    $.ajax({
+        type: 'POST',
+        data: { nameController: nameController },
+        url: url,
+        success: function (data) {
+            $("#newFrmPayement").html(data);
+        },
+        error: function () {
+        }
+    });
+
+})
+/***********Charger valeur et affiché ******************/
+function showTF(docNumber) {
+    let url = symphony + "/Sales/GetTf";
+    $.ajax({
+        type: 'POST',
+        data: { docNumber: docNumber },
+        url: url,
+        success: function (data) {
+            $("#newTFCs").html(data);
+        },
+        error: function () {
+            $('#errorModal').modal('show');
+        }
+    });
+};
+/*****More Details *****/
+function showMoreDetails() {
+    let url = symphony + "/Sales/ViewsMoreDetails";
+    let docNumber = $("#firstDocNumber").val() + $("#secondDocNumber").val();
+    $('#moreDetails').modal('show');
+    $.ajax({
+        type: 'POST',
+        data: { docNumber: docNumber },
+        url: url,
+        success: function (data) {
+            $("#newMoreDetails").html(data);
+            $("#myModalLabel").text("More Details on Document No. : " + $("#firstDocNumber").val() + $("#secondDocNumber").val())
+        },
+        error: function () {
+            $('#errorModal').modal('show');
+        }
+    });
+}
+
+function showTicketHistory(transCode) {
+    $('#tickethistory').modal('show');
+    let url = symphony + "/Sales/ticketHistoryPayment";
+
+    let today = new Date().toISOString().slice(0, 10);
+    let todayLess = new Date(today);
+
+    let transactionCode = $("#transactionCode").val();
+    let docNumber = $("#firstDocNumber").val() + $("#secondDocNumber").val();
+    if ($("#testLoadTicket").val() != $("#firstDocNumber").val() + $("#secondDocNumber").val()) {
+        $("#testLoadTicket").val($("#firstDocNumber").val() + $("#secondDocNumber").val());
+        $.ajax({
+            type: 'POST',
+            data: { docNumber: docNumber, transactionCode: transactionCode },
+            url: url,
+            beforeSend: function () {
+                $('.ajax-loader').css("visibility", "visible");
+            },
+            success: function (data) {
+                $('#table-formPayment').html(data);
+                $("#dateNow").text(today);
+            },
+            complete: function () {
+                $('.ajax-loader').css("visibility", "hidden");
+            },
+            error: function () {
+                $('#errorModal').modal('show');
+            }
+        });
+
+    }
+
+}
+
+function clickDocNumberHistory(transCode) {
+    let url = symphony + "/Sales/ticketHistoryPayment";
+    let docNumber = transCode.substring(0, 13);
+    let transactionCode = transCode.substring(transCode.length - 4);
+    let conjonction = "valide";
+    $.ajax({
+        type: 'POST',
+        data: { docNumber: docNumber, transactionCode: transactionCode, conjonction: conjonction },
+        url: url,
+        beforeSend: function () {
+            $('.ajax-loader').css("visibility", "visible");
+        },
+        success: function (data) {
+            $('.table-formPayment2').html(data);
+            console.log(data);
+        },
+        complete: function () {
+            $('.ajax-loader').css("visibility", "hidden");
+        },
+        error: function () {
+            $('#errorModal').modal('show');
+        }
+    });
+}
+
+
+$("#list-docNumb").on('click', ".glyphicon-plus", function () {
+    $(this).addClass("show").find("li").slideDown();
+});
+
+function closeTransaction() {
+    $('[href="#search"]').tab('show');
+}
+
+function clickSplitFCA() {
+
+    $('.textarea-editor').summernote({
+        height: 300, // set editor height
+        minHeight: null, // set minimum height of editor
+        maxHeight: null, // set maximum height of editor
+        focus: true // set focus to editable area after initializing summernote
+    });
+    if ($("#firstDocNumber").val() + $("#secondDocNumber").val() != $("#testLoadFca").val()) {
+
+        let NumericCode = $("#firstDocNumber").val() + $("#secondDocNumber").val();
+        $("#testLoadFca").val(NumericCode);
+        let url = symphony + "/Sales/SPLITFCA";
+        let farerfca = $("#fareCalculation").val();
+        $('#sputfca').modal('show');
+        $.ajax({
+            type: "POST",
+            data: { docNumber: NumericCode, fare: farerfca },
+            url: url,
+            beforeSend: function () {
+                $('.ajax-loader').css("visibility", "visible");
+            },
+
+            success: function (data) {
+                $('.splifac-body').html(data);
+            },
+            complete: function () {
+                $('.ajax-loader').css("visibility", "hidden");
+            },
+            error: function () {
+                $('#errorModal').modal('show');
+            }
+
+        });
+    } else {
+        $('#sputfca').modal('show');
+    }
+}
+
+function userObservation() {
+    $('#sputfca').modal('hide');
+    $("#Observation").modal("show");
+    $("#docNumber").val($("#firstDocNumber").val() + $("#secondDocNumber").val());
+    $("#hdrguid").val($("#getHdrguid").text());
+    $("#dateObs").val("");
+    $(".textarea-editor").val("");
+    $("#editSubject").val("");
+}
+
+$('.textarea-editor').summernote({
+    height: 300, // set editor height
+    minHeight: null, // set minimum height of editor
+    maxHeight: null, // set maximum height of editor
+    focus: true // set focus to editable area after initializing summernote
+});
+
+function openModalObservation(date, subject, obs, hdrguid, recId) {
+    userObservation();
+    $("#editSubject").val(subject);
+    $("#docNumber").val($("#firstDocNumber").val() + $("#secondDocNumber").val());
+    $("#recId").val(recId);
+    $("#dateObs").val(date);
+    if (hdrguid == "null") {
+        hdrguid = $("#getHdrguid").text();
+    }
+    let getRelatidHdrguid = $("#getRelatidHdrguid").text();
+    $("#hdrguid").val(hdrguid)
+
+    $(".note-editable").html(obs)
+}
+
+function saveObs() {
+
+    let subject = $("#editSubject").val();
+    let docNumber = $("#firstDocNumber").val() + $("#secondDocNumber").val();
+    let dateObs = $("#dateObs").val();
+    let obsValue = textobservation;
+    let hdrguid = $("#hdrguid").val();
+    let recId = $("#recId").val();
+    let url = symphony + "/Sales/saveObservation";
+    /*var tab = [];
+    tab.push($(".textarea-editor").val());*/
+    $.ajax({
+        type: 'POST',
+        data: { subject: subject, docNumber: docNumber, dateObs: dateObs, obsValue: obsValue, hdrguid: hdrguid, recId: recId },
+        url: url,
+        //async: false,
+        beforeSend: function () {
+            $('.ajax-loader').css("visibility", "visible");
+        },
+        success: function (data) {
+            $("#dropDownTransactionType").html(data);
+            $(".refreshObs").html(data);
+            //apidirina eto ilay envoyena 
+        },
+        complete: function () {
+            $('.ajax-loader').css("visibility", "hidden");
+        },
+        error: function () {
+            $('#errorModal').modal('show');
+        }
+    });
+}
+
+/** code by fano transaction type **/
+
+let valueDateFirst = "";
+let valueDateSeconde = "";
+$(document).ready(function () {
+    let today = new Date().toISOString().slice(0, 10);
+    let todayLess = new Date(today);
+    todayLess.setMonth(todayLess.getMonth() - 1);
+    let dateLess = todayLess.toISOString().slice(0, 10).split("-");
+    let dateMore = today.split("-");
+    valueDateFirst = dateLess[1] + "-" + dateLess[2] + "-" + dateLess[0];
+    valueDateSeconde = dateMore[1] + "-" + dateMore[2] + "-" + dateMore[0];
+    $("#transTypedateFrom").val(valueDateFirst);
+    $("#transTypedateTo").val(valueDateSeconde);
+    //----
+    $("#dateFrom").val(valueDateFirst);
+    $("#dateTo").val(valueDateSeconde);
+});
+
+function clickDropDownTrans() {
+    let dateFrom = $("#transTypedateFrom").val();
+    let dateTo = $("#transTypedateTo").val();
+    let url = symphony + "/Sales/LoadTransactionCode";
+    $.ajax({
+        type: 'POST',
+        data: {
+            dateFrom: dateFrom, dateTo: dateTo
+        },
+        url: url,
+        //async: false,
+        beforeSend: function () {
+            $('.ajax-loader').css("visibility", "visible");
+        },
+        success: function (data) {
+            $("#dropDownTransactionType").html(data);
+        },
+        complete: function () {
+            $('.ajax-loader').css("visibility", "hidden");
+        },
+        error: function () {
+            $('#errorModal').modal('show');
+        }
+    });
+}
+
+function dropDownTransactionType() {
+    if (valueDateFirst != $("#transTypedateFrom").val() || valueDateSeconde != $("#transTypedateTo").val()) {
+        valueDateFirst = $("#transTypedateFrom").val();
+        valueDateSeconde = $("#transTypedateTo").val();
+        clickDropDownTrans();
+    }
+}
+
+function setCriteriaTransactionType() {
+    let dateFrom = $("#transTypedateFrom").val();
+    let dateTo = $("#transTypedateTo").val();
+    let url = symphony + "/Sales/LoadTransactionType";
+    let transactionCode = $("#dropDownTransactionType").val();
+    if (dateFrom != "" && dateTo != "") {
+        $.ajax({
+            type: 'POST',
+            data: {
+                dateFrom: dateFrom, dateTo: dateTo, transactionCode: transactionCode
+            },
+            url: url,
+            //async: false,
+            beforeSend: function () {
+                $('.ajax-loader').css("visibility", "visible");
+            },
+            success: function (data) {
+                $("#loadTrans-summary").html(data);
+            },
+            complete: function () {
+                $('.ajax-loader').css("visibility", "hidden");
+            },
+            error: function () {
+                $('#errorModal').modal('show');
+            }
+        });
+    }
+}
+/** end **/
+
+/** coed by fano cancelleation **/
+
+function selectNameCode() {
+    $("#agentCodeSet").val($('#agent-code-label').text());
+    let today = new Date().toISOString().slice(0, 10);
+    let todayLess = new Date(today);
+    todayLess.setMonth(todayLess.getMonth() - 1);
+    let dateLess = todayLess.toISOString().slice(0, 10).split("-");
+    let dateMore = today.split("-");
+    $("#cancelDateFrom").val(dateLess[2] + "-" + dateLess[1] + "-" + dateLess[0]);
+    $("#cancelDateTo").val(dateMore[2] + "-" + dateMore[1] + "-" + dateMore[0]);
+}
+
+function clearCancellation() {
+    $("#cancelDateFrom").val('');
+    $("#cancelDateTo").val('');
+    $("#agentCodeSet").val('');
+    $("#newtotalCanx").val('');
+    $("#newtotalCann").val('');
+    $("#newtotalCanr").val('');
+    $("#newtotalOther").val('');
+    $("#newtotalDoc").val('');
+    $(".table-record-display").html('');
+}
+
+function setCriteriaCancellation() {
+    let rbcancellation = $("#rbcancellation input:radio[name=rbcancellation]:checked").val();
+    let dateFrom = $("#cancelDateFrom").val();
+    let dateTo = $("#cancelDateTo").val();
+    let agentCodeSet = $("#agentCodeSet").val();
+    let url = symphony + '/Sales/LoadCancellations';
+    $.ajax({
+        type: 'POST',
+        data: {
+            rbcancellation: rbcancellation, dateFrom: dateFrom, dateTo: dateTo, agentCodeSet: agentCodeSet
+        },
+        url: url,
+        //async: false,
+        beforeSend: function () {
+            $('.ajax-loader').css("visibility", "visible");
+        },
+        success: function (data) {
+            $(".table-record-display").html(data);
+            $("#newtotalCanx").val($("#totalCanx").val());
+            $("#newtotalCann").val($("#totalCann").val());
+            $("#newtotalCanr").val($("#totalCanr").val());
+            $("#newtotalOther").val($("#totalOther").val());
+            $("#newtotalDoc").val($("#totalDoc").val());
+
+        },
+        complete: function () {
+            $('.ajax-loader').css("visibility", "hidden");
+        },
+        error: function () {
+            $('#errorModal').modal('show');
+        }
+    });
+}
+
+function CherchByCodeCancellation(myvar) {
+    let url = symphony + "/Sales/CherchByCodeCancellation";
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: { value: myvar },
+        // dataType: "text",
+        success: function (msg) {
+            $('.autocomplete').html(msg);
+        }, error: function (msg) {
+            $('#errorModal').modal('show');
+        }
+    });
+
+}
+function putCodeAgent(code, name, city) {
+    $('#agent-name-label').html(name)
+    $('#agent-code-label').html(code)
+    $('#agent-city-label').val(city)
+}
+
+function showAgentCodeModal() {
+    CherchByCodeCancellation("");
+    $('#AgentCodeModal').modal('show');
+};
+/** end **/
+
+/** key controlling data **/
+function setNameHeader() {
+    let nameHeader = $("#headerName").val();
+    let url = symphony + '/Sales/getAllData';
+    $.ajax({
+        type: 'POST',
+        data: { nameHeader: nameHeader },
+        url: url,
+        beforeSend: function () {
+            $('.ajax-loader').css("visibility", "visible");
+        },
+        success: function (data) {
+            $(".keyDataBody").html(data);
+        },
+        complete: function () {
+            $('.ajax-loader').css("visibility", "hidden");
+        },
+        error: function () {
+            $('#errorModal').modal('show');
+        }
+    });
+}
+/** end **/
+
+/** total psr **/
+
+function showDetails(id, tetxId) {
+    var etat = document.getElementById(id).style.display;
+    if (etat == 'none') {
+        document.getElementById(id).style.display = 'block';
+        $("#" + tetxId).text('Hide Add-on Details');
+    }
+    else {
+        document.getElementById(id).style.display = 'none';
+        $("#" + tetxId).text('Show Add-on Details');
+    }
+}
+function selectPsd() {
+    $("#agentNumCode").val($("#agent-code-label").text());
+    $("#agentCodeSet").val($("#agent-code-label").text());
+
+    $("#selectagentNumCode").html("<option>" + $("#agent-code-label").text() + "</option>")
+    $("#agentName").val($("#agent-name-label").text());
+    $("#agentLocation").val($("#agent-city-label").val());
+}
+
+function getAllAgentNumCode() {
+    let dateFrom = $("#dateFrom").val();
+    let dateTo = $("#dateTo").val();
+    let url = symphony + "/Sales/getAgentNumCode";
+    $("#selection").prop("disabled", true);
+    if ($("#testDate").val() != dateFrom) {
+        $("#testDate").val(dateFrom);
+        $.ajax({
+            type: 'POST',
+            data: { dateFrom: dateFrom, dateTo: dateTo },
+            url: url,
+            beforeSend: function () {
+                $('.ajax-loader').css("visibility", "visible");
+            },
+            success: function (data) {
+                $("#selectagentNumCode").html(data);
+            },
+            complete: function () {
+                $('.ajax-loader').css("visibility", "hidden");
+            },
+            error: function () {
+                $('#errorModal').modal('show');
+            }
+        });
+    }
+
+}
+
+function detailsPassenger(name) {
+    let url = symphony + "/Sales/PassengerDetail";
+    $("#selection").prop("disabled", true);
+    $.ajax({
+        type: 'POST',
+        data: { name: name },
+        url: url,
+        beforeSend: function () {
+            $('.ajax-loader').css("visibility", "visible");
+        },
+        success: function (data) {
+            $("#setDetails").html(data);
+        },
+        complete: function () {
+            $('.ajax-loader').css("visibility", "hidden");
+        },
+        error: function () {
+            $('#errorModal').modal('show');
+        }
+    });
+}
+
+function getPSR() {
+    let dateFrom = $("#dateFrom").val();
+    let dateTo = $("#dateTo").val();
+    let agentNumCode = $("#selectagentNumCode").val();
+    let agentName = $("#agentName").val();
+    let agentLocation = $("#agentLocation").val();
+    let bookingAgent = $("#bookingAgent").val();
+    let reportingEntity = $("#reportingEntity").val();
+    let url = symphony + "/Sales/LoadTotalAmountPSR";
+    $("#selection").prop("disabled", true);
+    $('#PSRSummary').trigger('click');
+    $('#PSRKey').val("");
+    $('#PSRFare').val("");
+    $('#PSRPassenger').val("");
+    $.ajax({
+        type: 'POST',
+        data: { dateFrom: dateFrom, dateTo: dateTo, agentNumCode: agentNumCode, agentName: agentName, agentLocation: agentLocation, bookingAgent: bookingAgent, reportingEntity: reportingEntity },
+        url: url,
+        beforeSend: function () {
+            $('.ajax-loader').css("visibility", "visible");
+        },
+        success: function (data) {
+            $("#PSRSummary").html(data);
+            let lastRow = $("#psrcmptTr").find("tr").length;
+            $("#noOfrecords").val(lastRow);
+            $("#copteur").val("true");
+            $("#copteur1").val("false");
+            $("#copteur2").val("false");
+            $("#copteur3").val("false");
+            for (i = 4; i < 16; i++) {
+                $(".cacheCol-" + i).hide();
+            }
+        },
+        complete: function () {
+            $('.ajax-loader').css("visibility", "hidden");
+        },
+        error: function () {
+            $('#errorModal').modal('show');
+        }
+    });
+}
+let tmp = "";
+
+function getbookingAgentBSP(nameController, nameAction, id) {
+    let dateFrom = $("#dateFrom").val();
+    let dateTo = $("#dateTo").val();
+    let agentNumCode = $("#selectagentNumCode").val();
+    let temoin = false;
+    $("#selection").prop("disabled", true);
+    if (nameAction == "GetBookingAgent" && agentNumCode != "All") {
+        let url = symphony + "/Sales/GetBookingAgent";
+        if ($("#booking").val() != agentNumCode) {
+            $("#booking").val(agentNumCode);
+            $.ajax({
+                type: 'POST',
+                data: { dateFrom: dateFrom, dateTo: dateTo, agentNumCode: agentNumCode },
+                url: url,
+                beforeSend: function () {
+                    $('.ajax-loader').css("visibility", "visible");
+                },
+                success: function (data) {
+                    $("#" + id).html(data);
+                },
+                complete: function () {
+                    $('.ajax-loader').css("visibility", "hidden");
+                },
+                error: function () {
+                    $('#errorModal').modal('show');
+                }
+            });
+        }
+    }
+    if (nameAction == "GetReportingEntity") {
+        if ($("#reporting").val() != agentNumCode) {
+            let url = symphony + "/Sales/GetReportingEntity";
+            $("#reporting").val(agentNumCode);
+            $.ajax({
+                type: 'POST',
+                data: { dateFrom: dateFrom, dateTo: dateTo, agentNumCode: agentNumCode },
+                url: url,
+                beforeSend: function () {
+                    $('.ajax-loader').css("visibility", "visible");
+                },
+                success: function (data) {
+                    $("#" + id).html(data);
+                },
+                complete: function () {
+                    $('.ajax-loader').css("visibility", "hidden");
+                },
+                error: function () {
+                    $('#errorModal').modal('show');
+                }
+            });
+        }
+    }
+}
+
+function getPsrKeyElement() {
+    let dateFrom = $("#dateFrom").val();
+    let dateTo = $("#dateTo").val();
+    let agentNumCode = $("#selectagentNumCode").val();
+    let agentName = $("#agentName").val();
+    let agentLocation = $("#agentLocation").val();
+    let bookingAgent = $("#bookingAgent").val();
+    let reportingEntity = $("#reportingEntity").val();
+    let url = symphony + "/Sales/KeyElement";
+    $("#selection").prop("disabled", true);
+    if ($("#copteur").val() == "true" && $("#copteur1").val() == "false") {
+        $("#copteur1").val("true");
+        $.ajax({
+            type: 'POST',
+            data: { dateFrom: dateFrom, dateTo: dateTo, agentNumCode: agentNumCode, agentName: agentName, agentLocation: agentLocation, bookingAgent: bookingAgent, reportingEntity: reportingEntity },
+            url: url,
+            beforeSend: function () {
+                $('.ajax-loader').css("visibility", "visible");
+            },
+            success: function (data) {
+                $("#PSRKey").html(data);
+                let lastRow = $("#psrcmptTr1").find("tr").length;
+                $("#noOfrecords1").val(lastRow);
+                for (i = 3; i < 35; i++) {
+                    $(".keyelement-" + i).hide();
+                }
+            },
+            complete: function () {
+                $('.ajax-loader').css("visibility", "hidden");
+            },
+            error: function () {
+                $('#errorModal').modal('show');
+            }
+        });
+    }
+
+}
+function showpsr(id, classe) {
+    let idCkeck = "";
+    if ($("#" + id).is(':checked')) {
+        if (id == "allsumm" || id == "allfaire" || id == "allkey" || id == "allpasse") {
+            $('ul.list-group li').each(function (idx, li) {
+                idCkeck = $(li).find('input:checkbox').attr('id');
+                $("#" + idCkeck).prop("checked", true);
+
+            });
+            for (i = 0; i < 33; i++) {
+                $('.' + classe + '-' + i).show();
+            }
+        } else {
+            $('.' + classe).show();
+        }
+
+    } else {
+        if (id == "allsumm" || id == "allfaire" || id == "allkey" || id == "allpasse") {
+            $('ul.list-group li').each(function (idx, li) {
+                idCkeck = $(li).find('input:checkbox').attr('id');
+                $("#" + idCkeck).prop("checked", false);
+
+            });
+            for (i = 0; i < 33; i++) {
+                $('.' + classe + '-' + i).hide();
+            }
+        } else {
+            $('.' + classe).hide();
+        }
+
+    }
+
+
+    //$('ul.list-group li.list-group-item').find('"input:checkbox').checked()
+}
+function FareBasisAnalytics() {
+    let dateFrom = $("#dateFrom").val();
+    let dateTo = $("#dateTo").val();
+    let agentNumCode = $("#selectagentNumCode").val();
+    let agentName = $("#agentName").val();
+    let agentLocation = $("#agentLocation").val();
+    let bookingAgent = $("#bookingAgent").val();
+    let reportingEntity = $("#reportingEntity").val();
+    let selection = $("#selection").val();
+    let url = symphony + "/Sales/FareBasisAnalytics";
+    $("#selection").prop("disabled", false);
+    if (selection == "") {
+        $('#alertModal').modal('show');
+        $("#msgalert").html("Choose in the selection");
+    } else {
+        /*if ($("#copteur").val() == "true" && $("#copteur2").val() == "false") {
+            $("#copteur2").val("true");*/
+        $.ajax({
+            type: 'POST',
+            data: { dateFrom: dateFrom, dateTo: dateTo, agentNumCode: agentNumCode, agentName: agentName, agentLocation: agentLocation, bookingAgent: bookingAgent, reportingEntity: reportingEntity, selection: selection },
+            url: url,
+            beforeSend: function () {
+                $('.ajax-loader').css("visibility", "visible");
+            },
+            success: function (data) {
+                $("#PSRFare").html(data);
+                let lastRow = $("#psrcmptTr2").find("tr").length;
+                $("#noOfrecords2").val(lastRow);
+                for (i = 4; i < 29; i++) {
+                    $(".farebass-" + i).hide();
+                }
+            },
+            complete: function () {
+                $('.ajax-loader').css("visibility", "hidden");
+            },
+            error: function () {
+                $('#errorModal').modal('show');
+            }
+        });
+        //}
+    }
+}
+function ChooseSelection() {
+
+    if ($("#tmpSelection").val() != $("#selection").val()) {
+        $("#tmpSelection").val($("#selection").val())
+        FareBasisAnalytics();
+    }
+}
+function FarePassenger() {
+    let dateFrom = $("#dateFrom").val();
+    let dateTo = $("#dateTo").val();
+    let agentNumCode = $("#selectagentNumCode").val();
+    let url = symphony + "/Sales/PsrPassenger";
+    $("#selection").prop("disabled", true);
+    if ($("#copteur").val() == "true" && $("#copteur3").val() == "false") {
+        $("#copteur3").val("true");
+        $.ajax({
+            type: 'POST',
+            data: { dateFrom: dateFrom, dateTo: dateTo, agentNumCode: agentNumCode },
+            url: url,
+            beforeSend: function () {
+                $('.ajax-loader').css("visibility", "visible");
+            },
+            success: function (data) {
+                $("#PSRPassenger").html(data);
+                let lastRow = $("#psrcmptTr3").find("tr").length;
+                $("#noOfrecords3").val(lastRow);
+                for (i = 3; i < 18; i++) {
+                    $(".passe-" + i).hide();
+                }
+            },
+            complete: function () {
+                $('.ajax-loader').css("visibility", "hidden");
+            },
+            error: function () {
+                $('#errorModal').modal('show');
+            }
+        });
+    }
+
+}
+/** end **/
+
+/** unused document cpn **/
+function setCriteriaUnusedDoc() {
+    let dateFrom = $("#dateFrom").val();
+    let dateTo = $("#dateTo").val();
+    let url = symphony + "/Sales/LoadUnusedDocsCpns";
+    if (dateFrom == '' && dateTo == "") {
+        $('#alertModal').modal('show');
+        $('#msgalert').text('Please select a date range');
+    }
+    else {
+        $.ajax({
+            type: 'POST',
+            data: { dateFrom: dateFrom, dateTo: dateTo },
+            url: url,
+            beforeSend: function () {
+                $('.ajax-loader').css("visibility", "visible");
+            },
+            success: function (data) {
+                $(".contentUnused").html(data);
+                let lastRow = $("#summUnusedDoc").find("tr").length;
+                $("#newtotalCanx").val(lastRow);
+                let copteurn = 0;
+                $('#summUnusedDoc tr').each(function () {
+                    var customerId = $(this).find("td").eq(8).html();
+                    copteurn = copteurn + parseFloat(customerId);
+                });
+                $("#newtotalCann").val(copteurn.toFixed(2));
+                $("#newtotalCanr").val(copteurn.toFixed(2));
+
+            },
+            complete: function () {
+                $('.ajax-loader').css("visibility", "hidden");
+            },
+            error: function () {
+                $('#errorModal').modal('show');
+            }
+        });
+    }
+
+}
+/** end **/
+
+/** fop type **/
+function setCriteriaFopeType() {
+    let dateFrom = $("#dateFrom").val();
+    let dateTo = $("#dateTo").val();
+    let agentNumCode = $("#agentNumCode").val();
+    let fop = $("#fop").val();
+    let url = symphony + "/Sales/LoadFormOfPayementType";
+    $.ajax({
+        type: 'POST',
+        data: { dateFrom: dateFrom, dateTo: dateTo, agentNumCode: agentNumCode, fop: fop },
+        url: url,
+        beforeSend: function () {
+            $('.ajax-loader').css("visibility", "visible");
+        },
+        success: function (data) {
+            $("#loadTrans-summary").html(data);
+        },
+        complete: function () {
+            $('.ajax-loader').css("visibility", "hidden");
+        },
+        error: function () {
+            $('#errorModal').modal('show');
+        }
+    });
+}
+var tmpdate = "";
+let tmpCode = "";
+function dropDownTransactionType() {
+    let dateFrom = $("#dateFrom").val();
+    let dateTo = $("#dateTo").val();
+    let numCode = $("#agentNumCode").val();
+    let fop = $("#fop").val();
+    let url = symphony + "/Sales/FopTypeTransaction";
+    if (tmpdate != dateFrom || tmpCode != numCode) {
+
+        tmpdate = dateFrom;
+        tmpCode = numCode;
+        $.ajax({
+            type: 'POST',
+            data: { dateFrom: dateFrom, dateTo: dateTo, agentNumCode: numCode, fop: fop },
+            url: url,
+            beforeSend: function () {
+                $('.ajax-loader').css("visibility", "visible");
+            },
+            success: function (data) {
+                $("#fop").html(data);
+            },
+            complete: function () {
+                $('.ajax-loader').css("visibility", "hidden");
+            },
+            error: function () {
+                $('#errorModal').modal('show');
+            }
+        });
+    }
+
+}
+
+/** end **/
+
+/** exchange **/
+
+function clearExchange() {
+    $("#passengerNameSet").val('');
+    $("#docNum").val('');
+    $("#agentCodeSet").val('');
+    $("#DateFrom").val('');
+    $("#DateTo").val('');
+}
+function setCriteriaExchange(refine) {
+    let name = $("#passengerNameSet").val();
+    let docNum = $("#docNum").val();
+    let agentCode = $("#agentCodeSet").val();
+
+    let checkDateTo = $("#checkDateTo input[name=dtpDateTo]:checkbox:checked").val();
+    let checkDateFrom = $("#checkDateFrom input[name=dtpDateFrom]:checkbox:checked").val();
+
+    let dateFrom = $("#DateFrom").val();
+    let dateTo = $("#DateTo").val();
+    let document = $("#radioExchange input:radio[name=document]:checked").val();
+    let starting = $("#exchangeName input:radio[name=starting]:checked").val();
+    let voluntary = $("#vol input[name=Voluntary]:checkbox:checked").val();
+    let involuntary = $("#vol input[name=Involuntary]:checkbox:checked").val();
+    let mco = $("#refine input[name=MCO]:checkbox:checked").val();
+    let emd = $("#refine input[name=EDM]:checkbox:checked").val();
+    let ebt = $("#refine input[name=EBT]:checkbox:checked").val();
+    let mpd = $("#refine input[name=MPD]:checkbox:checked").val();
+    let et = $("#refine input[name=ET]:checkbox:checked").val();
+    let url = symphony + "/Sales/LoadExchanges";
+    let condition = false;
+    if (refine != '') {
+        if ($("#voluntary").is(':checked') || $("#involuntary").is(':checked')) {
+            if ($("#refine input[name=MCO]:checkbox").is(':checked') || $("#refine input[name=EDM]:checkbox").is(':checked') || $("#refine input[name=EBT]:checkbox").is(':checked') || $("#refine input[name=MPD]:checkbox").is(':checked') || $("#refine input[name=ET]:checkbox").is(':checked')) {
+                condition = true;
+            } else {
+                $('#alertModal').modal('show');
+                $("#msgalert").html("Please choose any combination from the Exchange Document Type Box");
+            }
+        } else {
+            $('#alertModal').modal('show');
+            $("#msgalert").html("Please choose any combination from the Exchange Document Type Box");
+        }
+
+    } else {
+        condition = true;
+    }
+    if (condition == true) {
+        $.ajax({
+            type: 'POST',
+            data: {
+                refine: refine, checkDateTo: checkDateTo, checkDateFrom: checkDateFrom, dateFrom: dateFrom, dateTo: dateTo, document: document, name: name, starting: starting, docNum: docNum, agentCode: agentCode,
+                voluntary: voluntary, involuntary: involuntary, mco: mco, emd: emd, ebt: ebt, mpd: mpd, et: et
+            },
+            url: url,
+            beforeSend: function () {
+                $('.ajax-loader').css("visibility", "visible");
+            },
+            success: function (data) {
+                $(".refreshExchange").html(data);
+            },
+            complete: function () {
+                $('.ajax-loader').css("visibility", "hidden");
+                let copteurn = 0;
+                $('#compteurRows tr').each(function () {
+                    copteurn++;
+                });
+                $("#comptRow").text('No. Of Records Display: ' + copteurn);
+            },
+            error: function () {
+                $('#errorModal').modal('show');
+            }
+        });
+    }
+}
+
+function showMoreDetailsEx(docNum) {
+    $("#tab-moredetails").trigger('click');
+    let url = symphony + "/Sales/MoreDetailsExchange";
+    Ajaxs(docNum, 'moreDetails', url);
+    $("#orgDocNum").text(docNum);
+}
+function setExchangeTicket() {
+    let datas = $('#ExchangeTicket').attr('class');
+    let value = datas.split("-");
+    let original = value[0];
+    let news = value[1];
+    ExchangeTicketDetails(original, news);
+}
+function setExchangeDetails() {
+    let datas = $('#ExchangeDetails').attr('class');
+    let value = datas.split("-");
+    let original = value[0];
+    let news = value[1];
+    let transacode = value[2];
+    ajout('PAXTKTs', 'Sales', 'PAX TKTs');
+    clickLigneTransaction(original, transacode);
+}
+
+function setMenuExchange(id, original, news, transcode) {
+
+    $("#ExchangeTicket").removeClass();
+    $("#ExchangeDetails").removeClass();
+    $("#ExchangeTicket").addClass(original + '-' + news + '-' + transcode);
+    $("#ExchangeDetails").addClass(original + '-' + news + '-' + transcode);
+    let tops = $('#' + id).offset().top - 55;
+    $("div.menu-dispo").css({ left: $('#' + id).offset().left + 'px', top: tops + 'px' });
+    $("#selectDispo").show();
+
+}
+window.onclick = function (event) {
+    if (event.target.className !== '') {
+        $("#selectDispo").hide();
+    }
+}
+
+function positionnerMenu(cible) {
+    $("div.menu-dispo").css({ top: (-1 * (cible.offsetParent.offsetHeight - (cible.offsetTop + cible.offsetHeight))) + 'px' });
+    let left = cible.offsetLeft;
+    if (cible.offsetParent.offsetWidth < cible.offsetLeft + $("#select-menu-dispo").width()) {
+        left -= ((cible.offsetLeft + $("#select-menu-dispo").width()) - cible.offsetParent.offsetWidth) + 14;
+    }
+    $("div.menu-dispo").css({ left: left + 'px' });
+    $(".menu-dispo").toggle();
+}
+
+function ExchangeTicketDetails(original, news) {
+    let copteurn = 0;
+    let copteurn1 = 0;
+    let url = symphony + "/Sales/ExchangeTicketDetails";
+    $.ajax({
+        type: 'POST',
+        data: {
+            preDocNum: news, docNum: original
+        },
+        url: url,
+        beforeSend: function () {
+            $('.ajax-loader').css("visibility", "visible");
+        },
+        success: function (data) {
+            $('#tab-details').trigger('click');
+            $("#details").html(data);
+        },
+        complete: function () {
+            $('.ajax-loader').css("visibility", "hidden");
+            $('#originalTicket tr').each(function () {
+                if ($(this).find("td").eq(1).html() == "E") {
+                    console.log($(this).find("td").eq(6).html().split(',').join('.'));
+                    copteurn = copteurn + parseFloat($(this).find("td").eq(6).html().split(',').join('.'));
+                }
+            });
+            if (copteurn == 0) {
+                $('#originalTicket tr').each(function () {
+                    if ($(this).find("td").eq(1).html() == "S") {
+                        copteurn = copteurn + parseFloat($(this).find("td").eq(6).html().split(',').join('.'));
+                    }
+                });
+            }
+            $('#newTicket tr').each(function () {
+                copteurn1 = copteurn1 + parseFloat($(this).find("td").eq(6).html().split(',').join('.'));
+            });
+
+
+            let cmpt = copteurn - copteurn1;
+            if (cmpt > 0) {
+                $("#valueAmountCruded").val(cmpt.toFixed(2));
+                $("#amountCruded").text("Amount To Be Acruded:");
+            }
+            else
+                if (cmpt < 0) {
+                    $("#valueAmountCruded").val(cmpt.toFixed(2));
+                    $("#amountCruded").text("Amount To Be Absorbed:");
+                }
+                else {
+                    $("#valueAmountCruded").val(cmpt.toFixed(2));
+                    $("#amountCruded").text("Amount To Be Acruded/Absorbed:");
+                }
+
+            $("#oldProrateValue").val(copteurn.toFixed(2));
+            $("#newProrateValue").val(copteurn1.toFixed(2));
+        },
+        error: function () {
+            $('#errorModal').modal('show');
+        }
+    });
+}
+
+function closeTab(id) {
+    $("#" + id).trigger('click');
+}
+
+
+/***************************************surcharges******************************************/
+function setCriteriaSurcharges() {
+    let dateFrom = $("#dateFrom").val();
+    let dateTo = $("#dateTo").val();
+
+    let url = symphony + "/Sales/LoadSurcharges";
+    let surcharges = $("#dropDownSurcharges").val();
+    let dropDownSelctType = $("#dropDownSelctType").val();
+    let dropDownSelctDoc = $("#dropDownSelctDoc").val();
+
+    $.ajax({
+        type: 'POST',
+        data: {
+            dateFrom: dateFrom, dateTo: dateTo, surcharges: surcharges, dropDownSelctType: dropDownSelctType, dropDownSelctDoc: dropDownSelctDoc
+        },
+        url: url,
+        //async: false,
+        beforeSend: function () {
+            $('.ajax-loader').css("visibility", "visible");
+        },
+        success: function (data) {
+            $("#loadDataSurcharges").html(data);
+        },
+        complete: function () {
+            $('.ajax-loader').css("visibility", "hidden");
+        },
+        error: function () {
+            $('#errorModal').modal('show');
+        }
+    });
+}
+$(document).ready(function () {
+    let today = new Date().toISOString().slice(0, 10);
+    let todayLess = new Date(today);
+    todayLess.setMonth(todayLess.getMonth() - 1);
+    let dateLess = todayLess.toISOString().slice(0, 10).split("-");
+    let dateMore = today.split("-");
+    $("#dateFrom").val(dateLess[1] + "-" + dateLess[2] + "-" + dateLess[0]);
+    $("#dateTo").val(dateMore[1] + "-" + dateMore[2] + "-" + dateMore[0]);
+});
+
+function clickDropDownTrans() {
+    let dateFrom = $("#dateFrom").val();
+    let dateTo = $("#dateTo").val();
+
+    let url = symphony + "/Sales/LoadTransactionCode";
+
+    $.ajax({
+        type: 'POST',
+        data: {
+            dateFrom: dateFrom, dateTo: dateTo
+        },
+        url: url,
+        //async: false,
+        beforeSend: function () {
+        },
+        success: function (data) {
+            $("#somethingelse").html(data);
+        },
+        complete: function () {
+        },
+        error: function () {
+            $('#errorModal').modal('show');
+        }
+    });
+}
+
+
+$('#dropDownTransactionType').on('click', function () {
+    //console.log(this.options[this.selectedIndex].text)
+    /*if (tmp == 1) {
+        clickDropDownTrans();
+        tmp++;
+    }*/
+
+});
+
+$('#dropDownSurcharges').on('change', function (e) {
+    e.stopImmediatePropagation();
+    //console.log(this.options[this.selectedIndex].text)
+    /*if (tmp == 1) {
+        clickDropDownTrans();
+        tmp++;
+    }*/
+
+});
+
+function clearTransType() {
+    $("#transTypedateFrom").val('');
+    $("#transTypedateTo").val('');
+    $("#bodySummaryTransType").val('');
+    $("#bodyTransType").val('');
+    $("#totalTrans").val('');
+}
+$("#dateFrom").on('change', function () {
+    let dateFrom = $("#dateFrom").val();
+    let dateTo = $("#dateTo").val();
+
+    let url = symphony + "/Sales/LoadAgDoc";
+    $.ajax({
+        type: 'POST',
+        data: { dateFrom: dateFrom, dateTo: dateTo },
+        url: url,
+        success: function (data) {
+            $('#dropDownSelctDoc').html(data);
+        }
+
+    });
+
+});
+
+
+function showSurchargesCodeModal() {
+
+    CherchSurcharges("");
+    $('#SurchargesCodeModal').modal('show');
+}
+
+
+function CherchSurcharges(myvar) {
+
+
+    let url = symphony + "/Sales/AgentCherch";
+    let dateFrom = $("#dateFrom").val();
+    let dateTo = $("#dateTo").val();
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: { value: myvar, dateFrom: dateFrom, dateTo: dateTo },
+        // dataType: "text",
+        success: function (msg) {
+            $('.agentContent').html(msg);
+        }, error: function (msg) {
+            $('#errorModal').modal('show');
+        }
+    });
+
+}
+
+function Select(myVar, myvar1) {
+    var value = myVar;
+    var value1 = myvar1;
+    $('#agent-name-label').html(value1);
+    $('#agent-code-label').html(value);
+}
+
+function setNumeric() {
+    var a = $('#agent-code-label').text();
+    $("#dropDownSelctDoc").val($('#agent-code-label').text());
+}
+
+function ClearSurcharges() {
+
+    let url = symphony + "/Sales/Surcharges";
+    $.ajax({
+        type: "POST",
+        url: "/" + nameController + "/" + nameAction,
+        success: function (msg) {
+            $('.tab-cancellation').html(msg);
+        }, error: function (msg) {
+            $('#errorModal').modal('show');
+        }
+    });
+}
+/** end **/
+
+/*refund*/
+function setCriteriaListRefund() {
+    let dateFrom = $("#dateFrom").val();
+    let dateTo = $("#dateTo").val();
+    let dropdownType = $("#dropdownType").val();
+    let dropdownDoc = $("#dropdownDocs").val();
+
+    let url = symphony + "/Sales/LoadListRefund";
+    if (($("#dropdownType").val() == "Document Number") && ($("#dropdownDocs").val() == "")) {
+        $('#alertModal').modal('show');
+        $('#msgalert').text('Please Enter a Document Number');
+    }
+    else if (($("#dropdownType").val() == "Passenger Name") && ($("#dropdownDocs").val() == "")) {
+
+        $('#alertModal').modal('show');
+        $('#msgalert').text('Please Enter a Passenger Name');
+    }
+    else if (($("#dropdownType").val() == "Agent Numeric Code") && ($("#dropdownDocs").val() == "")) {
+
+        $('#alertModal').modal('show');
+        $('#msgalert').text('Please Enter Agent Numeric Code');
+    }
+    else {
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: { dropdownType: dropdownType, dropdownDoc: dropdownDoc, dateFrom: dateFrom, dateTo: dateTo },
+            // dataType: "text",
+            beforeSend: function () {
+                $('.ajax-loader').css("visibility", "visible");
+            },
+            success: function (data) {
+                $("#loadListRefund").html(data);
+
+            },
+            complete: function () {
+                $('.ajax-loader').css("visibility", "hidden");
+            },
+            error: function () {
+                $('#errorModal').modal('show');
+            }
+        });
+    }
+}
+
+
+function boutonvu() {
+    if ($("#dropdownType").val() == "Agent Numeric Code") {
+        $("#showListRefundCodeModal").show();
+    }
+    else {
+        $("#showListRefundCodeModal").hide();
+    }
+}
+
+function chercherefn(myvar) {
+
+    let url = symphony + "/Sales/AgentRefund";
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: { value: myvar },
+        // dataType: "text",
+        beforeSend: function () {
+            $('.ajax-loader').css("visibility", "visible");
+        },
+        success: function (msg) {
+            $('.autocomplete').html(msg);
+        }, error: function (msg) {
+            $('#errorModal').modal('show');
+        },
+        complete: function () {
+            $('.ajax-loader').css("visibility", "hidden");
+        }
+    });
+
+}
+function selectag(myvar, myvar1) {
+    $('#agent-name-label').text(myvar1);
+    $('#agent-code-label').text(myvar);
+}
+
+
+
+
+function setNumericode() {
+    let a = $('#agent-code-label').text();
+    $("#dropdownDocs").val(a);
+}
+
+function details(RfnDoc, OrDtIss, OrDcType, DocNum, RfnDt, name, AgtCode, Penalty, dtrfn) {
+    $('#tab-transaction').trigger('click');
+
+    let url = symphony + "/Sales/DetailsRfn";
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: { RfnDoc: RfnDoc, OrDtIss: OrDtIss, OrDcType: OrDcType, DocNum: DocNum, RfnDt: RfnDt, name: name, AgtCode: AgtCode, Penalty: Penalty, dtrfn: dtrfn },
+        success: function (msg) {
+            $(".tab-rfnddetail").html(msg);
+        },
+        error: function (msg) {
+            $('#errorModal').modal('show')
+        }
+    });
+
+}
+
+function checkCpns(myvar) {
+
+    let url = symphony + "/Sales/RfndCoupons";
+    $('#RefundCpns').modal('show');
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: { DocNum: myvar },
+        success: function (msg) {
+            $(".content-rfndcpns").html(msg);
+        },
+        error: function (msg) {
+            $('#errorModal').modal('show');
+        }
+    });
+}
+function ClearListRefund() {
+    let url = symphony + "/Sales/ListofRefunds";
+    $.ajax({
+        type: "POST",
+        url: url,
+        success: function (msg) {
+            $('.refund-content').html(msg);
+        }, error: function (msg) {
+            $('#errorModal').modal('show');
+        }
+    });
+}
+/*end*/
+/**vat**/
+$(".div-showModal").on('click', "#showVatCodeModal", function () {
+    CherchAgentVat("");
+    $('#VatCodeModal').modal('show');
+});
+
+function setCriteriaVat() {
+    if (($("#dateVatFrom").val() == "") || ($("#dateVatTo").val() == "")) {
+        $('#alertModal').modal('show');
+        $('#msgalert').text('Please Select a Period Range');
+        // alert("Please Select a Period Range");
+    }
+    else {
+        let dateFrom = $("#dateVatFrom").val();
+        let dateTo = $("#dateVatTo").val();
+
+        let url = symphony + "/Sales/LoadVat";
+        let AgentCode = $('#AgentCode').val();
+        $.ajax({
+            type: 'POST',
+            data: {
+                dateFrom: dateFrom, dateTo: dateTo, AgentCode: AgentCode,
+            },
+            url: url,
+            //async: false,
+            beforeSend: function () {
+                $('.ajax-loader').css("visibility", "visible");
+            },
+            success: function (data) {
+                $("#loadDataVat").html(data);
+            },
+            complete: function () {
+                $('.ajax-loader').css("visibility", "hidden");
+            },
+            error: function () {
+                $('#errorModal').modal('show');
+            }
+        });
+    }
+
+}
+
+function ClearVat() {
+
+    let url = symphony + "/Sales/Vat";
+    $.ajax({
+        type: "POST",
+        url: url,
+        success: function (msg) {
+            $('.tab-cancellation').html(msg);
+        }, error: function (msg) {
+            $('#errorModal').modal('show');
+        }
+    });
+}
+/*end*/
+/*tfcs*/
+/*$(".div-showModal").on('click', "#showTfcsCodeModal", function () {
+    CherchTfcs("");
+    $('#TfcsCodeModal').modal('show');
+    console.log('eee');
+});*/
+
+function showTfcsCodeModal() {
+    CherchTfcs("");
+    $('#TfcsCodeModal').modal('show');
+}
+
+function CherchTfcs(myvar) {
+
+
+    let url = symphony + "/Sales/AgentCherchTfcs";
+    let dateFrom = $("#dateFrom").val();
+    let dateTo = $("#dateTo").val();
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: { value: myvar, dateFrom: dateFrom, dateTo: dateTo },
+        // dataType: "text",
+        success: function (msg) {
+            $('.agentContent').html(msg);
+        }, error: function (msg) {
+            $('#errorModal').modal('show');
+        }
+    });
+
+}
+function Select(myVar, myvar1) {
+    var value = myVar;
+    var value1 = myvar1;
+    $('#agent-name-label').html(value1);
+    $('#agent-code-label').html(value);
+}
+
+function setNumeric() {
+    var a = $('#agent-code-label').text();
+    $("#dropDownSelctDoc").val($('#agent-code-label').text());
+}
+
+function setCriteriaTfcs() {
+    let dateFrom = $("#dateFrom").val();
+    let dateTo = $("#dateTo").val();
+
+    let url = symphony + "/Sales/LoadTfcs";
+    let docType = $("#dropDownSelctTypeTfcs").val();
+    let selctDoc = $("#dropDownSelctDoc").val();
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: { docType: docType, selectDoc: selctDoc, dateFrom: dateFrom, dateTo: dateTo },
+        // dataType: "text",
+        beforeSend: function () {
+            $('.ajax-loader').css("visibility", "visible");
+        },
+        success: function (data) {
+            $("#loadDataTfcs").html(data);
+
+        },
+        complete: function () {
+            $('.ajax-loader').css("visibility", "hidden");
+        },
+        error: function () {
+            $('#errorModal').modal('show');
+        }
+    });
+
+}
+
+function loadDocNum(myvar, myvar1) {
+
+    ajout('PAXTKTs', 'Sales', 'PAX TKTs');
+    clickLigneTransaction(myvar, myvar1);
+}
+/*end*/
+
+/*******************OAL Refunded***************************/
+function setCriteriaOalRefund() {
+    let dateFrom = $("#dateFrom").val();
+    let dateTo = $("#dateTo").val();
+    let url = symphony + "/Sales/LoadOalRefund";
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: { dateFrom: dateFrom, dateTo: dateTo },
+        // dataType: "text",
+        beforeSend: function () {
+            $('.ajax-loader').css("visibility", "visible");
+        },
+        success: function (data) {
+            $("#loadOalRefunded").html(data);
+            if ($("#checkCompt").val() == 0) {
+                $('#alertModal').modal('show');
+                $('#msgalert').text('No data for this selected period');
+                console.log($("#checkCompt").val());
+            }
+
+        },
+        complete: function () {
+            $('.ajax-loader').css("visibility", "hidden");
+        },
+        error: function () {
+            $('#errorModal').modal('show');
+        }
+    });
+}
+
+function ClearOalRefund() {
+    let url = symphony + "/Sales/OALRefundedCouponsBilling";
+    $.ajax({
+        type: "POST",
+        url: url,
+        success: function (msg) {
+            $('.tab-cancellation').html(msg);
+        }, error: function (msg) {
+            $('#errorModal').modal('show');
+        }
+    });
+}
+/********************end**********************************/
+/****************OwnRefund******************************/
+function setCriteriaOwnRefund() {
+    let dateFrom = $("#dateFrom").val();
+    let dateTo = $("#dateTo").val();
+    let url = symphony + "/Sales/LoadOwnRefund";
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: { dateFrom: dateFrom, dateTo: dateTo },
+        // dataType: "text",
+        beforeSend: function () {
+            $('.ajax-loader').css("visibility", "visible");
+        },
+        success: function (data) {
+            $("#loadOwnRefunded").html(data);
+
+        },
+        complete: function () {
+            $('.ajax-loader').css("visibility", "hidden");
+        },
+        error: function () {
+            $('#errorModal').modal('show');
+        }
+    });
+}
+/*******************end********************************/
+/*****************Refund Engine***********************/
+function setCriteriaRefundEngine() {
+    let pasengerName = $('#valrad input[type=text][name=passenger]').val();
+    let docNum = $('#valrad input[type=text][name=document]').val();
+    let radContains = $('#valrad input[type=radio][name=radContains]:checked').attr('value');
+
+    console.log(radContains);
+    let url = symphony + "/Sales/LoadRefundEngine";
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: { pasengerName: pasengerName, docNum: docNum, radContains: radContains },
+        // dataType: "text",
+        beforeSend: function () {
+            $('.ajax-loader').css("visibility", "visible");
+        },
+        success: function (data) {
+            $(".rfnEngDisp").html(data);
+
+        },
+        complete: function () {
+            $('.ajax-loader').css("visibility", "hidden");
+        },
+        error: function () {
+            $('#errorModal').modal('show');
+        }
+    });
+}
+
+function clearRefundEngine() {
+    let url = symphony + "/Sales/FrmRefundEngine";
+    $.ajax({
+        type: "POST",
+        url: url,
+        success: function (msg) {
+            $('.container-refund').html(msg);
+        }, error: function (msg) {
+            $('#errorModal').modal('show');
+        }
+    });
+}
+
+function loadList() {
+    ajout('ListofRefunds', 'Sales', 'ListofRefunds');
+}
+
+function manualRefund() {
+    $('#manualRefund').modal('show');
+    let url = symphony + "/Sales/manualList";
+    $.ajax({
+        type: "POST",
+        url: url,
+        success: function (msg) {
+            $("#manualRefund").html(msg)
+        },
+        error: function (msg) {
+            $('#errorModal').modal('show');
+        }
+    });
+}
+
+function setCriteriaManualRefund() {
+    let dateFrom = $("#dateFrom").val();
+    let dateTo = $("#dateTo").val();
+    let url = symphony + "/Sales/LoadManualRefund";
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: { dateFrom: dateFrom, dateTo: dateTo },
+        // dataType: "text",
+        beforeSend: function () {
+            $('.ajax-loader').css("visibility", "visible");
+        },
+        success: function (data) {
+            $(".manualRefund-content").html(data);
+
+        },
+        complete: function () {
+            $('.ajax-loader').css("visibility", "hidden");
+        },
+        error: function () {
+            $('#errorModal').modal('show');
+        }
+    });
+}
+
+function clickLigneRefundEngine(docNumber) {
+    $('#tab-refund').trigger('click');
+    console.log(docNumber);
+    let url = symphony + "/Sales/RfnEngine";
+    let docNum = docNumber;
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: { docNum: docNum },
+        beforeSend: function () {
+            $('.ajax-loader').css("visibility", "visible");
+        },
+        success: function (data) {
+            $("#RefundEngine").html(data);
+
+        },
+        complete: function () {
+            $('.ajax-loader').css("visibility", "hidden");
+        },
+        error: function () {
+            $('#errorModal').modal('show');
+        }
+    });
+}
+function shoReasonRfn() {
+
+    if ($("#dropdownRefundType").val() == "VOLONTAIRE") {
+        $("#voluntaryReson").show();
+        $("#involuntaryReson").hide();
+        $("#defaultReson").hide();
+        $("#voluntarychoiceRfn").show();
+        $("#involuntarychoiceRfn").hide();
+        $("#defaultchoiceRfn").hide();
+
+    }
+    else if ($("#dropdownRefundType").val() == "INVOLONTAIRE") {
+        $("#involuntaryReson").show();
+        $("#voluntaryReson").hide();
+        $("#defaultReson").hide();
+        $("#voluntarychoiceRfn").hide();
+        $("#involuntarychoiceRfn").show();
+        $("#defaultchoiceRfn").hide();
+    }
+    else {
+        $("#involuntaryReson").hide();
+        $("#voluntaryReson").hide();
+        $("#defaultReson").show();
+        $("#voluntarychoiceRfn").hide();
+        $("#involuntarychoiceRfn").hide();
+        $("#defaultchoiceRfn").show();
+    }
+
+}
+
+function showfarcurr(cur1, cur2) {
+    var a = cur1;
+    var b = cur2;
+    if ($("#dropdownAmtType").val() == "Fare") {
+        $(".curfare").val(a);
+    }
+<<<<<<< working copy
+    else if ($("#dropdownAmtType").val() == "Equivalent Fare") {
+        $(".curfare").val(b);
+    }
+    else {
+        $(".curfare").val(a);
+    }
+}
+=======
+    
+    function calculRefund(myId,mycheck) {
+        var i = 0;
+        var totA = $("#totA").val();
+        var temp = $("#reftot").val().replace("," , ".");
+        var rfnd =parseFloat(temp);
+        console.log(rfnd);
+        var temp1 = $("#taxremain").val().replace(",",".");
+        var remain = parseFloat(temp1);
+        if ($('#' + mycheck).is(':checked')) {
+            //var test1 = $(this).find(myId).eq(3).html().replace(",", ".");
+            var test1 = $('#'+myId).text().replace(",",".");
+            var test = parseFloat(test1);
+            console.log(test);
+            rfnd += test;
+            remain -= test;
+            console.log(test1);
+        }
+        else if (!($('#' + mycheck).is(':checked'))) {
+            var test = parseFloat($('#'+myId).text().replace(",","."));
+            console.log(test);
+            rfnd -= test;
+            remain += test;
+        }
+        /*$('#otherTax tr').each(function () {
+            
+            if ($('#value_'+i).is(':checked')) {
+                var test1 = $(this).find('td').eq(3).html().replace(",", ".");
+                var test = parseFloat(test1);
+                console.log(test);
+                rfnd += test;
+                remain -= test;
+            }
+            /*else {
+                var test = parseFloat($(this).find('td').eq(3).html());
+                console.log(test);
+                rfnd -= test;
+                remain += test;
+            }*/
+           // console.log(bool);
+            /*i += 1;
+        });*/
+        var looktot = $("#totfare").val();
+        console.log(looktot);
+        $("#reftot").val(Math.round(rfnd * 100) / 100);
+        $("#taxremain").val(Math.round(remain * 100) / 100);
+        var interm = $("#totfare").val();
+        console.log(interm);
+       // var temp =0
+        if ($("#totfare").val()=="") {
+            interm = 0;
+            console.log(interm);
+        }
+        var totalB = parseFloat(interm) + parseFloat($("#taxremain").val());
+        $("#totalB").val(totalB);
+        var totBE = parseFloat($("#totBE").val().replace(",", ".")) + parseFloat($("#totalB").val().replace(",", "."))
+        rbt = totA - totBE;
+        $("#rbt").val(Math.round(rbt * 100) / 100);
+    }
+
+    function checkfare() {
+        var type = $("#dropdownAmtType").val();
+        var taxe = $("#taxe").val();
+        $("#taxe").val(taxe);
+        if (type == "Fare") {
+            var total = parseFloat($("#fare").val().replace(",",".")) - parseFloat($("#textFare").val());
+            $("#totfare").val(total);
+        }
+        else if (type == "Equivalent Fare") {
+            var total = parseFloat($("#equivFare").val().replace(",", ".")) - parseFloat($("#textFare").val());
+            $("#totfare").val(total);
+        }
+        else{}
+    }
+>>>>>>> merge rev
+/**********************end****************************/
+<<<<<<< working copy
+
+=======
+/*   facsimile   */
+    
+       
+    function showFacsimile() {
+        
+        $('#facsimile').modal('show');
+       var tab = [];
+        var tab1 = [];
+        var tab2 = [];
+        var tab3 = [];
+        
+        let j = 0;
+        
+        $('#getFacsValue tr').each(function () {
+            
+            $(this).find("td").each(function (cell) {
+
+                if (j == 0) {
+                    tab.push($(this).text());
+                }
+                if (j == 1) {
+                    tab1.push($(this).text());
+                }
+                if (j == 2) {
+                    tab2.push($(this).text());
+                }
+                if (j == 3) {
+                    tab3.push($(this).text());
+                }
+                
+            });
+            j++;
+        });
+        /**********************GetGFPA****************************/
+       var tgfp3 = [];
+        $('#getFacsValue tr').each(function () {
+
+            if ($(this).find(".gfpa").html() != undefined) {
+                tgfp3.push($(this).find(".gfpa").html());
+            }
+        });
+
+        var tgfp = tgfp3;
+
+        var tgfp2 = new Array(tgfp.length + 1);
+        var tmp = tgfp[0].split('-');
+        tgfp2[0] = tmp[0];
+        tgfp2[1] = tmp[1];
+        for (var i = 1; i < tgfp.length; i++) {
+            var tmp = tgfp[i].split('-');
+            tgfp2[i] = tmp[0];
+            tgfp2[i + 1] = tmp[1];
+        }
+        var tgfpa = [];
+        for (var i = 0; i < tgfp2.length; i++) {
+            tgfpa.push(tgfp2[i] + " ");
+        }
+        console.log(tgfpa);
+        //var tgfpa1 = tgfpa;
+        let url = symphony + "/Sales/City";
+        $.ajax({
+            type: "POST",
+            url: url,
+            //data: JSON.stringify({ tgfpa: tgfpa }),
+            traditional:true,
+            dataType: 'json',
+            data: { tgfpa: tgfpa},
+            success: function (data) {
+                // do something on success
+                console.log(data);
+            }
+           
+        });
+        /* 
+        for (var g = 0; g < tgfpa.length; g++) {
+            $("#gfp-" + g).text(tgfpa[g]);
+        }
+        
+        //console.log(tgfpa);
+       
+        $('#cityGfpa tr').each(function () {
+            for (var g = 0; g < tgfpa.length; g++) {
+                //$("#gfp-" + g).text(tgfpa[g]);
+                if ($(this).find("td").html() == tgfpa[g].text()) {
+                    $("#gfp-" + g).text($(this).find("d").html());
+                }
+            }
+            
+        });
+        /**********************end****************************/
+        /*for (l = 3; l < 13; l++) {
+            
+            $("#carrer1-" + l).text(tab[l]);
+            $("#carrer2-" + l).text(tab1[l]);
+            $("#carrer3-" + l).text(tab2[l]);
+            $("#carrer4-" + l).text(tab3[l]);
+                
+            
+        }
+
+        var farecur = $('#FareCurrency').val();
+        var fare = $('#EquivalentFare').val();
+        $('#fac-FareCurrency').text(farecur + " " + fare);
+
+        var newtotal = $('#EquivalentFare').val();
+        $('#newtotal').text(newtotal);
+
+        var taxe1 = $('#tax1').val();
+        $('#newtax1fee').text(taxe1);
+
+        var taxe2 = $('#tax2').val();
+        $('#newtax2fee').text(taxe2);
+
+        var taxe3 = $('#tax3').val();
+        $('#newtax3fee').text(taxe3);
+
+        var fareCalc = $('#fareCalculation').val();
+        $('#newFareCalc').text(fareCalc);
+
+        var total = $('#TotalAmount').val();
+        $('#newtotalfee').text("EUR" + total);
+
+        var firstdoc = $('#firstDocNumber').val();
+        $('#newfirstDocNumber').text(firstdoc);
+
+        var secdoc = $('#secondDocNumber').val();
+        $('#newsecondDocNumber').text(secdoc);
+
+        var ck = $('#CheckDigit').val();
+        $('#newtreeDocNumber').text(ck);
+
+        var dateissue = $('#DateofIssue').val();
+        var agentcode = $('#AgentNumericCode').val();
+        $('#newAgent').text(dateissue+" "+agentcode);
+
+        
+       // $('#newIssueDateID').text(dateissue);
+
+        var paxname = $('#paxName').val();
+        $('#newpassengerID').text(paxname);
+
+        var restrictionEndo = $('#EndosRestriction').val();
+        $('#newrestrictionEndo').text(restrictionEndo);
+                  
+        var docnum = $('#firstDocNumber').val();
+        var docnum1 = $('#secondDocNumber').val();
+        $('#docNumber').val(docnum+""+docnum1);
+        */
+    }
+
+    /****************CommissionReclaim******************************/
+    function setCriteriaCommiReclaim() {
+        let dateFrom = $("#dateFrom").val();
+        let dateTo = $("#dateTo").val();
+        let url = symphony + "/Sales/LoadCommissionReclaim";
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: { dateFrom: dateFrom, dateTo: dateTo },
+            
+            beforeSend: function () {
+                $('.ajax-loader').css("visibility", "visible");
+            },
+            success: function (data) {
+                $("#loadCommiReclaim").html(data);
+                console.log(data);
+
+            },
+            complete: function () {
+                $('.ajax-loader').css("visibility", "hidden");
+            },
+            error: function () {
+                $('#errorModal').modal('show');
+            }
+        });
+    }
+    /*******************end********************************/
+
+    /****************INAD-Oal******************************/
+    function setCriteriaINADoal() {
+        let pasengerName = $('#valrad input[type=text][name=passenger]').val();
+        let docNum = $('#valrad input[type=text][name=document]').val();
+        let radContains = $('#valrad input[type=radio][name=radContains]:checked').attr('value');
+
+        console.log(radContains);
+        let url = symphony + "/Sales/LoadRefundEngine";
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: { pasengerName: pasengerName, docNum: docNum, radContains: radContains },
+            // dataType: "text",
+            beforeSend: function () {
+                $('.ajax-loader').css("visibility", "visible");
+            },
+            success: function (data) {
+                $(".rfnEngDisp").html(data);
+
+            },
+            complete: function () {
+                $('.ajax-loader').css("visibility", "hidden");
+            },
+            error: function () {
+                $('#errorModal').modal('show');
+            }
+        });
+    }
+    /*******************end********************************/
+    /****************INAD******************************/
+    function setCriteriaINAD() {
+        let pasengerName = $('#valrad input[type=text][name=passenger]').val();
+        let docNum = $('#valrad input[type=text][name=document]').val();
+        let radContains = $('#valrad input[type=radio][name=radContains]:checked').attr('value');
+
+        console.log(radContains);
+        let url = symphony + "/Sales/LoadINAD";
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: { pasengerName: pasengerName, docNum: docNum, radContains: radContains },
+            // dataType: "text",
+            beforeSend: function () {
+                $('.ajax-loader').css("visibility", "visible");
+            },
+            success: function (data) {
+                $(".loadINAD").html(data);
+
+            },
+            complete: function () {
+                $('.ajax-loader').css("visibility", "hidden");
+            },
+            error: function () {
+                $('#errorModal').modal('show');
+            }
+        });
+    }
+
+    function clickLigneINAD(docNumber) {
+        $('#tab-transaction').trigger('click');
+        //console.log(docNumber);
+        let url = symphony + "/Sales/RfnEngine";
+        let docNum = docNumber;
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: { docNum: docNum },
+            beforeSend: function () {
+                $('.ajax-loader').css("visibility", "visible");
+            },
+            success: function (data) {
+                $("#ReINAD").html(data);
+
+            },
+            complete: function () {
+                $('.ajax-loader').css("visibility", "hidden");
+            },
+            error: function () {
+                $('#errorModal').modal('show');
+            }
+        })
+    }
+/*******************end********************************/
+
+/****************FOP-UATP Billings to OALS******************************/
+    function setCriteriaUATPbilling() {
+        let dateFrom = $("#dateFrom").val();
+        let dateTo = $("#dateTo").val();
+        let url = symphony + "/Sales/LoadUATPbilling";
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: { dateFrom: dateFrom, dateTo: dateTo },
+
+            beforeSend: function () {
+                $('.ajax-loader').css("visibility", "visible");
+            },
+            success: function (data) {
+                $("#loadUATPbilling").html(data);
+                console.log(data);
+
+            },
+            complete: function () {
+                $('.ajax-loader').css("visibility", "hidden");
+            },
+            error: function () {
+                $('#errorModal').modal('show');
+            }
+        });
+    }
+/*******************end********************************/
+
+    /****************FOP-UATP Billings to OALS******************************/
+    function setCriteriaUATPreclaim() {
+        let dateFrom = $("#dateFrom").val();
+        let dateTo = $("#dateTo").val();
+        let url = symphony + "/Sales/LoadUATPreclaim";
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: { dateFrom: dateFrom, dateTo: dateTo },
+
+            beforeSend: function () {
+                $('.ajax-loader').css("visibility", "visible");
+            },
+            success: function (data) {
+                $("#loadUATPreclaim").html(data);
+                console.log(data);
+
+            },
+            complete: function () {
+                $('.ajax-loader').css("visibility", "hidden");
+            },
+            error: function () {
+                $('#errorModal').modal('show');
+            }
+        });
+    }
+/*******************end********************************/
+
+/*******************end********************************/
+    function setCriteriaExpectedEIR_FOR() {
+        let dateFrom = $("#dateFrom").val();
+        let dateTo = $("#dateTo").val();
+        let dropdownType = $("#dropdownType").val();
+       // let dropdownDoc = $("#dropdownDocs").val();
+
+        let url = symphony + "/Sales/LoadExpectedEIROFR";
+        if(dropdownType==""){
+            $('#alertModal').modal('show');
+            $('#msgalert').text('Please Enter an option');
+        }
+        else {
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: { dropdownType: dropdownType,  dateFrom: dateFrom, dateTo: dateTo },
+                // dataType: "text",
+                beforeSend: function () {
+                    $('.ajax-loader').css("visibility", "visible");
+                },
+                success: function (data) {
+                    $("#loadExpectedEIR_FOR").html(data);
+
+                },
+                complete: function () {
+                    $('.ajax-loader').css("visibility", "hidden");
+                },
+                error: function () {
+                    $('#errorModal').modal('show');
+                }
+            });
+        }
+    }
+/*******************end********************************/>>>>>>> merge rev

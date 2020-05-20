@@ -1,0 +1,459 @@
+﻿@using System.Data
+@model DataSet
+<markelement id="GrandParent_@ViewBag.typeId">
+    <div class="container-pax1">
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#exchanged" class="nav-pax" id="tabExchangeTicket">Exchanged Tickets</a></li>
+            <li><a data-toggle="tab" href="#details" class="nav-pax" id="tab-details">Details</a></li>
+            <li><a data-toggle="tab" href="#moreDetails" class="nav-pax" id="tab-moredetails">More Details</a></li>
+        </ul>
+        <div class="tab-content">
+
+            <div id="exchanged" class="tab-pane fade in active">
+                <div class="col-sm-11 tab-content tab-cancellation">
+                    <div class="content-cancellation col-sm-11" style="margin-top: -23px;">
+                        <div class="search-criteria col-sm-10">
+                            <h4>Data Lookup</h4>
+                            <form id="sqlCriteria_@ViewBag.typeId" method="POST" action="">
+                                <div class="content col-sm-6">
+                                    <table>
+                                        <tr>
+                                            <td style="width:16%">Passenger Name:</td>
+                                            <td colspan="3"><input type="text" name="passengerName" id="passengerNameSet" class="form-control"></td>
+                                        </tr>
+                                        <tr id="exchangeName">
+                                            <td></td>
+                                            <td style="width:23%">
+                                                <input class="form-check-input" type="radio" name="starting" value="starting" checked>
+                                                <label class="form-check-label col-form-label" for="inlineRadio">Starting With(minimun 3 characters)</label>
+                                            </td>
+                                            <td></td>
+                                            <td style="width:20%">
+                                                <input class="form-check-input" type="radio" name="starting" value="contains">
+                                                <label class="form-check-label col-form-label" for="inlineRadio2">Contains</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>New Documment No:</td>
+                                            <td><input type="text" name="docummentNo" class="form-control" id="docNum"></td>
+                                            <td style="width: 9%;text-align: center;">Agent Code</td>
+                                            <td>
+                                                <div class="col-sm-10 n-padding" style="width: 79%"><input type="text" name="agentCode" id="agentCodeSet" class="form-control"></div>
+                                                <div class="col-sm-1 containt-btn" style="width: 33px !important; height:30px"><button class="point-interogation pink btn" data-toggle="modal" data-target="#AgentCodeModal"><span class="point-span">?</span></button></div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td></td>
+                                            <td>From:</td>
+                                            <td></td>
+                                            <td>To:</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Issue Date:</td>
+                                            <td>
+                                                <div class="input-group date" id="checkDateFrom">
+                                                    <span class="input-group-addon check-dape"><input type="checkbox" name="dtpDateFrom" value="Oui" id="firstCheck_@ViewBag.typeId" onclick="uncheked('firstCheck_@ViewBag.typeId', 'secondCheck_@ViewBag.typeId', 'second_@ViewBag.typeId', 'first_@ViewBag.typeId')"></span>
+                                                    <input type="text" name="datedtpIssueDateFrom" class="form-controls input-date" id="first_@ViewBag.typeId" value="@ViewBag.date[0]" />
+                                                    <span class="input-group-addon datetimepicker" onclick="setdate('first_@ViewBag.typeId','firstCheck_@ViewBag.typeId', 'secondCheck_@ViewBag.typeId')">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </td>
+                                            <td></td>
+                                            <td>
+                                                <div class="input-group date" id="checkDateTo">
+                                                    <span class="input-group-addon check-dape"><input type="checkbox" name="dtpDateTo" id="secondCheck_@ViewBag.typeId" value="Oui" onclick="uncheked1('firstCheck_@ViewBag.typeId', 'secondCheck_@ViewBag.typeId', 'second_@ViewBag.typeId', 'first_@ViewBag.typeId')"></span>
+                                                    <input type="text" name="datedtpIssueDateTo" class="form-controls input-date input-datetimepicker" id="second_@ViewBag.typeId" value="@ViewBag.date[1]" />
+                                                    <span class="input-group-addon datetimepicker" onclick="setdate('second_@ViewBag.typeId','firstCheck_@ViewBag.typeId', 'secondCheck_@ViewBag.typeId')">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <div class="exchangeContent col-sm-6">
+                                        <fieldset class="test-fieldst1" id="radioExchange">
+                                            <legend class="test-fieldst">Document</legend>
+                                            <div class="col-sm-4 margin-issue">
+                                                <input class="form-check-input" type="radio" name="document" value="All" @ViewBag.disabled @ViewBag.all>
+                                                <label class="form-check-label col-form-label" for="inlineRadio2">All</label>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <input class="form-check-input" type="radio" name="document" value="Own" @ViewBag.disabled @ViewBag.own>
+                                                <label class="form-check-label col-form-label" for="inlineRadio2">OWN</label>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <input class="form-check-input" type="radio" name="document" value="Oal" @ViewBag.disabled @ViewBag.oal>
+                                                <label class="form-check-label col-form-label" for="inlineRadio2">OAL</label>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                    <div class="exchangeContent col-sm-8" style="padding: 9px;">
+                                        <div class="col-sm-3"><button type="button" class="search-interogation pink btn" onclick="setCriteriaExchange(this,'')"><span class="search-span">SEARCH</span></button></div>
+                                        <div class="col-sm-3"><button type="button" class="search-interogation pink btn" onclick="clearCommition('Exchanges')"><span class="search-span">CLEAR</span></button></div>
+                                        <div class="col-sm-3"><button class="search-interogation pink btn" onclick="removeSousMenu()"><span class="search-span">CLOSE</span></button></div>
+                                    </div>
+                                </div>
+
+                                <div class="domestic col-sm-6" style="top: -1px;">
+                                    <fieldset class="test-fieldst1">
+                                        <legend class="test-fieldst">Refine Search</legend>
+                                        <div class="col-sm-5" id="vol" style="margin-bottom:22px">
+                                            <fieldset class="test-fieldst1">
+                                                <legend class="test-fieldst">Routing</legend>
+                                                <div class="col-sm-6">
+                                                    <input class="form-check-input" type="checkbox" name="Voluntary" value="voluntary" id="voluntary" checked>
+                                                    <label class="form-check-label col-form-label" for="inlineRadio2">Voluntary</label>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <input class="form-check-input" type="checkbox" name="Involuntary" value="involuntary" id="involuntary" checked>
+                                                    <label class="form-check-label col-form-label" for="inlineRadio2">Involuntary</label>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+
+                                        <div class="col-sm-7" id="refine">
+                                            <fieldset class="test-fieldst1">
+                                                <legend class="test-fieldst">Exchange Document Type</legend>
+                                                <div class="col-sm-2 n-padding" style="margin-left: 27px;">
+                                                    <input class="form-check-input" type="checkbox" name="MCO" value="mco" checked>
+                                                    <label class="form-check-label col-form-label" for="inlineRadio2">MCO</label>
+                                                </div>
+                                                <div class="col-sm-2 n-padding">
+                                                    <input class="form-check-input" type="checkbox" name="EDM" value="emd" checked>
+                                                    <label class="form-check-label col-form-label" for="inlineRadio2">EDM</label>
+                                                </div>
+                                                <div class="col-sm-2 n-padding">
+                                                    <input class="form-check-input" type="checkbox" name="MPD" value="mpd" checked>
+                                                    <label class="form-check-label col-form-label" for="inlineRadio2">MPD</label>
+                                                </div>
+                                                <div class="col-sm-2 n-padding">
+                                                    <input class="form-check-input" type="checkbox" name="EBT" value="ebt" checked>
+                                                    <label class="form-check-label col-form-label" for="inlineRadio2">EBT</label>
+                                                </div>
+                                                <div class="col-sm-2 n-padding">
+                                                    <input class="form-check-input" type="checkbox" name="ET" value="et" checked>
+                                                    <label class="form-check-label col-form-label" for="inlineRadio2">ET</label>
+                                                </div>
+
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-sm-3" style="padding: 22px;">
+                                            <button type="button" class="search-interogation pink btn" style="left: 189%;float: right;" onclick="setCriteriaExchange('refine')">
+                                                <span class="search-span">REFINE</span>
+                                            </button>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="menu-dispo">
+                            <div id="selectDispo" class="menu-dispo-content">
+                                <span id="ExchangeTicket" onclick="setExchangeTicket()">View Exchanged Ticket Details</span>
+                                <span id="ExchangeDetails" onclick="setExchangeDetails()">View Ticket Details</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-9" style="margin-top:10px">
+                        <div class="ajax-loader">
+                            <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+                        </div>
+                        <div class="table-record-display refreshExchange" style="height:424px;overflow:auto">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th class="pink">Date Of Issue</th>
+                                        <th class="pink">Document No.</th>
+                                        <th class="pink">Agent Num Code</th>
+                                        <th class="pink">Passenger Name</th>
+                                        <th class="pink">Trans.Code</th>
+                                        <th class="pink">Doc Type</th>
+                                        <th class="pink">Orig Doc Num</th>
+                                        <th class="pink">Preceding Doc Num</th>
+                                        <th class="pink">Preceding Date Of Issue</th>
+                                        <th class="pink">Preceding Doc Type</th>
+                                        <th class="pink">Billing Period</th>
+                                        <th class="pink">Invoice No</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <label style="position: relative;top: 83%;left: -90.8%;font-size: 12px;font-weight: 600;" id="comptRow">No. Of Records Display: </label>
+                </div>
+            </div>
+            <div id="details" class="tab-pane fade">
+                <div class="col-sm-11 tab-content tab-cancellation">
+                    <div class="content-cancellation col-sm-11" style="top: -2px;">
+                        <fieldset class="test-fieldst1">
+                            <legend class="test-fieldst">Original Ticket Details</legend>
+                            <table class="tab-refundEng" style="position:relative;left:2%;border-spacing: 5px;">
+                                <tr>
+                                    <td>Ticket Number</td>
+                                    <td><input type="text" class="form-engine width-engine" /></td>
+                                    <td class="padding-engine">
+                                        Fare <input type="text" class="form-engine width-engine" style="width: 50px !important;" />
+                                    </td>
+                                    <td><input type="text" class="form-engine" /></td>
+                                    <td class="padding-engine">EFP <input type="text" class="form-engine width-engine" style="width: 50px !important;" /></td>
+                                    <td><input type="text" class="form-engine" /></td>
+                                    <td class="padding-engine">Agent Num Code</td>
+                                    <td><input type="text" class="form-engine width-engine" /></td>
+                                    <td class="padding-engine">Transaction Code </td>
+                                    <td><input type="text" class="form-engine width-engine" /></td>
+                                    <td class="padding-engine">Amount Collected </td>
+                                    <td><input type="text" class="form-engine width-engine" /></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Original Routing</td>
+                                    <td colspan="5"><textarea rows="4" style="width: 100%;"></textarea></td>
+                                    <td class="padding-engine">Doc Type</td>
+                                    <td> <input type="text" class="form-engine width-engine" /></td>
+                                    <td class="padding-engine">Date of Issue</td>
+                                    <td><input type="text" class="form-engine width-engine" /></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="6"></td>
+                                    <td colspan="5" class="padding-engine"><button class="btn-close btn" style="width: 81.2%;">View All Exchanged Tickets Against Original Ticket</button></td>
+                                </tr>
+                            </table>
+
+                        </fieldset>
+                    </div>
+                    <div class="content-cancellation col-sm-11" style="top:2px">
+                        <fieldset class="test-fieldst1">
+                            <legend class="test-fieldst">New Ticket Details</legend>
+                            <table class="tab-refundEng" style="position:relative;left:2%;border-spacing: 5px;">
+                                <tr>
+                                    <td>Ticket Number</td>
+                                    <td><input type="text" class="form-engine width-engine" /></td>
+                                    <td class="padding-engine">
+                                        Fare <input type="text" class="form-engine width-engine" style="width: 50px !important;" />
+                                    </td>
+                                    <td><input type="text" class="form-engine" /></td>
+                                    <td class="padding-engine">EFP <input type="text" class="form-engine width-engine" style="width: 50px !important;" /></td>
+                                    <td><input type="text" class="form-engine" /></td>
+                                    <td class="padding-engine">Agent Num Code</td>
+                                    <td><input type="text" class="form-engine width-engine" /></td>
+                                    <td class="padding-engine">Transaction Code </td>
+                                    <td><input type="text" class="form-engine width-engine" /></td>
+                                    <td class="padding-engine">Amount Collected </td>
+                                    <td><input type="text" class="form-engine width-engine" /></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Original Routing</td>
+                                    <td colspan="5"><textarea rows="4" style="width: 100%;"></textarea></td>
+                                    <td class="padding-engine">Doc Type</td>
+                                    <td> <input type="text" class="form-engine width-engine" /></td>
+                                    <td class="padding-engine">Date of Issue</td>
+                                    <td><input type="text" class="form-engine width-engine" /></td>
+                                </tr>
+                            </table>
+                        </fieldset>
+                    </div>
+                    <div class="content-cancellation col-sm-11" style="top:8px">
+                        <fieldset class="test-fieldst1">
+                            <legend class="test-fieldst">Additional Information of the New Document</legend>
+                            <ul class="nav nav-tabs">
+                                <li class="active" style="margin-left: 6px"><a data-toggle="tab" href="#bmp70" class="nav-pax">Bmp70 Reason For Issuance</a></li>
+                                <li><a data-toggle="tab" href="#bmp71" class="nav-pax">Bmp71 Additional Information</a></li>
+                                <li><a data-toggle="tab" href="#bmp72" class="nav-pax">Bmp72 Amount In Letters</a></li>
+                                <li><a data-toggle="tab" href="#bmp73" class="nav-pax">Bmp73 Airline Information</a></li>
+                                <li><a data-toggle="tab" href="#bmp74" class="nav-pax">Bmp74 Document Print Lines</a></li>
+                                <li><a data-toggle="tab" href="#bmp75" class="nav-pax">Bmp75 ECoupon Records</a></li>
+                                <li><a data-toggle="tab" href="#bmp76" class="nav-pax">Bmp76 ERemark Records</a></li>
+                                <li><a data-toggle="tab" href="#penality" class="nav-pax">PENALITY</a></li>
+                            </ul>
+                            <div class="tab-content" style="height:150px;background-color:white">
+                                <div id="bmp70" class="tab-pane fade in active">
+
+                                </div>
+                                <div id="bmp71" class="tab-pane fade">
+
+                                </div>
+                                <div id="bmp72" class="tab-pane fade">
+
+                                </div>
+                                <div id="bmp73" class="tab-pane fade">
+
+                                </div>
+                                <div id="bmp74" class="tab-pane fade">
+
+                                </div>
+                                <div id="bmp75" class="tab-pane fade">
+
+                                </div>
+                                <div id="bmp76" class="tab-pane fade">
+
+                                </div>
+                                <div id="penality" class="tab-pane fade">
+
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div class="content-cancellation col-sm-11">
+                        <div class="col-sm-9" style="left:10%">
+                            <div class="panel">
+                                <div class="panel-heading pink" style="padding: 4px 0px;">
+                                    <table class="tab-refundEng" style="position:relative;left:2%;border-spacing: 5px;width:100%">
+                                        <tr>
+                                            <td>Cpn Exchanged</td>
+                                            <td><input type="text" class="form-engine width-engine" /></td>
+                                            <td class="padding-engine">Totally Unused Ticket</td>
+                                            <td class="padding-engine">Fare Difference <input type="text" class="form-engine width-engine" style="width: 50px !important;" /></td>
+                                            <td><input type="text" class="form-engine width-engine" /></td>
+                                            <td></td>
+                                            <td class="padding-engine">NO ADC</td>
+                                            <td class="padding-engine">Fare Difference in USD</td>
+                                            <td><input type="text" class="form-engine width-engine" /></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="panel-body" style="height:128px">
+
+                                </div>
+                                <div class="panel-footer pink" style="background-color:rgb(68,35,89);padding: 4px 0px;">
+                                    <table class="tab-refundEng" style="position:relative;left:2%;width:96%;border-spacing: 1px;">
+                                        <tr>
+                                            <td width="17%">Total Original Document Prorated Values (USD)</td>
+                                            <td width="5%"><input type="text" class="form-engine" /></td>
+                                            <td style="width:46%"></td>
+                                            <td width="15%">New Prorated Value Exchanged (USD)</td>
+                                            <td width="5%"><input type="text" class="form-engine" /></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <table class="tab-refundEng" style="position:relative;left:2%;width:96%;border-spacing: 1px;">
+                                <tr>
+                                    <td width="12%">Amount To Be Acruded</td>
+                                    <td width="5%"><input type="text" class="form-engine" /></td>
+                                    <td class="padding-engine" style="width:21%">Recover ISC [if applicable -RAM A11 3(b)ii]</td>
+                                    <td width="5%"><input type="text" class="form-engine" /></td>
+                                    <td width="7%" class="padding-engine">Net Billing</td>
+                                    <td width="5%"><input type="text" class="form-engine" /></td>
+                                    <td style="float:right"><button type="button" class="btn btn-close" onclick="closeTab('tab-details')">CLOSE TAB</button></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="moreDetails" class="tab-pane fade">
+                <div class="domestic col-sm-6" style="top: -1px;">
+                    <fieldset class="test-fieldst1" style="padding:9px">
+                        <legend class="test-fieldst">Refine Search</legend>
+                        <table>
+                            <tr><td>Original Document No:</td><td id="orgDocNum"></td></tr>
+                        </table>
+                    </fieldset>
+                </div>
+
+                <div class="col-sm-10">
+                    <div class="table-record-display" style="height:420px;background-color:white;overflow:auto">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="pink">Doc Num</th>
+                                    <th class="pink">Agent Num Code</th>
+                                    <th class="pink">Date Of Issues</th>
+                                    <th class="pink">Sales Date</th>
+                                    <th class="pink">Passenger Name</th>
+                                    <th class="pink">Fare Calculation Area</th>
+                                    <th class="pink">Endos Restriction</th>
+                                    <th class="pink">Org Issue Doc Num</th>
+                                    <th class="pink">Org Issue Agent Num Code</th>
+                                    <th class="pink">In Connection With Doc Num</th>
+                                    <th class="pink">Fare Currency</th>
+                                    <th class="pink">Fare</th>
+                                    <th class="pink">Equi Fare Currency</th>
+                                    <th class="pink">Equi Fare</th>
+                                    <th class="pink">Exchange ADC</th>
+                                    <th class="pink">Document Type</th>
+                                    <th class="pink">Transaction Code</th>
+                                    <th class="pink">Is Reissue</th>
+                                    <th class="pink">Amount Collected Currency</th>
+                                    <th class="pink">Amount Collected</th>
+                                </tr>
+                            </thead>
+                            <tbody class="moreDetails"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="AgentCodeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="Doc modal-content" style="width: 58%;left: 17%; background-color: rgba(135, 206, 235, 1) !important; ">
+                <div class="agentModal">
+                    <div class="modal-header" style="background-color: white; margin-bottom: 21px;">
+                        <h5 class="modal-title" id="myModalLabel">FrmCustomAgentQuery</h5>
+                        <button type="button" class="close close-agent-code" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="DocCollect-modal-body">
+                        <div class="scoll-tree scoll-agent-code">
+                            <div class="head-agent-code-content">
+                                <div class="form-row">
+                                    <div class="col col-md-3" style="padding-left: 0px;">Agent Legal Name:</div>
+                                    <div class="col col-md-4">
+                                        <input type="text" class="form-control" id="name" name="agentName" onkeyup="cherche(this.value)" />
+                                    </div>
+                                    <div class="col col-md-2">Agent Code:</div>
+                                    <div class="col col-md-3">
+                                        <input type="text" class="form-control" id="code" name="agentCode" onkeyup="cherche(this.value)" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="agentContent" style="width: 98%; max-height: 515px;">
+                                <table class="table table-agent-code" style="margin-bottom:0px">
+                                    <thead>
+                                        <tr>
+                                            <th width="35%">Agent Code</th>
+                                            <th width="45%">Agent Name</th>
+                                            <th width="30%">Location City</th>
+                                        </tr>
+                                    </thead>
+
+
+                                </table>
+                            </div>
+                            <div class="ajax-loader">
+                                <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+                            </div>
+                            <div class="autocomplete">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer" style="background-color:rgba(135, 206, 235, 1) !important;">
+                        <div class="col-md-9 footer-agent-code">
+                            <div class="col-md-12">
+                                <label>Agent Name: </label>
+                                <label style="color:white;font-size:12px" id="agent-name-label"></label>
+                            </div>
+                            <div class="col-md-12">
+                                <label>Agent Code: </label>
+                                <label style="color:white; font-size:12px" id="agent-code-label"></label>
+                            </div>
+                            <input type="hidden" id="agent-city-label" value="" />
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="Close btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="Close btn" data-dismiss="modal" id="select-name-code" onclick="selectPsd()">Select</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</markelement>

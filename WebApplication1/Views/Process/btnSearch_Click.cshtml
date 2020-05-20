@@ -1,0 +1,46 @@
+﻿@using System.Data
+@model DataSet
+<!--fait par christian-->
+<div class="col" id="newdivtxtagtname">
+    <input type="text" class="form-control" value="@ViewBag.txtagtname" id="txtagtname">
+</div>
+<div class="col" id="newdivtxtagtadd">
+    <textarea style="position: relative;width: 449px;" rows="3" id="txtagtadd">@ViewBag.txtagtadd</textarea>
+    <input id="tempsnb" type="hidden" value="@ViewBag.lignebtnSearch" />
+</div>
+
+
+
+<div class="table-record-display col" style="height:664px;overflow:auto;" id="newtableagent">
+    <table class="table table-bordered table-striped table-hover" id="tablecontenuagent">
+        <thead>
+            <tr style="background-color: RGB(173,255,47);">
+                <th>Document No</th>
+                <th>CPN</th>
+                <th>Agent No</th>
+                <th>Figth No</th>
+                <th>Fight Date</th>
+                <th>Fight Basis</th>
+                <th>Fare & Pax Type Code</th>
+                <th>Discount</th>
+                <th>Passenger Name</th>
+                <th>Amt Collected Cur</th>
+                <th>Amt Collected</th>
+                <th>Fare calculation Area</th>
+                <th>RBD</th>
+            </tr>
+        </thead>
+        <tbody class="">
+                        @for (int i = 0; i < ViewBag.lignebtnSearch; i++)
+            {
+                            <tr data-url="@Url.Action("PAXTKTs","Sales")" onclick="ajout(this, 'PAXTKTs', 'Sales', 'PAX TKTs');CellContentDoubleClick(this, '@ViewBag.ListebtnSearch[i, 0]')">
+                                @for (int j = 0; j < ViewBag.colonebtnSearch; j++)
+                                {
+                                    <td>@ViewBag.ListebtnSearch[i, j]</td>
+                                }
+                            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<!--fin fait par christian-->

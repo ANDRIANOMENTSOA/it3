@@ -1,0 +1,47 @@
+﻿@using System.Data
+@model DataSet
+<div class="table-record-display" id="newdisplay-datashare" style="height:100% !important">
+    <div class="ajax-loader">
+        <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+    </div>
+    <input type="hidden"  id="temps" value="@ViewBag.ligne"/>
+    <table  class="table table-bordered tablehead" style="width:100%;height:100% !important" id="tablefinalsharevalidation">
+        <thead>
+            <tr>
+                <th class="green-tabprocess" style="text-align:center">Rownum</th>
+                <th class="green-tabprocess" style="text-align:center">Date Of Issue</th>
+                <th class="green-tabprocess" style="text-align:center">Doc No</th>
+                <th class="green-tabprocess" style="text-align:center">Cpn</th>
+                <th class="green-tabprocess" style="text-align:center">Carrier</th>
+                <th class="green-tabprocess" style="text-align:center">Billing Type</th>
+                <th class="green-tabprocess" style="text-align:center">Ori</th>
+                <th class="green-tabprocess" style="text-align:center">Des</th>
+                <th class="green-tabprocess" style="text-align:center">RBD</th>
+                <th class="green-tabprocess" style="text-align:center">Fare Basis</th>
+                <th class="green-tabprocess" style="text-align:center">PM</th>
+                <th class="green-tabprocess" style="text-align:center">Differentials</th>
+                <th class="green-tabprocess" style="text-align:center">Surcharges</th>
+                <th class="green-tabprocess" style="text-align:center">Final Share</th>
+                <th class="green-tabprocess" style="text-align:center">Fare</th>
+                <th class="green-tabprocess" style="text-align:center">Equivalent Fare</th>
+                <th class="green-tabprocess" style="text-align:center">Tax And Surcharge</th>
+                <th class="green-tabprocess" style="text-align:center">Total Amount</th>
+                <th class="green-tabprocess" style="text-align:center">ROE</th>
+                <th class="green-tabprocess" style="text-align:center">Fare In USD</th>
+                <th class="green-tabprocess" style="text-align:center">Residual Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < ViewBag.ligne; i++)
+            {
+                <tr data-url="@Url.Action("FinalSharevsAmountCollected","Process")" onclick="ajout(this, 'FinalSharevsAmountCollected', 'Process', 'Final Share vs Amount Collected');doubleclicktablefinal(this, '@ViewBag.Liste[i, 2]')">
+                    @for (int j = 0; j < (ViewBag.colone - 1); j++)
+                    {
+                        <td>@ViewBag.Liste[i, j]</td>
+                    }
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>

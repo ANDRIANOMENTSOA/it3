@@ -1,0 +1,51 @@
+﻿
+@using System.Data
+@model DataSet
+
+
+<div class="table-record-display" style="height:600px;overflow:auto">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th class="green-tab">Issue Date</th>
+                <th class="green-tab">Document No</th>
+
+                <th class="green-tab">Agent Num Code</th>
+
+                <th class="green-tab">Filgth No</th>
+                <th class="green-tab">Flight Date</th>
+                <th class="green-tab">Curr</th>
+                <th class="green-tab">Fare Amount</th>
+
+                <th class="green-tab">Exchange Rate</th>
+                <th class="green-tab">VAT Rate</th>
+                <th class="green-tab">VAT Amount</th>
+                <th class="green-tab">Fare Amt(USD)</th>
+                <th class="green-tab">VAT Amt(USD)</th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (DataRow dr in Model.Tables[0].Rows)
+            {
+                <tr ondblclick="loadDocNum(this,'@dr[Model.Tables[0].Columns[0].ColumnName].ToString()','TKTT')">
+                    @for (int i = 0; i < Model.Tables[0].Columns.Count; i++)
+                    {
+
+                        <td>@dr[Model.Tables[0].Columns[i].ColumnName].ToString()</td>;
+                    }
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+</div>
+
+
+<input type="hidden" id="compt" value="@ViewBag.mes" />
+<input type="hidden" class="form-control" value="@ViewBag.txtTotalDocNum" id="txtCount" />
+<input type="hidden" class="form-control" value="@ViewBag.txtTotalVAT" id="txtVat" />
+<input type="hidden" class="form-control" value="@ViewBag.txtTotalFare" id="txtFares" />
+

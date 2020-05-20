@@ -1,0 +1,414 @@
+﻿<div class="container-refund container-pax1">
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#search" class="nav-pax">Search</a></li>
+        <li><a data-toggle="tab" href="#ReINAD" class="nav-pax" id="tab-INAD">INAD</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="ajax-loader">
+            <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+        </div>
+        <div id="search" class="tab-pane fade in active">
+            <div class="content-cancellation col-sm-11">
+
+                <div class=" col-sm-5">
+                    <fieldset class="test-fieldst">
+                        <legend class="test-fieldst">DATA LOOKUP</legend>
+                        <form id="valrad" method="POST" action="">
+                            <div class="col-sm-4" style="margin-top:15px;">Passenger Name : </div>
+                            <div class="col-sm-8" style="margin-top:15px;">
+                                <input type="text" class="form-control" name="passenger" />
+                            </div>
+                            <div class="col-sm-4"></div>
+                            <div id="valrado">
+                                <div class="col-sm-6" style="margin-top:15px;">
+                                    <input class="form-check-input" type="radio" name="radContains" id="" value="starting" checked>
+                                    <label class="form-check-label col-form-label" for="inlineRadio">Starting With</label>
+                                </div>
+                                <div class="col-sm-2" style="margin-top:15px;">
+                                    <input class="form-check-input" type="radio" name="radContains" id="" value="contains">
+                                    <label class="form-check-label col-form-label" for="inlineRadio2">Contains</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-4" style="margin-top:15px;">Document Number : </div>
+                            <div class="col-sm-8" style="margin-top:15px;">
+                                <input type="text" class="form-control" name="document" />
+                            </div>
+                            <div class="col-sm-4"></div>
+
+                            <div class="col-sm-4" style="margin-top:15px;margin-bottom:15px;padding-left:30px;"><button type="button" class="search-interogation pink btn" onclick="setCriteriaINAD()" style="border:2px solid white"><span class="search-span"><b>SEARCH</b></span></button></div>
+                            <div class="col-sm-2" style="margin-top:15px; margin-bottom:15px;padding-left:150px;"><button type="button" class="search-interogation pink btn" onclick="clearInad0()" style="border:2px solid white"><span class="search-span"><b>CLEAR</b></span></button></div>
+                        </form>
+                    </fieldset>
+                </div>
+                <div class="col-sm-6">
+                    <div class="bouton-engine">
+                        <div class="col-sm-3">
+
+                        </div>
+                        <div class="col-sm-3">
+
+                        </div>
+                        <div class="col-col-sm-3"></div>
+                        <div class="col-col-sm-3">
+                            <button class="search-interogation pink btn" style="margin-left:250px;border:2px solid white" onclick="removeSousMenu()"><span class="search-span">CLOSE</span></button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-sm-12">
+                <div class="table-record-display" style="width:1550px;overflow:auto;margin-left:9px;margin-top: 45px;">
+                    <div class="loadINAD">
+                        <table class="table table-bordered table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="pink">Doc Num</th>
+                                    <th class="pink">Passenger Name</th>
+                                    <th class="pink">Doc Type</th>
+                                    <th class="pink">Date Of Issue</th>
+                                    <th class="pink">Sale Date</th>
+                                    <th class="pink">Agent Code</th>
+                                    <th class="pink">Fare Calculation Area</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--RetINAD-->
+        <div id="ReINAD" class="tab-pane fade" style="padding-top:20px;">
+            <div class="col-sm-12" style="font-size:11px">
+
+                <div class="col-sm-11" style="width: 1203px;padding:2px">
+                    <fieldset class="test-fieldst">
+                        <div style="padding-left:10px">
+                            <div class="row">
+                                <div class="col-sm-2" style="margin-top:15px;">Passenger Name : </div>
+                                <div class="col-sm-8" style="margin-top:15px;">
+                                    <label id="passName"></label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-2" style="margin-top:15px;">Original Doc Number : </div>
+                                <div class="col-sm-3" style="margin-top:15px;">
+                                    <input type="text" id="txtOrgDoc" class="form-control" />
+                                </div>
+                                <div class="col-sm-2" style="margin-top:15px;">Date Of Issue : </div>
+                                <div class="col-sm-2" style="margin-top:15px;">
+                                    <label id="dateissue"></label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-2" style="margin-top:15px;">New Doc Number : </div>
+                                <div class="col-sm-3" style="margin-top:15px;">
+                                    <input type="text" class="form-control" id="docnum0" />
+                                </div>
+                                <div class="col-sm-2" style="margin-top:15px;">Date Of Issue : </div>
+                                <div class="col-sm-2" style="margin-top:15px;">
+                                    <label id="dateissues"></label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-2" style="margin-top:15px;">Original FCA : </div>
+                                <div class="col-sm-8" style="margin-top:15px;">
+                                    <input type="text" class="form-control" id="fareCalc" />
+                                </div>
+                            </div>
+                            <div class="row" style="padding-bottom:15px;">
+                                <div class="col-sm-2" style="margin-top:15px;">New FCA  : </div>
+                                <div class="col-sm-8" style="margin-top:15px;">
+                                    <input type="text" class="form-control" id="fareCalcu" />
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                </div>
+            </div>
+
+            <div class="col-sm-12" style="font-size:11px">
+
+                <div class="col-sm-11" style="width: 1203px;padding:1px">
+                    <fieldset class="test-fieldst">
+                        <div style="padding-left:10px">
+
+                            <div class="row">
+                                <div class="col-sm-2" style="margin-top:15px;">INAD Point </div>
+                                <div class="col-sm-2" style="margin-top:15px;margin-left: -23px;">Final Inbound Carrier  </div>
+                                <div class="col-sm-4" style="margin-top:15px;margin-left: 16px;">Participating Inbound Carriage </div>
+                                <div class="col-sm-2" style="margin-top:15px;">Billing Period(yyyymm) </div>
+
+
+                            </div>
+                            <table>
+                                <tr>
+                                    <td><input type="text" class="form-control" style="width:100px;" id="inadpoint" readonly /></td>
+                                    <td style="padding-left:20px;"><button class="point-interogation pink btn" data-toggle="modal" data-target="#AirlineCodeModal" style="border:2px solid white"><span class="point-span">?</span></button></td>
+                                    <td style="padding-left:47px;"><input type="text" class="form-control" style="width:70px;" id="finalbound" readonly /></td>
+                                    <td style="padding-left:70px;"><input type="text" class="form-control" style="width:50px;" id="inbound" readonly /></td>
+                                    <td style="padding-left:10px;"><input type="text" class="form-control" style="width:50px;" id="inbound1" readonly /></td>
+                                    <td style="padding-left:10px;"><input type="text" class="form-control" style="width:50px;" id="inbound2" readonly /></td>
+                                    <td style="padding-left:10px;"><input type="text" class="form-control" style="width:50px;" id="inbound3" readonly /></td>
+                                    <td style="padding-left:10px;"><input type="text" class="form-control" style="width:50px;" id="inbound4" readonly /></td>
+                                    <td style="padding-left:140px;"><input type="text" class="form-control" id="billing" /></td>
+                                    <td style="padding-left:92px;padding-bottom:10px;"><button type="button" class="search-interogation pink btn" style="width: 150px !important;border:2px solid white"><span class="search-span">IATA CALENDAR</span></button></td>
+                                </tr>
+
+                            </table>
+                        </div>
+                    </fieldset>
+
+                </div>
+            </div>
+
+            <div class="col-sm-12" style="font-size:11px">
+
+                <div class="col-sm-11" style="width: 1203px;padding:1px">
+                    <fieldset class="test-fieldst">
+                        <div style="padding-left:10px">
+                            <div class="row">
+                                <div class="col-sm-2" style="margin-top:15px;">Uncollected fare </div>
+                                <div class="col-sm-3" style="margin-top:15px;">
+                                    <table>
+                                        <tr>
+                                            <td><input type="text" class="form-control" style="width:50px;" id="unc1" name="unc1" pattern="[A-Za-z]{3}" maxlength="3" /></td>
+                                            <td style="padding-left:10px;"><input type="text" class="form-control" style="width:100px;" name="unc2" id="unc2" /></td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+                                <div class="col-sm-2" style="margin-top:15px;">Uncollected fare </div>
+                                <div class="col-sm-3" style="margin-top:15px;">
+                                    <table>
+                                        <tr>
+                                            <td><input type="text" class="form-control" style="width:50px;" value="USD" name="unc3" id="unc3" readonly /></td>
+                                            <td style="padding-left:10px;"><input type="text" class="form-control" style="width:100px;" name="unc4" id="unc4" readonly /></td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-2" style="margin-top:15px;">Uncollected Transportation Costs </div>
+                                <div class="col-sm-3" style="margin-top:15px;">
+                                    <table>
+                                        <tr>
+                                            <td><input type="text" class="form-control" style="width:50px;" name="unc5" id="unc5" pattern="[A-Za-z]{3}" maxlength="3" /></td>
+                                            <td style="padding-left:10px;"><input type="text" class="form-control" style="width:100px;" name="unc6" id="unc6" /></td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+                                <div class="col-sm-2" style="margin-top:15px;">Uncollected Transportation Costs </div>
+                                <div class="col-sm-3" style="margin-top:15px;">
+                                    <table>
+                                        <tr>
+                                            <td><input type="text" class="form-control" style="width:50px;" value="USD" name="unc7" id="unc7" readonly /></td>
+                                            <td style="padding-left:10px;"><input type="text" class="form-control" style="width:100px;" name="unc8" id="unc8" readonly /></td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-2" style="margin-top:15px;">ISC(%) Uncollected fare </div>
+                                <div class="col-sm-3" style="margin-top:15px;">
+                                    <table>
+                                        <tr>
+                                            <td><input type="text" class="form-control" style="width:50px;" value="9" name="unc9" id="unc9" /></td>
+                                            <td style="padding-left:10px;"><input type="text" class="form-control" style="width:100px;" name="unc10" id="unc10" readonly /></td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+                                <div class="col-sm-2" style="margin-top:15px;">ISC(%) Uncollected fare </div>
+                                <div class="col-sm-3" style="margin-top:15px;">
+                                    <table>
+                                        <tr>
+                                            <td><input type="text" class="form-control" style="width:50px;" value="USD" name="unc11" id="unc11" readonly /></td>
+                                            <td style="padding-left:10px;"><input type="text" class="form-control" style="width:100px;" name="unc12" id="unc12" readonly /></td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+                                <div class="col-sm-" style="margin-top:0px;"><button type="button" class="search-interogation pink btn" style="width: 150px !important;margin-left:30px;border:2px solid white" onclick="Execute()"><span class="search-span">EXECUTE</span></button></div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                </div>
+            </div>
+
+            <div class="col-sm-12" style="font-size:11px">
+
+                <div class="col-sm-11" style="width: 1203px;padding:1px">
+                    <fieldset class="test-fieldst">
+                        <div style="padding-left:10px">
+                            <div class="row">
+                                <div class="col-sm-1" style="margin-top:15px;"> </div>
+                                <div class="col-sm-1" style="margin-top:15px; margin-left: 13px;">Outbound Carrier </div>
+                                <div class="col-sm-4" style="margin-top:15px;padding-left:168px">Participating In Outbound Carriage </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-sm-1"> </div>
+                                <div class="col-sm-1">
+                                    <table>
+                                        <tr>
+                                            <td><input type="text" class="form-control" style="width:100px;" id="out" /></td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+                                <div class="col-sm-4" style="padding-left:40px">
+                                    <table>
+                                        <tr>
+                                            <td style="padding-left:70px;"><input type="text" class="form-control" style="width:50px;" id="out1" /></td>
+                                            <td style="padding-left:10px;"><input type="text" class="form-control" style="width:50px;" id="out2" /></td>
+                                            <td style="padding-left:10px;"><input type="text" class="form-control" style="width:50px;" id="out3" /></td>
+                                            <td style="padding-left:10px;"><input type="text" class="form-control" style="width:50px;" id="out4" /></td>
+                                            <td style="padding-left:10px;"><input type="text" class="form-control" style="width:50px;" id="out5" /></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="col-sm-5">
+                                    <table>
+                                        <tr>
+                                            <td>Handling Airline If Any</td>
+                                            <td><input type="text" class="form-control" style="width:100px;margin-left: 13px;" id="out6" /></td>
+                                            <td><input class="form-check-input" type="checkbox" name="Voluntary" value="involuntary" id="voluntary" style="margin-left:38px"></td>
+                                            <td><label class="form-check-label col-form-label" for="inlineRadio2" style="margin-left:10px">Instructions Issued By The Autorities</label></td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </fieldset>
+
+                </div>
+            </div>
+
+            <div class="col-sm-12" style="font-size:11px">
+
+                <div class="col-sm-11" style="width: 1203px;padding:1px">
+
+                    <fieldset class="test-fieldst" style="padding:10px;">
+                        <div class="table-record-display" style="height: 230px;margin-top: -5px;color:white;" id="execInad">
+                            <table class="table-bordered ">
+                                <thead>
+                                    <tr style=" background-color:darkred;">
+                                        <th style="width:110px"><center>Sector</center></th>
+                                        <th style="width:110px"><center>Carr.</center></th>
+                                        <th style="width:110px"><center>Prorate Factor</center></th>
+                                        <th style="width:160px"><center>Prorate Share- Uncollected Fare-Gross</center></th>
+                                        <th style="width:160px"><center>Prorate Share- Uncollected Fare-ISC</center></th>
+                                        <th style="width:160px"><center>Prorate Share- Uncollected Fare-Net</center></th>
+                                        <th style="width:160px"><center>Prorate Share- Uncollected NTC</center></th>
+                                        <th style="width:160px"><center>Total Prorate Share- Uncollected (Net+NTC)</center></th>
+
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+
+                    </fieldset>
+
+                </div>
+            </div>
+
+            <div class="row" style="margin-top:10px">
+                <div class="col-md-7"></div>
+                <div class="col-md-3" style="margin-top:10px;">
+                    <button style="width:90px" onclick="SaveInad()">Save</button>
+                    <button style="width:90px" onclick="clearInad()">Clear</button>
+                    <button style="width:90px" onclick="closeTabInad()">Close Tab</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--AirlinetCode-->
+<div class="modal fade" id="AirlineCodeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="Doc modal-content" style="width: 58%;left: 17%; background-color: rgba(135, 206, 235, 1) !important; ">
+            <div class="agentModal">
+                <div class="modal-header" style="background-color: white; margin-bottom: 21px;">
+                    <h5 class="modal-title" id="myModalLabel">Airline</h5>
+                    <button type="button" class="close close-agent-code" data-dismiss="modal">&times;</button>
+                </div>
+
+                <div class="scoll-tree scoll-agent-code">
+                    <div class="head-agent-code-content">
+                        <div class="form-row">
+                            <div class="col col-md-12" style="padding-left: 0px;">City Name : <label style="padding-left:20px;" id="cityname"></label></div>
+
+                        </div>
+                        <div class="form-row">
+                            <div class="col col-md-10" style="padding-left: 0px;padding-top:10px;">City Code  : <label style="padding-left:20px;" id="citycode"></label></div>
+                            <div class="col col-md-2"><button type="button" class="Close btn btn-secondary" style="background-color:#37115A;color:white;margin-bottom:10px;" data-dismiss="modal">Close</button></div>
+                        </div>
+                    </div>
+                    <div style="width: 98%; height: 150px;" id="fca">
+                        <table class="table table-bordered table-hover table-striped">
+                            <thead style="background-color:#37115A;color:white">
+                                <tr>
+                                    <th width="15%">AirportCode</th>
+                                    <th width="15%">CityCode</th>
+                                    <th width="35%">AirportNae</th>
+                                    <th width="35%">CityName</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+
+                        </table>
+                    </div>
+
+                    <label>Click On a Row to Select City</label>
+                </div>
+
+
+                <div class="scoll-tree scoll-agent-code">
+                    <div class="head-agent-code-content">
+                        <div class="form-row">
+                            <div class="col col-md-12" style="padding-left: 0px;">Airline Name : <label style="padding-left:20px;" id="airname"></label></div>
+
+                        </div>
+                        <div class="form-row">
+                            <div class="col col-md-10" style="padding-left: 0px;padding-top:10px;">Airline Code  : <label style="padding-left:20px;" id="aircode"></label></div>
+
+                        </div>
+                    </div>
+                    <div style="width: 98%; height: 150px;background-color:white" id="popInad">
+                        <table class="table table-bordered table-hover table-striped">
+                            <thead style="background-color:#37115A;color:white">
+                                <tr>
+                                    <th width="17%">Airline Code</th>
+                                    <th width="15%">Airline ID</th>
+                                    <th width="70%">Airline Name</th>
+
+                                </tr>
+                            </thead>
+
+                            <tbody></tbody>
+                        </table>
+                    </div>
+
+                    <label>Click On a Row to Select City</label>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

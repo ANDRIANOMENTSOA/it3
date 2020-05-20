@@ -1,0 +1,613 @@
+﻿<div class="container-remuneration container-pax1" style="background-color: rgb(117, 228, 252);height:93vh">
+    <div class="ajax-loader">
+        <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+    </div>
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#JourneyAnalysis" class="nav-pax" onclick="pagepricing('0')">Journey Analysis</a></li>
+        <li><a data-toggle="tab" href="#FareBasisAnalysis" class="nav-pax" id="tab-intbil" onclick="pagepricing('1')">Fare Basis Analysis</a></li>
+        <li><a data-toggle="tab" href="#Rbd" class="nav-pax" onclick="pagepricing('2')">RBD Analysis</a></li>
+        <li><a data-toggle="tab" href="#MarketSegmentation" class="nav-pax" id="tab-intbil" onclick="pagepricing('3')">Market Segmentation</a></li>
+        <li><a data-toggle="tab" href="#FareComponentAnalysis" class="nav-pax" id="tab-intbil" onclick="pagepricing('4')">Fare Component Analysis</a></li>
+    </ul>
+    <div class="tab-content">
+        <input id="tempscode" type="hidden" value="" />
+        <input id="pagepricing" type="hidden" value="0" />
+        <div id="JourneyAnalysis" class="tab-pane fade in active">
+            <div class="row">
+                <div class="col-sm-3">
+                    <fieldset class="test-fieldst">
+                        <legend class="test-fieldst">Date Of Issue</legend>
+                        <div class="col-sm-2"><span class="titre-text">From :</span></div>
+                        <div class="col-sm-4" style="top:-5px">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('pricingFrom')"></span>
+                                <input type="text" class="form-control" id="pricingFrom" value="@ViewBag.date[0]" style="padding-right:3px" onchange="AgentNum()">
+                            </div>
+                        </div>
+                        <div class="col-sm-2"><span class="titre-text">To :</span></div>
+                        <div class="col-sm-4" style="top:-5px">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('pricingTo')"></span>
+                                <input type="text" class="form-control" id="pricingTo" value="@ViewBag.date[1]" style="padding-right:3px" onchange="AgentNum()">
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-sm-3" style="top:10px;">
+                    <fieldset class="test-fieldst">
+                        <div class="row">
+                            <div class="col-sm-6"><span class="titre-text">Agent Numeric Code</span></div>
+                            <div class="col-sm-4" id="divselectpricing-Agc">
+                                <select type="text" id="pricing-Agc" class="myForm" onchange="Testagcode(this.value)">
+                                    <option value="-All-" selected>-All-</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-2" style="top:5px"><button class="btn-default " style="height: 20px;width: 20px;" data-toggle="modal" data-target="#AgentCodeModal">?</button></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6"><span class="titre-text">Agent Name</span></div>
+                            <div class="col-sm-6" id="divpricing-AgnName"><input type="text" id="pricing-AgnName" class="myForm" /></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6"><span class="titre-text">Agent Numeric Code</span></div>
+                            <div class="col-sm-6" id="divpricing-AgcCode"><input type="text" id="pricing-AgcCode" class="myForm" /></div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-sm-2" style="top:10px;">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <fieldset class="test-fieldst" style="height:40px">
+                                <div class="col-sm-6"><span class="titre-text">Selection</span></div>
+                                <div class="col-sm-6">
+                                    <select class="myForm" onchange="cbSelection_SelectedIndexChanged_1(this.value)" id="cbSelection">
+                                        <option></option>
+                                        <option value="Fare Component">Fare Component</option>
+                                        <option value="Journey">Journey</option>
+                                        <option value="Sector">Sector</option>
+                                    </select>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12" style="top:10px;">
+                            <fieldset class="test-fieldst" style="height:40px">
+                                <div class="col-sm-6"><span class="titre-text">Day of the Week</span></div>
+                                <div class="col-sm-6">
+                                    <select class="myForm" id="cmbdow">
+                                        <option value="-All-" >-All-</option>
+                                        <option value="Monday">Monday</option>
+                                        <option value="Tuesday">Tuesday</option>
+                                        <option value="Wednesday">Wednesday</option>
+                                        <option value="Thursday">Thursday</option>
+                                        <option value="Friday">Friday</option>
+                                        <option value="Saturday">Saturday</option>
+                                        <option value="Sunday">Sunday</option>
+                                    </select>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-1" style="top:25px;"><button class="btn-default btn-search" onclick="btnSearch_Clickpricing()">SEARCH</button></div>
+                <div class="col-sm-1" style="top:25px;"><button class="btn-default btn-search" onclick="removeSousMenu()">CLOSE</button></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10">
+                    <div id="content-pricing">
+                        <table class="table table-bordered tablehead" id="tablepricing">
+                            <thead>
+                                <tr>
+                                    <th class="green-tabprocess">RowNo</th>
+                                    <th class="green-tabprocess">Date Of Issue</th>
+                                    <th class="green-tabprocess">Day Of The Week</th>
+                                    <th class="green-tabprocess">Agent No</th>
+                                    <th class="green-tabprocess">Agent Name</th>
+                                    <th class="green-tabprocess">POS</th>
+                                    <th class="green-tabprocess">Document No</th>
+                                    <th class="green-tabprocess">CK</th>
+                                    <th class="green-tabprocess">Passenger Name</th>
+                                    <th class="green-tabprocess">FCMI</th>
+                                    <th class="green-tabprocess">Orig.</th>
+                                    <th class="green-tabprocess">Dest.</th>
+                                    <th class="green-tabprocess">Journey</th>
+                                    <th class="green-tabprocess">Endos Restriction</th>
+                                    <th class="green-tabprocess">Sector Yield</th>
+                                   <!--<th style="display:none" class="green-tabprocess keyelement-15">Stop Over Code</th>--> 
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-sm-2" style="top:50px" id="bouttonhideShowPric">
+                    <button class="showHide green-tabprocess" id="btnpricing"  onclick="HideShow('hideShowPric', 'btnpricing')">Show Add-on Details</button>
+                    <div id="hideShowPric" class="containt-showhide" style="display:none;">
+                        <ul class="list-group" id="ulpricing">
+                            <li class="list-group-item">
+                                <!-- <input type="checkbox" onclick="showreportsLift('key15FR', 'keyelement-15')" id="key15FR">Stop Over Code--> 
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-7" style="top:35px">
+
+                    <div class="col-sm-3" style="top:26px"><span class="titre-text">Number of Record per Page</span></div>
+                    <div class="col-sm-2" style="top:25px"><input type="text" class="myForm" id="countShare" value="150" readonly /></div>
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-1" style="top:30px;left:40px;"><button class="btn-default" style="width:50px"><</button></div>
+                    <div class="col-sm-1" style="top:25px"><input type="text" class="myForm" id="pageShare" /></div>
+                    <div class="col-sm-1" style="top:30px;left:-15px;"><button class="btn-default" style="width:50px">></button></div>
+
+                </div>
+            </div>
+            <img src="~/Images/CSVPic.jpg" style="height:25px;position: relative;top: 65px;" />
+        </div>
+        <div id="FareBasisAnalysis" class="tab-pane fade">
+            <div class="row">
+                <div class="col-sm-3">
+                    <fieldset class="test-fieldst">
+                        <legend class="test-fieldst">Date Of Issue</legend>
+                        <div class="col-sm-2"><span class="titre-text">From :</span></div>
+                        <div class="col-sm-4" style="top:-5px">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('basisFrom')"></span>
+                                <input type="text" class="form-control" id="basisFrom" value="@ViewBag.date[0]" style="padding-right:3px" onchange="AgentNum1pricing();FareBasispricing()">
+                            </div>
+                        </div>
+                        <div class="col-sm-2"><span class="titre-text">To :</span></div>
+                        <div class="col-sm-4" style="top:-5px">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('basisTo')"></span>
+                                <input type="text" class="form-control" id="basisTo" value="@ViewBag.date[1]" style="padding-right:3px" onchange="AgentNum1pricing();FareBasispricing()">
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-sm-3" style="top:10px;">
+                    <fieldset class="test-fieldst">
+                        <div class="row">
+                            <div class="col-sm-6"><span class="titre-text">Agent Numeric Code</span></div>
+                            <div class="col-sm-4" id="divselectbasicpricing">
+                                <select type="text" id="cboagt1" class="myForm" onchange="cboagt1_SelectedIndexChanged(this.value)">
+                                    <option value="-All-" selected>-All-</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-2" style="top:5px"><button class="btn-default " style="height: 20px;width: 20px;" data-toggle="modal" data-target="#AgentCodeModal">?</button></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6"><span class="titre-text">Agent Name</span></div>
+                            <div class="col-sm-6" id="divbasis-Agn"><input type="text" id="basis-Agn" class="myForm" /></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6"><span class="titre-text">Agent Numeric Code</span></div>
+                            <div class="col-sm-6" id="divbasis-Agc"><input type="text" id="basis-Agc" class="myForm" /></div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-sm-2" style="top:10px;">
+                    <fieldset class="test-fieldst" style="height:40px">
+                        <div class="col-sm-6"><span class="titre-text">Fare Basis</span></div>
+                        <div class="col-sm-6" id="divcbofarbasis">
+                            <select class="myForm" id="cbofarbasis" >
+                                <option value="-All-" selected>-All-</option>
+                                <option value="Fare Component">Fare Component</option>
+                                <option value="Journey">Journey</option>
+                                <option value="Sector">Sector</option>
+                            </select>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-sm-2" style="top:10px;">
+                    <fieldset class="test-fieldst" style="height:40px">
+                        <div class="col-sm-6"><span class="titre-text">Day of the Week</span></div>
+                        <div class="col-sm-6" id="divcboFBdow">
+                            <select class="myForm" id="cboFBdow">
+                                <option value="-All-">-All-</option>
+                                <option value="Monday">Monday</option>
+                                <option value="Tuesday">Tuesday</option>
+                                <option value="Wednesday">Wednesday</option>
+                                <option value="Thursday">Thursday</option>
+                                <option value="Friday">Friday</option>
+                                <option value="Saturday">Saturday</option>
+                                <option value="Sunday">Sunday</option>
+                            </select>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-sm-2" style="top:15px;">
+                    <div class="col-sm-6">
+                        <button class="btn-default btn-search" onclick="btnSearch1_Clickbasicpricing()">SEARCH</button>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="col-sm-1"><button class="btn-default btn-search" onclick="removeSousMenu()">CLOSE</button></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div id="basis-content">
+                        <table class="table table-bordered tablehead" id="tablebasicpricing">
+                            <thead>
+                                <tr>
+                                    <th class="green-tabprocess">Day Of the Week</th>
+                                    <th class="green-tabprocess">Agent No</th>
+                                    <th class="green-tabprocess">Agent Name</th>
+                                    <th class="green-tabprocess">POS.</th>
+                                    <th class="green-tabprocess">Orig.</th>
+                                    <th class="green-tabprocess">Dest.</th>
+                                    <th class="green-tabprocess">Fare Basis</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="top: 75px;position: relative;">
+                <div class="col-sm-2"><span class="titre-text">Total Number Of Ticket</span></div>
+                <div class="col-sm-1"><input type="text" class="myForm" id="basisNumRec" readonly /></div>
+            </div>
+        </div>
+        <div id="Rbd" class="tab-pane fade">
+            <div class="row">
+                <div class="col-sm-3">
+                    <fieldset class="test-fieldst">
+                        <legend class="test-fieldst">Date Of Issue</legend>
+                        <div class="col-sm-2"><span class="titre-text">From :</span></div>
+                        <div class="col-sm-4" style="top:-5px">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('rbdFrom')"></span>
+                                <input type="text" class="form-control" id="rbdFrom" value="@ViewBag.date[0]" style="padding-right:3px" onchange="onchangeAgentNum2();onchangeResrBD()">
+                            </div>
+                        </div>
+                        <div class="col-sm-2"><span class="titre-text">To :</span></div>
+                        <div class="col-sm-4" style="top:-5px">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('rbdTo')"></span>
+                                <input type="text" class="form-control" id="rbdTo" value="@ViewBag.date[1]" style="padding-right:3px" onchange="onchangeAgentNum2();onchangeResrBD()">
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-sm-3" style="top:10px;">
+                    <fieldset class="test-fieldst">
+                        <div class="row">
+                            <div class="col-sm-6"><span class="titre-text">Agent Numeric Code</span></div>
+                            <div class="col-sm-4" id="divcboagt3">
+                                <select type="text" id="cboagt3" class="myForm" onchange="onchangecboagt3_SelectedIndexChanged(this.value)">
+                                    <option value="-All-" selected>-All-</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-2" style="top:5px"><button class="btn-default " style="height: 20px;width: 20px;" data-toggle="modal" data-target="#AgentCodeModal">?</button></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6"><span class="titre-text">Agent Name</span></div>
+
+                            <div class="col-sm-6" id="divrbd-Agn"><input type="text" id="rbd-Agn" class="myForm" /></div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6"><span class="titre-text">Agent Numeric Code</span></div>
+
+                            <div class="col-sm-6" id="divrbd-Agc"><input type="text" id="rbd-Agc" class="myForm" /></div>
+
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-sm-2" style="top:10px;">
+                    <fieldset class="test-fieldst" style="height:40px">
+                        <div class="col-sm-6"><span class="titre-text">RBD</span></div>
+                        <div class="col-sm-6" id="divcboRBD">
+                            <select class="myForm" id="cboRBD">
+                                <option value="-All-" selected>-All-</option>
+                            </select>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-sm-2" style="top:10px;">
+                    <fieldset class="test-fieldst" style="height:40px">
+                        <div class="col-sm-6"><span class="titre-text">Day of the Week</span></div>
+                        <div class="col-sm-6" id="divcboRBDwe">
+                            <select class="myForm" id="cboRBDwe">
+                                <option value="-All-">-All-</option>
+                                <option>Monday</option>
+                                <option>Tuesday</option>
+                                <option>Wednesday</option>
+                                <option>Thursday</option>
+                                <option>Friday</option>
+                                <option>Saturday</option>
+                                <option>Sunday</option>
+                            </select>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-sm-2" style="top:15px;">
+                    <div class="col-sm-6">
+                        <button class="btn-default btn-search" onclick="btnSearch3_Clickrbdpricing()">SEARCH</button>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="col-sm-1"><button class="btn-default btn-search" onclick="removeSousMenu()">CLOSE</button></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div id="rbd-content">
+                        <table class="table table-bordered tablehead" id="tablerbdpricing">
+                            <thead>
+                                <tr>
+                                    <th class="green-tabprocess">Day Of the Week</th>
+                                    <th class="green-tabprocess">Agent No</th>
+                                    <th class="green-tabprocess">Agent Name</th>
+                                    <th class="green-tabprocess">POS.</th>
+                                    <th class="green-tabprocess">Orig.</th>
+                                    <th class="green-tabprocess">Dest.</th>
+                                    <th class="green-tabprocess">RBD</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="top: 75px;position: relative;">
+                <div class="col-sm-2"><span class="titre-text">Total Number Of Ticket</span></div>
+                <div class="col-sm-1"><input type="text" class="myForm" id="rbdNumRec" readonly /></div>
+            </div>
+        </div>
+        <div id="MarketSegmentation" class="tab-pane fade">
+            <div class="row">
+                <div class="col-sm-3">
+                    <fieldset class="test-fieldst">
+                        <legend class="test-fieldst">Date Of Issue</legend>
+                        <div class="col-sm-2"><span class="titre-text">From :</span></div>
+                        <div class="col-sm-4" style="top:-5px">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('marketFrom')"></span>
+                                <input type="text" class="form-control" id="marketFrom" value="@ViewBag.date[0]" style="padding-right:3px" onchange="onchangedatemarquepricing()">
+                            </div>
+                        </div>
+                        <div class="col-sm-2"><span class="titre-text">To :</span></div>
+                        <div class="col-sm-4" style="top:-5px">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('marketTo')"></span>
+                                <input type="text" class="form-control" id="marketTo" value="@ViewBag.date[1]" style="padding-right:3px" onchange="onchangedatemarquepricing()">
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-sm-2" style="width:400px;top:10px">
+                    <fieldset class="test-fieldst" style="height:45px;">
+                        <div class="col-sm-6"><span class="titre-text" style="color:blue">MARKET SEGMENTATION</span></div>
+                        <div class="col-sm-6" id="divcboPoSmarket">
+                            <select class="myForm" id="cboPoSmarket">
+                                <option value="-All-" selected>-All-</option>
+                            </select>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-sm-5" style="top:10px;">
+                    <div class="col-sm-3">
+                        <fieldset class="test-fieldst" style="height:45px;">
+                            <div class="col-sm-5"><span class="titre-text" style="color:blue">FCMI</span></div>
+                            <div class="col-sm-7" id="divcboFCMImarketpricing">
+                                <select class="myForm" id="cboFCMImarketpricing">
+                                    <option value="-All-" selected>-All-</option>
+                                </select>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="col-sm-5">
+                        <fieldset class="test-fieldst" style="height:45px;">
+                            <div class="col-sm-5"><span class="titre-text" style="color:blue;">Fare Basis</span></div>
+                            <div class="col-sm-7" id="divcboFOPFarebasismarketpricing">
+                                <select class="myForm" id="cboFOPFarebasismarketpricing">
+                                    <option value="-All-" selected>-All-</option>
+                                </select>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class=col-sm-4>
+                        <fieldset class="test-fieldst" style="height:45px;">
+                            <div class="col-sm-5"><span class="titre-text" style="color:blue">FOP Type</span></div>
+                            <div class="col-sm-7" id="divFOPmarketpricing">
+                                <select class="myForm" id="FOPmarketpricing">
+                                    <option value="-All-" selected>-All-</option>
+                                </select>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="col-sm-1" style="top:13px;">
+                    <div class="col-sm-6">
+                        <button class="btn-default btn-search" onclick="btnSearch4_Clickmarketpricing()">SEARCH</button>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="col-sm-1"><button class="btn-default btn-search" style="position:relative;left:25px" onclick="removeSousMenu()">CLOSE</button></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div id="content-market">
+                        <table class="table table-bordered tablehead">
+                            <thead>
+                                <tr>
+                                    <th class="green-tabprocess">Date Of Issue</th>
+                                    <th class="green-tabprocess">Purchase Day</th>
+                                    <th class="green-tabprocess">Agent No</th>
+                                    <th class="green-tabprocess">Agent Name</th>
+                                    <th class="green-tabprocess">POS</th>
+                                    <th class="green-tabprocess">Document No</th>
+                                    <th class="green-tabprocess">CPN</th>
+                                    <th class="green-tabprocess">FCMI</th>
+                                    <th class="green-tabprocess">Orig.</th>
+                                    <th class="green-tabprocess">Dest.</th>
+                                    <th class="green-tabprocess">Fare Basis</th>
+                                    <th class="green-tabprocess">RBD</th>
+                                    <th class="green-tabprocess">EndoRestriction</th>
+                                    <th class="green-tabprocess">Travel Date</th>
+                                    <th class="green-tabprocess">Travel Day</th>
+                                    <th class="green-tabprocess">Ticketing&COT Lapse</th>
+                                    <th class="green-tabprocess">FOP Type</th>
+                                    <th class="green-tabprocess">Remittance Currency</th>
+                                    <th class="green-tabprocess">Remittance Amount</th>
+
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="top: 75px;position: relative;">
+                <div class="col-sm-2"><span class="titre-text">Total Number Of Ticket</span></div>
+                <div class="col-sm-1"><input type="text" class="myForm" id="basisNumRecmarket" readonly /></div>
+            </div>
+
+        </div>
+        <div id="FareComponentAnalysis" class="tab-pane fade">
+            <div class="row">
+                <div class="col-sm-3">
+                    <fieldset class="test-fieldst">
+                        <legend class="test-fieldst">Date Of Issue</legend>
+                        <div class="col-sm-2"><span class="titre-text">From :</span></div>
+                        <div class="col-sm-4" style="top:-5px">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('fareCompFrom')"></span>
+                                <input type="text" class="form-control" id="fareCompFrom" value="@ViewBag.date[0]" style="padding-right:3px" onchange="onchangedatefarecomp()">
+                            </div>
+                        </div>
+                        <div class="col-sm-2"><span class="titre-text">To :</span></div>
+                        <div class="col-sm-4" style="top:-5px">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('fareCompTo')"></span>
+                                <input type="text" class="form-control" id="fareCompTo" value="@ViewBag.date[1]" style="padding-right:3px" onchange="onchangedatefarecomp()">
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-sm-3" style="top:10px;">
+                    <fieldset class="test-fieldst">
+                        <div class="row">
+                            <div class="col-sm-6"><span class="titre-text">Agent Numeric Code</span></div>
+                            <div class="col-sm-4" id="divcboagt5farecomppricing">
+                              <select type="text" id="cboagt5farecomppricing" class="myForm" onchange="onchangecboagt5farecomppricing(this.value)">
+                                <option value="-All-" selected >-All-</option>
+                              </select>
+                            </div>
+                            <div class="col-sm-2" style="top:5px"><button class="btn-default " style="height: 20px;width: 20px;" data-toggle="modal" data-target="#AgentCodeModal">?</button></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6"><span class="titre-text">Agent Name</span></div>
+                            <div class="col-sm-6" id="divfare-Agn"><input type="text" id="fare-Agn" class="myForm" /></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6"><span class="titre-text">Agent Numeric Code</span></div>
+                            <div class="col-sm-6" id="divfare-Agc"><input type="text" id="fare-Agc" class="myForm" /></div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-sm-2" style="top:15px;">
+                    <div class="col-sm-6">
+                        <button class="btn-default btn-search" onclick="btnseach_Clickmfarecomppricing()">SEARCH</button>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="col-sm-1"><button class="btn-default btn-search" onclick="removeSousMenu()">CLOSE</button></div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-sm-10">
+                    <div id="fare-content">
+                        <table class="table table-bordered tablehead">
+                            <thead>
+                                <tr>
+                                    <th class="green-tabprocess">Date Of Issue</th>
+                                    <th class="green-tabprocess">Document No</th>
+                                    <th class="green-tabprocess">Related Document</th>
+                                    <th class="green-tabprocess">FC Orig.</th>
+                                    <th class="green-tabprocess">FC Dest.</th>
+                                    <th class="green-tabprocess">Agent Name</th>
+                                    <th class="green-tabprocess">POS</th>
+                                    <th class="green-tabprocess">EndosRestriction</th>
+                                    <th class="green-tabprocess">Fare Component</th>
+                                    <th class="green-tabprocess">ATBP Fare</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="top: 75px;position: relative;">
+                <div class="col-sm-2"><span class="titre-text">Total Number Of Ticket</span></div>
+                <div class="col-sm-1"><input type="text" class="myForm" id="fareNumRec" readonly /></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--AgentQuery-->
+<div class="modal fade" id="AgentCodeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="Doc modal-content" style="width: 58%;left: 17%; background-color: rgba(135, 206, 235, 1) !important; ">
+            <div class="agentModal">
+                <div class="modal-header" style="background-color: white; margin-bottom: 21px;">
+                    <h5 class="modal-title" id="myModalLabel">Agent Query</h5>
+                    <button type="button" class="close close-agent-code" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="DocCollect-modal-body">
+                    <div class="scoll-tree scoll-agent-code">
+                        <div class="head-agent-code-content">
+                            <div class="form-row">
+                                <div class="col col-md-3" style="padding-left: 0px;">Agent Legal Name:</div>
+                                <div class="col col-md-4">
+                                    <input type="text" class="form-control" id="name" name="agentName" onkeyup="chercheprincing(this.value)" />
+                                </div>
+                                <div class="col col-md-2">Agent Code:</div>
+                                <div class="col col-md-3">
+                                    <input type="text" class="form-control" id="code" name="agentCode" onkeyup="chercheprincing(this.value)" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="agentContent" style="width: 98%; max-height: 415px;">
+                            <table class="table table-agent-code">
+                                <thead>
+                                    <tr style="background-color:chartreuse">
+                                        <th width="35%" class="green-tabprocess" style="text-align:center">Agent Code</th>
+                                        <th width="70%" class="green-tabprocess" style="text-align:center">Agent Name</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <div class="autocomplete">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="background-color:rgba(135, 206, 235, 1) !important;">
+                    <div class="col-md-9 footer-agent-code">
+                        <div class="col-md-12">
+                            <label>Agent Name: </label>
+                            <label style="color:white;font-size:12px" id="agent-name-label"></label>
+                        </div>
+                        <div class="col-md-12">
+                            <label>Agent Code: </label>
+                            <label style="color:white; font-size:12px" id="agent-code-label"></label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <button type="button" class="Close btn btn-secondary" data-dismiss="modal" onclick="frmcode()">Close</button>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,124 @@
+﻿@{
+    int nbDonne = 0;
+    int nbDonnePartiel = 0;
+    string lastRow = "";
+    foreach (var tmp in ViewBag.countTransaction)
+    { /// depend du type
+        if (ViewBag.type == tmp.docType)
+        {
+            nbDonnePartiel = nbDonnePartiel + Int32.Parse(tmp.docCount);
+        }
+        nbDonne = nbDonne + Int32.Parse(tmp.docCount);
+    }
+
+    if (ViewBag.type != "PAX TKTs")
+    {
+        nbDonne = nbDonnePartiel;
+    }
+}
+
+<table class="table table-bordered table-striped table-hover" id="newCountTransaction">
+    <thead>
+        <tr>
+            <th class="pink">Doc Count</th>
+            <th class="pink">Doc Type</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var items in ViewBag.countTransaction)
+        {
+            <tr ondblclick="clickDocType(this,'@items.docType')">
+                <td>@items.docCount</td>
+                <td>@items.docType</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<table class="table table-bordered table-striped table-hover table-pax" style="font-size:12px;" id="newTable-pax">
+    <thead>
+        <tr>
+            <th class="pink">RowNum</th>
+            <th class="pink">Document No</th>
+            <th class="pink">CK</th>
+            <th class="pink">Tax1</th>
+            <th class="pink">Tax2</th>
+            <th class="pink">Tax3</th>
+            <th class="pink">Agent Code</th>
+            <th class="pink endos-restrict">Agent Name</th>
+            <th class="pink">Issue Date</th>
+            <th class="pink">Sale Date</th>
+            <th class="pink">Dom/Int</th>
+            <th class="pink pass-name">Passanger Name</th>
+            <th class="pink passanger-spec">Passenger Specific Data</th>
+            <th class="pink fare-cal">FareCalculationArea</th>
+            <th class="pink endos-restrict">Endos Restriction</th>
+            <th class="pink">Fare</th>
+            <th class="pink">Fare Curr</th>
+            <th class="pink">Computed Fare</th>
+            <th class="pink">Equiv. Fare</th>
+            <th class="pink">Total Amount</th>
+            <th class="pink">Total Curr</th>
+            <th class="pink">Comm.Rate</th>
+            <th class="pink">Comm.</th>
+            <th class="pink">Booking AgentID</th>
+            <th class="pink">Booking Agency</th>
+            <th class="pink">FCPI</th>
+            <th class="pink">Trans Code</th>
+            <th class="pink">FCMI</th>
+            <th class="pink">Curr</th>
+            <th class="pink">Amount Collected</th>
+            <th class="pink taxOn">Tax On Comm</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.valueTransaction)
+        {
+            lastRow = @item.RowNum;
+            <tr ondblclick="clickLigneTransaction(this,'@item.DocumentNumber','@item.TransactionCode','@item.DomesticInternational')">
+                <td>@item.RowNum</td>
+                <td>@item.DocumentNumber</td>
+                <td>@item.CheckDigit</td>
+                <td>@item.Tax1Amount</td>
+                <td>@item.Tax2Amount</td>
+                <td>@item.Tax3Amount</td>
+                <td>@item.AgentNumericCode</td>
+                <td>@item.TradingName</td>
+                <td>@item.DateofIssue</td>
+                <td>@item.SaleDate</td>
+                <td>@item.DomesticInternational</td>
+                <td>@item.PassengerName</td>
+                <td>@item.PassengerSpecificData</td>
+                <td>@item.FareCalculationArea</td>
+                <td>@item.EndosRestriction</td>
+                <td>@item.Fare</td>
+                <td>@item.FareCurrency</td>
+                <td>@item.ComputedFare</td>
+                <td>@item.EquivalentFare</td>
+                <td>@item.TotalAmount</td>
+                <td>@item.TotalCurrency</td>
+                <td>@item.CommRate</td>
+                <td>@item.Comm</td>
+                <td>@item.BookingAgentIdentification</td>
+                <td>@item.BookingEntityOutletType</td>
+                <td>@item.FareCalculationPricingIndicator</td>
+                <td>@item.TransactionCode</td>
+                <td>@item.FareCalculationModeIndicator</td>
+                <td>@item.AmountCollectedCurrency</td>
+                <td>@item.AmountCollected</td>
+                <td>@item.TaxOnCommissionCollected</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div id="infoPagination">
+    <input type="hidden" id="lastRow" value="@lastRow" />
+    <input type="hidden" id="nbResult" value="@nbDonnePartiel" />
+    @{
+        int nbPage = nbDonne / 1000 + 1;
+    }
+    <input type="hidden" id="plus" value="@ViewBag.next" />
+    <input type="hidden" id="moin" value="@ViewBag.preview" />
+    <input type="hidden" id="total-page" value="@nbPage" />
+    <input type="hidden" id="type" value="@ViewBag.type" />
+</div>

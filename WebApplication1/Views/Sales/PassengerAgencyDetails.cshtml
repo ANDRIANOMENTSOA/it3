@@ -1,0 +1,488 @@
+﻿@using System.Data
+@model DataSet
+<div class="container-pax1">
+    <div class="load-PassengerAgency" style="width:49%;width: 49%;position: absolute;left: 27%;top: 15%;">
+        <div class="col-sm-5">
+            <table class="tab-refundEng" style="width: 100%;">
+                <tr>
+                    <td style="width: 120px;">Agent Numeric Code:</td>
+                    <td><input type="text" class="form-control" id="agentCode" /></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Name:</td>
+                    <td><input type="text" class="form-control" id="name" /></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Address:</td>
+                    <td><input type="text" class="form-control" id="address" /></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Status:</td>
+                    <td>
+                        <select class="form-control" id="status">
+                            <option></option>
+                            <option>Regular</option>
+                            <option>Notice Of Irregularity</option>
+                            <option>Default</option>
+                            <option>Other</option>
+                        </select>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Category:</td>
+                    <td>
+                        <select class="form-control" id="category">
+                            <option></option>
+                            <option>Passenger Sales Agency (PSA))</option>
+                            <option>General Sales Agency (GSA)</option>
+                            <option>IATA BSP CONSOLIDATOR SYSTEM (IBCS)</option>
+                        </select>
+                    </td>
+                    <td></td>
+                </tr>
+            </table>
+            <div class="search" style="left: 6px;">
+                <div class="col-sm-3"><button type="button" class="search-interogation pink btn" onclick="SavePassengerAgency()"><span class="search-span">SAVE</span></button></div>
+                <div class="col-sm-3"><button type="button" class="search-interogation pink btn" onclick="DeletesingleClick()"><span class="search-span">DELETE</span></button></div>
+                <div class="col-sm-3"><button class="search-interogation pink btn" onclick="clearPassengerDetails()"><span class="search-span">CLEAR</span></button></div>
+            </div>
+        </div>
+        <div class="col-sm-6" style="margin-left:7%">
+            <table class="tab-refundEng" style="width: 100%;position: relative;top: -11px;">
+                <tr>
+                    <td>Remarks:</td>
+                    <td><textarea rows="4" style="width:100%" id="remark"></textarea></td>
+                </tr>
+                <tr>
+                    <td>Date Of Appointment:</td>
+                    <td>
+                        <div class="input-group" style="margin-left: -5px;">
+                            <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateOpp')"></span>
+                            <input type="text" class="form-control" id="dateOpp" value="@ViewBag.date[0]" style="margin-left: -6px;width:105%">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Location City:</td>
+                    <td><input type="text" class="form-control" id="location" /></td>
+                </tr>
+                <tr>
+                    <td>BSPs:</td>
+                    <td><input type="text" class="form-control" id="bsps" /></td>
+                </tr>
+            </table>
+            <div class="search">
+                <div class="col-sm-3" style="top: -12px;"><button class="search-interogation pink btn" onclick="removeSousMenu()"><span class="search-span">CLOSE</span></button></div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-sm-8" style="margin-top:18px;position: absolute;left: 28%;top: 43%;">
+        <fieldset class="test-fieldst legent-issue-date" style="padding:20px">
+            <legend class="test-fieldst"></legend>
+            <div class="body-typeRenum">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th class="pink">Types of Renumeration</th>
+                            <th class="pink">Per/Amount</th>
+                            <th class="pink">Rate/level</th>
+                            <th class="pink">Applicability</th>
+                            <th class="pink">Period From</th>
+                            <th class="pink">Period To</th>
+                        </tr>
+                    </thead>
+                    <tbody class="load-PassengerAgency1"></tbody>
+                </table>
+            </div>
+
+            <div class="col-sm-2 add-edit">
+                <button type="button" class="form-control col-sm-3" onclick="addEdditDetails()">ADD/EDIT DETAILS</button>
+            </div>
+        </fieldset>
+    </div>
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#main" id="mainPass" class="nav-pax">Main</a></li>
+        <li><a data-toggle="tab" href="#listNewAgent" class="nav-pax" id="tab-listNewAgent">List Of New Agents</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="ajax-loader">
+            <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+        </div>
+        <div id="main" class="tab-pane fade in active">
+            <fieldset class="col-sm-3 n-padding" style="margin-top: 20px;">
+                <div class="col-sm-12">
+                    <fieldset class="test-fieldst legent-issue-date" style="padding: 8px;">
+                        <legend class="test-fieldst">DATA LOOKUP</legend>
+                        <div class="form-group row width-group">
+                            <label class="col-sm-4 col-form-label">Agent Name:</label>
+                            <div class="col-sm-7 n-paddin-left">
+                                <input type="text" name="passengerName" id="passengerNameSet" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row width-group">
+                            <label class="col-sm-4 col-form-label"></label>
+                            <div class="col-sm-7 n-paddin-left">
+                                <div class="form-check form-check-inline" id="passName">
+                                    <div class="col-sm-7 n-paddin-left">
+                                        <input class="form-check-input" type="radio" name="radContains" id="starting" value="starting" checked>
+                                        <label class="form-check-label col-form-label" for="inlineRadio">Starting With</label>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <input class="form-check-input" type="radio" name="radContains" id="contains" value="contains">
+                                        <label class="form-check-label col-form-label" for="inlineRadio2">Contains</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row width-group">
+                            <label class="col-sm-4 col-form-label">Agent Numeric Code:</label>
+                            <div class="col-sm-7 n-paddin-left">
+                                <div class="row">
+                                    <div class="col-sm-8">
+
+                                        <select class="form-control" id="agentCodeSet">
+                                            <option>All</option>
+                                            @foreach (DataRow dr in Model.Tables[0].Rows)
+                                            {
+                                                for (int i = 0; i < Model.Tables[0].Columns.Count; i++)
+                                                {
+                                                    <option>@dr[Model.Tables[0].Columns[i].ColumnName].ToString()</option>;
+                                                }
+                                            }
+
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-3"><button type="button" class="search-interogation pink btn" onclick="getPassengerAgencyDetail()"><span class="search-span">SEARCH</span></button></div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="body-agency-num dataAirportCode" style="background-color: white;">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="pink" style="width: 109px;">Agency Numeric Code</th>
+                                    <th class="pink">Name</th>
+                                </tr>
+                            </thead>
+                            <tbody class="body-passengerAgency"></tbody>
+                        </table>
+                    </div>
+                </div>
+                
+            </fieldset>
+        </div>
+
+        <div id="listNewAgent" class="tab-pane fade">
+            <fieldset class="col-sm-12 n-padding" style="margin-top: 20px;">
+                <div class="col-sm-3">
+                    <fieldset class="test-fieldst legent-issue-date" style="padding: 8px;height: 130px;">
+                        <legend class="test-fieldst">DATA LOOKUP</legend>
+
+                        <div class="form-group row width-group">
+                            <label class="col-sm-4 col-form-label">Issue Date From:</label>
+                            <div class="col-sm-4 n-padding">
+                                <div class="input-group">
+                                    <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateFrom')"></span>
+                                    <input type="text" class="form-control" id="dateFrom" value="@ViewBag.date[0]">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row width-group" style="margin-top: 21px;">
+                            <label class="col-sm-4 col-form-label">Issue Date To:</label>
+                            <div class="col-sm-7 n-padding">
+                                <div class="input-group col-sm-7">
+                                    <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateTo')"></span>
+                                    <input type="text" class="form-control" id="dateTo" value="@ViewBag.date[0]" style="width:97%">
+                                </div>
+                                <div class="col-sm-3" style="position: relative;top: -31px;left: 185px;"><button type="button" class="pink btn" onclick="newAgencyDetails()"><span class="search-span">SEARCH</span></button></div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="body-agency-num dataAirportCode">
+                        <table class="table table-bordered table-striped" style="width: 53%;">
+                            <thead>
+                                <tr>
+                                    <th class="pink">Agency Numeric Code</th>
+                                    <th class="pink">No. Of Docs </th>
+                                </tr>
+                            </thead>
+                            <tbody class="body-newagency"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!--div class="col-sm-4">
+                    <table class="tab-refundEng ">
+                        <tr>
+                            <td>Agent Numeric Code:</td>
+                            <td><input type="text" class="form-control" /></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Name:</td>
+                            <td><input type="text" class="form-control" /></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Address:</td>
+                            <td><input type="text" class="form-control" /></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Status:</td>
+                            <td>
+                                <select class="form-control">
+                                    <option>Regular</option>
+                                    <option>Notice Of Irregularity</option>
+                                    <option>Default</option>
+                                    <option>Other</option>
+                                </select>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Category:</td>
+                            <td>
+                                <select class="form-control">
+                                    <option>Passenger Sales Agency (PSA))</option>
+                                    <option>General Sales Agency (GSA)</option>
+                                    <option>IATA BSP CONSOLIDATOR SYSTEM (IBCS)</option>
+                                </select>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <div class="search" style="left: 6px;">
+                        <div class="col-sm-3"><button type="button" class="search-interogation pink btn" onclick="SavePassengerAgency()"><span class="search-span">SAVE</span></button></div>
+                        <div class="col-sm-3"><button type="button" class="search-interogation pink btn" onclick=""><span class="search-span">DELETE</span></button></div>
+                        <div class="col-sm-3"><button class="search-interogation pink btn" onclick=""><span class="search-span">CLEAR</span></button></div>
+                    </div>
+                </!--div>
+                <div class="col-sm-4">
+                    <table class="tab-refundEng ">
+                        <tr>
+                            <td>Remarks:</td>
+                            <td><textarea rows="4" style="width:100%"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td>Date Of Appointment:</td>
+                            <td><input type="text" class="form-control" /></td>
+                        </tr>                        
+                        <tr>
+                            <td>Location City:</td>
+                            <td><input type="text" class="form-control" /></td>
+                        </tr>
+                        <tr>
+                            <td>BSPs:</td>
+                            <td><input type="text" class="form-control" /></td>
+                        </tr>
+                    </table>
+                    <div class="search">
+                        <div class="col-sm-3"><button class="search-interogation pink btn" onclick="removeSousMenu()"><span class="search-span">CLOSE</span></button></div>
+                    </div>
+
+                </div>
+
+                <div class="col-sm-8" style="margin-top:18px">
+                    <fieldset class="test-fieldst legent-issue-date" style="padding:20px">
+                        <legend class="test-fieldst"></legend>
+                        <div class="body-typeRenum">
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="pink">Types of Renumeration</th>
+                                        <th class="pink">Per/Amount</th>
+                                        <th class="pink">Rate/level</th>
+                                        <th class="pink">Applicability</th>
+                                        <th class="pink">Period From</th>
+                                        <th class="pink">Period To</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="load-body-newRenum"></tbody>
+                            </table>
+                        </div>
+
+                        <div class="col-sm-2 add-edit">
+                            <button type="button" class="form-control col-sm-3">ADD/EDIT DETAILS</button>
+                        </div>
+                    </fieldset>
+                </div-->
+            </fieldset>
+        </div>
+    </div>
+    
+</div>
+
+<div id="renumeration" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 933px; left:10%">
+            <div class="modal-header">
+                <h5 class="modal-title">Documents Issued By Agent</h5>
+                <button type="button" class="close" style="position: relative;top: -21px;" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body-fim" style="height: 71vh;background-color:rgba(117, 228, 252, 1) !important">
+                <div class="ajax-loader">
+                    <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" style="top: -54px;height: 110px;width: 274px;" />
+                </div>
+                <div class="col-sm-12">
+                    <label class="col-form-label">Agent Numeric Code: <span id="agenNumericCode"></span></label>
+                </div>
+                <div class="col-sm-12">
+                    <fieldset class="test-fieldst legent-issue-date" style="padding:8px">
+                        <legend class="test-fieldst">FOR NEW ENTRY</legend>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <td>Types Of Remuneration</td>
+                                    <td colspan="2">Rate/Level</td>
+                                    <td>Applicability</td>
+                                    <td>Period From</td>
+                                    <td>Period To</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="width: 199px">
+                                        <select class="form-control" id="typeRemuneration">
+                                            <option></option>
+                                            <option>Sales Commission</option>
+                                            <option>Overrinding Commission</option>
+                                            <option>Productivity Linked Bonus</option>
+                                            <option>Incentive</option>
+                                            <option>Others</option>
+                                        </select>
+                                    </td>
+                                    <td style="width: 119px;">
+                                        <select class="form-control" id="rateLevels">
+                                            <option></option>
+                                            <option>Percentage</option>
+                                            <option>Amount</option>
+                                        </select>
+                                    </td>
+                                    <td><input type="text" class="form-control" id="rateLevel" /></td>
+                                    <td style="width: 161px;">
+                                        <select class="form-control" id="applicability">
+                                            <option></option>
+                                            <option>All Territories</option>
+                                            <option>Specific Sectors</option>
+                                            <option>Specific Countries</option>
+                                            <option>Specific BSPs</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <div class="input-group">
+                                            <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateFrom1')"></span>
+                                            <input type="text" class="form-control" id="dateFrom1" value="">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="input-group">
+                                            <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateTo1')"></span>
+                                            <input type="text" class="form-control" id="dateTo1" value="">
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="col-md-5">
+                            <button type="button" class="Close btn btn-secondary" onclick="clearRemuneration()">CLEAR</button>
+                            <button type="button" class="Close btn btn-secondary" onclick="DeleteSingleRenumerate()">DELETE</button>
+                            <button type="button" class="Close btn" onclick="accepte()">ACCEPT</button>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-sm-12" style="margin-top:9px">
+                    <fieldset class="test-fieldst legent-issue-date" style="padding:8px">
+                        <legend class="test-fieldst"></legend>
+                        <div class="body-new-renum dataAirportCode">
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="pink">Types of Renumeration</th>
+                                        <th class="pink">Per/Amount</th>
+                                        <th class="pink">Rate/Level</th>
+                                        <th class="pink">Applicability</th>
+                                        <th class="pink">Period From</th>
+                                        <th class="pink">Period To</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="load-body-newRenum" id="load-body-newRenum">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="Close btn btn-close" data-dismiss="modal" onclick="removeSousMenu()">CLOSE</button>
+                <button type="button" class="Close btn btn-secondary" style="margin-right: 7px;" onclick="SaveAllRenumerate('UpdateRenumerate')">SAVE</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="ListOfNewAgent" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 933px; left:10%">
+            <div class="modal-header">
+                <h5 class="modal-title">Passenger Agency Remuneration</h5>
+                <button type="button" class="close" style="position: relative;top: -21px;" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body-fim" style="height: 71vh;background-color:rgba(117, 228, 252, 1) !important">
+                <div class="ajax-loader">
+                    <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" style="top: -54px;height: 110px;width: 274px;" />
+                </div>
+                <div class="col-sm-12">
+                    <table>
+                        <tr>
+                            <td> <label class="col-form-label">Date of Issue From:</label></td>
+                            <td id="dateOfIssFrom"></td>
+                            <td><label class="col-form-label">Date of Issue To:</label></td>
+                            <td id="dateOfIssTo"></td>
+                            <td><label class="col-form-label">Agent Numeric Code:</label></td>
+                            <td id="agentNumCode"></td>
+                        </tr>
+                    </table>
+                    <label class="col-form-label">Agent Numeric Code: <span id="agenNumericCode"></span></label>
+                </div>
+
+                <div class="col-sm-12" style="margin-top:9px">
+                    <fieldset class="test-fieldst legent-issue-date" style="padding:8px">
+                        <legend class="test-fieldst"></legend>
+                        <div class="body-new-renum dataAirportCode" style="overflow: auto;height: 597px;">
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="pink">Document No.</th>
+                                        <th class="pink">Date Of Issue</th>
+                                        <th class="pink">Passenger Name</th>
+                                        <th class="pink">Fare Calculation Area</th>
+                                        <th class="pink">Curr</th>
+                                        <th class="pink">Fare</th>
+                                        <th class="pink">Curr</th>
+                                        <th class="pink">Equiv. Fare</th>
+                                        <th class="pink">Trans Code</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="load-lisOfNewAgent"></tbody>
+                            </table>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="Close btn btn-close"  onclick="removeSousMenu()" data-dismiss="modal">CLOSE</button>
+            </div>
+        </div>
+    </div>
+</div>

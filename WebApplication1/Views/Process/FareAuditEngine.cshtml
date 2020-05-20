@@ -1,0 +1,1113 @@
+﻿<script src="~/Scripts/Process.js"></script>
+
+<div id="Fare">
+    <ul class="nav nav-tabs" style="margin-top: 12px;margin-left: 11px;" id="FareAuditTabMenu">
+        <li class="active"><a data-toggle="tab" href="#search" class="nav-pax">Search</a></li>
+        <li><a data-toggle="tab" href="#FareUpload" class="nav-pax">Fare Upload Screen</a></li>
+        <li><a data-toggle="tab" href="#FareQuery" class="nav-pax">Fare Query Screen</a></li>
+        <li><a data-toggle="tab" href="#FareInput" class="nav-pax">Fare Input Screen</a></li>
+        <li><a data-toggle="tab" href="#MassCheck" class="nav-pax">Mass Check</a></li>
+    </ul>
+
+    <div class="tab-content" id="FaPane">
+        <!--  Load Ajax  --->
+        <div class="ajax-loader">
+            <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+        </div>
+
+        <div id="search" class="tab-pane fade in active">
+            <div class="col-sm-12 n-padding">
+                <div class="col-sm-10 n-padding" style="background-color:RGB(240,230,140); left:6px;border: 2px solid white;">
+                    <div style="border:1px solid;height:312px;margin: 5px;padding: 7px;">
+                        <div class="col-sm-4">
+                            <div class="form-group row width-group">
+                                <label class="col-sm-4 col-form-label">Passenger Name:</label>
+                                <div class="col-sm-8 n-paddin-left">
+                                    <input type="text" name="passengerName" id="passengerNameSet" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row width-group">
+                                <label class="col-sm-4 col-form-label"></label>
+                                <div class="col-sm-8 n-paddin-left">
+                                    <div class="form-check form-check-inline">
+                                        <div class="col-sm-9 n-paddin-left">
+                                            <input class="form-check-input" type="radio" name="radContains" id="" value="starting" checked>
+                                            <label class="form-check-label col-form-label" for="inlineRadio">Starting With(minimun 3 characters)</label>
+                                        </div>
+                                        <div class="col-sm-3 n-padding">
+                                            <input class="form-check-input" type="radio" name="radContains" id="" value="contains">
+                                            <label class="form-check-label col-form-label" for="inlineRadio2">Contains</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row width-group">
+                                <label class="col-sm-4 col-form-label">PNR:</label>
+                                <div class="col-sm-8 n-paddin-left">
+                                    <input type="text" name="pnr" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row width-group">
+                                <label class="col-sm-4 col-form-label">Documment No:</label>
+                                <div class="col-sm-8 n-paddin-left">
+                                    <input type="text" name="docummentNo" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row width-group">
+                                <label class="col-sm-4 col-form-label">Agent Code:</label>
+                                <div class="col-sm-8 n-paddin-left">
+                                    <select class="form-control">
+                                        <option></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row width-group">
+                                <label class="col-sm-4 col-form-label">FCMI:</label>
+                                <div class="col-sm-8 n-paddin-left">
+                                    <select class="form-control">
+                                        <option></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row width-group">
+                                <label class="col-sm-4 col-form-label">Fare Basis:</label>
+                                <div class="col-sm-8 n-paddin-left">
+                                    <select class="form-control">
+                                        <option></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row width-group">
+                                <label class="col-sm-4 col-form-label">Endorse/Restrictions:</label>
+                                <div class="col-sm-8 n-paddin-left">
+                                    <select class="form-control">
+                                        <option></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-5 n-padding">
+                            <div class="col-sm-12 n-padding" style="margin-bottom: 13px;">
+                                <div class="col-sm-4 n-padding">
+                                    <fieldset class="test-fieldst" style="border: 1px solid #c7c3c3 !important;">
+                                        <div class="col-sm-6">
+                                            <input class="form-check-input" type="radio" name="domeInt" value="Sales">
+                                            <label class="form-check-label col-form-label" for="inlineRadio1">Sales</label>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input class="form-check-input" type="radio" name="domeInt" value="Int">
+                                            <label class="form-check-label col-form-label" for="inlineRadio1">Lift/Flown</label>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <div class="col-sm-3 n-padding">
+                                    <fieldset class="test-fieldst" style="border: 1px solid #c7c3c3 !important;">
+                                        <div class="col-sm-6">
+                                            <input class="form-check-input" type="radio" name="domeInt" value="Sales">
+                                            <label class="form-check-label col-form-label" for="inlineRadio1">OWN</label>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input class="form-check-input" type="radio" name="domeInt" value="Int">
+                                            <label class="form-check-label col-form-label" for="inlineRadio1">OAL</label>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <div class="col-sm-5 n-padding">
+                                    <div class="form-group row width-group">
+                                        <label class="col-sm-6 col-form-label" style="top: 7px;left: 26px;">O and D By Journey:</label>
+                                        <div class="col-sm-6 n-paddin-left">
+                                            <select class="form-control">
+                                                <option></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 n-padding">
+                                <fieldset class="test-fieldst" style="padding:12px;border: 1px solid #c7c3c3 !important;">
+                                    <table style="border-collapse: separate;border-spacing: 1px;">
+                                        <tr>
+                                            <td style="width: 12%;">Issue Date:</td>
+                                            <td style="width: 8%">From:</td>
+                                            <td style="width: 23%;">
+                                                <div class="input-group date" style="padding-right:18px">
+                                                    <span class="input-group-addon check-dape"><input type="checkbox"></span>
+                                                    <input type='text' name="datedtpIssueDateTo" class="form-controls input-date input-datetimepicker" />
+                                                    <span class="input-group-addon datetimepicker">
+                                                        <span class="glyphicon glyphicon-calendar" id=""></span>
+                                                    </span>
+                                                </div>
+                                            </td>
+                                            <td style="width: 4%;">To:</td>
+                                            <td style="width: 22%;">
+                                                <div class="input-group date">
+                                                    <span class="input-group-addon check-dape"><input type="checkbox"></span>
+                                                    <input type='text' name="datedtpIssueDateTo" class="form-controls input-date input-datetimepicker" />
+                                                    <span class="input-group-addon datetimepicker">
+                                                        <span class="glyphicon glyphicon-calendar" id="calendarPaxTo"></span>
+                                                    </span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Lift Date:</td>
+                                            <td>From:</td>
+                                            <td>
+                                                <div class="input-group date" style="padding-right:18px">
+                                                    <span class="input-group-addon check-dape"><input type="checkbox"></span>
+                                                    <input type='text' name="datedtpIssueDateTo" class="form-controls input-date input-datetimepicker" />
+                                                    <span class="input-group-addon datetimepicker">
+                                                        <span class="glyphicon glyphicon-calendar" id=""></span>
+                                                    </span>
+                                                </div>
+                                            </td>
+                                            <td>To:</td>
+                                            <td>
+                                                <div class="input-group date">
+                                                    <span class="input-group-addon check-dape"><input type="checkbox"></span>
+                                                    <input type='text' name="datedtpIssueDateTo" class="form-controls input-date input-datetimepicker" />
+                                                    <span class="input-group-addon datetimepicker">
+                                                        <span class="glyphicon glyphicon-calendar" id="calendarPaxTo"></span>
+                                                    </span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>COT Date:</td>
+                                            <td>From:</td>
+                                            <td>
+                                                <div class="input-group date" style="padding-right:18px">
+                                                    <span class="input-group-addon check-dape"><input type="checkbox"></span>
+                                                    <input type='text' name="datedtpIssueDateTo" class="form-controls input-date input-datetimepicker" />
+                                                    <span class="input-group-addon datetimepicker">
+                                                        <span class="glyphicon glyphicon-calendar" id=""></span>
+                                                    </span>
+                                                </div>
+                                            </td>
+                                            <td>To:</td>
+                                            <td>
+                                                <div class="input-group date">
+                                                    <span class="input-group-addon check-dape"><input type="checkbox"></span>
+                                                    <input type='text' name="datedtpIssueDateTo" class="form-controls input-date input-datetimepicker" />
+                                                    <span class="input-group-addon datetimepicker">
+                                                        <span class="glyphicon glyphicon-calendar" id="calendarPaxTo"></span>
+                                                    </span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </fieldset>
+                            </div>
+                            <div class="col-sm-12 n-padding" style="margin-top: 15px;">
+                                <label class="col-sm-2 n-padding">Keyword:</label>
+                                <div class="col-sm-2"><input type="text" class="form-control" /></div>
+                                <label class="col-sm-2 n-padding">Type of File:</label>
+                                <div class="col-sm-2 n-padding">
+                                    <select class="form-control">
+                                        <option></option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-2">
+                                    <input class="form-check-input" type="checkbox" name="radContains" id="" value="contains">
+                                    <label class="form-check-label col-form-label" for="inlineRadio2">All Tickets</label>
+                                </div>
+                                <div class="col-sm-2 n-padding">
+                                    <input class="form-check-input" type="checkbox" name="radContains" id="" value="contains">
+                                    <label class="form-check-label col-form-label" for="inlineRadio2">Ticketing Error</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-12" style="margin-top: 13px;">
+                                <div class="col-sm-11" style="float: right;background-color: #983f3f;padding: 6px;text-align: center;">
+                                    <button class="btn btn-default" type="button">Search</button>
+                                    <button class="btn btn-default" type="button">Clear</button>
+                                    <button class="btn btn-default" type="button">Quering For ADM/ACM</button>
+                                    <button class="btn btn-default" type="button">Ticket Error</button>
+                                    <button class="btn btn-default" type="button" onclick="AppendFacMenu()" id="btnFAC">FCA/Doc</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label>FCMI Counts</label>
+                            <div style="height: 265px;width: 150px;border: 1px solid;">
+
+                            </div>
+                            <label style="position: relative;top: -17px;float: right;left: 62px;">Ticketing Error</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-12" style="border:1px solid;height: 324px;margin-left:5px;width: 99.3%;">
+                        <table class="table table-bordered">
+                            <thead style="background-color:RGB(173,255,47);color:#9e4444">
+                                <tr>
+                                    <th></th>
+                                    <th>Row No.</th>
+                                    <th>Doc No</th>
+                                    <th>Trans Code</th>
+                                    <th>CK</th>
+                                    <th>Tax 1</th>
+                                    <th>Tax 2</th>
+                                    <th>Tax 3</th>
+                                    <th>Agent Code</th>
+                                    <th>Date Of Issue</th>
+                                    <th>Passenger Name</th>
+                                    <th>PSD</th>
+                                    <th>FCA</th>
+                                    <th>Exception</th>
+                                    <th>Journey</th>
+                                    <th>Endor-Restr</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="col-sm-10 n-padding" style="margin-top: 24px;margin-left: -5px;">
+                        <table style="border-collapse: separate;border-spacing: 13px;">
+                            <tr>
+                                <td>No of record per page:</td>
+                                <td><input type="text" name="" style="width: 86px;" /></td>
+                                <td>No of record:</td>
+                                <td><input type="text" name="" style="width: 86px;" /></td>
+                                <td>Time Taken</td>
+                                <td><input type="text" name="" style="width: 120px;" /></td>
+                                <td>Checked:</td>
+                                <td><input type="text" name="" style="width: 86px;" /></td>
+                                <td>Unchecked:</td>
+                                <td><input type="text" name="" style="width: 86px;" /></td>
+                                <td>Ticketing Error</td>
+                                <td><input type="text" name="" style="width: 86px;" /></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-sm-5" style="top: 26px;background-color: #983f3f;width: 11%;">
+                        <div>
+                            <button type="button" class="btn btn-default">Check</button>
+                            <button type="button" class="btn btn-default">Close</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div id="FareUpload" class="tab-pane fade">
+            <div class="col-sm-12 n-padding">
+                <div class="col-sm-10 n-padding" style="background-color:RGB(240,230,140); left:6px;border: 2px solid white;">
+                    <div class="col-sm-11 n-padding" style="margin-top: 15px;margin-bottom: 13px;">
+                        <div class="col-sm-2" style="background-color: #983f3f;padding: 4px;margin-right: 4px;">
+                            <label style="color:white">Date</label>
+                            <input type="text" />
+                        </div>
+                        <div class="col-sm-3" style="background-color: #983f3f;padding: 4px;margin-right: 4px;">
+                            <label style="color:white">No of Records</label>
+                            <input type="text" />
+                        </div>
+                        <div class="col-sm-3" style="background-color: #983f3f;padding: 4px;margin-right: 4px;">
+                            <label style="color:white">No of Time</label>
+                            <input type="text" />
+                        </div>
+                        <div class="col-sm-3" style="background-color: #983f3f;height: 35px;">
+                            <button type="button" class="btn btn-default">Load Fare Data</button>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-10 n-padding" style="border:1px solid;height:600px;width: 84.7%;">
+
+                    </div>
+                    <div class="col-sm-10 n-padding" style="background-color: #983f3f;width: 84.7%;margin-bottom: 25px;">
+                        <div style="float:right">
+                            <button class="btn btn-default" type="button" style="color:#9e4444">Clear</button>
+                            <button class="btn btn-default" type="button" style="color:#9e4444">Upload</button>
+                            <button class="btn btn-default" type="button" style="color:blue;margin-right: 6px;">Back</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Fare Query Joseph-->
+
+        <div id="FareQuery" class="tab-pane fade">
+            <div class="col-sm-12 n-padding">
+                <div class="col-sm-10 n-padding" style="background-color:RGB(240,230,140); left:6px;border: 2px solid white;">
+                    <div class="col-sm-11 n-padding" style="margin-top: 15px;margin-bottom: 13px;">
+                        <div class="col-sm-5" style="background-color: #983f3f">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td><label style="color:white;width: 94px;">Sector From</label></td>
+                                        <td style="width: 135px;">
+                                            <select class="form-control" id="sectorFrom">
+                                                <option></option>
+                                                @for (int i = 0; i < ViewBag.lon; i++)
+                                                {
+                                                    <option>@ViewBag.ItemFrom[0, i]</option>
+                                                }
+                                            </select>
+                                        </td>
+                                        <td style="padding-left: 8px;"><label style="color:white;width: 94px;">Sector To</label></td>
+                                        <td style="width: 135px;">
+                                            <select class="form-control" id="sectorTo">
+                                                <option></option>
+                                                @for (int i = 0; i < ViewBag.lonTo; i++)
+                                                {
+                                                    <option>@ViewBag.ItemTo[0, i]</option>
+                                                }
+                                            </select>
+                                        </td>
+                                        <td style="padding-left: 11px;"><button type="button" class="btn btn-default" style="color:blue" onclick="ViewFareBySector()">View Fare By Sector</button></td>
+                                        <td style="padding-left: 11px;"><button type="button" class="btn btn-default" style="color:blue">Clear</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-10 n-padding" style="border:1px solid;height:250px;width: 84.7%;">
+
+                    </div>
+                    <div class="col-sm-6 n-padding" style="background-color: #983f3f;width: 84.7%;margin-bottom: 25px;">
+                        <div style="float:left;padding:6px">
+                            <button class="btn btn-default" type="button" style="color:blue" onclick="FareByComponentGet()">View Fare Entries</button>
+                            <button class="btn btn-default" type="button" style="color:blue" onclick="FareByComponentGet()">Fare by Fare_Component</button>
+                            <button class="btn btn-default" type="button" style="color:blue;">Clear</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-10 n-padding" style="border:1px solid;height:300px;width: 84.7%;margin-bottom:80px">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- End  Fare Query Joseph-->
+        <!-- FareInput  Joseph-->
+        <div id="FareInput" class="tab-pane fade">
+            <div class="col-sm-12 n-padding">
+                <div class="col-sm-10 n-padding" style="background-color:RGB(240,230,140); left:6px;border: 2px solid white;">
+                    <div class="col-sm-9 n-padding" style="margin-top: 15px;margin-bottom: 13px;border: 1px solid;padding: 16px !important;">
+                        <table style="border-collapse: separate;border-spacing: 4px;">
+                            <tbody>
+                                <tr>
+                                    <td>Fare - ISN</td>
+                                    <td><input type="text" name="fareIsn" id="fareIsn" class="form-control" style="width:100%;" value="@ViewBag.fareIsn"></td>
+                                    <td>Rule</td>
+                                    <td><input type="text" name="rule" id="rule" class="form-control" style="width:100%;" maxlength="10"></td>
+                                    <td>Prime Code</td>
+                                    <td><input type="text" name="primeCode" id="primeCode" class="form-control" style="width:100%;" maxlength="1"></td>
+                                </tr>
+                                <tr>
+                                    <td>Carrier Code</td>
+                                    <td><input type="text" name="carrierCode" id="carrierCode" class="form-control" style="width:100%;" maxlength="3"></td>
+                                    <td>MPM</td>
+                                    <td><input type="text" name="mpm" id="mpm" class="form-control" style="width:100%;" maxlength="10"></td>
+                                    <td>Seasonal Code</td>
+                                    <td><input type="text" name="seasonal" id="seasonal" class="form-control" style="width:100%;" maxlength="10"></td>
+                                </tr>
+                                <tr>
+                                    <td>Sector From</td>
+                                    <td><input type="text" name="sectorFromInput" id="sectorFromInput" class="form-control" style="width:100%;" maxlength="3"></td>
+                                    <td>GI</td>
+                                    <td><input type="text" name="gi" id="gi" class="form-control" style="width:100%;" maxlength="2"></td>
+                                    <td>Part of Week Code</td>
+                                    <td><input type="text" name="partofWeek" id="partofWeek" class="form-control" style="width:100%;" maxlength="10"></td>
+                                </tr>
+                                <tr>
+                                    <td>Sector To</td>
+                                    <td><input type="text" name="sectorToInput" id="sectorToInput" class="form-control" style="width:100%;" maxlength="3"></td>
+                                    <td>RBD</td>
+                                    <td><input type="text" name="rbd" id="rbd" class="form-control" style="width:100%;" maxlength="1"></td>
+                                    <td>Part Of Day Code</td>
+                                    <td><input type="text" name="partOfDayCode" id="partOfDayCode" class="form-control" style="width:100%;" maxlength="10"></td>
+                                </tr>
+                                <tr>
+                                    <td>Fare Basis</td>
+                                    <td><input type="text" name="fareBasis" id="fareBasis" class="form-control" style="width:100%;" maxlength="15"></td>
+                                    <td>Sales Validity From</td>
+                                    <td>
+                                        <div class="input-group date">
+                                            <input type="text" class="form-control" style="width: 120px" id="salesValidityFrom" value="@ViewBag.salesValidityFrom">
+                                            <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('salesValidityFrom')"></span>
+                                        </div>
+                                    </td>
+                                    <td>FPT-C</td>
+                                    <td><input type="text" name="fptc" id="fptc" class="form-control" style="width:100%;" maxlength="10"></td>
+                                </tr>
+                                <tr>
+                                    <td>Journey Type</td>
+                                    <td>
+                                        <select class="form-control" id="journeyType" style="width: 170px">
+                                            <option value=""></option>
+                                            <option value="OW">OW</option>
+                                            <option value="RT">RT</option>
+                                        </select>
+                                    </td>
+                                    <td>Sales Validity To</td>
+                                    <td>
+                                        <div class="input-group date">
+                                            <input type="text" class="form-control" style="width: 120px" id="salesValidityTo" value="@ViewBag.salesValidityTo">
+                                            <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('salesValidityTo')"></span>
+                                        </div>
+                                    </td>
+                                    <td>Fare level Identifier</td>
+                                    <td><input type="text" name="fareLevelId" id="fareLevelId" class="form-control" style="width:100%;" maxlength="10"></td>
+                                </tr>
+                                <tr>
+                                    <td>Currency Code</td>
+                                    <td><input type="text" name="currencyCode" id="currencyCode" class="form-control" style="width:100%;" maxlength="3"></td>
+                                    <td>Flown Validity From</td>
+                                    <td>
+                                        <div class="input-group date">
+                                            <input type="text" class="form-control" style="width: 120px" id="flownValidityFrom" value="@ViewBag.flownValidityFrom">
+                                            <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('flownValidityFrom')"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Local Currency Fare</td>
+                                    <td><input type="text" name="localCurrencyFare" id="localCurrencyFare" class="form-control" style="width:100%;" maxlength="10"></td>
+                                    <td>Flown Validity To</td>
+                                    <td>
+                                        <div class="input-group date">
+                                            <input type="text" class="form-control" style="width: 120px" id="flownValidityTo" value="@ViewBag.flownValidityTo">
+                                            <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('flownValidityTo')"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>NUC</td>
+                                    <td><input type="text" name="nuc" id="nuc" class="form-control" style="width:100%;" maxlength="10"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="col-sm-11" style="float: right;background-color: #983f3f;padding: 6px;text-align: right;width: 17%;">
+                            <button class="btn btn-default" type="button" onclick="saveInputeScreen()">Save</button>
+                            <button class="btn btn-default" type="button" onclick="clearSaveInpute()">Clear</button>
+                            <button class="btn btn-default" type="button">Back</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-9 n-padding" style="border:1px solid;height: 177px;">
+                        <table class="table table-bordered">
+                            <thead style="background-color:RGB(173,255,47);">
+                                <tr>
+                                    <th>Document Number</th>
+                                    <th>Related Document Number</th>
+                                    <th>Coupon Number</th>
+                                    <th>Flight Departure Date</th>
+                                    <th>Not Valid Before</th>
+                                    <th>Not Valid After</th>
+                                    <th>Fare Basis</th>
+                                    <th>Maximun Validity</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+
+                    <div class="col-sm-9 n-padding" style="border:1px solid;height: 177px;margin-bottom: 54px;">
+                        <table class="table table-bordered">
+                            <thead style="background-color:RGB(173,255,47);">
+                                <tr>
+                                    <th>Maximum Validity</th>
+                                    <th>Code</th>
+                                    <th>Value</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- End FareInput Joseph-->
+
+        <div id="MassCheck" class="tab-pane fade">
+            <div class="col-sm-12 n-padding">
+                <div class="col-sm-10 n-padding" style="background-color:RGB(240,230,140); left:6px;border: 2px solid white;">
+                    <div class="col-sm-5 n-padding" style="margin-top: 12px;margin-left: 5px;">
+                        <div>
+                            <button type="button" class="btn btn-default">Search</button>
+                            <button type="button" class="btn btn-default">Check</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-12" style="border:1px solid;height: 584px;margin-left:5px; margin-top:15px; width: 99.3%;">
+                        <table class="table table-bordered">
+                            <thead style="background-color:RGB(182,37,170);color:white">
+                                <tr>
+                                    <th></th>
+                                    <th>Doc No</th>
+                                    <th>Trans Code</th>
+                                    <th>Date</th>
+                                    <th>Passenger Name</th>
+                                    <th>FCA</th>
+                                    <th>Journey</th>
+                                    <th>FCMI</th>
+                                    <th>File</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="col-sm-10 n-padding" style="margin-top: 24px;margin-left: -5px;">
+                        <table style="border-collapse: separate;border-spacing: 13px;">
+                            <tr>
+                                <td>No of record:</td>
+                                <td><input type="text" name="" style="width: 86px;" /></td>
+                                <td>Time Taken</td>
+                                <td><input type="text" name="" style="width: 120px;" /></td>
+                                <td>Checked:</td>
+                                <td><input type="text" name="" style="width: 86px;" /></td>
+                                <td>Unchecked:</td>
+                                <td><input type="text" name="" style="width: 86px;" /></td>
+                                <td>Ticketing Error</td>
+                                <td><input type="text" name="" style="width: 86px;" /></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @*
+            Harentsoa
+            Tab : FCADOC
+        *@
+        <div id="FCADOC" class="tab-pane fade">
+            <div class="col-sm-12 n-padding">
+                <div class="col-sm-10 p-1 m-1" style="background-color:RGB(240,230,140); left:6px;border: 2px solid white; height:800px; overflow-y: auto;">
+                    <div class="row p-1 m-1">
+                        <div class="col-sm-8">
+                            <div class="col-sm-7 red red__mm" style="padding:5px !important;">
+                                <div class="row">
+                                    <label class="green col-sm-2" style="margin:0 0 0 20px !important;">Query By: </label>
+                                    <div class="custom-control custom-radio custom-control-inline col-sm-4">
+                                        <input type="radio" class="custom-control-input" id="defaultInline1" name="inlineDefaultRadiosExample">
+                                        <label class="custom-control-label" for="defaultInline1">Document Number</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-control-inline col-sm-4">
+                                        <input type="radio" class="custom-control-input" id="defaultInline2" name="inlineDefaultRadiosExample">
+                                        <label class="custom-control-label" for="defaultInline1">Fare Calculation Area</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 red" style="padding: 5px !important;">
+                                <label class="green col-sm-4" style="margin-right: 10px !important;">FCA/DOC: </label>
+                                <input class="col-sm-7 input__blue" type="text" value="" />
+                            </div>
+                        </div>
+                        <div class="col-md-2 red" style="padding: 5px !important;">
+                            <button class="btn btn-default">Excecute</button>
+                            <button class="btn btn-default">Clear</button>
+                            <button class="btn btn-default">Close</button>
+                        </div>
+                    </div>
+
+                    <br />
+                    <div class="row p-1 m-1">
+                        <div class="col-md-8 d-bordered h-34 div-34 no-padding">
+
+                        </div>
+                        <button class="col-md-2 h-34 break" data-toggle="modal" data-target="#FcaBreackdown">FCA Breakdown</button>
+                    </div>
+
+                    <br />
+                    <div class="row p-1 m-1">
+                        <div class="col-md-4">
+                            <div class="row">
+                                <div class="col-md-6 div-22-title">
+                                    <div class="title red yellow">
+                                        FARE CONSTRUCTION STEPS
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row b-1 m-1">
+                                <div class="col-xs-6 col-sm-4" style="padding: 0px !important;">
+                                    <label class="col-md-4 red yellow h-22" style="font-size: 9px !important;">Journey</label>
+                                    <input type="text" value="" class="col-md-6 h-22 input__blue" />
+                                </div>
+                                <div class="col-xs-6 col-sm-4" style="padding: 0px !important;">
+                                    <label class="col-md-4 red yellow h-22" style="font-size: 9px !important;">Type</label>
+                                    <input type="text" value="" class="col-md-6 h-22 input__blue" />
+                                </div>
+                                <div class="col-xs-6 col-sm-4" style="padding: 0px !important;">
+                                    <label class="col-md-4 red yellow h-22" style="font-size: 9px !important;">Doc N°</label>
+                                    <input type="text" value="" class="col-md-6 h-22 input__blue" />
+                                </div>
+
+
+                            </div>
+                            <div class="row b-1">
+                                <label class="col-sm-3 red yellow h-22">FCP</label>
+                                <input type="text" value="" class="col-sm-8 h-22" />
+                            </div>
+                            <div class="row b-1">
+                                <label class="col-sm-3 red yellow h-22">NUC</label>
+                                <input type="text" value="" class="col-sm-8 h-22" />
+                            </div>
+                            <div class="row b-1">
+                                <label class="col-sm-3 red yellow h-22">RULE</label>
+                                <input type="text" value="" class="col-sm-8 h-22" />
+                            </div>
+                            <div class="row b-1">
+                                <label class="col-sm-3 red yellow h-22">MPM</label>
+                                <input type="text" value="" class="col-sm-8 h-22" />
+                            </div>
+                            <div class="row b-1">
+                                <label class="col-sm-3 red yellow h-22">TPM</label>
+                                <input type="text" value="" class="col-sm-8 h-22" />
+                            </div>
+                            <div class="row b-1">
+                                <label class="col-sm-3 red yellow h-22">EMA</label>
+                                <input type="text" value="" class="col-sm-8 h-22" />
+                            </div>
+                            <div class="row b-1">
+                                <label class="col-sm-3 red yellow h-22">NEW TPM</label>
+                                <input type="text" value="" class="col-sm-8 h-22" />
+                            </div>
+                            <div class="row b-1">
+                                <label class="col-sm-3 red yellow h-22">EMS</label>
+                                <input type="text" value="" class="col-sm-8 h-22" />
+                            </div>
+                            <div class="row b-1">
+                                <label class="col-sm-3 red yellow h-22">HIP</label>
+                                <input type="text" value="" class="col-sm-8 h-22" />
+                            </div>
+                            <div class="row b-1">
+                                <label class="col-sm-3 red yellow h-22">AF</label>
+                                <input type="text" value="" class="col-sm-8 h-22" />
+                            </div>
+
+                            <div class="row p-1 b-1" style="" margin-top 15px !important;">
+                                <div class="col-sm-6 m6__field">
+                                    <fieldset class="test-fieldst">
+                                        <legend class="test-fieldst">Backhaul Check</legend>
+                                        <div class="row">
+                                            <div class="col-md-6 div-22-title">
+                                                <div class="title red yellow">
+                                                    Backhaul Check
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row justify-content-center" style="margin-left: 35px !important;">
+                                            <label class="col-sm-4 red yellow h-22">O-I</label>
+                                            <input type="text" value="" class="col-sm-4 h-22" />
+                                        </div>
+                                        <div class="row justify-content-center" style="margin-left: 35px !important;">
+                                            <label class="col-sm-4 red yellow h-22">O-D</label>
+                                            <input type="text" value="" class="col-sm-4 h-22" />
+                                            <button class="red red__btn">-</button>
+                                        </div>
+                                        <div class="row justify-content-center" style="margin-left: 35px !important;">
+                                            <label class="col-sm-4 red yellow h-22">Difference</label>
+                                            <input type="text" value="" class="col-sm-4 h-22 green__input" />
+                                        </div>
+                                        <div class="row justify-content-center" style="margin-left: 35px !important;">
+                                            <label class="col-sm-4 red yellow h-22">O-I</label>
+                                            <input type="text" value="" class="col-sm-4 h-22" />
+                                            <button class="red red__btn">+</button>
+                                        </div>
+                                        <div class="row justify-content-center" style="margin-left: 35px !important;">
+                                            <label class="col-sm-4 red yellow h-22">OWM</label>
+                                            <input type="text" value="" class="col-sm-4 h-22 green__input" />
+                                        </div>
+                                        <div class="row justify-content-center" style="margin-left: 35px !important;">
+                                            <label class="col-sm-4 red yellow h-22">AF</label>
+                                            <input type="text" value="" class="col-sm-4 h-22" />
+                                        </div>
+                                        <div class="row justify-content-center" style="margin-left: 35px !important;">
+                                            <label class="col-sm-4 red yellow h-22">BHC-Plus Up</label>
+                                            <input type="text" value="" class="col-sm-4 h-22 green__input" />
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <div class="col-sm-6 m6__field">
+                                    <fieldset class="test-fieldst">
+                                        <legend class="test-fieldst">Circle Trip Minimun Check</legend>
+                                        <div class="row">
+                                            <div class="col-md-6 div-22-title">
+                                                <div class="title red yellow">
+                                                    CTM Check
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row justify-content-center" style="margin-left: 35px !important;">
+                                            <label class="col-sm-4 red yellow h-22">O-H</label>
+                                            <input type="text" value="" class="col-sm-4 h-22" />
+                                        </div>
+                                        <div class="row justify-content-center" style="margin-left: 35px !important;">
+                                            <label class="col-sm-4 red yellow h-22">D</label>
+                                            <input type="text" value="" class="col-sm-4 h-22" />
+                                            <button class="red red__btn">*</button>
+                                        </div>
+                                        <div class="row justify-content-center" style="margin-left: 35px !important;">
+                                            <label class="col-sm-4 red yellow h-22">RT</label>
+                                            <input type="text" value="" class="col-sm-4 h-22 green__input" />
+                                        </div>
+                                        <div class="row justify-content-center" style="margin-left: 35px !important;">
+                                            <label class="col-sm-4 red yellow h-22">AF</label>
+                                            <input type="text" value="" class="col-sm-4 h-22" />
+                                            <button class="red red__btn">-</button>
+                                        </div>
+                                        <div class="row justify-content-center" style="margin-left: 35px !important;">
+                                            <label class="col-sm-4 red yellow h-22">CTM-ADJ</label>
+                                            <input type="text" value="" class="col-sm-4 h-22 green__input" />
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="row" style="margin-bottom: 10px !important;">
+                                <label class="col-xs-5 col-md-3 red yellow">FARE COMPONENT</label>
+                                <div class="col-xs-12 col-md-8 div_cont div_cont__lg"></div>
+                            </div>
+                            <div class="row" style="margin-bottom: 10px !important;">
+                                <label class="col-xs-5 col-md-3 red yellow">PLUS UP(S) - [P]</label>
+                                <div class="col-xs-12 col-md-8 div_cont div_cont__md"></div>
+                            </div>
+                            <div class="row" style="margin-bottom: 10px !important;">
+                                <label class="col-xs-5 col-md-3 red yellow">SURCHARGES - [Q]</label>
+                                <div class="col-xs-12 col-md-8 div_cont div_cont__md"></div>
+                            </div>
+                            <div class="row" style="margin-bottom: 10px !important;">
+                                <label class="col-xs-5 col-md-3 red yellow">STOPOVERS - [S]</label>
+                                <div class="col-xs-12 col-md-8 div_cont div_cont__md"></div>
+                            </div>
+                            <div class="row" style="margin-bottom: 10px !important;">
+                                <label class="col-xs-5 col-md-3 red yellow">DIFFERENTIAL - [D]</label>
+                                <div class="col-xs-12 col-md-8 div_cont div_cont__md"></div>
+                            </div>
+                            <div class="row" style="margin-bottom: 10px !important;">
+                                <label class="col-xs-5 col-md-3 red yellow h-22">TOTAL</label>
+                                <div class="col-xs-12 col-md-8 div_cont h-22"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="red" style="height:700px !important;">
+                                <div class="row">
+                                    <div class="col-md-6 div-22-title">
+                                        <div class="title red yellow">
+                                            FARE REFERENCE DATA
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="div_cont div_cont__white">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+
+                    <div class="row p-1 m-1">
+                        <div class="col-md-11">
+                            <div class="col-xs-6 col-sm-3">
+                                <div class="col-xs-6">
+                                    <label class="col-xs-5 red yellow m6__field">Total NUC</label>
+                                    <input type="text" value="" class="col-xs-6 h-22" />
+                                </div>
+                                <div class="col-xs-6">
+                                    <label class="col-xs-5 red yellow h-22 m6__field">IROE</label>
+                                    <input type="text" value="" class="col-xs-6 h-22" />
+                                </div>
+
+                            </div>
+                            <div class="col-xs-5 col-sm-2">
+                                <label class="col-xs-5 red yellow m6__field">ADM - TO BE USED</label>
+                                <input type="text" value="" class="col-xs-6 h-22" />
+                            </div>
+                            <div class="col-xs-5 col-sm-2">
+                                <label class="col-xs-5 red yellow m6__field">ACM - CREDIT TO PASSENGER'S ACCOUNT</label>
+                                <input type="text" value="" class="col-xs-6 h-22" />
+                            </div>
+                            <div class="col-xs-6 col-sm-3 red" style="padding: 5px !important;">
+                                <button class="btn btn-default">Check</button>
+                                <button class="btn btn-default">Clear</button>
+                                <button class="btn btn-default">ACM/ADM</button>
+                                <button class="btn btn-default">Back</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        @*
+            Harentsoa
+            Modal : _FCABreakdown
+        *@
+
+        <div id="FcaBreackdown" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Split Fare Calculation Area</h5>
+                    </div>
+                    <div class="modal-body" style="width:100% !important; margin:5px !important; height: 100% !important;">
+                        <div class="row">
+                            <form class="form-horizontal">
+                                <div class="col-sm-12">
+                                    <label for="" class="col-sm-1">FCA</label>
+                                    <div class="col-sm-11">
+                                        <input type="email" class="form-control" id="">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2 div_cont_h" style="margin-left: 10px !important;">
+
+                            </div>
+                            <div class="col-sm-1 div_cont_h">
+
+                            </div>
+                            <div class="col-sm-9" style="padding: 0px !important; margin-top: 5px !important;">
+                                @*
+                                    -- Table
+                                *@
+                                <div class="tab_over_first div_cont_v div_cont_b">
+                                    <table class="table table-bordered fixed">
+                                        <thead>
+                                            <tr>
+                                                <th>Fare Component</th>
+                                                <th>1</th>
+                                                <th>2</th>
+                                                <th>3</th>
+                                                <th>4</th>
+                                                <th>5</th>
+                                                <th>6</th>
+                                                <th>7</th>
+                                                <th>8</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="td__pink">FC NUC</td>
+                                                <td class="td__orange"></td>
+                                                <td class="td__cyan"></td>
+                                                <td class="td__yellow"></td>
+                                                <td class="td__violet"></td>
+                                                <td class="td__beige"></td>
+                                                <td class="td__vert"></td>
+                                                <td class="td__bleu"></td>
+                                                <td class="td__claire"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="td__pink">FC NUC</td>
+                                                <td class="td__orange"></td>
+                                                <td class="td__cyan"></td>
+                                                <td class="td__yellow"></td>
+                                                <td class="td__violet"></td>
+                                                <td class="td__beige"></td>
+                                                <td class="td__vert"></td>
+                                                <td class="td__bleu"></td>
+                                                <td class="td__claire"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="td__pink">FC NUC</td>
+                                                <td class="td__orange"></td>
+                                                <td class="td__cyan"></td>
+                                                <td class="td__yellow"></td>
+                                                <td class="td__violet"></td>
+                                                <td class="td__beige"></td>
+                                                <td class="td__vert"></td>
+                                                <td class="td__bleu"></td>
+                                                <td class="td__claire"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="td__pink">FC NUC</td>
+                                                <td class="td__orange"></td>
+                                                <td class="td__cyan"></td>
+                                                <td class="td__yellow"></td>
+                                                <td class="td__violet"></td>
+                                                <td class="td__beige"></td>
+                                                <td class="td__vert"></td>
+                                                <td class="td__bleu"></td>
+                                                <td class="td__claire"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="tab_over_second div_cont_v div_cont_b">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Sectors</th>
+                                                <th>Begin</th>
+                                                <th>Carrier</th>
+                                                <th>End</th>
+                                                <th>Q</th>
+                                                <th>S</th>
+                                                <th>Begin</th>
+                                                <th>Carrier</th>
+                                                <th>End</th>
+                                                <th>Q</th>
+                                                <th>S</th>
+                                                <th>Begin</th>
+                                                <th>Carrier</th>
+                                                <th>End</th>
+                                                <th>Q</th>
+                                                <th>S</th>
+                                                <th>Begin</th>
+                                                <th>Carrier</th>
+                                                <th>End</th>
+                                                <th>Q</th>
+                                                <th>S</th>
+                                                <th>Begin</th>
+                                                <th>Carrier</th>
+                                                <th>End</th>
+                                                <th>Q</th>
+                                                <th>S</th>
+                                                <th>Begin</th>
+                                                <th>Carrier</th>
+                                                <th>End</th>
+                                                <th>Q</th>
+                                                <th>S</th>
+                                                <th>Begin</th>
+                                                <th>Carrier</th>
+                                                <th>End</th>
+                                                <th>Q</th>
+                                                <th>S</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+
+
+                            @*
+                                *** div amban manarak
+                            *@
+                            <div class="row">
+                                <div class="col-sm-2 no_pad">
+                                    <div class="div_cont_b">
+                                        <table id="tab__nobord">
+                                            <tr>
+                                                <td classe="td__label">
+                                                    <label>FCs</label>
+                                                </td>
+                                                <td class="tb__input">
+                                                    <input type="text" value="" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td classe="td__label">
+                                                    <label>NUC</label>
+                                                </td>
+                                                <td class="tb__input">
+                                                    <input type="text" value="" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td classe="td__label">
+                                                    <label>ROE</label>
+                                                </td>
+                                                <td class="tb__input">
+                                                    <input type="text" value="" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td classe="td__label">
+                                                    <label>Specified Stopover Charge</label>
+                                                </td>
+                                                <td class="tb__input">
+                                                    <input type="text" value="" />
+                                                    <button class="red red__btn">-</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td classe="td__label">
+                                                    <label>Unspecified Stopover Charge</label>
+                                                </td>
+                                                <td class="tb__input">
+                                                    <input type="text" value="" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td classe="td__label">
+                                                    <label>Total Stopover Charge</label>
+                                                </td>
+                                                <td class="tb__input">
+                                                    <input type="text" value="" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td classe="td__label">
+                                                    <label>Surchage (Q)</label>
+                                                </td>
+                                                <td class="tb__input">
+                                                    <input type="text" value="" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td classe="td__label">
+                                                    <label>Differential (D)</label>
+                                                </td>
+                                                <td class="tb__input">
+                                                    <input type="text" value="" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td classe="td__label">
+                                                    <label>PlusUp (P)</label>
+                                                </td>
+                                                <td class="tb__input">
+                                                    <input type="text" value="" />
+                                                    <button class="red red__btn">-</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td classe="td__label">
+                                                    <label>Test</label>
+                                                </td>
+                                                <td class="tb__input">
+                                                    <input type="text" value="" />
+                                                    <button class="red red__btn">-</button>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="div_cont_b vh_22">
+
+                                    </div>
+                                    <div class="div_cont_b div_cont_v vh_2">
+
+                                    </div>
+                                    <button class="btn btn-default col-sm-12" style="margin: 0px !important;">Show Collected Amount Details</button>
+                                </div>
+                                <div class="col-sm-7 no_pad">
+                                    <div class="div_cont_b">
+                                        <h5>Document Number</h5>
+                                        <div class="div_cont_b div_cont_v vh_70">
+
+                                        </div>
+                                        <h5>Proration Details</h5>
+                                        <div class="div_cont_b div_cont_v vh_100">
+
+                                        </div>
+                                        <h5>Proration Exception</h5>
+                                        <div class="div_cont_b div_cont_v vh_50">
+
+                                        </div>
+                                        <h5>Coupn Status</h5>
+                                        <div class="div_cont_b div_cont_v vh_100">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+                    <div class="modal-footer red" style="bottom: 0px !important;">
+                        <button type="button" class="btn btn-default right card-link" data-dismiss="modal">close</button>
+                    </div>
+                </div>
+            </div>
+        </div>

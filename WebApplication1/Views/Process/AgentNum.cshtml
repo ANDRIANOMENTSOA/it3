@@ -1,0 +1,13 @@
+﻿@using System.Data
+@model DataSet
+<!--fait par christian-->
+<div class="col" id="newdivselectpricing-Agc">
+    <select type="text" id="pricing-Agc" class="myForm" onchange="Testagcode(this.value)">
+        <option class="form-control" value="-All-" selected>-All-</option>
+        @for (int i = 0; i < ViewBag.loncboAgt; i++)
+        {
+            <option class="form-control" value="@ViewBag.ListecboAgt[0, i]">@ViewBag.ListecboAgt[0, i]</option>
+        }
+    </select>
+</div>
+<!--fin fait par christian-->

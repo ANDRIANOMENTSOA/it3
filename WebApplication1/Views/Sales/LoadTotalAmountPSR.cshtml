@@ -1,0 +1,155 @@
+﻿@using System.Data
+@model DataSet
+<div class="containt-allpsr">
+    <table class="table table-bordered table-striped" id="valPSRSummary">
+        <thead>
+            <tr>
+                <th class="pink">ROWNNUM</th>
+                <th class="pink">Sale Source</th>
+                <th class="pink">Date Of Issue</th>
+                <th class="pink">Agent Num Code</th>
+                <th class="pink cacheCol-4">Transaction FOP</th>
+                <th class="pink cacheCol-5">Transaction Code</th>
+                <th class="pink cacheCol-6">ITBT</th>
+                <th class="pink cacheCol-7">Transaction Type</th>
+                <th class="pink cacheCol-8">Currency</th>
+                <th class="pink cacheCol-9">Count</th>
+                <th class="pink cacheCol-10">COBL</th>
+                <th class="pink cacheCol-11">TMFA</th>
+                <th class="pink cacheCol-12">TDAM</th>
+                <th class="pink cacheCol-13">EFCO</th>
+                <th class="pink cacheCol-14">TOCA</th>
+                <th class="pink cacheCol-15">REMT</th>
+                <th class="pink">Sequence</th>
+            </tr>
+        </thead>
+        <tbody id="psrcmptTr">
+            @foreach (DataRow dr in ViewBag.summary.Tables[0].Rows)
+            {
+                <tr>
+                @for (int i = 0; i < ViewBag.summary.Tables[0].Columns.Count; i++)
+                {
+                    if ( i!= 0 && i != 1 && i != 2 && i != 3 && i != 16)
+                    {
+                        <td class="cacheCol-@i">@dr[ViewBag.summary.Tables[0].Columns[i].ColumnName].ToString()</td>;
+                    }
+                    else
+                    {
+                        if (i == 2 && !string.IsNullOrEmpty(dr[ViewBag.summary.Tables[0].Columns[2].ColumnName].ToString()))
+                        {
+                            <td>@dr[ViewBag.summary.Tables[0].Columns[i].ColumnName].ToString().Substring(0, 10)</td>;
+                        }
+                        else
+                        {
+                            <td>@dr[ViewBag.summary.Tables[0].Columns[i].ColumnName].ToString()</td>;
+                        }
+
+                    }
+
+                }
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="col-sm-12 noOfrecords">
+        <label class="form-check-label col-form-label col-sm-2 fromTo">No Of records</label>
+        <div class="col-sm-3" style="margin-top: 6px;">
+            <input type="text" class="form-control" id="noOfrecords" />
+        </div>
+        <div class="col-sm-1 n-paddin-left">
+            <img src='@Url.Content("~/images/CSVPic.jpg")' class="image-csv" style="top: 6px;left: 548%;">
+        </div>
+    </div>
+</div>
+<div class="container-pax positionFoot">
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#officeTotal" class="nav-pax" style="position: relative;left: 4px;">OFFICE TOTALS</a></li>
+        <li><a data-toggle="tab" href="#summariedCurrency" class="nav-pax" id="tab-transaction">TRANSACTION CODE SUMMARIED BY CURRENCY</a></li>
+    </ul>
+
+    <div class="tab-content container-psr1" style="overflow: auto;">
+        <div id="officeTotal" class="tab-pane fade in active">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th class="pink">Transaction Type</th>
+                        <th class="pink">Currency</th>
+                        <th class="pink">COBL</th>
+                        <th class="pink">TMFA</th>
+                        <th class="pink">TDAM</th>
+                        <th class="pink">EFCO</th>
+                        <th class="pink">TOCA</th>
+                        <th class="pink">REMT</th>
+                        <th class="pink">Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (DataRow dr in ViewBag.officeTotal.Tables[0].Rows)
+                    {
+                        <tr>
+                            @for (int i = 0; i < ViewBag.officeTotal.Tables[0].Columns.Count; i++)
+                            {
+                                <td>@dr[ViewBag.officeTotal.Tables[0].Columns[i].ColumnName].ToString()</td>;
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="col-sm-12 noOfrecords">
+                <label class="form-check-label col-form-label col-sm-2 fromTo">No Of records</label>
+                <div class="col-sm-3" style="margin-top: 6px;">
+                    <input type="text" class="form-control" id="noOfrecords" />
+                </div>
+            </div>
+
+        </div>
+        <div id="summariedCurrency" class="tab-pane fade">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th class="pink">Transaction Code</th>
+                        <th class="pink">Currency</th>
+                        <th class="pink">Count</th>
+                        <th class="pink">COBL</th>
+                        <th class="pink">TMFA</th>
+                        <th class="pink">TDAM</th>
+                        <th class="pink">EFCO</th>
+                        <th class="pink">TOCA</th>
+                        <th class="pink">REMT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (DataRow dr in ViewBag.transSummaried.Tables[0].Rows)
+                    {
+                        <tr>
+                            @for (int i = 0; i < ViewBag.transSummaried.Tables[0].Columns.Count; i++)
+                            {
+                                <td>@dr[ViewBag.transSummaried.Tables[0].Columns[i].ColumnName].ToString()</td>;
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="showAddDetails" style="left: 82.7%;height: 582px;border: 1px solid;width: 259px;">
+        <div class="col-sm-3"><button class="payment-interogation btn" onclick="showDetails('detailSumarry','textDetail')"><span class="search-span" id="textDetail">Show Add-on Details</span></button></div>
+        <div class="containt-details" id="detailSumarry" style="height:308px">
+            <ul class="list-group">
+                <li class="list-group-item"><input type="checkbox" onclick="showpsr('allsumm', 'cacheCol')" id="allsumm"/>Select All</li>
+                <li class="list-group-item"><input type="checkbox" onclick="showpsr('transcode', 'cacheCol-5')" id="transcode" />Transaction Code</li>
+                <li class="list-group-item"><input type="checkbox" onclick="showpsr('transcodeFop', 'cacheCol-4')" id="transcodeFop"/>Transaction FOP</li>
+                <li class="list-group-item"><input type="checkbox" onclick="showpsr('transType', 'cacheCol-7')" id="transType" />Transaction Type</li>
+                <li class="list-group-item"><input type="checkbox" onclick="showpsr('itbt', 'cacheCol-6')" id="itbt"/>ITBT</li>
+                <li class="list-group-item"><input type="checkbox" onclick="showpsr('currency', 'cacheCol-8')" id="currency"/>Currency</li>
+                <li class="list-group-item"><input type="checkbox" onclick="showpsr('count', 'cacheCol-9')" id="count"/>Count</li>
+                <li class="list-group-item"><input type="checkbox" onclick="showpsr('cobl', 'cacheCol-10')" id="cobl"/>Commissionable Amount</li>
+                <li class="list-group-item"><input type="checkbox" onclick="showpsr('tmfa', 'cacheCol-11')" id="tmfa"/>Tax/Miscelaneous Fee Amount</li>
+                <li class="list-group-item"><input type="checkbox" onclick="showpsr('tdam', 'cacheCol-12')" id="tdam"/>Ticket Document Amount</li>
+                <li class="list-group-item"><input type="checkbox" onclick="showpsr('efco', 'cacheCol-13')" id="efco"/>Effective Commission</li>
+                <li class="list-group-item"><input type="checkbox" onclick="showpsr('toca', 'cacheCol-14')" id="toca" />Tax On Commision</li>
+                <li class="list-group-item"><input type="checkbox" onclick="showpsr('remitance', 'cacheCol-15')" id="remitance"/>Remitance</li>
+            </ul>
+        </div>
+    </div>
+</div>

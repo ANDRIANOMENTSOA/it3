@@ -1,0 +1,164 @@
+﻿
+<div id="affichageSPAMain">
+    <div class="col-sm-10">
+        <div class="col-sm-9" style="top: 16px;">
+            <div class="col-sm-3">
+                <label class="form-check-label col-form-label">SPA NUMBER:</label>
+            </div>
+            <div class="col-sm-3 n-padding" style="position: relative;left: -10px;width: 148px;">
+                <select style="width: 160px" class="form-control" id="spaMain">
+                    <option>-ALL-</option>
+                    @for (int i = 0; i < ViewBag.logSPA; i++)
+                    {
+                        <option>@ViewBag.ItemSPANumber[0, i]</option>
+                    }
+                </select>
+                <input type="hidden" name="valSPANumber" id="valSPANumber" value="@ViewBag.valSPANumber" class="form-control">
+            </div>
+
+            <div class="col-sm-1">
+                <button class="btn-outward cpink-tab" style="margin-left:25px" onclick="searchSPAMain()">SEARCH</button>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-sm-10 n-padding" style="top: 28px;background-color: white;height: 550px;left: 22px;overflow: auto;">
+        <table id="TableSpaMain" class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th class="pink">SPA No</th>
+                    <th class="pink">SPA Ref</th>
+                    <th class="pink">Prime Code</th>
+                    <th class="pink">Fare Basis</th>
+                    <th class="pink">Issued In Exchanged For Own</th>
+                    <th class="pink">Issued In Exchanged For OAL</th>
+                    <th class="pink">Issued In Exchanged For Others</th>
+                    <th class="pink">Place Of Issurance WorldWide</th>
+                    <th class="pink">Place Of Issurance Specified Loc</th>
+                    <th class="pink">Place Of Sale WorldWide</th>
+                    <th class="pink">Place Of Sale Specific Loc</th>
+                    <th class="pink">Routing Both</th>
+                    <th class="pink">Routing Own</th>
+                    <th class="pink">Routing OAL</th>
+                    <th class="pink">Routing Journey ATBP</th>
+                    <th class="pink">Third Party Involvement</th>
+                    <th class="pink">Re-validation</th>
+                    <th class="pink">Open Dated Ticket</th>
+                    <th class="pink">Ticket Issued By</th>
+                    <th class="pink">Indemnifying Clause</th>
+                    <th class="pink">FIM</th>
+                    <th class="pink">Involuntary Routing</th>
+                    <th class="pink">Flight Restriction</th>
+                    <th class="pink">Validity Of SPA</th>
+                    <th class="pink">Validity Of SPA From</th>
+                    <th class="pink">Validity Of SPA To</th>
+                    <th class="pink">ASV Amount Expressed</th>
+                    <th class="pink">SPA Exclusve Of TFCs</th>
+                    <th class="pink">ISC Percentage</th>
+                    <th class="pink">IATA Clearing House</th>
+                    <th class="pink">Tour CodeBox</th>
+                    <th class="pink">Endorsement Box</th>
+                    <th class="pink">Sector Share</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < ViewBag.logSpaMain; i++)
+                {
+                    <tr>
+                        @for (int j = 0; j < 33; j++)
+                        {
+                            <td onclick="getItem('@ViewBag.ListeSPAMain[0, i]')">@ViewBag.ListeSPAMain[j, i]</td>;
+                        }
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+        <button class="btn-outward cpink-tab" style="margin-left:25px" onclick="testTable()">TEST TABLE</button>
+    </div>
+    <div class="col-sm-12" style="top: 79px;left: 6px;">
+        <div class="form-group row width-group">
+            <button class="btn-outward cpink-tab" style="margin-left:25px" >EDIT</button>
+            <button class="btn-outward cpink-tab" style="margin-left:25px" onclick="cancelSPAMain()">CANCEL</button>
+            <button class="btn-outward cpink-tab" style="margin-left:25px">SAVE</button>
+            <button class="btn-outward cpink-tab" style="margin-left:25px" onclick="deleteSPAMain()">DELETE</button>
+            <div class="col-sm-2" style="float: right;">
+                <button class="btn-outward cpink-tab" type="button" onclick="closeNetshullSPA('nutshell2')">CLOSE TAB</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div id="editSpaMain" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content" style="height:750px">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Spa Main</h5>
+                <button type="button" class="close" style="position: relative;top: 1px;" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="manualRefund modal-body" style="height:650px;top:20px;">
+                <div class="ajax-loader">
+                    <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+                </div>
+
+                <div class="col-sm-10 n-padding" style="top: 28px;background-color: white;height: 550px;left: 22px;overflow: auto;">
+                    <table id="TableSpaMain" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="pink">SPA No</th>
+                                <th class="pink">SPA Ref</th>
+                                <th class="pink">Prime Code</th>
+                                <th class="pink">Fare Basis</th>
+                                <th class="pink">Issued In Exchanged For Own</th>
+                                <th class="pink">Issued In Exchanged For OAL</th>
+                                <th class="pink">Issued In Exchanged For Others</th>
+                                <th class="pink">Place Of Issurance WorldWide</th>
+                                <th class="pink">Place Of Issurance Specified Loc</th>
+                                <th class="pink">Place Of Sale WorldWide</th>
+                                <th class="pink">Place Of Sale Specific Loc</th>
+                                <th class="pink">Routing Both</th>
+                                <th class="pink">Routing Own</th>
+                                <th class="pink">Routing OAL</th>
+                                <th class="pink">Routing Journey ATBP</th>
+                                <th class="pink">Third Party Involvement</th>
+                                <th class="pink">Re-validation</th>
+                                <th class="pink">Open Dated Ticket</th>
+                                <th class="pink">Ticket Issued By</th>
+                                <th class="pink">Indemnifying Clause</th>
+                                <th class="pink">FIM</th>
+                                <th class="pink">Involuntary Routing</th>
+                                <th class="pink">Flight Restriction</th>
+                                <th class="pink">Validity Of SPA</th>
+                                <th class="pink">Validity Of SPA From</th>
+                                <th class="pink">Validity Of SPA To</th>
+                                <th class="pink">ASV Amount Expressed</th>
+                                <th class="pink">SPA Exclusve Of TFCs</th>
+                                <th class="pink">ISC Percentage</th>
+                                <th class="pink">IATA Clearing House</th>
+                                <th class="pink">Tour CodeBox</th>
+                                <th class="pink">Endorsement Box</th>
+                                <th class="pink">Sector Share</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < ViewBag.logSpaMain; i++)
+                            {
+                                <tr>
+                                    @for (int j = 0; j < 33; j++)
+                                    {
+                                        <td onclick="getItem('@ViewBag.ListeSPAMain[0, i]')">@ViewBag.ListeSPAMain[j, i]</td>;
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

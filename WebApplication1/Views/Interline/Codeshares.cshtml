@@ -1,0 +1,61 @@
+﻿
+<script src="~/Scripts/Process.js"></script>
+
+<div id="codeShares">
+    <div class="col-sm-11 tab-content tab-cancellation">
+        <!--  Load Ajax  --->
+        <div class="ajax-loader">
+            <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+        </div>
+
+        <!--  End Load Ajax  --->
+        <div id="search" class="tab-pane fade in active">
+            <div class="content col-sm-12">
+                <div class="row" style="position: relative; top: 30px;">
+                    <div class="col-lg-7">
+                        <div class="table-record-display" id="tabnowshow" style="height:707px;overflow:auto; position: relative;">
+                            <table id="TableCodeShares" class="table table-striped table-bordered ">
+                                <thead>
+                                    <tr>
+                                        <th class="green-tab">Code Share No.</th>
+                                        <th class="green-tab">Ope. Flight No.</th>
+                                        <th class="green-tab">Marketing Flight No</th>
+                                        <th class="green-tab">Sector</th>
+                                        <th class="green-tab">DOW</th>
+                                        <th class="green-tab">Flight Date From</th>
+                                        <th class="green-tab">Flight To</th>
+                                        <th class="green-tab">Departure Local Time</th>
+                                        <th class="green-tab">Arrival Local Time</th>
+                                        <th class="green-tab">Aircraft Type</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (int i = 0; i < ViewBag.logCodeshare; i++)
+                                    {
+                                        <tr>
+                                            @for (int j = 0; j < 8; j++)
+                                            {
+                                                <td>@ViewBag.ListeRevenue[j, i]</td>;
+                                            }
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-2" style="margin-top:50px">
+                        <div class="col-lg-4">
+                            <button class="btn" onclick="listCodeShares()">LIST</button>
+                            <input type="hidden" name="valnbCodeShare" id="valnbCodeShare" value="@ViewBag.logCodeshare">
+                        </div>
+                        <div class="col-lg-4">
+                            <button class="btn" onclick="removeSousMenu()">CLOSE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

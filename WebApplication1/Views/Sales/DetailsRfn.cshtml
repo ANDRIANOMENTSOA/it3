@@ -1,0 +1,184 @@
+﻿
+@using System.Data
+@model DataSet
+<div class="col-sm-12">
+    <table style="font-size:smaller;font-weight: bold;">
+        <tr>
+            <td style="width:150px;">Passenger Name</td>
+            <td style="width:225px;"><b>@ViewBag.name</b></td>
+            <td style="width:150px;">Original Date Of Issue</td>
+            <td style="width:225px;"><b>@ViewBag.OrDtIss</b></td>
+            <td style="width:150px;">Original Doc Type</td>
+            <td style="width:225px;"><b>@ViewBag.OrDcType</b></td>
+            <td style="width:150px;">Original Transaction Code</td>
+            <td style="width:225px;"><b>@ViewBag.tabfare[1]</b></td>
+        </tr>
+        <tr style="height:10px;"></tr>
+        <tr>
+            <td style="width:150px;">Refund Doc No:</td>
+            <td style="width:225px;"><b>@ViewBag.RfnDoc</b></td>
+            <td style="width:150px;">Date Refund</td>
+            <td style="width:225px;"><b>@ViewBag.RfnDt</b></td>
+        </tr>
+        <tr style="height:10px;"></tr>
+        <tr>
+            <td style="width:150px;">Original DocNo</td>
+            <td style="width:225px;"><b>@ViewBag.DocNum</b></td>
+        </tr>
+        <tr style="height:10px;"></tr>
+        <tr>
+            <td style="width:150px;">Original Routing</td>
+            <td colspan="6"><b>@ViewBag.tabfare[0]</b></td>
+            <td><input type="hidden" name="OriRouting" id="OriRouting"  value="@ViewBag.tabfare[0]"/></td> 
+        </tr>
+        <tr style="height:10px;"></tr>
+        <tr>
+            <td colspan="6"></td>
+            <!--<td><button class="detail-button" id="showRefundCpns" onclick="checkCpns('@ViewBag.DocNum')">Refunded Coupon</button></td>-->
+            <td><button class="search-interogation pink btn" data-dismiss="modal">CLOSE</button></td>
+        </tr>
+    </table>
+</div>
+<div class="col-sm-12">
+    <fieldset class="test-fieldst" style="padding:5px;width:1274px">
+        <legend class="test-fieldst">Original Details</legend>
+        <div class="loadOrDtl">
+            <div class="table-record-display" style="overflow: auto;top: -30px;position: relative;left: 0px;height:100px; width:1265px">
+                <table class="table table-bordered" style="width:1260px;">
+                    <thead>
+                        <tr>
+                            <th class="pink">DateOfIssue</th>
+                            <th class="pink">Trans.Type</th>
+                            <th class="pink">Currency</th>
+                            <th class="pink">Amount Collected</th>
+                            <th class="pink">Currency</th>
+                            <th class="pink">Tax Collected</th>
+                            <th class="pink">Currency</th>
+                            <th class="pink">Surcharge Collected</th>
+                            <th class="pink">Currency</th>
+                            <th class="pink">Commission Collected</th>
+                            <th class="pink">Agent Code </th>
+                            <th class="pink" style="width:215px">Endos Restriction</th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (DataRow dr in Model.Tables[0].Rows)
+                        {
+                            <tr>
+                                @for (int i = 0; i < Model.Tables[0].Columns.Count; i++)
+                                {
+                                    <td>@dr[Model.Tables[0].Columns[i].ColumnName].ToString()</td>;
+                                }
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+
+        </div>
+    </fieldset>
+</div>
+<div class="col-sm-12" style="margin-top:7px;">
+    <fieldset class="test-fieldst" style="padding:5px;width:1274px">
+        <legend class="test-fieldst">Refunded Details</legend>
+        <div class="loadrfnDtl">
+            <div class="table-record-display" style="overflow: auto;top: -30px;position: relative;left: 0px;height:100px; width:1265px">
+                <table class="table table-bordered" style="width:1260px;">
+                    <thead>
+                        <tr>
+                            <th class="pink">DateOfIssue</th>
+                            <th class="pink" style="width:83px;">Trans.Type</th>
+                            <th class="pink">Currency</th>
+                            <th class="pink">Amount Refunded</th>
+                            <th class="pink">Currency</th>
+                            <th class="pink">Tax Refunded</th>
+                            <th class="pink">Currency</th>
+                            <th class="pink">Surcharge Refunded</th>
+                            <th class="pink">Currency</th>
+                            <th class="pink">Commission Refunded</th>
+                            <th class="pink">Agent Code </th>
+                            <th class="pink" style="width:215px">Endos Restriction</th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (DataRow dr in ViewBag.RfnDtls.Tables[0].Rows)
+                        {
+                            <tr>
+                                @for (int i = 0; i < ViewBag.RfnDtls.Tables[0].Columns.Count; i++)
+                                {
+                                    <td>@dr[ViewBag.RfnDtls.Tables[0].Columns[i].ColumnName].ToString()</td>;
+                                }
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+            <div class="penalty"> Penalty Fees:@ViewBag.Penalty </div>
+        </div>
+    </fieldset>
+</div>
+<div class="col-sm-12" style="margin-top:7px;">
+    <fieldset class="test-fieldst" style="padding:5px;width:1274px;">
+        <legend class="test-fieldst">Difference</legend>
+        <div class="loadrfnDtl">
+            <div class="table-record-display" style="overflow: auto;top: -30px;position: relative;left: 0px;height:150px;width:1265px">
+                <table class="table table-bordered" style="width: 790px;left: 173px;position: relative;">
+                    <thead>
+                        <tr>
+
+                            <th class="pink" style="width:68px;">Currency</th>
+                            <th class="pink" style="width:120px;">Amount Remained</th>
+                            <th class="pink" style="width:68px;">Currency</th>
+                            <th class="pink" style="width:102px;">Tax Remained</th>
+                            <th class="pink" style="width:68px;">Currency</th>
+                            <th class="pink" style="width:138px;">Surcharge Remained</th>
+                            <th class="pink" style="width:68px;">Currency</th>
+                            <th class="pink">Commission Remained</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            @for (int i = 0; i < ViewBag.Diff.Length; i++)
+                            {
+                                <td>@ViewBag.Diff[i]</td>
+                            }
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </fieldset>
+</div>
+<div class="modal fade" id="RefundCpns" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="Doc modal-content" style="width:75%;left: 17%; background-color: rgba(135, 206, 235, 1) !important; ">
+            <div class="RefundCpnsModal">
+                <div class="modal-header" style="background-color: white; margin-bottom: 21px;">
+                    <h5 class="modal-title" id="myModalLabel">FrmListRefundCoupons</h5>
+                    <button type="button" class="close close-agent-code" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body" style="width:968px!important;height:220px!important">
+                    <div class="content-rfndcpns" style="width:958px; overflow:auto">
+                        <table class="table table-bordered table-striped" style="width:700px">
+                            <thead class="refnd-head">
+
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+</script>

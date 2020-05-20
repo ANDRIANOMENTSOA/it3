@@ -1,0 +1,17 @@
+﻿
+<table class="table table-bordered table-striped" style="width: 84%;">
+    <tbody id="">
+        @for (int i = 0; i < ViewBag.lignerbd; i++)
+        {
+            <tr data-url="@Url.Action("PAXTKTs","Sales")" ondblclick="ajout(this, 'PAXTKTs', 'Sales', 'PAX TKTs'); clickLigneTransactionNofare(this, '@ViewBag.datarbd[0, i]', '', '')">
+                @for (int j = 0; j < 9; j++)
+                {
+                    <td>@ViewBag.datarbd[j, i]</td>
+                }
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+

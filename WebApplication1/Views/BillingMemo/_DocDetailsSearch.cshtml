@@ -1,0 +1,17 @@
+﻿@for (int i = 0; i < @ViewBag.lon; i++)
+{
+    <tr onclick="getDocumentDetails('@ViewBag.CouponNumber')">
+        <td>@ViewBag.CouponNumber</td>
+        <td>@ViewBag.CouponStatus</td>
+        <td>@ViewBag.UsageOriginCode</td>
+        <td>@ViewBag.UsageDestinationCode</td>
+        <td>@ViewBag.Carrier</td>
+        <td>@ViewBag.FareBasisTicketDesignator</td>
+        <td>@ViewBag.ReservationBookingDesignator</td>
+        <td>@ViewBag.UsageFlightNumber</td>
+        <td>@ViewBag.UsageAirline</td>
+        <td>@ViewBag.UsageDate</td>
+        <td>@ViewBag.IsOAL</td>
+    </tr>
+}
+

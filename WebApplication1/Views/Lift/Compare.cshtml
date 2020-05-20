@@ -1,0 +1,103 @@
+﻿@using System.Data
+@model DataSet
+<div class="col-sm-11 tab-content tab-cancellation" >
+    <div class="content-cancellation col-sm-11">
+        <div class="col-sm-4">
+            <fieldset class="test-fieldst" style="height:73px">
+                <legend class="test-fieldst">Date Range Selection</legend>
+                <div class="col-sm-6 width-group">
+                    <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">From:</label>
+                    <div class="col-sm-7 n-padding">
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateFromCompare')"></span>
+                            <input type="text" class="form-control" id="dateFromCompare" value="@ViewBag.dateFrom">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 width-group style=" margin-bottom 19px;">
+                    <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">To:</label>
+                    <div class="col-sm-7 n-padding">
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateToCompare')"></span>
+                            <input type="text" class="form-control" id="dateToCompare" value="@ViewBag.dateTo">
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="col-sm-3">
+            <input type="hidden" id="testfln1" />
+            <input type="hidden" id="testfln2" />
+            <form class="form-inline" style="margin-bottom:14px; margin-top:25px">
+                <div class="form-group">
+                    <label class="col-form-label" for="dateVatFrom">FLight Number:</label>
+                    <select class="form-control" id="CompFln" style="width:125px" onclick="setCompFln()">
+                        <option></option>
+                        <option>-All-</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-3" style="left:-100px;">
+            <div class="search" style="top:13px">
+                <div class="col-sm-3"><button type="button" class="search-interogation green btn" onclick="setCriteriaCompare()"><span class="search-span">SEARCH</span></button></div>
+                <div class="col-sm-3"><button class="search-interogation green btn" onclick="ClearCompare()"><span class="search-span">CLEAR</span></button></div>
+                <div class="col-sm-3"><button class="search-interogation green btn" onclick="removeSousMenu()"><span class="search-span">CLOSE</span></button></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-1"></div>
+    <div class="ajax-loader">
+        <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+    </div>
+    <div class="col-sm-11" id="loadFlownR">
+        <div class="col-sm-9">
+            <div class="table-record-display" style="height:720px;margin-top:40px;width:1390px">
+                <table class="table table-bordered" style="width:80%">
+                    <thead>
+                        <tr>
+                            <th class="green-tab">USAGE DATE</th>
+                            <th class="green-tab">FLIGHT No</th>
+                            <th class="green-tab">USAGE ORIGIN</th>
+                            <th class="green-tab">STATION OF LOADING</th>
+                            <th class="green-tab">DESTINATION</th>
+                            <th class="green-tab">SLS COUNT</th>
+                            <th class="green-tab">LIFT COUNT</th>
+                            <th class="green-tab">DIF</th>
+                        </tr>
+                    </thead>
+
+                </table>
+            </div>
+        </div>
+            <div class="col-sm-3"style="left:150px;top:50px;background-color:#1480dc">
+                <table class="table table-cancellation">
+                    <tr>
+                        <td width="38%">Total Pax SLS</td>
+                        <td width="27%"><input type="text" class="form-control" name="" id="Document" /> </td>
+                        <td width="10%"></td>
+                    </tr>
+                </table>
+                <table class="table table-cancellation">
+                    <tr>
+                        <td width="38%">Total Pax Uplifted</td>
+                        <td width="27%"><input type="text" class="form-control" name="" id="share" /></td>
+                        <td width="10%"></td>
+                    </tr>
+                </table>
+                <table class="table table-cancellation">
+                    <tr>
+                        <td width="38%">Total Differnce</td>
+                        <td width="27%"><input type="text" class="form-control" name="" id="VatAmount" /></td>
+                        <td width="10%"></td>
+                    </tr>
+                </table>
+            </div>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-9">
+            <img src="@Url.Content("~/Images/CSVPic.jpg")" style="height: 35px; top:15px;" />
+        </div>
+    </div>
+
+</div>

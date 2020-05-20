@@ -1,0 +1,10 @@
+﻿
+<div class="col-sm-4 n-padding" id="Remarksselect">
+    <select class="form-control" id="AgentName" namr="AgentName" onclick="Remarksselect()" style="width: 150px; float: left;">
+        <option class="form-control">-All-</option>
+        @for (int n = 0; n < ViewBag.lonAg; n++)
+        {
+            <option>@ViewBag.AgCode[n]</option>
+        }
+    </select>
+</div>

@@ -1,0 +1,43 @@
+﻿
+@using System.Data
+@model DataSet
+<body>
+    @{
+        string logn = "100%";
+        if (ViewBag.colName.Count <= 3)
+        {
+            logn = "50%";
+        }
+    }
+    <table class="table table-bordered table-striped" style="width:@logn">
+        <thead>
+            <tr>
+                @foreach (var listName in ViewBag.colName)
+                {
+                    <th class="pink">@listName</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (DataRow dr in Model.Tables[0].Rows)
+            {
+                <tr>
+                    @for (int i = 0; i < Model.Tables[0].Columns.Count; i++)
+                    {
+                        <td>@dr[Model.Tables[0].Columns[i].ColumnName].ToString()</td>;
+                    }
+                </tr>
+
+            }
+        </tbody>
+
+    </table>
+    <input type="hidden" id="totalCanx" value="@ViewBag.total[0]" />
+    <input type="hidden" id="totalCann" value="@ViewBag.total[1]" />
+    <input type="hidden" id="totalCanr" value="@ViewBag.total[2]" />
+    <input type="hidden" id="totalOther" value="@ViewBag.total[3]" />
+    <input type="hidden" id="totalDoc" value="@ViewBag.total[4]" />
+</body>
+
+

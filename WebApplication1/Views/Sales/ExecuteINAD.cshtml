@@ -1,0 +1,44 @@
+﻿
+<table class="table table-bordered table-hover table-striped">
+    <thead>
+        <tr style=" background-color:darkred;">
+            <th style="width:110px"><center>Sector</center></th>
+            <th style="width:110px"><center>Carr.</center></th>
+            <th style="width:110px"><center>Prorate Factor</center></th>
+            <th style="width:160px"><center>Prorate Share- Uncollected Fare-Gross</center></th>
+            <th style="width:160px"><center>Prorate Share- Uncollected Fare-ISC</center></th>
+            <th style="width:160px"><center>Prorate Share- Uncollected Fare-Net</center></th>
+            <th style="width:160px"><center>Prorate Share- Uncollected NTC</center></th>
+            <th style="width:160px"><center>Total Prorate Share- Uncollected (Net+NTC)</center></th>
+
+        </tr>
+    </thead>
+    <tbody id="tInad">
+
+
+        @for (int row = 0; row < 8; row++)
+            {
+            <tr>
+                @for (int col = 0; col < 8; col++)
+                {
+                    if (ViewBag.dgProrates[row, col] == null)
+                    {
+                        <td style="height:25px"></td>
+                    }
+                    else
+                    {
+                        <td>@ViewBag.dgProrates[row, col]</td>
+                    }
+
+                }
+            </tr>
+        }
+
+
+    </tbody>
+
+</table>
+
+
+
+

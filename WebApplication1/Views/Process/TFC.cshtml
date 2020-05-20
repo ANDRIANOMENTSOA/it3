@@ -1,0 +1,857 @@
+﻿<div class="col-sm-11 tab-content tab-cancellation">
+    <div id="search" class="tab-pane fade in active">
+        <div class="content col-sm-12">
+            <div class="row">
+                <div class="col-lg-4">
+                    <fieldset class="test-fieldst">
+                        <legend class="test-fieldst">Date of Issue</legend>
+                        <div class="col-sm-1 margin-issue">
+                            <label class="form-check-label col-form-label">From:-</label>
+                        </div>
+
+                        <div class="col-sm-3 n-padding">
+
+                            <!--integre-->
+                            <div class="input-group date">
+                                <input type="text" class="form-control" id="dateFromTFC" value="@ViewBag.date[1]">
+                                <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateFromTFC')"></span>
+                            </div>
+                            <!--end integre-->
+                        </div>
+                        <div class="col-sm-1">
+                            <label class="form-check-label col-form-label">To:-</label>
+                        </div>
+                        <div class="col-sm-3 n-padding">
+
+                            <!--integre-->
+                            <div class="input-group date">
+                                <input type="text" class="form-control" id="dateToTFC" value="@ViewBag.date[1]">
+                                <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateToTFC')"></span>
+                            </div>
+                            <!--end integre-->
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-lg-4">
+                    <div class="col-md-12">
+                        <div class="col-sm-2 margin-issue">
+                            <label class="form-check-label col-form-label">SELECTION:-</label>
+                        </div>
+
+                        <div class="col-sm-10 n-padding" id="selectSLS">
+                            <select class="form-control" id="Fight00" name="Fight00" onclick="">
+                                <option class="form-control" value="-All-">-All-</option>
+                               <!--<option class="form-control" value="0:Tax Paid but not applicable" >0: Tax Paid but not applicable</option>
+                                <option class="form-control" value="1:Tax Not Paid but applicable">1: Tax Not Paid but applicable</option>
+                                <option class="form-control" value="2:Tax Not Paid but applicable (amount not found)">2: Tax Not Paid but applicable (amount not found)</option>
+                                <option class="form-control" value="3:Tax Paid but tax applicable (amount not found)">3: Tax Paid but tax applicable (amount not found)</option>
+                                <option class="form-control" value="4:Amount Discrepancy">4: Amount Discrepancy</option>--> 
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-sm-2">
+                            <label class="form-check-label col-form-label">Document No:</label>
+                        </div>
+                        <div class="col-sm-4 n-padding">
+                            <input type='text' class="form-controls" value="" id="DocNo" />
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="form-check-label col-form-label">Agent Code:-</label>
+                        </div>
+                        <div class="col-sm-4 n-padding">
+                            <input type='text' class="form-controls" value="" id="AgentNumericCode" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-1">
+                    <button class="btn" onclick="recherchetfc()"><span>SEARCH</span></button>
+                </div>
+                <div class="col-lg-2">
+                    <button type="button" class="btn btn-intBilling" data-toggle="modal" data-target="#TFCMANAGEMENT" onclick="getlist()">TFC MANAGEMENT</button>
+                   <button type="button" class="btn btn-intBilling" data-toggle="modal" data-target="#VIEWMISSINGSECTOR" style="position: relative;top: 10px;">VIEW MISSING SECTOR</button>
+                   
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="table-record-display" id="tableautfcgenerale" name="tableautfcgenerale" style="height:670px;overflow:auto;">
+                        <div class="ajax-loader">
+                            <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+                        </div>
+                        <table class="table table-bordered table-striped table-hover" id="tabgen">
+                            <thead>
+                                <tr>
+
+                                </tr>
+                            </thead>
+                            <tbody class="loadTFC">
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12" style="background-color:red;position: relative;top: 10px;">
+                    <div class="footer-lookUp">
+                        <fieldset>
+                            <form class="form-inline">
+                                <div class="form-group col-sm-4 width-group">
+                                    <img src='@Url.Content("~/images/CSVPic.jpg")'  class="image-csv" style="top:-5px" onclick="getcsvtfcgeneral()">
+                                </div>
+                                <div class="form-group col-sm-5 width-group">
+                                </div>
+                                <div class="form-group col-sm-2 width-group">
+                                    <button class="btn"  onclick="removeSousMenu()"><span>CLOSE</span></button>
+                                </div>
+                            </form>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--fait par christian-->
+<div id="TFCMANAGEMENT" class="modal fade" role="dialog">
+    <fieldset class="test-fieldst">
+        <div class="modal-dialog" style="width:1500px!important">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myModalLabel">TFC MANAGEMENT</h5>
+                    <button type="button" class="close" style="position: relative;top: 1px;" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body container-duplicatecontainer-pax1" style="background-color: rgb(117, 228, 252);width:1487px!important;height:875px;" id="3tfc">
+                    <div class="row">
+                        <div class="col-sm-9">
+                            <fieldset class="test-fieldst">
+                                <legend class="test-fieldst">LOOK UP</legend>
+                                <div class="col-sm-5">
+                                    <div class="form-group row">
+                                        <label class="col-sm-5 col-form-label" style="">Origin-Destination Airport:</label>
+                                        <div class="col-sm-7" id="divFlightTrans">
+                                            <select class="form-control" id="FlightTrans" onchange="valoption()">
+                                                @for (int i = 0; i < ViewBag.lonItemsec; i++)
+                                                {
+                                                    <option value="@ViewBag.ListeItemsec[0, i]">@ViewBag.ListeItemsec[0, i]</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="form-group row">
+                                        <label class="col-sm-5 col-form-label" style="">Origin-Destination Airport:</label>
+                                        <div class="col-sm-7" id="taxx">
+                                            <select class="form-control" id="FlightTrans1">
+                                                <option>-All-</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group row">
+                                        <button class="btn" onclick="recherche()">
+                                            <span class="">SEARCH</span>
+                                        </button>
+                                        <button class="btn">
+                                            <span  type="button"  data-dismiss="modal">CLOSE</span>
+                                        </button>
+                                        
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="row" id="tabControl1">
+                        <input id="temps" type="hidden" value="0"/>
+                        <input id="flag1" type="hidden" value="false"/>
+                        <input id="secondflag" type="hidden" value="false"/>
+                        <ul class="nav nav-tabs" style="margin-left: 29px;">
+
+                            <li class="active"><a data-toggle="tab" href="#GENERALTFCINFO" onclick="page0()" class="nav-pax">GENERAL TFC INFO</a></li>
+                            <li><a data-toggle="tab" href="#APPLICABLETFC" onclick="page1()" class="nav-pax">APPLICABLE TFC</a></li>
+                            <li><a data-toggle="tab" href="#INTERLININGTFC" onclick="page2()" class="nav-pax">INTERLINING TFC</a></li>
+                        </ul>
+                        <div class="tab-content" style="height:650px;" id="">
+                            <!--eto manomboka recherche-->
+                            <div class="col-sm-12 tab-pane fade in active" id="GENERALTFCINFO">
+                                <fieldset class="test-fieldst" style="height: 650px;" id="coGENERALTFCINFO">
+                                    <div class="col-sm-12" style="">
+                                        <div class="row">
+                                            <label class="col-sm-2 redd" style="">GENERAL TFC INFO</label>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-5">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label" style="">SECTOR FROM:-</label>
+                                                    <div class="col-sm-3">
+                                                        <input type="text" class="form-control" id="sectorfrom" maxlength="3" @ViewBag.read>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-5">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label" style="">SECTOR TO:-:</label>
+                                                    <div class="col-sm-3">
+                                                        <input type="text" class="form-control" id="sectorto" maxlength="3" @ViewBag.read>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-5">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label" style="">TAX NAME(*):-</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" id="taxname" @ViewBag.read>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-5">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label" style="">TAX CODE:-</label>
+                                                    <div class="col-sm-3">
+                                                        <input type="text" class="form-control" id="taxcode" maxlength="2" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-5">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label" style="">ARR/DEP TAX:-</label>
+                                                    <div class="col-sm-3">
+                                                        <input type="text" class="form-control" id="arr/deptax" @ViewBag.read>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-5">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label" style="">COUNTRY:-</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" id="country" @ViewBag.read>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group row">
+                                                <label class="col-sm-2 col-form-label" style="">TAX DEFINITION:-</label>
+                                                <div class="col-sm-9">
+                                                    <textarea rows="3" style="position: relative;width: 43%;left: -83px;" id="taxdefinition" @ViewBag.read></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-lg-10">
+                                                <div class="col-lg-6">
+                                                    <fieldset class="test-fieldst">
+                                                        <div class="row">
+                                                            <label class="col-sm-4">APPLICABLE TO</label>
+                                                            <label class="col-sm-4">INTERNATIONAL</label>
+                                                            <label class="col-sm-4">DOMESTIC</label>
+                                                        </div>
+                                                        <div class="row">
+                                                            <label class="col-sm-4">PASSENGERS:-</label>
+                                                            <input type="checkbox" class="col-sm-3" id="passengersinternational" />
+                                                            <input type="checkbox" class="col-sm-3" id="passengersdomestic" />
+                                                        </div>
+                                                        <div class="row">
+                                                            <label class="col-sm-4">AIRLINES:-</label>
+                                                            <input type="checkbox" class="col-sm-3" id="airlinesinternational" />
+                                                            <input type="checkbox" class="col-sm-3" id="airlinesdomestic" />
+                                                        </div>
+                                                        <div class="row">
+                                                            <label class="col-sm-4">INTERLINEABILITY:-</label>
+                                                            <div class="form-group row col-sm-6 custom-control custom-radio">
+                                                                <fieldset class="test-fieldst" style="position: relative;left: 47px;">
+                                                                    <div class="col-lg-6">
+                                                                        <div class="custom-control custom-radio">
+                                                                            <input type="radio" class="custom-control-input" id="defaultGroupExample1" name="groupOfDefaultRadios" checked>
+                                                                            <label class="custom-control-label" for="defaultGroupExample1">YES</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-6">
+                                                                        <div class="custom-control custom-radio">
+                                                                            <input type="radio" class="custom-control-input" id="defaultGroupExample2" name="groupOfDefaultRadios">
+                                                                            <label class="custom-control-label" for="defaultGroupExample2">NO</label>
+                                                                        </div>
+                                                                    </div>
+                                                                </fieldset>
+                                                            </div>
+                                                        </div>
+                                                    </fieldset>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <fieldset class="test-fieldst">
+                                                        <div class="row">
+                                                            <div class="col-lg-11">
+                                                                <fieldset class="test-fieldst">
+                                                                    <legend class="test-fieldst">BASIS OF REMITTANCE</legend>
+                                                                    <div class="col-lg-4">
+                                                                        <div class="custom-control custom-radio">
+                                                                            <input type="radio" class="custom-control-input" id="APPLICABLETO" name="groupOfDefaultRadios2">
+                                                                            <label class="custom-control-label" for="APPLICABLETO">SELLING</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-4">
+                                                                        <div class="custom-control custom-radio">
+                                                                            <input type="radio" class="custom-control-input" id="INTERNATIONAL" name="groupOfDefaultRadios2" checked>
+                                                                            <label class="custom-control-label" for="TRANSPORT">TRANSPORT</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-4">
+                                                                        <div class="custom-control custom-radio">
+                                                                            <input type="radio" class="custom-control-input" id="DOMESTIC" name="groupOfDefaultRadios2">
+                                                                            <label class="custom-control-label" for="OTHER">OTHER</label>
+                                                                        </div>
+                                                                    </div>
+                                                                </fieldset>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <label class="col-sm-6">COLLECTION AT POINT OF:-</label>
+                                                            <div class="col-sm-6">
+                                                                <div class="row">
+                                                                    <label class="">SALE</label>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <input type="checkbox" class="" id="salecollection" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <label class="col-sm-4">PTA/MCO</label>
+                                                            <input type="checkbox" class="col-sm-5" style="position: relative;left: -18px;" id="ptamco" />
+                                                        </div>
+                                                    </fieldset>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+                            </div>
+
+                            <div class="col-sm-12 tab-pane fade" id="APPLICABLETFC">
+                                <fieldset class="test-fieldst" style="height: 650px;" id="coAPPLICABLETFC">
+                                    <div class="col-sm-12">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-4">
+                                                    <div class="row">
+                                                        <div class="form-group row col-lg-12">
+                                                            <label class="col-sm-4 col-form-label" style="">SECTOR FROM:-</label>
+                                                            <div class="col-sm-6">
+                                                                <input type="text" class="form-control" id="FromSector" maxlength="3"  @ViewBag.read>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group row col-lg-12">
+                                                            <label class="col-sm-4 col-form-label" style="">SECTOR TO:-</label>
+                                                            <div class="col-sm-6">
+                                                                <input type="text" class="form-control" id="toSector" maxlength="3" @ViewBag.read>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group row col-lg-12">
+                                                            <label class="col-sm-4 col-form-label" style="">TAX CODE:-</label>
+                                                            <div class="col-sm-6">
+                                                                <input type="text" class="form-control" id="aptaxcode" maxlength="2" @ViewBag.read>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group row col-lg-12">
+                                                            <label class="col-sm-4 col-form-label" style="">TAX NAME:-</label>
+                                                            <div class="col-sm-8">
+                                                                <textarea rows="3" style="width: 100%" id="apname" maxlength="15" @ViewBag.read></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group row col-lg-12">
+                                                            <label class="col-sm-4 col-form-label" style="">PERCENTAGE:-</label>
+                                                            <div class="col-sm-6">
+                                                                <input type="text" class="form-control" maxlength="15" @ViewBag.read>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group row col-lg-12">
+                                                            <label class="col-sm-4 col-form-label" style="">RATD CURRENCY:-</label>
+                                                            <div class="col-sm-6">
+                                                                <input type="text" class="form-control" maxlength="15" @ViewBag.read>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group row col-lg-12">
+                                                            <label class="col-sm-4 col-form-label" style="">RATD AMOUNT:-</label>
+                                                            <div class="col-sm-6">
+                                                                <input type="text" class="form-control" maxlength="15" @ViewBag.read>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="row">
+                                                        <div class="form-group row col-lg-12">
+                                                            <label class="col-sm-4 col-form-label" style="">EFFECTIVE DATE:-</label>
+                                                            <div class="col-sm-4">
+                                                                <input type="text" class="form-control" name="effectivedate" id="effectivedate"  @ViewBag.read>
+                                                                <!--<input  class="form-controls input-date" />-->
+                                                            </div>
+                                                            <div class="col-sm-1">
+                                                                <button> 
+                                                                    <span class="" onclick="setdate('effectivedate')">
+                                                                          <span class="glyphicon glyphicon-question-sign"></span>
+                                                                    </span>  
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group row col-lg-12">
+                                                            <label class="col-sm-4 col-form-label" style="">EXPIRY DATE:-</label>
+                                                            <div class="col-sm-4">
+                                                                <input type="text" class="form-control" name="expirydate" id="expirydate" @ViewBag.read>
+                                                            </div>
+                                                            <div class="col-sm-1">
+                                                                <button>
+                                                                    <span class="" onclick="setdate('expirydate')">
+                                                                        <span class="glyphicon glyphicon-question-sign"></span>
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group row col-lg-12">
+                                                            <label class="col-sm-4 col-form-label" style="">SALE DATE:-</label>
+                                                            <div class="col-sm-4">
+                                                                <input type="text" class="form-control" name="saledate" id="saledate" @ViewBag.read>
+                                                            </div>
+                                                            <div class="col-sm-1">
+                                                                <button>
+                                                                    <span class="" onclick="setdate('saledate')">
+                                                                        <span class="glyphicon glyphicon-question-sign"></span>
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group row col-lg-12">
+                                                            <label class="col-sm-4 col-form-label" style="">TRAVEL DATE:-</label>
+                                                            <div class="col-sm-4">
+                                                                <input type="text" class="form-control" name="traveldate" id="traveldate" @ViewBag.read>
+                                                            </div>
+                                                            <div class="col-sm-1">
+                                                                <button>
+                                                                    <span class="" onclick="setdate('traveldate')">
+                                                                        <span class="glyphicon glyphicon-question-sign"></span>
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-12" style="position: relative;left: -19px;">
+                                                            <label class="col-sm-4 col-form-label" style="">RATD DETAILS:-</label>
+                                                            <div class="col-sm-6">
+                                                                <textarea rows="5" style="width:150%" maxlength="15" @ViewBag.read></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="row">
+                                                        <div class="form-group row col-lg-4" style="background-color: RGB(173,255,47);">
+                                                            <label class="col-form-label">TFC EXEMPTIONS</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group row col-lg-12">
+                                                            <label class="col-sm-6 col-form-label" style="">EXEMPTIONS CODE:-</label>
+                                                            <div class="col-sm-6">
+                                                                <input type="text" class="form-control" maxlength="15" @ViewBag.read>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group row col-lg-12">
+                                                            <label class="col-sm-6 col-form-label" style="">EXEMPTIONS DETAILS:-</label>
+                                                            <div class="col-sm-6">
+                                                                <textarea rows="5" style="width:120%" maxlength="15" @ViewBag.read></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group row col-lg-12">
+                                                            <label class="col-sm-6 col-form-label" style="">INT/DOM:-</label>
+                                                            <div class="col-sm-6">
+                                                                <input type="text" class="form-control" maxlength="15" @ViewBag.read>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-11">
+                                                <div class="table-record-display" id="tabnowshow" style="height:100px;overflow:auto; position: relative; left: 20px;">
+                                                    <table class="table table-bordered tablehead">
+                                                        <thead>
+                                                            <tr style="background-color: RGB(173,255,47);">
+                                                                <th></th>
+                                                                <th>EFFECTIVE DATE [dd-MM-yy]</th>
+                                                                <th>EXPIRY DATE [dd-MM-yy]</th>
+                                                                <th>PERCENTAGE</th>
+                                                                <th>RATD AMOUNT</th>
+                                                                <th>RATD CURRENCY</th>
+                                                                <th>RATD DETAIL</th>
+                                                                <th>SALE [dd-MM-yy]</th>
+                                                                <th>TRAVEL [dd-MM-yy]</th>
+                                                            </tr>
+
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>*</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-8">
+                                                <div class="table-record-display" id="tabnowshow" style="height:100px;overflow:auto; position: relative; left: 20px;">
+                                                    <table class="table table-bordered tablehead">
+                                                        <thead>
+                                                            <tr style="background-color: RGB(173,255,47);">
+                                                                <th></th>
+                                                                <th>EXEMPTIONS CODE</th>
+                                                                <th>EXEMPTION EFFECTIVE DATE[dd-MM-yyyy]</th>
+                                                                <th>EXEMPTIONS DETAILS</th>
+                                                                <th>DOM/INT</th>
+                                                            </tr>
+
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>*</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="col-sm-12 tab-pane fade" id="INTERLININGTFC">
+                                <input id="reftaxid" type="hidden" value=""/>
+                                <fieldset class="test-fieldst" style="height: 650px;" id="coINTERLININGTFC">
+                                    <div class="col-sm-12">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group row col-lg-4">
+                                                    <label class="col-sm-6 col-form-label" style="">SECTOR FROM:-</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" class="form-control" maxlength="3" @ViewBag.read>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row col-lg-4">
+                                                    <label class="col-sm-5 col-form-label" style="">TRANSIT DURATION:-</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" class="form-control" maxlength="2" @ViewBag.read>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row col-lg-4">
+                                                    <label class="col-sm-6 col-form-label" style="">TAX AMOUNT:-</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" class="form-control"   maxlength="9" @ViewBag.read>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group row col-lg-4">
+                                                    <label class="col-sm-6 col-form-label" style="">SECTOR TO:-</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" class="form-control" maxlength="3" @ViewBag.read>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row col-lg-4">
+                                                    <label class="col-sm-5 col-form-label" style="">VALID FROM:-</label>
+                                                    <div class="col-sm-3">
+                                                        <input type="text" class="form-control" style="width: 235%;" @ViewBag.read name="validfrom" id="validfrom">
+                                                    </div>
+                                                    <div class="col-sm-1">
+                                                        <button style="position: relative;left: 83px;">
+                                                            <span class="" onclick="setdate('validfrom')">
+                                                                <span class="glyphicon glyphicon-question-sign"></span>
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row col-lg-4">
+                                                    <label class="col-sm-6 col-form-label" style="">TAX PERCENTAGE:-</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" class="form-control" @ViewBag.read>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group row col-lg-4">
+                                                        <label class="col-sm-6 col-form-label" style="">MAPPED PRIME CODE:-</label>
+                                                        <div class="col-sm-6">
+                                                            <input type="text" class="form-control" maxlength="1" @ViewBag.read>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row col-lg-4">
+                                                        <label class="col-sm-5 col-form-label" style="">VALID TO:-</label>
+                                                        <div class="col-sm-3">
+                                                            <input type="text" class="form-control" style="width: 235%;" @ViewBag.read  name="validto" id="validto">
+                                                        </div>
+                                                        <div class="col-sm-1">
+                                                            <button style="position: relative;left: 83px;">
+                                                                <span class="" onclick="setdate('validto')">
+                                                                    <span class="glyphicon glyphicon-question-sign"></span>
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group row col-lg-4">
+                                                        <label class="col-sm-6 col-form-label" style="">PASSENGER TYPE:-</label>
+                                                        <div class="col-sm-6">
+                                                            <input type="text" class="form-control" maxlength="1" @ViewBag.read>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row col-lg-4">
+                                                        <label class="col-sm-5 col-form-label" style="">TAX CODE:-</label>
+                                                        <div class="col-sm-6">
+                                                            <input type="text" class="form-control" maxlength="2" @ViewBag.read>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group row col-lg-4">
+                                                        <label class="col-sm-6 col-form-label" style="">DOMESTIC/INTERNATIONAL:-</label>
+                                                        <div class="col-sm-6">
+                                                            <input type="text" class="form-control" maxlength="1" @ViewBag.read>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row col-lg-4">
+                                                        <label class="col-sm-5 col-form-label" style="">TAX CURRENCY:-</label>
+                                                        <div class="col-sm-6">
+                                                            <input type="text" class="form-control"  maxlength="3" @ViewBag.read>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-11">
+                                                    <div class="table-record-display" id="tabnowshow" style="height:150px;overflow:auto; position: relative; left: 20px;">
+                                                        <table class="table table-bordered tablehead">
+                                                            <thead>
+                                                                <tr style="background-color: RGB(173,255,47);">
+                                                                    <th>SECTOR FROM</th>
+                                                                    <th>SECTOR TO</th>
+                                                                    <th>MAPPED PRIME CODE</th>
+                                                                    <th>PASSENGER TYPE</th>
+                                                                    <th>DOM/INT</th>
+                                                                    <th>VALID FROM</th>
+                                                                    <th>VALID TO</th>
+                                                                    <th>TAX CODE</th>
+                                                                    <th>TAX CURRENCY</th>
+                                                                    <th>TAX AMOUNT</th>
+                                                                    <th>TAX PERCENTAGE</th>
+                                                                </tr>
+
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-1">
+                        </div>
+                        <div class="col-sm-5" style="position: relative;top: 23px;" id="action">
+                            <div class="form-group row">
+                                <button class="btn" onclick="addtfc()">
+                                    <span class="">ADD</span>
+                                </button>
+                                <button class="btn" onclick="edit()">
+                                    <span class="">EDIT</span>
+                                </button>
+                                <button class="btn" onclick="save1()">
+                                    <span class="">SAVE</span>
+                                </button>
+                                <button class="btn" onclick="clear1()">
+                                    <span class="">CLEAR</span>
+                                </button>
+                                <button class="btn" onclick="deletedonne()">
+                                    <span class="">DELETE</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+<!--fin fait par nomentsoa christian-->
+
+        <!--AgentQuery-->
+
+
+        <div id="VIEWMISSINGSECTOR" class="modal fade" role="dialog">
+            <fieldset class="test-fieldst">
+                <div class="modal-dialog" style="width:600px!important">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="myModalLabel">Taxes</h5>
+                            <button type="button" class="close" style="position: relative;top: 1px;" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body container-duplicatecontainer-pax1" style="background-color: rgb(117, 228, 252);width:593px!important;height:600px;">
+                            <div class="row">
+                                <ul class="nav nav-tabs" style="margin-left: 29px;">
+                                    <li class="active"><a data-toggle="tab" href="#MISSINGTAXES" class="nav-pax">MISSING TAXES</a></li>
+                                    <li><a data-toggle="tab" href="#SECTORSWITHNOTAXES" class="nav-pax">SECTORS WITH NO TAXES</a></li>
+                                </ul>
+                                <div class="tab-content" style="height:550px;">
+                                    <div class="col-sm-12 tab-pane fade in active" id="MISSINGTAXES">
+                                        <div class="row" style="position: relative;top: 9px;">
+                                            <button type="button" class="btn col-sm-7" onclick="missingtaxes()">VIEW MISSING SECTORS</button>
+                                            <div class="col-sm-2">
+                                            </div>
+                                            <button type="button" class="btn col-sm-2" data-dismiss="modal">CLOSE</button>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-11">
+                                                <div class="table-record-display" id="tabnowshow" style="height:450px;overflow:auto; position: relative; left: 20px;">
+                                                    <table class="table table-bordered tablehead" id="tb1">
+                                                        <thead>
+                                                            <tr style="background-color: RGB(173,255,47);">
+                                                                <th>CPN SECTOR</th>
+                                                                <th>FROM SECTOR</th>
+                                                                <th>TO SECTOR</th>
+                                                                <th>ARRIVAL</th>
+                                                                <th>DEPARTURE</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 tab-pane fade" id="SECTORSWITHNOTAXES">
+                                        <div class="row" style="position: relative;top: 9px;">
+                                            <button type="button" class="btn col-sm-7" onclick="sectornotaxes()">VIEW MISSING SECTORS NO TAXES</button>
+                                            <div class="col-sm-2">
+                                            </div>
+                                            <button type="button" class="btn col-sm-2" data-dismiss="modal">CLOSE</button>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-7">
+                                                <div class="table-record-display" id="tabnowshow" style="height:400px;overflow:auto; position: relative; left: 20px;">
+                                                    <table class="table table-bordered tablehead" id="tb2">
+                                                        <thead>
+                                                            <tr style="background-color: RGB(173,255,47);">
+                                                                <th>ORIGIN</th>
+                                                                <th>DESTINATION</th>
+                                                            </tr>
+
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-2" style="">
+                                    <img src='@Url.Content("~/images/CSVPic.jpg")' class="image-csv" style="top:-33px;left:10px;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+                </div>
+

@@ -1,0 +1,29 @@
+﻿@using System.Data
+@model DataSet
+<div style="width: 98%; height: 150px;">
+    <table class="table table-bordered table-hover table-striped">
+        <thead style="background-color:#37115A;color:white">
+            <tr>
+                <th width="17%">AirportCode</th>
+                <th width="15%">CityCode</th>
+                <th width="35%">AirportNae</th>
+                <th width="35%">CityName</th>
+            </tr>
+        </thead>
+        <tbody id="airlinepop">
+            @foreach (DataRow dr in Model.Tables[0].Rows)
+            {
+                <tr onclick="loadPop(this,'@dr[Model.Tables[0].Columns[1].ColumnName].ToString()','@dr[Model.Tables[0].Columns[3].ColumnName].ToString()')">
+                    @for (int i = 0; i < Model.Tables[0].Columns.Count; i++)
+                    {
+
+                        <td>@dr[Model.Tables[0].Columns[i].ColumnName].ToString()</td>;
+
+                    }
+                </tr>
+
+            }
+        </tbody>
+
+    </table>
+</div>

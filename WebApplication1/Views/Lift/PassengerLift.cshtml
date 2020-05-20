@@ -1,0 +1,969 @@
+﻿<div class="container-remuneration container-pax1" style="background-color: rgb(117, 228, 252);">
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#transportation" class="nav-pax">Lift For Transportation</a></li>
+        <li><a data-toggle="tab" href="#exchange" class="nav-pax" id="tab-refund">Lift For Exchange</a></li>
+        <li><a data-toggle="tab" href="#refund" class="nav-pax" id="tab-refund">Lift For Refund</a></li>
+        <li><a data-toggle="tab" href="#reports" class="nav-pax" id="tab-refund">Passenger Lift Reports</a></li>
+        <li><a data-toggle="tab" href="#analysis" class="nav-pax" id="tab-refund">Revenue Analysis</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="ajax-loader">
+            <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+        </div>
+        <div id="transportation" class="tab-pane fade in active">
+            <div class="col-sm-11">
+                <div class="col-sm-4">
+                    <fieldset class="test-fieldst" style="height:73px">
+                        <legend class="test-fieldst">Flight Date</legend>
+                        <div class="col-sm-6 width-group">
+                            <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">From:</label>
+                            <div class="col-sm-7 n-padding">
+                                <div class="input-group">
+                                    <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateFromP')"></span>
+                                    <input type="text" class="form-control" id="dateFromP" value="@ViewBag.dateFrom">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 width-group style=" margin-bottom 19px;">
+                            <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">To:</label>
+                            <div class="col-sm-7 n-padding">
+                                <div class="input-group">
+                                    <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateToP')"></span>
+                                    <input type="text" class="form-control" id="dateToP" value="@ViewBag.dateTo">
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <table style="font-size:smaller"class="tab-refundEng">
+                        <tr>
+                            <td style="width:125px">Pax Final Count</td>
+                            <td><input type="text" class="form-control" style="width:150px" id="countTransP"/></td>
+                            <td style="width:15px"></td>
+                            <td style="width:125px">Flown Revenue Net</td>
+                            <td><input type="text" class="form-control" style="width:150px" id="netTransP"/></td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="col-sm-2">
+                    <fieldset class="test-fieldst" style="width:300px">
+                        <input type="hidden" id="testTransP" />
+                        <input type="hidden" id="testTrans1P" />
+                        <table class="tab-refundEng">
+                            <tr>
+                                <td>Agent Numeric Code</td>
+                                <td>
+                                    <select id="AgCTransP" class="form-control" onclick="setAgcodeLift1('AgCTransP', 'dateFromP', 'dateToP', 'testTransP', 'locTransP', 'AgNTransP', 'testTrans1P', 'F', 'resultAdrTransP')"style="width:139px">
+                                        <option>-All-</option>
+                                        <option value="1"></option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <button class="point-interogation green btn" id="showListRefundCodeModalP" data-toggle="modal" data-target="#AgentCodeModal" style="left:1px; top:-1px" onclick="chercherefn()"><span class="point-span">?</span></button>
+                                </td>
+                            </tr>
+                        </table>
+                            <div class="resultAdrTransP ">
+                                <table class="tab-refundEng">
+                                    <tr>
+                                        <td>Agent Name</td>
+                                        <td><input type="text" id="AgNTransP" class="form-control" style="width: 139px;left: 33px;position: relative;" readonly/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Agent Location</td>
+                                        <td><input type="text" id="locTransP" class="form-control" style="width: 139px;left: 33px;position: relative;" readonly/></td>
+                                    </tr>
+                                </table>
+                                
+                            </div>
+                            
+                        
+                    </fieldset>
+                    
+                </div>
+                <div class="col-sm-2" style="left:40px">
+                    <fieldset class="test-fieldst">
+                        <div id="tansP">
+                            <table class="tab-refundEng flnSect">
+                                <tr>
+                                    <td>Flight No</td>
+                                    <td>
+                                        <input type="hidden" id="testtransP" />
+                                        <input type="hidden" id="dateTrans1P" />
+                                        <input type="hidden" id="dateTrans2P" />
+                                        <select id="FlightTransP" class="form-control" onclick="getFlightNoSectP('FlightTransP', 'dateFromP', 'dateToP', 'sectorTransP', 'testTransP', 'testtransP', 'tansP', 'dateTrans1P', 'dateTrans2P')">
+                                            <option>-All-</option>
+                                            <option value="1"></option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr style="height:30px"></tr>
+                                <tr>
+                                    <td>Sector</td>
+                                    <td><input type="text" class="form-control" id="sectorTransP" readonly /></td>
+                                </tr>
+                            </table>
+                        </div>
+                        
+                    </fieldset>
+                </div>
+                <div class="col-sm-4" style="left:60px">
+                    <div class="col-sm-6">
+                        <button type="button" class="search-interogation green btn" onclick="setCriteriaTransportationP()"><span class="search-span">SEARCH</span></button>
+                    </div>
+                    <div class="col-sm-6">
+                        <button type="button" class="search-interogation green btn" onclick="ClearTransportation()"><span class="search-span">CLEAR</span></button>
+                    </div>
+                    <div class="col-sm-6" style="left:-30px">
+                        <div class="col-sm-7"><span style="font-size:smaller">Display Own</span></div>
+                        <div class="col-sm-2" style="left:-63px"><input type="checkbox" id="ownTransP" checked/></div>
+                    </div>
+                    <div class="col-sm-6" style="left:-30px">
+                        <div class="col-sm-7"><span style="font-size:smaller">Display OAL</span></div>
+                        <div class="col-sm-2"style="left:-63px"><input type="checkbox" id="oalTransP" checked/></div>
+                    </div>
+                    
+                </div>
+                <div class="col-sm-11" id="display-transP">
+                    <div class="table-record-display" style="overflow:auto; height:600px">
+                        <table class="table table-bordered table-hover table-striped afiche-result">
+                            <thead>
+                                <tr>
+                                    <th class="green-tab">Document No</th>
+                                    <th class="green-tab">Cpn</th>
+                                    <th class="green-tab">Orig</th>
+                                    <th class="green-tab">Dest</th>
+                                    <th class="green-tab">Flight No</th>
+                                    <th class="green-tab">Flight Date</th>
+                                    <th class="green-tab">Used Class Of Service</th>
+                                    <th class="green-tab">Currency</th>
+                                    <th class="green-tab">Exchanged Ticket</th>
+                                    <th class="green-tab">Billing Type</th>
+                                    <th class="green-tab">BSP</th>
+                                    <th class="green-tab">Agent</th>
+                                    <th class="green-tab">Agent Remuneration Rate</th>
+                                    <th class="green-tab">Applied Sales</th>
+                                    <th class="green-tab">Agent Remuneration Amount</th>
+                                    <th class="green-tab">Gross Value</th>
+                                    <th class="green-tab">ISC %</th>
+                                    <th class="green-tab">ISC Amount</th>
+                                    <th class="green-tab">UATP Amount</th>
+                                    <th class="green-tab">Handling Fee</th>
+                                    <th class="green-tab">Total Tax</th>
+                                    <th class="green-tab">Source Code</th>
+                                    <th class="green-tab">CPN_Status</th>
+                                    <th class="green-tab">ESAC</th>
+                                    <th class="green-tab">Own_Ticket</th>
+                                    <th class="green-tab">Billing Period</th>
+                                    <th class="green-tab">Invoice No</th>
+                                    <th class="green-tab">Net Amount</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <input type="hidden" id="transcountP" value="@ViewBag.lon" />
+                    <input type="hidden" id="transTotP" value="@ViewBag.netval" />
+
+                </div>
+            </div>
+            <div class="col-sm-1"></div>
+            <div class="col-sm-9">
+                <img src="@Url.Content("~/Images/CSVPic.jpg")" style="height: 35px; top:15px;" />
+            </div>
+            <div class="col-sm-1">
+                <div class="col-sm-3" style="top:30px"><button type="button" class="search-interogation green btn" onclick="removeSousMenu()"><span class="search-span">Close</span></button></div>
+            </div>
+        </div>
+        <div id="exchange" class="tab-pane fade">
+                <div class="col-sm-11">
+                    <div class="col-sm-4">
+                        <fieldset class="test-fieldst" style="height:73px">
+                            <legend class="test-fieldst">Flight Date</legend>
+                            <div class="col-sm-6 width-group">
+                                <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">From:</label>
+                                <div class="col-sm-7 n-padding">
+                                    <div class="input-group">
+                                        <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateFromExc')"></span>
+                                        <input type="text" class="form-control" id="dateFromExc" value="@ViewBag.dateFrom">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 width-group style=" margin-bottom 19px;">
+                                <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">To:</label>
+                                <div class="col-sm-7 n-padding">
+                                    <div class="input-group">
+                                        <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateToExc')"></span>
+                                        <input type="text" class="form-control" id="dateToExc" value="@ViewBag.dateTo">
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <table style="font-size:smaller" class="tab-refundEng">
+                            <tr>
+                                <td style="width:125px">Pax Final Count</td>
+                                <td><input type="text" class="form-control" style="width:150px" id="countExc" /></td>
+                                <td style="width:15px"></td>
+                                <td style="width:125px">Flown Revenue Net</td>
+                                <td><input type="text" class="form-control" style="width:150px" id="netExc" /></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <fieldset class="test-fieldst" style="width:300px">
+                            <input type="hidden" id="testExc" />
+                            <input type="hidden" id="testExc1" />
+                            <table class="tab-refundEng">
+                                <tr>
+                                    <td>Agent Numeric Code</td>
+                                    <td>
+                                        <select id="AgCExc" class="form-control" onclick="setAgcodeLift1('AgCExc', 'dateFromExc', 'dateToExc', 'testExc', 'locEx', 'AgNExc', 'testExc1', 'E', 'resultAdrExc')" style="width:139px">
+                                            <option>-All-</option>
+                                            <option value="1"></option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <button class="point-interogation green btn" id="showListRefundCodeModal" data-toggle="modal" data-target="#AgentCodeModal" style="left:1px; top:-1px" onclick="chercherefn()"><span class="point-span">?</span></button>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div class="resultAdrExc ">
+                                <table class="tab-refundEng">
+                                    <tr>
+                                        <td>Agent Name</td>
+                                        <td><input type="text" id="AgNExc" class="form-control" style="width: 139px;left: 33px;position: relative;" readonly /></td>
+                                    </tr>
+                                    <tr id="AgLocEx">
+                                        <td>Agent Location</td>
+                                        <td><input type="text" id="locEx" class="form-control" style="width: 139px;left: 33px;position: relative;" readonly /></td>
+                                    </tr>
+                                </table>
+
+                            </div>
+
+
+                        </fieldset>
+
+                    </div>
+                    <div class="col-sm-2" style="left:40px">
+                        <fieldset class="test-fieldst">
+                            <div id="exc">
+                                <table class="tab-refundEng flnSectExc">
+                                    <tr>
+                                        <td>Flight No</td>
+
+                                        <td>
+                                            <input type="hidden" id="testsectexc" />
+                                            <input type="hidden" id="dateexc1" />
+                                            <input type="hidden" id="dateexc2" />
+                                            <select id="flnEx" onclick="getFlightNoSectExc('flnEx', 'dateFromExc', 'dateToExc', 'sectorExc', 'testExc', 'testsectexc', 'exc', 'dateexc1', 'dateexc2')" class="form-control">
+                                                <option>-All-</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr style="height:30px"></tr>
+                                    <tr>
+                                        <td>Sector</td>
+                                        <td><input type="text" class="form-control" id="sectorExc" readonly /></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            
+                        </fieldset>
+                    </div>
+                    <div class="col-sm-4" style="left:60px">
+                        <div class="col-sm-6">
+                            <button type="button" class="search-interogation green btn" onclick="setCriteriaExchanges()"><span class="search-span">SEARCH</span></button>
+                        </div>
+                        <div class="col-sm-6">
+                            <button type="button" class="search-interogation green btn" onclick="ClearExchange()"><span class="search-span">CLEAR</span></button>
+                        </div>
+                        <div class="col-sm-6" style="left:-30px">
+                            <div class="col-sm-7"><span style="font-size:smaller">Display Own</span></div>
+                            <div class="col-sm-2" style="left:-63px"><input type="checkbox" id="ownExc" checked/></div>
+                        </div>
+                        <div class="col-sm-6" style="left:-30px">
+                            <div class="col-sm-7"><span style="font-size:smaller">Display OAL</span></div>
+                            <div class="col-sm-2" style="left:-63px"><input type="checkbox" id="oalExc" checked/></div>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-11" id="display-exc">
+                        <div class="table-record-display" style="overflow:auto; height:600px">
+                            <table class="table table-bordered table-hover table-striped afiche-result">
+                                <thead>
+                                    <tr>
+                                        <th class="green-tab">Document No</th>
+                                        <th class="green-tab">Cpn</th>
+                                        <th class="green-tab">Orig</th>
+                                        <th class="green-tab">Dest</th>
+                                        <th class="green-tab">Flight No</th>
+                                        <th class="green-tab">Flight Date</th>
+                                        <th class="green-tab">Used Class Of Service</th>
+                                        <th class="green-tab">Currency</th>
+                                        <th class="green-tab">Exchanged Ticket</th>
+                                        <th class="green-tab">Billing Type</th>
+                                        <th class="green-tab">BSP</th>
+                                        <th class="green-tab">Agent</th>
+                                        <th class="green-tab">Agent Remuneration Rate</th>
+                                        <th class="green-tab">Applied Sales</th>
+                                        <th class="green-tab">Agent Remuneration Amount</th>
+                                        <th class="green-tab">Gross Value</th>
+                                        <th class="green-tab">ISC %</th>
+                                        <th class="green-tab">ISC Amount</th>
+                                        <th class="green-tab">UATP Amount</th>
+                                        <th class="green-tab">Handling Fee</th>
+                                        <th class="green-tab">Total Tax</th>
+                                        <th class="green-tab">Source Code</th>
+                                        <th class="green-tab">CPN_Status</th>
+                                        <th class="green-tab">ESAC</th>
+                                        <th class="green-tab">Own_Ticket</th>
+                                        <th class="green-tab">Net Amount</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <input type="hidden" id="exccount" value="@ViewBag.lon" />
+                        <input type="hidden" id="excTot" value="@ViewBag.netval" />
+
+                    </div>
+                </div>
+                <div class="col-sm-1"></div>
+                <div class="col-sm-9">
+                    <img src="@Url.Content("~/Images/CSVPic.jpg")" style="height: 35px; top:15px;" />
+                </div>
+            <div class="col-sm-1">
+                <div class="col-sm-3" style="top:30px"><button type="button" class="search-interogation green btn" onclick="removeSousMenu()"><span class="search-span">Close</span></button></div>
+            </div>
+            </div>
+       
+    <div id="refund" class="tab-pane fade">
+    <div class="col-sm-11">
+        <div class="col-sm-4">
+            <fieldset class="test-fieldst" style="height:73px">
+                <legend class="test-fieldst">Flight Date</legend>
+                <div class="col-sm-6 width-group">
+                    <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">From:</label>
+                    <div class="col-sm-7 n-padding">
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateFromrfn')"></span>
+                            <input type="text" class="form-control" id="dateFromrfn" value="@ViewBag.dateFrom">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 width-group style=" margin-bottom 19px;">
+                    <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">To:</label>
+                    <div class="col-sm-7 n-padding">
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateTorfn')"></span>
+                            <input type="text" class="form-control" id="dateTorfn" value="@ViewBag.dateTo">
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <table style="font-size:smaller" class="tab-refundEng">
+                <tr>
+                    <td style="width:125px">Pax Final Count</td>
+                    <td><input type="text" class="form-control" style="width:150px" id="countrfn" /></td>
+                    <td style="width:15px"></td>
+                    <td style="width:125px">Flown Revenue Net</td>
+                    <td><input type="text" class="form-control" style="width:150px" id="netrfn" /></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="col-sm-2">
+            <fieldset class="test-fieldst" style="width:300px">
+                <input type="hidden" id="testrfn" />
+                <input type="hidden" id="testrfn1" />
+                <table class="tab-refundEng">
+                    <tr>
+                        <td>Agent Numeric Code</td>
+                        <td>
+                            <select id="AgCrfn" class="form-control" onclick="setAgcodeLift1('AgCrfn', 'dateFromrfn', 'dateTorfn', 'testrfn', 'locrfn', 'AgNrfn', 'testrfn1', 'R', 'resultAdrRfn')" style="width:139px">
+                                <option>-All-</option>
+                                <option value="1"></option>
+                            </select>
+                        </td>
+                        <td>
+                            <button class="point-interogation green btn" id="showListRefundCodeModal" data-toggle="modal" data-target="#AgentCodeModal" style="left:1px; top:-1px" onclick="chercherefn()"><span class="point-span">?</span></button>
+                        </td>
+                    </tr>
+                </table>
+                <div class="resultAdrRfn ">
+                    <table class="tab-refundEng flnSect">
+                        <tr>
+                            <td>Agent Name</td>
+                            <td><input type="text" id="AgNrfn" class="form-control" style="width: 139px;left: 33px;position: relative;" readonly /></td>
+                        </tr>
+                        <tr id="AgLocEx">
+                            <td>Agent Location</td>
+                            <td><input type="text" id="locrfn" class="form-control" style="width: 139px;left: 33px;position: relative;" readonly /></td>
+                        </tr>
+                    </table>
+
+                </div>
+
+
+            </fieldset>
+
+        </div>
+        <div class="col-sm-2" style="left:40px">
+            <fieldset class="test-fieldst">
+                <div id="rfn">
+                    <table class="tab-refundEng flnSect">
+                        <tr>
+                            <td>Flight No</td>
+                            <td>
+                                <input type="hidden" id="testsectrfn" />
+                                <input type="hidden" id="daterfn1" />
+                                <input type="hidden" id="daterfn2" />
+                                <select id="flnrfn" onclick="getFlightNoSectRfn('flnfrn', 'dateFromrfn', 'dateTorfn', 'sectorRfn', 'testrfn', 'testsectrfn', 'rfn', 'daterfn1', 'daterfn2')" class="form-control">
+                                    <option>-All-</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr style="height:30px"></tr>
+                        <tr>
+                            <td>Sector</td>
+                            <td><input type="text" class="form-control" id="sectorRfn" readonly /></td>
+                        </tr>
+                    </table>
+                </div>
+                
+            </fieldset>
+        </div>
+        <div class="col-sm-4" style="left:60px">
+            <div class="col-sm-6">
+                <button type="button" class="search-interogation green btn" onclick="setCriteriaRefundLift()"><span class="search-span">SEARCH</span></button>
+            </div>
+            <div class="col-sm-6">
+                <button type="button" class="search-interogation green btn" onclick="ClearRefundLift()"><span class="search-span">CLEAR</span></button>
+            </div>
+            <div class="col-sm-6" style="left:-30px">
+                <div class="col-sm-7"><span style="font-size:smaller">Display Own</span></div>
+                <div class="col-sm-2" style="left:-63px"><input type="checkbox" id="ownrfn" checked/></div>
+            </div>
+            <div class="col-sm-6" style="left:-30px">
+                <div class="col-sm-7"><span style="font-size:smaller">Display OAL</span></div>
+                <div class="col-sm-2" style="left:-63px"><input type="checkbox" id="oalrfn" checked/></div>
+            </div>
+
+        </div>
+        <div class="col-sm-11" id="display-rfn">
+            <div class="table-record-display" style="overflow:auto; height:600px">
+                <table class="table table-bordered table-hover table-striped afiche-result">
+                    <thead>
+                        <tr>
+                            <th class="green-tab">Document No</th>
+                            <th class="green-tab">Cpn</th>
+                            <th class="green-tab">Orig</th>
+                            <th class="green-tab">Dest</th>
+                            <th class="green-tab">Flight No</th>
+                            <th class="green-tab">Flight Date</th>
+                            <th class="green-tab">Used Class Of Service</th>
+                            <th class="green-tab">Currency</th>
+                            <th class="green-tab">Exchanged Ticket</th>
+                            <th class="green-tab">Billing Type</th>
+                            <th class="green-tab">BSP</th>
+                            <th class="green-tab">Agent</th>
+                            <th class="green-tab">Agent Remuneration Rate</th>
+                            <th class="green-tab">Applied Sales</th>
+                            <th class="green-tab">Agent Remuneration Amount</th>
+                            <th class="green-tab">Gross Value</th>
+                            <th class="green-tab">ISC %</th>
+                            <th class="green-tab">ISC Amount</th>
+                            <th class="green-tab">UATP Amount</th>
+                            <th class="green-tab">Handling Fee</th>
+                            <th class="green-tab">Total Tax</th>
+                            <th class="green-tab">Source Code</th>
+                            <th class="green-tab">CPN_Status</th>
+                            <th class="green-tab">ESAC</th>
+                            <th class="green-tab">Own_Ticket</th>
+                            <th class="green-tab">Net Amount</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <input type="hidden" id="rfncount" value="@ViewBag.lon" />
+            <input type="hidden" id="rfnTot" value="@ViewBag.netval" />
+    </div>
+        
+    </div>
+    <div class="col-sm-1"></div>
+    <div class="col-sm-9">
+        <img src="@Url.Content("~/Images/CSVPic.jpg")" style="height: 35px; top:15px;" />
+    </div>
+        <div class="col-sm-1">
+            <div class="col-sm-3" style="top:30px"><button type="button" class="search-interogation green btn" onclick="removeSousMenu()"><span class="search-span">Close</span></button></div>
+        </div>
+    </div>
+
+        <div id="reports" class="tab-pane fade">
+            <div class="col-sm-11">
+                <div class="col-sm-4">
+                    <fieldset class="test-fieldst" style="height:73px">
+                        <legend class="test-fieldst">Processing Date</legend>
+                        <div class="col-sm-6 width-group">
+                            <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">From:</label>
+                            <div class="col-sm-7 n-padding">
+                                <div class="input-group">
+                                    <span class="input-group-addon check-dape"><input type="checkbox" name="datedtpIssueDateFrom" value="oui" id="dtpIssueDateFrom" onclick="uncheked('dtpIssueDateFrom', 'dtpIssueDateTo', 'dateToProcess', 'dateFromProcess')"></span>
+                                    
+                                    <input type="text" class="form-control" id="dateFromProcess" value="@ViewBag.dateFrom" style="width:105px">
+                                    <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateFromProcess', 'dtpIssueDateFrom', 'dtpIssueDateTo')"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 width-group style=" margin-bottom 19px;">
+                            <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">To:</label>
+                            <div class="col-sm-7 n-padding">
+                                <div class="input-group">
+                                    <span class="input-group-addon check-dape"><input type="checkbox" name="datedtpIssueDateTo" value="oui" id="dtpIssueDateTo" onclick="uncheked1('dtpIssueDateFrom', 'dtpIssueDateTo', 'dateToProcess', 'dateFromProcess')"></span>
+                                    
+                                    <input type="text" class="form-control" id="dateToProcess" value="@ViewBag.dateTo" style="width:105px">
+                                    <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateToProcess', 'dtpIssueDateFrom', 'dtpIssueDateTo')"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="test-fieldst" style="height:73px">
+                        <legend class="test-fieldst">Usage Date</legend>
+                        <div class="col-sm-6 width-group">
+                            <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">From:</label>
+                            <div class="col-sm-7 n-padding">
+                                <div class="input-group">
+                                    <span class="input-group-addon check-dape"><input type="checkbox" name="datedtpIssueDateFrom" value="oui" id="dtpIssueDateFrom1" onclick="uncheked('dtpIssueDateFrom1', 'dtpIssueDateTo1', 'dateFromUsage', 'dateToUsage')"></span>
+                                    
+                                    <input type="text" class="form-control" id="dateFromUsage" value="@ViewBag.dateFrom" style="width:105px">
+                                    <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate1('dateFromUsage', 'dtpIssueDateFrom1', 'dtpIssueDateTo1')"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 width-group style=" margin-bottom 19px;">
+                            <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">To:</label>
+                            <div class="col-sm-7 n-padding">
+                                <div class="input-group">
+                                    <span class="input-group-addon check-dape"><input type="checkbox" name="datedtpIssueDateTo" value="oui" id="dtpIssueDateTo1" onclick="uncheked1('dtpIssueDateFrom1', 'dtpIssueDateTo1', 'dateFromUsage', 'dateToUsage')"></span>
+                                    
+                                    <input type="text" class="form-control" id="dateToUsage" value="@ViewBag.dateTo" style="width:105px">
+                                    <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateToUsage', 'dtpIssueDateFrom1', 'dtpIssueDateTo1')"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                </div>
+                <div class="col-sm-2" style="top:10px;left:-5px">
+                    <fieldset class="test-fieldst" style="width:300px;height:136px">
+                        <input type="hidden" id="testPass" />
+                        <table class="tab-refundEng">
+                            <tr>
+                                <td>Agent Numeric Code</td>
+                                <td>
+                                    <select id="AgCPass" class="form-control" onclick="setAgcodeLift1('AgCPass', 'dateFromrfn', 'dateTorfn', 'testPass', 'locPass', 'AgLocrfn')" style="width:139px">
+                                        <option>-All-</option>
+                                        <option value="1"></option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <button class="point-interogation green btn" id="showListRefundCodeModal" data-toggle="modal" data-target="#AgentCodeModal" style="left:1px; top:-1px" onclick="chercherefn()"><span class="point-span">?</span></button>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="resultAdr ">
+                            <table class="tab-refundEng">
+                                <tr>
+                                    <td>Agent Name</td>
+                                    <td><input type="text" id="AgNPass" class="form-control" style="width: 139px;left: 33px;position: relative;" readonly /></td>
+                                </tr>
+                                <tr id="AgLocEx">
+                                    <td>Agent Location</td>
+                                    <td><input type="text" id="locPass" class="form-control" style="width: 139px;left: 33px;position: relative;" readonly /></td>
+                                </tr>
+                            </table>
+
+                        </div>
+
+
+                    </fieldset>
+                </div>
+                    <div class="col-sm-2" style="left:30px;top:10px">
+                        <fieldset class="test-fieldst" style="height:136px">
+                            <table class="tab-refundEng">
+                                <tr>
+                                    <td>Usage Type</td>
+                                    <td>
+                                        <select type="text" class="form-control" id="usageType" style="width:139px" >
+                                            <option>-All-</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Usage Orig.</td>
+                                    <td>
+                                        <select type="text" class="form-control" id="usageOrig" style="width:139px" >
+                                            <option>-All-</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Usage Dest.</td>
+                                    <td>
+                                        <select type="text" class="form-control" id="usageDest" style="width:139px">
+                                            <option>-All-</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>
+                    </div>
+                <div class="col-sm-2" style="left:27px;top:10px">
+                    <fieldset class="test-fieldst">
+                        <table class="tab-refundEng">
+                            <tr>
+                                <td>Data Source</td>
+                                <td>
+                                    <select type="text" class="form-control" id="dataSource">
+                                        <option>-All-</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                    
+                </div>
+                <div class="col-sm-2"style="left:30px;top:10px">
+                    <div class="col-sm-6">
+                        <button type="button" class="search-interogation green btn" onclick="setCriteriaPassenger()"><span class="search-span">SEARCH</span></button>
+                    </div>
+                    <div class="col-sm-6">
+                        <button type="button" class="search-interogation green btn" onclick="ClearPassenger()"><span class="search-span">CLEAR</span></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-11">
+                <div class="col-sm-9">
+                    <div class="table-record-display" style="overflow:auto;height:550px">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="green-tab">Processing Date</th>
+                                    <th class="green-tab">Processing File Name</th>
+                                    <th class="green-tab">Processing File Type</th>
+                                    <th class="green-tab keyelement-3" style="display:none">Record Type</th>
+                                    <th class="green-tab">Airline Code</th>
+                                    <th class="green-tab">Ticket No</th>
+                                    <th class="green-tab">Check Digit</th>
+                                    <th class="green-tab">Coupon No</th>
+                                    <th class="green-tab">Local Dep.Date</th>
+                                    <th class="green-tab keyelement-9" style="display:none">Flight No</th>
+                                    <th class="green-tab">Usage RBD</th>
+                                    <th class="green-tab">Usage Date</th>
+                                    <th class="green-tab">Usage Type</th>
+                                    <th class="green-tab">Usage Airline</th>
+                                    <th class="green-tab">Usage Flight No</th>
+                                    <th class="green-tab">Local Flight Date</th>
+                                    <th class="green-tab keyelement-16" style="display:none">Solde Local Dep.Date</th>
+                                    <th class="green-tab keyelement-17" style="display:none">Sale Origin Code</th>
+                                    <th class="green-tab keyelement-18" style="display:none">Sale Destination Code</th>
+                                    <th class="green-tab keyelement-19" style="display:none">Usage Origine Code</th>
+                                    <th class="green-tab keyelement-20" style="display:none">Usage Destination Code</th>
+                                    <th class="green-tab keyelement-21" style="display:none">Reported Fare</th>
+                                    <th class="green-tab keyelement-22" style="display:none">Cur Of Reported Fare</th>
+                                    <th class="green-tab keyelement-23" style="display:none">Equi Fare in Pay Cur</th>
+                                    <th class="green-tab keyelement-24" style="display:none">Pay Cur</th>
+                                    <th class="green-tab keyelement-25" style="display:none">Agency No</th>
+                                    <th class="green-tab keyelement-26" style="display:none">Issue Date</th>
+                                    <th class="green-tab keyelement-27" style="display:none">Sale Date</th>
+                                    <th class="green-tab keyelement-28" style="display:none">Booking date</th>
+                                    <th class="green-tab keyelement-29" style="display:none">Booking Reference</th>
+                                    <th class="green-tab keyelement-30" style="display:none">Tour Code</th>
+                                    <th class="green-tab keyelement-31" style="display:none">Airline Code1</th>
+                                    <th class="green-tab keyelement-32" style="display:none">Passenger Name</th>
+                                    <th class="green-tab keyelement-33" style="display:none">Settlement Authorization Code</th>
+                                    <th class="green-tab keyelement-34" style="display:none">Tktt No 1st In Set</th>
+                                    <th class="green-tab keyelement-35" style="display:none">Tktt No 2nd In Set</th>
+                                    <th class="green-tab keyelement-36" style="display:none">Tktt No 3rd In Set</th>
+                                    <th class="green-tab keyelement-37" style="display:none">Tktt No 4th In Set</th>
+                                    <th class="green-tab keyelement-38" style="display:none">Fare Construction</th>
+                                    <th class="green-tab keyelement-39" style="display:none">Tktt Doc Amt on Tktt</th>
+                                    <th class="green-tab keyelement-40" style="display:none">Tktt Doc Amt Cur</th>
+                                    <th class="green-tab keyelement-41" style="display:none">Tktt Mode Indicator</th>
+                                    <th class="green-tab keyelement-42" style="display:none">Net Remit Indicator</th>
+                                    <th class="green-tab keyelement-43" style="display:none">Commission Rate</th>
+                                    <th class="green-tab keyelement-44" style="display:none">Commission Amt</th>
+                                    <th class="green-tab keyelement-45" style="display:none">Cur Of Comm Amt</th>
+                                    <th class="green-tab keyelement-46" style="display:none">Orig Tktt Doc No 1</th>
+                                    <th class="green-tab keyelement-47" style="display:none">Orig Tktt Doc No 2</th>
+                                    <th class="green-tab keyelement-48" style="display:none">Orig Tktt Doc No 3</th>
+                                    <th class="green-tab keyelement-49" style="display:none">Orig Tktt Doc No 4</th>
+                                    <th class="green-tab keyelement-50" style="display:none">Orig Tktt Doc No 5</th>
+                                    <th class="green-tab keyelement-51" style="display:none">Orig Tktt Doc No 6</th>
+                                    <th class="green-tab keyelement-52" style="display:none">Orig Tktt Doc No 7</th>
+                                    <th class="green-tab keyelement-53" style="display:none">Orig Issue Info</th>
+                                    <th class="green-tab keyelement-54" style="display:none">Int Sale Indicator</th>
+                                    <th class="green-tab keyelement-55" style="display:none">Endorsement Restriction Text</th>
+                                    <th class="green-tab keyelement-56" style="display:none">Amt Entered By Agent</th>
+                                    <th class="green-tab keyelement-57" style="display:none">Cur of Amt Entered By Agent</th>
+                                    <th class="green-tab keyelement-58" style="display:none">Trans. Total Amt</th>
+                                    <th class="green-tab keyelement-59" style="display:none">Cur of Trans. Total Amt</th>
+                                    <th class="green-tab keyelement-60" style="display:none">ADC Total</th>
+                                    <th class="green-tab keyelement-61" style="display:none">Cur Of ADC</th>
+                                    <th class="green-tab keyelement-62" style="display:none">FCMI</th>
+                                    <th class="green-tab keyelement-63" style="display:none">Bankers Exchange Rate</th>
+                                    <th class="green-tab keyelement-64" style="display:none">Document Type</th>
+                                    <th class="green-tab keyelement-65" style="display:none">Non Endorsable Indicator</th>
+                                    <th class="green-tab keyelement-66" style="display:none">Non Refundable Indicator</th>
+                                    <th class="green-tab keyelement-67" style="display:none">Penalty Restriction Indicateur</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <button type="button" class="search-interogation green btn" style="width:260px;top:30px;left:135px" onclick="showPassenger('detailPsrKey')">Hide Add-on Details</button>
+                    <div class="containt-details" id="detailPsrKey" style="overflow-y: auto;top:40px;height: 506px;left:141px;display:none">
+                        <ul class="list-group">
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('allkey', 'keyelement')" id="allkey">All</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key3', 'keyelement-3')" id="key3">Record Type</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showpsr('key9', 'keyelement-9')" id="key9">Flight No</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key16', 'keyelement-16')" id="key16">Solde Local Departure Date</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key17', 'keyelement-17')" id="key17">Sale Origin Code</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key18', 'keyelement-18')" id="key18">Sale Destination Code</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key19', 'keyelement-19')" id="key19">Usage Origin Code</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key20', 'keyelement-20')" id="key20">Usage Destination Code</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key21', 'keyelement-21')" id="key21">Reported Fare</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key22', 'keyelement-22')" id="key22">Currency Of Reported Fare</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key23', 'keyelement-23')" id="key23">Equivalent Fare in Payement Currency</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key24', 'keyelement-24')" id="key24">Payement Currency</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key25', 'keyelement-25')" id="key25">Agency Number</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key26', 'keyelement-26')" id="key26">Issue Date</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key27', 'keyelement-27')" id="key27">Sale Date</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key28', 'keyelement-28')" id="key28">Bokking Date</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key29', 'keyelement-29')" id="key29">Booking Reference</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key30', 'keyelement-30')" id="key30">Tour Code</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key31', 'keyelement-31')" id="key31">Airline Code 1</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key32', 'keyelement-32')" id="key32">Passenger Name</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key33', 'keyelement-33')" id="key33">Settlement Athorization Code</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key34', 'keyelement-34')" id="key34">Tkkt 1st in set</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key35', 'keyelement-35')" id="key35">Tkkt 2nd in se</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key36', 'keyelement-36')" id="key36">Tkkt 3rd in se</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key37', 'keyelement-37')" id="key37">Tkkt 4th in se</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key38', 'keyelement-38')" id="key38">Fare Construction</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key39', 'keyelement-39')" id="key39">Tkkt Doc. Amt as on Ticket</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key40', 'keyelement-40')" id="key40">Tkkt Doc. Amt Cur</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key41', 'keyelement-41')" id="key41">Ticketing Mode Indicator</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key42', 'keyelement-42')" id="key42">Net Remit Indicator</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key43', 'keyelement-43')" id="key43">Commission Rate</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key44', 'keyelement-44')" id="key44">Commission Amt</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key45', 'keyelement-45')" id="key45">Currency of Commission Amt</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key46', 'keyelement-46')" id="key46">Original Tkkt Doc No 1</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key47', 'keyelement-47')" id="key47">Original Tkkt Doc No 2</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key48', 'keyelement-48')" id="key48">Original Tkkt Doc No 3</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key49', 'keyelement-49')" id="key49">Original Tkkt Doc No 4</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key50', 'keyelement-50')" id="key50">Original Tkkt Doc No 5</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key51', 'keyelement-51')" id="key51">Original Tkkt Doc No 6</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key52', 'keyelement-52')" id="key52">Original Tkkt Doc No 7</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key53', 'keyelement-53')" id="key53">Original Issue Information</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key54', 'keyelement-54')" id="key54">International Sale Indicator</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key55', 'keyelement-55')" id="key55">Endorsement Restriction Text</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key56', 'keyelement-56')" id="key56">Amt Entered By Agent</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key57', 'keyelement-57')" id="key57">Amt Entered By AgentCur of</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key58', 'keyelement-58')" id="key58">Transaction Total Amt</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key59', 'keyelement-59')" id="key59">Cur ofTrans. Total Amt</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key60', 'keyelement-60')" id="key60">Additional Collection total</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key61', 'keyelement-61')" id="key61">Cur of Additional Collection</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key62', 'keyelement-62')" id="key62">FCMI</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key63', 'keyelement-63')" id="key63">Bankers Rxchange Rate</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key64', 'keyelement-64')" id="key64">Document Type</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key65', 'keyelement-65')" id="key65">Non Endorsable Indicator</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key66', 'keyelement-66')" id="key66">Non Refundable Indicator</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreports('key67', 'keyelement-67')" id="key67">Penalty Restriction Indicator</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-sm-1"></div>
+            <div class="col-sm-3" style="left:15px">
+                <table class="table table-cancellation">
+                    <tr>
+                        <td width="38%">Total No of Doc</td>
+                        <td width="27%"><input type="text" class="form-control" name="" id="Document" /> </td>
+                        <td width="10%"></td>
+                    </tr>
+                </table>
+
+            </div>
+            <div class="col-sm-8">
+                <img src="@Url.Content("~/Images/CSVPic.jpg")" style="height: 35px; top:28px;left:-160px" />
+            </div>
+            <div class="col-sm-1">
+                <div class="col-sm-3" style="top:30px"><button type="button" class="search-interogation green btn" onclick="removeSousMenu()"><span class="search-span">Close</span></button></div>
+            </div>
+        </div>
+        <div id="analysis" class="tab-pane fade">
+            <div class="col-sm-11">
+                <div class="col-sm-4">
+                    <fieldset class="test-fieldst" style="height:73px">
+                        <legend class="test-fieldst">Flight Date</legend>
+                        <div class="col-sm-6 width-group">
+                            <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">From:</label>
+                            <div class="col-sm-7 n-padding">
+                                <div class="input-group">
+                                    <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateFromAnalysis')"></span>
+                                    <input type="text" class="form-control" id="dateFromAnalysis" value="@ViewBag.dateFrom">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 width-group style=" margin-bottom 19px;">
+                            <label class="form-check-label col-form-label col-sm-3 n-padding fromTo">To:</label>
+                            <div class="col-sm-7 n-padding">
+                                <div class="input-group">
+                                    <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateToAnalysis')"></span>
+                                    <input type="text" class="form-control" id="dateToAnalysis" value="@ViewBag.dateTo">
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <table style="font-size:smaller;"position:relative;top:5px"" class="tab-refundEng">
+                        <tr>
+                            <td style="width:125px">Pax Final Count</td>
+                            <td><input type="text" class="form-control" style="width:150px" id="countAnalysis" readonly/></td>
+                            <td style="width:15px"></td>
+                            <td style="width:125px">Flown Revenu Net</td>
+                            <td><input type="text" class="form-control" style="width:150px" id="netAnalysis" readonly/></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-sm-2" style="left:27px;top:10px">
+                    <fieldset class="test-fieldst" style="height:64px">
+                        <input type="hidden" id="testAnalysis" />
+                        <table class="tab-refundEng">
+                            <tr>
+                                <td>Flight No</td>
+                                <td style="width:120px">
+                                    <select type="text" class="form-control" id="FlightAnalysis" onclick="getFlightNo('FlightAnalysis', 'dateFromAnalysis', 'dateToAnalysis')">
+                                        <option>-All-</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+
+                </div>
+                <div class="col-sm-2" style="top:25px">
+                    <div class="col-sm-7"><span style="font-size:smaller">Display Own</span></div>
+                    <div class="col-sm-2" style="left:-63px"><input type="checkbox" id="ownAnalysis" checked/></div>
+                </div>
+                <div class="col-sm-2" style="top:25px">
+                    <div class="col-sm-7"><span style="font-size:smaller">Display OAL</span></div>
+                    <div class="col-sm-2" style="left:-63px"><input type="checkbox" id="oalAnalysis" checked/></div>
+                </div>
+                <div class="col-sm-2" style="left:30px;top:10px">
+                    <div class="col-sm-6">
+                        <button type="button" class="search-interogation green btn" onclick="setCriteriaAnalysis()"><span class="search-span">SEARCH</span></button>
+                    </div>
+                    <div class="col-sm-6">
+                        <button type="button" class="search-interogation green btn" onclick="ClearAnalysis()"><span class="search-span">CLEAR</span></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-1"></div>
+            <div class="col-sm-11" id="data-analysis">
+                <div class="col-sm-8">
+                    <div class="table-record-display" style="overflow:auto;height:650px">
+
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="table-record-display" style="overflow:auto;height:450px">
+
+                    </div>
+                </div>
+                <input type="hidden" id="anacount" value="@ViewBag.lon" />
+                <input type="hidden" id="anaTot" value="@ViewBag.netval" />
+            </div>
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10"></div>
+            <div class="col-sm-2">
+                <div class="col-sm-3" style="top:30px"><button type="button" class="search-interogation green btn" onclick="removeSousMenu()"><span class="search-span">Close</span></button></div>
+            </div>
+        </div>
+</div>
+</div>
+
+<!--Modal-->
+<div class="modal fade" id="AgentCodeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="Doc modal-content" style="width: 58%;left: 17%; background-color: rgba(135, 206, 235, 1) !important; ">
+            <div class="agentModal">
+                <div class="modal-header" style="background-color: white; margin-bottom: 21px;">
+                    <h5 class="modal-title" id="myModalLabel">FrmCustomAgentQuery</h5>
+                    <button type="button" class="close close-agent-code" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="DocCollect-modal-body">
+                    <div class="ajax-loader">
+                        <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+                    </div>
+                    <div class="scoll-tree scoll-agent-code">
+                        <div class="head-agent-code-content">
+                            <div class="form-row">
+                                <div class="col col-md-3" style="padding-left: 0px;">Agent Legal Name:</div>
+                                <div class="col col-md-4">
+                                    <input type="text" class="form-control" id="name" name="agentName" onkeyup="cherche(this.value)" />
+                                </div>
+                                <div class="col col-md-2">Agent Code:</div>
+                                <div class="col col-md-3">
+                                    <input type="text" class="form-control" id="code" name="agentCode" onkeyup="cherche(this.value)" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="agentContent" style="width: 98%; max-height: 515px;">
+                            <table class="table table-agent-code" style="margin-bottom:0px">
+                                <thead>
+                                    <tr>
+                                        <th width="35%">Agent Code</th>
+                                        <th width="70%">Agent Name</th>
+                                    </tr>
+                                </thead>
+
+
+                            </table>
+                        </div>
+                        <div class="autocomplete">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="background-color:rgba(135, 206, 235, 1) !important;">
+                    <div class="col-md-9 footer-agent-code">
+                        <div class="col-md-12">
+                            <label>Agent Name: </label>
+                            <label style="color:white;font-size:12px" id="agent-name-label"></label>
+                        </div>
+                        <div class="col-md-12">
+                            <label>Agent Code: </label>
+                            <label style="color:white; font-size:12px" id="agent-code-label"></label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <button type="button" class="Close btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="Close btn" data-dismiss="modal" id="select-name-code" onclick="LiftsetNumericode()">Select</button>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

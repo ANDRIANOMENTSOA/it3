@@ -1,0 +1,29 @@
+﻿<table class="table table-bordered tablehead" id="tabBMRecordsDisplayQry">
+    <thead style="background-color: #8B0000; color: aliceblue">
+    <tr>
+        <th>No.</th>
+        <th>BMCM Number</th>
+        <th>Invoice No.</th>
+        <th>Document No.</th>
+        <th>Coupon No.</th>
+        <th>Biolling Period</th>
+        <th>Billed Airline</th>
+    </tr>
+    </thead>
+    <tbody>
+    @for (int i = 0; i < ViewBag.lonMmQuery; i++)
+    {
+        <tr>
+            @for (int j = 0; j < 7; j++)
+            {
+                <td>@ViewBag.BmRecords[j, i]</td>
+            }
+        </tr>
+    }
+    </tbody>
+
+</table>
+
+<input type="hidden" value="@ViewBag.PVCreditMemoNumber" id="PVCreditMemoNumber"/>
+<input type="hidden" value="@ViewBag.PVInvoiceNumber" id="PVInvoiceNumber"/>
+@*<input type="hidden" value="@ViewBag.cboTo.Text" id="cboTo_Text"/>*@

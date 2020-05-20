@@ -1,0 +1,495 @@
+﻿@using System.Data
+@model DataSet
+<div class="" id="newpart">
+    <input type="hidden" value="@ViewBag.ligne4" id="chris" />
+    <fieldset class="test-fieldst">
+        <legend class="test-fieldst">Ticket Information</legend>
+        <div class="row">
+            <div class="table-bordered" id="part1">
+                <div class="col-lg-8 table-bordered">
+                    <div class="row">
+                        <div class="col-lg-10">
+                            <div class="col-lg-4">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="col-lg-8">
+                                            <label class="form-check-label col-form-label">TICKET NUMBER</label>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label class="form-check-label col-form-label">CK</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div style="width:50px">
+                                            <input type="text" class="form-control" style="width:100% !important;text-align:center" value="@ViewBag.txtDocumentCarrier" id="txtDocumentCarrier" />
+                                        </div>
+                                        <div style="width:150px">
+                                            <input type="text" class="form-control" style="width:100% !important;text-align:center;margin-left:52px;margin-top:-30px" value="@ViewBag.txtDocumentNumber" id="txtDocumentNumber" />
+                                        </div>
+                                        <div style="width:50px">
+                                            <input type="text" class="form-control" style="width:100% !important;text-align:center;margin-left:204px;margin-top:-30px" value="@ViewBag.txtChkDgt" id="txtChkDgt" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <label class="form-check-label col-form-label" style="text-align: center">PASSENGER TICKET AND BAGGAGE CHECK</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <label class="form-check-label col-form-label" style="text-align: center; font-size: 20px;">AUDIT & FLIGHT DETAIL</label>
+                                    </div>
+                                </div>
+                                <div class="row table-bordered">
+                                    <div class="col-lg-3 table-bordered">
+                                        <label class="form-check-label col-form-label">VENDOR IDENTIFIER</label>
+                                        <input type="text" class="form-control" value="@ViewBag.txtVendorIdentifier" id="txtVendorIdentifier" onchange="CharacterCasing18()"/>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <label class="form-check-label col-form-label">REPORTING SYSTEM IDENTIFIER</label>
+                                        <input type="text" class="form-control" value="@ViewBag.txtReportingSystemIdentifier" id="txtReportingSystemIdentifier" />
+                                    </div>
+                                    <div class="col-lg-2 table-bordered">
+                                        <label class="form-check-label col-form-label">CPUI</label>
+                                        <input type="text" class="form-control" value="" id="txtCPUI" />
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label class="form-check-label col-form-label">TOUR CODE</label>
+                                        <input type="text" class="form-control" value="@ViewBag.txtTourCode" id="txtTourCode" onchange="CharacterCasing2(this.value)" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 table-bordered">
+                            <div class="row">
+                                <label class="form-check-label col-form-label">ORIGIN/DESTINATION</label>
+                                <input type="text" class="form-control" value="@ViewBag.txtOrgDest" id="txtOrgDest" />
+                            </div>
+                            <div class="row table-bordered">
+                                <label class="form-check-label col-form-label">PNR</label>
+                                <input type="text" class="form-control" value="@ViewBag.txtPNR2" id="txtPNR2" onchange="CharacterCasing16(this.value)"/>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <label class="form-check-label col-form-label">ORIGIN ISSUE DOC NO</label>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="col-lg-9">
+                                        <input type="text" class="form-control" value="" id="issuedInExcLinkLabel" />
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <input type="button" style="width:5px!important;" class="btn" value="@ViewBag.txtIssuedInExchangeFor" id="txtIssuedInExchangeFor" data-url="@Url.Action("PAXTKTs","Sales")" onclick="ajout(this, 'PAXTKTs', 'Sales', 'PAX TKTs');CellContentDoubleClick(this,value)"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row table-bordered">
+                        <div class="col-lg-12">
+                            <div class="col-lg-7 table-bordered">
+                                <label class="form-check-label col-form-label">NAME OF PASSENGER</label>
+                                <input type="text" class="form-control" value="@ViewBag.txtPassengerNam" id="txtPassengerNam" />
+                            </div>
+                            <div class="col-lg-5 ">
+                                <div class="col-lg-5">
+                                    <label class="form-check-label col-form-label">Transaction Code</label>
+                                </div>
+                                <div class="col-lg-3">
+                                    <input type="text" class="form-control" value="@ViewBag.txttransactioncode" id="txttransactioncode" />
+                                </div>
+                                <div class="col-lg-2">
+                                    <label class="form-check-label col-form-label">FCMI</label>
+                                </div>
+                                <div class="col-lg-2">
+                                    <input type="text" class="form-control" value="@ViewBag.txtFcmi" id="txtFcmi" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <label class="form-check-label col-form-label">Issue Date:</label>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="input-group date">
+                                <input type="text" name="FromManuelTicketScreen" class="form-controls input-date" id="FromManuelTicketScreen" value="@ViewBag.FromManuelTicketScreen" />
+                                <span class="input-group-addon datetimepicker" onclick="setdate('FromManuelTicketScreen')" id="dtpIssDoc">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <label class="form-check-label col-form-label">Agent Numeric Code</label>
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" value="@ViewBag.txtCustomerCode" id="txtCustomerCode" />
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <label class="form-check-label col-form-label">Booking Agent Id.</label>
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" value="@ViewBag.txtBookingAgentID" id="txtBookingAgentID" onchange="CharacterCasing17(this.value)"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <label class="form-check-label col-form-label">Ticketing Agent Id.</label>
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" value="@ViewBag.txtTicketingAgentId" id="txtTicketingAgentId" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <label class="form-check-label col-form-label">Endorsement/Restrictions</label>
+                            </div>
+                            <div class="col-lg-6">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <textarea rows="4" style="width: 90%;" id="txtEndorsementArea" onchange="CharacterCasing1(this.value)">@ViewBag.txtEndorsementArea</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="table-record-display col-lg-12" id="divdbgCPNlist" style="height:130px;overflow:auto;position: relative;">
+                <div class="ajax-loader">
+                    <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+                </div>
+                <table class="table table-bordered table-striped table-hover" id="dbgCPNlist">
+                    <thead>
+                        <tr>
+                            <!--<th class="pink" id="test"></th>-->
+                            <th class="pink">CPN</th>
+                            <th class="pink">X/O</th>
+                            <th class="pink">GFPA</th>
+                            <th class="pink">CARRIER</th>
+                            <th class="pink">FLIGTH</th>
+                            <th class="pink">CLASS</th>
+                            <th class="pink">DATE</th>
+                            <th class="pink">TIME</th>
+                            <th class="pink">STATUS</th>
+                            <th class="pink">FARE BASIS</th>
+                            <th class="pink">NO VALID BEFORE</th>
+                            <th class="pink">NO VALID AFTER</th>
+                            <th class="pink">BAGGAGE ALLOWANCE</th>
+                            <th class="pink">BOOKING STATUS</th>
+                            <th class="pink">RBD</th>
+                            <th class="pink">USAGE SECTOR</th>
+                            <th class="pink">USAGE AIRLINE</th>
+                            <th class="pink">USAGE FLIGHT NO.</th>
+                            <th class="pink">USAGE DATE</th>
+                            <th class="pink">FFP</th>
+                        </tr>
+                    </thead>
+                    <tbody class="">
+                        @for (int i = 0; i < ViewBag.ligne1; i++)
+                        {
+                            <tr>
+                                @for (int j = 0; j < ViewBag.colone1; j++)
+                                {
+                                    <td>@ViewBag.Liste[j, i]</td>;
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-5">
+                <div class="col-lg-1">
+                    <label class="form-check-label col-form-label">X/O</label>
+                    <input type="text" class="form-control" value="" id="cboXO" />
+                </div>
+                <div class="col-lg-1">
+                    <label class="form-check-label col-form-label">From</label>
+                    <input type="text" class="form-control" value="" id="txtFrom" onchange="CharacterCasing3(this.value)"/>
+                </div>
+                <div class="col-lg-1">
+                    <label class="form-check-label col-form-label">To</label>
+                    <input type="text" class="form-control" value="" id="txtTo" onchange="CharacterCasing4(this.value)"/>
+                </div>
+                <div class="col-lg-1">
+                    <label class="form-check-label col-form-label">Carrier</label>
+                    <input type="text" class="form-control" value="" id="txtCarrier" onchange="CharacterCasing5(this.value)"/>
+                </div>
+                <div class="col-lg-2">
+                    <label class="form-check-label col-form-label">Flight</label>
+                    <input type="text" class="form-control" value="" id="txtFltNo" />
+                </div>
+                <div class="col-lg-1">
+                    <label class="form-check-label col-form-label">Class</label>
+                    <input type="text" class="form-control" value="" id="txtClass" onchange="CharacterCasing6(this.value)"/>
+                </div>
+                <div class="col-lg-3">
+                    <label class="form-check-label col-form-label">Date</label>
+                    <div class="input-group date">
+                        <input type='text' name="dtpdate" class="form-controls input-date input-datetimepicker" value="" id="dtpdate" />
+                        <span class="input-group-addon datetimepicker" onclick="setdate('dtpdate')">
+                            <span class="glyphicon glyphicon-calendar" id="calendarPaxTo"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-1">
+                    <label class="form-check-label col-form-label">Time</label>
+                    <input type="text" class="form-control" value="" id="txtTime" />
+                </div>
+                <div class="col-lg-1">
+                    <label class="form-check-label col-form-label">Status</label>
+                    <input type="text" class="form-control" value="" id="txtStatus" onchange="CharacterCasing7(this.value)"/>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="col-lg-1">
+                    <label class="form-check-label col-form-label">FareBasis</label>
+                    <input type="text" class="form-control" value="" id="txtFareBasis" onchange="CharacterCasing8(this.value)"/>
+                </div>
+                <div class="col-lg-3">
+                    <label class="form-check-label col-form-label">Not Valid Before</label>
+                    <div class="col-sm-12">
+                        <div class="input-group date">
+                            <span class="input-group-addon check-dape"><input type="checkbox" name="NotValidBefordate" value="true" id="NotValidBefordate" onclick="uncheked('NotValidBefordate', 'dtpIssueDateTo1Noshow', 'datedtpIssueDateFrom1Noshow', 'datedtpIssueDateTo1')"></span>
+                            <input type="text" name="dateNotValidBefore" class="form-controls input-date" id="dateNotValidBefore" readonly value="25" />
+                            <span class="input-group-addon datetimepicker" onclick="setdate1('dateNotValidBefore', 'NotValidBefordate', 'dtpIssueDateTo1Noshow')">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <label class="form-check-label col-form-label">Not Valid After</label>
+                    <div class="col-sm-12">
+                        <div class="input-group date">
+                            <span class="input-group-addon check-dape"><input type="checkbox" name="dtpIssueDateTo1Noshow" value="true" id="dtpIssueDateTo1Noshow" onclick="uncheked1('NotValidBefordate', 'dtpIssueDateTo1Noshow', 'datedtpIssueDateFrom1Noshow', 'datedtpIssueDateTo1Nowshow')"></span>
+                            <input type='text' name="NotValidAfterdate" class="form-controls input-date input-datetimepicker" id="NotValidAfterdate" value="" readonly />
+                            <span class="input-group-addon datetimepicker" onclick="setdate1('NotValidAfterdate', 'NotValidBefordate', 'dtpIssueDateTo1Noshow')">
+                                <span class="glyphicon glyphicon-calendar" id="calendarPaxTo1"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <label class="form-check-label col-form-label">Bagg.Allowance</label>
+                    <input type="text" class="form-control" value="" id="txtBagAllowance" onchange="CharacterCasing9(this.value)"/>
+                </div>
+                <div class="col-lg-2">
+                    <label class="form-check-label col-form-label">Booking Status</label>
+                    <input type="text" class="form-control" value="" id="txtBookingStatus" onchange="CharacterCasing10(this.value)"/>
+                </div>
+                <div class="col-lg-1">
+                    <label class="form-check-label col-form-label">RBD</label>
+                    <input type="text" class="form-control" value="" id="txtRBD" onchange="CharacterCasing11(this.value)"/>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="col-lg-2">
+                    <label class="form-check-label col-form-label">USAGE From</label>
+                    <input type="text" class="form-control" value="" id="txtUsageFrom" onchange="CharacterCasing14(this.value)"/>
+                </div>
+                <div class="col-lg-2">
+                    <label class="form-check-label col-form-label">Usage To</label>
+                    <input type="text" class="form-control" value="" id="txtUsageTo" onchange="CharacterCasing15(this.value)"/>
+                </div>
+                <div class="col-lg-2">
+                    <label class="form-check-label col-form-label">Usage Airline</label>
+                    <input type="text" class="form-control" value="" id="txtUsageAirline" onchange="CharacterCasing13(this.value)"/>
+                </div>
+                <div class="col-lg-2">
+                    <label class="form-check-label col-form-label">Usage Flt.No. </label>
+                    <input type="text" class="form-control" value="" id="txtUsageFlightNo" />
+                </div>
+                <div class="col-lg-3">
+                    <label class="form-check-label col-form-label">Usage Date</label>
+                    <div class="input-group date">
+                        <span class="input-group-addon check-dape"><input type="checkbox" name="UsageDateManuel" value="oui" id="UsageDateManuel" onclick="uncheked1('UsageDateManuel', 'UsageDateManuel1', '', '')"></span>
+                        <input type='text' name="UsageDateManuel1" class="form-controls input-date input-datetimepicker" id="UsageDateManuel1" value="" readonly />
+                        <span class="input-group-addon datetimepicker" onclick="setdate1('UsageDateManuel', 'UsageDateManuel1', '')">
+                            <span class="glyphicon glyphicon-calendar" id="calendarPaxTo1"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-1">
+                    <label class="form-check-label col-form-label">FFP</label>
+                    <input type="text" class="form-control" value="" id="txtFFP" onchange="CharacterCasing12(this.value)"/>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="col-lg-8">
+                </div>
+                <div class="col-lg-2">
+                    <input type="button" class="btn" value="Add" id="btnAdd" onclick="btnAdd_Clickticketentry()" />
+                </div>
+                <div class="col-lg-2">
+                    <input type="button" class="btn" value="Clear" onclick="clearCpn()" />
+                </div>
+            </div>
+
+        </div>
+        <div class="row table-bordered">
+            <div class="col-lg-3 table-bordered">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label class="form-check-label col-form-label">FARE</label>
+                    </div>
+                    <div class="col-lg-2">
+                        <input type="text" class="form-control" value="@ViewBag.txtFareCurrency" id="txtFareCurrency" />
+                    </div>
+                    <div class="col-lg-6">
+                        <input type="text" class="form-control" value="@ViewBag.txtFareAmount" id="txtFareAmount" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label class="form-check-label col-form-label">EQUIV FARE PD</label>
+                    </div>
+                    <div class="col-lg-2">
+                        <input type="text" class="form-control" value="@ViewBag.txtFarePaidCur" id="txtFarePaidCur" />
+                    </div>
+                    <div class="col-lg-6">
+                        <input type="text" class="form-control" value="@ViewBag.txtFarePaidAmt" id="txtFarePaidAmt" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label class="form-check-label col-form-label">TOTAL AMOUNT</label>
+                    </div>
+                    <div class="col-lg-2">
+                        <input type="text" class="form-control" value="@ViewBag.txtTotalamtcur" id="txtTotalamtcur" />
+                    </div>
+                    <div class="col-lg-6">
+                        <input type="text" class="form-control" value="@ViewBag.txtTotalamt" id="txtTotalamt" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="row">
+                    <label class="form-check-label col-form-label">Fare calcule Area</label>
+                </div>
+                <div class="row" id="divtxtFareComponent">
+                    <div class="table-record-display col-lg-11" id="txtFareComponent" style="height:60px;overflow:auto;position: relative;left:0px;" onchange="CharacterCasing(this.value)">
+                        @ViewBag.txtFareComponent
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-5">
+                <label class="form-check-label col-form-label">MANUAL ENTRY FOR OTHER AMOUNT</label>
+                <div class="table-record-display" id="divdgother" style="height:110px;overflow:auto;">
+                    <div class="ajax-loader">
+                        <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+                    </div>
+                    <table class="table table-bordered table-striped table-hover" id="dgother">
+                        <thead>
+                            <tr>
+                                <th class="green-tab">Document Amount Type</th>
+                                <th class="green-tab">TFC Code</th>
+                                <th class="green-tab">Amount</th>
+                                <th class="green-tab">Rate</th>
+                            </tr>
+                        </thead>
+                        <tbody class="loadTFC">
+                            @for (int i = 0; i < ViewBag.ligne3; i++)
+                            {
+                                <tr>
+                                    @for (int j = 0; j < ViewBag.colone3 - 1; j++)
+                                    {
+                                        <td>@ViewBag.Liste3[j, i]</td>;
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <label class="form-check-label col-form-label">MANUAL ENTRY FOR PAYEMENTS</label>
+                <div class="table-record-display" id="divdgpayment" style="height:110px;overflow:auto;">
+                    <div class="ajax-loader">
+                        <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+                        /*   </div>
+                    <table class="table table-bordered table-striped table-hover" id="dgpayment">
+                        <thead>
+                            <tr>
+                                <th class="green-tab">Amount Collected</th>
+                                <th class="green-tab">FOP</th>
+                                <th class="green-tab">Amount Remitted</th>
+                            </tr>
+                        </thead>
+                        <tbody class="loadTFC">
+                            @for (int i = 0; i < ViewBag.ligne2; i++)
+                            {
+                                <tr>
+                                    @for (int j = 0; j < ViewBag.colone2; j++)
+                                    {
+                                        <td>@ViewBag.Liste2[j, i]</td>;
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <label class="form-check-label col-form-label">MULTIPLE ORIGINAL DOCUMENTS</label>
+                <div class="table-record-display" id="divdgOriDoc" style="height:110px;overflow:auto;">
+                    <div class="ajax-loader">
+                        <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+                    </div>
+                    <table class="table table-bordered table-striped table-hover" id="dgOriDoc">
+                        <thead>
+                            <tr>
+                                <th class="green-tab">Original Issued Doc No</th>
+                            </tr>
+                        </thead>
+                        <tbody class="loadTFC">
+                            @for (int i = 0; i < ViewBag.ligne4; i++)
+                            {
+                                <tr data-url="@Url.Action("PAXTKTs","Sales")" onclick="ajout(this, 'PAXTKTs', 'Sales', 'PAX TKTs');CellContentDoubleClick(this, '@ViewBag.Liste4[0, i]')">
+                                    @for (int j = 0; j < ViewBag.colone4; j++)
+                                    {
+                                        <td>@ViewBag.Liste4[j, i]</td>;
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-lg-1">
+            </div>
+            <div class="col-lg-1" style="padding:26px;border:1px solid #bbb;background:#F4F4F4;color:#777;box-shadow:0 0 0 16px #fff inset,0 0 0 17px #DAD4D4 inset;position:relative;left:-25px;">
+                <input type="button" class="btn btn-default btn-intBilling" value="NEW" id="btnnew" onclick="newFrmTicketDiscrepancy()"/>
+                <input type="button" class="btn btn-default btn-intBilling" value="EDIT" id="btnEdit" onclick="EditFrmTicketDiscrepancy()"/>
+                <input type="button" class="btn btn-default btn-intBilling" value="SAVE" id="btnSave" onclick="SaveFrmTicketDiscrepancy()"/>
+                <input type="button" class="btn btn-default btn-intBilling" value="CLEAR" id="btnClear" />
+            </div>
+        </div>
+    </fieldset>
+</div>

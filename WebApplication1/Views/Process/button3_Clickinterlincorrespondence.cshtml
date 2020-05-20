@@ -1,0 +1,30 @@
+﻿@using System.Data
+@model DataSet
+<div id="newCorEntri">
+    <div class="col" style="height: 100%;background: white;overflow: auto;" id="divtableCorEntri">
+        <table id="tableCorEntri" class="table table-bordered">
+            <thead>
+                <tr style="background-color:#800000;color:#ffffff">
+                    <th style="text-align:center" >Recld</th>
+                    <th style="text-align:center" >Document No</th>
+                    <th style="text-align:center" >Coupon No</th>
+                    <th style="text-align:center" >Charge Code</th>
+                    <th style="text-align:center" >Corr No</th>
+                    <th style="text-align:center" >Invoice No</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < ViewBag.ligne; i++)
+                {
+                    <tr onclick="dataGridView1_CellClickcorrespondenceinterline('i','@ViewBag.ligne','@ViewBag.dataGridView1[i, 0]','@ViewBag.dataGridView1[i, 1]','@ViewBag.dataGridView1[i, 2]','@ViewBag.dataGridView1[i, 3]','@ViewBag.dataGridView1[i, 4]','@ViewBag.dataGridView1[i, 5]')">
+                        @for (int j = 0; j < ViewBag.colone; j++)
+                        {
+                            <td>@ViewBag.dataGridView1[i, j]</td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+        
+    </div>
+</div>

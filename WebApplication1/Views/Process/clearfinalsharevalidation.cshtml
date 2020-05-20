@@ -1,0 +1,47 @@
+﻿<div class="col" style="top:-5px" id="newdivfinalSareFrom">
+    <div class="input-group">
+        <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('finalSareFrom')"></span>
+        <input type="text" class="form-control" id="finalSareFrom" value="@ViewBag.date[0]" style="padding-right:3px">
+    </div>
+</div>
+
+<div class="col" style="top:-5px" id="newdivfinalSareTo">
+    <div class="input-group">
+        <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('finalSareTo')"></span>
+        <input type="text" class="form-control" id="finalSareTo" value="@ViewBag.date[0]" style="padding-right:3px">
+    </div>
+</div>
+
+<div id="newdisplay-datashare">
+    <div class="ajax-loader">
+        <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+    </div>
+    <input type="hidden" id="temps" value="@ViewBag.ligne" />
+    <table class="table-bordered" style="width:100%;height:100% !important" id="tablefinalsharevalidation">
+        <thead>
+            <tr>
+                <th class="green-tabprocess" style="text-align:center">Rownum</th>
+                <th class="green-tabprocess" style="text-align:center">Date Of Issue</th>
+                <th class="green-tabprocess" style="text-align:center">Doc No</th>
+                <th class="green-tabprocess" style="text-align:center">Cpn</th>
+                <th class="green-tabprocess" style="text-align:center">Carrier</th>
+                <th class="green-tabprocess" style="text-align:center">Billing Type</th>
+                <th class="green-tabprocess" style="text-align:center">Ori</th>
+                <th class="green-tabprocess" style="text-align:center">Des</th>
+                <th class="green-tabprocess" style="text-align:center">RBD</th>
+                <th class="green-tabprocess" style="text-align:center">Fare Basis</th>
+                <th class="green-tabprocess" style="text-align:center">PM</th>
+                <th class="green-tabprocess" style="text-align:center">Differentials</th>
+                <th class="green-tabprocess" style="text-align:center">Surcharges</th>
+                <th class="green-tabprocess" style="text-align:center">Final Share</th>
+                <th class="green-tabprocess" style="text-align:center">Fare</th>
+                <th class="green-tabprocess" style="text-align:center">Equivalent Fare</th>
+                <th class="green-tabprocess" style="text-align:center">Tax And Surcharge</th>
+                <th class="green-tabprocess" style="text-align:center">Total Amount</th>
+                <th class="green-tabprocess" style="text-align:center">ROE</th>
+                <th class="green-tabprocess" style="text-align:center">Fare In USD</th>
+                <th class="green-tabprocess" style="text-align:center">Residual Value</th>
+            </tr>
+        </thead>
+    </table>
+</div>

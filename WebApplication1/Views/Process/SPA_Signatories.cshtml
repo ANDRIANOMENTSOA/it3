@@ -1,0 +1,60 @@
+﻿<div id="affichageSignatorie">
+    <div class="col-sm-10">
+        <div class="col-sm-9" style="top: 16px;">
+            <div class="col-sm-3">
+                <label class="form-check-label col-form-label">SPA NUMBER:</label>
+            </div>
+            <div class="col-sm-4 n-padding" style="position: relative;left: -10px;width: 148px;">
+                <select style="width: 160px" class="form-control" id="spaSignatorie">
+                    <option>-All-</option>
+                    @for (int i = 0; i < ViewBag.logSPA; i++)
+                    {
+                        <option>@ViewBag.ItemSPANumber[0, i]</option>
+                    }
+                </select>
+                <input type="hidden" name="valSignatories" id="valSignatories" value="@ViewBag.valSignatories" class="form-control">
+            </div>
+
+            <div class="col-sm-1">
+                <button class="btn-outward cpink-tab" style="margin-left:25px" onclick="searchSignatories()">SEARCH</button>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="col-sm-10 n-padding" style="top: 28px;background-color: white;height: 550px;left: 22px;overflow: auto;">
+        <table id="TableSignatories" class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th class="pink">SPA No</th>
+                    <th class="pink">Carrier</th>
+                    <th class="pink">To</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < ViewBag.logSignatories; i++)
+                {
+                    <tr>
+                        @for (int j = 0; j < 3; j++)
+                        {
+                           
+                            <td onclick="getDeleteSignator('@ViewBag.ListeSignatories[0, i]')">@ViewBag.ListeSignatories[j, i]</td>;
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-sm-12" style="top: 79px;left: 6px;">
+        <div class="form-group row width-group">
+            <button class="btn-outward cpink-tab" style="margin-left:25px">EDIT</button>
+            <button class="btn-outward cpink-tab" style="margin-left:25px" onclick="cancelSignatories()">CANCEL</button>
+            <button class="btn-outward cpink-tab" style="margin-left:25px">SAVE</button>
+            <button class="btn-outward cpink-tab" style="margin-left:25px" onclick="deleteSignatories()">DELETE</button>
+            <div class="col-sm-2" style="float: right;">
+                <button class="btn-outward cpink-tab" type="button" onclick="closeNetshullSPA('nutshell9')">CLOSE TAB</button>
+            </div>
+        </div>
+    </div>
+
+</div>

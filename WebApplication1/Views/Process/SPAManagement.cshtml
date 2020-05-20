@@ -1,0 +1,658 @@
+﻿<script src="~/Scripts/Process.js"></script>
+
+<div class="col-sm-12" style="background-color: RGB(135,206,235);height: 100vh;top:11px">
+
+
+    <div class="col-sm-2 n-padding" style="height: 784px;top: 16px;">
+
+        <h2 style="margin-bottom: 50px; margin-top: 30px;">
+            SPA MANAGEMENT
+        </h2>
+         <ul class="spa-group">
+            <li class="list-group-item-SPA" data-toggle="tab" href="#nutshell2" onclick="activeNutshellSPA('tab-nutshell2')">SPA MAIN</li>
+            <li class="list-group-item-SPA" data-toggle="tab" href="#nutshell3" onclick="activeNutshellSPA('tab-nutshell3')">IATA SEASON</li>
+            <li class="list-group-item-SPA" data-toggle="tab" href="#nutshell4" onclick="activeNutshellSPA('tab-nutshell4')">ASV</li>
+            <li class="list-group-item-SPA" data-toggle="tab" href="#nutshell5" onclick="activeNutshellSPA('tab-nutshell5')">DISCOUNT</li>
+            <li class="list-group-item-SPA" data-toggle="tab" href="#nutshell6" onclick="activeNutshellSPA('tab-nutshell6')">FLIGHT RESTRICTION</li>
+            <li class="list-group-item-SPA" data-toggle="tab" href="#nutshell7" onclick="activeNutshellSPA('tab-nutshell7')">SPA EXCEPTION</li>
+            <li class="list-group-item-SPA" data-toggle="tab" href="#nutshell8" onclick="activeNutshellSPA('tab-nutshell8')">ASV EXCEPTION</li>
+            <li class="list-group-item-SPA" data-toggle="tab" href="#nutshell9" onclick="activeNutshellSPA('tab-nutshell9')">SIGNATORIES</li>
+        </ul>
+    </div>
+
+
+    <div class="col-sm-10 n-padding" style="height: 800px;border: 4px solid white;top: 16px;">
+         <div style="height:43px; width:100%; overflow-x:hidden; overflow-y: hidden;">
+            <ul class="nav nav-tabs liNutshell" style="position: relative;top: -4px;left: 4px;width: 171%;">
+                <li class="active"><a data-toggle="tab" href="#nutshell1" id="tab-nutshell1" class="nav-pax">MAIN</a></li>
+                <li><a data-toggle="tab" href="#nutshell2" id="tab-nutshell2" class="nav-pax">SPA MAIN</a></li>
+                <li><a data-toggle="tab" href="#nutshell3" id="tab-nutshell3" class="nav-pax">IATA SEASON</a></li>
+                <li><a data-toggle="tab" href="#nutshell4" id="tab-nutshell4" class="nav-pax">ASV</a></li>
+                <li><a data-toggle="tab" href="#nutshell5" id="tab-nutshell5" class="nav-pax">DISCOUNT</a></li>
+                <li><a data-toggle="tab" href="#nutshell6" id="tab-nutshell6" class="nav-pax">FLIGHT RESTRICTION</a></li>
+                <li><a data-toggle="tab" href="#nutshell7" id="tab-nutshell7" class="nav-pax">SPA EXCEPTION</a></li>
+                <li><a data-toggle="tab" href="#nutshell8" id="tab-nutshell8" class="nav-pax">ASV EXCEPTION</a></li>
+                <li><a data-toggle="tab" href="#nutshell9" id="tab-nutshell9" class="nav-pax">SIGNATORIES</a></li>
+            </ul>
+        </div>
+
+
+        <!-- Contenue Table  Joseph-->
+        <div class="tab-content">
+
+            <!--  Load Ajax  --->
+            <div class="ajax-loader">
+                <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+            </div>
+
+            <!--  End Load Ajax  --->
+
+
+            <!-- Main    -->
+            <div id="nutshell1" class="tab-pane fade in active">
+                <div class="spabackgroung">
+
+                </div>
+
+            </div>
+            <!-- End  Main    -->
+
+
+
+            <!--  SPA MAIN  -->
+            <div id="nutshell2" class="tab-pane fade">
+                <div id="affichageSPAMain">
+                    <div class="col-sm-10">
+                        <div class="col-sm-9" style="top: 16px;">
+                            <div class="col-sm-3">
+                                <label class="form-check-label col-form-label">SPA NUMBER:</label>
+                            </div>
+                            <div class="col-sm-3 n-padding" style="position: relative;left: -10px;width: 148px;">
+                                <select style="width: 160px" class="form-control" id="spaMain">
+                                    <option>-ALL-</option>
+                                    @for (int i = 0; i < ViewBag.logSPA; i++)
+                                    {
+                                        <option>@ViewBag.ItemSPANumber[0, i]</option>
+                                    }
+                                </select>
+                                <input type="hidden" name="valCityName" id="valCityName" value="@ViewBag.valCityName" class="form-control">
+                            </div>
+
+                            <div class="col-sm-1">
+                                <button class="btn-outward cpink-tab" style="margin-left:25px" onclick="searchSPAMain()">SEARCH</button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="col-sm-10 n-padding" style="top: 28px;background-color: white;height: 550px;left: 22px;overflow: auto;">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="pink">SPA No</th>
+                                    <th class="pink">SPA Ref</th>
+                                    <th class="pink">Prime Code</th>
+                                    <th class="pink">Fare Basis</th>
+                                    <th class="pink">Issued In Exchanged For Own</th>
+                                    <th class="pink">Issued In Exchanged For OAL</th>
+                                    <th class="pink">Issued In Exchanged For Others</th>
+                                    <th class="pink">Place Of Issurance WorldWide</th>
+                                    <th class="pink">Place Of Issurance Specified Loc</th>
+                                    <th class="pink">Place Of Sale WorldWide</th>
+                                    <th class="pink">Place Of Sale Specific Loc</th>
+                                    <th class="pink">Routing Both</th>
+                                    <th class="pink">Routing Own</th>
+                                    <th class="pink">Routing OAL</th>
+                                    <th class="pink">Routing Journey ATBP</th>
+                                    <th class="pink">Third Party Involvement</th>
+                                    <th class="pink">Re-validation</th>
+                                    <th class="pink">Open Dated Ticket</th>
+                                    <th class="pink">Ticket Issued By</th>
+                                    <th class="pink">Indemnifying Clause</th>
+                                    <th class="pink">FIM</th>
+                                    <th class="pink">Involuntary Routing</th>
+                                    <th class="pink">Flight Restriction</th>
+                                    <th class="pink">Validity Of SPA</th>
+                                    <th class="pink">Validity Of SPA From</th>
+                                    <th class="pink">Validity Of SPA To</th>
+                                    <th class="pink">ASV Amount Expressed</th>
+                                    <th class="pink">SPA Exclusve Of TFCs</th>
+                                    <th class="pink">ISC Percentage</th>
+                                    <th class="pink">IATA Clearing House</th>
+                                    <th class="pink">Tour CodeBox</th>
+                                    <th class="pink">Endorsement Box</th>
+                                    <th class="pink">Sector Share</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-sm-12" style="top: 79px;left: 6px;">
+                        <div class="form-group row width-group">
+                            <button class="btn-outward cpink-tab" style="margin-left:25px">EDIT</button>
+                            <button class="btn-outward cpink-tab" style="margin-left:25px">CANCEL</button>
+                            <button class="btn-outward cpink-tab" style="margin-left:25px">SAVE</button>
+                            <button class="btn-outward cpink-tab" style="margin-left:25px">DELETE</button>
+                            <div class="col-sm-2" style="float: right;">
+                                <button class="btn-outward cpink-tab" type="button" onclick="closeNetshullSPA('nutshell2')">CLOSE TAB</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- END  SPA MAIN  -->
+
+
+            <!--  IATA SEASON  -->
+            <div id="nutshell3" class="tab-pane fade">
+                <div id="affichageIATA">
+                    <div class="col-sm-10">
+                        <div class="col-sm-9" style="top: 16px;">
+                            <div class="col-sm-3">
+                                <label class="form-check-label col-form-label">IATA SEASON:</label>
+                            </div>
+                            <div class="col-sm-4 n-padding" style="position: relative;left: -10px;width: 148px;">
+                                <select style="width: 160px" class="form-control" id="iataSeason">
+                                    <option value="-All-">-All-</option>
+                                    <option value="Summer">Summer</option>
+                                    <option value="Winter">Winter</option>
+                                  
+                                </select>
+                                <input type="hidden" name="valIataSeason" id="valIataSeason" value="@ViewBag.valIataSeason" class="form-control">
+                            </div>
+
+                            <div class="col-sm-1">
+                                <button class="btn-outward cpink-tab" style="margin-left:25px" onclick="searchIATASeason()">SEARCH</button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="col-sm-10 n-padding" style="top: 28px;background-color: white;height: 550px;left: 22px;overflow: auto;">
+                        <table id="TableIATA" class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="pink">IATA Seasons</th>
+                                    <th class="pink">From</th>
+                                    <th class="pink">To</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                              
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-sm-12" style="top: 79px;left: 6px;">
+                        <div class="form-group row width-group">
+                            <button class="btn-outward cpink-tab" style="margin-left:25px">EDIT</button>
+                            <button class="btn-outward cpink-tab" style="margin-left:25px">CANCEL</button>
+                            <button class="btn-outward cpink-tab" style="margin-left:25px">SAVE</button>
+                            <button class="btn-outward cpink-tab" style="margin-left:25px">DELETE</button>
+                            <div class="col-sm-2" style="float: right;">
+                                <button class="btn-outward cpink-tab" type="button" onclick="closeNetshullSPA('nutshell3')">CLOSE TAB</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- END  IATA SEASON  -->
+
+
+            <!--   ASV  -->
+            <div id="nutshell4" class="tab-pane fade">
+                <div id="affichagASV">
+                    <div class="col-sm-10">
+                        <div class="col-sm-9" style="top: 16px;">
+                            <div class="col-sm-3">
+                                <label class="form-check-label col-form-label">SPA NUMBER:</label>
+                            </div>
+                            <div class="col-sm-4 n-padding" style="position: relative;left: -10px;width: 148px;">
+                                <select style="width: 160px" class="form-control" id="spaNumber" onchange="searchASVNumber()">
+                                    <option>-All-</option>
+                                    @for (int i = 0; i < ViewBag.logSPA; i++)
+                                    {
+                                        <option>@ViewBag.ItemSPANumber[0, i]</option>
+                                    }
+                                </select>
+                                <input type="hidden" name="valSpaNumber" id="valSpaNumber" value="@ViewBag.valSpaNumber" class="form-control">
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="form-check-label col-form-label">ASV NUMBER:</label>
+                            </div>
+                            <div class="col-sm-4 n-padding" style="position: relative;left: -10px;width: 148px;">
+                                <select style="width: 160px" class="form-control" id="asvNumber">
+                                    <option>-All-</option>
+                                    @for (int i = 0; i < ViewBag.logASV; i++)
+                                    {
+                                        <option>@ViewBag.ItemASVNumber[0, i]</option>
+                                    }
+                                </select>
+                                <input type="hidden" name="valAsvNumber" id="valAsvNumber" value="@ViewBag.valAsvNumber" class="form-control">
+                            </div>
+
+
+
+                            <div class="col-sm-1">
+                                <button class="btn-outward cpink-tab" style="margin-left:25px" onclick="searchASV()">SEARCH</button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="col-sm-10 n-padding" style="top: 28px;background-color: white;height: 550px;left: 22px;overflow: auto;">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="pink">SPA No</th>
+                                    <th class="pink">ASV No</th>
+                                    <th class="pink">Billing Entity</th>
+                                    <th class="pink">Trip</th>
+                                    <th class="pink">Dom/Int</th>
+                                    <th class="pink">FIM IVL</th>
+                                    <th class="pink">Vice Versa</th>
+                                    <th class="pink">Curr</th>
+                                    <th class="pink">Sec Orig.</th>
+                                    <th class="pink">Sec Dest.</th>
+                                    <th class="pink">Gross</th>
+                                    <th class="pink">Net</th>
+                                    <th class="pink">RBD</th>
+                                    <th class="pink">Publish/Unpublish</th>
+                                    <th class="pink">Fare Basis Prime Code</th>
+                                    <th class="pink">Fare Category</th>
+                                    <th class="pink">Fare Basis Prime Code Specific</th>
+                                    <th class="pink">Fare & Pax Type Code</th>
+                                    <th class="pink">ASV Exclusive Of TFCs</th>
+                                    <th class="pink">MPA Percentage</th>
+                                    <th class="pink">Base Amount Required</th>
+                                    <th class="pink">Applicability date Flag</th>
+                                    <th class="pink">IATA Season</th>
+                                    <th class="pink">Seasonality From</th>
+                                    <th class="pink">Seasonality To</th>
+                                    <th class="pink">Issued On After</th>
+                                    <th class="pink">Travel On Before</th>
+                                    <th class="pink">AVSExceptionNo.</th>
+                                    <th class="pink">IssueDate Valid From</th>
+                                    <th class="pink">IssueDate Valid To</th>
+                                    <th class="pink">Flight Date Valid From</th>
+                                    <th class="pink">Flight Date Valid To</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-sm-12" style="top: 79px;left: 6px;">
+                        <div class="form-group row width-group">
+                            <button class="btn-outward cpink-tab" style="margin-left:25px">EDIT</button>
+                            <button class="btn-outward cpink-tab" style="margin-left:25px">CANCEL</button>
+                            <button class="btn-outward cpink-tab" style="margin-left:25px">SAVE</button>
+                            <button class="btn-outward cpink-tab" style="margin-left:25px">DELETE</button>
+                            <div class="col-sm-2" style="float: right;">
+                                <button class="btn-outward cpink-tab" type="button" onclick="closeNetshullSPA('nutshell4')">CLOSE TAB</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- END  ASV  -->
+
+
+            <!--   DISCOUNT  -->
+            <div id="nutshell5" class="tab-pane fade">
+                <div id="affichagDiscount">
+                    <div class="col-sm-10">
+                        <div class="col-sm-9" style="top: 16px;">
+                            <div class="col-sm-3">
+                                <label class="form-check-label col-form-label">SPA NUMBER</label>
+                            </div>
+                            <div class="col-sm-4 n-padding" style="position: relative;left: -10px;width: 148px;">
+                                <select style="width: 160px" class="form-control" id="spaNumberDiscount">
+                                    <option>-All-</option>
+                                    @for (int i = 0; i < ViewBag.logSPA; i++)
+                                    {
+                                        <option>@ViewBag.ItemSPANumber[0, i]</option>
+                                    }
+                                </select>
+                                <input type="hidden" name="valSpaNumberD" id="valSpaNumberD" value="@ViewBag.valSpaNumberD" class="form-control">
+                            </div>
+
+                            <div class="col-sm-1">
+                                <button class="btn-outward cpink-tab" style="margin-left:25px" onclick="searchDiscount()">SEARCH</button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="col-sm-10 n-padding" style="top: 28px;background-color: white;height: 550px;left: 22px;overflow: auto;">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="pink">SPA No</th>
+                                    <th class="pink">Signatory</th>
+                                    <th class="pink">Fare&Pax TypeCode</th>
+                                    <th class="pink">Percentage</th>
+                                    <th class="pink">Discount Type</th>
+                                    <th class="pink">Method</th>
+                                    <th class="pink">Infant Occupying Seat</th>
+                                    <th class="pink">RBD</th>
+                                    <th class="pink">FareBasis PrimeCode</th>
+                                    <th class="pink">IssueDate Valid From</th>
+                                    <th class="pink">IssueDate Valid To</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-sm-12" style="top: 79px;left: 6px;">
+                        <div class="form-group row width-group">
+                            <button class="btn-outward cpink-tab" style="margin-left:25px">EDIT</button>
+                            <button class="btn-outward cpink-tab" style="margin-left:25px">CANCEL</button>
+                            <button class="btn-outward cpink-tab" style="margin-left:25px">SAVE</button>
+                            <button class="btn-outward cpink-tab" style="margin-left:25px">DELETE</button>
+                            <div class="col-sm-2" style="float: right;">
+                                <button class="btn-outward cpink-tab" type="button" onclick="closeNetshullSPA('nutshell5')">CLOSE TAB</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- END   DISCOUNT  -->
+
+
+            <!--   FLIGHT RESTRICTION  -->
+            <div id="nutshell6" class="tab-pane fade">
+                <div id="affichagFlight">
+                    <div class="col-sm-10">
+                        <div class="col-sm-9" style="top: 16px;">
+                            <div class="col-sm-3">
+                                <label class="form-check-label col-form-label">SPA NUMBER</label>
+                            </div>
+                            <div class="col-sm-4 n-padding" style="position: relative;left: -10px;width: 148px;">
+                                <select style="width: 160px" class="form-control" id="spaNumberFlight">
+                                    <option>-All-</option>
+                                    @for (int i = 0; i < ViewBag.logSPA; i++)
+                                    {
+                                        <option>@ViewBag.ItemSPANumber[0, i]</option>
+                                    }
+                                </select>
+                                <input type="hidden" name="valspaFlight" id="valspaFlight" value="@ViewBag.valspaFlight" class="form-control">
+                            </div>
+
+                            <div class="col-sm-1">
+                                <button class="btn-outward cpink-tab" style="margin-left:25px" onclick="searchFlight()">SEARCH</button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="col-sm-10 n-padding" style="top: 28px;background-color: white;height: 550px;left: 22px;overflow: auto;">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="pink">SPA No</th>
+                                    <th class="pink">Carrier</th>
+                                    <th class="pink">Flight From</th>
+                                    <th class="pink">Flight To</th>
+                                    <th class="pink">Validity From</th>
+                                    <th class="pink">Validity To</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-sm-12" style="top: 79px;left: 6px;">
+                        <div class="form-group row width-group">
+                            <button class="btn-outward cpink-tab" style="margin-left:25px">EDIT</button>
+                            <button class="btn-outward cpink-tab" style="margin-left:25px">CANCEL</button>
+                            <button class="btn-outward cpink-tab" style="margin-left:25px">SAVE</button>
+                            <button class="btn-outward cpink-tab" style="margin-left:25px">DELETE</button>
+                            <div class="col-sm-2" style="float: right;">
+                                <button class="btn-outward cpink-tab" type="button" onclick="closeNetshullSPA('nutshell6')">CLOSE TAB</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!--  END  FLIGHT RESTRICTION  -->
+
+
+            <!-- SPA EXCEPTION  -->
+            <div id="nutshell7" class="tab-pane fade">
+                <div id="affichageExcep">
+                    <div class="col-sm-10">
+                        <div class="col-sm-9" style="top: 16px;">
+                            <div class="col-sm-3">
+                                <label class="form-check-label col-form-label">SPA NUMBER</label>
+                            </div>
+                            <div class="col-sm-4 n-padding" style="position: relative;left: -10px;width: 148px;">
+                                <select style="width: 160px" class="form-control" id="spaNumberExcep">
+                                    <option>-All-</option>
+                                    @for (int i = 0; i < ViewBag.logSPA; i++)
+                                    {
+                                        <option>@ViewBag.ItemSPANumber[0, i]</option>
+                                    }
+                                </select>
+                                <input type="hidden" name="valspaException" id="valspaException" value="@ViewBag.valspaException" class="form-control">
+                            </div>
+
+                            <div class="col-sm-1">
+                                <button class="btn-outward cpink-tab" style="margin-left:25px" onclick="searchSpaException()">SEARCH</button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="col-sm-10 n-padding" style="top: 28px;background-color: white;height: 550px;left: 22px;overflow: auto;">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="pink">SPA No</th>
+                                    <th class="pink">Applicable Exclude</th>
+                                    <th class="pink">Seq</th>
+                                    <th class="pink">Row Relation</th>
+                                    <th class="pink">Element</th>
+                                    <th class="pink">JAPS</th>
+                                    <th class="pink">WO</th>
+                                    <th class="pink">Region Type</th>
+                                    <th class="pink">Region</th>
+                                    <th class="pink">Proviso Applicability</th>
+                                    <th class="pink">Region Type BF</th>
+                                    <th class="pink">Region BF</th>
+                                    <th class="pink">Region Type AT</th>
+                                    <th class="pink">Region AT</th>
+                                    <th class="pink">Fare Category</th>
+                                    <th class="pink">Prime Code</th>
+                                    <th class="pink">Fare & Pax Type Code/th>
+                                    <th class="pink">FareBasis</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-sm-12" style="top: 79px;left: 6px;">
+                        <div class="form-group row width-group">
+                            <button class="btn-outward cpink-tab" style="margin-left:25px">EDIT</button>
+                            <button class="btn-outward cpink-tab" style="margin-left:25px">CANCEL</button>
+                            <button class="btn-outward cpink-tab" style="margin-left:25px">SAVE</button>
+                            <button class="btn-outward cpink-tab" style="margin-left:25px">DELETE</button>
+                            <div class="col-sm-2" style="float: right;">
+                                <button class="btn-outward cpink-tab" type="button" onclick="closeNetshullSPA('nutshell7')">CLOSE TAB</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- END SPA EXCEPTION  -->
+
+
+            <!--  ASV EXCEPTION   -->
+            <div id="nutshell8" class="tab-pane fade">
+                <div id="affichageAsvExcep">
+                    <div class="col-sm-10">
+                        <div class="col-sm-9" style="top: 16px;">
+                            <div class="col-sm-3">
+                                <label class="form-check-label col-form-label">SPA NUMBER</label>
+                            </div>
+                            <div class="col-sm-4 n-padding" style="position: relative;left: -10px;width: 148px;">
+                                <select style="width: 160px" class="form-control" id="spaNumberAsvExcep">
+                                    <option>-All-</option>
+                                    @for (int i = 0; i < ViewBag.logSPA; i++)
+                                    {
+                                        <option>@ViewBag.ItemSPANumber[0, i]</option>
+                                    }
+                                </select>
+                                <input type="hidden" name="valAsvException" id="valAsvException" value="@ViewBag.valAsvException" class="form-control">
+                            </div>
+
+                            <div class="col-sm-1">
+                                <button class="btn-outward cpink-tab" style="margin-left:25px" onclick="searchAsvException()">SEARCH</button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="col-sm-10 n-padding" style="top: 28px;background-color: white;height: 550px;left: 22px;overflow: auto;">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="pink">SPA No</th>
+                                    <th class="pink">ASV No</th>
+                                    <th class="pink">AVS Exception No.</th>
+                                    <th class="pink">Applicable Exclude</th>
+                                    <th class="pink">Seq</th>
+                                    <th class="pink">Row Relation</th>
+                                    <th class="pink">Element</th>
+                                    <th class="pink">Operating Carrier</th>
+                                    <th class="pink">JAPS</th>
+                                    <th class="pink">WO</th>
+                                    <th class="pink">Region Type</th>
+                                    <th class="pink">Region</th>
+                                    <th class="pink">Proviso Applicability</th>
+                                    <th class="pink">Region Type BF</th>
+                                    <th class="pink">Region BF</th>
+                                    <th class="pink">Region Type AT</th>
+                                    <th class="pink">Region AT</th>
+                                    <th class="pink">Fare Category</th>
+                                    <th class="pink">Prime Code</th>
+                                    <th class="pink">Fare & Pax Type Code</th>
+                                    <th class="pink">RBD</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-sm-12" style="top: 79px;left: 6px;">
+                        <div class="form-group row width-group">
+                            <button class="btn-outward cpink-tab" style="margin-left:25px">EDIT</button>
+                            <button class="btn-outward cpink-tab" style="margin-left:25px">CANCEL</button>
+                            <button class="btn-outward cpink-tab" style="margin-left:25px">SAVE</button>
+                            <button class="btn-outward cpink-tab" style="margin-left:25px">DELETE</button>
+                            <div class="col-sm-2" style="float: right;">
+                                <button class="btn-outward cpink-tab" type="button" onclick="closeNetshullSPA('nutshell8')">CLOSE TAB</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- END  ASV EXCEPTION   -->
+
+
+            <!-- SIGNATORIES  -->
+            <div id="nutshell9" class="tab-pane fade">
+                <div id="affichageSignatorie">
+                    <div class="col-sm-10">
+                        <div class="col-sm-9" style="top: 16px;">
+                            <div class="col-sm-3">
+                                <label class="form-check-label col-form-label">SPA NUMBER:</label>
+                            </div>
+                            <div class="col-sm-4 n-padding" style="position: relative;left: -10px;width: 148px;">
+                                <select style="width: 160px" class="form-control" id="spaSignatorie">
+                                    <option>-All-</option>
+                                    @for (int i = 0; i < ViewBag.logSPA; i++)
+                                    {
+                                        <option>@ViewBag.ItemSPANumber[0, i]</option>
+                                    }
+                                </select>
+                                <input type="hidden" name="valSignatories" id="valSignatories" value="@ViewBag.valSignatories" class="form-control">
+                            </div>
+
+                            <div class="col-sm-1">
+                                <button class="btn-outward cpink-tab" style="margin-left:25px" onclick="searchSignatories()">SEARCH</button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="col-sm-10 n-padding" style="top: 28px;background-color: white;height: 550px;left: 22px;overflow: auto;">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="pink">SPA No</th>
+                                    <th class="pink">Carrier</th>
+                                    <th class="pink">To</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-sm-12" style="top: 79px;left: 6px;">
+                        <div class="form-group row width-group">
+                            <button class="btn-outward cpink-tab" style="margin-left:25px">EDIT</button>
+                            <button class="btn-outward cpink-tab" style="margin-left:25px">CANCEL</button>
+                            <button class="btn-outward cpink-tab" style="margin-left:25px">SAVE</button>
+                            <button class="btn-outward cpink-tab" style="margin-left:25px">DELETE</button>
+                            <div class="col-sm-2" style="float: right;">
+                                <button class="btn-outward cpink-tab" type="button" onclick="closeNetshullSPA('nutshell9')">CLOSE TAB</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- END  SIGNATORIES  -->
+
+            </div>
+
+        <!-- End  Contenue Table  Joseph-->
+
+
+    </div>
+</div>

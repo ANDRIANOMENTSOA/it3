@@ -1,0 +1,208 @@
+﻿<script src="~/Scripts/Process.js"></script>
+
+<div class="col-sm-12 tab-pane fade in active" id="LIFTDSM">
+    <div class="row">
+        <div class="col-sm-9" style="margin-top: 25px;" id="loadFreeAndReduced">
+            <div class="ajax-loader">
+                <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+            </div>
+
+            <div class="table-record-display" style="height:600px;overflow:auto">
+                <table id="TableSales" class="table table-bordered table-striped" style="width: 84%;">
+                    <thead>
+                        <tr>
+                            <th class="green-tab">Rownum</th>
+                            <th class="green-tab">Date of Issue</th>
+                            <th class="green-tab">Document Number</th>
+                            <th class="green-tab">Carrier</th>
+                            <th class="green-tab">Flight No</th>
+                            <th class="green-tab">CPN</th>
+                            <th class="green-tab">FCMI</th>
+                            <th class="green-tab">Fare Basis</th>
+                            <th class="green-tab">RBD</th>
+                            <th class="green-tab">Interlining</th>
+                            <th style="display:none" class="green-tab keyelement-10">Stop Over Code</th>
+                            <th style="display:none" class="green-tab keyelement-11">Tour Code</th>
+                            <th style="display:none" class="green-tab keyelement-12">Endos Restriction</th>
+                            <th style="display:none" class="green-tab keyelement-13">FCA</th>
+                            <th style="display:none" class="green-tab keyelement-14">Original Issue</th>
+                            <th style="display:none" class="green-tab keyelement-15">Passenger Name</th>
+                            <th style="display:none" class="green-tab keyelement-16">Special Purpose Code</th>
+                            <th style="display:none" class="green-tab keyelement-17">Form Of Payment</th>
+                            <th style="display:none" class="green-tab keyelement-18">Fare Cur</th>
+                            <th style="display:none" class="green-tab keyelement-19">Fare Amt</th>
+                            <th style="display:none" class="green-tab keyelement-20">Equi Fare Cur</th>
+                            <th style="display:none" class="green-tab keyelement-21">Equi Fare Amt</th>
+                            <th style="display:none" class="green-tab keyelement-22">Tax1 Code</th>
+                            <th style="display:none" class="green-tab keyelement-23">Tax1 Amount</th>
+                            <th style="display:none" class="green-tab keyelement-24">Tax2 Code</th>
+                            <th style="display:none" class="green-tab keyelement-25">Tax2 Amount</th>
+                            <th style="display:none" class="green-tab keyelement-26">Tax3 Code</th>
+                            <th style="display:none" class="green-tab keyelement-27">Tax3 Amount</th>
+                            <th style="display:none" class="green-tab keyelement-28">Surcharge Collected Cur</th>
+                            <th style="display:none" class="green-tab keyelement-29">Surcharge Collected</th>
+                            <th style="display:none" class="green-tab keyelement-30">Final Share</th>
+                            <th style="display:none" class="green-tab keyelement-31">Not Valid Before</th>
+                            <th style="display:none" class="green-tab keyelement-32">Not Valid After</th>
+                            <th style="display:none" class="green-tab keyelement-33">Free Baggage Allowance</th>
+                            <th style="display:none" class="green-tab keyelement-34">Transaction Code</th>
+                            <th class="green-tab">Agent Numeric Code</th>
+                            <th class="green-tab">Coupon Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < ViewBag.nombre; i++)
+                        {
+                            <tr data-url="@Url.Action("PAXTKTs","Sales")" onclick="ajout(this, 'PAXTKTs', 'Sales', 'PAX TKTs');clickLigneTransaction2(this, '@ViewBag.dgSales[2, i]', '@ViewBag.dgSales[34, i]')"><!--ondblclick="Transactionchris('ViewBag.dgSales[2, i]','ViewBag.dgSales[34, i]')"-->
+                                <td>@ViewBag.dgSales[0, i]</td>
+                                <td>@ViewBag.dgSales[1, i]</td>
+                                <td>@ViewBag.dgSales[2, i]</td>
+                                <td>@ViewBag.dgSales[3, i]</td>
+                                <td>@ViewBag.dgSales[4, i]</td>
+                                <td>@ViewBag.dgSales[5, i]</td>
+                                <td>@ViewBag.dgSales[6, i]</td>
+                                <td>@ViewBag.dgSales[7, i]</td>
+                                <td>@ViewBag.dgSales[8, i]</td>
+                                <td>@ViewBag.dgSales[9, i]</td>
+                                <td style="display:none" class="keyelement-10">@ViewBag.dgSales[10, i]</td>
+                                <td style="display:none" class="keyelement-11">@ViewBag.dgSales[11, i]</td>
+                                <td style="display:none" class="keyelement-12">@ViewBag.dgSales[12, i]</td>
+                                <td style="display:none" class="keyelement-13">@ViewBag.dgSales[13, i]</td>
+                                <td style="display:none" class="keyelement-14">@ViewBag.dgSales[14, i]</td>
+                                <td style="display:none" class="keyelement-15">@ViewBag.dgSales[15, i]</td>
+                                <td style="display:none" class="keyelement-16">@ViewBag.dgSales[16, i]</td>
+                                <td style="display:none" class="keyelement-17">@ViewBag.dgSales[17, i]</td>
+                                <td style="display:none" class="keyelement-18">@ViewBag.dgSales[18, i]</td>
+                                <td style="display:none" class="keyelement-19">@ViewBag.dgSales[19, i]</td>
+                                <td style="display:none" class="keyelement-20">@ViewBag.dgSales[20, i]</td>
+                                <td style="display:none" class="keyelement-21">@ViewBag.dgSales[21, i]</td>
+                                <td style="display:none" class="keyelement-22">@ViewBag.dgSales[22, i]</td>
+                                <td style="display:none" class="keyelement-23">@ViewBag.dgSales[23, i]</td>
+                                <td style="display:none" class="keyelement-24">@ViewBag.dgSales[24, i]</td>
+                                <td style="display:none" class="keyelement-25">@ViewBag.dgSales[25, i]</td>
+                                <td style="display:none" class="keyelement-26">@ViewBag.dgSales[26, i]</td>
+                                <td style="display:none" class="keyelement-27">@ViewBag.dgSales[27, i]</td>
+                                <td style="display:none" class="keyelement-28">@ViewBag.dgSales[28, i]</td>
+                                <td style="display:none" class="keyelement-29">@ViewBag.dgSales[29, i]</td>
+                                <td style="display:none" class="keyelement-30">@ViewBag.dgSales[30, i]</td>
+                                <td style="display:none" class="keyelement-31">@ViewBag.dgSales[31, i]</td>
+                                <td style="display:none" class="keyelement-32">@ViewBag.dgSales[32, i]</td>
+                                <td style="display:none" class="keyelement-33">@ViewBag.dgSales[33, i]</td>
+                                <td style="display:none" class="keyelement-34">@ViewBag.dgSales[34, i]</td>
+                                <td>@ViewBag.dgSales[35, i]</td>
+                                <td>@ViewBag.dgSales[36, i]</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-sm-3" style="margin-top: 25px;">
+
+            <div class="row">
+                <div class="col-sm-7">
+                    <button class="btn-default" id="bntShowHideLift22" onclick="HideShowLift('divHideShowLift22', 'bntShowHideLift22')" style="margin-left: -15px;width: 253px;">Show Add-on Details</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-7" style="margin-top: 10px;border: 1px solid gray; height: 568px;background:white;display:none" id="divHideShowLift22">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <input type="checkbox" name="" onclick="showreportsLift('allkeyFR2', 'keyelement')" id="allkeyFR2">Select All
+                        </li>
+                        <li class="list-group-item">
+                            <input type="checkbox" onclick="showreportsLift('key10FR2', 'keyelement-10')" id="key10FR2">Stop Over Code
+                        </li>
+                        <li class="list-group-item">
+                            <input type="checkbox" onclick="showreports('key11FR2', 'keyelement-11')" id="key11FR2">Tour Code
+                        </li>
+                        <li class="list-group-item">
+                            <input type="checkbox" onclick="showreports('key12FR2', 'keyelement-12')" id="key12FR2">Endos Restriction
+                        </li>
+                        <li class="list-group-item">
+                            <input type="checkbox" onclick="showreports('key13FR2', 'keyelement-13')" id="key13FR2">FCA
+                        </li>
+                        <li class="list-group-item">
+                            <input type="checkbox" onclick="showreports('key14FR2', 'keyelement-14')" id="key14FR2">Original Issue
+                        </li>
+                        <li class="list-group-item">
+                            <input type="checkbox" onclick="showreports('key15FR2', 'keyelement-15')" id="key15FR2">Passenger Name
+                        </li>
+                        <li class="list-group-item">
+                            <input type="checkbox" onclick="showreports('key16FR2', 'keyelement-16')" id="key16FR2">Special Purpose Code
+                        </li>
+                        <li class="list-group-item">
+                            <input type="checkbox" onclick="showreports('key17FR2', 'keyelement-17')" id="key17FR2">Form Of Payment
+                        </li>
+                        <li class="list-group-item">
+                            <input type="checkbox" onclick="showreports('key18FR2', 'keyelement-18')" id="key18FR2">Fare Cur
+                        </li>
+                        <li class="list-group-item">
+                            <input type="checkbox" onclick="showreports('key19FR2', 'keyelement-19')" id="key19FR2">Fare Amt
+                        </li>
+                        <li class="list-group-item">
+                            <input type="checkbox" onclick="showreports('key20FR2', 'keyelement-20')" id="key20FR2">Equi Fare Cur
+                        </li>
+                        <li class="list-group-item">
+                            <input type="checkbox" onclick="showreports('key21FR2', 'keyelement-21')" id="key21FR2">Equi Fare Amt
+                        </li>
+                        <li class="list-group-item">
+                            <input type="checkbox" onclick="showreports('key22FR2', 'keyelement-22')" id="key22FR2">Tax1 Code
+                        </li>
+                        <li class="list-group-item">
+                            <input type="checkbox" onclick="showreportsLift('key23FR2', 'keyelement-23')" id="key23FR2">Tax1 Amount
+                        </li>
+                        <li class="list-group-item">
+                            <input type="checkbox" onclick="showreports('key24FR2', 'keyelement-24')" id="key24FR2">Tax2 Code
+                        </li>
+                        <li class="list-group-item">
+                            <input type="checkbox" onclick="showreports('key25FR2', 'keyelement-25')" id="key25FR2">Tax2 Amount
+                        </li>
+                        <li class="list-group-item">
+                            <input type="checkbox" onclick="showreports('key26FR2', 'keyelement-26')" id="key26FR2">Tax3 Code
+                        </li>
+                        <li class="list-group-item">
+                            <input type="checkbox" onclick="showreports('key27FR2', 'keyelement-27')" id="key27FR2">Tax3 Amount
+                        </li>
+                        <li class="list-group-item">
+                            <input type="checkbox" onclick="showreports('key28FR2', 'keyelement-28')" id="key28FR2">Surcharge Collected Cur
+                        </li>
+                        <li class="list-group-item">
+                            <input type="checkbox" onclick="showreports('key29FR2', 'keyelement-29')" id="key29FR2">Surcharge Collected
+                        </li>
+                        <li class="list-group-item">
+                            <input type="checkbox" onclick="showreports('key30FR2', 'keyelement-30')" id="key30FR2">Final Share
+                        </li>
+                        <li class="list-group-item">
+                            <input type="checkbox" onclick="showreports('key31FR2', 'keyelement-31')" id="key31FR2">Not Valid Before
+                        </li>
+                        <li class="list-group-item">
+                            <input type="checkbox" onclick="showreports('key32FR2', 'keyelement-32')" id="key32FR2">Not Valid After
+                        </li>
+                        <li class="list-group-item">
+                            <input type="checkbox" onclick="showreports('key33FR2', 'keyelement-33')" id="key33FR2">Free Baggage Allowance
+                        </li>
+                        <li class="list-group-item">
+                            <input type="checkbox" onclick="showreports('key34FR2', 'keyelement-34')" id="key34FR2">Transaction Code
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6" style="margin-top:20px">
+            <fieldset class="test-fieldst" style="padding:20px">
+                <div class="col-sm-4"><label>Number of record per page</label></div>
+                <div class="col-sm-2"><input type="text" name="valnb" id="valnb" disabled style="width: 50px" value="@ViewBag.nombre"></div>
+                <div class="col-sm-6">
+                    <button class="btn-default" style="width: 80px"><</button>
+                    <input type="text" name="" disabled style="width: 100px" id="page1">
+                </div>
+
+            </fieldset>
+        </div>
+    </div>
+
+</div>

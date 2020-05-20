@@ -1,0 +1,107 @@
+﻿<div class="col-sm-11 tab-content tab-cancellation">
+    <div id="search" class="tab-pane fade in active">
+        <div class="content col-sm-12">
+            <div class="row">
+                <div class="col-lg-4">
+                    <fieldset class="test-fieldst">
+                        <legend class="test-fieldst">Date Of issue</legend>
+                        <div class="row">
+                            <div class="col-sm-2 margin-issue">
+                                <label class="form-check-label col-form-label">From:</label>
+                                <input type="hidden" id="testFDateFromInvolu" value="">
+                            </div>
+
+                            <div class="col-sm-3 n-padding">
+                                <div class="input-group date">
+                                    <input type="text" name="FromInvolintaryReroute" class="form-controls input-date" value="@ViewBag.date[1]" id="FromInvolintaryReroute" />
+                                    <span class="input-group-addon datetimepicker" onclick="setdate('FromInvolintaryReroute')">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-sm-1">
+                                <label class="form-check-label col-form-label">To:</label>
+                                <input type="hidden" id="testFDateToInvolu" value="">
+                            </div>
+                            <div class="col-sm-3 n-padding">
+                                <div class="input-group date">
+                                    <input type='text' name="ToInvolintaryReroute" class="form-controls input-date input-datetimepicker" value="@ViewBag.date[1]" id="ToInvolintaryReroute" />
+                                    <span class="input-group-addon datetimepicker" onclick="setdate('ToInvolintaryReroute')">
+                                        <span class="glyphicon glyphicon-calendar" id="calendarPaxTo"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-lg-2" style="position: relative;top: 21px;">
+                        <button type="button" class="btn" onclick="InvolontaryRerouteSearch()">SEARCH</button>
+                        <button type="button" class="btn" onclick="removeSousMenu()">CLOSE</button>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="table-record-display" id="tabnowshow" style="height:650px;overflow:auto; position: relative;">
+                        <table class="table table-bordered tablehead">
+                            <thead>
+                                <tr style="background-color: RGB(68,35,89);">
+                                    <th class="green-tab">Date Of Issue</th>
+                                    <th class="green-tab">Document No</th>
+                                    <th class="green-tab">Coupon No</th>
+                                    <th class="green-tab">Origin</th>
+                                    <th class="green-tab">Destination</th>
+                                    <th class="green-tab">Fare Basis</th>
+                                    <th class="green-tab">FCMI</th>
+                                    <th class="green-tab">Transaction Code</th>
+                                    <th class="green-tab keyelement-9" style="display:none">Fare currency</th>
+                                    <th class="green-tab keyelement-10" style="display:none">Fare</th>
+                                    <th class="green-tab keyelement-11" style="display:none">Equivalent Fare currenvy</th>
+                                    <th class="green-tab keyelement-12" style="display:none">Equivalent Fare</th>
+                                    <th class="green-tab keyelement-13" style="display:none">Total Currency</th>
+                                    <th class="green-tab keyelement-14" style="display:none">Total Amount</th>
+                                    <th class="green-tab keyelement-15" style="display:none">Amount Collected Currency</th>
+                                    <th class="green-tab keyelement-16" style="display:none">Amount Collected</th>
+                                    <th class="green-tab keyelement-17" style="display:none">Tax Collected</th>
+                                    <th class="green-tab keyelement-18" style="display:none">Surcherge Collected</th>
+                                    <th class="green-tab keyelement-19" style="display:none">Form of Payements</th>
+                                    <th class="green-tab keyelement-20" style="display:none">EndosRestriction</th>
+                                    <th class="green-tab" style="width:100%;text-align: center;">Fare Calculation Area</th>
+                                </tr>
+
+                            </thead>
+                            <tbody id="tableInvolontaryReroute"> </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <input type="button" class="search-interogation green btn" id="btninvo" style="width:260px;" onclick="showInvolontaryReroute('detailPsrKey')" value="Hide Add-on Details">
+                    <div class="containt-details" id="detailPsrKey" style="overflow-y: auto;top: 9px;height: 610px;left: -11px;display: block;">
+                        <ul class="list-group">
+                            <li class="list-group-item"><input type="checkbox" onclick="showreportsInvolontaryReroute('allkeyinvolontary', 'keyelement')" id="allkeyinvolontary">All</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreportsInvolontaryReroute('key9', 'keyelement-9')" id="key9">Fare currency</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreportsInvolontaryReroute('key10', 'keyelement-10')" id="key10">Fare</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreportsInvolontaryReroute('key11', 'keyelement-11')" id="key11">Equivalent Fare currenvy</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreportsInvolontaryReroute('key12', 'keyelement-12')" id="key12">Equivalent Fare</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreportsInvolontaryReroute('key13', 'keyelement-13')" id="key13">Total Currency</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreportsInvolontaryReroute('key14', 'keyelement-14')" id="key14">Total Amount</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreportsInvolontaryReroute('key15', 'keyelement-15')" id="key15">Amount Collected Currency</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreportsInvolontaryReroute('key16', 'keyelement-16')" id="key16">Amount Collected</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreportsInvolontaryReroute('key17', 'keyelement-17')" id="key17">Tax Collected</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreportsInvolontaryReroute('key18', 'keyelement-18')" id="key18">Surcherge Collected</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreportsInvolontaryReroute('key19', 'keyelement-19')" id="key19">Form of Payements</li>
+                            <li class="list-group-item"><input type="checkbox" onclick="showreportsInvolontaryReroute('key20', 'keyelement-20')" id="key20">EndosRestriction</li>
+                        </ul>
+                    </div>
+                    </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-5">
+                    <img src='@Url.Content("~/images/CSVPic.jpg")' class="image-csv" style="top:0px;left:21px;">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/Process.js"></script>           

@@ -1,0 +1,27 @@
+﻿
+@using System.Data
+@model DataSet
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th class="pink">Airline</th>
+            <th class="pink">Flight Date</th>
+            <th class="pink">Flight Number Name</th>
+            <th class="pink">Origin</th>
+            <th class="pink">Destination</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (DataRow dr in Model.Tables[0].Rows)
+        {
+            <tr onclick="setFlightLookup('@dr[Model.Tables[0].Columns[0].ColumnName].ToString()','@dr[Model.Tables[0].Columns[2].ColumnName].ToString()','@dr[Model.Tables[0].Columns[1].ColumnName].ToString()','@dr[Model.Tables[0].Columns[3].ColumnName].ToString()','@dr[Model.Tables[0].Columns[4].ColumnName].ToString()')">
+                @for (int i = 0; i < Model.Tables[0].Columns.Count; i++)
+                {
+                    <td>@dr[Model.Tables[0].Columns[i].ColumnName].ToString()</td>;
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+

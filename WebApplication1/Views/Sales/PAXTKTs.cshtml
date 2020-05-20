@@ -1,0 +1,1441 @@
+﻿<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="container-pax1">
+    <markelement id="GrandParent_@ViewBag.type">
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#search" class="nav-pax">Search</a></li>
+            <li id="testtrans"><a data-toggle="tab" href="#transaction" class="nav-pax" id="tab-transaction">Transaction</a></li>
+        </ul>
+        
+
+        <div class="tab-content">
+            <div id="search" class="tab-pane fade in active">
+                <div class="col-sm-12" style="margin-top: 13px;">
+                    <div class="search-criteria col-sm-7">
+                        <h4>Data Lookup</h4>
+                        <form id="sqlCriteria_@ViewBag.type" method="POST" action="" class="">
+                            <div class="content col-sm-8">
+                                <div class="form-group row width-group">
+                                    <label class="col-sm-3 col-form-label">Passenger Name:</label>
+                                    <div class="col-sm-9 n-paddin-left">
+                                        <input type="text" name="passengerName" id="passengerNameSet" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group row width-group">
+                                    <label class="col-sm-3 col-form-label"></label>
+                                    <div class="col-sm-9 n-paddin-left">
+                                        <div class="form-check form-check-inline">
+                                            <div class="col-sm-8 n-paddin-left">
+                                                <input class="form-check-input" type="radio" name="radContains" id="" value="starting" checked>
+                                                <label class="form-check-label col-form-label" for="inlineRadio">Starting With(minimun 3 characters)</label>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <input class="form-check-input" type="radio" name="radContains" id="" value="contains">
+                                                <label class="form-check-label col-form-label" for="inlineRadio2">Contains</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row width-group">
+                                    <label class="col-sm-3 col-form-label">PNR:</label>
+                                    <div class="col-sm-4 n-paddin-left">
+                                        <input type="text" name="pnr" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group row width-group">
+                                    <label class="col-sm-3 col-form-label">Documment No:</label>
+                                    <div class="col-sm-4 n-paddin-left">
+                                        <input type="text" name="docummentNo" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group row width-group">
+                                    <label class="col-sm-3 col-form-label">Agent Code:</label>
+                                    <div class="col-sm-5 n-paddin-left">
+                                        <div class="row">
+                                            <div class="col-sm-10" style="width: 81%"><input type="text" name="agentCode" id="agentCodeSet" class="form-control"></div>
+                                            <div class="col-sm-1 containt-btn" style="width: 33px !important; height:30px"><button class="point-interogation pink btn" data-toggle="modal" onclick="paxmodal('GrandParent_@ViewBag.type')"><span class="point-span">?</span></button></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row width-group">
+                                    <div class="col-sm-12">
+                                        <fieldset class="test-fieldst legent-issue-date">
+                                            <legend class="test-fieldst">Issue Date</legend>
+                                            <div class="col-sm-3 margin-issue" style="width: 24% !important;">
+                                                <label class="form-check-label col-form-label">From:</label>
+                                            </div>
+
+                                            <div class="col-sm-4 n-padding">
+                                                <div class="input-group date">
+                                                    <span class="input-group-addon check-dape"><input type="checkbox" name="dtpIssueDateFrom" id="firstCheck_@ViewBag.type" onclick="uncheked('firstCheck_@ViewBag.type', 'secondCheck_@ViewBag.type', 'second_@ViewBag.type', 'first_@ViewBag.type')"></span>
+                                                    <input type="text" name="datedtpIssueDateFrom" class="form-controls input-date" id="first_@ViewBag.type" value="@ViewBag.date[0]" />
+                                                    <span class="input-group-addon datetimepicker" onclick="setdate('first_@ViewBag.type', 'firstCheck_@ViewBag.type', 'secondCheck_@ViewBag.type')">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-1">
+                                                <label class="form-check-label col-form-label">To:</label>
+                                            </div>
+                                            <div class="col-sm-4 n-padding" style="margin-top:-23px;position: relative;left: 58px;">
+                                                <div class="input-group date">
+                                                    <span class="input-group-addon check-dape"><input type="checkbox" name="dtpIssueDateTo" id="secondCheck_@ViewBag.type" onclick="uncheked1('firstCheck_@ViewBag.type', 'secondCheck_@ViewBag.type', 'second_@ViewBag.type', 'first_@ViewBag.type')"></span>
+                                                    <input type='text' name="datedtpIssueDateTo" class="form-controls input-date input-datetimepicker" id="second_@ViewBag.type" value="@ViewBag.date[0]" />
+                                                    <span class="input-group-addon datetimepicker" onclick="setdate('second_@ViewBag.type', 'firstCheck_@ViewBag.type', 'secondCheck_@ViewBag.type')">
+                                                        <span class="glyphicon glyphicon-calendar" id="calendarPaxTo"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="domestic col-sm-4">
+                                <fieldset class="test-fieldst">
+                                    <legend class="test-fieldst">Domestic/International</legend>
+                                    <div class="col-sm-4 margin-issue">
+                                        <input class="form-check-input" type="radio" name="domeInt" value="Both" checked>
+                                        <label class="form-check-label col-form-label" for="inlineRadio1">Both</label>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <input class="form-check-input" type="radio" name="domeInt" value="Int">
+                                        <label class="form-check-label col-form-label" for="inlineRadio1">Int</label>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <input class="form-check-input" type="radio" name="domeInt" value="Dom">
+                                        <label class="form-check-label col-form-label" for="inlineRadio1">Dom</label>
+                                    </div>
+                                </fieldset>
+
+                                <fieldset class="test-fieldst">
+                                    <legend class="test-fieldst">OWN/OAL Document</legend>
+                                    <div class="col-sm-4 margin-issue">
+                                        <input class="form-check-input" type="radio" name="ownOal" value="Both" checked>
+                                        <label class="form-check-label col-form-label" for="inlineRadio2">Both</label>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <input class="form-check-input" type="radio" name="ownOal" value="Own">
+                                        <label class="form-check-label col-form-label" for="inlineRadio2">Own</label>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <input class="form-check-input" type="radio" name="ownOal" value="Oal">
+                                        <label class="form-check-label col-form-label" for="inlineRadio2">Oal</label>
+                                    </div>
+                                </fieldset>
+                                <div class="search">
+                                    <div class="col-sm-3"><button type="button" class="search-interogation pink btn" onclick="postedSqlCriteria(this,'Sales', 'GetSearchCriteria','TKTT')"><span class="search-span">SEARCH</span></button></div>
+                                    <div class="col-sm-3"><button type="button" class="search-interogation pink btn" onclick="clearPax()"><span class="search-span">CLEAR</span></button></div>
+                                    <div class="col-sm-3"><button class="search-interogation pink btn" onclick="removeSousMenu()"><span class="search-span">CLOSE</span></button></div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="transaction-code-record col-md-2">
+                        <table class="table table-bordered" id="countTransaction">
+                            <thead>
+                                <tr>
+                                    <th class="pink">Doc Count</th>
+                                    <th class="pink">Doc Type</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="ajax-loader">
+                    <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+                </div>
+                <div class="col-sm-12">
+                    <div class="table-record-display" id="table-pax">
+                        <table class="table table-bordered" style="font-size:12px;">
+                            <thead>
+                                <tr>
+                                    <th class="pink" id="test">RowNum</th>
+                                    <th class="pink" style="min-width:96px;">Document No</th>
+                                    <th class="pink">CK</th>
+                                    <th class="pink">Tax1</th>
+                                    <th class="pink">Tax2</th>
+                                    <th class="pink">Tax3</th>
+                                    <th class="pink">Agent Code</th>
+                                    <th class="pink">Agent Name</th>
+                                    <th class="pink">Issue Date</th>
+                                    <th class="pink">Sale Date</th>
+                                    <th class="pink">Dom/Int</th>
+                                    <th class="pink pass-name">Passanger Name</th>
+                                    <th class="pink passanger-spec">Passenger Specific Data</th>
+                                    <th class="pink fare-cal">FareCalculationArea</th>
+                                    <th class="pink endos-restrict">Endos Restriction</th>
+                                    <th class="pink">Fare</th>
+                                    <th class="pink">Fare Curr</th>
+                                    <th class="pink">Computed Fare</th>
+                                    <th class="pink">Equiv. Fare</th>
+                                    <th class="pink">Total Amount</th>
+                                    <th class="pink">Total Curr</th>
+                                    <th class="pink">Comm.Rate</th>
+                                    <th class="pink">Comm.</th>
+                                    <th class="pink">Booking AgentID</th>
+                                    <th class="pink">Booking Agency</th>
+                                    <th class="pink">FCPI</th>
+                                    <th class="pink">Trans Code</th>
+                                    <th class="pink">FCMI</th>
+                                    <th class="pink">Curr</th>
+                                    <th class="pink">Amount Collected</th>
+                                    <th class="pink taxOn">Tax On Comm</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-sm-10">
+                    <div class="footer-lookUp">
+                        <form class="form-inline" id="sonsqlCriteria_@ViewBag.type">
+                            <div class="col-sm-1 n-paddin-left">
+                                <img src='@Url.Content("~/images/CSVPic.jpg")' class="image-csv" style="top:-5px">
+                            </div>
+                            <div class="form-group col-sm-4 width-group">
+                                <label for="exampleInputName2" class="label-pagination">Number of record per page</label>
+                                <input type="text" class="form-control" id="exampleInputName2" placeholder="1000" disabled>
+                            </div>
+                            <div class="form-group col-sm-3 width-group class-next">
+                                <input type="button" class="form-control" value="<<" onclick="fistValue(this)" />
+                                <input type="button" class="form-control" value="<" onclick="previewValue(this)" />
+
+                                <input type="text" class="form-control input-pagination" id="input-preview" placeholder="0" value="" disabled>
+                                <label>/</label>
+                                <input type="text" class="form-control input-pagination" id="input-next" placeholder="0" value="" disabled>
+
+                                <input type="button" class="form-control" value=">" onclick="nextValue(this)" />
+                                <input type="button" class="form-control" value=">>" onclick="lastValue(this)" />
+                            </div>
+                            <div class="form-group col-sm-4 width-group">
+                                <label for="exampleInputName2" class="label-pagination" id="displayRecord">Displaying record(s)</label>
+                                <input type="text" class="form-control" id="input-nb-page" placeholder="0" disabled>
+                                <label class="porcente-displaying">100%</label>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="Data-pagination">
+
+                    </div>
+                </div>
+            </div>
+
+            <div id="transaction" class="tab-pane fade">
+                <div class="col-sm-12 data-transaction">
+                    <fieldset class="test-fieldst" style="margin-top: 13px;">
+                        <legend class="test-fieldst">Ticket d'Information</legend>
+                        <div class="ajax-loader">
+                            <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+                        </div>
+                        <div class="col-md-12 tet-ticket n-paddin-left">
+                            <div class="col-sm-12">
+                                <div class="col-sm-12" style="border:1px solid rgba(152, 152, 152, 1); padding-left:0px; padding-right:0px">
+                                    <div class="tittle-transaction">
+                                        <h6>PASSENGER TICKET AND BAGGAGE CHECK</h6>
+                                        <h4>AUDIT & FLIGHT DETAILS</h4>
+                                    </div>
+                                    <table class="table table-first-ticket table-bordered">
+                                        <tr>
+                                            <td width="18%" class="n-border">TICKET NUMBER</td>
+                                            <td colspan="4" class="n-border"></td>
+                                            <td class="n-border-bottom">ORIGIN/DESTINATION</td>
+                                            <td colspan="2" class="n-border">DATE AND PLACE ISSUE</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="n-border">
+                                                <div class="col-md-10 n-padding">
+                                                    <div class="col-md-3 n-padding">
+                                                        <input type="text" class="form-control" disabled />
+                                                    </div>
+                                                    <div class="col-md-6 n-padding">
+                                                        <input type="text" class="form-control" disabled />
+                                                    </div>
+                                                    <div class="col-md-3 n-padding">
+                                                        <input type="text" class="form-control" disabled />
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td colspan="4" class="n-border"></td>
+                                            <td class="n-border-top"><input type="text" name="" class="form-control" disabled></td>
+                                            <td class="n-border">Issue Date</td>
+                                            <td class="n-border"><input type="text" name="" class="form-control" disabled></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="5" class="n-border"></td>
+                                            <td class="n-border-bottom">PNR</td>
+                                            <td class="n-border">Agent Numeric Code</td>
+                                            <td class="n-border"><input type="text" name="" class="form-control" disabled></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="5" class="n-border"></td>
+                                            <td class="n-border-top"><input type="text" name="" class="form-control" disabled></td>
+                                            <td class="n-border">Agent Legal Name</td>
+                                            <td class="n-border"><input type="text" name="" class="form-control" disabled></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="n-border" rowspan="2"></td>
+                                            <td class="n-border-bottom">VENDOR IDENTIFIER</td>
+                                            <td class="n-border-bottom">REPORTING SYSTEM IDENTIFIER</td>
+                                            <td class="n-border-bottom" width="5%">CPUI</td>
+                                            <td class="n-border-bottom">TOUR CODE</td>
+                                            <td class="n-border-bottom">ISSUED IN EXCHANGE FOR</td>
+                                            <td class="n-border">Agent Location Add</td>
+                                            <td class="n-border"><input type="text" name="" class="form-control" disabled></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="n-border-top"><input type="text" name="" class="form-control" disabled></td>
+                                            <td class="n-border-top"><input type="text" name="" class="form-control" disabled></td>
+                                            <td class="n-border-top"><input type="text" name="" class="form-control" disabled></td>
+                                            <td class="n-border-top">
+                                                <div class="col-sm-4">
+                                                    <label class="col-form-label">
+                                                        <input type="checkbox" name=""> IT/BT
+                                                    </label>
+                                                </div>
+                                                <div class="col-sm-7">
+                                                    <input type="text" class="form-control" name="" disabled>
+                                                </div>
+                                            </td>
+                                            <td class="n-border-top"></td>
+                                            <td class="n-border">Agent Location City</td>
+                                            <td class="n-border"><input type="text" name="" class="form-control" disabled></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="4" class="n-border-bottom">
+                                                <label class="col-sm-8 n-padding col-form-label">NAME OF PASSENGER</label>
+                                                <label class="col-sm-4 col-form-label">DATE OF BIRTH</label>
+                                            </td>
+                                            <td colspan="2" class="n-border-bottom">CONJUNCTION TICKETS</td>
+                                            <td class="n-border">Agent Location Country</td>
+                                            <td class="n-border"><input type="text" name="" class="form-control" disabled></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="4" class="n-border-top">
+                                                <div class="col-sm-8 n-padding"><input type="text" name="" class="form-control" disabled></div>
+                                                <div class="col-sm-4"><input type="text" name="" class="form-control" disabled></div>
+                                            </td>
+                                            <td colspan="2" class="n-border-top"></td>
+                                            <td class="n-border">Booking Agent Id</td>
+                                            <td class="n-border"><input type="text" name="" class="form-control" disabled></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 tet-ticket n-paddin-left">
+                            <div class="col-sm-12" style="margin-left: 10px;">
+                                <div class="table-record-display" style="height: 180px;margin-top: -5px;color:white;border:1px solid rgba(152, 152, 152, 1);">
+                                    <div class="col-sm-11">
+                                        <table class="table table-bordered" style="margin-left: -16px;font-size:12px;">
+                                            <thead>
+                                                <tr>
+                                                    <th class="pink">CPN</th>
+                                                    <th class="pink">X/O</th>
+                                                    <th class="pink">GTPA</th>
+                                                    <th class="pink">CARRIER</th>
+                                                    <th class="pink">FLIGHT</th>
+                                                    <th class="pink">CLASS</th>
+                                                    <th class="pink">DATE</th>
+                                                    <th class="pink">TIME</th>
+                                                    <th class="pink">STATUS</th>
+                                                    <th class="pink">TARE BASIS</th>
+                                                    <th class="pink">NOT VALID BEFORE</th>
+                                                    <th class="pink">NOT VALID AFTER</th>
+                                                    <th class="pink">BAGAGE ALLOWANCE</th>
+                                                    <th class="pink">BOOKING STATUS</th>
+                                                    <th class="green">RBD</th>
+                                                    <th class="green">USAGE SECTOR</th>
+                                                    <th class="green">USAGE AIRLINE</th>
+                                                    <th class="green">USAGE FLIGHT NO</th>
+                                                    <th class="green">USAGE DATE</th>
+                                                    <th class="green">FTP</th>
+                                                    <th class="pink">CJN TICKET</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="col-sm-12 n-padding-right n-padding-left" style="border:1px solid rgba(152, 152, 152, 1);">
+                                    <div class="col-md-4">
+                                        <div class="form-group row width-group faire-down">
+                                            <label class="col-sm-3 col-form-label">FARE</label>
+                                            <div class="col-sm-2">
+                                                <input type="text" name="" class="form-control" disabled>
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <input type="text" name="" class="form-control" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row width-group">
+                                            <label class="col-sm-3 col-form-label">EQUIV FARE PD</label>
+                                            <div class="col-sm-2">
+                                                <input type="text" name="" class="form-control" disabled>
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <input type="text" name="" class="form-control" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row width-group">
+                                            <label class="col-sm-3 col-form-label">TAX/FEE/CHARGE</label>
+                                            <div class="col-sm-7">
+                                                <input type="text" name="" class="form-control" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row width-group">
+                                            <label class="col-sm-3 col-form-label">TAX/FEE/CHARGE</label>
+                                            <div class="col-sm-7">
+                                                <input type="text" name="" class="form-control" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row width-group">
+                                            <label class="col-sm-3 col-form-label">TAX/FEE/CHARGE</label>
+                                            <div class="col-sm-7">
+                                                <input type="text" name="" class="form-control" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row width-group">
+                                            <label class="col-sm-3 col-form-label">TOTAL</label>
+                                            <div class="col-sm-7">
+                                                <input type="text" name="" class="form-control" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="Csv col-md-8" style="padding-right:0px; border-left: 1px solid rgba(152, 152, 152, 1);">
+                                        <div class="col-md-12">
+                                            <div class="col-md-11">
+                                            </div>
+                                            <div class="col-md-1">
+                                                <img src='@Url.Content("~/images/CSVPic.jpg")' class="image-csv ml-existe">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 first-calculation-area">
+                                            <div class="form-group col-sm-12 fare-calcul-area">
+                                                <label class="col-form-label">Fare Calculation Area</label>
+                                                <input type="text" class="form-control" placeholder="" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 n-padding-right">
+                                            <div class="form-group col-md-3">
+                                                <label class="col-form-label">Endorsement/Restrictions</label>
+                                                <input type="text" class="form-control" placeholder="" disabled>
+                                            </div>
+                                            <div class="form-group col-md-1">
+                                                <label class="col-form-label">FCMI</label>
+                                                <input type="text" class="form-control" placeholder="" disabled>
+                                            </div>
+                                            <div class="form-group col-md-1">
+                                                <label class="col-form-label">Discount</label>
+                                                <input type="text" class="form-control" placeholder="" disabled>
+                                            </div>
+                                            <div class="form-group col-md-2">
+                                                <label class="col-form-label">Discrepency</label>
+                                                <input type="text" class="form-control" placeholder="" disabled>
+                                            </div>
+                                            <div class="form-group col-md-2">
+                                                <label class="col-form-label">Associated With </label>
+                                                <input type="text" class="form-control" placeholder="" disabled>
+                                            </div>
+                                            <div class="form-group col-md-3 n-padding-right">
+                                                <label class="col-form-label">Tracking Ref. ID </label>
+                                                <input type="text" class="form-control input-tracking" placeholder="" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12" style="padding-right: 0px;">
+                                            <div class="form-group col-md-2" style="width: 15%">
+                                                <label class="col-form-label">Sales Country Code</label>
+                                                <input type="text" class="form-control" placeholder="" disabled>
+                                            </div>
+                                            <div class="form-group col-md-2 ml-none" style="width: 13%">
+                                                <label class="col-form-label">Service Agent Info</label>
+                                                <input type="text" class="form-control" placeholder="" disabled>
+                                            </div>
+                                            <div class="form-group col-md-2 ml-none" style="width: 13%">
+                                                <label class="col-form-label">Authorisation Code</label>
+                                                <input type="text" class="form-control" placeholder="" disabled>
+                                            </div>
+                                            <div class="form-group col-md-1 ml-none">
+                                                <label class="col-form-label">User ID</label>
+                                                <input type="text" class="form-control" placeholder="" disabled>
+                                            </div>
+                                            <div class="form-group col-md-2 ml-none" style="width: 11%">
+                                                <label class="col-form-label">Comm.Agmt.Ref</label>
+                                                <input type="text" class="form-control" placeholder="" disabled>
+                                            </div>
+                                            <div class="form-group col-md-2 ml-none" style="width: 12%">
+                                                <label class="col-form-label">Transaction Code</label>
+                                                <input type="text" class="form-control" placeholder="" disabled>
+                                            </div>
+                                            <div class="form-group col-md-2 ml-none ml-none-more">
+                                                <label class="col-form-label">Domestic/International</label>
+                                                <input type="text" class="form-control input-domestic" placeholder="" disabled>
+                                            </div>
+                                            <div class="form-group col-md-2 ml-none" style="width: 11.5%;padding-right: 0px;">
+                                                <label class="col-form-label">Amount Collected</label>
+                                                <input type="text" class="form-control" placeholder="" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 footer-ticket">
+                                <div class="ticket-payment">
+                                    <div class="col-sm-3"><button class="payment-interogation btn" id="actionAncillary "><span class="search-span">PAYMENT/TFCs/COMM/ANCILLARIES</span></button></div>
+                                    <div class="col-sm-3 payment-1"><button class="payment-1-interogation btn" data-toggle="modal" data-target="#moreDetails" id="actionMoreDetails"><span class="search-span">VIEW MOREDETAILS</span></button></div>
+                                    <div class="col-sm-3 payment-1"><button class="payment-1-interogation btn" data-toggle="modal" data-target="#sputfca" onclick="clickSplitFCA()"><span class="search-span">SPLIT FCA</span></button></div>
+                                    <div class="col-sm-3 payment-1"><button class="payment-1-interogation btn" data-toggle="modal" data-target="#tickethistory"><span class="search-span">TICKET HISTORY</span></button></div>
+                                    <div class="col-sm-3 payment-1"><button class="payment-1-interogation btn" data-toggle="modal" data-target="#facsimile" id="actionFacsimile"><span class="search-span">FACSIMILE</span></button></div>
+                                    <div class="col-sm-3 payment-1" style="margin-left: 25%"><button class="payment-1-interogation btn" data-toggle="modal" data-target="#proration"><span class="search-span">SHOW PRORATE</span></button></div>
+                                    <div class="col-sm-3 payment-1"><button class="payment-1-interogation btn" onclick="removeSousMenu()"><span class="search-span">CLOSE</span></button></div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+       
+         </div>
+        <div id="facsimile" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h5 class="modal-title">Facsimile Generation</h5>
+                    </div>
+                    <div class="modal-body " id="capture" >
+                        <div class="ajax-loader">
+                            <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+                        </div>
+                        <div class="facsimile-body" style="background-color:rgb(249,249,201);">
+                            <div class="col-md-11">
+                                <label class="col-md-3">ISSUED BY </label>
+
+                                <div class="col-md-4"><h3>ATLAS</h3></div>
+                                <div class="col-md-3">
+                                    <label class="passenger-ticket">
+                                        PASSENGER TICKET AND BAGGAGE CHECK SUBJECT TO CONDITION OF CONTRACT IN THIS TICKET
+                                    </label>
+                                </div>
+                            </div>
+                            <table class="table table-bordered table-facsimile" id="newfacsimile" style="border:1px solid black">
+                                <tbody>
+                                    <tr>
+
+                                        <td colspan="6" rowspan="2" style="border-left: 1px solid transparent !important;border-bottom:1px solid transparent !important">
+                                            <strong>ENDORSEMENT/RESTRICTIONS(CARBON)</strong><br>
+                                            <ul>
+                                                <li id="newrestrictionEndo" style="list-style-type:none;"></li>
+                                            </ul>
+                                        </td>
+
+                                        <td colspan="3" rowspan="2" style="border-top: 1px solid transparent !important"><h3 class="audit-coupon">AUDIT COUPON</h3></td>
+                                        <td style="border-top: 1px solid transparent !important">
+                                            <label class="airline-data">AIRLINE DATA</label>
+                                            <span class="origin-dest">ORIGIN/DESTINATION</span>
+                                        </td>
+                                        <td style="border: 1px solid transparent !important">
+                                            <label class="date-end-palce-fist">DATE AND PLACE OF ISSUE</label>
+                                            <br>
+                                            <ul>
+                                                <li id="newAgent" style="list-style-type:none; padding-left:10px;"></li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+
+                                        <td><label class="ussued-for">ISSUED IN EXCHANGE FOR</label></td>
+                                        <!--<td id="newairlinedataID"></td>
+                                        <td id="newAgentCodeID" style="width:5%"></td>
+                                        <td id="newIssueDateID" style="width:5%;border-top: 1px solid transparent !important;border-left: 1px solid transparent !important"></td>-->
+
+                                    </tr>
+                                    <tr>
+
+                                        <td colspan="4" style="border-top: 1px solid transparent !important;border-left: 1px solid transparent !important"></td>
+                                        <td colspan="5"><label class="tour-code">TOUR CODE</label></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" style="border-left: 1px solid transparent !important;border-right: 1px solid transparent !important">
+                                            <strong>NAME OF PASSENGER</strong><br>
+                                            <ul>
+                                                <li id="newpassengerID" style="list-style-type:none;"></li>
+                                            </ul>
+
+                                        </td>
+
+                                        <td colspan="3">
+                                            <label class="name-passenger">NOTE TRANSFERABLE</label>
+                                        </td>
+                                        <td colspan="6"><label class="conjunction-ticket">CONJUNCTION TICKETS</label></td>
+                                        <td style="border-right: 1px solid transparent !important;border-top: 1px solid transparent !important"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-left: 1px solid transparent !important" width="1%">X/0</td>
+                                        <td width="28%">
+                                            NOT GOOD FOR PASSAGE BETWEEN POINTS OUTLINED
+                                            <table></table> <label>FROM</label>
+                                        </td>
+                                        <td>CARRIER</td>
+                                        <td>FLIGHT</td>
+                                        <td>CLASS</td>
+                                        <td>DATE</td>
+                                        <td>TIME</td>
+                                        <td>STATUS</td>
+                                        <td>FARE BASIS</td>
+                                        <td style="width: 142px;">NOT VALID BEFORE</td>
+                                        <td>NOT VALID AFTER</td>
+                                        <td style="border-right:1px solid transparent !important">ALLOW</td>
+                                    </tr>
+
+                                    <tr>
+
+                                        <td style="border-left: 1px solid transparent !important"></td>
+                                        <td><label>TO</label><span id="gfp-0"></span></td>
+                                        <td id="carrer1-3"></td>
+                                        <td id="carrer1-4"></td>
+                                        <td id="carrer1-5"></td>
+                                        <td id="carrer1-6"></td>
+                                        <td id="carrer1-7"></td>
+                                        <td id="carrer1-8"></td>
+                                        <td id="carrer1-9"></td>
+                                        <td id="carrer1-10"></td>
+                                        <td id="carrer1-11"></td>
+                                        <td style="border-right: 1px solid transparent !important" id="carrer1-12"></td>
+                                    </tr>
+                                    <tr>
+
+                                        <td style="border-left: 1px solid transparent !important"></td>
+                                        <td><label>TO</label><span id="gfp-1"></span></td>
+                                        <td id="carrer2-3"></td>
+                                        <td id="carrer2-4"></td>
+                                        <td id="carrer2-5"></td>
+                                        <td id="carrer2-6"></td>
+                                        <td id="carrer2-7"></td>
+                                        <td id="carrer2-8"></td>
+                                        <td id="carrer2-9"></td>
+                                        <td id="carrer2-10"></td>
+                                        <td id="carrer2-11"></td>
+                                        <td style="border-right: 1px solid transparent !important" id="carrer2-12"></td>
+                                    </tr>
+                                    <tr>
+
+                                        <td style="border-left: 1px solid transparent !important"></td>
+                                        <td><label>TO</label><span id="gfp-2"></span></td>
+                                        <td id="carrer3-3"></td>
+                                        <td id="carrer3-4"></td>
+                                        <td id="carrer3-5"></td>
+                                        <td id="carrer3-6"></td>
+                                        <td id="carrer3-7"></td>
+                                        <td id="carrer3-8"></td>
+                                        <td id="carrer3-9"></td>
+                                        <td id="carrer3-10"></td>
+                                        <td id="carrer3-11"></td>
+                                        <td style="border-right: 1px solid transparent !important" id="carrer3-12"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-left: 1px solid transparent !important"></td>
+                                        <td><label>TO</label><span id="gfp-3"></span></td>
+                                        <td id="carrer4-3"></td>
+                                        <td id="carrer4-4"></td>
+                                        <td id="carrer4-5"></td>
+                                        <td id="carrer4-6"></td>
+                                        <td id="carrer4-7"></td>
+                                        <td id="carrer4-8"></td>
+                                        <td id="carrer4-9"></td>
+                                        <td id="carrer4-10"></td>
+                                        <td id="carrer4-11"></td>
+                                        <td style="border-right: 1px solid transparent !important" id="carrer4-12"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="border-left: 1px solid transparent !important"></td>
+                                        <td style="text-align:center"><span id="gfp-4"></span></td>
+                                        <td colspan="10" style="border-right: 1px solid transparent !important; padding: 0px !important">
+                                            <div class="col-md-12 bar-td-mere" style="font-size:9px">
+                                                <div class="bar-td col-md-2">
+                                                    <strong>
+                                                        BAGAGE CHECKED<br>
+                                                        UNCHECKED <i class="fa fa-long-arrow-right" style="font-size:20px;padding-left:10px"></i>
+                                                    </strong>
+                                                </div>
+                                                <div class="col-md-10">
+                                                    <div class="row">
+                                                        <div class="bar-td col-md-1">
+                                                            <strong>
+                                                                PCS
+                                                            </strong>
+                                                        </div>
+                                                        <div class="bar-td col-md-1">
+                                                            <strong>
+                                                                WT
+                                                            </strong>
+                                                        </div>
+                                                        <div class="bar-td col-md-1">
+                                                            <strong>
+                                                                UNCHECKED
+                                                            </strong>
+                                                        </div>
+                                                        <div class="bar-td col-md-1">
+                                                            <strong>
+                                                                PCS
+                                                            </strong>
+                                                        </div>
+                                                        <div class="bar-td col-md-1">
+                                                            <strong>
+                                                                WT
+                                                            </strong>
+                                                        </div>
+                                                        <div class="bar-td col-md-1">
+                                                            <strong>
+                                                                UNCHECKED
+                                                            </strong>
+                                                        </div>
+                                                        <div class="bar-td col-md-1">
+                                                            <strong>
+                                                                PCS
+                                                            </strong>
+                                                        </div>
+                                                        <div class="bar-td col-md-1">
+                                                            <strong>
+                                                                WT
+                                                            </strong>
+                                                        </div>
+                                                        <div class="bar-td col-md-1">
+                                                            <strong>
+                                                                UNCHECKED
+                                                            </strong>
+                                                        </div>
+                                                        <div class="bar-td col-md-1">
+                                                            <strong>
+                                                                PCS
+                                                            </strong>
+                                                        </div>
+                                                        <div class="bar-td col-md-1">
+                                                            <strong>
+                                                                WT
+                                                            </strong>
+                                                        </div>
+                                                        <div class="bar-td col-md-1">
+                                                            <strong>
+                                                                UNCHECKED
+                                                            </strong>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="table-bordered table table-facsimile-down" style="border:1px solid black">
+                                <tr>
+
+                                    <td style="width:15%;border-left:1px solid transparent !important;border-right:1px solid transparent !important">
+
+                                        <label id="newFareF">EQUIVALENT FARE</label>
+                                        <span>FARE</span>
+
+                                    </td>
+                                    <td style="width: 10%" id="fac-FareCurrency"></td>
+                                    <td rowspan="4" colspan="8" class="td-facsimile-down" style="border-right:1px solid transparent !important">
+                                        FARE CALCULATION
+                                        <label id="newFareCalc" style="width: 482px !important;"></label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="border-left:1px solid transparent !important;border-right:1px solid transparent !important">
+                                        <label>TAX/FEE/CHARGE</label>
+                                    </td>
+                                    <td id="newtotal"></td>
+                                </tr>
+                                <tr>
+                                    <td style="border-left:1px solid transparent !important;border-right:1px solid transparent !important">
+                                        <label>TAX/FEE/CHARGE</label>
+                                    </td>
+                                    <td id="newtax1fee"></td>
+                                </tr>
+                                <tr>
+                                    <td style="border-left:1px solid transparent !important;border-right:1px solid transparent !important">
+                                        <label>TAX/FEE/CHARGE</label>
+                                    </td>
+                                    <td id="newtax2fee"></td>
+                                </tr>
+                                <tr>
+                                    <td style="border-left:1px solid transparent !important;border-right:1px solid transparent !important">
+                                        <label></label>
+                                    </td>
+                                    <td id="newtax3fee"></td>
+                                    <td rowspan="4" style="border-right: 10px solid !important"></td>
+                                    <td style="border-bottom:1px solid transparent !important">CPN</td>
+                                    <td style="border-bottom:1px solid transparent !important">AIRLINE CODE</td>
+                                    <td style="border-bottom:1px solid transparent !important">FORM AND SERIAL NUMBER</td>
+                                    <td style="width: 7%;border-bottom:1px solid transparent !important">CK</td>
+                                    <td style="width: 40%;border-right:1px solid transparent !important">
+                                        <span class="form-payment-up">FORM OF PAYMENT</span>
+                                        <span class="form-payment-down">ORIGINAL ISSUE</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="border-left:1px solid transparent !important;border-right:1px solid transparent !important">
+                                        <label>TOTAL</label>
+                                    </td>
+                                    <td></td>
+                                    <td rowspan="2" style="border:1px solid transparent !important"></td>
+                                    <td rowspan="2" style="border:1px solid transparent !important; font-size: 20px;font-weight: 700;" id="newfirstDocNumber"></td>
+                                    <td rowspan="2" style="border:1px solid transparent !important; font-size: 20px;font-weight: 700;" id="newsecondDocNumber"></td>
+                                    <td rowspan="2" style="border:1px solid transparent !important; font-size: 20px;font-weight: 700;" id="newtreeDocNumber"></td>
+                                    <td rowspan="2" style="border:1px solid transparent !important"></td>
+                                </tr>
+                                <tr>
+                                    <td style="border-left:1px solid transparent !important;border-right:1px solid transparent !important">
+                                        <label></label>
+                                    </td>
+                                    <td id="newtotalfee"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" style="border:1px solid transparent !important"></td>
+                                    <td colspan="4" style="border:1px solid transparent !important"><label class="do-not">DO NOT MARK OR WRITE IN THE WHITE AREA ABOVE</label></td>
+                                    <td style="border-right:1px solid transparent !important;border-bottom:1px solid transparent !important"></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="content-modal-footer">
+                        <div class="col-sm-11 footer-containt">
+                            <label class="col-sm-2">Document No.</label>
+                            <div class="col-sm-2">
+                                <input type="text" name="document" id="docNumber">
+                            </div>
+                            <div class="col-sm-2">
+                                <button class="btn-default btn" onclick="saveCanvas()">Generate/Print Ticket Facsimile</button>
+                            </div>
+                            <div class="col-sm-2">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="sputfca" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body splifac-body">
+                        <div class="ajax-loader">
+                            <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" />
+
+                        </div>
+                        <div class="col col-sm-12 modal-fca-split">
+                            <span class="doc-numb"><b>Document Number</b></span>
+                        </div>
+
+                        <form>
+                            <div class="form-group row">
+                                <label class="col col-sm-1 col-form-label">Original FCA</label>
+                                <div class="col col-sm-8">
+                                    <input type="text" readonly class="form-control" id="originalfca" value="">
+                                </div>
+                                <div class="col col-sm-2">
+                                    <a href="javaScript:void(0)" class="btn btn-default">PARSER</a>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col col-sm-1 col-form-label">Parser</label>
+                                <div class="col col-sm-8">
+                                    <input type="text" readonly class="form-control" id="parser" value="">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col col-sm-1 col-form-label">FCA</label>
+                                <div class="col col-sm-8">
+                                    <input type="text" readonly class="form-control" id="fca" value="">
+                                </div>
+                            </div>
+                        </form>
+                        <div class="row containt-tableau">
+                            <div class="tab-left">
+                                <table class="table table-bordered haut">
+                                    <tr>
+                                        <td class="entete">Key</td>
+                                        <td class="entete">Value</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="tab-left1">
+
+                            </div>
+
+                            <div class="fca-center">
+                                <div class="fca-title">
+                                    <button class="reduire" id="reduire" onclick="reduire('fare-component')">...</button>
+                                    <p>Fare Component</p>
+                                </div>
+                                <div id="fare-component" style="display:none;">
+                                    <div class="well well-fare1">
+                                        <table class="table table-bordered fare-tab">
+                                            <tr>
+                                                <td class="entete">Fare Component</td>
+                                                <td class="entete">1</td>
+                                                <td class="entete">2</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="well well-fare2"></div>
+                                </div>
+                                <div class="fca-title">
+                                    <button class="reduire" id="reduire" onclick="reduire('ticket-info')">...</button>
+                                    <p>Ticket Information</p>
+                                </div>
+                                <div id="ticket-info" style="display:none;">
+                                    <div class="well well-autre"></div>
+                                </div>
+                                <div class="fca-title">
+                                    <button class="reduire" id="reduire" onclick="reduire('coupon')">...</button>
+                                    <p>Coupons</p>
+                                </div>
+                                <div id="coupon" style="display:none;">
+                                    <div class="well well-autre"></div>
+                                </div>
+                                <div class="fca-title">
+                                    <button class="reduire" id="reduire" onclick="reduire('payement')">...</button>
+                                    <p>Payments</p>
+                                </div>
+                                <div id="payement" style="display:none;">
+                                    <div class="well well-autre"></div>
+                                </div>
+                                <div class="fca-title">
+                                    <button class="reduire" id="reduire" onclick="reduire('other')">...</button>
+                                    <p>Other Payment</p>
+                                </div>
+                                <div id="other" style="display:none;">
+                                    <div class="well well-autre"></div>
+                                </div>
+                                <div class="fca-title">
+                                    <button class="reduire" id="reduire" onclick="reduire('proration-detail')">...</button>
+                                    <p>Proration Details</p>
+                                </div>
+                                <div id="proration-detail" style="display:none;">
+                                    <div class="well well-autre"></div>
+                                </div>
+                                <div class="fca-title">
+                                    <button class="reduire" id="reduire" onclick="reduire('proration-exception')">...</button>
+                                    <p>Proration Exception</p>
+                                </div>
+                                <div id="proration-exception" style="display:none;">
+                                    <div class="well well-autre"></div>
+                                </div>
+                                <div class="fca-title">
+                                    <button class="reduire" id="reduire" onclick="reduire('exchange')">...</button>
+                                    <p>Exchange(Original Ticket Information)</p>
+                                </div>
+                                <div id="exchange" style="display:none;">
+                                    <div class="well well-autre"></div>
+                                </div>
+                                <div class="fca-title">
+                                    <button class="reduire" id="reduire" onclick="reduire('observation')">...</button>
+                                    <button class="form-control-file" style="z-index:1;">User's Observation</button>
+                                    <p>User's Observation</p>
+                                </div>
+                                <div id="observation" style="display:none;">
+                                    <div class="well well-autre"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer" style="height: 52px !important;">
+                        <div class="content-modal-footer" style="height: 0px;width: 99%">
+                            <div class="col-sm-3" style="width: 68px;float: right;top: 9px;">
+                                <button type="button" class="payment-1-interogation btn" data-dismiss="modal" style="width: 68px !important;">
+                                    <span class="search-span">CLOSE</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tickethistory" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" style="position: relative;top: 1px;" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="ticketHistory-modal-body">
+                        <div class="ajax-loader">
+                            <img src="@Url.Content("~/Images/load.gif")" class="img-responsive" style="top: -54px;height: 110px;width: 274px;" />
+                        </div>
+                        <div class="ticket-content" id="table-formPayment">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="ticketHistory content-modal-footer" style="border:0px !important">
+                            <button type="button" class="Close btn btn-primary">Clear</button>
+                            <button type="button" class="Close btn btn-danger">Save</button>
+                            <button type="button" class="Close btn btn-default btn-close" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="proration" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>Proration</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="tab-content-proration">
+                            <div class="proration col-md-11">
+                                <div class="content col-sm-4">
+                                    <form>
+                                        <div class="Ticket col-sm-12">
+                                            <div class="form-group row width-group">
+                                                <label class="col-sm-4 col-form-label">Ticket NO:</label>
+                                                <div class="col-sm-5">
+                                                    <input type="text" name="" class="form-control">
+                                                </div>
+                                                <div>
+                                                    <img src='@Url.Content("~/images/search.png")' class="image-search">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row width-group">
+                                                <label class="col-sm-4 col-form-label">Fare:</label>
+                                                <div class="col-sm-5">
+                                                    <input type="text" name="" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row width-group">
+                                                <label class="col-sm-4 col-form-label">Equiv Fare:</label>
+                                                <div class="col-sm-5">
+                                                    <input type="text" name="" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row width-group">
+                                                <label class="col-sm-4 col-form-label">Issue Date:</label>
+                                                <div class="col-sm-5">
+                                                    <input type="text" name="" class="form-control input-date">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row width-group">
+                                                <label class="col-sm-4 col-form-label">Original Issue Date:</label>
+                                                <div class="col-sm-5">
+                                                    <input type="text" name="" class="form-control input-date">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row width-group">
+                                                <label class="col-sm-4 col-form-label">Date Of Ssale:</label>
+                                                <div class="col-sm-5">
+                                                    <input type="text" name="" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row width-group">
+                                                <label class="col-sm-4 col-form-label">Clearance Month:</label>
+                                                <div class="col-sm-5">
+                                                    <input type="text" name="" class="form-control">
+                                                </div>
+                                                <div class="YY">
+                                                    <label>(yyyMM)</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="content col-sm-4">
+                                    <form>
+                                        <div class="Fare col-sm-12">
+                                            <div>
+                                                <label class="col-sm-9 col-form-label">Fare Component To Be Prorated (FCTBP):</label>
+                                            </div>
+                                            <div>
+                                                <label class="col-sm-9 col-form-label">Fare in NUC:</label>
+                                            </div>
+                                            <div>
+                                                <label class="col-sm-9 col-form-label">NUC-Fare IROE:</label>
+                                            </div>
+                                            <div>
+                                                <label class="col-sm-9 col-form-label">ATBP-Fare:</label>
+                                            </div>
+                                            <div>
+                                                <label class="col-sm-9 col-form-label">Equiv.Fare Pd-BSR or 5DR-Prec.MOS ATT.A or B:</label>
+                                            </div>
+                                            <div>
+                                                <label class="col-sm-9 col-form-label">ATBP-Equiv .Fare Pd:</label>
+                                            </div>
+                                            <div>
+                                                <label class="col-sm-9 col-form-label">COP USD 5 Day Rate Prec. MOC/Mean Rate:</label>
+                                            </div>
+                                            <div>
+                                                <label class="col-sm-9 col-form-label">ATBP-USD:</label>
+                                            </div>
+                                            <div>
+                                                <label class="col-sm-9 col-form-label">Total Proviso(s)-USD:</label>
+                                            </div>
+                                            <div>
+                                                <label class="col-sm-9 col-form-label">BTBP-USD:</label>
+                                            </div>
+                                            <div>
+                                                <label class="col-sm-9 col-form-label">Total Prorata Factors:</label>
+                                            </div>
+                                            <div>
+                                                <label class="col-sm-9 col-form-label">Quotient (5d.p.Unroundead):</label>
+                                            </div>
+                                            <div>
+                                                <label class="col-sm-9 col-form-label">MPR%:</label>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="content col-sm-4">
+                                    <div class="DQ col-sm-12">
+                                        <div class="col-sm-4">
+
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label>D</label>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label>Q</label>
+                                        </div>
+                                    </div>
+                                    <div class="ISTDUS col-sm-12">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th class="IS col-sm-4">ISTDUS</th>
+                                                    <th class="IS1 col-sm-4"></th>
+                                                    <th class="IS2 col-sm-4"></th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="content col-md-12">
+                                <div class="col-sm-3">
+                                </div>
+                                <div class="bt-view-component col-sm-9">
+                                    <div class="col-sm-2">
+                                        <input type="button" name="" value="View coupons" class="bouttons1">
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <input type="button" name="" value="Prorate" class="bouttons2">
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <input type="button" name="" value="PreviousD" class="bouttons">
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <input type="button" name="" value="NextD" class="bouttons3">
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <input type="button" name="" value="PreviousQ" class="bouttons">
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <input type="button" name="" value="NextQ" class="bouttons3">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="content col-md-12">
+                                <label class="col-sm-11 col-form-label">Fare Calculation Area</label>
+                                <input type="text" name="" class="form-control">
+                            </div>
+                            <div class="content col-md-12">
+                                <div class="Involve">
+                                    <input type="checkbox" name="">
+                                    <label class="form-label">Involve Manual Correction</label>
+                                </div>
+                            </div>
+                            <div class="content col-md-12">
+                                <div class="Sec-orig">
+                                    <table class="table table-bordered" style="margin-left: -16px;">
+                                        <thead>
+                                            <tr>
+                                                <th>Sec Ori</th>
+                                                <th>Carrier</th>
+                                                <th>Sec Dest</th>
+                                                <th>FareBasis</th>
+                                                <th>Pro.Factors</th>
+                                                <th>Proviso(s) & Base Amount</th>
+                                                <th>Prorate/Proviso Value</th>
+                                                <th>RBO</th>
+                                                <th>SRP</th>
+                                                <th>SPA</th>
+                                                <th>Diff.(D)</th>
+                                                <th>Surch.(Q)</th>
+                                                <th>Final Share</th>
+                                                <th>ISC %</th>
+                                                <th>Code Share</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="content col-md-12">
+                                <div class="col-sm-4"></div>
+                                <div class="bbt col-sm-7">
+                                    <div class="col-sm-4">
+                                        <input type="button" name="" value="Previous Fare Component" class="bouttons4">
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <input type="button" name="" value="Next Fare Component" class="bouttons4">
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <input type="button" name="" value="Clear" class="bouttons3">
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <input type="button" name="" value="Close" class="bouttons3" data-dismiss="modal">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="moreDetails" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modalMoreDetails" role="document">
+                <div class="modal-content">
+                    <div class="bordure">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="myModalLabel">More Details on Document No. :</h5>
+                        </div>
+                        <div class="DocCollect-modal-body">
+                            <div class="scoll-tree">
+                                <table class="table table-bordered table-hover table-striped" id="newMoreDetails" style="padding: 4px;">
+                                    <thead>
+                                        <tr>
+                                            <th>Field Name</th>
+                                            <th>Data value</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody style="display: block; overflow-y: scroll; height: 73vh;">
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                        <div class="footerMoredetails" style="float: right;width: 72px !important;position: relative;top: 0px;">
+                            <div class="col-sm-3"><button type="button" class="payment-1-interogation btn" data-dismiss="modal" style="width: 68px !important;"><span class="search-span">CLOSE</span></button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="Ancillary" class="modal fade" role="dialog">
+            <div class="modal-Ancillary">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    </div>
+                    <div class="AncillaryBody">
+                        <div class="AncillaryA">
+                            <div class="Ancillary-top"></div>
+                            <div class="Ancillary-formulaire">
+                                <form class="form-inline" method="post" action="">
+                                    <label for="document">Document N° :</label>
+                                    <input type="text" name="document" id="documentNumber">
+                                </form>
+                            </div>
+                            <div class="Ancillary-titre">
+                                <span class="Ancillary-texte"><b>Form Of Payment</b></span>
+                            </div>
+                            <div class="Ancillary-well well-sm cadreA">
+                                <table class="table table-bordered table1 table-striped table-hover" id="newFrmPayement">
+                                    <thead>
+                                        <tr>
+                                            <th class="pink">FOP</th>
+                                            <th class="pink">CUR</th>
+                                            <th class="pink">Amount Collected</th>
+                                            <th class="pink">CUR</th>
+                                            <th class="pink">Remitence Amount</th>
+                                            <th class="pink">TRansactionCode</th>
+                                            <th class="pink">Date Of Issue</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <div class="Ancillary-titre2">
+                                <span class="Ancillary-texte2"><b>TFCs</b></span>
+                            </div>
+                            <div class="Ancillary-well well-lg cadreA">
+                                <table class="table table-bordered table2 table-striped table-hover" id="newTFCs">
+                                    <thead>
+                                        <tr>
+                                            <th class="pink">TFC</th>
+                                            <th class="pink">TFC Code</th>
+                                            <th class="pink">CUR</th>
+                                            <th class="pink">Amount</th>
+                                            <th class="pink">Rate</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <div class="Ancillary-titre3">
+                                <span class="Ancillary-texe3"><b>Ancillaries</b></span>
+                            </div>
+                            <div class="Ancillary-well well-md cadreA">
+                                <table class="table table-bordered table3 table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th class="pink">Tax</th>
+                                            <th class="pink">Tax Code</th>
+                                            <th class="pink">CUR</th>
+                                            <th class="pink">Amount</th>
+                                            <th class="pink">Rate</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="Ancillaryfooter" style="width: 72px !important">
+                        <div class="col-sm-3" style="position: relative;left: 1106%;width: 72px !important;top: 6px;">
+                            <button type="button" class="payment-1-interogation btn" data-dismiss="modal" style="width: 68px !important;">
+                                <span class="search-span">CLOSE</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--AgentCode-->
+        <div class="modal fade" id="AgentCodeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="Doc modal-content" style="width: 58%;left: 17%; background-color: rgba(135, 206, 235, 1) !important; ">
+                    <div class="agentModal">
+                        <div class="modal-header" style="background-color: white; margin-bottom: 21px;">
+                            <h5 class="modal-title" id="myModalLabel">FrmCustomAgentQuery</h5>
+                            <button type="button" class="close close-agent-code" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="DocCollect-modal-body">
+                            <div class="scoll-tree scoll-agent-code">
+                                <div class="head-agent-code-content">
+                                    <div class="form-row">
+                                        <div class="col col-md-3" style="padding-left: 0px;">Agent Legal Name:</div>
+                                        <div class="col col-md-4">
+                                            <input type="text" class="form-control" id="name" name="agentName" onkeyup="cherche(this.value,'GrandParent_@ViewBag.type')" />
+                                        </div>
+                                        <div class="col col-md-2">Agent Code:</div>
+                                        <div class="col col-md-3">
+                                            <input type="text" class="form-control" id="code" name="agentCode" onkeyup="cherche(this.value,'GrandParent_@ViewBag.type')" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="agentContent" style="width: 98%; max-height: 515px;">
+                                    <table class="table table-agent-code" style="margin-bottom:0px">
+                                        <thead>
+                                            <tr>
+                                                <th width="35%">Agent Code</th>
+                                                <th width="70%">Agent Name</th>
+                                            </tr>
+                                        </thead>
+
+
+                                    </table>
+                                </div>
+                                <div class="autocomplete">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer" style="background-color:rgba(135, 206, 235, 1) !important;">
+                            <div class="col-md-9 footer-agent-code">
+                                <div class="col-md-12">
+                                    <label>Agent Name: </label>
+                                    <label style="color:white;font-size:12px" id="agent-name-label"></label>
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Agent Code: </label>
+                                    <label style="color:white; font-size:12px" id="agent-code-label"></label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <button type="button" class="Close btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="Close btn" data-dismiss="modal" onclick="selectPsd()">Select</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="Observation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="Doc modal-content" style="width: 65%;left: 17%; background-color: rgba(135, 206, 235, 1) !important;">
+                    <div class="agentModal">
+                        <div class="modal-header" style="background-color: white; margin-bottom: 21px; height: 99px !important; background-color:rgba(135, 206, 235, 1)">
+                            <table>
+                                <tr>
+                                    <td style="padding:5px">DATE</td>
+                                    <td style="padding:5px">
+                                        <div class="input-group">
+                                            <span class="input-group-addon glyphicon glyphicon-calendar" onclick="setdate('dateObs')"></span>
+                                            <input type="text" class="form-control" id="dateObs">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:5px">SUBJECT</td>
+                                    <td style="padding:5px"><input type="text" class="form-control" id="editSubject" /></td>
+                                </tr>
+
+                            </table>
+                            <input type="hidden" name="" id="hdrguid" />
+                            <input type="hidden" name="" id="recId" />
+                            <input type="hidden" name="" id="docNumber" />
+                            <button type="button" class="close close-agent-code" data-dismiss="modal" style="position: relative;top: -88px;">&times;</button>
+                        </div>
+                        <div class="DocCollect-modal-body">
+                            <div class="scoll-tree scoll-agent-code" style="height:588px;width:95%;background-color:white">
+                                <textarea class="form-controls input-lg textarea-editor" rows="30" name="obsValue" id="obvId"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer" style="background-color:rgba(135, 206, 235, 1) !important;">
+                            <div class="col-md-3">
+                                <button type="button" class="Close btn btn-secondary" data-dismiss="modal">Close</button>
+
+                                <div class="col-sm-3" style="width: 72px !important;">
+                                    <button type="button" class="Close btn" id="save-obs" onclick="saveObs()">
+                                        <span class="search-span">CLOSE</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </markelement>
+</div>
